@@ -1,0 +1,502 @@
+{% comment %}
+  Use:
+  {% render "alp-product-images", product: product, aspect_ratio: aspect_ratio, type: "all" / "variant" %}
+{% endcomment %}
+
+{% liquid
+  assign type = type | default: 'all'
+  assign current_variant = product.selected_or_first_available_variant
+  assign featured_media = current_variant.featured_media
+%}
+
+<div class="alp-product-image-contents">
+  <div
+    class="alp-product-media-new"
+    style="--aspect-ratio:{{ aspect_ratio | default: '4/3' }}"
+    data-gallery-type="{{ type }}"
+  >
+    <div class="alp_product__breadcrumb_image">
+      {% render 'breadcrumbs' %}
+    </div>
+    <div class="alp-product-media-new-container">
+      <div class="swiper product-media-new-thumb">
+        <div class="swiper-wrapper">
+          {% for media in product.media %}
+            {% comment %} Match variant {% endcomment %}
+            {%- capture match_variant_media -%}
+              {%- assign variants = '' -%}
+              {%- for variant in product.variants -%}
+                {%- if variant.featured_media.id == media.id -%}
+                  {%- assign variants = variants | append: variant.id | append: ',' -%}
+                {%- endif -%}
+              {%- endfor -%}
+              data-variants="{{ variants }}" data-media-id="{{ media.id }}"
+            {%- endcapture -%}
+            {% comment %} Match variant {% endcomment %}
+            <div class="swiper-slide" {{ match_variant_media }}>
+              <div class="product-media-item-thumb">
+                {% render 'alp-media-thumb',
+                  image: media,
+                  desktop_width: 360,
+                  mobile_width: 120,
+                  aspect_ratio: aspect_ratio
+                %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        {% render 'swiper-navigation-vertical', class: 'media-swiper-arrow' %}
+      </div>
+      <div class="swiper product-media-new">
+        <div class="swiper-wrapper">
+          {% for media in product.media %}
+            {% comment %} Match variant {% endcomment %}
+            {%- capture match_variant_media -%}
+              {%- assign variants = '' -%}
+              {%- for variant in product.variants -%}
+                {%- if variant.featured_media.id == media.id -%}
+                  {%- assign variants = variants | append: variant.id | append: ',' -%}
+                {%- endif -%}
+              {%- endfor -%}
+              data-variants="{{ variants }}" data-media-id="{{ media.id }}"
+            {%- endcapture -%}
+            {% comment %} Match variant {% endcomment %}
+            <div class="swiper-slide" {{ match_variant_media }}>
+              <div class="product-media-item alp_popup_open_image">
+                {% render 'alp-responsive-media',
+                  media: media,
+                  desktop_width: 1680,
+                  mobile_width: 600,
+                  aspect_ratio: aspect_ratio
+                %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        {% render 'swiper-navigation', class: 'media-swiper-arrow' %}
+        <div class="alp-product-item-features in-media-features hidden">
+          {%- assign features = product.metafields.custom.new_feature_list -%}
+          {%- if features.value.size > 0 -%}
+            {%- for item in features.value -%}
+              <div class="product-features-i">{{ item }}</div>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          {%- case block.type -%}
+            {%- when 'product_badge' -%}
+              {%- if bs.position == 'image' -%}
+                <div class="alp_product__badge" data-product-image-block>
+                  {%- if bs.title_1 != blank -%}
+                    <div class="alp_product__badge_i" style="background-color: {{ bs.color_1 }};">{{ bs.title_1 }}</div>
+                  {%- endif -%}
+                  {%- if bs.title_2 != blank -%}
+                    <div class="alp_product__badge_i" style="background-color: {{ bs.color_2 }};">{{ bs.title_2 }}</div>
+                  {%- endif -%}
+                  {%- if bs.title_3 != blank -%}
+                    <div class="alp_product__badge_i" style="background-color: {{ bs.color_3 }};">{{ bs.title_3 }}</div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+        {% comment %}
+          {%- if product.metafields.custom.full_reduction != blank -%}
+            <div class="alp-product-sale-discount-b">
+              <span>{{- product.metafields.custom.full_reduction -}}</span>
+            </div>
+          {%- endif -%}
+        {% endcomment %}
+      </div>
+
+      <div class="popup_btn_group">
+        {% comment %} 360Viwer Popup Button {% endcomment %}
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'viewer_block' -%}
+              <div class="the_360_deg_open_btn">
+                <img
+                  class="lazy"
+                  src="{{ 'map-point-rotate-outline.png' | file_img_url: 'master' }}"
+                  alt=""
+                  loading="lazy"
+                  width="24"
+                  height="24"
+                >
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+        {% comment %} Gallery Popup Button {% endcomment %}
+        <div class="alp_popup_open">
+          <div>
+            {% render 'icon-scale' %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% comment %} 360Viwer PopUp {% endcomment %}
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'viewer_block' -%}
+          <div class="the_360_deg_wrapper">
+            <div class="the_360_deg_close_btn">
+              <img
+                class="lazy"
+                src="{{ 'close-bold.png' | file_img_url: 'master' }}"
+                alt=""
+                loading="lazy"
+                width="24"
+                height="24"
+              >
+            </div>
+            {% comment %} assign {% endcomment %}
+            {% assign image_name = block.settings.image_name %}
+            {% assign image_number = block.settings.image_number %}
+            {% assign default_image = block.settings.default_image %}
+            {% comment %} assign {% endcomment %}
+            <div class="the_360_deg_container" data-viewid="{{ block.id }}">
+              <div class="the_360_deg_image_wrapper">
+                <div class="the_360_deg_image">
+                  {%- for i in (1..image_number) -%}
+                    {%- assign image_index = i | minus: 1 -%}
+                    {%- assign image_file = image_name | append: image_index | append: '.jpg' -%}
+                    <img class="lazy" data-src="{{ image_file | file_img_url:'master' }}" alt="">
+                  {%- endfor -%}
+                </div>
+                <div class="the_360_deg_image_tips">
+                  <div class="the_btn_tips">
+                    {% render 'icon-rotate' %}
+                    <span> Drag To Spin </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% comment %} script {% endcomment %}
+          <script
+            type="module"
+          >
+              document.addEventListener('DOMContentLoaded', () => {
+                gsap.registerPlugin(Observer);
+                let $total_number = 720;
+                  let $image_number = {{- image_number -}};
+                  let $ratio = $total_number/$image_number;
+                  let $real_num = {{- default_image -}};
+                  let $current_number = $real_num*$ratio;
+  
+                  Observer.create({
+                  target: `.the_360_deg_container[data-viewid="{{- block.id -}}"]`, 
+                  type: 'touch,pointer', // listen for ("wheel,touch,scroll,pointer")
+                  onDrag: (self) => {
+                      update_number(self.deltaX);
+                  },
+                  onDragStart: (self) => {
+                      $('.the_360_deg_image_tips').addClass('hide_el')
+                      $('html').addClass('dragging')
+                  },
+                  onDragEnd: (self) => {
+                      $('.the_360_deg_image_tips').removeClass('hide_el')
+                      $('html').removeClass('dragging')
+                  },
+                  });
+          
+                  $(`.the_360_deg_container[data-viewid="{{- block.id -}}"]`).find('img').eq($real_num).addClass('active')
+                  
+                  function update_number(deltaX) {
+                      $current_number = Math.round($current_number + deltaX);
+                      if ($current_number < 0) {
+                          $current_number = $total_number;
+                      } else if ($current_number > $total_number) {
+                          $current_number = 0;
+                      }
+                      $real_num = Math.round($current_number / $ratio);
+                      //switch image
+                      $(`.the_360_deg_container[data-viewid="{{- block.id -}}"]`).find('img').eq($real_num).addClass('active').siblings().removeClass('active');
+                  }
+  
+                  $('.the_360_deg_open_btn').click(function(){
+                      $('.the_360_deg_wrapper').addClass('active');
+                      $('.the_360_deg_wrapper').addClass('loadimg');
+                  })
+                  $('.the_360_deg_close_btn').click(function(){
+                      $('.the_360_deg_wrapper').removeClass('active');
+                  })
+              });
+          </script>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+  {% comment %} features_icontext {% endcomment %}
+  {%- for block in section.blocks -%}
+    {% liquid
+      assign bs = block.settings
+    %}
+    {%- case block.type -%}
+      {%- when 'features_icontext' -%}
+        {% if product.metafields.custom.features_icon_text.value != blank %}
+          <div class="alp-features-icontext hide_mobile">
+            <div class="alp-features-icontext-inner">
+              {% for item in product.metafields.custom.features_icon_text.value %}
+                <div class="alp-features-icontext-lsit">
+                  <div class="alp-features-icontext-img">
+                    <img loading="lazy" src="{{ item.img }}" alt="" width="36" height="36">
+                  </div>
+                  <div class="alp-features-icontext-text">
+                    <div class="icontext-subtitle">{{ item.subtitle }}</div>
+                    <div class="icontext-title">{{ item.title }}</div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+    {% endcase %}
+  {% endfor %}
+  {% comment %} features_icontext end {% endcomment %}
+  <div class="alp_product__promotion_pack_wrapper hide_mobile">
+    {%- for block in section.blocks -%}
+      {% liquid
+        assign bs = block.settings
+      %}
+      {%- case block.type -%}
+        {%- when 'promotion_pack_2_under' -%}
+          <div
+            class="alp_product__promotion_pack limit_height"
+            data-product-image-block
+            style="{{ style }} --block-bg-color: {{ bs.bg_color }};--block-border-color: {{ bs.border_color }};"
+          >
+            {% if bs.title != blank %}
+              <div class="the-product-form-title promotions-pack-title">
+                <h3 class="headline__h6">
+                  <span>
+                    {{ bs.title }}
+                  </span>
+                </h3>
+              </div>
+            {% endif %}
+            {% render 'alp-promotion-pack-item-2-new',
+              product: bs.product,
+              title: bs.product_title,
+              description: bs.description,
+              price: bs.final_price,
+              image: bs.image,
+              block: block
+            %}
+          </div>
+      {% endcase -%}
+    {%- endfor %}
+  </div>
+
+  {% comment %} overview_block {% endcomment %}
+  {%- for block in section.blocks -%}
+    {% liquid
+      assign bs = block.settings
+    %}
+    {%- case block.type -%}
+      {%- when 'overview_block' -%}
+        {%- if bs.content != blank or product.metafields.product__description.product__description != blank -%}
+          <div class="alp-overview-image-block">
+            <div class="alp-overview-inner">
+              {%- if bs.title != blank -%}
+                <h2 class="headline__h2 ">{{ bs.title }}</h2>
+              {%- endif -%}
+              <div class="alp-overview-content">
+                {%- if bs.content != blank -%}
+                  {{ bs.content }}
+                {%- else -%}
+                  {{ product.metafields.product__description.product__description }}
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+    {% endcase %}
+  {% endfor %}
+  {% comment %} overview_block end {% endcomment %}
+</div>
+
+<div class="alp_lightgall_popup">
+  <div class="alp_popup_close">
+    <div>
+      {% render 'icon-close' %}
+    </div>
+  </div>
+  <div class="swiper alp_lightgall">
+    <div class="swiper-wrapper">
+      {% for media in product.media %}
+        {% comment %} Match variant {% endcomment %}
+        {%- capture match_variant_media -%}
+        {%- assign variants = '' -%}
+        {%- for variant in product.variants -%}
+          {%- if variant.featured_media.id == media.id -%}
+            {%- assign variants = variants | append: variant.id | append: ',' -%}
+          {%- endif -%}
+        {%- endfor -%}
+        data-variants="{{ variants }}" data-media-id="{{ media.id }}"
+      {%- endcapture -%}
+        {% comment %} Match variant {% endcomment %}
+        <div class="swiper-slide" {{ match_variant_media }}>
+          <div class="swiper-zoom-container">
+            {% render 'alp-responsive-media',
+              media: media,
+              desktop_width: 1680,
+              mobile_width: 600,
+              aspect_ratio: aspect_ratio
+            %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% render 'swiper-navigation', class: 'media-swiper-arrow' %}
+  </div>
+</div>
+
+<div variant-featured-media>
+  {%- for variant in product.variants -%}
+    {%- assign media_id = variant.featured_media.id -%}
+
+    <div
+      data-variant-id="{{ variant.id }}"
+      data-media-id="{{ media_id }}"
+      {%- if featured_media.id == media_id -%}
+        active
+      {%- endif -%}
+    ></div>
+  {%- endfor -%}
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    function accessHeight() {
+      let $accessoriesHeight = $('.alp_product_image_accessories_swiper').outerHeight()
+        ? $('.alp_product_image_accessories_swiper').outerHeight()
+        : 0;
+      let $featuresHeight = $('.alp-features-icontext').outerHeight() ? $('.alp-features-icontext').outerHeight() : 0;
+      let $thumbHeight = $('.swiper.product-media-new-thumb-vertical').outerHeight()
+        ? $('.swiper.product-media-new-thumb-vertical').outerHeight()
+        : 0;
+      $('.alp-product-media-new').css({
+        '--accessories-height': `${$accessoriesHeight + $featuresHeight}px`,
+        '--thumb-height': `${$thumbHeight}px`,
+      });
+    }
+    function limitTheThumbHeight() {
+      let $maxHeight = $('.swiper.product-media-new').height();
+      $('.alp-product-media-new').css({
+        '--max-height': `${$maxHeight}px`,
+      });
+    }
+    accessHeight();
+    limitTheThumbHeight();
+    // gallery thumb
+    var Swiper_Media_New_Thumb;
+    var is_Swiper_Mobile = window.innerWidth < 999;
+    if (!is_Swiper_Mobile) {
+      Swiper_Media_New_Thumb = new Swiper('.swiper.product-media-new-thumb', {
+        slidesPerView: 'auto',
+        speed: 600,
+        spaceBetween: alp_global.gap / 1.5,
+        direction: 'vertical',
+        watchSlidesVisibility: true,
+        slidesOffsetBefore: 0,
+        slidesOffsetAfter: 0,
+        //centerInsufficientSlides: true,
+        //cssMode: true,
+        navigation: {
+          nextEl: '.media-swiper-arrow .swiper-button-next',
+          prevEl: '.media-swiper-arrow .swiper-button-prev',
+        },
+      });
+    } else {
+      Swiper_Media_New_Thumb = new Swiper('.swiper.product-media-new-thumb', {
+        slidesPerView: 6,
+        speed: 600,
+        spaceBetween: alp_global.gap / 2,
+        direction: 'horizontal',
+        watchSlidesVisibility: true,
+        //centerInsufficientSlides: true,
+        //cssMode: true,
+      });
+    }
+    // gallery main
+    var Swiper_Media_New = new Swiper('.swiper.product-media-new', {
+      slidesPerView: 1,
+      speed: 600,
+      spaceBetween: 0,
+      //cssMode: true,
+      lazy: {
+        loadPrevNext: true,
+      },
+      navigation: {
+        nextEl: '.media-swiper-arrow .swiper-button-next',
+        prevEl: '.media-swiper-arrow .swiper-button-prev',
+      },
+      thumbs: {
+        swiper: Swiper_Media_New_Thumb,
+        // autoScrollOffset: 1,
+      },
+      on: {
+        init: function (swiper) {
+          $('.alp-product-image-contents').addClass('active');
+        },
+      },
+    });
+    // gallery popup
+    var mySwiper_gallery = new Swiper('.swiper.alp_lightgall', {
+      slidesPerView: 1,
+      speed: 500,
+      spaceBetween: 0,
+      zoom: true, //开启缩放功能
+      mousewheel: true,
+      //cssMode: is_Swiper_Mobile,
+      lazy: {
+        loadPrevNext: true,
+      },
+      navigation: {
+        nextEl: '.media-swiper-arrow .swiper-button-next',
+        prevEl: '.media-swiper-arrow .swiper-button-prev',
+      },
+    });
+    // popup
+    $('.alp_popup_close').click(function () {
+      let $this = $(this);
+      $this.parents('.alp_lightgall_popup').removeClass('active');
+    });
+    $('.alp_popup_open , .alp_popup_open_image').click(function () {
+      let $this = $(this);
+      let $index = $('.swiper.product-media-new .swiper-slide-active').index();
+      mySwiper_gallery.slideTo($index, 0, false);
+      $('.alp_lightgall_popup').addClass('active');
+    });
+    // WatchTheParams_for_swiper
+    function WatchTheParams_for_swiper() {
+      let params = new URLSearchParams(window.location.search);
+      let variant_id = params.get('variant');
+      if (variant_id) {
+        let $mediaId = $(`[variant-featured-media] [data-variant-id="${variant_id}"]`).attr('data-media-id');
+        let $index = $(`.swiper.product-media-new .swiper-slide[data-media-id="${$mediaId}"]`).index();
+        // console.log($mediaId);
+        Swiper_Media_New.slideTo($index, 600, false);
+      }
+    }
+    WatchTheParams_for_swiper();
+    // set interval
+    let currentURL = window.location.href;
+    setInterval(() => {
+      let newURL = window.location.href;
+      if (newURL !== currentURL) {
+        currentURL = newURL;
+        WatchTheParams_for_swiper();
+      }
+    }, 600);
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 999) {
+        accessHeight();
+        limitTheThumbHeight();
+      }
+    });
+  });
+</script>

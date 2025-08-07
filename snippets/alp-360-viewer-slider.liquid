@@ -1,0 +1,75 @@
+<div class="the_360_deg_wrapper_slider">
+  {% comment %} assign {% endcomment %}
+  {% assign image_name = block.settings.image_name %}
+  {% assign image_number = block.settings.image_number %}
+  {% assign default_image = block.settings.default_image %}
+  {% comment %} assign {% endcomment %}
+  <div class="the_360_deg_container" data-viewid="{{ block.id }}">
+    <div class="the_360_deg_image_wrapper">
+      <div class="the_360_deg_image">
+        {%- for i in (1..image_number) -%}
+          {%- assign image_index = i | minus: 1 -%}
+          {%- assign image_file = image_name | append: image_index | append: '.jpg' -%}
+          <img class="lazy" data-src="{{ image_file | file_img_url:'master' }}" alt="">
+        {%- endfor -%}
+      </div>
+      <div class="the_360_deg_image_tips">
+        <div class="the_btn_tips">
+          {% render 'icon-rotate' %}
+          <span> Drag To Spin </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% comment %} script {% endcomment %}
+<script
+  type="module"
+>
+        document.addEventListener('DOMContentLoaded', () => {
+          gsap.registerPlugin(Observer);
+          let $total_number = 720;
+            let $image_number = {{- image_number -}};
+            let $ratio = $total_number/$image_number;
+            let $real_num = {{- default_image -}};
+            let $current_number = $real_num*$ratio;
+  
+            Observer.create({
+            target: `.the_360_deg_container[data-viewid="{{- block.id -}}"]`, 
+            type: 'touch,pointer', // listen for ("wheel,touch,scroll,pointer")
+            onDrag: (self) => {
+                update_number(self.deltaX);
+            },
+            onDragStart: (self) => {
+                $('.the_360_deg_image_tips').addClass('hide_el')
+                $('html').addClass('dragging')
+            },
+            onDragEnd: (self) => {
+                $('.the_360_deg_image_tips').removeClass('hide_el')
+                $('html').removeClass('dragging')
+            },
+            });
+    
+            $(`.the_360_deg_container[data-viewid="{{- block.id -}}"]`).find('img').eq($real_num).addClass('active')
+            
+            function update_number(deltaX) {
+                $current_number = Math.round($current_number + deltaX);
+                if ($current_number < 0) {
+                    $current_number = $total_number;
+                } else if ($current_number > $total_number) {
+                    $current_number = 0;
+                }
+                $real_num = Math.round($current_number / $ratio);
+                //switch image
+                $(`.the_360_deg_container[data-viewid="{{- block.id -}}"]`).find('img').eq($real_num).addClass('active').siblings().removeClass('active');
+            }
+  
+            $('.the_360_deg_open_btn').click(function(){
+                $('.the_360_deg_wrapper').addClass('active');
+                $('.the_360_deg_wrapper').addClass('loadimg');
+            })
+            $('.the_360_deg_close_btn').click(function(){
+                $('.the_360_deg_wrapper').removeClass('active');
+            })
+        });
+</script>

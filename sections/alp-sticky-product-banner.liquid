@@ -1,0 +1,258 @@
+{% schema %}
+{
+  "name": "Alp Sticky Product Banner",
+  "class": "alp-sticky-product-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "target",
+          "label": "Target ID"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Sticky Product Banner"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-sticky-product-trigger-add-to-cart .button_compare_trigger {
+    position: relative;
+    background: transparent;
+    color: #131313;
+    border-radius: var(--alp-border-radius);
+    line-height: 1.25;
+    padding: 0.75em 2em;
+    text-transform: capitalize;
+    cursor: pointer;
+  }
+
+  .alp-sticky-product-trigger-add-to-cart .button_compare_trigger::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #131313;
+    color: #fff;
+    border-radius: var(--alp-border-radius);
+    z-index: 1;
+  }
+  @media screen and (max-width: 767px) {
+    .alp-sticky-product-trigger-add-to-cart .button_compare_trigger {
+      padding: 0.75em 1.2em;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-sticky-product-banner-wrapper">
+  <div class="alp-sticky-product-banner alp-section {{ reset_spacing }}" style="{{ style }}">
+    <div class="alp-sticky-product-banner-container page-width {{ container }}">
+      <div class="alp-sticky-product-banner-flex">
+        <div class="alp-sticky-product-info">
+          <div class="alp-sticky-product-image">
+            {%- assign image = product.selected_or_first_available_variant.featured_image
+              | default: product.featured_image
+            -%}
+            {% render 'alp-single-image', image: image, width: 1280, aspect_ratio: '8/4.5', alt: product.title %}
+          </div>
+          <div class="alp-sticky-product-titles">
+            <h4>{{ product.title }}</h4>
+            <div class="alp-product-item-price">{% render 'price', product: product, use_variant: true %}</div>
+          </div>
+          <div class="alp-sticky-open-jump-to hide_desktop">
+            {% render 'icon-arrow-down' %}
+          </div>
+        </div>
+        <div class="alp-sticky-product-jump-to">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="alp-sticky-blocks-jump-item">
+                <a href="#{{ bs.target }}"
+                  ><span>{{ bs.text }}</span></a
+                >
+              </div>
+            {%- endfor -%}
+          {% endif %}
+        </div>
+        <div class="alp-sticky-product-trigger-add-to-cart" data-trigger-add-to-cart>
+          {%- assign compare_text = settings.compare_text | default: 'Compare' -%}
+          <div class="button_compare_trigger" data-global-compare-open="{{ product.id }}">
+            <span>{{ compare_text }}</span>
+          </div>
+          <div
+            class="
+              alp-sticky-product-trigger-add-to-cart-button
+              {% if product.selected_or_first_available_variant.available == false %}
+                  disabled
+                {% endif %}
+            "
+          >
+            <span>
+              {%- if product.selected_or_first_available_variant.available == false -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- else -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- endif -%}
+            </span>
+            {%- render 'loading-spinner', class: 'loading__spinner' -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sticky = document.querySelector('.alp-sticky-product-banner');
+    const stickyTrigger = document.querySelector('.alp-sticky-product-trigger-add-to-cart-button');
+
+    function set_sticky() {
+      let formHeight = document.querySelector('.alp-main-product-inner').offsetHeight;
+      let mainHeight = document.querySelector('main#MainContent').offsetHeight;
+      if (window.scrollY > formHeight && window.scrollY < mainHeight) {
+        sticky.classList.add('active');
+        stickyTrigger.classList.add('active');
+      } else {
+        sticky.classList.remove('active');
+        stickyTrigger.classList.remove('active');
+      }
+    }
+
+    function scroll_to_target(target) {
+      if (document.querySelector(target) === null) return;
+      let targetTop = document.querySelector(target).offsetTop;
+      let headerTop = document.querySelector('.alp-header-container').offsetHeight;
+      let barTop = document.querySelector('.alp-announcement-bar-section').offsetHeight
+        ? document.querySelector('.alp-announcement-bar-section').offsetHeight
+        : 0;
+      let bannerTop = document.querySelector(
+        '.alp-sticky-product-banner-wrapper .alp-sticky-product-info'
+      ).offsetHeight;
+      window.scrollTo({ top: targetTop - headerTop - barTop - bannerTop - 32, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.alp-sticky-blocks-jump-item a, a.alp_product__reviews_star_link').forEach((item) => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        scroll_to_target(item.getAttribute('href'));
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      set_sticky();
+    });
+
+    stickyTrigger.addEventListener('click', () => {
+      document.querySelector(`.alp-submit-button [type="submit"]`).click();
+    });
+
+    set_sticky();
+
+    $('.alp-sticky-open-jump-to').on('click', function () {
+      $('.alp-sticky-product-jump-to').toggleClass('active');
+      $(this).toggleClass('active');
+    });
+    $('.alp-sticky-blocks-jump-item a').on('click', function () {
+      $('.alp-sticky-product-jump-to').removeClass('active');
+      $('.alp-sticky-open-jump-to').removeClass('active');
+    });
+  });
+</script>

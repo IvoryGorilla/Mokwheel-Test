@@ -1,0 +1,377 @@
+{% schema %}
+{
+  "name": "Alp Fit Tailor Popup",
+  "class": "alp-fit-tailor-popup",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_inner",
+      "label": "Background Color Inner",
+      "default": "#F8F8F8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container-fluid",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Size Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "man_image",
+          "label": "Man Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "Desc"
+        },
+        {
+          "type": "text",
+          "id": "match_max",
+          "label": "Match Max",
+          "default": "6.4"
+        },
+        {
+          "type": "text",
+          "id": "match_min",
+          "label": "Match Min",
+          "default": "5.4"
+        },
+        {
+          "type": "text",
+          "id": "title_match",
+          "label": "Title Match"
+        },
+        {
+          "type": "textarea",
+          "id": "desc_match",
+          "label": "Desc Match"
+        },
+        {
+          "type": "text",
+          "id": "title_not_match",
+          "label": "Title Not Match"
+        },
+        {
+          "type": "textarea",
+          "id": "desc_not_match",
+          "label": "Desc Not Match"
+        },
+        {
+          "type": "text",
+          "id": "title_recommend",
+          "label": "Title Recommend"
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Products Recommend"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Fit Tailor Popup"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--bg-inner-color: {{ st.bg_color_inner }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{{ 'alp-fit-tailor.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+{% endstyle %}
+
+<div class="alp-section alp-fit-tailor-wrapper alp-fit-tailor-wrapper-popup {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-fit-tailor-container alp-fit-tailor-container-popup page-width {{ container }}">
+    <div class="alp-fit-tailor-inner" data-switch-wrapper>
+      <h2 class="headline__h2">{{ st.title | newline_to_br }}</h2>
+      <div class="alp-fit-tailor-inner-flex">
+        <div class="alp-fit-tailor-inner-flex-1" data-switch-target>
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div
+              class="alp-fit-tailor-drag-item {% if forloop.first %} active{% endif %}"
+              data-target-index="{{ forloop.index }}"
+            >
+              <div class="fit-tailor-match-drag">
+                <div class="fit-tailor-match-swiper swiper" data-blockId="{{ block.id }}">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide"></div>
+                    <div class="swiper-slide"></div>
+                    <div class="swiper-slide">
+                      <div class="match-i">
+                        <span><b>5'10"</b></span>
+                      </div>
+                    </div>
+                    <div class="swiper-slide"></div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="fit-tailor-match-content"
+                data-blockId="{{ block.id }}"
+                data-match-max="{{ bs.match_max }}"
+                data-match-min="{{ bs.match_min }}"
+              >
+                <div class="fit-match-content-1">
+                  <h3 class="headline__h3">
+                    <span><b>5'10"</b></span>{{ bs.title | newline_to_br }}
+                  </h3>
+                  <p>{{ bs.desc | newline_to_br }}</p>
+                </div>
+                <div class="fit-match-content-2">
+                  <div class="fit-match-content-match" data-is-match>
+                    <h4 class="headline__h6">
+                      {% render 'icon-check-2' %}
+                      {{ bs.title_match | newline_to_br }}
+                    </h4>
+                    <p>{{ bs.desc_match | newline_to_br }}</p>
+                  </div>
+                  <div class="fit-match-content-match" data-not-match>
+                    <h4 class="headline__h6">
+                      {% render 'icon-close' %}
+                      {{ bs.title_not_match | newline_to_br }}
+                    </h4>
+                    <p>{{ bs.desc_not_match | newline_to_br }}</p>
+                    <div class="headline__h6s">{{ bs.title_recommend | newline_to_br }}</div>
+                    <div class="match-product-recommend-list">
+                      {%- for product in bs.products -%}
+                        <div>
+                          <a
+                            class="fit-recommend-product-item-link"
+                            href="{{ product.url }}"
+                            title="{{ product.title }}"
+                          >
+                            {{- product.title -}}
+                          </a>
+                        </div>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script>
+              document.addEventListener('DOMContentLoaded', () => {
+                function reFormatNumP(feet) {
+                  let totalInches = feet * 12;
+                  let feetPart = Math.floor(feet);
+                  let inchesPart = Math.floor((feet - feetPart) * 12);
+                  return `${feetPart}'${inchesPart}"`;
+                }
+                function calcTotalInchesP(feet) {
+                  let totalInches = Math.floor(feet * 12);
+                  return totalInches;
+                }
+                function calcTotalInchesPRound(feet) {
+                  let totalInches = Math.round(feet * 12);
+                  return totalInches;
+                }
+                //
+                let swiperId = '{{ block.id }}';
+                let swiperIdnum = swiperId.replace(/\D/g, '');
+                let swiperVar = 'TheSwiper' + swiperIdnum;
+                swiperVar = new Swiper(`.fit-tailor-match-swiper[data-blockId="${swiperId}"]`, {
+                  slidesPerView: 2,
+                  slidesPerGroup: 1,
+                  spaceBetween: 0,
+                  speed: 600,
+                  resistanceRatio: 0,
+                  freeMode: {
+                    momentum: false,
+                    momentumBounce: false,
+                  },
+                  initialSlide: 1,
+                  // direction: 'vertical',
+                  watchSlidesProgress: true,
+                  on: {
+                    progress: function (swiper, progress) {
+                      let ft_value = ((1 - progress) * 18) / 10 + 5;
+                      let ft_value_int = Math.round(progress * 18) / 10 + 5;
+                      let ft_format = reFormatNumP(ft_value);
+                      $(`.fit-tailor-match-swiper[data-blockId="${swiperId}"]`).find('.match-i span b').text(ft_format);
+                      $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`)
+                        .find('.fit-match-content-1 h3 span b')
+                        .text(ft_format);
+                      $(`.alp-fit-tailor-inner-images-switch[data-blockId="${swiperId}"]`)
+                        .find('.fit-tailor-image-1 img')
+                        .css('--img-height', (1 - progress) * 20);
+                      let ft_max = $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`).attr('data-match-max');
+                      let ft_min = $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`).attr('data-match-min');
+                      ft_max = parseFloat(ft_max);
+                      ft_min = parseFloat(ft_min);
+                      if (
+                        calcTotalInchesP(ft_value) > calcTotalInchesPRound(ft_max) ||
+                        calcTotalInchesP(ft_value) < calcTotalInchesPRound(ft_min)
+                      ) {
+                        $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`)
+                          .find('[data-not-match]')
+                          .addClass('active');
+                        $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`)
+                          .find('[data-is-match]')
+                          .removeClass('active');
+                      } else {
+                        $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`)
+                          .find('[data-not-match]')
+                          .removeClass('active');
+                        $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`)
+                          .find('[data-is-match]')
+                          .addClass('active');
+                      }
+                    },
+                  },
+                });
+              });
+            </script>
+          {%- endfor -%}
+        </div>
+        <div class="alp-fit-tailor-inner-flex-2">
+          <div class="alp-fit-tailor-inner-switcher" data-switch-trigger>
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div
+                class="tailor-switcher-item {% if forloop.first %} active{% endif %}"
+                data-trigger-index="{{ forloop.index }}"
+              >
+                <span>{{ bs.text }}</span>
+              </div>
+            {%- endfor -%}
+          </div>
+          <div class="alp-fit-tailor-inner-images">
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div
+                class="alp-fit-tailor-inner-images-switch relative {% if forloop.first %} active{% endif %}"
+                data-target-index="{{ forloop.index }}"
+                data-blockId="{{ block.id }}"
+              >
+                <div class="fit-tailor-image-1">
+                  {% render 'alp-responsive-image',
+                    image: bs.man_image,
+                    desktop_width: 800,
+                    aspect_ratio: 'auto',
+                    alt: bs.text
+                  %}
+                </div>
+                <div class="fit-tailor-image-product">
+                  {% render 'alp-responsive-image',
+                    image: bs.product_image,
+                    desktop_width: 800,
+                    aspect_ratio: 'auto',
+                    alt: bs.text
+                  %}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

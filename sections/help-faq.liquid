@@ -1,0 +1,503 @@
+<style>
+  @media (min-width: 751px) {
+    .pc {
+      display: block;
+    }
+    .mobile {
+      display: none;
+    }
+    .help-faq-all {
+      max-width: 1380px;
+      padding: 0 10px;
+      margin: 0 auto;
+      margin-top: 143px;
+    }
+    .help-faq-title h2 {
+      font-size: 48px;
+      font-weight: 600;
+      color: #151515;
+      line-height: 72px;
+    }
+    .help-faq-tab {
+      display: flex;
+      align-items: center;
+      margin-top: 40px;
+    }
+    .help-faq-tab-title {
+      border: 2px solid #707070;
+      border-radius: 26px;
+      padding: 6px 30px;
+      margin-right: 15px;
+      font-size: 18px;
+      font-weight: 500;
+      color: #151515;
+      cursor: pointer;
+    }
+    .help-faq-tab-title.active {
+      color: #fff;
+      background-color: #151515;
+      border: 2px solid #151515;
+      transition: all 0.3s ease-in-out 0s;
+    }
+    .help-faq-right,
+    .help-faq-left {
+      grid-column: span 1 / auto;
+    }
+    /* .help-faq-item p{
+    margin: 0;
+    padding: 0;
+  } */
+    .help-faq-box {
+      margin-top: 74px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 49px;
+    }
+    .help-faq-item {
+      border-top: 1px solid #313131;
+    }
+
+    .help-faq-question p {
+      margin: 0;
+    }
+    .help-faq-item .help-faq-question {
+      display: flex;
+      align-items: center;
+      line-height: 1.2;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 400;
+      color: #151515;
+      cursor: pointer;
+      padding: 32px 6px 32px 0;
+    }
+    /* .help-faq-item .help-faq-question span{
+    position: absolute;
+    right: 0;
+    top: 40px;
+  } */
+
+    .help-faq-answer {
+      display: none;
+      font-size: 16px;
+      font-weight: 400;
+      color: #151515;
+      padding-bottom: 32px;
+    }
+    .help-faq-item .help-faq-answer p a {
+      text-decoration-color: #151515 !important;
+      font-weight: 600;
+    }
+    .help-faq-bottom {
+      border-bottom: 1px solid #313131;
+    }
+    .help-faq-left .help-faq-item:last-child,
+    .help-faq-right .help-faq-item:last-child {
+      border-bottom: 1px solid #313131;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .pc {
+      display: none;
+    }
+    .mobile {
+      display: block;
+    }
+    .help-faq-all {
+      padding-bottom: 60px;
+    }
+    .help-faq-tab {
+      display: flex;
+      align-items: center;
+      margin: 20px 0 34px;
+    }
+    .help-faq-tab-title {
+      border: 2px solid #707070;
+      border-radius: 26px;
+      padding: 6px 17px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #151515;
+      cursor: pointer;
+    }
+    .help-faq-tab-title:not(:last-child) {
+      margin-right: 7px;
+    }
+    .help-faq-tab-title.active {
+      color: #fff;
+      background-color: #151515;
+      border: 1px solid #151515;
+      transition: all 0.3s ease-in-out 0s;
+    }
+    .help-faq-item {
+      border-bottom: 1px solid #313131;
+    }
+    .help-faq-item:first-child {
+      border-top: 1px solid #313131;
+    }
+    .help-faq-item .help-faq-question {
+      font-size: 14px;
+      font-weight: 400;
+      color: #151515;
+      cursor: pointer;
+      padding: 16px 6px 16px 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      line-height: 1.2;
+      justify-content: space-between;
+    }
+
+    .help-faq-item p {
+      margin: 0;
+      padding: 0;
+    }
+    /* .help-faq-item:nth-child(1) .help-faq-answer{
+    display: block;
+ } */
+    .help-faq-answer {
+      display: none;
+      font-size: 14px;
+      font-weight: 400;
+      color: #151515;
+      padding-bottom: 32px;
+    }
+    .help-faq-item .help-faq-answer p a {
+      text-decoration-color: #151515 !important;
+      font-weight: 600;
+    }
+    .help-faq-left .help-faq-item:last-child {
+      border-bottom: unset;
+    }
+  }
+
+  .help-faq-link-more a {
+    border: 2px solid #707070;
+    border-radius: 26px;
+    padding: 6px 30px;
+    margin-right: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #151515;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  .help-faq-link-more {
+    margin-top: 2em;
+  }
+
+  .help-faq-link-more a:hover {
+    background-color: #151515;
+    border: 2px solid #151515;
+    color: #fff;
+  }
+
+  .help-faq-link-more {
+    display: none;
+  }
+
+  @media (max-width: 750px) {
+    .help-faq-link-more {
+      display: block;
+    }
+    .help-faq-link-more {
+      text-align: center;
+    }
+
+    .help-faq-tab {
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+  }
+</style>
+
+<div class="help-faq-all container">
+  <div class="help-faq-title">
+    <h2>{{ section.settings.title }}</h2>
+  </div>
+
+  <div class="help-faq-tab">
+    <div class="help-faq-tab-title active">{{ section.settings.tab_title1 }}</div>
+    <div class="help-faq-tab-title">{{ section.settings.tab_title2 }}</div>
+    <div class="help-faq-tab-title">{{ section.settings.tab_title3 }}</div>
+  </div>
+
+  <div class="help-faq-content">
+    <div class="help-faq-box">
+      <div class="help-faq-left">
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {% when 'item_tab1_left' %}
+              <div class="help-faq-item">
+                <div class="help-faq-question">
+                  {{ block.settings.faqs_question -}}
+                  <span>+</span>
+                </div>
+                <div class="help-faq-answer">{{ block.settings.faqs_answer }}</div>
+              </div>
+          {% endcase %}
+        {%- endfor -%}
+      </div>
+
+      <div class="help-faq-right">
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {% when 'item_tab1_right' %}
+              <div class="help-faq-item">
+                <div class="help-faq-question">
+                  {{ block.settings.faqs_question -}}
+                  <span>+</span>
+                </div>
+                <div class="help-faq-answer">{{ block.settings.faqs_answer }}</div>
+              </div>
+          {% endcase %}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="help-faq-box" style="display:none">
+      <div class="help-faq-left">
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {% when 'item_tab2_left' %}
+              <div class="help-faq-item">
+                <div class="help-faq-question">
+                  {{ block.settings.faqs_question -}}
+                  <span>+</span>
+                </div>
+                <div class="help-faq-answer">{{ block.settings.faqs_answer }}</div>
+              </div>
+          {% endcase %}
+        {%- endfor -%}
+      </div>
+      <div class="help-faq-right">
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {% when 'item_tab2_right' %}
+              <div class="help-faq-item">
+                <div class="help-faq-question">
+                  {{ block.settings.faqs_question -}}
+                  <span>+</span>
+                </div>
+                <div class="help-faq-answer">{{ block.settings.faqs_answer }}</div>
+              </div>
+          {% endcase %}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="help-faq-box" style="display:none">
+      <div class="help-faq-left">
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {% when 'item_tab3_left' %}
+              <div class="help-faq-item">
+                <div class="help-faq-question">
+                  {{ block.settings.faqs_question -}}
+                  <span>+</span>
+                </div>
+                <div class="help-faq-answer">{{ block.settings.faqs_answer }}</div>
+              </div>
+          {% endcase %}
+        {%- endfor -%}
+      </div>
+      <div class="help-faq-right">
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {% when 'item_tab3_right' %}
+              <div class="help-faq-item">
+                <div class="help-faq-question">
+                  {{ block.settings.faqs_question -}}
+                  <span>+</span>
+                </div>
+                <div class="help-faq-answer">{{ block.settings.faqs_answer }}</div>
+              </div>
+          {% endcase %}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="help-faq-link-more">
+    <a href="{{section.settings.link_url}}">{{ section.settings.link_text }}</a>
+  </div>
+</div>
+
+<script>
+  // jquery 初始化
+   document.addEventListener('DOMContentLoaded', () => {
+        // 切换 tab
+    $('.help-faq-tab-title').click(function () {
+      $(this).addClass('active').siblings().removeClass('active');
+      var index = $(this).index();
+
+      $('.help-faq-box').eq(index).show().siblings().hide();
+    });
+
+    // faqs手风琴
+    // $(".help-faq-question").on('click', function(e) {
+    //     $(this).parent().siblings().removeClass('active').find('.help-faq-answer').slideUp();
+    //     $(this).parent().toggleClass('active').find('.help-faq-answer').slideToggle();
+    // });
+    // faqs手风琴
+
+    $('.help-faq-question').on('click', function (e) {
+      if ($(this).parent().find('.help-faq-answer').css('display') == 'none') {
+        $(this).parent().find('span').html('-');
+        $(this).parent().siblings().find('span').html('+');
+        $(this).parent().find('.help-faq-answer').slideDown();
+        $(this).parent().siblings().find('.help-faq-answer').slideUp();
+      } else {
+        $(this).parent().find('span').html('+');
+        $(this).parent().find('.help-faq-answer').slideUp();
+      }
+    });
+  });
+ 
+
+  // $(".help-faq-item:eq(0)").find("span").html("-")
+</script>
+
+{% schema %}
+{
+  "name": "Help Faq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "tab_title1",
+      "label": "Tab Title1"
+    },
+    {
+      "type": "text",
+      "id": "tab_title2",
+      "label": "Tab Title2"
+    },
+    {
+      "type": "text",
+      "id": "tab_title3",
+      "label": "Tab Title3"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link Url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item_tab1_left",
+      "name": "Item Card1 left",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "faqs_question",
+          "label": "Faqs Question"
+        },
+        {
+          "type": "richtext",
+          "id": "faqs_answer",
+          "label": "Faqs Answer"
+        }
+      ]
+    },
+    {
+      "type": "item_tab1_right",
+      "name": "Item Card1 right",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "faqs_question",
+          "label": "Faqs Question"
+        },
+        {
+          "type": "richtext",
+          "id": "faqs_answer",
+          "label": "Faqs Answer"
+        }
+      ]
+    },
+    {
+      "type": "item_tab2_left",
+      "name": "Item Card2 Left",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "faqs_question",
+          "label": "Faqs Question"
+        },
+        {
+          "type": "richtext",
+          "id": "faqs_answer",
+          "label": "Faqs Answer"
+        }
+      ]
+    },
+    {
+      "type": "item_tab2_right",
+      "name": "Item Card2 Right",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "faqs_question",
+          "label": "Faqs Question"
+        },
+        {
+          "type": "richtext",
+          "id": "faqs_answer",
+          "label": "Faqs Answer"
+        }
+      ]
+    },
+    {
+      "type": "item_tab3_left",
+      "name": "Item Card3 Left",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "faqs_question",
+          "label": "Faqs Question"
+        },
+        {
+          "type": "richtext",
+          "id": "faqs_answer",
+          "label": "Faqs Answer"
+        }
+      ]
+    },
+    {
+      "type": "item_tab3_right",
+      "name": "Item Card3 Right",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "faqs_question",
+          "label": "Faqs Question"
+        },
+        {
+          "type": "richtext",
+          "id": "faqs_answer",
+          "label": "Faqs Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Help Faq"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,58 @@
+{% comment %}
+  {% render 'alp-promotion-pack-item', product: product , title: title, description: description, price: price, image: image %}
+{% endcomment %}
+{%- if product -%}
+  <div class="alp-promotion-pack-item" data-promotion-pack data-pack-variant="{{ product.first_available_variant.id }}">
+    <div class="promotion-pack-item-flex">
+      <div class="promotion-pack-item-image relative">
+        <a class="full-aa" href="{{ product.featured_image | image_url: width: 1920 }}" data-fslightbox></a>
+        {%- if image -%}
+          {{ image | image_url: width: 300 | image_tag: class: 'object-cover' }}
+        {%- else -%}
+          {{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+        {%- endif -%}
+        {% render 'icon-check-2' %}
+      </div>
+      <div class="promotion-pack-item-info">
+        <div class="promotion-pack-item-column">
+          <div class="promotion-pack-item-title">
+            {%- if title != blank -%}
+              {{ title }}
+            {%- else -%}
+              {{ product.title }}
+            {%- endif -%}
+          </div>
+          <div class="promotion-pack-item-des-one">
+            {%- if product.metafields.custom.promotion_new_description != blank  -%}
+              {{ product.metafields.custom.promotion_new_description }}
+            {%- else -%}
+              {{ product.description | strip_html | truncatewords: 15 }}
+            {%- endif -%}
+            {% comment %} {%- if description != blank -%}
+              {{ description }}
+            {%- elsif product.metafields.custom.new_description != blank -%}
+              {{ product.metafields.custom.new_description | truncatewords: 15 }}
+            {%- else -%}
+              {{ product.description | strip_html | truncatewords: 15 }}
+            {%- endif -%} {% endcomment %}
+          </div>
+        </div>
+
+        <div class="promotion-pack-item-in">
+          <div class="promotion-pack-item-buttons">
+            <div class="button__select button__small">
+              <span>Select</span>
+              <span>Selected</span>
+            </div>
+            {% comment %} <a href="{{ product.url }}" target="_blank" class="button__view button__small"><span>Info</span></a> {% endcomment %}
+          </div>
+          <div class="promotion-pack-item-price">
+            <span class="final-price">{{ price | default: '$99.00' }}</span>
+            {% comment %} <span class="original-price">{{ product.price | money }}</span> {% endcomment %}
+            <span class="original-price">{{ product.metafields.custom.pack_original_price }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

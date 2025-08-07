@@ -1,0 +1,174 @@
+{% schema %}
+{
+  "name": "Press-list",
+  "class": "Press-list",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press-list"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .press-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .Press-list-item {
+    width: 33.3%;
+    display: flex;
+    flex-basis: calc(33.3% - 20px);
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 16px;
+    border: 1px solid #d5d5d5;
+    margin-bottom: calc(var(--alp-gutter-y) * 1);
+    padding: 2% 0;
+  }
+  .Press-list-item .image img {
+    height: 64px;
+    object-fit: contain;
+    margin: auto;
+  }
+  .Press-list-item .content {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    text-transform: capitalize;
+    padding: 0 4% 10%;
+  }
+  @media screen and (max-width: 749px) {
+    .Press-list-item {
+      width: 100%;
+      flex-basis: calc(100% - 20px);
+    }
+    .Press-list-item .image img {
+      height: 57px;
+      object-fit: contain;
+      margin: auto;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }} press-list">
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        <div class="Press-list-item">
+          <div class="image">
+            {% render 'alp-single-image', image: bs.image, width: 496, aspect_ratio: aspect_ratio, alt: alt_title %}
+          </div>
+          <div class="content headline__h6">{{ bs.content }}</div>
+        </div>
+      {%- endfor -%}
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

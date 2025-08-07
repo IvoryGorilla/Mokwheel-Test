@@ -1,0 +1,11 @@
+.Btitle p {
+  margin-top: 0;
+}
+
+.Btitle.headline__h2 {
+  margin: 0;
+}
+
+.headline__small p {
+  margin-top: 0;
+}

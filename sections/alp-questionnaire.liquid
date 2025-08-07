@@ -1,0 +1,712 @@
+{% schema %}
+{
+  "name": "Alp Questionnaire",
+  "class": "alp-questionnaire",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Hero Banner"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "video",
+      "id": "bg_video",
+      "label": "Background Video"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Background Opacity",
+      "default": 50
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "3/1"
+    },
+    {
+      "type": "text",
+      "id": "block_max_width",
+      "label": "Content Max Width",
+      "default": "720px"
+    },
+    {
+      "type": "text",
+      "id": "min_height",
+      "label": "Min Height",
+      "default": "320px"
+    },
+    {
+      "type": "text",
+      "id": "result_title",
+      "label": "Result title",
+      "default": "Enjoy Your Ride!"
+    },
+    {
+      "type": "text",
+      "id": "result_desc",
+      "label": "Result description",
+      "default": "Based on your responses, here's what we think will work best for you"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Title"
+        },
+        {
+          "type": "select",
+          "id": "heading_type",
+          "label": "Heading type",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            }
+          ],
+          "default": "h1"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "breadcrumb",
+      "name": "Breadcrumb",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "position_set",
+          "label": "Set position",
+          "default": false,
+          "info": "固定左上角位置"
+        },
+        {
+          "type": "text",
+          "id": "position_top",
+          "label": "Position top",
+          "default": "90px",
+          "info": "Top position in px"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Button link"
+        }
+      ]
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Questionnaire"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};--content-max-width: {{ st.block_max_width }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+    --st-min-height: {{ st.min_height }};
+   }
+  @media (max-width: 999px) {
+  }
+</style>
+
+{% style %}
+  .alp-questionnaire-banner-inner,
+  .alp-questionnaire-app-inner,
+  .alp-questionnaire-result-inner {
+    position: relative;
+    z-index: 20;
+  }
+  .alp-questionnaire-wrapper {
+    min-height: var(--st-min-height, 600px);
+    /* min-height: 600px; */
+    /* height: 600px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .alp-questionnaire-banner-inner {
+    text-align: center;
+  }
+
+  .alp-questionnaire-banner-inner .alp-hero-banner-button {
+    margin-top: max(2em, 2vw);
+  }
+
+  .alp-questionnaire-banner-inner .alp-hero-banner-button a.button-type-primary.alp-btn {
+    justify-content: center;
+    font-size: 16px;
+    line-height: 1.2;
+    padding: 12px 24px;
+  }
+  /*  */
+  .globo-form.gfb__template__wizard1 {
+    background: transparent;
+  }
+
+  .globo-form.gfb__template__wizard1 .gfb__wizard__wrapper {
+    max-width: 800px;
+  }
+
+  .globo-form.gfb__template__wizard1 {
+    box-shadow: none;
+    border: 0;
+    --gfb-border-radius: 6px;
+    --gfb-form-width: 880px;
+    margin: auto;
+    --gfb-primary-color: var(--main-color) !important;
+    border-radius: 0;
+  }
+
+  .gfb__template__wizard1 .gfb__indicator--line {
+    /* height: 4px; */
+    --gfb-border-radius: 0px;
+    top: auto;
+    bottom: 0;
+  }
+
+  .globo-form-control label {
+    font-size: clamp(18px, 2vw, 26px);
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 0.85em;
+  }
+
+  .globo-form-control .flat-input {
+    border-radius: 160px;
+    padding-right: 24px;
+    height: 48px;
+    padding-left: 24px;
+  }
+
+  .globo-form-control select.flat-input {
+    appearance: none;
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  .globo-form-control.select-inp .globo-form-input {
+    position: relative;
+  }
+  .globo-form-control.select-inp .globo-form-input::after {
+    content: '';
+    background-image: url('//cdn.shopify.com/s/files/1/0550/4424/3702/files/arrow-ddd.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    width: 16px;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    pointer-events: none;
+  }
+  .gfb__footer .action,
+  .gfb__footer [type='button'],
+  .gfb__footer [type='submit'],
+  .globo-form-app .footer .action,
+  .globo-form-app .footer [type='button'],
+  .globo-form-app .footer [type='submit'] {
+    border-radius: 160px;
+    background-color: var(--main-color);
+  }
+  .globo-form.gfb__template__wizard1 {
+    min-height: var(--st-min-height, 600px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .gfb__template__wizard1 .gfb__wizard__wrapper {
+    width: 100%;
+  }
+  .globo-form-control .globo-list-control.option-1-column {
+    padding: 8px 12px;
+    background: #fff;
+    margin-bottom: 3px;
+    border-radius: 8px;
+  }
+
+  .globo-form-control .checkbox-wrapper .checkbox-input ~ .checkbox-label:before,
+  .globo-form-control .checkbox-wrapper .checkbox-input ~ .checkbox-label:after {
+    border-radius: 6px;
+  }
+  .globo-form-control .text-smaller {
+    font-weight: 300 !important;
+    font-size: 0.85em;
+  }
+  body .globo-form-app .panel {
+    width: 100%;
+  }
+  .alp-hero-banner-description p {
+    margin: 0;
+    font-size: 18px;
+  }
+  /*  */
+  .alp-product-list-i-result {
+    display: none;
+  }
+
+  .alp-product-list-i-result.is-match {
+    display: block;
+  }
+
+  .alp-questionnaire-app-inner.op-hidden {
+    opacity: 0;
+  }
+
+  .alp-questionnaire-banner-inner.absolute {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    padding: calc(var(--alp-padding-x) * 1.5);
+  }
+  /*  */
+  .alp-product-list-i-result {
+    margin-bottom: 1.25em;
+  }
+  .alp-questionnaire-result-inner {
+    padding-top: calc(100px + 6.5vw);
+    padding-bottom: 80px;
+  }
+
+  .alp-questionnaire-result-text-inner h3 {
+    font-size: clamp(32px, 2.5vw, 32px);
+    font-weight: 600;
+  }
+
+  .alp-questionnaire-result-text {
+    text-align: center;
+  }
+
+  .alp-questionnaire-result-text-inner p {
+    font-size: clamp(15px, 1.65vw, 18px);
+    margin-bottom: 2.5em;
+    margin-top: 0.5em;
+  }
+
+  .gfb__template__wizard1 .gfb__footer.wizard__footer {
+    text-align: center;
+  }
+
+  /*  */
+  .alp-questionnaire-result-inner .delay {
+    opacity: 0;
+    transform: translateY(30px);
+    transition-duration: 1s;
+  }
+
+  .alp-questionnaire-result-inner.op-active .delay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .alp-questionnaire-container .alp-hero-banner-heading {
+    font-size: clamp(32px, 4.2vw, 48px);
+    line-height: 1.2;
+  }
+
+  .alp-questionnaire-start-over {
+    background: #fff;
+    border-radius: var(--alp-border-radius, 8px);
+    overflow: hidden;
+    width: 226px;
+  }
+
+  .alp-questionnaire-start-over a {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    gap: 0.3em;
+    justify-content: center;
+    padding: 1em 1.5em;
+    transition: 0.2s;
+  }
+
+  .alp-questionnaire-start-over a:hover {
+    background: var(--main-color);
+    color: #fff;
+  }
+  @media screen and (max-width: 751px) {
+    .alp-product-list-i-result .product-list-description-b {
+      display: none;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-section alp-questionnaire-wrapper overflow-hidden relative {{ st.text_alignment | prepend: "text-al-" }} {{ reset_spacing }}"
+  style="{{ style }}"
+  data-stid="{{ section.id }}"
+>
+  {%- if st.bg_image -%}
+    <div class="alp-image-slide-bg full-img-wrap" style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}">
+      {% render 'alp-single-image',
+        image: st.bg_image,
+        width: 2000,
+        aspect_ratio: st.image_aspect_ratio,
+        alt: st.title
+      %}
+    </div>
+  {%- endif -%}
+  {%- if st.bg_video -%}
+    <div class="alp-image-slide-bg-video full-img-wrap" style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}">
+      {{ st.bg_video | video_tag: loop: 'loop', muted: true, playsinline: true, autoplay: true, controls: false }}
+    </div>
+  {%- endif -%}
+
+  {% comment %} Breadcrumb {% endcomment %}
+  {%- for block in section.blocks -%}
+    {% liquid
+      assign bs = block.settings
+    %}
+    {%- case block.type -%}
+      {%- when 'breadcrumb' -%}
+        {% if bs.position_set %}
+          <div
+            class="alp-hero-banner-breadcrumbs position_set_topleft page-width {{ container }}"
+            style="--top:{{ bs.position_top }}"
+          >
+            {% render 'breadcrumbs' %}
+          </div>
+        {% endif %}
+    {%- endcase -%}
+  {%- endfor -%}
+  {% comment %} Breadcrumb {% endcomment %}
+
+  <div class="alp-section-container alp-questionnaire-container relative page-width {{ container }}">
+    <div class="alp-questionnaire-banner-inner absolute">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          {%- case block.type -%}
+            {%- when 'heading' -%}
+              {%- if bs.text != blank -%}
+                <div class="alp-hero-banner-heading headline__h2">
+                  <{{ bs.heading_type }} class="alp-hero-banner-heading">
+                    {{- bs.text | newline_to_br -}}
+                  </{{ bs.heading_type }}>
+                </div>
+              {%- endif -%}
+            {%- when 'description' -%}
+              {%- if bs.text != blank -%}
+                <div class="alp-hero-banner-description">{{ bs.text }}</div>
+              {%- endif -%}
+            {%- when 'breadcrumb' -%}
+              {% unless bs.position_set %}
+                <div class="alp-hero-banner-breadcrumbs margin-top">
+                  {% render 'breadcrumbs' %}
+                </div>
+              {% endunless %}
+            {%- when 'button' -%}
+              <div class="alp-hero-banner-button">
+                {% render 'alp-btn',
+                  url: bs.url,
+                  type: 'primary',
+                  text: bs.text,
+                  textcolor: '#FFF',
+                  bgcolor: 'var(--main-color)',
+                  size: 'small'
+                %}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      {% endif %}
+    </div>
+    <div class="alp-questionnaire-app-inner op-hidden">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              <div data-questionnaire-app-block>{% render block %}</div>
+          {%- endcase -%}
+        {%- endfor -%}
+      {% endif %}
+    </div>
+    <div class="alp-questionnaire-result-inner hidden">
+      <div class="alp-questionnaire-result-text delay">
+        <div class="alp-questionnaire-result-text-inner">
+          <h3>{{ st.result_title }}</h3>
+          <p>{{ st.result_desc }}</p>
+        </div>
+      </div>
+      {% for product in collections['electric-bikes'].products %}
+        <div class="alp-product-list-i-result delay">
+          {{ product.metafields.custom.quiz_match | metafield_tag }}
+          {% render 'alp-product-item-list', product: product, aspect_ratio: '4/3' %}
+        </div>
+      {%- endfor -%}
+      <div class="alp-questionnaire-start-over">
+        <a href="/pages/bikes-finder" class="reset-btn"
+          ><span>Start Over</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 32 32">
+            <path fill="currentColor" d="M18 28A12 12 0 1 0 6 16v6.2l-3.6-3.6L1 20l6 6l6-6l-1.4-1.4L8 22.2V16a10 10 0 1 1 10 10Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+    // element : look like '.quiz-01', '.quiz-02'
+    function get_select_index(element) {
+      let index = $(`${element} select option:selected`).index();
+      return { as: `${index}` };
+    }
+    // element : look like '.quiz-01', '.quiz-02', checkbox is multiple, get all index , return array
+    function get_checkbox_indexs(element) {
+      let indexs = [];
+      $(`${element} input:checked`).each(function () {
+        let index = $(this).parents('li').index() + 1;
+        indexs.push(index);
+      });
+      // array to string '1,2,3'
+      indexs = indexs.join(',');
+      return { as: indexs };
+    }
+    // get form data
+    function get_form_data() {
+      let data = [];
+      let quiz_1 = get_select_index('.quiz-01');
+      data.push(quiz_1);
+      let quiz_2 = get_select_index('.quiz-02');
+      data.push(quiz_2);
+      let quiz_3 = get_checkbox_indexs('.quiz-03');
+      data.push(quiz_3);
+      console.log(data);
+      return data;
+    }
+    // get every product json, element: document.querySelector('.alp-product-list-i-result > script')
+    function get_product_json(element) {
+      let json = JSON.parse(element.textContent);
+      return json;
+    }
+    // 比较数组
+    function matchAllElements(dataA, dataB) {
+      let match_data = [];
+      let is_match = false;
+      for (let i = 0; i < dataA.length; i++) {
+        let Astring = dataA[i].as;
+        if (Astring.includes(',')) {
+          Astring = Astring.split(',');
+          let match = false;
+          for (let j = 0; j < Astring.length; j++) {
+            if (dataB[i].match.includes(Astring[j])) {
+              match = true;
+              break;
+            }
+          }
+          match_data.push(match);
+        } else {
+          if (dataB[i].match.includes(Astring)) {
+            match_data.push(true);
+          } else {
+            match_data.push(false);
+            break;
+          }
+        }
+      }
+      // is match_data has one false , is_match is false
+      for (let i = 0; i < match_data.length; i++) {
+        if (!match_data[i]) {
+          is_match = false;
+          break;
+        } else {
+          is_match = true;
+        }
+      }
+      return is_match;
+    }
+    // 匹配结果
+    function match_result() {
+      let $data = get_form_data();
+      document.querySelectorAll('.alp-product-list-i-result').forEach((element, index) => {
+        let $script = element.querySelector('script');
+        if ($script) {
+          let $json = get_product_json($script);
+          let $result = matchAllElements($data, $json);
+          if ($result) {
+            console.log(`NO.${index} is match`);
+            element.classList.add('is-match');
+          } else {
+            element.classList.remove('is-match');
+          }
+        }
+      });
+    }
+    document.querySelector('.alp-questionnaire-result-text-inner').addEventListener('click', function (event) {
+      // match_result();
+    });
+    document.querySelector('a[href="#quiz"]').addEventListener('click', function (event) {
+      event.preventDefault();
+      document.querySelector('.alp-questionnaire-banner-inner').classList.add('hidden');
+      document.querySelector('.alp-questionnaire-app-inner').classList.remove('op-hidden');
+    });
+    setTimeout(function () {
+      document.querySelector('.globo-form-app form').addEventListener('submit', function (event) {
+        console.log('app form submit');
+        match_result();
+        document.querySelector('.alp-questionnaire-app-inner').classList.add('hidden');
+        document.querySelector('.alp-questionnaire-result-inner').classList.remove('hidden');
+        setTimeout(function () {
+          document.querySelector('.alp-questionnaire-result-inner').classList.add('op-active');
+        }, 500);
+      });
+    }, 1500);
+  });
+</script>

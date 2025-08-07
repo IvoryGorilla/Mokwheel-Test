@@ -1,0 +1,78 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "alp_questionnaire_brVhYT": {
+      "type": "alp-questionnaire",
+      "blocks": {
+        "heading_4ye3BJ": {
+          "type": "heading",
+          "settings": {
+            "text": "Find Your Perfect Ride!",
+            "heading_type": "h1"
+          }
+        },
+        "description_mrRWHE": {
+          "type": "description",
+          "settings": {
+            "text": "<p>Looking to buy an ebike but don't know where to start? We can help!<\/p>"
+          }
+        },
+        "breadcrumb_Rab8ar": {
+          "type": "breadcrumb",
+          "settings": {
+            "position_set": true,
+            "position_top": "30px"
+          }
+        },
+        "button_kcJ9CT": {
+          "type": "button",
+          "settings": {
+            "text": "Start Quiz",
+            "url": "#quiz"
+          }
+        },
+        "powerful_form_builder_app_block_rVUXVh": {
+          "type": "shopify:\/\/apps\/powerful-form-builder\/blocks\/app-block\/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+          "settings": {
+            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"NDMwODQ=\"><\/div>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_4ye3BJ",
+        "description_mrRWHE",
+        "breadcrumb_Rab8ar",
+        "button_kcJ9CT",
+        "powerful_form_builder_app_block_rVUXVh"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "center",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_image": "shopify:\/\/shop_images\/Rectangle_1056.jpg",
+        "bg_opacity": 100,
+        "image_aspect_ratio": "3\/2",
+        "block_max_width": "1680px",
+        "min_height": "calc(80vh - var(--header-height)*1px - var(--bar-height)*1px)",
+        "result_title": "Enjoy Your Ride!",
+        "result_desc": "Based on your responses, here's what we think will work best for you",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "alp_questionnaire_brVhYT"
+  ]
+}

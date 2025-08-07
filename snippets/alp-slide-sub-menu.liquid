@@ -1,0 +1,69 @@
+{% comment %}
+  Renders a standard dropdown style menu for the header.
+
+  Usage:
+  {% render 'alp-slide-sub-menu' menu_list: menu.links, block: block, title: title %}
+{% endcomment %}
+
+{% liquid
+  assign bs = block.settings
+%}
+
+<div class="sub-slide-menu-list slide-sub-menu-wrapper">
+  <div class="slide-sub-menu-header">
+    <div class="slide-menu-back-in">{% render 'icon-arrow-left' %}</div>
+    <div>{{- bs.menu_title | strip -}}</div>
+    <div class="slide-menu-close-in">
+      {%- render 'icon-close' -%}
+    </div>
+  </div>
+  <div class="slide-sub-menu-ul">
+    {%- for link in menu_list -%}
+      {% if link.links.size > 0 %}
+        {%- assign the_url = 'javascript:void(0);' -%}
+      {% else %}
+        {%- assign the_url = link.url -%}
+      {% endif %}
+      <div class="sub-menu-level-2">
+        <a href="{{ the_url }}" class="slide-sub-menu-title">
+          <span>{{- link.title | strip -}}</span>
+          {% if link.links.size > 0 %}
+            {% render 'icon-arrow-down' %}
+          {% else %}
+            {% render 'icon-arrow-right' %}
+          {% endif %}
+        </a>
+        {% if link.links.size > 0 %}
+          <div class="sub-slide-wrapper">
+            <div class="alp-dropdown-child">
+              {% for child_link in link.links %}
+                <div class="alp-child-menu-link sub-menu-level-2">
+                  <a href="{{ child_link.url }}" class="slide-sub-menu-title">
+                    <span>{{- child_link.title | strip -}}</span>
+                  </a>
+                  <div class="sub-slide-wrapper">
+                    {% if child_link.links.size > 0 %}
+                      <div class="alp-dropdown-grandchild">
+                        {% for grandchild_link in child_link.links %}
+                          <div class="alp-child-menu-link">
+                            <a class="slide-sub-menu-title" href="{{ grandchild_link.url }}">
+                              {{- grandchild_link.title -}}
+                            </a>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {%- endfor -%}
+  </div>
+  <div class="alp-slide-menu-content-liq sub-menu-level-2s">
+    {{ bs.mega_content }}
+  </div>
+  <div class="mega-menu-buttons">{{ bs.mega_button_content }}</div>
+</div>

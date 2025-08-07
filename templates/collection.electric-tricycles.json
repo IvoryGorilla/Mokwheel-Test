@@ -1,0 +1,450 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "5b85dcc6-5d97-4a27-be40-bcfb14a25ddb": {
+      "type": "alp-hero-banner",
+      "blocks": {
+        "6961e650-2590-49ba-976c-f2a4cf72d201": {
+          "type": "heading",
+          "settings": {
+            "text": "{{ collection.title }}",
+            "heading_type": "h1"
+          }
+        },
+        "fd96ed58-cafc-4fe3-9827-ff2d1d537b4c": {
+          "type": "description",
+          "settings": {
+            "text": "<p>{{ collection.metafields.custom.description | metafield_tag }}</p>"
+          }
+        },
+        "78b540cd-0e95-4059-8636-316d3d5e077a": {
+          "type": "breadcrumb",
+          "settings": {
+            "position_set": true,
+            "position_top": "30px"
+          }
+        }
+      },
+      "block_order": [
+        "6961e650-2590-49ba-976c-f2a4cf72d201",
+        "fd96ed58-cafc-4fe3-9827-ff2d1d537b4c",
+        "78b540cd-0e95-4059-8636-316d3d5e077a"
+      ],
+      "settings": {
+        "title": "{{ collection.title }}",
+        "text_alignment": "center",
+        "bg_color": "#121212",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/banner_PC_ae513394-8767-465d-bbf8-24e8c03ef86e.jpg",
+        "bg_image_mobile": "shopify://shop_images/banner_M_3e8d2195-572a-41e6-a227-947638918fd3.jpg",
+        "bg_opacity": 50,
+        "image_aspect_ratio": "3/1",
+        "block_max_width": "600px",
+        "min_height": "380px",
+        "container": "alp-container-fluid",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "reset_spacing": true
+      }
+    },
+    "068efb60-06f6-49bb-a670-94ece84744ea": {
+      "type": "alp-separator",
+      "settings": {
+        "title": "Section Title",
+        "target": "",
+        "bg_color": "#ffffff",
+        "text_color": "#f3f3f3",
+        "container": "alp-full-width",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 3,
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "312dd263-140c-4f0b-8224-e3bdfc634934": {
+      "type": "alp-main-products-list",
+      "blocks": {
+        "65ffe92d-48ee-459e-9ccc-67cf08ae4e1a": {
+          "type": "ad_banner_list",
+          "disabled": true,
+          "settings": {
+            "min_height": "220px",
+            "placement": 3,
+            "text": "Christmas Wishlist",
+            "subtext": "Up to $600 off the Mesa Lite",
+            "image_aspect_ratio": "7/2",
+            "image": "shopify://shop_images/Rectangle_798.jpg",
+            "image_mobile": "shopify://shop_images/055c6faea4ccbe15076f54ff1cec3db7.jpg",
+            "bg_opacity": 100,
+            "link": "",
+            "link_text": "Discover More"
+          }
+        },
+        "a43eaf5d-716c-451b-91e5-150ecb242d11": {
+          "type": "ad_banner_grid",
+          "settings": {
+            "min_height": "220px",
+            "placement": 3,
+            "text": "Independence Day Special Discounts!",
+            "subtext": "Up to $600 off the Obsidian",
+            "image_aspect_ratio": "auto",
+            "image": "shopify://shop_images/055c6faea4ccbe15076f54ff1cec3db7.jpg",
+            "bg_opacity": 100,
+            "link": "shopify://pages/deals",
+            "link_text": "Discover More"
+          }
+        }
+      },
+      "block_order": [
+        "65ffe92d-48ee-459e-9ccc-67cf08ae4e1a",
+        "a43eaf5d-716c-451b-91e5-150ecb242d11"
+      ],
+      "settings": {
+        "title": "Product List",
+        "products_per_page": 14,
+        "columns_width": "30%",
+        "columns_desktop": 2,
+        "columns_mobile": "1",
+        "default_list_view": false,
+        "hide_view_switch": false,
+        "item_type": "type_1",
+        "image_aspect_ratio": "4/3",
+        "filter_show_collection": false,
+        "filter_collection_label": "Collections",
+        "filter_collections": [],
+        "filter_type": "vertical",
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "show_compare": true,
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false
+      }
+    },
+    "55941165-a236-4f8e-b9e2-3385a441c801": {
+      "type": "jd-logo-list",
+      "blocks": {
+        "template--17027751739638__55941165-a236-4f8e-b9e2-3385a441c801-logo-item-1": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/clipboard_1_1.png",
+            "title": "0% APR For 24 Months"
+          }
+        },
+        "template--17027751739638__55941165-a236-4f8e-b9e2-3385a441c801-logo-item-2": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/d53dbccbfe92e9149a0d4c187e2306fb.png",
+            "title": "Reliable Shipping"
+          }
+        },
+        "template--17027751739638__55941165-a236-4f8e-b9e2-3385a441c801-logo-item-3": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/Frame.png",
+            "title": "Quality Assurance"
+          }
+        },
+        "10a1afb5-2448-441e-ace0-0e99802692d9": {
+          "type": "logo-item",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1.png",
+            "title": "Secure Payment"
+          }
+        }
+      },
+      "block_order": [
+        "template--17027751739638__55941165-a236-4f8e-b9e2-3385a441c801-logo-item-1",
+        "template--17027751739638__55941165-a236-4f8e-b9e2-3385a441c801-logo-item-2",
+        "template--17027751739638__55941165-a236-4f8e-b9e2-3385a441c801-logo-item-3",
+        "10a1afb5-2448-441e-ace0-0e99802692d9"
+      ],
+      "settings": {
+        "title": "Section Title",
+        "bg_color": "#121212",
+        "text_color": "#ffffff",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "image": "shopify://shop_images/icons_PC.jpg"
+      }
+    },
+    "alp_index_remark_c_dTMwwn": {
+      "type": "alp-index-remark-c",
+      "blocks": {
+        "item_8zXBtJ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/281025_7734531064054_b67ee080_76ed_429b_80f5_0b9ef0fce322.webp",
+            "title": "Kerry S.",
+            "content_title": "The Grey Goose Basalt",
+            "desc": "<p>These bikes are amazing! #gamechanger. Highly recommend. </p>",
+            "content_model": "Basalt",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "Shop The Product"
+          }
+        },
+        "item_KRGDAY": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/281025_7734556786934_b2a19271_69da_4c62_9386_94fddc7e52ec.webp",
+            "title": "Cora",
+            "content_title": "Better than I expected",
+            "desc": "<p>Completely new to e-bikes but this was easy to assemble and so well made. It’s a big bike (I’m tall and got the lg frame) but it’s so stable I was comfortable within the first few minutes. I’ve only gotten 10 miles or so but I’m patiently waiting for Spring in Upstate NY so I’ll be able to ride all the time. Completely happy!</p>",
+            "content_model": "Basalt ST",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "Shop The Product"
+          }
+        },
+        "item_4tjQgC": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/281025_8093806952694_24f1b6ad_eddf_4e6b_aa83_c4244bb0fa33.webp",
+            "title": "Nancy A.",
+            "content_title": "I’m in love",
+            "desc": "<p>The performance and handling of this bike is outstanding. It does what I ask it to do with a smile and the color is perfect, it’s my sunshine….</p>",
+            "content_model": "Obsidian",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "Shop The Product"
+          }
+        },
+        "item_TpMeDj": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/281025_8093806952694_2cc9341d_0f57_4e88_ace2_b1bee85fa3cf.webp",
+            "title": "Robin O.",
+            "content_title": "WOW!",
+            "desc": "<p>I have been researching electric bikes for over two years trying to find the perfect one for me. I think that the Obsidian is the one. It checks all the boxes for me with payload, range, geometry, and hopefully price.</p>",
+            "content_model": "Obsidian",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "Shop The Product"
+          }
+        },
+        "item_tz99H6": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/281025_7734531064054_63a49e5d_d4b1_440b_9cae_a79ec7a47c9d.webp",
+            "title": "Errol",
+            "content_title": "Very happy with my purchase.",
+            "desc": "<p>I bought the Basalt together with another manufacturers bike in the same price range. The Basalt has a much sturdier build, was easier to assemble, and looks better! Very happy with my purchase.</p>",
+            "content_model": "Basalt",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "Shop The Product"
+          }
+        },
+        "item_EQBxUf": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/281025_7734556786934_8f27d303_1327_4690_a180_54045be6f88d.webp",
+            "title": "Jacob",
+            "content_title": "I really love this Basalt electric bike! ! ",
+            "desc": "<p>The bike looks exactly as I expected it to, and secondly, it arrived quickly and I didn't have to wait long. I installed it quickly according to the instructions and started using it. I'm really happy with this bike, it completely exceeded my expectations.</p>",
+            "content_model": "Basalt ST",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "Shop The Product"
+          }
+        },
+        "item_GJhz48": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/281025_7444055884022_03e95afa_8fd6_419a_8112_14f9b17948d8.webp",
+            "title": "Natalie",
+            "content_title": "Luv this bike",
+            "desc": "<p>My first E-bike (Mesa Plus ST) and I luv luv luv it! Everything about this purchase has been superior. Thank you Mokwheel for making this purchase an easy choice and fun. Just a few words to describe my bike: Solid, performance, exhilarating, comfort, addicting, worth the money. Just do it--no regrets here.</p>",
+            "content_model": "Mesa Plus ST",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "Shop The Product"
+          }
+        },
+        "item_cg6PPq": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_780_31f22f64-a115-4542-80db-00c87e5fee08.jpg",
+            "title": "Rob S.",
+            "content_title": "Mesa Plus ST",
+            "desc": "<p>Best bike I ever owned ! I have had the bike since September I already have over 1000 miles on it I think I ride it more than my Harley road king Highly recommended strong fast durable bike</p>",
+            "content_model": "Mesa Plus ST",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "Shop The Product"
+          }
+        },
+        "item_YxB3UX": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/281025_8373225324790_5a4320c5_4ab3_4ec7_b9ec_4669459e9b38.webp",
+            "title": "Ellie",
+            "content_title": "Simple to use",
+            "desc": "<p>This bike is clean and practical. It's a pleasure to ride, very smooth, value for money, don't miss it, don't waste your money on other e-bike shopping platforms or other e-bike brands, buy a mokwheel!</p>",
+            "content_model": "Slate",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "Shop The Product"
+          }
+        },
+        "item_Y4Qi4f": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/281025_8012228460790_ddc3b13c_c1b9_4d7a_ac96_26415a4b592a.webp",
+            "title": "Terry",
+            "content_title": "Best cruiser ebike on the planet",
+            "desc": "<p>I've been shopping for 2 years and finally found the perfect ebike, the Mokwheel Asphalt! I was mostly impressed with the range of the bike, I'm a 200 lb guy and was able to ride 50+ miles on a single charge. The bike is very aerodynamic, has perfect weld and paint, the controls and wires are installed by artists....really a nice machine. What a pleasure to ride. Thanks to Austin @Mokwheel, thanks for the help in supporting my Giant carbon Bike replacement!</p>",
+            "content_model": "Asphalt",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "Shop The Product"
+          }
+        }
+      },
+      "block_order": [
+        "item_8zXBtJ",
+        "item_KRGDAY",
+        "item_4tjQgC",
+        "item_TpMeDj",
+        "item_tz99H6",
+        "item_EQBxUf",
+        "item_GJhz48",
+        "item_cg6PPq",
+        "item_YxB3UX",
+        "item_Y4Qi4f"
+      ],
+      "settings": {
+        "title": "Costomer Favorites",
+        "link_text_title": "View More",
+        "link_url_title": "shopify://pages/electric-bike-reviews",
+        "heading_type": "h2",
+        "image_aspect_ratio": "1/1",
+        "block_max_width": "420px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "reset_spacing": true
+      }
+    },
+    "138b3cf9-d014-4399-8616-e82efe61cea5": {
+      "type": "jd-product-facet",
+      "blocks": {
+        "eda7d8d3-a5ef-49e7-9c62-cbd61346dc15": {
+          "type": "item",
+          "settings": {
+            "product_list": [
+              "inverter",
+              "bike-cover",
+              "pet-basket-carrier",
+              "bike-cable-lock-2",
+              "bike-trunk-bag-1",
+              "front-mounted-basket-1",
+              "pet-shed-peaked-roof"
+            ]
+          }
+        }
+      },
+      "block_order": [
+        "eda7d8d3-a5ef-49e7-9c62-cbd61346dc15"
+      ],
+      "settings": {
+        "title": "Accessories Related To Ebikes",
+        "link_text": "view all accessories",
+        "link_url": "https://www.mokwheel.com/collections/accessory",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 30,
+        "reset_spacing": true
+      }
+    },
+    "832923b2-692e-4f30-a244-27c2b16b108b": {
+      "type": "jd-help-faq",
+      "blocks": {
+        "4fa3f05e-b704-412a-be3e-3027c3030623": {
+          "type": "item_tab",
+          "settings": {
+            "faqs_question": "What Is The Maximum Range Of Mokwheel Fat Tire Ebikes?",
+            "faqs_answer": "<p>Mokwheel fat tire e-bikes can achieve a maximum range of up to 80 miles, depending on riding conditions such as terrain, rider weight, and usage of pedal assist.</p>"
+          }
+        },
+        "2370438d-635e-494d-8677-da7e51630077": {
+          "type": "item_tab",
+          "settings": {
+            "faqs_question": "What Are The Advantages Of Power Station Electric Bikes?",
+            "faqs_answer": "<p>Combine an inverter with solar panels, and you'll have a sustainable source of energy. Our power station can also be used with a variety of devices, including coffee makers, phones, cameras, etc. Simply connect one side of the inverter to your electric bike, and the other side to the device you wish to power for efficient energy exchange. With a variety of interfaces, our system meets your diverse needs and supports the simultaneous connection of multiple devices.</p>"
+          }
+        },
+        "a2a01fbb-5b86-4862-98b4-f091a0fb5c4d": {
+          "type": "item_tab",
+          "settings": {
+            "faqs_question": "What Role Do Power Station Electric Bikes Play In The Ebike Industry?",
+            "faqs_answer": "<p>Mokwheel: The world's first electric bike brand to integrate power station technology, revolutionizing the way you ride and recharge.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "4fa3f05e-b704-412a-be3e-3027c3030623",
+        "2370438d-635e-494d-8677-da7e51630077",
+        "a2a01fbb-5b86-4862-98b4-f091a0fb5c4d"
+      ],
+      "settings": {
+        "faqtitle": "E-Bikes FAQS",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "5b85dcc6-5d97-4a27-be40-bcfb14a25ddb",
+    "068efb60-06f6-49bb-a670-94ece84744ea",
+    "product-grid",
+    "312dd263-140c-4f0b-8224-e3bdfc634934",
+    "55941165-a236-4f8e-b9e2-3385a441c801",
+    "alp_index_remark_c_dTMwwn",
+    "138b3cf9-d014-4399-8616-e82efe61cea5",
+    "832923b2-692e-4f30-a244-27c2b16b108b"
+  ]
+}

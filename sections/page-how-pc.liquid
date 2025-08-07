@@ -1,0 +1,147 @@
+
+  <div class="page-how-pc ">
+    <div class="container">
+        <div class="title">
+          {{section.settings.title}}
+        </div>
+        <div class="step-list">
+          {% for item in section.blocks %}
+              <div class="item">
+                <div class="number">0{{forloop.index}}</div>
+                <div class="title">{{item.settings.title}}</div>
+                <div class="description">{{item.settings.description}}</div>
+                <div class="img-box">
+                  <img src="{{item.settings.img | img_url: '1920x'}}" alt="">
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
+
+  <script>
+    (()=>{
+
+
+    })()
+  </script>
+
+  {% schema %}
+  {
+  "name": "page-how-pc",
+  "class": "page-how-pc-box",
+  "presets": [{
+    "name": "page-how-pc",
+    "settings": {
+  
+    }
+  }],
+  "blocks": [{
+    "type": "mega_menu", 
+    "name": "Mega menu", 
+    "settings":[{
+      "type": "richtext",
+      "id": "title",
+      "label": "title" 
+    },{
+      "type": "richtext",
+      "id": "description",
+      "label": "description" 
+    },{
+      "type": "image_picker",
+      "id": "img",
+      "label": "image" 
+    }]
+  }],
+  "settings": [{
+    "type": "text",
+    "id": "title",
+    "label": "title" 
+  }]
+  }
+  {% endschema %}
+
+
+  <style>
+
+  </style>
+
+
+  <style>
+    @media screen and (min-width:1000px) {
+      .page-how-pc {
+        margin-bottom: 20px;
+      }
+      .page-how-pc .container > .title {
+        width: 350px;
+        font-size: 64px;
+        font-weight: 600;
+        line-height: 64px;
+          color: #000;
+      }
+      .page-how-pc .step-list {
+        
+      }
+      .page-how-pc .item .number {
+        margin-top: 30px;
+        font-size: 48px;
+        color: #EE751C;
+        line-height: 1;
+      }
+      .page-how-pc .item .title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #1B1B1B;
+        line-height: 1;
+        margin: 20px 0 10px;
+      }
+    }
+    @media screen and (max-width:1000px) {
+      .page-how-pc {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .page-how-pc .container > .title {
+        font-size: 42px;
+        font-weight: 600;
+        line-height: 1;
+        text-align: center;
+            color: #000;
+      }
+      .page-how-pc .step-list {
+        
+      }
+      .page-how-pc .item .number {
+        margin-top: 30px;
+        font-size: 36px;
+        color: #EE751C;
+        line-height: 1;
+      }
+      .page-how-pc .item .title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1B1B1B;
+        line-height: 1;
+        max-width: 60%;
+        margin: 15px auto;
+      }
+    }
+
+
+    .page-how-pc  .container {
+      max-width: 1400px;
+      padding: 0 20px;
+      margin: 0 auto;
+    }
+    @media screen and (max-width: 1400px) {
+      .page-how-pc  .container {
+        max-width: 1200px;
+      }
+    }
+    @media screen and (max-width: 1000px) {
+      .page-how-pc  .container {
+        max-width: 100%;
+        padding: 0 18px;
+      }
+    }
+  </style>

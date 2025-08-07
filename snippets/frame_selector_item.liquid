@@ -1,0 +1,22 @@
+{% comment %} {%- assign bs = block.settings -%} {% endcomment %}
+
+<div
+  class="alp_frame_selector_item {% if is_active %} active{% endif %}"
+  data-trigger-index="{{ text | strip_html | handle }}"
+  {% if child_info == blank %}
+    data-child="false"
+  {% endif %}
+>
+  <div class="alp_frame_selector_i_flex relative {% if image %} has_image{% endif %}">
+    <a class="full-aa" href="{{ link }}"></a>
+    {%- if image -%}
+      {{ image | image_url: width: 360 | image_tag: loading: 'lazy' }}
+    {%- endif -%}
+    <div class="alp_frame_selector_i_text {% if image %} has_image{% endif %}">
+      {{ text }}
+      {%- if info != blank -%}
+        <div class="alp_frame_selector_i_info">{{ info }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,992 @@
+{% schema %}
+{
+  "name": "Alp Keynote Specification",
+  "class": "alp-keynote-specification",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bigtitle",
+      "label": "Big Title",
+      "default": "Specification & Geometry"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec_type_a",
+      "name": "Spec Type A",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": " Tab Title",
+          "default": "Specifications"
+        },
+        {
+          "type": "text",
+          "id": "model_name",
+          "label": "Model Name"
+        },
+        {
+          "type": "textarea",
+          "id": "rich_content",
+          "label": "Richtext"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_name",
+          "label": "Image List Name",
+          "info": "格式: obsidian-geo- , 输出为 obsidian-geo-1.jpg, obsidian-geo-2.jpg, ..."
+        },
+        {
+          "type": "number",
+          "id": "image_number",
+          "label": "Image Number",
+          "default": 8,
+          "info": "对应图片数量"
+        },
+        {
+          "type": "text",
+          "id": "model_name_2",
+          "label": "Model Name 2"
+        },
+        {
+          "type": "textarea",
+          "id": "rich_content_2",
+          "label": "Richtext 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "text",
+          "id": "image_name_2",
+          "label": "Image List Name 2",
+          "info": "格式: obsidian-geo- , 输出为 obsidian-geo-1.jpg, obsidian-geo-2.jpg, ..."
+        },
+        {
+          "type": "number",
+          "id": "image_number_2",
+          "label": "Image Number 2",
+          "default": 8,
+          "info": "对应图片数量"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_active",
+          "label": "Show Active",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "spec_type_b",
+      "name": "Spec Type B",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "Specifications"
+        },
+        {
+          "type": "textarea",
+          "id": "rich_content",
+          "label": "Richtext"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_active",
+          "label": "Show Active",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "spec_type_c",
+      "name": "Spec Type C",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "man_image",
+          "label": "Man Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "Desc"
+        },
+        {
+          "type": "text",
+          "id": "match_max",
+          "label": "Match Max",
+          "default": "6.4"
+        },
+        {
+          "type": "text",
+          "id": "match_min",
+          "label": "Match Min",
+          "default": "5.4"
+        },
+        {
+          "type": "text",
+          "id": "title_match",
+          "label": "Title Match"
+        },
+        {
+          "type": "textarea",
+          "id": "desc_match",
+          "label": "Desc Match"
+        },
+        {
+          "type": "text",
+          "id": "title_not_match",
+          "label": "Title Not Match"
+        },
+        {
+          "type": "textarea",
+          "id": "desc_not_match",
+          "label": "Desc Not Match"
+        },
+        {
+          "type": "text",
+          "id": "title_recommend",
+          "label": "Title Recommend"
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Products Recommend"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_active",
+          "label": "Show Active",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Keynote Specification"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  .alp-spec-info p {
+    margin: 0;
+  }
+  .keynote-spec-info-item-title {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .keynote-spec-info-item-title > div {
+    margin: 0;
+  }
+  .alp-spec-info-wrapper {
+    padding: 0 var(--container-gutter);
+    margin: var(--alp-gutter-y) 0;
+    margin-bottom: 0;
+  }
+  .keynote-spec-info-item-content {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: calc(var(--alp-gutter-y) * 0.5);
+  }
+  .keynote-spec-info-item .keynote-spec-info-item-content-wrap {
+    display: flex;
+  }
+
+  .keynote-spec-info-item-content .Sp_tech {
+    margin-top: calc(var(--alp-gutter-y) * 0.75);
+  }
+
+  .keynote-spec-info-item-content .Sp_alp > div > h4 {
+    font-size: clamp(16px, 2.2vw, 16px);
+    font-weight: 400;
+  }
+  .keynote-spec-info-item-content .Sp_alp > div > div {
+    display: flex;
+    align-items: center;
+    font-size: clamp(16px, 2.2vw, 16px);
+    padding: calc(var(--alp-gutter-y) * 0.35) 0;
+    border-bottom: 1px solid #e3e3e3;
+    border-top: 0;
+  }
+  .keynote-spec-info-item-content .Sp_alp > div:not(:first-child) h4 {
+    text-align: center;
+    padding-right: 0;
+  }
+  .keynote-spec-info-item-content .Sp_alp > div:not(:first-child) > div {
+    text-align: center;
+    display: block;
+  }
+  .keynote-spec-info-item-content .Sp_alp div:first-child,
+  .keynote-spec-info-item-content .Sp_alp div:first-child h4 {
+    font-weight: 600;
+  }
+
+  .keynote-spec-info-item-content .Sp_tech > div > div:last-child {
+    border-bottom: 1px solid #e3e3e3;
+  }
+
+  .keynote-spec-info-item-content .Sp_tech > div > div b {
+    flex-basis: 20%;
+  }
+  .keynote-spec-info-item-content .Sp_tech > div > div span {
+    flex-basis: 80%;
+    text-align: left;
+  }
+
+  .keynote-spec-info-item-content .leftc-text-c {
+    width: 50%;
+  }
+
+  .keynote-spec-info-item-content .leftc-text-c .Sp_alp > div:first-child {
+    width: 100%;
+  }
+  .keynote-spec-info-item-content .leftc-text-c .Sp_alp > div > div b {
+    flex-basis: 40%;
+  }
+  .keynote-spec-info-item-content .leftc-text-c .Sp_alp > div > div span {
+    flex-basis: 30%;
+    font-weight: 400;
+  }
+
+  .keynote-spec-info-item-content .rightc-img {
+    width: 45%;
+    margin-top: calc(var(--alp-gutter-y) * 0.75);
+  }
+
+  .keynote-spec-info-item-content .full-text-c {
+    flex: 1;
+  }
+
+  .keynote-spec-info-item .alp-fit-tailor-inner {
+    padding: 0;
+  }
+
+  .keynote-spec-info-item .alp-fit-tailor-inner-flex {
+    padding-top: 0;
+  }
+
+  @media (min-width: 751px) {
+    .keynote-spec-info-item-content .Sp_tech > div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 0em;
+      border-top: 1px solid #e3e3e3;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .keynote-spec-info-item-content .Sp_tech > div > div:first-child {
+      border-top: 1px solid #e3e3e3;
+    }
+    .keynote-spec-info-item-content .Sp_alp div:first-child > div,
+    .keynote-spec-info-item-content .Sp_alp div:first-child h4 {
+      font-weight: 500;
+    }
+    .keynote-spec-info-item-content .Sp_alp div:last-child > div,
+    .keynote-spec-info-item-content .Sp_alp div:last-child > h4 {
+      font-weight: 400;
+    }
+    .keynote-spec-info-item-content .Sp_tech > div > div b {
+      flex-basis: 40%;
+      font-weight: 500;
+    }
+    .keynote-spec-info-item-content .Sp_tech > div > div span {
+      flex-basis: 60%;
+      text-align: left;
+    }
+    .keynote-spec-info-item .keynote-spec-info-item-content-wrap {
+      flex-direction: column-reverse;
+    }
+    .keynote-spec-info-item-content .leftc-text-c {
+      width: 100%;
+    }
+    .keynote-spec-info-item-content .rightc-img {
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: calc(var(--alp-gutter-y) * 0.75);
+    }
+  }
+</style>
+<style>
+  .alp-spec-info-bigtitle {
+    margin-bottom: 60px;
+    font-size: clamp(24px, 3vw, 48px);
+    font-weight: 700;
+    text-align: center;
+  }
+  .alp-spec-info-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .alp-spec-info-title {
+    padding: 16px 40px;
+    cursor: pointer;
+    color: #1a1a1a;
+    font-size: clamp(13px, 1vw, 18px);
+    font-weight: bold;
+    line-height: 1.2;
+  }
+  .alp-spec-info-title.active {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+  .keynote-spec-info-item {
+    display: none;
+    padding: 20px;
+  }
+  .keynote-spec-info-item.active {
+    display: block;
+  }
+  .alp-spec-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .rightc-img.has_darken_effect .rightc-img-multiple {
+    mix-blend-mode: darken;
+  }
+
+  .rightc-img .rightc-img-multiple img {
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .rightc-img .rightc-img-multiple > img {
+    display: block;
+    width: 100%;
+  }
+
+  .Sp_alp_new > div {
+    transition: 0.2s;
+    padding: 16px;
+  }
+
+  .Sp_alp_new > div.active {
+    /* border-color: #1a1a1a; */
+    background: #000;
+  }
+  .Sp_alp_new > div.active  span{
+    color: #fff;
+  }
+
+  .rightc-img-multiple-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: none;
+    overflow: hidden;
+  }
+
+  .rightc-img-multiple-list > img {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s 0.1s;
+  }
+
+  .rightc-img .rightc-img-multiple.active .rightc-img-multiple-list {
+    display: block;
+  }
+
+  .rightc-img .rightc-img-multiple.active > img {
+    display: none;
+  }
+  .rightc-img-multiple-list > img.active {
+    opacity: 1;
+    transition: opacity 0.1s;
+  }
+
+  .model-name-item {
+    background: #e8e8e8;
+    line-height: 1.2;
+    padding: 0.65em 1.5em;
+    border-radius: var(--alp-border-radius);
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .rightc-img-model-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25em;
+  }
+
+  .model-name-item.active {
+    background: #1a1a1a;
+    color: #fff;
+  }
+
+  .keynote-spec-info-item-content.has_multiple_model > div {
+    display: none;
+  }
+
+  .keynote-spec-info-item-content.has_multiple_model > div.active {
+    display: flex;
+  }
+
+  @media (min-width: 751px) {
+    .keynote-spec-info-item .alp-fit-tailor-inner {
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .keynote-spec-info-item {
+      padding-top: 40px;
+    }
+    .keynote-spec-info-item-title-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .keynote-spec-info-item-title-wrap .rightc-img-model-name {
+      width: 45%;
+    }
+
+    .keynote-spec-info-item .keynote-spec-info-item-content-wrap {
+      justify-content: space-between;
+    }
+  }
+  @media (max-width: 750px) {
+    .alp-spec-info-bigtitle {
+      margin-bottom: 32px;
+    }
+    .alp-spec-info-title {
+      padding: 12px 8px;
+    }
+    .keynote-spec-info-item {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .keynote-spec-info-item .alp-fit-tailor-inner {
+      padding-left: 12px;
+    }
+    .rightc-img-model-name {
+      gap: 1em;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+  }
+</style>
+{{ 'alp-fit-tailor.css' | asset_url | stylesheet_tag }}
+
+<div class="alp-keynote-specification-wrapper alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-keynote-specification-container alp-section-container page-width {{ container }}">
+    <div class="alp-spec-info-bigtitle">{{ st.bigtitle }}</div>
+    <div class="alp-spec-info-top">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        {%- case block.type -%}
+          {%- when 'spec_type_a' -%}
+            <div class="alp-spec-info-title {% if bs.show_active %}active{% endif %}">{{ bs.tab_title }}</div>
+          {%- when 'spec_type_b' -%}
+            <div class="alp-spec-info-title {% if bs.show_active %}active{% endif %}">{{ bs.tab_title }}</div>
+          {%- when 'spec_type_c' -%}
+            {%- if forloop.first -%}
+              <div class="alp-spec-info-title {% if bs.show_active %}active{% endif %}">{{ bs.tab_title }}</div>
+            {%- endif -%}
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+    <div class="alp-spec-info-box">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        {%- case block.type -%}
+          {%- when 'spec_type_a' -%}
+            <div class="keynote-spec-info-item {% if bs.show_active %}active{% endif %}">
+              <div class="keynote-spec-info-item-title-wrap">
+                <div class="keynote-spec-info-item-title hide_mobile">
+                  <div class="headline__h4">{{ bs.tab_title }}</div>
+                </div>
+                {%- if bs.model_name != blank or bs.model_name_2 != blank -%}
+                  <div class="rightc-img-model-name">
+                    {%- if bs.model_name != blank -%}
+                      <div class="model-name-item active">{{ bs.model_name }}</div>
+                    {%- endif -%}
+                    {%- if bs.model_name_2 != blank -%}
+                      <div class="model-name-item">{{ bs.model_name_2 }}</div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+              <div class="keynote-spec-info-item-content {% if bs.model_name_2 != blank %} has_multiple_model{% endif %}">
+                <div class="keynote-spec-info-item-content-wrap active">
+                  <div class="leftc-text-c">{{ bs.rich_content }}</div>
+                  <div class="keynote-spec-info-item-title hide_desktop">
+                    <div class="headline__h4">{{ bs.tab_title }}</div>
+                  </div>
+                  {% assign image_name = block.settings.image_name %}
+                  {% assign image_number = block.settings.image_number %}
+                  {% assign default_image = 1 %}
+                  {%- if image_name != blank and bs.image -%}
+                    <div class="rightc-img has_darken_effect">
+                      <div class="rightc-img-multiple relative">
+                        {% render 'alp-responsive-image',
+                          image: bs.image,
+                          desktop_width: 1500,
+                          mobile_width: 800,
+                          aspect_ratio: 'auto'
+                        %}
+                        <div class="rightc-img-multiple-list">
+                          {%- for i in (1..image_number) -%}
+                            {%- assign image_index = i -%}
+                            {%- assign image_file = image_name | append: image_index | append: '.jpg' -%}
+                            <img class="lazy" data-src="{{ image_file | file_img_url:'2000x2000' }}" alt="">
+                          {%- endfor -%}
+                        </div>
+                      </div>
+                    </div>
+                  {%- elsif bs.image -%}
+                    <div class="rightc-img">
+                      {% comment %} {{ bs.image | image_url: width: 1500 | image_tag: loading: 'lazy' }} {% endcomment %}
+                      {% render 'alp-responsive-image',
+                        image: bs.image,
+                        desktop_width: 1500,
+                        mobile_width: 800,
+                        aspect_ratio: 'auto'
+                      %}
+                    </div>
+                  {%- endif -%}
+                </div>
+                {% if bs.model_name_2 != blank %}
+                  <div class="keynote-spec-info-item-content-wrap">
+                    <div class="leftc-text-c">{{ bs.rich_content_2 }}</div>
+                    <div class="keynote-spec-info-item-title hide_desktop">
+                      <div class="headline__h4">{{ bs.tab_title }}</div>
+                    </div>
+                    {% assign image_name = block.settings.image_name_2 %}
+                    {% assign image_number = block.settings.image_number_2 %}
+                    {% assign default_image = 1 %}
+                    {%- if image_name != blank and bs.image_2 -%}
+                      <div class="rightc-img has_darken_effect">
+                        <div class="rightc-img-multiple relative">
+                          {% render 'alp-responsive-image',
+                            image: bs.image_2,
+                            desktop_width: 1500,
+                            mobile_width: 800,
+                            aspect_ratio: 'auto'
+                          %}
+                          <div class="rightc-img-multiple-list">
+                            {%- for i in (1..image_number) -%}
+                              {%- assign image_index = i -%}
+                              {%- assign image_file = image_name | append: image_index | append: '.jpg' -%}
+                              <img class="lazy" data-src="{{ image_file | file_img_url:'2000x2000' }}" alt="">
+                            {%- endfor -%}
+                          </div>
+                        </div>
+                      </div>
+                    {%- elsif bs.image_2 -%}
+                      <div class="rightc-img">
+                        {% comment %} {{ bs.image | image_url: width: 1500 | image_tag: loading: 'lazy' }} {% endcomment %}
+                        {% render 'alp-responsive-image',
+                          image: bs.image_2,
+                          desktop_width: 1500,
+                          mobile_width: 800,
+                          aspect_ratio: 'auto'
+                        %}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {%- when 'spec_type_b' -%}
+            <div class="keynote-spec-info-item {% if bs.show_active %}active{% endif %}">
+              <div class="key-spec-info-item-title">
+                <div class="headline__h4">{{ bs.tab_title }}</div>
+              </div>
+              <div class="keynote-spec-info-item-content">
+                <div class="full-text-c">{{ bs.rich_content }}</div>
+              </div>
+            </div>
+          {%- when 'spec_type_c' -%}
+            {%- if forloop.first -%}
+              <div class="keynote-spec-info-item {% if bs.show_active %}active{% endif %}">
+                <div class="alp-fit-tailor-inner" data-switch-wrapper>
+                  <div class="alp-fit-tailor-inner-flex">
+                    <div class="alp-fit-tailor-inner-flex-1" data-switch-target>
+                      {%- for block in section.blocks -%}
+                        {% liquid
+                          assign bs = block.settings
+                        %}
+                        {%- case block.type -%}
+                          {%- when 'spec_type_c' -%}
+                            <div
+                              class="alp-fit-tailor-drag-item {% if forloop.first %} active{% endif %}"
+                              data-target-index="{{ forloop.index }}"
+                            >
+                              <div class="fit-tailor-match-drag">
+                                <div class="fit-tailor-match-swiper swiper" data-blockId="{{ block.id }}">
+                                  <div class="swiper-wrapper">
+                                    <div class="swiper-slide"></div>
+                                    <div class="swiper-slide"></div>
+                                    <div class="swiper-slide">
+                                      <div class="match-i">
+                                        <span><b>5'10"</b></span>
+                                      </div>
+                                    </div>
+                                    <div class="swiper-slide"></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                class="fit-tailor-match-content"
+                                data-blockId="{{ block.id }}"
+                                data-match-max="{{ bs.match_max }}"
+                                data-match-min="{{ bs.match_min }}"
+                              >
+                                <div class="fit-match-content-1">
+                                  <h3 class="headline__h3">
+                                    <span><b>5'10"</b></span>{{ bs.title | newline_to_br }}
+                                  </h3>
+                                  <p>{{ bs.desc | newline_to_br }}</p>
+                                </div>
+                                <div class="fit-match-content-2">
+                                  <div class="fit-match-content-match" data-is-match>
+                                    <h4 class="headline__h6">
+                                      {% render 'icon-check-2' %}
+                                      {{ bs.title_match | newline_to_br }}
+                                    </h4>
+                                    <p>{{ bs.desc_match | newline_to_br }}</p>
+                                  </div>
+                                  <div class="fit-match-content-match" data-not-match>
+                                    <h4 class="headline__h6">
+                                      {% render 'icon-close' %}
+                                      {{ bs.title_not_match | newline_to_br }}
+                                    </h4>
+                                    <p>{{ bs.desc_not_match | newline_to_br }}</p>
+                                    <div class="headline__h6s">{{ bs.title_recommend | newline_to_br }}</div>
+                                    <div class="match-product-recommend-list">
+                                      {%- for product in bs.products -%}
+                                        <div>
+                                          <a
+                                            class="fit-recommend-product-item-link"
+                                            href="{{ product.url }}"
+                                            title="{{ product.title }}"
+                                          >
+                                            {{- product.title -}}
+                                          </a>
+                                        </div>
+                                      {%- endfor -%}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <script type="module">
+                              document.addEventListener('DOMContentLoaded', () => {
+                                function reFormatNum(feet) {
+                                  let totalInches = feet * 12;
+                                  let feetPart = Math.floor(feet);
+                                  let inchesPart = Math.floor((feet - feetPart) * 12);
+                                  return `${feetPart}'${inchesPart}"`;
+                                }
+                                function calcTotalInches(feet) {
+                                  let totalInches = Math.floor(feet * 12);
+                                  return totalInches;
+                                }
+                                function calcTotalInchesRound(feet) {
+                                  let totalInches = Math.round(feet * 12);
+                                  return totalInches;
+                                }
+                                //
+                                let swiperId = '{{ block.id }}';
+                                let swiperIdnum = swiperId.replace(/\D/g, '');
+                                let swiperVar = 'TheSwiper' + swiperIdnum;
+                                swiperVar = new Swiper(`.fit-tailor-match-swiper[data-blockId="${swiperId}"]`, {
+                                  slidesPerView: 2,
+                                  slidesPerGroup: 1,
+                                  spaceBetween: 0,
+                                  speed: 600,
+                                  resistanceRatio: 0,
+                                  freeMode: {
+                                    momentum: false,
+                                    momentumBounce: false,
+                                  },
+                                  initialSlide: 1,
+                                  direction: 'vertical',
+                                  watchSlidesProgress: true,
+                                  on: {
+                                    progress: function (swiper, progress) {
+                                      let ft_value = (progress * 18) / 10 + 5;
+                                      let ft_value_int = Math.round(progress * 18) / 10 + 5;
+                                      let ft_format = reFormatNum(ft_value);
+                                      $(`.fit-tailor-match-swiper[data-blockId="${swiperId}"]`)
+                                        .find('.match-i span b')
+                                        .text(ft_format);
+                                      $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`)
+                                        .find('.fit-match-content-1 h3 span b')
+                                        .text(ft_format);
+                                      $(`.alp-fit-tailor-inner-images-switch[data-blockId="${swiperId}"]`)
+                                        .find('.fit-tailor-image-1 img')
+                                        .css('--img-height', progress * 20);
+                                      let ft_max = $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`).attr(
+                                        'data-match-max'
+                                      );
+                                      let ft_min = $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`).attr(
+                                        'data-match-min'
+                                      );
+                                      ft_max = parseFloat(ft_max);
+                                      ft_min = parseFloat(ft_min);
+                                      if (
+                                        calcTotalInches(ft_value) > calcTotalInchesRound(ft_max) ||
+                                        calcTotalInches(ft_value) < calcTotalInchesRound(ft_min)
+                                      ) {
+                                        $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`)
+                                          .find('[data-not-match]')
+                                          .addClass('active');
+                                        $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`)
+                                          .find('[data-is-match]')
+                                          .removeClass('active');
+                                      } else {
+                                        $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`)
+                                          .find('[data-not-match]')
+                                          .removeClass('active');
+                                        $(`.fit-tailor-match-content[data-blockId="${swiperId}"]`)
+                                          .find('[data-is-match]')
+                                          .addClass('active');
+                                      }
+                                    },
+                                  },
+                                });
+                              });
+                            </script>
+                        {%- endcase -%}
+                      {%- endfor -%}
+                    </div>
+                    <div class="alp-fit-tailor-inner-flex-2">
+                      <div class="alp-fit-tailor-inner-switcher" data-switch-trigger>
+                        {%- for block in section.blocks -%}
+                          {% liquid
+                            assign bs = block.settings
+                          %}
+                          {%- case block.type -%}
+                            {%- when 'spec_type_c' -%}
+                              <div
+                                class="tailor-switcher-item {% if forloop.first %} active{% endif %}"
+                                data-trigger-index="{{ forloop.index }}"
+                              >
+                                <span>{{ bs.text }}</span>
+                              </div>
+                          {%- endcase -%}
+                        {%- endfor -%}
+                      </div>
+                      <div class="alp-fit-tailor-inner-images">
+                        {%- for block in section.blocks -%}
+                          {% liquid
+                            assign bs = block.settings
+                          %}
+                          {%- case block.type -%}
+                            {%- when 'spec_type_c' -%}
+                              <div
+                                class="alp-fit-tailor-inner-images-switch relative {% if forloop.first %} active{% endif %}"
+                                data-target-index="{{ forloop.index }}"
+                                data-blockId="{{ block.id }}"
+                              >
+                                <div class="fit-tailor-image-1">
+                                  {% render 'alp-responsive-image',
+                                    image: bs.man_image,
+                                    desktop_width: 800,
+                                    aspect_ratio: 'auto',
+                                    alt: bs.text
+                                  %}
+                                </div>
+                                <div class="fit-tailor-image-product">
+                                  {% render 'alp-responsive-image',
+                                    image: bs.product_image,
+                                    desktop_width: 800,
+                                    aspect_ratio: 'auto',
+                                    alt: bs.text
+                                  %}
+                                </div>
+                              </div>
+                          {%- endcase -%}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    const titles = document.querySelectorAll('.alp-spec-info-title');
+    const contents = document.querySelectorAll('.keynote-spec-info-item');
+
+    // 遍历每个标题，绑定点击事件
+    titles.forEach((title, index) => {
+      title.addEventListener('click', () => {
+        // 1. 移除所有标题和内容的 active 类
+        titles.forEach((t) => t.classList.remove('active'));
+        contents.forEach((c) => c.classList.remove('active'));
+
+        // 2. 为当前标题和对应内容添加 active 类
+        title.classList.add('active');
+        contents[index].classList.add('active');
+      });
+    });
+
+    $('.alp-fit-tailor-inner-switcher').each(function () {
+      var $children = $(this).children('div');
+      var count = $children.length;
+      if (count === 2) {
+        $children.show();
+      } else if (count === 1) {
+        $children.hide();
+      }
+    });
+
+    $('.Sp_alp_new>div').mouseenter(function () {
+      var index = $(this).index();
+      $('.Sp_alp_new>div').removeClass('active');
+      $(this).addClass('active');
+      let $parent = $(this).parents('.keynote-spec-info-item-content-wrap');
+      $parent.find('.rightc-img-multiple-list>img').eq(index).addClass('active').siblings().removeClass('active');
+      $parent.find('.rightc-img .rightc-img-multiple').addClass('active');
+    });
+    $('.Sp_alp_new').mouseleave(function () {
+      $('.rightc-img .rightc-img-multiple').removeClass('active');
+      $('.Sp_alp_new>div').removeClass('active');
+    });
+
+    $('.rightc-img-model-name .model-name-item').click(function () {
+      let $parent = $(this).parents('.keynote-spec-info-item');
+      let $index = $(this).index();
+      $parent.find('.rightc-img-model-name .model-name-item').removeClass('active');
+      $(this).addClass('active');
+      $parent.find('.keynote-spec-info-item-content-wrap').removeClass('active');
+      $parent.find('.keynote-spec-info-item-content-wrap').eq($index).addClass('active');
+    });
+  });
+</script>

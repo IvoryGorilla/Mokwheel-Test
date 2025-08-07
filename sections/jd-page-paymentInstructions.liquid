@@ -1,0 +1,413 @@
+<style>
+      @media (max-width:751px) {
+        .paymentInstructions_conter {
+    background: url({{section.settings.iamgeLink}});
+    background-attachment: fixed;
+    background-size: 60px;
+    background-color: #f1faff;
+}
+.paymentInstructions-conter {
+    padding: 60px 15px;
+}
+.paymentInstructions_top {
+    text-align: center;
+}
+.instructions_title {
+    font-size: 42px;
+    font-weight: bold;
+    color: #1B1B1B;
+    line-height: 1.2;
+}
+
+.instructions_text{
+    margin-top: 30px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #1B1B1B;
+    line-height: 1.5;
+}
+.instructions_imgBox {
+    margin-top: 30px;
+}
+.instructions_img {
+    width: 100%;
+}
+.instructions_img img {
+    width: 100%;
+    box-shadow: 0px 2px 6px 0px rgba(13,13,13,0.2);
+}
+.instructions_img:nth-child(2) {
+    margin-top: 20px;
+}
+.instructions_text1 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 20px;
+    flex-direction: column;
+}
+.instructions_text1 p{
+    font-size: 14px;
+    font-weight: 400;
+    color: #1B1B1B;
+    line-height: 1.5;
+    margin-top: 15px;
+}
+.instructions_text1 span {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    background: #EE751C;
+    border-radius: 25px;
+    margin-right: 20px;
+}
+.paymentInstructions_bottom {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.instructionsImage_lsit {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.instructionsImage_lsitRight .instructionsImage:first-of-type {
+     margin-top: 0;
+}
+.instructionsImage {
+    margin-top: 20px;
+}
+.instructionsImage img {
+    box-shadow: 0px 2px 6px 0px rgba(13,13,13,0.2);
+}
+
+.instructionsImage_lsitRight {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 40px;
+}
+.instructionsImage_text{
+    font-size: 14px;
+    font-weight: 400;
+    color: #1B1B1B;
+    line-height: 1.5;
+    margin-top: 30px;
+}
+
+.instructionsImage_text:first-of-type {
+    margin-top: 0;
+}
+}
+@media (min-width:751px) {
+.paymentInstructions_conter {
+    background: url({{section.settings.iamgeLink}});
+    background-attachment: fixed;
+    background-size: 60px;
+    background-color: #f1faff;
+}
+.paymentInstructions-conter {
+    max-width: 1440px;
+    margin: auto;
+    padding: 90px 20px 140px 20px;
+}
+.instructions_title {
+    font-size: 64px;
+    font-weight: bold;
+    color: #1B1B1B;
+    line-height: 1.5;
+}
+.instructions_text {
+    margin-top: 25px;
+}
+.instructions_text p {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 400;
+    color: #1B1B1B;
+    line-height: 1.5;
+}
+.instructions_imgBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 80px;
+}
+.instructions_img {
+    width: 49%;
+}
+.instructions_img img {
+    width: 100%;
+    box-shadow: 0px 2px 6px 0px rgba(13,13,13,0.2);
+}
+.instructionsImage img {
+    box-shadow: 0px 2px 6px 0px rgba(13,13,13,0.2);
+}
+.instructions_text1 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 48px;
+}
+.instructions_text1 p {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 400;
+    color: #1B1B1B;
+    line-height: 1.5;
+    
+}
+.instructions_text1 span {
+    width: 8px;
+    height: 7px;
+    display: inline-block;
+    background: #EE751C;
+    border-radius: 25px;
+    margin-right: 20px;
+}
+.paymentInstructions_bottom {
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+}
+.instructionsImage_lsit {
+    display: flex;
+    align-items: center;
+}
+.instructionsImage_lsitLeft {
+    width: 50%;
+}
+.instructionsImage_lsitRight {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+.instructionsImage_text p {
+    font-size: 20px;
+    font-weight: 400;
+    color: #1B1B1B;
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.instructionsImage_text {
+  margin-top: 30px;
+}
+.instructionsImage_text:first-of-type {
+    margin-top: 0;
+}
+{%- for block in section.blocks -%}
+{% if block.settings.reverse %}
+#block-{{ section.id }}-{{ block.id }} {
+    flex-direction: row-reverse !important;
+} 
+{% endif %}
+
+#block-{{ section.id }}-{{ block.id }} {
+    margin-top: {{block.settings.range_top}}px;
+} 
+#block-{{ section.id }}-{{ block.id }} .instructionsImage_lsitLeft {
+    
+  padding-left: {{block.settings.range_left}}px;
+  padding-right: {{block.settings.range_right}}px;
+  
+}
+
+{%- endfor -%}
+}
+  
+</style>
+
+<div class="paymentInstructions_conter">
+    <div class="paymentInstructions-conter">
+        <div class="paymentInstructions_top">
+            {% if section.settings.instructions_title !=blank %}
+            <div class="instructions_title">{{section.settings.instructions_title}}</div>
+            {% endif %}
+           
+            {% if section.settings.instructions_text !=blank %}
+            <div class="instructions_text hidden-phone">{{section.settings.instructions_text}}</div>
+            <div class="instructions_text hidden-tablet-and-up">{{section.settings.instructions_text | strip_html}}</div>
+            {% endif %}
+           
+            <div class="instructions_imgBox">
+                <div class="instructions_img">
+                    <img loading="lazy" class="preview-image hidden-phone hide_mobile" {% render 'image-attributes' , image: section.settings.iamgeLeft,
+                    sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                <img loading="lazy" class="preview-image hidden-tablet-and-up hide_desktop" {% render 'image-attributes' , image:
+                    section.settings.iamge_left,
+                    sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                </div>
+                <div class="instructions_img">
+                    <img loading="lazy" class="preview-image hidden-phone hide_mobile" {% render 'image-attributes' , image: section.settings.iamgeRight,
+                    sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                <img loading="lazy" class="preview-image hidden-tablet-and-up hide_desktop" {% render 'image-attributes' , image:
+                    section.settings.iamge_right,
+                    sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                </div>
+            </div>
+            <div class="instructions_text1"><span></span> {{section.settings.instructions_text1}}</div>
+        </div>
+       <div class="paymentInstructions_bottom">
+            {%- for block in section.blocks -%}
+            <div class="instructionsImage_lsit"  id="block-{{ section.id }}-{{ block.id }}">
+                <div class="instructionsImage_lsitLeft">
+                    {% if block.settings.instructionsImage_text != blank %}
+                    <div class="instructionsImage_text hidden-phone hide_mobile">{{block.settings.instructionsImage_text}}</div>
+                    <div class="instructionsImage_text hidden-tablet-and-up hide_desktop">{{block.settings.instructionsImage_text | strip_html}}</div>
+                    {% endif %}
+                    {% if block.settings.instructionsImage_text1 != blank %}
+                    <div class="instructionsImage_text hidden-phone hide_mobile">{{block.settings.instructionsImage_text1}}</div>
+                    <div class="instructionsImage_text hidden-tablet-and-up hide_desktop">{{block.settings.instructionsImage_text1 | strip_html}}</div>
+                    {% endif %}
+                    
+                </div>
+                <div class="instructionsImage_lsitRight">
+                    <div class="instructionsImage">
+                        <img loading="lazy" class="preview-image hidden-phone hide_mobile" {% render 'image-attributes' , image: block.settings.instructionsImage_left,
+                        sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                    <img loading="lazy" class="preview-image hidden-tablet-and-up hide_desktop" {% render 'image-attributes' , image:
+                    block.settings.instructionsImage_left1,
+                        sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                    </div>
+                    <div class="instructionsImage">
+                        <img loading="lazy" class="preview-image hidden-phone hide_mobile" {% render 'image-attributes' , image: block.settings.instructionsImage_right,
+                        sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                    <img loading="lazy" class="preview-image hidden-tablet-and-up hide_desktop" {% render 'image-attributes' , image:
+                    block.settings.instructionsImage_right1,
+                        sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+       </div>
+    </div>
+</div>
+{% schema %}
+{
+"name": "Payment Instructions",
+"settings": [
+{
+"type": "url",
+"id": "iamgeLink",
+"label": "Background Image Link"
+},
+{
+"type": "text",
+"id": "instructions_title",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "instructions_text",
+"label": "text"
+},
+{
+"type": "image_picker",
+"id": "iamgeLeft",
+"label": "Left Image"
+},
+{
+"type": "image_picker",
+"id": "iamge_left",
+"label": "Left Image M"
+},
+{
+"type": "image_picker",
+"id": "iamgeRight",
+"label": "Right Image"
+},
+{
+"type": "image_picker",
+"id": "iamge_right",
+"label": "Right Image M"
+},
+{
+"type": "richtext",
+"id": "instructions_text1",
+"label": "text"
+}
+],
+"blocks" : [
+{
+"type": "InstructionsImage",
+"name": "instructions_image",
+"settings":[
+{
+"type": "checkbox",
+"id": "reverse",
+"label": "Right text and left figure",
+"default": false
+},
+{
+"type": "range",
+"id": "range_top",
+"min": 0,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Text block spacing top",
+"default": 0
+},
+{
+"type": "range",
+"id": "range_left",
+"min": 0,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Text block spacing left",
+"default": 0
+},
+{
+"type": "range",
+"id": "range_right",
+"min": 0,
+"max": 100,
+"step": 1,
+"unit": "px",
+"label": "Text block spacing right",
+"default": 0
+},
+{
+"type": "image_picker",
+"id": "instructionsImage_left",
+"label": "Left Image"
+},
+{
+"type": "image_picker",
+"id": "instructionsImage_left1",
+"label": "Left Image M"
+},
+{
+"type": "image_picker",
+"id": "instructionsImage_right",
+"label": "Right Image"
+},
+{
+"type": "image_picker",
+"id": "instructionsImage_right1",
+"label": "Right Image M"
+},
+{
+"type": "richtext",
+"id": "instructionsImage_text",
+"label": "text"
+},
+{
+"type": "richtext",
+"id": "instructionsImage_text1",
+"label": "text"
+}
+
+]
+}
+],
+"presets": [{
+"name": "Payment Instructions"
+}]
+}
+{% endschema %}

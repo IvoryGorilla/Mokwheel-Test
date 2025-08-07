@@ -1,0 +1,1138 @@
+{% schema %}
+{
+  "name": "Alp Header Mega",
+  "class": "alp-header-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "transparent-templates",
+      "label": "Transparent Templates",
+      "default": "index",
+      "info": "format: index,page,collection,..."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image_normal",
+      "label": "Logo Image Normal"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image_white",
+      "label": "Logo Image White"
+    },
+    {
+      "type": "range",
+      "id": "logo_width_desktop",
+      "label": "Logo Width Desktop",
+      "default": 230,
+      "min": 0,
+      "max": 500,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "label": "Logo Width Mobile",
+      "default": 180,
+      "min": 0,
+      "max": 500,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_selector",
+      "label": "Show country/region selector",
+      "default": false
+    },
+    {
+      "type": "textarea",
+      "id": "language_linklist",
+      "label": "Language List",
+      "default": "US,Canada,Deutschland",
+      "info": "格式: US,Canada,Deutschland ( , 分隔 )"
+    },
+    {
+      "type": "textarea",
+      "id": "language_linklist_link",
+      "label": "Language List Link",
+      "default": "http:\/\/www.mokwheel.com\nhttp:\/\/www.mokwheel.ca\nhttp:\/\/www.mokwheel.de",
+      "info": "格式: 一行一个链接,与上面的语言列表对应"
+    },
+    {
+      "type": "textarea",
+      "id": "language_linklist_icon",
+      "label": "Language List Icon",
+      "default": "https:\/\/api.iconify.design\/circle-flags\/us.svg\nhttps:\/\/api.iconify.design\/circle-flags\/ca.svg\nhttps:\/\/api.iconify.design\/circle-flags\/de.svg",
+      "info": "格式: 一行一个图标链接,与上面的语言列表对应"
+    },
+    {
+      "type": "textarea",
+      "id": "search_recommend",
+      "label": "Search Recommend",
+      "default": "Electric Bike\nPower Station\nAccessories",
+      "info": "格式: 一行一个"
+    },
+    {
+      "type": "product_list",
+      "id": "product_recommend",
+      "label": "Product Recommend"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "height_desktop",
+      "label": "Height Desktop",
+      "default": 100,
+      "min": 0,
+      "max": 250,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "label": "Height Mobile",
+      "default": 80,
+      "min": 0,
+      "max": 250,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "header_position",
+      "label": "Position",
+      "options": [
+        {
+          "value": "non_sticky",
+          "label": "Non sticky"
+        },
+        {
+          "value": "sticky_desktop",
+          "label": "Sticky on desktop only"
+        },
+        {
+          "value": "sticky_mobile",
+          "label": "Sticky on mobile only"
+        },
+        {
+          "value": "sticky",
+          "label": "Sticky everywhere"
+        }
+      ],
+      "default": "sticky"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "normal-menu",
+      "name": "Normal Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "track_name",
+          "label": "Track Name"
+        },
+        {
+          "type": "textarea",
+          "id": "menu_title",
+          "label": "Menu Title"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Menu URL"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "mega-menu-type-1",
+      "name": "Mega Menu Type A",
+      "settings": [
+        {
+          "type": "text",
+          "id": "track_name",
+          "label": "Track Name"
+        },
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "Menu Title"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Menu URL"
+        },
+        {
+          "type": "text",
+          "id": "mega_title",
+          "label": "Mega Title",
+          "default": "Explore Electric Bikes"
+        },
+        {
+          "type": "url",
+          "id": "mega_title_url",
+          "label": "Mega Title URL"
+        },
+        {
+          "type": "textarea",
+          "id": "mega_description",
+          "label": "Mega Description",
+          "default": "Make sure you choose the right model for you."
+        },
+        {
+          "type": "richtext",
+          "id": "mega_jump_link",
+          "label": "Mega Jump Link",
+        },
+        {
+          "type": "image_picker",
+          "id": "mega_review_image",
+          "label": "Mega Review Image"
+        },
+        {
+          "type": "liquid",
+          "id": "mega_content",
+          "label": "Mega Content"
+        },
+        {
+          "type": "liquid",
+          "id": "new_mega_content",
+          "label": "New Mega Content"
+        },
+        {
+          "type": "liquid",
+          "id": "mega_button_content",
+          "label": "Mega Buttons Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon1",
+          "label": "Icon 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon2",
+          "label": "Icon 2"
+        },
+        {
+          "type": "text",
+          "id": "review_text",
+          "label": "Review Text",
+          "default": "4.6"
+        },
+        {
+          "type": "url",
+          "id": "review_link",
+          "label": "Review Link"
+        },
+        {
+          "type": "text",
+          "id": "menu_a_title",
+          "label": "Menu A Title"
+        },
+        {
+          "type": "collection_list",
+          "id": "collection_list_a",
+          "label": "Menu A Collections",
+          "info": "系列展示"
+        },
+        {
+          "type": "text",
+          "id": "menu_b_title",
+          "label": "Menu B Title"
+        },
+        {
+          "type": "collection_list",
+          "id": "collection_list_b",
+          "label": "Menu B Collections",
+          "info": "系列展示"
+        },
+        {
+          "type": "text",
+          "id": "menu_c_title",
+          "label": "Menu C Title"
+        },
+        {
+          "type": "collection_list",
+          "id": "collection_list_c",
+          "label": "Menu C Collections",
+          "info": "系列展示"
+        },
+        {
+          "type": "collection_list",
+          "id": "collection_list_model",
+          "label": "Menu Collections Model",
+          "info": "单品展示"
+        },
+        {
+          "type": "number",
+          "id": "product_limit",
+          "label": "Product Limit",
+          "default": 12
+        },
+        {
+          "type": "image_picker",
+          "id": "recommend_image",
+          "label": "Recommend Image"
+        },
+        {
+          "type": "text",
+          "id": "image_aspect_ratio",
+          "label": "Image Aspect Ratio",
+          "default": "3/4"
+        },
+        {
+          "type": "text",
+          "id": "recommend_title",
+          "label": "Recommend Title",
+          "default": "Special Sales"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "list_style",
+          "label": "List Style",
+          "options": [
+            {
+              "value": "style_one",
+              "label": "One"
+            },
+            {
+              "value": "style_two",
+              "label": "Two"
+            },
+            {
+              "value": "style_three",
+              "label": "Three"
+            }
+          ],
+          "default": "style_one"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_price",
+          "label": "Show Price",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_review",
+          "label": "Show Review",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "mega-menu-type-2",
+      "name": "Mega Menu Type B",
+      "settings": [
+        {
+          "type": "text",
+          "id": "track_name",
+          "label": "Track Name"
+        },
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "Menu Title"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Menu URL"
+        },
+        {
+          "type": "text",
+          "id": "mega_title",
+          "label": "Mega Title",
+          "default": "Explore Electric Bikes"
+        },
+        {
+          "type": "url",
+          "id": "mega_title_url",
+          "label": "Mega Title URL"
+        },
+        {
+          "type": "textarea",
+          "id": "mega_description",
+          "label": "Mega Description",
+          "default": "Make sure you choose the right model for you."
+        },
+        {
+          "type": "liquid",
+          "id": "mega_content",
+          "label": "Mega Content"
+        },
+        {
+          "type": "richtext",
+          "id": "mega_button_content",
+          "label": "Mega Buttons Content"
+        },
+        {
+          "type": "liquid",
+          "id": "mega_content_right",
+          "label": "Mega Content Right"
+        },
+        {
+          "type": "text",
+          "id": "menu_a_title",
+          "label": "Menu A Title"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_a",
+          "label": "Menu A"
+        },
+        {
+          "type": "text",
+          "id": "menu_b_title",
+          "label": "Menu B Title"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_b",
+          "label": "Menu B"
+        },
+        {
+          "type": "text",
+          "id": "menu_c_title",
+          "label": "Menu C Title"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_c",
+          "label": "Menu C"
+        },
+        {
+          "type": "text",
+          "id": "menu_d_title",
+          "label": "Menu D Title"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_d",
+          "label": "Menu D"
+        }
+      ]
+    },
+    {
+      "type": "mega-menu-type-3",
+      "name": "Mega Menu Type C",
+      "settings": [
+        {
+          "type": "text",
+          "id": "track_name",
+          "label": "Track Name"
+        },
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "Menu Title"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Menu URL"
+        },
+        {
+          "type": "text",
+          "id": "mega_title",
+          "label": "Mega Title",
+          "default": "Explore Electric Bikes"
+        },
+        {
+          "type": "url",
+          "id": "mega_title_url",
+          "label": "Mega Title URL"
+        },
+        {
+          "type": "textarea",
+          "id": "mega_description",
+          "label": "Mega Description",
+          "default": "Make sure you choose the right model for you."
+        },
+        {
+          "type": "liquid",
+          "id": "mega_content",
+          "label": "Mega Content"
+        },
+        {
+          "type": "richtext",
+          "id": "mega_button_content",
+          "label": "Mega Buttons Content"
+        },
+        {
+          "type": "text",
+          "id": "menu_a_title",
+          "label": "Menu A Title"
+        },
+        {
+          "type": "liquid",
+          "id": "menu_a_icon",
+          "label": "Menu A Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_a_content",
+          "label": "Menu A Content"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_a_link",
+          "label": "Menu A Link"
+        },
+        {
+          "type": "text",
+          "id": "menu_b_title",
+          "label": "Menu B Title"
+        },
+        {
+          "type": "liquid",
+          "id": "menu_b_icon",
+          "label": "Menu B Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_b_content",
+          "label": "Menu B Content"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_b_link",
+          "label": "Menu B Link"
+        },
+        {
+          "type": "text",
+          "id": "menu_c_title",
+          "label": "Menu C Title"
+        },
+        {
+          "type": "liquid",
+          "id": "menu_c_icon",
+          "label": "Menu C Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_c_content",
+          "label": "Menu C Content"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_c_link",
+          "label": "Menu C Link"
+        },
+        {
+          "type": "text",
+          "id": "menu_d_title",
+          "label": "Menu D Title"
+        },
+        {
+          "type": "liquid",
+          "id": "menu_d_icon",
+          "label": "Menu D Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_d_content",
+          "label": "Menu D Content"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_d_link",
+          "label": "Menu D Link"
+        }
+      ]
+    },
+    {
+      "type": "mega-menu-type-4",
+      "name": "Mega Menu Type D",
+      "settings": [
+        {
+          "type": "text",
+          "id": "track_name",
+          "label": "Track Name"
+        },
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "Menu Title"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Menu URL"
+        },
+        {
+          "type": "text",
+          "id": "mega_title",
+          "label": "Mega Title",
+          "default": "Explore Electric Bikes"
+        },
+        {
+          "type": "url",
+          "id": "mega_title_url",
+          "label": "Mega Title URL"
+        },
+        {
+          "type": "textarea",
+          "id": "mega_description",
+          "label": "Mega Description",
+          "default": "Make sure you choose the right model for you."
+        },
+        {
+          "type": "liquid",
+          "id": "mega_content",
+          "label": "Mega Content"
+        },
+        {
+          "type": "richtext",
+          "id": "mega_button_content",
+          "label": "Mega Buttons Content"
+        },
+        {
+          "type": "text",
+          "id": "menu_a_title",
+          "label": "Menu A Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "menu_a_icon",
+          "label": "Menu A Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_a_content",
+          "label": "Menu A Content"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_a_link",
+          "label": "Menu A Link"
+        },
+        {
+          "type": "url",
+          "id": "menu_a_url",
+          "label": "Menu A URL"
+        },
+        {
+          "type": "text",
+          "id": "track_name_a",
+          "label": "Track Name A"
+        },
+        {
+          "type": "text",
+          "id": "menu_b_title",
+          "label": "Menu B Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "menu_b_icon",
+          "label": "Menu B Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_b_content",
+          "label": "Menu B Content"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_b_link",
+          "label": "Menu B Link"
+        },
+        {
+          "type": "url",
+          "id": "menu_b_url",
+          "label": "Menu B URL"
+        },
+        {
+          "type": "text",
+          "id": "track_name_b",
+          "label": "Track Name B"
+        },
+        {
+          "type": "text",
+          "id": "menu_c_title",
+          "label": "Menu C Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "menu_c_icon",
+          "label": "Menu C Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_c_content",
+          "label": "Menu C Content"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_c_link",
+          "label": "Menu C Link"
+        },
+        {
+          "type": "url",
+          "id": "menu_c_url",
+          "label": "Menu C URL"
+        },
+        {
+          "type": "text",
+          "id": "track_name_c",
+          "label": "Track Name C"
+        },
+        {
+          "type": "text",
+          "id": "menu_d_title",
+          "label": "Menu D Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "menu_d_icon",
+          "label": "Menu D Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_d_content",
+          "label": "Menu D Content"
+        },
+        {
+          "type": "richtext",
+          "id": "menu_d_link",
+          "label": "Menu D Link"
+        },
+        {
+          "type": "url",
+          "id": "menu_d_url",
+          "label": "Menu D URL"
+        },
+        {
+          "type": "text",
+          "id": "track_name_d",
+          "label": "Track Name D"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Header Mega"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};--height-desktop: {{ st.height_desktop }};--height-mobile: {{ st.height_mobile }};
+{%- endcapture -%}
+
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+
+<link rel="stylesheet" href="{{ 'alp-header.css' | asset_url }}">
+
+{% comment %}
+  <link rel="stylesheet" href="{{ 'alp-slide-menu.css' | asset_url }}">
+{% endcomment %}
+
+{% style %}
+{% endstyle %}
+
+<style>
+    /* Transparent header */
+    .alp-menu-container ul.list-menu-ul > li.list-menu-li-parent {
+        transition: color 0.3s;
+      }
+
+      .alp-menu-container svg {
+        transition: color 0.3s;
+      }
+
+  {%- assign t_templates = st.transparent-templates | split: ',' -%}
+  {%- for item in t_templates -%}
+      {%- capture element -%}
+      .template-{{ item }}
+      {%- endcapture -%}
+
+      {{ element }} .alp-header-wrapper .alp-header-wrapper-inner {
+            --text-color: #fff;
+            --bg-color: rgb(0 0 0 / 1%);
+            transition: background 0.3s;
+            background: var(--bg-color);
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            --border-color: rgb(255 255 255 / 8%);
+            z-index: 10;
+        }
+      {{ element }} .alp-header-wrapper:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          height: calc(var(--header-inner-height, 66)*1px);
+          pointer-events: none;
+          background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+          z-index: 1;
+          transition: 0.3s;
+      }
+      {{ element }} .alp-header-wrapper a.alp-header-logo-link img.logo-image-normal {
+            opacity: 0;
+        }
+
+      {{ element }} .alp-header-wrapper a.alp-header-logo-link img.logo-image-white {
+            opacity: 1;
+        }
+      {{ element }} .header__search_bar.alp_header__search_bar .search__input.field__input::placeholder {
+          color: #ffffffb2;
+        }
+      {{ element }} .header__search_bar.alp_header__search_bar.is--focused .search__input.field__input::placeholder {
+          color: #757575;
+        }
+  {%- endfor -%}
+
+  [class*="template-"] .headroom--not-top .alp-header-wrapper .alp-header-wrapper-inner,
+  [class*="template-"] .alp-header-wrapper .alp-header-wrapper-inner:hover {
+   // --text-color: {{ st.text_color }};
+   // --bg-color: {{ st.bg_color }};
+   // --border-color: rgb(0 0 0 / 8%);
+  }
+  [class*="template-"] .headroom--not-top .alp-header-wrapper .alp-header-wrapper-inner a.alp-header-logo-link img.logo-image-white,
+  [class*="template-"] .alp-header-wrapper .alp-header-wrapper-inner:hover a.alp-header-logo-link img.logo-image-white {
+    // opacity: 0;
+  }
+  [class*="template-"] .headroom--not-top .alp-header-wrapper .alp-header-wrapper-inner a.alp-header-logo-link img.logo-image-normal,
+  [class*="template-"] .alp-header-wrapper .alp-header-wrapper-inner:hover a.alp-header-logo-link img.logo-image-normal {
+   // opacity: 1;
+  }
+  [class*="template-"] .alp-header-wrapper .alp-header-wrapper-inner:hover .header__search_bar.alp_header__search_bar .search__input.field__input::placeholder,
+  [class*="template-"] .headroom--not-top .alp-header-wrapper .header__search_bar.alp_header__search_bar .search__input.field__input::placeholder  {
+  // color: #999999;
+  }
+</style>
+
+<div class="alp-module-search">
+  <div class="alp-module-search-overlay"></div>
+  <div class="alp-module-search-inner">
+    {% render 'alp-header-search', input_id: 'Search-In-Modal-One' %}
+  </div>
+</div>
+
+<div class="alp-section alp-header-wrapper {{ st.header_position }} {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-header-wrapper-inner">
+    <div class="alp-header-container page-width {{ container }}">
+      <div class="alp-header-left-wrapper hide_desktop">
+        <div class="slide-menu-open alp-icon">
+          <div>
+            {% render 'icon-nav' %}
+          </div>
+        </div>
+      </div>
+      <div class="alp-header-logo-wrapper">
+        <div
+          class="alp-header-logo"
+          style="--logo-width: {{ st.logo_width_desktop }};--logo-width-mobile: {{ st.logo_width_mobile }}"
+        >
+          <a href="{{ shop.url }}" class="alp-header-logo-link">
+            <img
+              class="logo-image-normal"
+              src="{{ st.logo_image_normal | image_url }}"
+              alt="{{ shop.name }}"
+              width="{{ st.logo_width_desktop }}"
+              height="auto"
+              loading="lazy"
+            >
+            <img
+              class="logo-image-white"
+              src="{{ st.logo_image_white | image_url }}"
+              alt="{{ shop.name }}"
+              width="{{ st.logo_width_desktop }}"
+              height="auto"
+              loading="lazy"
+            >
+          </a>
+        </div>
+      </div>
+      <div class="alp-header-menu-wrapper">
+        <div class="alp-menu-container">
+          {% comment %} {% render 'alp-desktop-menu', section: section %} {% endcomment %}
+          {%- if section.blocks.size > 0 -%}
+            <nav class="alp-header-menu-list">
+              <ul class="list-menu-ul">
+                {%- for block in section.blocks -%}
+                  {% liquid
+                    assign bs = block.settings
+                  %}
+                  {%- case block.type -%}
+                    {%- when 'normal-menu' -%}
+                      {% comment %} Normal Menu {% endcomment %}
+                      <li class="list-menu-li-parent normal-menu">
+                        <a
+                          href="{{ bs.url | default: 'javascript:void(0);' }}"
+                          class="alp-list-item-a {% render 'track-tag-classname', name: bs.track_name %}"
+                        >
+                          <span>{{- bs.menu_title | strip -}}</span>
+                          {%- if bs.menu.links.size > 0 -%}
+                            {% render 'icon-arrow-down' %}
+                          {%- endif -%}
+                        </a>
+                        {%- if bs.menu.links.size > 0 -%}
+                          {% render 'alp-dropdown-sub-menu', menu_list: bs.menu.links %}
+                        {%- endif -%}
+                      </li>
+
+                    {%- when 'mega-menu-type-1' -%}
+                      {% comment %} Mega Menu {% endcomment %}
+                      <li class="list-menu-li-parent mega-menu">
+                        <a
+                          href="{{ bs.url | default: 'javascript:void(0);' }}"
+                          class="alp-list-item-a {% render 'track-tag-classname', name: bs.track_name %}"
+                        >
+                          <span>{{- bs.menu_title | strip -}}</span>
+                          {% render 'icon-arrow-down' %}
+                        </a>
+                        {% render 'alp-dropdown-sub-mega-menu-b',
+                          block: block,
+                          container: container,
+                          style: bs.list_style,
+                          show_price: bs.show_price,
+                          product_limit: bs.product_limit
+                        %}
+                      </li>
+                    {%- when 'mega-menu-type-2' -%}
+                      {% comment %} Mega Menu {% endcomment %}
+                      <li class="list-menu-li-parent mega-menu">
+                        <a
+                          href="{{ bs.url | default: 'javascript:void(0);' }}"
+                          class="alp-list-item-a {% render 'track-tag-classname', name: bs.track_name %}"
+                        >
+                          <span>{{- bs.menu_title | strip -}}</span>
+                          {% render 'icon-arrow-down' %}
+                        </a>
+                        {% render 'alp-dropdown-sub-mega-menu-2', block: block, container: container %}
+                      </li>
+                    {%- when 'mega-menu-type-3' -%}
+                      {% comment %} Mega Menu {% endcomment %}
+                      <li class="list-menu-li-parent mega-menu">
+                        <a
+                          href="{{ bs.url | default: 'javascript:void(0);' }}"
+                          class="alp-list-item-a {% render 'track-tag-classname', name: bs.track_name %}"
+                        >
+                          <span>{{- bs.menu_title | strip -}}</span>
+                          {% render 'icon-arrow-down' %}
+                        </a>
+                        {% render 'alp-dropdown-sub-mega-menu-3', block: block, container: container %}
+                      </li>
+                    {%- when 'mega-menu-type-4' -%}
+                      {% comment %} Mega Menu {% endcomment %}
+                      <li class="list-menu-li-parent mega-menu">
+                        <a
+                          href="{{ bs.url | default: 'javascript:void(0);' }}"
+                          class="alp-list-item-a {% render 'track-tag-classname', name: bs.track_name %}"
+                        >
+                          <span>{{- bs.menu_title | strip -}}</span>
+                          {% render 'icon-arrow-down' %}
+                        </a>
+                        {% render 'alp-dropdown-sub-mega-menu-4', block: block, container: container %}
+                      </li>
+                  {%- endcase -%}
+                {%- endfor -%}
+              </ul>
+            </nav>
+          {% endif %}
+        </div>
+      </div>
+      <div
+        class="alp-header-icon-wrapper"
+        style="--logo-width: {{ st.logo_width_desktop }};--logo-width-mobile: {{ st.logo_width_mobile }}"
+      >
+        <div class="alp-search-bar-container hide_mobile">
+          {% render 'alp-header-search-bar',
+            section: section,
+            container: container,
+            input_id: 'headerSearchBar_Input'
+          %}
+        </div>
+        <div class="alp-icons-container">
+          {% render 'alp-icons-list', section: section %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %}
+  Mobile Slide Menu
+{% endcomment %}
+{% comment %}
+  <div class="alp-slide-menu-wrapper" style="{{ style }}">
+    <div class="alp-slide-menu-inner">
+      <div class="alp-slide-menu-title">
+        <div>
+          <a href="{{ shop.url }}" class="alp-header-logo-link">
+            {% render 'alp-single-image',
+              image: st.logo_image_normal,
+              width: 1280,
+              aspect_ratio: 'auto',
+              alt: shop.name
+            %}
+          </a>
+        </div>
+        <div class="slide-menu-close">
+          {%- render 'icon-close' -%}
+        </div>
+      </div>
+      {% render 'alp-slide-menu', section: section %}
+    </div>
+  </div>
+{% endcomment %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    $('.search-open').click(function () {
+      $('.alp-module-search').css('display', 'block');
+      setTimeout(() => {
+        $('.alp-module-search').addClass('open');
+        $('body').addClass('noscroll');
+      }, 50);
+    });
+
+    $('.alp-module-search-overlay, .search-modal-close').click(function () {
+      $('.alp-module-search').removeClass('open');
+      setTimeout(() => {
+        $('.alp-module-search').css('display', 'none');
+        $('body').removeClass('noscroll');
+      }, 500);
+    });
+
+    window.setNavProductsMaxHeight = function () {
+      $('.nav-collection-items-list-new').each(function () {
+        let $this = $(this);
+        let $firstChild = $this.find('.nav-image-link-item').eq(0);
+        let firstChildHeight = $firstChild.outerHeight();
+        $this.css('--max-height', `${firstChildHeight*2}px`);
+      })
+    }
+    window.setNavProductsMaxHeight();
+
+    AlpFn.GetTheHeight('.alp-announcement-bar-section', 'bar');
+    AlpFn.GetTheHeight('.alp-header-section', 'header');
+    AlpFn.GetTheHeight('.alp-header-wrapper-inner', 'header-inner');
+
+    $(window).on('load', function () {
+      setInterval(() => {
+        AlpFn.GetTheHeight('.alp-announcement-bar-section', 'bar');
+        AlpFn.GetTheHeight('.alp-header-section', 'header');
+        AlpFn.GetTheHeight('.alp-header-wrapper-inner', 'header-inner');
+        window.setNavProductsMaxHeight();
+      }, 1500);
+    });
+    $(window).on('resize', function () {
+      AlpFn.GetTheHeight('.alp-announcement-bar-section', 'bar');
+      AlpFn.GetTheHeight('.alp-header-section', 'header');
+      AlpFn.GetTheHeight('.alp-header-wrapper-inner', 'header-inner');
+      window.setNavProductsMaxHeight();
+    });
+
+    AlpFn.SetSticky('.alp-header-wrapper');
+
+    // Mobile Menu
+    {% comment %}
+    $('.alp-slide-menu-ul .list-menu-li-parent > a').click(function () {
+      $(this).parent().addClass('open');
+    });
+    $('.slide-sub-menu-header').click(function () {
+      $(this).parents('.list-menu-li-parent').removeClass('open');
+    });
+    $('.slide-sub-menu-ul').each(function () {
+      $(this).find('.slide-sub-menu-title').eq(0).addClass('active');
+      $(this).find('.sub-slide-wrapper').eq(0).addClass('active').css({
+        height: 'auto',
+      });
+    });
+    {% endcomment %}
+  });
+</script>

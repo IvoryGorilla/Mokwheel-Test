@@ -1,0 +1,182 @@
+{% schema %}
+{
+  "name": "Alp Main Article List",
+  "class": "alp-main-article-list",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text_link",
+          "label": "Text Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Main Article List"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-main-article-list{
+    margin-bottom: 0;
+  }
+  .alp-main-article-list-con{
+    display: flex;
+    justify-content: space-between;
+  } 
+  .alp-main-article-list-item{
+    display: flex;
+    align-items: center;
+  }
+  .alp-main-article-list-image{
+    width: 27px;
+    height: 27px;
+    fill: #fff;
+    margin-right: 1em;
+  }
+  .alp-main-article-list-title{
+    font-size: 18px;
+  }
+  .alp-main-article-list-text{
+    font-size: 16px;
+  }
+  .alp-main-article-list-text p{
+    margin: 0;
+    color: #b1b9c5;
+  }
+  .alp-main-article-list-text p a{
+    text-decoration: unset;
+    text-underline-offset: unset;
+  }
+  .alp-main-article-list-text a:hover {
+    color: #fff;
+  }
+  .alp-main-article-list .alp-subscribe-form-wrapper{
+    display: none;
+  }
+  @media screen and (max-width: 999px){
+    .alp-main-article-list-con{
+      flex-direction: column;
+      gap: 3em;
+    }
+    .alp-main-article-list-image{
+      margin-right: 2em;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-main-article-list alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-main-article-list-con alp-section-container page-width {{ container }}">
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        <div class="alp-main-article-list-item">
+            <div class="alp-main-article-list-image">{{ bs.image }}</div>
+            <div class="alp-main-article-list-box">
+                <div class="alp-main-article-list-title">{{ bs.title }}</div>
+                <div class="alp-main-article-list-text">{{ bs.text_link }}</div>
+            </div>
+        </div>
+      {%- endfor -%}
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+    $('.alp-main-article-list').before($('.alp-subscribe-form-wrapper'))
+  });
+</script>

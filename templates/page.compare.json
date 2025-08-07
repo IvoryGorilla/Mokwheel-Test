@@ -1,0 +1,90 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "43fc48c1-12e5-44d0-8102-1d4738e803fd": {
+      "type": "alp-hero-banner",
+      "blocks": {
+        "fab906b5-2f37-4da5-b1e6-aa5dc63511ba": {
+          "type": "heading",
+          "settings": {
+            "text": "{{ page.title }}",
+            "heading_type": "h1"
+          }
+        },
+        "76709720-da41-4ff0-9515-99a3a39fc8cc": {
+          "type": "breadcrumb",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "fab906b5-2f37-4da5-b1e6-aa5dc63511ba",
+        "76709720-da41-4ff0-9515-99a3a39fc8cc"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "default",
+        "bg_color": "#fafafa",
+        "text_color": "#000000",
+        "bg_opacity": 50,
+        "image_aspect_ratio": "3\/1",
+        "block_max_width": "720px",
+        "min_height": "220px",
+        "container": "alp-container-fluid",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "5c42b6df-656c-47db-b280-13e55f37345b": {
+      "type": "alp-compare-page",
+      "blocks": {
+        "1dd18bb5-8acd-48d2-964f-52db51360de1": {
+          "type": "product-item",
+          "settings": {
+            "product": "basalt-st"
+          }
+        },
+        "87abc445-49b6-4c40-a610-fcb2c0c345e0": {
+          "type": "product-item",
+          "settings": {
+            "product": "basalt-st"
+          }
+        },
+        "7fb85e83-79a1-4109-b47f-8dd89611f819": {
+          "type": "product-item",
+          "settings": {
+            "product": "basalt-st"
+          }
+        }
+      },
+      "block_order": [
+        "1dd18bb5-8acd-48d2-964f-52db51360de1",
+        "87abc445-49b6-4c40-a610-fcb2c0c345e0",
+        "7fb85e83-79a1-4109-b47f-8dd89611f819"
+      ],
+      "settings": {
+        "title": "",
+        "product_collection": "electric-bikes",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 5,
+        "padding_bottom": 5,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "43fc48c1-12e5-44d0-8102-1d4738e803fd",
+    "5c42b6df-656c-47db-b280-13e55f37345b"
+  ]
+}

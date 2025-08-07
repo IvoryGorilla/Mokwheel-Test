@@ -1,0 +1,24 @@
+<div class="product-new-compare-i" data-product-swatch data-product-id="{{ product.id }}">
+  {% render 'axx-images-with-swatch', product: product, section: section %}
+  <div class="axx_compare_spec_list">
+    <div class="axx_compare_spec_list_item the_price_item">
+      <div class="axcp-title">{{ st.price_title }}</div>
+      <div class="axcp-desc">
+        {% render 'axx-variants-price', product: product %}
+      </div>
+    </div>
+    {% for item in product.metafields.custom.product_comparison.value %}
+      <div class="axx_compare_spec_list_item">
+        {%- if item.title != '' -%}
+          <div class="axcp-title">{{ item.title }}</div>
+        {%- endif -%}
+        {%- if item.dec != '' -%}
+          <div class="axcp-desc">{{ item.dec }}</div>
+        {%- endif -%}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="axx_compare_product_url_button hidden">
+    <a data-product-swatch-url href="{{ product.url }}" class="axx_compare_product_url_button_a">View Product</a>
+  </div>
+</div>

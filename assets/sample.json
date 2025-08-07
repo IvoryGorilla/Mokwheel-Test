@@ -1,0 +1,52 @@
+[
+  {
+    "img": "https:\/\/cdn.shopify.com\/s\/files\/1\/0550\/4424\/3702\/files\/icczz001.png",
+    "subtitle": "Tries",
+    "title": "<b>4”<\/b> Fat Tires"
+  },
+  {
+    "img": "https:\/\/cdn.shopify.com\/s\/files\/1\/0550\/4424\/3702\/files\/icczz002.png",
+    "subtitle": "Motor Power",
+    "title": "<b>500<\/b>W"
+  },
+  {
+    "img": "https:\/\/cdn.shopify.com\/s\/files\/1\/0550\/4424\/3702\/files\/icczz003.png",
+    "subtitle": "Integration",
+    "title": "<b>IOS<\/b>"
+  },
+  {
+    "img": "https:\/\/cdn.shopify.com\/s\/files\/1\/0550\/4424\/3702\/files\/icczz004.png",
+    "subtitle": "Top Speed",
+    "title": "<b>28<\/b>MPH"
+  },
+  {
+    "img": "https:\/\/cdn.shopify.com\/s\/files\/1\/0550\/4424\/3702\/files\/icczz005.png",
+    "subtitle": "Range",
+    "title": "Up To <b>60<\/b>miles"
+  },
+  {
+    "img": "https:\/\/cdn.shopify.com\/s\/files\/1\/0550\/4424\/3702\/files\/icczz006.png",
+    "subtitle": "Payload Capability",
+    "title": "<b>350<\/b> Lbs"
+  },
+  {
+    "quiz-1": {
+      "match": "4"
+    },
+    "quiz-2": {
+      "match": "2,3"
+    },
+    "quiz-3": {
+      "match": "1,2"
+    }
+  },
+  {
+    "match": "4"
+  },
+  {
+    "match": "2,3"
+  },
+  {
+    "match": "1,2"
+  }
+]

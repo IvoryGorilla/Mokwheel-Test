@@ -1,0 +1,235 @@
+{% schema %}
+{
+  "name": "pmax-section3",
+  "class": "pmax-section3",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pmax-section3-title",
+      "label": "Pmax Section3 Title"
+    },
+    {
+      "type": "text",
+      "id": "pmax-section3-subtitle",
+      "label": "Pmax Section3 Subtitle"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card-item",
+      "name": "Card Item",
+      "settings": [
+        {
+          "type": "product",
+          "id": "pmax-section3-card-product1",
+          "label": "Pmax Section3 Card Product1"
+        },
+        {
+          "type": "product",
+          "id": "pmax-section3-card-product2",
+          "label": "Pmax Section3 Card Product2"
+        },
+        {
+          "type": "product",
+          "id": "pmax-section3-card-product3",
+          "label": "Pmax Section3 Card Product3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "pmax-section3"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{% style %}
+  .pmax-section3-container {
+    margin-top: 100px;
+  }
+  .pmax-section3-title {
+    font-family: Manrope;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    text-transform: capitalize;
+    color: #1a1a1a;
+  }
+  .pmax-section3-subtitle {
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+    color: #1a1a1a;
+    margin-top: 10px;
+  }
+  .pmax-section3-content {
+    max-width: 1200px;
+    margin: 48px auto;
+  }
+  .pmax-section3-card {
+    width: min(100%, calc(max(30%, 292px) * 1));
+    height: auto;
+  }
+  .pmax-section3-card-swiper {
+    margin-top: 40px;
+  }
+  .pmax-section3-card-swiper:first-child {
+    margin-top: 0;
+  }
+  .pmax-section3-card .alp-product-item-features .alp_product__badge_i {
+    background: #ffffff;
+    color: #1a1a1a;
+    border: 0.5px solid #1a1a1a;
+  }
+  .pmax-section3-card .alp-product-item-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .pmax-section3-card .alp-productAcessories .productAcessories_conter {
+    grid-template-columns: repeat(2, 2fr);
+  }
+  .pmax-section3-card .alp-productAcessories .productAcessories_lsit:nth-child(4) {
+    display: none;
+  }
+  .pmax-section3-card .alp-product-item-grid-n1 .productAcessories_lsitTitle {
+    font-size: 12px;
+    margin-left: 18px;
+  }
+  .pmax-section3-card .alp-product-item-grid-n1 .productAcessories_lsitTitle b {
+    font-size: 14px;
+  }
+
+  .pmax-section3-card .alp-product-item-grid-n1 .alp-product-item-info-buttons-flex {
+    width: 100%;
+  }
+
+  /* 大屏时禁用轮播，变成网格布局 */
+  @media (min-width: 769px) {
+    .pmax-section3-card-swiper {
+      overflow: visible; /* 允许内容溢出 */
+    }
+    .pmax-section3-card-wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3列布局 */
+      gap: 20px;
+      transform: none !important; /* 覆盖 Swiper 的 transform */
+    }
+    .pmax-section3-card {
+      width: auto !important; /* 取消 Swiper 的宽度限制 */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pmax-section3-container {
+      margin-top: 60px;
+    }
+    .pmax-section3-title {
+      font-size: 28px;
+    }
+    .pmax-section3-subtitle {
+      font-size: 16px;
+    }
+    .pmax-section3-content {
+      margin-top: 24px;
+    }
+    .pmax-section3-card .affirm-as-low-as.alp-product-item {
+      font-size: 12px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}">
+  <div class="alp-section-container page-width {{ container }} pmax-section3-container">
+    <div class="pmax-section3-top">
+      <h2 class="pmax-section3-title">{{ st['pmax-section3-title'] }}</h2>
+      <div class="pmax-section3-subtitle">
+        {{ st['pmax-section3-subtitle'] }}
+      </div>
+    </div>
+    <div class="pmax-section3-content">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        <div class="pmax-section3-card-swiper swiper">
+          <div class="pmax-section3-card-wrapper swiper-wrapper">
+            <div class="pmax-section3-card swiper-slide">
+              {% render 'alp-product-item-grid-n1', product: bs['pmax-section3-card-product1'], aspect_ratio: '3/2' %}
+            </div>
+            <div class="pmax-section3-card swiper-slide">
+              {% render 'alp-product-item-grid-n1', product: bs['pmax-section3-card-product2'], aspect_ratio: '3/2' %}
+            </div>
+            <div class="pmax-section3-card swiper-slide">
+              {% render 'alp-product-item-grid-n1', product: bs['pmax-section3-card-product3'], aspect_ratio: '3/2' %}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+    swiperVar = new Swiper('.pmax-section3-card-swiper', {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 16,
+      speed: 600,
+      touchRatio: 0.75,
+      // add breakpoints
+      breakpoints: {
+        320: {
+          slidesPerView: 'auto',
+          spaceBetween: 16,
+        },
+        768: {
+          slidesPerView: 'auto',
+          spaceBetween: 0,
+        },
+      },
+    });
+  });
+</script>

@@ -1,0 +1,375 @@
+<div
+  class="axx-variants-swatch"
+  data-axx-swatch
+  data-product-id="{{ product.id }}"
+  data-product-url="{{ product.url }}"
+>
+  {%- assign product_form_id = 'product_form_' | append: section.id | append: product.id -%}
+  {% form 'product', product, id: product_form_id %}
+    {%- liquid
+      assign color_swatch_trigger = settings.color_swatch_trigger | default: 'Color'
+      assign color_trigger = color_swatch_trigger | split: ','
+    -%}
+    {% comment %} Render Options (Color) {% endcomment %}
+    {%- for option in product.options_with_values -%}
+      {%- assign is_color_swatch = false -%}
+      {%- if color_trigger contains option.name -%}
+        {%- assign is_color_swatch = true -%}
+      {%- endif -%}
+      <div
+        class="axx-product-form__input"
+        {% if is_color_swatch %}
+          data-swatch-type="color-swatch"
+        {% endif %}
+        data-form-input
+      >
+        <span class="axx-product-form__label">{{ option.name }}</span>
+        <div class="axx-product-form__swatch">
+          {% render 'axx-product-variant-options',
+            product: product,
+            option: option,
+            is_color_swatch: is_color_swatch,
+            section: section
+          %}
+        </div>
+      </div>
+    {%- endfor -%}
+    <script type="application/json">
+      {{ product.variants | json }}
+    </script>
+  {% endform %}
+</div>
+
+{% stylesheet %}
+  .axx-product-form__swatch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  span.axx-product-form__label {
+    display: block;
+    margin: 0.3em 0;
+  }
+
+  .axx-new-color-swatch[class*='alp-color-'] {
+    background-color: var(--background-color);
+  }
+
+  .axx-new-color-swatch[class*='alp-color-'],
+  .axx-new-color-swatch[class*='alp-color-']:empty {
+    width: clamp(16px, 1.5vw, 20px);
+    height: clamp(16px, 1.5vw, 20px);
+    display: block;
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .axx-colors-swatch-item {
+    display: inline-flex;
+  }
+
+  .axx-colors-swatch-item {
+    cursor: pointer;
+    position: relative;
+    --expand: -4px;
+  }
+
+  .axx-colors-swatch-item::before {
+    content: '';
+    position: absolute;
+    left: var(--expand);
+    top: var(--expand);
+    right: var(--expand);
+    bottom: var(--expand);
+    border: 1px solid #909090;
+    border-radius: 1000px;
+    transition: 0.3s;
+    opacity: 0;
+  }
+
+  .axx-colors-swatch-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgb(0 0 0 / 20%);
+    border-radius: 1000px;
+  }
+
+  [data-value='White'].axx-colors-swatch-item::after,
+  [data-value='white'].axx-colors-swatch-item::after {
+    border: 1px solid rgb(0 0 0 / 80%);
+  }
+  .axx-product-form__input input:checked + label.axx-colors-swatch-item::before {
+    opacity: 1;
+  }
+
+  .axx-product-form__input input.disabled + label div[class*='alp-color-']:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 1px;
+    background: #000;
+    margin: auto;
+    transform: rotate(45deg);
+    /* mix-blend-mode: difference; */
+  }
+
+  .axx-product-form__input input.disabled + label div[class*='alp-color-'] {
+    filter: opacity(0.6);
+  }
+
+  .axx-normal-swatch-item {
+    border: 1px solid rgb(0 0 0 / 20%);
+    line-height: 1.2;
+    padding: 0.3em 0.5em;
+    cursor: pointer;
+    position: relative;
+    transition: 0.2s;
+  }
+
+  .axx-product-form__input input:checked + label.axx-normal-swatch-item {
+    border-color: currentColor;
+  }
+
+  .axx-product-form__input input.disabled + label.axx-normal-swatch-item {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .axx-product-form__input input.disabled + label.axx-normal-swatch-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 1px;
+    background: #000;
+    margin: auto;
+  }
+
+  .axx-product-form__input input {
+    overflow: hidden;
+    width: 0px;
+    height: 0px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    clip: rect(0 0 0 0);
+    position: absolute;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  window.AXXVariantsSwatch = class {
+    // 选择器 [data-axx-swatch]
+    // 父级 [data-product-swatch]
+    // 图片 [data-product-swatch-images]
+    // 价格容器 [data-product-swatch-price]
+    // 价格值 [data-product-swatch-price-value]
+    // 对比价格 [data-product-swatch-compare-price-value]
+    // url [data-product-swatch-url]
+
+    constructor() {
+      this.products = [];
+      // 存储事件处理函数
+      this.eventListeners = new Map();
+    }
+
+    init() {
+      this.products = document.querySelectorAll('[data-axx-swatch]');
+      this.products.forEach((product) => {
+        let form = product.querySelector('form');
+        // 创建事件处理函数
+        const handler = (e) => this.handlerChange(product, form);
+        // 存储事件处理函数
+        this.eventListeners.set(form, handler);
+        // 添加事件监听器
+        form.addEventListener('change', handler);
+      });
+    }
+
+    update() {
+      this.products.forEach((product) => {
+        let form = product.querySelector('form');
+        // 获取存储的事件处理函数
+        const handler = this.eventListeners.get(form);
+        if (handler) {
+          // 移除事件监听器
+          form.removeEventListener('change', handler);
+          // 清理存储的引用
+          this.eventListeners.delete(form);
+        }
+      });
+      this.products = [];
+      this.init();
+    }
+
+    handlerChange(product, form) {
+      const fieldsets = Array.from(form.querySelectorAll('[data-form-input]'));
+      let options = fieldsets.map((fieldset) => {
+        return Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;
+      });
+      this.updateCurrentVariant(product, options);
+    }
+
+    areArraysEqual(arr1, arr2) {
+      if (arr1.length !== arr2.length) {
+        return false;
+      }
+      const sortedArr1 = [...arr1].sort();
+      const sortedArr2 = [...arr2].sort();
+      for (let i = 0; i < sortedArr1.length; i++) {
+        if (sortedArr1[i] !== sortedArr2[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    getVariantData(product) {
+      let variantData = JSON.parse(product.querySelector('[type="application/json"]').textContent);
+      return variantData;
+    }
+
+    updateCurrentVariant(product, options) {
+      let currentVariant = null;
+      this.getVariantData(product).find((variant) => {
+        // match the current variant
+        if (this.areArraysEqual(variant.options, options)) {
+          currentVariant = variant;
+        }
+      });
+      // console.log(currentVariant.id);
+      if (currentVariant) {
+        this.setProductInfo(product, currentVariant);
+        this.updateVariantStatuses(product, currentVariant);
+      }
+    }
+
+    updateVariantStatuses(product, currentVariant) {
+      let $this = this;
+      let forms = product.querySelector('form').querySelectorAll('[data-form-input]');
+      if (forms.length < 2) {
+        return;
+      }
+      // Disable all inputs
+      forms.forEach((form) => {
+        form.querySelectorAll('input').forEach((input) => {
+          input.classList.add('disabled');
+        });
+      });
+      // Enable only the matched inputs
+      forms.forEach((form, index) => {
+        let checkedInput = form.querySelector(':checked');
+        let matchedVariants = $this
+          .getVariantData(product)
+          .filter((variant) => variant.options[index] === checkedInput.value);
+        // console.log(matchedVariants);
+        matchedVariants.forEach((variant) => {
+          let available = variant.available;
+          variant.options.forEach((option, optionIndex) => {
+            if (optionIndex !== index) {
+              // console.log(option);
+              let optionInputs = forms[optionIndex].querySelectorAll(`input[value="${option}"]`);
+              optionInputs.forEach((input) => {
+                if (available) {
+                  input.classList.remove('disabled');
+                }
+              });
+            }
+          });
+        });
+      });
+    }
+
+    setProductInfo(product, variant) {
+      let productId = product.dataset.productId;
+      let productUrl = product.dataset.productUrl;
+      let productUrlWithVariant = productUrl + '?variant=' + variant.id;
+      let productInfo = {
+        id: variant.id,
+        price: variant.price,
+        compare_at_price: variant.compare_at_price,
+        image: variant.featured_image.src,
+        image_id: variant.featured_image.id,
+        url: productUrlWithVariant,
+        options: variant.options,
+        available: variant.available,
+      };
+      this.updateProductInfo(product, productId, productInfo);
+      this.sendCustomEvent(product, productId, 'variant:change', productInfo);
+      // console log
+      console.log(`SwatchChanged:[product:${productId}],[variant:${variant.id}]`);
+    }
+
+    updateProductInfo(product, productId, productInfo) {
+      // match the parent element '[data-product-swatch]'
+      let parent = product.closest('[data-product-swatch]');
+      // update product data info
+      if (parent) {
+        parent.dataset.productInfo = JSON.stringify(productInfo);
+        // update images src and srcset
+        let images = parent.querySelectorAll(`[data-product-swatch-images]`);
+        if (images) {
+          images.forEach((image) => {
+            let imageInfo = JSON.parse(image.querySelector('[type="application/json"]').textContent);
+            imageInfo.variants.forEach((variant) => {
+              if (variant.id === productInfo.id) {
+                image.querySelector('img').src = variant.image.src;
+                image.querySelector('img').srcset = variant.image.srcset;
+              }
+            });
+          });
+        }
+        // update price
+        let priceWarpper = parent.querySelectorAll('[data-product-swatch-price]');
+        if (priceWarpper) {
+          priceWarpper.forEach((price) => {
+            let the_price = price.querySelector('[data-product-swatch-price-value]');
+            let the_compare_price = price.querySelector('[data-product-swatch-compare-price-value]');
+            let priceInfo = JSON.parse(price.querySelector('[type="application/json"]').textContent);
+            priceInfo.variants.forEach((variant) => {
+              if (variant.id === productInfo.id) {
+                the_price.textContent = variant.price;
+                the_compare_price.textContent = variant.compare_at_price;
+                if (variant.compare_at_price) {
+                  the_compare_price.classList.remove('hidden');
+                } else {
+                  the_compare_price.classList.add('hidden');
+                }
+              }
+            });
+          });
+        }
+        // update url
+        let urlWarpper = parent.querySelectorAll('[data-product-swatch-url]');
+        if (urlWarpper) {
+          urlWarpper.forEach((url) => {
+            url.setAttribute('href', productInfo.url);
+          });
+        }
+      }
+    }
+
+    sendCustomEvent(product, productId, eventName, detail) {
+      let parent = product.closest('[data-product-swatch]');
+      if (parent) {
+        let event = new CustomEvent(eventName, { detail });
+        parent.dispatchEvent(event);
+      }
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    window.axxVariantsSwatch = new window.AXXVariantsSwatch();
+    window.axxVariantsSwatch.init();
+  });
+{% endjavascript %}

@@ -1,0 +1,231 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "alp_blog_breadcrumbs_Q7LLKF": {
+      "type": "alp-blog-breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 10,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "alp_button_link_tabs_jXNEBH": {
+      "type": "alp-button-link-tabs",
+      "blocks": {
+        "item_zBhp6e": {
+          "type": "item",
+          "settings": {
+            "text": "Press Reviews",
+            "url": "/pages/electric-bike-press-reviews",
+            "is_active": true
+          }
+        },
+        "item_Qefpkb": {
+          "type": "item",
+          "settings": {
+            "text": "Reviews",
+            "url": "/pages/electric-bike-reviews",
+            "is_active": false
+          }
+        },
+        "item_mUbtBC": {
+          "type": "item",
+          "settings": {
+            "text": "Review Videos",
+            "url": "/pages/electric-bike-review-videos",
+            "is_active": false
+          }
+        }
+      },
+      "block_order": [
+        "item_zBhp6e",
+        "item_Qefpkb",
+        "item_mUbtBC"
+      ],
+      "settings": {
+        "title": "Section Title",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "alp_hero_banner_zMTzwM": {
+      "type": "alp-hero-banner",
+      "blocks": {
+        "heading_jpcQrr": {
+          "type": "heading",
+          "settings": {
+            "text": "{{ page.title }}",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_jpcQrr"
+      ],
+      "custom_css": [
+        "@media (max-width: 999px) {.alp-hero-banner .alp-hero-banner-wrapper {min-height: 80px; }}"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "center",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_opacity": 50,
+        "image_aspect_ratio": "3/1",
+        "block_max_width": "720px",
+        "min_height": "210px",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "press_banner_fjHLdw": {
+      "type": "press-banner",
+      "settings": {
+        "title": "",
+        "subcontent": "This is an area where I think Mokwheel has set the Basalt up for some success – it’s an e-bike that I think of as an off-roader first, whereas others I think of as for paved trails that I could do light offroading with.",
+        "content": "<p>——Electric bike report</p>",
+        "image": "shopify://shop_images/Rectangle_1351.jpg",
+        "image_mobile": "shopify://shop_images/Rectangle_1352.jpg",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "press_list_zU3VmU": {
+      "type": "press-list",
+      "blocks": {
+        "item_GiyfDq": {
+          "type": "item",
+          "settings": {
+            "content": "\"This is an area where I think Mokwheel has set the Basalt up for some success – it’s an e-bike that I think of as an off-roader first, whereas others I think of as for paved trails that I could do light offroading with.\"",
+            "image": "shopify://shop_images/electric_7ce0b7b6-8692-4ba2-9ec4-81a3972098a7.svg"
+          }
+        },
+        "item_7CeVY4": {
+          "type": "item",
+          "settings": {
+            "content": "\"The inverter is obviously the major draw here that separates the Mokwheel Scoria from other e-bikes. But even by itself, this e-bike is pretty nice in its own right.\"",
+            "image": "shopify://shop_images/Rectangle_1277.png"
+          }
+        },
+        "item_qAty4R": {
+          "type": "item",
+          "settings": {
+            "content": "The Mokwheel Asphalt is a commuter style ebike with cruiser swept back bars and an upright riding position. This gives it a nice comfortable relaxed ride. The torque sensor makes the bike easy to control in urban places. The under $1500 price point makes it a great value commuter ebike or cruiser ebike.",
+            "image": "shopify://shop_images/2_2x_980e8a7a-19d6-4014-bd65-3c84357c1a2c.jpg"
+          }
+        },
+        "item_e4QEfc": {
+          "type": "item",
+          "settings": {
+            "content": "\"The Basalt ST is a 7-speed Ebike, and it utilizes the Shimano Tourney rear derailleur. On the handlebars, just left of the locking ergonomic grips, is the Shimano SIS Index thumb shifter. There are pluses to using trigger shifters, but on the Basalt we feel like the SIS Index shifter made sense.\"",
+            "image": "shopify://shop_images/electrifiedreviews_cb7a9cae-1a1e-42dd-b4a9-ef9621889d92.svg"
+          }
+        },
+        "item_KK8f9r": {
+          "type": "item",
+          "settings": {
+            "content": "\"The size and up-right position take the Mokwheel Basalt Electric Bicycle out of the mountain bike sphere. From uneven pavement to muddy gravel roads, However the bike is confidence inspiring anywhere it goes.\"",
+            "image": "shopify://shop_images/mwn.webp"
+          }
+        },
+        "item_QCFNVF": {
+          "type": "item",
+          "settings": {
+            "content": "\"Mokwheel strives to reach the hearts of consumers by offering exceptional products and services with honesty and transparency.\"",
+            "image": "shopify://shop_images/10005.png"
+          }
+        },
+        "item_6Dye7q": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "content": "This is an area where I think Mokwheel has set the Basalt up for some success – it’s an e-bike that I think of as an off-roader first, whereas others I think of as for paved trails that I could do light offroading with.",
+            "image": "shopify://shop_images/10005.png"
+          }
+        },
+        "item_CtrhwM": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "content": "This is an area where I think Mokwheel has set the Basalt up for some success – it’s an e-bike that I think of as an off-roader first, whereas others I think of as for paved trails that I could do light offroading with.",
+            "image": "shopify://shop_images/Rectangle_1277.png"
+          }
+        },
+        "item_YKCDDr": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "content": "This is an area where I think Mokwheel has set the Basalt up for some success – it’s an e-bike that I think of as an off-roader first, whereas others I think of as for paved trails that I could do light offroading with.",
+            "image": "shopify://shop_images/10004_9e0441ec-b9f6-4d74-9a3a-0395ef3d022b.png"
+          }
+        },
+        "item_7TcPt4": {
+          "type": "item",
+          "settings": {
+            "content": "Mokwheel is known for their high-quality design, rugged frames, and powerful electric motors, making their bikes perfect for those who crave both adventure and performance. If you’re on the lookout for an electric mountain bike Black Friday deal, Mokwheel’s collection will exceed your expectations.",
+            "image": "shopify://shop_images/Header-4.png"
+          }
+        }
+      },
+      "block_order": [
+        "item_GiyfDq",
+        "item_7CeVY4",
+        "item_qAty4R",
+        "item_e4QEfc",
+        "item_KK8f9r",
+        "item_QCFNVF",
+        "item_6Dye7q",
+        "item_CtrhwM",
+        "item_YKCDDr",
+        "item_7TcPt4"
+      ],
+      "settings": {
+        "title": "Section Title",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "alp_blog_breadcrumbs_Q7LLKF",
+    "alp_button_link_tabs_jXNEBH",
+    "main",
+    "alp_hero_banner_zMTzwM",
+    "press_banner_fjHLdw",
+    "press_list_zU3VmU"
+  ]
+}

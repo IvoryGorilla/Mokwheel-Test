@@ -1,0 +1,349 @@
+{% schema %}
+{
+  "name": "Alp Rewards Banner",
+  "class": "alp-rewards-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Hero Banner"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Background Image Mobile"
+    },
+    {
+      "type": "video",
+      "id": "bg_video",
+      "label": "Background Video"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Background Opacity",
+      "default": 50
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "3/1"
+    },
+    {
+      "type": "text",
+      "id": "block_max_width",
+      "label": "Content Max Width",
+      "default": "720px"
+    },
+    {
+      "type": "text",
+      "id": "min_height",
+      "label": "Min Height",
+      "default": "320px"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "label": "Show Breadcrumb",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Title"
+        },
+        {
+          "type": "select",
+          "id": "heading_type",
+          "label": "Heading type",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            }
+          ],
+          "default": "h1"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Rewards Banner"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};--content-max-width: {{ st.block_max_width }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+    --st-min-height: {{ st.min_height }};
+   }
+  @media (max-width: 999px) {
+  }
+</style>
+
+{% style %}
+  .alp-rewards-banner-breadcrumbs {
+    z-index: 20;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: calc(var(--alp-padding-x) * 2);
+  }
+  .alp-rewards-banner-heading {
+    font-size: clamp(32px, 4.2vw, 48px);
+    font-weight: 600;
+  }
+  .alp-rewards-banner-description {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+  .alp-rewards-banner-description p {
+    margin: 0;
+  }
+  .alp-rewards-banner-button {
+    display: inline-block;
+    margin: 0 16px;
+  }
+  .alp-rewards-banner-button a {
+    border-radius: 25px;
+  }
+  .alp-rewards-banner-button .alp-btn.small:not(.button-type-btn-link) {
+    padding: 0.6em 2.65em;
+  }
+  .alp-rewards-banner-button:last-child .alp-btn.small:not(.button-type-btn-link) {
+    background: #fff;
+  }
+  .alp-rewards-banner-button:last-child .alp-btn.small:not(.button-type-btn-link) span {
+    color: #1a1a1a;
+  }
+  .alp-rewards-banner-button a svg {
+    display: none;
+  }
+
+  [data-customer='true'] .alp-rewards-banner-button {
+    display: none;
+  }
+  @media (max-width: 999px) {
+  }
+{% endstyle %}
+
+<div
+  class="alp-section alp-hero-banner-wrapper alp-rewards-banner-wrapper overflow-hidden relative {{ st.text_alignment | prepend: "text-al-" }} {{ reset_spacing }}"
+  style="{{ style }}"
+  data-stid="{{ section.id }}"
+  {% if customer %}
+    data-customer="true"
+  {% endif %}
+>
+  {%- if st.bg_image or st.bg_image_mobile -%}
+    <div class="alp-image-slide-bg full-img-wrap" style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}">
+      {% render 'alp-responsive-image',
+        image: st.bg_image,
+        image_mobile: st.bg_image_mobile,
+        width: 2000,
+        aspect_ratio: st.image_aspect_ratio,
+        alt: st.title
+      %}
+    </div>
+  {%- endif -%}
+  {%- if st.bg_video -%}
+    <div class="alp-image-slide-bg-video full-img-wrap" style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}">
+      {{ st.bg_video | video_tag: loop: 'loop', muted: true, playsinline: true, autoplay: true, controls: false }}
+    </div>
+  {%- endif -%}
+  {%- if section.settings.show_breadcrumb -%}
+    <div class="alp-rewards-banner-breadcrumbs margin-top">
+      {% render 'breadcrumbs' %}
+    </div>
+  {%- endif -%}
+  <div class="alp-section-container alp-hero-banner-container alp-rewards-banner-container relative page-width {{ container }}">
+    <div class="alp-hero-banner-inner alp-rewards-banner-inner">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          {%- case block.type -%}
+            {%- when 'heading' -%}
+              {%- if bs.text != blank -%}
+                <div class="alp-rewards-banner-heading headline__h2">
+                  <{{ bs.heading_type }} class="alp-rewards-banner-heading">
+                    {{- bs.text | newline_to_br -}}
+                  </{{ bs.heading_type }}>
+                </div>
+              {%- endif -%}
+            {%- when 'description' -%}
+              {%- if bs.text != blank -%}
+                <div class="alp-rewards-banner-description">{{ bs.text }}</div>
+              {%- endif -%}
+            {%- when 'button' -%}
+              {%- assign login_url = routes.account_login_url -%}
+              {%- if customer -%}
+                {%- assign login_url = routes.account_url -%}
+              {%- endif -%}
+              <div class="alp-rewards-banner-button">
+                {% render 'alp-btn',
+                  url: login_url,
+                  type: 'primary',
+                  text: bs.text,
+                  textcolor: '#fff',
+                  bgcolor: '#E83F0C',
+                  size: 'small'
+                %}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

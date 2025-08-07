@@ -1,0 +1,505 @@
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'alp-blog-collections-sidebar.css' | asset_url | stylesheet_tag }}
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+{%- capture style -%}
+  --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{%- style -%}
+.alp-main-blog-container{
+  display: flex;
+  justify-content: space-between;
+}
+.alp-main-blog-left{
+  width: 67%;
+}
+.alp-main-blog-left .blog-articles--collage{
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 2em; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.alp-main-blog-left .blog-articles--collage .blog-articles__article .card__heading{
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  word-break: break-all;
+  font-size: clamp(18px,3.2vw,24px);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.alp-main-blog-left .blog-articles--collage .blog-articles__article .article-card__excerpt{
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  word-break: break-all;
+  margin: 0;
+  font-size: clamp(16px, 2.2vw, 18px);
+  line-height: 1.5;
+}
+.alp-main-blog-left .blog-articles--collage .blog-articles__article:nth-child(-n+2){
+  /* grid-column: span 2; */
+  width: 100%;
+  text-align: center;
+}
+.alp-main-blog-left .blog-articles--collage .blog-articles__article:nth-child(-n+2) .card__heading{
+  /* text-align: center; */
+  /* font-size: clamp(22px, 3.7vw, 32px); */
+  /* padding: 0 10%; */
+}
+.alp-main-blog-left .blog-articles--collage .blog-articles__article:not(:nth-child(-n+2)) .card__heading{
+  font-size: clamp(18px,3.2vw,24px);
+}
+.alp-main-blog-left .blog-articles--collage .blog-articles__article:not(:nth-child(-n+2)){
+  width: 47%;
+}
+.alp-main-blog-left .pagination__item--current:after,
+.alp-main-blog-left .pagination__item.pagination__item--current:hover:after{
+  width: 3.7rem;
+  height: 3.7rem;
+  border-radius: 50%;
+  background: #EAE8E8;
+  bottom: auto;
+  z-index: -1;
+}
+.alp-main-blog-left a.pagination__item:hover:after{
+  height:0;
+}
+.alp-main-blog-left .article-card-wrapper{
+  width: 100%;
+}
+.alp-main-blog-right{
+  width: 30%;
+}
+@media screen and (max-width: 999px){
+  .alp-main-blog-container{
+    flex-direction: column;
+  }
+  .alp-main-blog-left{
+    width: 100%;
+  }
+  .alp-main-blog-right{
+    width: 100%;
+  }
+  .alp-main-blog-left .blog-articles--collage .blog-articles__article .card__heading{
+    margin-bottom: 6px;
+  }
+  .alp-main-blog-left .blog-articles--collage .blog-articles__article .card__information{
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+  .alp-main-blog-left .blog-articles--collage{
+    row-gap: 24px;
+  }
+  .alp-main-blog-left .blog-articles--collage .blog-articles__article:not(:nth-child(-n+2)) .card__inner.gradient{
+    height: 180px;
+  }
+}
+{%- endstyle -%}
+
+  <div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+    <div class="alp-section-container page-width {{ container }}">
+      <div class="alp-main-blog-container">
+        {%- paginate blog.articles by 10 -%}
+          <div class="alp-main-blog-left">
+              <div class="alp-blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+                {%- for article in blog.articles -%}
+                  <div
+                    class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                    {% if settings.animations_reveal_on_scroll %}
+                      data-cascade
+                      style="--animation-order: {{ forloop.index }};"
+                    {% endif %}
+                  >
+                    {%- render 'alp-article-card',
+                      article: article,
+                      media_height: section.settings.image_height,
+                      media_aspect_ratio: article.image.aspect_ratio,
+                      show_image: section.settings.show_image,
+                      show_date: section.settings.show_date,
+                      show_author: section.settings.show_author,
+                      show_excerpt: true
+                    -%}
+                  </div>
+                {%- endfor -%}
+              </div>
+
+              {%- if paginate.pages > 1 -%}
+                {%- render 'pagination', paginate: paginate -%}
+              {%- endif -%}
+          </div>
+        {%- endpaginate -%}
+        <div class="alp-main-blog-right">
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              {%- case block.type -%}
+                  {%- when 'featured_blog_posts' -%} 
+                      <div class="alp-featured-post">
+                        <h3 class="alp-featured-post-bigtitle headline__h4">{{ bs.title }}</h3>
+                        <div class="alp-featured-post-con">
+                          {% if bs.blog1.image != blank %}
+                          <a href="{{ bs.blog1.url }}" class="alp-featured-post-item">
+                            {% render 'alp-single-image', image: bs.blog1.image, width: 1280 %}
+                            <div class="alp-featured-post-title">
+                              {{ bs.blog1.title }}
+                               <p>Read More</p>
+                            </div>
+                            </a>
+                          {% endif %}
+                          {% if bs.blog2.image != blank %}
+                            <a href="{{ bs.blog2.url }}" class="alp-featured-post-item">
+                              {% render 'alp-single-image', image: bs.blog2.image, width: 1280 %}
+                              <div class="alp-featured-post-title">
+                                {{ bs.blog2.title }}
+                                <p>Read More</p>
+                              </div>
+                            </a>
+                          {% endif %}
+                          {% if bs.blog3.image != blank %}
+                            <a href="{{ bs.blog3.url }}" class="alp-featured-post-item">
+                              {% render 'alp-single-image', image: bs.blog3.image, width: 1280 %}
+                              <div class="alp-featured-post-title">
+                                {{ bs.blog3.title }}
+                                <p>Read More</p>
+                              </div>
+                            </a>
+                          {% endif %}
+                          {% if bs.blog4.image != blank %}
+                            <a href="{{ bs.blog4.url }}" class="alp-featured-post-item">
+                                {% render 'alp-single-image', image: bs.blog4.image, width: 1280 %}
+                                <div class="alp-featured-post-title">
+                                  {{ bs.blog4.title }}
+                                  <p>Read More</p>
+                                </div>
+                            </a>
+                          {% endif %}
+                          {% if bs.blog5.image != blank %}
+                            <a href="{{ bs.blog5.url }}" class="alp-featured-post-item">
+                              {% render 'alp-single-image', image: bs.blog5.image, width: 1280 %}
+                              <div class="alp-featured-post-title">
+                                {{ bs.blog5.title }}
+                                <p>Read More</p>
+                              </div>
+                            </a>
+                          {% endif %}
+                          {% if bs.blog6.image != blank %}
+                            <a href="{{ bs.blog6.url }}" class="alp-featured-post-item">
+                              {% render 'alp-single-image', image: bs.blog6.image, width: 1280 %}
+                              <div class="alp-featured-post-title">
+                                {{ bs.blog6.title }}
+                                <p>Read More</p>
+                              </div>
+                            </a>
+                          {% endif %}
+                        </div>
+                      </div>
+                  {%- when 'ebikes_category' -%} 
+                    <div class="alp-ebikes-category">
+                      <h3 class="alp-ebikes-category-bigtitle headline__h4">{{ bs.title }}</h3>
+                      <div class="alp-ebikes-category-con">
+                        {%- if bs.menu.links.size > 0 -%}
+                          {% render 'alp-slide-menu-blog', menu_list: bs.menu.links %}
+                        {%- endif -%}
+                      </div>
+                    </div>
+                    {%- when 'ebikes_category_new' -%}
+                      <div class="alp-ebikes-category-new">
+                        <h2 class="alp-ebikes-category-bigtitle headline__h4">{{ bs.title }}</h2>
+                        <div class="alp-ebikes-category-con-new">
+                          <div class="link-bar__linklist" role="list">
+                            {%- for tag in blog.all_tags -%}
+                              <div class="link-bar__link-item {% if current_tags contains tag %}link-bar__link-item--selected{% endif %}">
+                                {%- capture link_to_tag_replacement -%}class="link-bar__link
+                                    {% if current_tags contains tag %}{% endif %}" title={%- endcapture -%}
+    
+                                {%- if current_tags contains tag -%}
+                                  {{ tag | link_to_remove_tag: tag | replace: 'title=', link_to_tag_replacement }}
+                                {%- else -%}
+                                  {{- tag | link_to_tag: tag | replace: 'title=', link_to_tag_replacement -}}
+                                {%- endif -%}
+                                
+                                {% render 'icon-arrow-right' %}
+                              </div>
+                            {%- endfor -%}
+                          </div>
+                        </div>
+                      </div>
+                  {%- when 'exclusived_deals_await' -%}
+                    <div class="alp-exclusive-deals">
+                        {%- if bs.link != blank -%}
+                          <a class="full-aa" href="{{ bs.link }}" title="{{ bs.text }}"></a>
+                        {%- endif -%}
+                        {% render 'alp-single-image', image: bs.image, width: 1280, aspect_ratio: bs.image_aspect_ratio %}
+                        <div class="alp-exclusive-deals-text">
+                          <h3 class="alp-exclusive-deals-title headline__h3">{{ bs.title }}</h3>
+                          <div class="alp-exclusive-deals-btn">
+                            {% render 'alp-btn',
+                              url: bs.link,
+                              type: 'primary',
+                              text: bs.text,
+                              textcolor: '#fff',
+                              bgcolor: '#E83F0C',
+                              size: 'small'
+                            %}
+                          </div>
+                        </div>
+                    </div>
+              {%- endcase -%}
+            {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% schema %}
+{
+  "name": "Alp Main Blog",
+  "class": "alp-main-blog",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "t:sections.main-blog.settings.layout.options__1.label"
+        },
+        {
+          "value": "collage",
+          "label": "t:sections.main-blog.settings.layout.options__2.label"
+        }
+      ],
+      "default": "collage",
+      "label": "t:sections.main-blog.settings.layout.label",
+      "info": "t:sections.main-blog.settings.layout.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_image.label"
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-blog.settings.image_height.options__1.label"
+        },
+        {
+          "value": "small",
+          "label": "t:sections.main-blog.settings.image_height.options__2.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.main-blog.settings.image_height.options__3.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.main-blog.settings.image_height.options__4.label"
+        }
+      ],
+      "default": "medium",
+      "label": "t:sections.main-blog.settings.image_height.label",
+      "info": "t:sections.main-blog.settings.image_height.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.main-blog.settings.show_author.label"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_blog_posts",
+      "name": "Featured Blog Posts",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Featured Blog Posts"
+        },
+        {
+          "type": "article",
+          "id": "blog1",
+          "label": "blog1"
+        },
+        {
+          "type": "article",
+          "id": "blog2",
+          "label": "blog2"
+        },
+        {
+          "type": "article",
+          "id": "blog3",
+          "label": "blog3"
+        },
+        {
+          "type": "article",
+          "id": "blog4",
+          "label": "blog4"
+        },
+        {
+          "type": "article",
+          "id": "blog5",
+          "label": "blog5"
+        },
+        {
+          "type": "article",
+          "id": "blog6",
+          "label": "blog6"
+        }
+      ]
+    },
+    {
+      "type": "ebikes_category",
+      "name": "Ebikes Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Ebikes Category"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "ebikes_category_new",
+      "name": "Ebikes Category New",  
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Ebikes Category"
+        }
+      ]
+    },
+    {
+      "type": "exclusived_deals_await",
+      "name": "Exclusive Deals Await",
+      "settings": [
+        {
+          "type": "text",
+          "id": "image_aspect_ratio",
+          "label": "Image Aspect Ratio",
+          "default": "1/1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Exclusive Deals Await"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Learn More"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Main Blog"
+    }
+  ]
+}
+{% endschema %}

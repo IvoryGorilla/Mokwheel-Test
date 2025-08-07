@@ -1,0 +1,476 @@
+{% schema %}
+{
+  "name": "Alp Compare Page 2 PD",
+  "class": "alp-compare-2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Compare Models"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Not sure which frame is right for you? Let't take a look at them side by side. </p>"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product-item",
+      "name": "Product Item",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Compare Page 2 PD"
+    }
+  ]
+}
+{% endschema %}
+
+{{ 'alp-compare-2.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .alp-the-compare-item-wrapper-2 .pro_img_wrappper.alp_pro_color_switch > div {
+    min-height: calc(var(--min-height) * 1px);
+    display: flex;
+    flex-direction: column;
+  }
+  .alp-the-compare-select-wrapper {
+    display: none;
+  }
+
+  .alp-the-compare-item-wrapper-2 .pro_img_wrappper.alp_pro_color_switch > div {
+    padding-top: 1em;
+  }
+{% endstyle %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    <div class="alp-the-compare-wrapper">
+      <div class="the-compare-title-ii is-mobile has-buttons hide_desktop">
+        <div class="headline__h2">{{ section.settings.title }}</div>
+        <div class="the-compare-description">{{ section.settings.description }}</div>
+        <div class="the-compare-buttons">
+          <div class="the-compare-button the-compare-diff">
+            <span>Show Differences Only</span>
+            {% render 'icon-check' %}
+          </div>
+        </div>
+      </div>
+      <div class="alp-the-compare-container">
+        <div class="alp-the-compare-list-wrapper t-compare-2">
+          <div class="alp-the-compare-list-2">
+            {% comment %} Static Part: Titles {% endcomment %}
+            <div class="alp-the-compare-list-titles">
+              <div class="alp-the-compare-list-t-p1">
+                <div class="compare_spec_list_title">
+                  <div class="the-compare-title-ii has-buttons">
+                    <div class="headline__h2">{{ section.settings.title }}</div>
+                    <div class="the-compare-description">{{ section.settings.description }}</div>
+                    <div class="the-compare-buttons">
+                      <div class="the-compare-counts hidden">
+                        Showing
+                        <span class="the-compare-feature-count"> <b>0</b> Features </span>
+                      </div>
+                      <div class="the-compare-button the-compare-diff">
+                        <span>Show Differences Only</span>
+                        {% render 'icon-check' %}
+                      </div>
+                      <div class="the-compare-button the-compare-feature hidden">
+                        <span>Features</span>
+                        {% render 'icon-arrow-down' %}
+                      </div>
+                    </div>
+                    {% render 'alp-compare-features-filter', section: section %}
+                  </div>
+                </div>
+              </div>
+              <div class="alp-the-compare-list-t-p2">
+                {%- for block in section.blocks -%}
+                  {%- if forloop.first -%}
+                    {%- assign product = block.settings.product -%}
+                    {% for item in product.metafields.custom.product_comparison.value %}
+                      <div class="compare_spec_list_title">
+                        {%- if item.title != '' -%}
+                          <div class="csl-title">{{ item.title }}</div>
+                        {%- endif -%}
+                      </div>
+                    {% endfor %}
+                    {% comment %}
+                      <div class="compare_spec_list_title cct-price">
+                        <div class="csl-title">Price</div>
+                      </div>
+                    {% endcomment %}
+                  {%- endif -%}
+                {% endfor %}
+              </div>
+              {% comment %} View More And Price (Dynamic Render) {% endcomment %}
+              <div class="compare-bottom-button hide_desktop_row">
+                <div class="compare-bottom-button-flex first-row">
+                  <div class="to_detail">
+                    <a href="javascript:;">
+                      <span>V</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {% comment %} View More And Price (Dynamic Render) End {% endcomment %}
+            </div>
+            {% comment %} Static Part: Titles End {% endcomment %}
+            {%- for block in section.blocks -%}
+              {%- assign product = block.settings.product -%}
+              <div class="alp-the-compare-item-wrapper-2">
+                <div class="alp-the-compare-select-wrapper">
+                  <div class="alp-the-compare-select">
+                    <div class="compare-select-i">
+                      <span>{{- product.title -}}</span>
+                      {% render 'icon-arrow-down' %}
+                    </div>
+                    <div class="compare-delete-i hidden">
+                      {% render 'icon-delete' %}
+                    </div>
+                    <div class="compare-select-choice">
+                      {% for the_product in st.collection.products %}
+                        <span>{{- the_product.title -}}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                {% comment %} Dynamic Render Part {% endcomment %}
+                <div class="alp-the-compare-item" data-swatch-wrapper>
+                  {% render 'alp-compare-render-part', product: product %}
+                </div>
+                {% comment %} Dynamic Render Part End {% endcomment %}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    var product_compare_data = [
+        {% for product in st.collection.products %}
+          {
+          data:  
+          `
+          {% render 'alp-compare-render-part', product: product %}
+          `
+        },
+        {% endfor %}
+      ]
+</script>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    // compare select open
+    document.addEventListener('click', (e) => {
+      //console.log(e.target.className);
+      if (e.target.className !== 'compare-select-i' && e.target.className !== 'compare-select-choice') {
+        $('.compare-select-i').parent().removeClass('active');
+      } else if (e.target.className == 'compare-select-i') {
+        $('.compare-select-i').parent().removeClass('active');
+        e.target.parentElement.classList.add('active');
+      }
+    });
+
+    // compare select
+    $('.compare-select-choice span').click(function () {
+      let $this = $(this);
+      let $text = $this.text();
+      let $index = $this.index();
+      let $product_data = product_compare_data[$index].data;
+      $this.parents('.alp-the-compare-item-wrapper-2').find('.alp-the-compare-item').html($product_data);
+      $('.compare-select-i').parent().removeClass('active');
+      $this.parents('.alp-the-compare-item-wrapper-2').find('.compare-select-i span').html($text);
+      AlpFn.ColorSwatchSwitch(
+        '.alp-the-compare-item-wrapper-2 .alp-colors-swatch-i',
+        '[data-swatch-wrapper]',
+        '[data-options]'
+      );
+      // update lazyload
+      lazyLoadInstance.update();
+      //
+      matchFeaturesFilter();
+      matchTheDiff('.alp-the-compare-list-t-p2 .compare_spec_list_title', '.compare_spec_list');
+      calcMaxItemHeight('.alp-the-compare-list-t-p1 .compare_spec_list_title, .pro_img_wrappper.alp_pro_color_switch');
+      calcMaxItemHeight2('.alp-the-compare-list-t-p2 .compare_spec_list_title', '.compare_spec_list');
+    });
+
+    // watch window.location.search like '?products=Corgi,Flamingo', and trigger '.compare-select-choice span' click when the name match
+    function watchSearch() {
+      let params = new URLSearchParams(window.location.search);
+      if (params.has('products')) {
+        let name = params.get('products');
+        // turn name to array
+        name = name.split(',');
+        console.log(name);
+        // foreach name
+        let i = 0;
+        name.forEach((item) => {
+          $('.alp-the-compare-item-wrapper-2')
+            .eq(i)
+            .find('.compare-select-choice span')
+            .each(function () {
+              let $this = $(this);
+              if ($this.text() == item) {
+                $this.trigger('click');
+              }
+            });
+          i++;
+        });
+      }
+    }
+    watchSearch();
+
+    // calculate the max height
+    function calcMaxItemHeight(elements) {
+      let $elements = $(elements);
+      let maxHeight = 0;
+      // reset the max height
+      $elements.css('--min-height', maxHeight);
+      // get the max height
+      $elements.each(function () {
+        maxHeight = Math.max(maxHeight, $(this).outerHeight());
+      });
+      // console.log(maxHeight);
+      // then set the max height to all elements
+      $elements.css('--min-height', maxHeight);
+    }
+    calcMaxItemHeight('.alp-the-compare-list-t-p1 .compare_spec_list_title, .pro_img_wrappper.alp_pro_color_switch');
+
+    // calculate the max height
+    function calcMaxItemHeight2(elements, elements2) {
+      let $elements = $(elements);
+      let $elements2 = $(elements2);
+      let maxHeight = 0;
+      // reset the max height
+      $elements.css('--min-height', maxHeight);
+      $elements2.children().css('--min-height', maxHeight);
+      // get the max height
+      $elements.each(function () {
+        let $this = $(this);
+        let thisIndex = $this.index();
+        $elements2.each(function () {
+          let $this_children = $(this).children().eq(thisIndex);
+          maxHeight = Math.max(maxHeight, $this_children.outerHeight());
+        });
+        maxHeight = Math.max(maxHeight, $(this).outerHeight());
+        // then set the max height to all this elements
+        $this.css('--min-height', maxHeight);
+        $elements2.each(function () {
+          let $this_children = $(this).children().eq(thisIndex);
+          $this_children.css('--min-height', maxHeight);
+        });
+      });
+    }
+    calcMaxItemHeight2('.alp-the-compare-list-t-p2 .compare_spec_list_title', '.compare_spec_list');
+
+    // resize
+    window.addEventListener('resize', function () {
+      calcMaxItemHeight('.alp-the-compare-list-t-p1 .compare_spec_list_title, .pro_img_wrappper.alp_pro_color_switch');
+      calcMaxItemHeight2('.alp-the-compare-list-t-p2 .compare_spec_list_title', '.compare_spec_list');
+    });
+
+    // match the different
+    function matchTheDiff(elements, elements2) {
+      let $elements = $(elements);
+      let $elements2 = $(elements2);
+      $elements.each(function () {
+        let $text = [];
+        let $this = $(this);
+        let thisIndex = $this.index();
+        $elements2.each(function () {
+          let $this_children = $(this).children().eq(thisIndex).find('.csl-desc');
+          $text.push($this_children.text());
+        });
+        // console.log($text)
+        let isDifferent = false;
+        // foreach $text
+        $text.forEach(function (item) {
+          if (item !== $text[0]) {
+            isDifferent = true;
+          }
+        });
+        if (isDifferent) {
+          $this.addClass('item-different');
+          $elements2.each(function () {
+            $(this).children().eq(thisIndex).addClass('item-different');
+          });
+        } else {
+          $this.removeClass('item-different');
+          $elements2.each(function () {
+            $(this).children().eq(thisIndex).removeClass('item-different');
+          });
+        }
+      });
+    }
+    matchTheDiff('.alp-the-compare-list-t-p2 .compare_spec_list_title', '.compare_spec_list');
+    // click
+    $('.the-compare-diff').click(function () {
+      if ($(this).hasClass('active')) {
+        $(this).removeClass('active');
+        $(this).parents('.alp-the-compare-wrapper').removeClass('active-different');
+      } else {
+        $(this).addClass('active');
+        $(this).parents('.alp-the-compare-wrapper').addClass('active-different');
+      }
+      matchTheDiff('.alp-the-compare-list-t-p2 .compare_spec_list_title', '.compare_spec_list');
+    });
+
+    // feature filter
+    function matchFeaturesFilter() {
+      let $checkBoxEls = $('.feature-i-checkbox');
+      let $targetEls = $('.csl-title');
+      $targetEls.parent().addClass('item-feature-hide');
+      $checkBoxEls.each(function () {
+        let $this = $(this);
+        let $thisText = $this.find('span').text();
+        if ($this.hasClass('checked')) {
+          $targetEls.each(function () {
+            if ($(this).text() == $thisText) {
+              $(this).parent().removeClass('item-feature-hide');
+            }
+          });
+        }
+      });
+      let $checkedLength = $checkBoxEls.filter('.checked').length;
+      $('span.the-compare-feature-count b').text($checkedLength);
+    }
+    matchFeaturesFilter();
+
+    function deleteItem() {
+      $(`.compare-delete-i`).click(function () {
+        $(this).parents('.alp-the-compare-item-wrapper-2').remove();
+      });
+    }
+    deleteItem();
+
+    // '.feature-i-checkbox' click
+    $('.feature-i-checkbox').click(function () {
+      let $this = $(this);
+      if ($this.hasClass('checked')) {
+        $this.removeClass('checked');
+      } else {
+        $this.addClass('checked');
+      }
+      matchFeaturesFilter();
+    });
+    // [data-select-all] click
+    $(`[data-select-all]`).click(function () {
+      $('.feature-i-checkbox').addClass('checked');
+      matchFeaturesFilter();
+    });
+    // [data-deselect-all] click
+    $(`[data-deselect-all]`).click(function () {
+      $('.feature-i-checkbox').removeClass('checked');
+      matchFeaturesFilter();
+    });
+    // features filter open
+    $('.the-compare-feature').click(function () {
+      if ($(this).hasClass('active')) {
+        $(this).removeClass('active');
+        $('.alp-the-compare-features-filter , .alp-the-compare-features-bg').removeClass('active');
+      } else {
+        $(this).addClass('active');
+        $('.alp-the-compare-features-filter , .alp-the-compare-features-bg').addClass('active');
+      }
+    });
+    // .alp-the-compare-features-bg click
+    $('.alp-the-compare-features-bg').click(function () {
+      $('.alp-the-compare-features-filter , .alp-the-compare-features-bg , .the-compare-feature').removeClass('active');
+    });
+  });
+
+  window.addEventListener('load', function () {
+    $('.the-compare-diff').trigger('click');
+  });
+</script>

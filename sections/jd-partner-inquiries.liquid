@@ -1,0 +1,390 @@
+<style>
+  @media screen and (max-width: 768px) {
+    .hidden-phone {
+      display: none;
+    }
+    .hidden-tablet-and-up {
+      display: block;
+    }
+
+    .partner-inquiries-all {
+      background: #1b1b1b;
+      padding: 50px 0;
+    }
+
+    .partner-inquiries-box {
+      padding: 0 15px;
+    }
+
+    .partner-inquiries-section__header {
+      text-align: left;
+    }
+
+    .partner-inquiries-section__header h2,
+    .partner-inquiries-section__header h3 {
+      margin-bottom: 0 !important;
+    }
+
+    .partner-inquiries-heading {
+      font-size: 42px;
+      font-weight: bold;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .partner-inquiries-text {
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+    .partner-inquiries-image-box {
+      margin-top: 30px;
+    }
+
+    .partner-inquiries-item {
+      background: #f1faff;
+      border-radius: 6px;
+      padding: 30px 20px;
+      margin-top: 30px;
+    }
+
+    .partner-inquiries-item-title {
+      font-size: 41px;
+      font-weight: bold;
+      color: #1b1b1b;
+      line-height: 1.2;
+    }
+
+    .partner-inquiries-item-subtitle {
+      color: #1b1b1b;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.5;
+      margin-top: 30px;
+    }
+
+    .partner-inquiries-item-text {
+      color: #1b1b1b;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-top: 10px;
+      font-weight: 400;
+    }
+
+    .partner-inquiries-item-ul li {
+      list-style: disc !important;
+      margin-left: -20px;
+    }
+
+    .partner-inquiries-item-ul li p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .partner-inquiries-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 294px;
+      height: 40px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background: #1b1b1b;
+      border-radius: 20px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+    .partner-inquiries-btn a {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      line-height: 40px;
+    }
+    .partner-inquiries-text p {
+      margin-bottom: 0;
+      margin-top: 0 !important;
+    }
+  }
+  @media screen and (min-width: 769px) {
+    .hidden-phone {
+      display: block;
+    }
+    .hidden-tablet-and-up {
+      display: none;
+    }
+    .partner-inquiries-all {
+      background: #1b1b1b;
+      padding: 120px 0;
+    }
+
+    .partner-inquiries-box {
+      max-width: 1440px;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .partner-inquiries-section__header {
+      text-align: left;
+    }
+
+    .partner-inquiries-section__header h2,
+    .partner-inquiries-section__header h3 {
+      margin-bottom: 0 !important;
+    }
+
+    .partner-inquiries-heading {
+      font-size: 64px;
+      font-weight: bold;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .partner-inquiries-text {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-top: 40px;
+    }
+    .partner-inquiries-text p {
+      margin-top: 0 !important;
+      margin-bottom: 0;
+    }
+    .partner-inquiries-left {
+      width: 47%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .partner-inquiries-right {
+      display: grid;
+      grid-row-gap: 40px;
+      width: 47%;
+    }
+
+    .partner-inquiries-item {
+      background: #f1faff;
+      border-radius: 6px;
+      padding: 20px;
+      padding: 50px 40px;
+    }
+
+    .partner-inquiries-item-title {
+      font-size: 72px;
+      font-weight: bold;
+      color: #1b1b1b;
+    }
+    .partner-inquiries-item-title p {
+      line-height: 1;
+    }
+
+    .partner-inquiries-item-subtitle {
+      color: #1b1b1b;
+      font-size: 22px;
+      font-weight: bold;
+      line-height: 1.5;
+      margin-top: 40px;
+    }
+
+    .partner-inquiries-item-text {
+      color: #1b1b1b;
+      font-size: 20px;
+      line-height: 1.5;
+      padding: 10px 0;
+    }
+
+    .partner-inquiries-item-ul {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+    }
+
+    .partner-inquiries-item-ul li {
+      list-style: disc !important;
+      color: #1b1b1b !important;
+    }
+
+    .partner-inquiries-item-ul li p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .partner-inquiries-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 50px;
+
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      background: #1b1b1b;
+      border-radius: 25px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+    .partner-inquiries-btn a {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      line-height: 50px;
+    }
+    .partner-inquiries-image-box {
+      width: 100%;
+    }
+    .partner-inquiries-image-box img {
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="partner-inquiries-all">
+  <div class="partner-inquiries-box page-width">
+    <div class="partner-inquiries-left">
+      {%- if section.settings.heading != blank -%}
+        <header class="partner-inquiries-section__header text-container">
+          {%- if section.settings.heading != blank -%}
+            <h3 class="h2 partner-inquiries-heading hidden-phone">{{ section.settings.heading }}</h3>
+            <h3 class="h2 partner-inquiries-heading hidden-tablet-and-up">
+              {{ section.settings.heading | strip_html }}
+            </h3>
+          {%- endif -%}
+
+          {%- if section.settings.text != blank -%}
+            <div class="partner-inquiries-text">{{ section.settings.text }}</div>
+          {%- endif -%}
+        </header>
+      {%- endif -%}
+
+      <div class="partner-inquiries-image-box">
+        {%- if section.settings.image -%}
+          <img class="hidden-phone" src="{{section.settings.image | img_url: '734x'}}">
+        {%- endif -%}
+
+        {%- if section.settings.m_image -%}
+          <img class="hidden-tablet-and-up" src="{{section.settings.m_image | img_url: '750x'}}">
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="partner-inquiries-right">
+      {%- for block in section.blocks -%}
+        <div class="partner-inquiries-item">
+          <div class="partner-inquiries-item-title">{{ block.settings.title }}</div>
+          <div class="partner-inquiries-item-subtitle">{{ block.settings.subtitle }}</div>
+          <div class="partner-inquiries-item-text hidden-phone">{{ block.settings.text }}</div>
+          <div class="partner-inquiries-item-text hidden-tablet-and-up">{{ block.settings.text | strip_html }}</div>
+          <div class="partner-inquiries-item-subtitle">{{ block.settings.subtitle2 }}</div>
+          <ul class="partner-inquiries-item-ul">
+            {%- if block.settings['list-text1'] != blank -%}
+              <li>{{ block.settings['list-text1'] }}</li>
+            {%- endif -%}
+
+            {%- if block.settings['list-text2'] != blank -%}
+              <li>{{ block.settings['list-text2'] }}</li>
+            {%- endif -%}
+
+            {%- if block.settings['list-text3'] != blank -%}
+              <li>{{ block.settings['list-text3'] }}</li>
+            {%- endif -%}
+          </ul>
+          <span class="partner-inquiries-btn">
+            <a href="{{block.settings.link}}">{{ block.settings.botton }}</a>
+          </span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Partner Inquiries",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "m_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block-item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "richtext",
+          "id": "subtitle2",
+          "label": "Subtitle2"
+        },
+        {
+          "type": "richtext",
+          "id": "list-text1",
+          "label": "List Text1"
+        },
+        {
+          "type": "richtext",
+          "id": "list-text2",
+          "label": "List Text2"
+        },
+        {
+          "type": "richtext",
+          "id": "list-text3",
+          "label": "List Text3"
+        },
+        {
+          "type": "text",
+          "id": "botton",
+          "label": "botton text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partner Inquiries"
+    }
+  ]
+}
+{% endschema %}

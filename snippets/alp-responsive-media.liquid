@@ -1,0 +1,66 @@
+{% comment %}
+  Use:
+  {% render 'alp-responsive-media', media: media, media_mobile: media_mobile, desktop_width: 1280, mobile_width: 600, aspect_ratio: '1/1', alt: 'Alt text' %}
+{% endcomment %}
+
+{%- assign desktop = desktop_width | default: 1280 -%}
+{%- assign mobile = mobile_width | default: 600 -%}
+{%- assign mobile_img = media_mobile | default: media -%}
+{%- assign default_alt = product.title | append: product.selected_or_first_available_variant.title -%}
+
+{%- capture aspect_ratio_style -%}
+    {%- if aspect_ratio != blank -%}
+        --aspect-ratio:{{ aspect_ratio }}
+    {%- endif -%}
+{%- endcapture -%}
+
+{%- case media.media_type -%}
+  {% when 'image' %}
+    <picture
+      class="media_image"
+      style="{{ aspect_ratio_style }}"
+      data-media-id="{{ media.id }}"
+      data-alp-media
+    >
+      <source data-srcset="{{ media | image_url: width: desktop }}" media="(min-width: 768px)">
+      <img
+        class="lazy"
+        data-src="{{ mobile_img | image_url: width: mobile }}"
+        alt="{{ media.alt | default: default_alt }}"
+        loading="lazy"
+        width="auto"
+        height="auto"
+      >
+    </picture>
+  {% when 'external_video' %}
+    <div
+      class="media_external_video"
+      style="{{ aspect_ratio_style }}"
+      data-media-id="{{ media.id }}"
+      data-alp-media
+    >
+      {{ media | external_video_tag }}
+    </div>
+  {% when 'video' %}
+    <div class="media_video" style="{{ aspect_ratio_style }}" data-media-id="{{ media.id }}" data-alp-media>
+      {% comment %} {{ media | video_tag: autoplay: true, loop: true, muted: true, controls: true }} {% endcomment %}
+      <video
+        class="lazy"
+        controls
+        preload
+        x5-video-player-fullscreen="true"
+        x5-playsinline
+        playsinline
+        webkit-playsinline
+      >
+        {%- for source in media.sources -%}
+          <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+        {%- endfor -%}
+      </video>
+    </div>
+  {% when 'model' %}
+    <div class="media_model" style="{{ aspect_ratio_style }}" data-media-id="{{ media.id }}" data-alp-media>
+      {{ media | model_viewer_tag }}
+    </div>
+  {%- else -%}
+{%- endcase -%}

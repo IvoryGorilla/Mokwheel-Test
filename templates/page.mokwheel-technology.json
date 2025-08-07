@@ -1,0 +1,764 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "alp_sticky_inverter_nWw4Ur": {
+      "type": "alp-sticky-inverter",
+      "blocks": {
+        "item_FWU4Xi": {
+          "type": "item",
+          "settings": {
+            "text": "Overview",
+            "target": "overview"
+          }
+        },
+        "item_f6P8LC": {
+          "type": "item",
+          "settings": {
+            "text": "Usage scenarios",
+            "target": "usage_scenarios"
+          }
+        },
+        "item_GgFjL9": {
+          "type": "item",
+          "settings": {
+            "text": "Solar panel",
+            "target": "solar_panel"
+          }
+        },
+        "item_4xgHDG": {
+          "type": "item",
+          "settings": {
+            "text": "Portable",
+            "target": "portable"
+          }
+        },
+        "item_4dYRAn": {
+          "type": "item",
+          "settings": {
+            "text": "Accessories",
+            "target": "accessories"
+          }
+        }
+      },
+      "block_order": [
+        "item_FWU4Xi",
+        "item_f6P8LC",
+        "item_GgFjL9",
+        "item_4xgHDG",
+        "item_4dYRAn"
+      ],
+      "name": "Alp Sticky Inverter",
+      "settings": {
+        "title": "Section Title",
+        "link_text": "BACK TO EBIKE",
+        "url": "",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 4,
+        "padding_bottom": 4,
+        "reset_spacing": true
+      }
+    },
+    "alp_separator_FQ6TiD": {
+      "type": "alp-separator",
+      "name": "Alp Separator",
+      "settings": {
+        "title": "Overview",
+        "target": "overview",
+        "bg_color": "#ffffff",
+        "text_color": "rgba(0,0,0,0)",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "ax_hero_banner_hcFkbY": {
+      "type": "ax-hero-banner",
+      "blocks": {
+        "description_ikHpLJ": {
+          "type": "description",
+          "settings": {
+            "text": "<p>Mokwheel Technology</p>"
+          }
+        },
+        "heading_gqaQWy": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Power Meets <br/>Precision </p>",
+            "heading_type": "h1"
+          }
+        },
+        "button_TnjefK": {
+          "type": "button",
+          "settings": {
+            "text": "SHOP NOW",
+            "url": "shopify://products/inverter"
+          }
+        },
+        "button_zeNJ4C": {
+          "type": "button",
+          "settings": {
+            "text": "BACK TO EBIKE",
+            "url": "shopify://collections/electric-bikes"
+          }
+        }
+      },
+      "block_order": [
+        "description_ikHpLJ",
+        "heading_gqaQWy",
+        "button_TnjefK",
+        "button_zeNJ4C"
+      ],
+      "name": "AX Hero Banner",
+      "settings": {
+        "title": "Hero Banner Tech",
+        "text_alignment": "default",
+        "bg_color": "#121212",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/1886_1x_b4385108-7396-470e-9c9d-06a1ccc7d507.jpg",
+        "bg_image_mobile": "shopify://shop_images/1886_1.5x.jpg",
+        "bg_video": "shopify://files/videos/首屏视频.mp4",
+        "bg_opacity": 0,
+        "image_aspect_ratio": "1920/850",
+        "image_aspect_ratio_mobile": "375/600",
+        "block_max_width": "720px",
+        "min_height": "320px",
+        "container": "alp-container-fluid",
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "reset_spacing": true,
+        "is_popup": false,
+        "bg_is_inner": false,
+        "custom_class": "",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750"
+      }
+    },
+    "ax_hero_banner_nNBpNM": {
+      "type": "ax-hero-banner",
+      "blocks": {
+        "description_ada9bM": {
+          "type": "description",
+          "settings": {
+            "text": "<p>Mokwheel is the world’s first electric bike brand to integrate both an inverter and a solar-powered charging system.<br/>The high-efficiency solar panel converts sunlight into power, while the built-in inverter delivers stable electricity output—giving you two kinds of freedom:<br/>Power Freedom: Charge your bike’s battery with sunlight and extend your ride range.<br/>Lifestyle Freedom: Power up 95% of common outdoor electronics, including:<br/>• Low-power devices: phones, cameras, iPads<br/>• Mid-to-high power devices: laptops, portable coffee makers, car fridges, camping lights, projectors</p>"
+          }
+        }
+      },
+      "block_order": [
+        "description_ada9bM"
+      ],
+      "name": "AX Hero Banner",
+      "settings": {
+        "title": "Hero Banner Tech 2",
+        "text_alignment": "center",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "bg_opacity": 0,
+        "image_aspect_ratio": "auto",
+        "image_aspect_ratio_mobile": "auto",
+        "block_max_width": "1080px",
+        "min_height": "120px",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "is_popup": false,
+        "bg_is_inner": false,
+        "custom_class": "hide_mobile",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750"
+      }
+    },
+    "alp_separator_VTLqtH": {
+      "type": "alp-separator",
+      "name": "Alp Separator",
+      "settings": {
+        "title": "Usage scenarios",
+        "target": "usage_scenarios",
+        "bg_color": "#ffffff",
+        "text_color": "rgba(0,0,0,0)",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "ax_hero_banner_mRkNbp": {
+      "type": "ax-hero-banner",
+      "blocks": {
+        "description_7mY6C8": {
+          "type": "description",
+          "settings": {
+            "text": "<p>Mokwheel achieves a global innovation by integrating solar panels and an inverter directly into the e-bike system. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "description_7mY6C8"
+      ],
+      "name": "AX Hero Banner",
+      "settings": {
+        "title": "Hero Banner Tech 2",
+        "text_alignment": "center",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "bg_opacity": 0,
+        "image_aspect_ratio": "auto",
+        "image_aspect_ratio_mobile": "auto",
+        "block_max_width": "1080px",
+        "min_height": "120px",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "is_popup": false,
+        "bg_is_inner": false,
+        "custom_class": "hide_desktop",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750"
+      }
+    },
+    "ax_hero_banner_7c7PJH": {
+      "type": "ax-hero-banner",
+      "name": "AX Hero Banner",
+      "settings": {
+        "title": "Hero Banner Tech Inverter",
+        "text_alignment": "default",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/PC_2x_50456b75-b8f3-4fd0-af81-0c7304127762.jpg",
+        "bg_image_mobile": "shopify://shop_images/M_2x_ee01a255-93f8-478c-a1e3-644eb7106aa0.jpg",
+        "bg_opacity": 0,
+        "image_aspect_ratio": "1920/720",
+        "image_aspect_ratio_mobile": "746/1633",
+        "block_max_width": "720px",
+        "min_height": "320px",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "is_popup": false,
+        "bg_is_inner": false,
+        "custom_class": "",
+        "img_width_desktop": "3840",
+        "img_width_mobile": "750"
+      }
+    },
+    "alp_separator_CAJAgC": {
+      "type": "alp-separator",
+      "name": "Alp Separator",
+      "settings": {
+        "title": "Solar panel",
+        "target": "solar_panel",
+        "bg_color": "#ffffff",
+        "text_color": "rgba(0,0,0,0)",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "ax_media_slider_1_UPyqmm": {
+      "type": "ax-media-slider-1",
+      "blocks": {
+        "item_NPJQUj": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/2_1.5x_bc68b2d1-455d-4e1b-9990-795e8fb8c482.jpg",
+            "image_mobile": "shopify://shop_images/2_1.5x_2402e68e-b866-43df-967e-3420182f1674.jpg",
+            "title": "Brew Coffee + Laptop",
+            "content": "<p>Sip hot coffee for inspiration, effortlessly jot down ideas on your laptop.</p>",
+            "video": "",
+            "video_url": ""
+          }
+        },
+        "item_B83RNr": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/2_1.5x_bc68b2d1-455d-4e1b-9990-795e8fb8c482.jpg",
+            "image_mobile": "shopify://shop_images/2_1.5x_2402e68e-b866-43df-967e-3420182f1674.jpg",
+            "title": "Cook Steak + Fridge",
+            "content": "<p>Eat and drink well: Juicy pan-seared steak with ice-cold drinks. Adventure made worry-free.</p>",
+            "video": "",
+            "video_url": ""
+          }
+        },
+        "item_UcUwXk": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/2_1.5x_bc68b2d1-455d-4e1b-9990-795e8fb8c482.jpg",
+            "image_mobile": "shopify://shop_images/2_1.5x_2402e68e-b866-43df-967e-3420182f1674.jpg",
+            "title": "Camp Lights + Projector",
+            "content": "<p>Forget fatigue. Light up the campsite, lie on the grass, and watch a movie under the stars!</p>",
+            "video": "",
+            "video_url": ""
+          }
+        },
+        "item_ymCiXF": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/2_1.5x_bc68b2d1-455d-4e1b-9990-795e8fb8c482.jpg",
+            "image_mobile": "shopify://shop_images/2_1.5x_2402e68e-b866-43df-967e-3420182f1674.jpg",
+            "title": "Camera + Drone",
+            "content": "<p>Capture every happy moment of you and the breathtaking scenery!</p>",
+            "video": "",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_NPJQUj",
+        "item_B83RNr",
+        "item_UcUwXk",
+        "item_ymCiXF"
+      ],
+      "name": "AX Media Slider 1",
+      "settings": {
+        "title": "Power Meets Precision",
+        "subtitle": "",
+        "image_aspect_ratio": "1200/600",
+        "image_aspect_ratio_mobile": "1/1",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "custom_class": "",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750",
+        "st_max_width": "1200px"
+      }
+    },
+    "ax_media_grid_1_j9PVeD": {
+      "type": "ax-media-grid-1",
+      "blocks": {
+        "item_e39aby": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/3_1.5x_91b4e2ca-e595-43ed-be38-81e9e804983c.jpg",
+            "image_mobile": "shopify://shop_images/3_1.5x_279ef568-1f9f-4acd-9522-723109353d3b.jpg",
+            "title": "",
+            "content": "<p>Inside, high-efficiency sine wave technology achieves 95% energy conversion rate – surpassing typical 85% \"modified sine wave\" solutions – saving both power and space.</p>",
+            "video": "",
+            "video_url": ""
+          }
+        },
+        "item_kMMmrB": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/3-1_1.5x_7d0977c1-1adb-4aaf-adb0-73030ece32cf.jpg",
+            "image_mobile": "shopify://shop_images/4_1.5x_11d0647c-77f9-4f4c-87c1-a1411044fe36.jpg",
+            "title": "",
+            "content": "<p>The LED display shows real-time power, battery level, and status updates. Safety visualized, confidence guaranteed.</p>",
+            "video": "",
+            "video_url": ""
+          }
+        },
+        "item_fBAB34": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/3-2_1.5x_4d9ac83b-1f18-4724-894f-8f8c8e2d368f.jpg",
+            "image_mobile": "shopify://shop_images/5_1.5x_e5782a0d-6368-401f-9699-704e42b56d22.jpg",
+            "title": "",
+            "content": "<p>With an ST Smart Power Management Chip and active air-cooling system, dual safeguards ensure stable output under heavy loads – no overload fears, no overheating risks.</p>",
+            "video": "",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_e39aby",
+        "item_kMMmrB",
+        "item_fBAB34"
+      ],
+      "name": "AX Media Grid 1",
+      "settings": {
+        "title": "Lightweight, but rugged. Fast, but safe",
+        "subtitle": "<p>The Mokwheel inverter features an aviation-grade aluminum alloy casing that withstands outdoor impacts and drops, offering 10x more durability than standard plastic housings.</p>",
+        "image_aspect_ratio": "580/540",
+        "image_aspect_ratio_mobile": "340/230",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "custom_class": "no-padding-top",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750",
+        "st_max_width": "1200px"
+      }
+    },
+    "ax_media_slider_2_eDQpD6": {
+      "type": "ax-media-slider-2",
+      "blocks": {
+        "item_Pnz9x3": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/4_1.5x_24c1da65-b0b4-4f0c-957d-f64fe36d66e8.jpg",
+            "image_mobile": "shopify://shop_images/6_1.5x.jpg",
+            "title": "",
+            "content": "",
+            "bg_video": "shopify://files/videos/首屏视频.mp4",
+            "video": "",
+            "video_url": ""
+          }
+        },
+        "item_aNa8Tn": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/4_1.5x_24c1da65-b0b4-4f0c-957d-f64fe36d66e8.jpg",
+            "image_mobile": "shopify://shop_images/6_1.5x.jpg",
+            "title": "",
+            "content": "",
+            "video": "",
+            "video_url": ""
+          }
+        },
+        "item_fce6rK": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/4_1.5x_24c1da65-b0b4-4f0c-957d-f64fe36d66e8.jpg",
+            "image_mobile": "shopify://shop_images/6_1.5x.jpg",
+            "title": "",
+            "content": "",
+            "video": "",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_Pnz9x3",
+        "item_aNa8Tn",
+        "item_fce6rK"
+      ],
+      "name": "AX Media Slider 2",
+      "settings": {
+        "title": "Power Meets Precision",
+        "subtitle": "<p>Sunlight → Solar panels collect energy → Inverter converts → Charges the Mokwheel e-bike's built-in battery</p><p>The Mokwheel dedicated inverter supports 18–54.6V/6A output. When connected to a solar panel under sufficient sunlight, it can fully charge the battery from 0% in approximately 4.5 hours.</p>",
+        "image_aspect_ratio": "1200/640",
+        "image_aspect_ratio_mobile": "340/230",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "custom_class": "no-padding-top",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750",
+        "st_max_width": "1200px"
+      }
+    },
+    "alp_separator_tfjgDq": {
+      "type": "alp-separator",
+      "name": "Alp Separator",
+      "settings": {
+        "title": "Portable",
+        "target": "portable",
+        "bg_color": "#ffffff",
+        "text_color": "rgba(0,0,0,0)",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "ax_media_slider_3cp_HRPgAp": {
+      "type": "ax-media-slider-3cp",
+      "blocks": {
+        "item_74wLyp": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/5-1_1.5x_5e8e0cdd-f1c8-4bff-a043-6f63c8899eaf.jpg",
+            "image_mobile": "shopify://shop_images/8_1.5x.jpg",
+            "title": "",
+            "content": "",
+            "video": "",
+            "video_url": ""
+          }
+        },
+        "item_r4PpEy": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/5_1.5x_43c32111-b285-4a1b-8a3a-51630315bc0d.jpg",
+            "image_mobile": "shopify://shop_images/7_1.5x.jpg",
+            "title": "",
+            "content": "",
+            "video": "",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_74wLyp",
+        "item_r4PpEy"
+      ],
+      "name": "AX Media Slider 3CP",
+      "settings": {
+        "title": "3.5lbs Vs 9.9lbs",
+        "subtitle": "<p>Mokwheel is one of the world's lightest inverters, compact yet powerful, compatible with 95% of small/medium outdoor appliances.users can easily lift it with one hand. Simultaneously equipped with an exclusive carrying case, it is ready for use anytime. Enjoy comfortable outdoor travel life.</p>",
+        "image_aspect_ratio": "1200/590",
+        "image_aspect_ratio_mobile": "340/300",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false,
+        "custom_class": "no-padding-top",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750",
+        "st_max_width": "1200px"
+      }
+    },
+    "alp_separator_PDzLV8": {
+      "type": "alp-separator",
+      "name": "Alp Separator",
+      "settings": {
+        "title": "Accessories",
+        "target": "accessories",
+        "bg_color": "#ffffff",
+        "text_color": "rgba(0,0,0,0)",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "ax_image_prod_recm_FLE3hF": {
+      "type": "ax-image-prod-recm",
+      "blocks": {
+        "item_pFy49D": {
+          "type": "item",
+          "settings": {
+            "product": "solar-panel-inverter"
+          }
+        },
+        "item_fqL6Lj": {
+          "type": "item",
+          "settings": {
+            "product": "230wsolar-panel-inverter"
+          }
+        },
+        "item_MTUKfa": {
+          "type": "item",
+          "settings": {
+            "product": "inverter"
+          }
+        },
+        "item_Pyn3cH": {
+          "type": "item",
+          "settings": {
+            "product": "inverter-box"
+          }
+        },
+        "item_V7ybXd": {
+          "type": "item",
+          "settings": {
+            "product": "solar-panel-inverter"
+          }
+        },
+        "item_FzMeRA": {
+          "type": "item",
+          "settings": {
+            "product": "230wsolar-panel-inverter"
+          }
+        },
+        "item_ExGNXH": {
+          "type": "item",
+          "settings": {
+            "product": "inverter"
+          }
+        },
+        "item_gDmUdM": {
+          "type": "item",
+          "settings": {
+            "product": "inverter-box"
+          }
+        }
+      },
+      "block_order": [
+        "item_pFy49D",
+        "item_fqL6Lj",
+        "item_MTUKfa",
+        "item_Pyn3cH",
+        "item_V7ybXd",
+        "item_FzMeRA",
+        "item_ExGNXH",
+        "item_gDmUdM"
+      ],
+      "name": "AX Image Product Recm",
+      "settings": {
+        "title": "Power Meets Precision",
+        "subtitle": "<p>Our dealers are trained experts who can help by understanding your needs and guide you towards the perfect ebike along with answering any questions you may have.</p>",
+        "image": "shopify://shop_images/6_1.5x_f9296323-9f51-4b90-af3a-8ad9a4cd2d79.jpg",
+        "image_aspect_ratio": "512/640",
+        "image_aspect_ratio_mobile": "340/230",
+        "bg_color": "rgba(0,0,0,0)",
+        "text_color": "#121212",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false,
+        "custom_class": "",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750",
+        "st_max_width": "1200px"
+      }
+    },
+    "ax_hero_images_1_irEntX": {
+      "type": "ax-hero-images-1",
+      "blocks": {
+        "title_image_B3NEJe": {
+          "type": "title_image",
+          "settings": {
+            "image": "shopify://shop_images/3x_9a4d7a94-2c1c-44d7-a1c0-709d4b043104.png"
+          }
+        },
+        "heading_m9934j": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Power Meets Precision</p>",
+            "heading_type": "h1"
+          }
+        },
+        "description_rzCg6g": {
+          "type": "description",
+          "settings": {
+            "text": "<p>Drawing on our extensive experience working with carbon, we’ve developed an unrivaled formula dedicated</p>"
+          }
+        },
+        "button_3BGyGE": {
+          "type": "button",
+          "settings": {
+            "text": "LEARN MORE",
+            "url": "shopify://pages/mokwheel-technology"
+          }
+        },
+        "list_image_KbNwVK": {
+          "type": "list_image",
+          "settings": {
+            "image": "shopify://shop_images/1_1.5x_f1f43fee-9326-40e9-b39e-9a2788a657ea.jpg",
+            "image_mobile": "shopify://shop_images/1_1.5x_e172c21b-e22e-4dd4-a4ff-ddce44812577.jpg"
+          }
+        },
+        "list_image_JBAqEY": {
+          "type": "list_image",
+          "settings": {
+            "image": "shopify://shop_images/2_1.5x_09f89d17-40e8-46a5-abdf-0007d53e2c89.jpg",
+            "image_mobile": "shopify://shop_images/2_1.5x_5562c398-0409-4164-a196-a0d85e3650d5.jpg"
+          }
+        },
+        "list_image_CMgPTW": {
+          "type": "list_image",
+          "settings": {
+            "image": "shopify://shop_images/3_1.5x_1d6cafab-9e86-4469-84f0-63fa39383f61.jpg",
+            "image_mobile": "shopify://shop_images/4_1.5x_9ab086cd-f64e-41a6-b2cf-8518bd13805c.jpg"
+          }
+        },
+        "list_image_rAXmc9": {
+          "type": "list_image",
+          "settings": {
+            "image": "shopify://shop_images/4_1.5x_18fd77c0-9fa5-4995-b31e-b6f5e2390c80.jpg",
+            "image_mobile": "shopify://shop_images/3_1.5x_0082e4bf-c3dc-4056-8b41-87deeaa1f265.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "title_image_B3NEJe",
+        "heading_m9934j",
+        "description_rzCg6g",
+        "button_3BGyGE",
+        "list_image_KbNwVK",
+        "list_image_JBAqEY",
+        "list_image_CMgPTW",
+        "list_image_rAXmc9"
+      ],
+      "disabled": true,
+      "name": "AX Hero Images 1",
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "default",
+        "bg_color": "#121212",
+        "text_color": "#ffffff",
+        "bg_opacity": 50,
+        "image_aspect_ratio": "1720/690",
+        "image_aspect_ratio_mobile": "1/2",
+        "block_max_width": "720px",
+        "min_height": "320px",
+        "container": "alp-container-fluid",
+        "padding_top": 15,
+        "padding_bottom": 15,
+        "reset_spacing": false,
+        "is_popup": false,
+        "bg_is_inner": true,
+        "custom_class": "",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750"
+      }
+    },
+    "alp_inverter_entrance_VgJwiM": {
+      "type": "alp-inverter-entrance",
+      "disabled": true,
+      "name": "Alp Inverter Entrance",
+      "settings": {
+        "title": "<p>Power Meets Precision</p>",
+        "description": "<p>Drawing on our extensive experience working with carbon, we’ve developed an unrivaled formula dedicated</p>",
+        "link_text": "LEARN MORE",
+        "url": "",
+        "image_pc": "shopify://shop_images/1666_1.5x_71b5741f-6e26-4687-96cb-25228c8d6e02.png",
+        "image_mobile": "shopify://shop_images/1666_1.5x_1_197978d9-7b7a-4a2b-8fd9-b783bc9743ec.png",
+        "rich_content": "",
+        "image_aspect_ratio": "2.2/1",
+        "image_aspect_ratio_mobile": "5/8",
+        "min_height": "420px",
+        "bg_color": "#FFFFFF",
+        "text_color": "#ffffff",
+        "container": "alp-full-width",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "alp_sticky_inverter_nWw4Ur",
+    "alp_separator_FQ6TiD",
+    "ax_hero_banner_hcFkbY",
+    "ax_hero_banner_nNBpNM",
+    "alp_separator_VTLqtH",
+    "ax_hero_banner_mRkNbp",
+    "ax_hero_banner_7c7PJH",
+    "alp_separator_CAJAgC",
+    "ax_media_slider_1_UPyqmm",
+    "ax_media_grid_1_j9PVeD",
+    "ax_media_slider_2_eDQpD6",
+    "alp_separator_tfjgDq",
+    "ax_media_slider_3cp_HRPgAp",
+    "alp_separator_PDzLV8",
+    "ax_image_prod_recm_FLE3hF",
+    "ax_hero_images_1_irEntX",
+    "alp_inverter_entrance_VgJwiM"
+  ]
+}

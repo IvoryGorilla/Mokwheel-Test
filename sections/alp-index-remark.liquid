@@ -1,0 +1,286 @@
+{% schema %}
+{
+  "name": "Alp Index Remark",
+  "class": "alp-index-remark",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What customer say for our E-Bike"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Gail Hilpert"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Desc",
+          "default": "<p>Solardeland leads in solar technology, offering state-of-the-art solutions to meet evolving energy demands through continuous innovation.</p>"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Shop The Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Index Remark"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-index-remark-con {
+    margin-top: calc(var(--alp-gutter-y) * 1.25);
+  }
+  .alp-index-remark-item-wrapper {
+    position: relative;
+  }
+  .alp-index-remark-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--main-background, #f7f7f7);
+    padding: calc(var(--alp-gutter-x) * 0.75);
+    border-radius: calc(var(--alp-border-radius) * 1.5);
+  }
+  .alp-index-remark-item .image-box {
+    width: 35%;
+  }
+  .alp-index-remark-item .image-box img {
+    height: auto;
+    display: block;
+  }
+  .alp-index-remark-item .text-box {
+    width: 60%;
+  }
+  .alp-index-remark-item .text-box .icon {
+    padding: calc(var(--alp-gutter-y) * 0.25) 0;
+  }
+  .alp-index-remark-item .text-box .icon img {
+    max-width: 150px;
+    height: auto;
+  }
+  .alp-index-remark-item .text-box .alp-index-remark-desc {
+    font-size: clamp(12px, 1.8vw, 14px);
+    color: var(--main-color-3);
+  }
+  .alp-index-remark-item .text-box .alp-index-remark-desc p {
+    margin: 0;
+  }
+  .swiper-pagination-index-remark {
+    margin-top: calc(var(--alp-gutter-y) * 1.5);
+  }
+  .alp-index-remark-item-postion2 {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    background: rgba(41, 41, 41, 0.61);
+    border-radius: calc(var(--alp-border-radius) * 1.5);
+  }
+  .alp-index-remark-item-wrapper:hover .alp-index-remark-item-postion2 {
+    display: flex;
+  }
+  .alp-index-remark-item-postion2 .alp-btn {
+    background: var(--BgColor);
+    padding: 0.5em 1.5em;
+  }
+  .alp-index-remark-item-postion2 svg {
+    display: none;
+  }
+  .alp-index-remark-2-item {
+    display: flex;
+    gap: 1.25em;
+    align-items: flex-start;
+  }
+{% endstyle %}
+
+<div class="alp-section overflow-hidden {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    <div class="alp-index-remark">
+      <div class="alp-index-remark-bigtitle">
+        <h2 class="headline__h2">{{ st.title }}</h2>
+      </div>
+      <div class="alp-index-remark-con swiper overflow-visible" id="{{ block.id | replace: '-', '' | prepend: 'id_' }}">
+        <div class="swiper-wrapper">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="swiper-slide">
+                <div class="alp-index-remark-item-wrapper">
+                  {%- if bs.link != blank -%}
+                    <a class="full-aa" href="{{ bs.link }}" title="{{ bs.title }}"></a>
+                  {%- endif -%}
+                  <div class="alp-index-remark-item">
+                    <div class="image-box">
+                      {% render 'alp-single-image', image: bs.image, width: 1280, aspect_ratio: '1/1' %}
+                    </div>
+                    <div class="text-box">
+                      <div class="headline__h4 alp-index-remark-title">{{ bs.title }}</div>
+                      <div class="icon">
+                        {% render 'icon-remark' %}
+                        {% render 'icon-remark' %}
+                        {% render 'icon-remark' %}
+                        {% render 'icon-remark' %}
+                        {% render 'icon-remark' %}
+                      </div>
+                      <div class="alp-index-remark-desc">{{ bs.desc }}</div>
+                    </div>
+                  </div>
+                  <div class="alp-index-remark-item-postion2">
+                    {% render 'alp-btn',
+                      url: bs.link,
+                      type: 'btn-link',
+                      text: bs.link_text,
+                      textcolor: '#ffffff',
+                      bgcolor: 'var(--main-color)',
+                      size: 'small'
+                    %}
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          {% endif %}
+        </div>
+        <div class="swiper-navs swiper-pagination-index-remark">
+          {% render 'swiper-pagination', class: 'pagination-products' %}
+          {% render 'swiper-navigation', class: '' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+     // swiper
+     var BlockId = '{{ block.id | replace: '-', '' | prepend: 'id_' }}';
+    var swiper = new Swiper(`.alp-index-remark .swiper#${BlockId}`, {
+      pagination: {
+        el: '.pagination-products',
+        clickable :true,
+      },
+      speed:800,
+      freeMode: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      spaceBetween: 16,
+      breakpoints: { 
+        1280: { 
+          slidesPerView: 3,
+          spaceBetween: 24,
+        },
+        768: { 
+          slidesPerView: 2.4,
+        },
+        320: {  
+          slidesPerView: 1,
+        }
+      }
+    })
+  });
+</script>

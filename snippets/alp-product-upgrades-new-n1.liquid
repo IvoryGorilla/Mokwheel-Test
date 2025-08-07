@@ -1,0 +1,92 @@
+<div
+  class="alp-product-upgrades-new-n1 {% if bs.border_width > 0 %}has-border{% endif %}"
+  style="{{ style_block }}"
+>
+  <div class="alp-product-upgrades-title-new-n1">
+    {%- if bs.block_title != blank -%}
+      <div class="headline__h6" style="color: {{ bs.title_color }};">{{ bs.block_title }}</div>
+    {%- endif -%}
+    {%- if bs.description != blank -%}
+      <div class="title-description" style="color: {{ bs.desc_color }};">{{ bs.description }}</div>
+    {%- endif -%}
+  </div>
+  <div class="alp-pug-group-wrapper-new-n1">
+    {% comment %} 1 单选项 {% endcomment %}
+    {%- if bs.title_1 != blank or bs.product_list_1 -%}
+      <div class="alp-product-upgrades-group-new active">
+        {%- if bs.title_1 != blank -%}
+          <div class="alp-pug-title-new">{{ bs.title_1 }}</div>
+        {%- endif -%}
+        <div class="alp-pug-wrapper-new single-slect">
+          {%- for product in bs.product_list_1 -%}
+            {%- if forloop.first -%}
+              {% render 'alp-addional-product-item-new-n1',
+                product: product,
+                properties: bs.insert_properties,
+                class: 'selected'
+              %}
+            {%- else -%}
+              {% render 'alp-addional-product-item-new-n1', product: product, properties: bs.insert_properties %}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+    {% comment %} 2 多选项 {% endcomment %}
+    {%- if bs.title_2 != blank or bs.product_list_2 -%}
+      <div class="alp-product-upgrades-group-new active">
+        {%- if bs.title_2 != blank -%}
+          <div class="alp-pug-title-new">{{ bs.title_2 }}</div>
+        {%- endif -%}
+        <div class="alp-pug-wrapper-new multi-slect">
+          {%- for product in bs.product_list_2 -%}
+            {% render 'alp-addional-product-item-new-n1', product: product, properties: bs.insert_properties %}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+    {% comment %} 3 {% endcomment %}
+    {%- if bs.title_3 != blank or bs.product_list_3 -%}
+      <div class="alp-product-upgrades-group-new active">
+        {%- if bs.title_3 != blank -%}
+          <div class="alp-pug-title-new">{{ bs.title_3 }}</div>
+        {%- endif -%}
+        <div class="alp-pug-wrapper-new">
+          {%- for product in bs.product_list_3 -%}
+            {% render 'alp-addional-product-item-new-n1', product: product, properties: bs.insert_properties %}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+    {% comment %} 4 {% endcomment %}
+    {%- if bs.title_4 != blank or bs.product_list_4 -%}
+      <div class="alp-product-upgrades-group-new active">
+        {%- if bs.title_4 != blank -%}
+          <div class="alp-pug-title-new">{{ bs.title_4 }}</div>
+        {%- endif -%}
+        <div class="alp-pug-wrapper-new">
+          {%- for product in bs.product_list_4 -%}
+            {% render 'alp-addional-product-item-new-n1', product: product, properties: true %}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+    {% comment %} Group end {% endcomment %}
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    $('.alp-addional-product-item-new').on('click', function () {
+      let $this = $(this);
+      if ($this.parent().hasClass('single-slect')) {
+        if ($this.hasClass('selected')) {
+        } else {
+          $this.addClass('selected').siblings().removeClass('selected');
+        }
+      } else {
+        $this.toggleClass('selected');
+      }
+    });
+  });
+</script>

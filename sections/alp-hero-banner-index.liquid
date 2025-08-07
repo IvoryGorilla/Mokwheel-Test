@@ -1,0 +1,444 @@
+{% schema %}
+{
+  "name": "Alp Hero Banner Index",
+  "class": "alp-hero-banner-index",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Hero Banner"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Background Image Mobile"
+    },
+    {
+      "type": "video",
+      "id": "bg_video",
+      "label": "Background Video"
+    },
+    {
+      "type": "video",
+      "id": "bg_video_mobile",
+      "label": "Background Video Mobile"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Background Opacity",
+      "default": 50
+    },
+    {
+      "type": "text",
+      "id": "aspect_ratio_desktop",
+      "label": "Aspect Ratio Desktop",
+      "default": "auto"
+    },
+    {
+      "type": "text",
+      "id": "aspect_ratio_mobile",
+      "label": "Aspect Ratio Mobile",
+      "default": "auto"
+    },
+    {
+      "type": "text",
+      "id": "block_max_width",
+      "label": "Content Max Width",
+      "default": "720px"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "label": "Show Breadcrumb",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Title"
+        },
+        {
+          "type": "select",
+          "id": "heading_type",
+          "label": "Heading type",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            }
+          ],
+          "default": "h1"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "track_name",
+          "label": "Track Name",
+          "default": "banner"
+        }
+      ]
+    },
+    {
+      "type": "input",
+      "name": "Input",
+      "settings": []
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Hero Banner Index"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};--content-max-width: {{ st.block_max_width }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+    --st-min-height: {{ st.min_height }};
+   }
+  @media (max-width: 999px) {
+  }
+</style>
+
+{% style %}
+  .alp-hero-banner-breadcrumbs{
+      z-index: 20;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding-left: calc(var(--alp-padding-x) * 2);
+  }
+  .alp-hero-banner-heading{
+      font-size: clamp(24px, 4.2vw, 48px);
+  }
+  .alp-hero-banner-description{
+    font-size: 18px;
+  }
+  .alp-hero-banner-description p{
+    margin: 0;
+  }
+  .alp-hero-banner-button{
+    margin-top: 3em;
+  }
+  .alp-hero-banner-button a{
+    border-radius: 25px;
+  }
+  .alp-hero-banner-button .alp-btn.small:not(.button-type-btn-link){
+    padding: 0.6em 2.65em;
+  }
+  .alp-hero-banner-button a svg{
+    display: none;
+  }
+
+  .alp-hero-banner-index .alp-hero-banner-wrapper{
+    aspect-ratio: {{ st.aspect_ratio_desktop }};
+    margin-bottom: 24px;
+  }
+  .alp-hero-banner-index .alp-hero-banner-container.relative{
+    margin: initial;
+  }
+  .alp-hero-banner-index h1.alp-hero-banner-heading{
+    font-size: clamp(30px, 3.7vw, 48px);
+    font-weight: 700;
+  }
+  .alp-hero-banner-index .alp-hero-banner-description h2{
+    font-size: clamp(18px, 1.6vw, 24px);
+  }
+  .alp-hero-banner-index .alp-hero-banner-description{
+    font-size: clamp(18px, 1.6vw, 24px);
+  }
+  .alp-hero-banner-index .alp-hero-banner-button{
+    margin-top: 54px;
+  }
+  .alp-hero-banner-index .alp-hero-banner-button a{
+    border-radius: 4px;
+  }
+  .alp-hero-banner-index .alp-hero-banner-button a span{
+    font-size: clamp(14px, 1vw, 16px);
+  }
+
+  @media (min-width: 751px){
+    .alp-hero-banner-index .alp-hero-banner-container.relative{
+      margin-bottom: 56px;
+      margin-top: auto;
+    }
+  }
+  @media (max-width: 750px){
+    .alp-hero-banner-description p{
+      font-size: 16px;
+    }
+    .jd-header__search-bar {
+      background-color: #fff;
+      width: 300px;
+    }
+
+    .alp-hero-banner-index .alp-hero-banner-wrapper{
+      aspect-ratio: {{ st.aspect_ratio_mobile }};
+      margin-bottom: 16px;
+    }
+    .alp-hero-banner-index .alp-hero-banner-container.relative{
+      margin-top: 100%;;
+    }
+    .alp-hero-banner-index .alp-hero-banner-button{
+      margin-top: 24px;
+    }
+    .alp-hero-banner-index .alp-hero-banner-button .alp-btn.small:not(.button-type-btn-link){
+      padding: 9px 24px;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-section  alp-hero-banner-wrapper overflow-hidden relative {{ st.text_alignment | prepend: "text-al-" }} {{ reset_spacing }}"
+  style="{{ style }}"
+  data-stid="{{ section.id }}"
+>
+  {%- if st.bg_image or st.bg_image_mobile -%}
+    <div class="alp-image-slide-bg full-img-wrap" style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}">
+      {% render 'alp-responsive-image-z',
+        image: st.bg_image,
+        image_mobile: st.bg_image_mobile,
+        desktop_width: 2560,
+        mobile_width: 480,
+        alt: st.title
+      %}
+    </div>
+  {%- endif -%}
+  {%- if st.bg_video -%}
+    <div
+      class="alp-image-slide-bg-video hide_mobile full-img-wrap"
+      style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}"
+    >
+      {% comment %} {{ st.bg_video | video_tag: loop: 'loop', muted: true, playsinline: true, autoplay: true, controls: false }} {% endcomment %}
+
+      <video
+        class="lazy"
+        autoplay
+        muted
+        preload
+        loop
+        x5-video-player-fullscreen="true"
+        x5-playsinline
+        playsinline
+        webkit-playsinline
+      >
+        {%- for source in st.bg_video.sources -%}
+          <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+        {%- endfor -%}
+      </video>
+    </div>
+  {%- endif -%}
+
+  {%- if st.bg_video_mobile -%}
+    <div
+      class="alp-image-slide-bg-video  hide_desktop full-img-wrap"
+      style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}"
+    >
+      {% comment %}
+        {{
+          st.bg_video_mobile
+          | video_tag: loop: 'loop', muted: true, playsinline: true, autoplay: true, controls: false
+        }}
+      {% endcomment %}
+
+      <video
+        class="lazy"
+        autoplay
+        muted
+        preload
+        loop
+        x5-video-player-fullscreen="true"
+        x5-playsinline
+        playsinline
+        webkit-playsinline
+      >
+        {%- for source in st.bg_video_mobile.sources -%}
+          <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+        {%- endfor -%}
+      </video>
+    </div>
+  {%- endif -%}
+  {%- if section.settings.show_breadcrumb -%}
+    <div class="alp-hero-banner-breadcrumbs margin-top">
+      {% render 'breadcrumbs' %}
+    </div>
+  {%- endif -%}
+  <div class="alp-section-container alp-hero-banner-container relative page-width {{ container }}">
+    <div class="alp-hero-banner-inner">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          {%- case block.type -%}
+            {%- when 'heading' -%}
+              {%- if bs.text != blank -%}
+                <div class="alp-hero-banner-heading headline__h2">
+                  <{{ bs.heading_type }} class="alp-hero-banner-heading">
+                    {{- bs.text | newline_to_br -}}
+                  </{{ bs.heading_type }}>
+                </div>
+              {%- endif -%}
+            {%- when 'description' -%}
+              {%- if bs.text != blank -%}
+                <div class="alp-hero-banner-description">{{ bs.text }}</div>
+              {%- endif -%}
+            {%- when 'button' -%}
+              <div class="alp-hero-banner-button">
+                {% render 'alp-btn',
+                  url: bs.url,
+                  type: 'primary',
+                  text: bs.text,
+                  textcolor: '#1a1a1a',
+                  bgcolor: '#fff',
+                  size: 'small',
+                  track_name: bs.track_name
+                %}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      {% endif %}
+    </div>
+  </div>
+</div>

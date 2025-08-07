@@ -1,0 +1,250 @@
+{% schema %}
+{
+  "name": "Alp Index Bottom",
+  "class": "alp-index-bottom",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Text"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Free shipping on all online orders.",
+          "default": "<p></p>"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Index Bottom"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-index-bottom-con {
+    display: flex;
+    justify-content: space-between;
+    gap: 5%;
+    margin: auto;
+  }
+  .alp-index-bottom-item {
+    display: flex;
+    position: relative;
+  }
+  .alp-index-bottom-item:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -25%;
+    width: 1px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+  }
+  .alp-index-bottom-item:first-child:before {
+    display: none;
+  }
+  .alp-index-bottom-item img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    max-width: none;
+  }
+  .alp-index-bottom-item-text {
+    margin-left: 16px;
+  }
+  .alp-index-bottom-item-title {
+    font-weight: bold;
+    font-size: clamp(16px, 1vw, 18px);
+    margin-bottom: 6px;
+  }
+  .alp-index-bottom-item-desc p {
+    margin: 0;
+    font-size: 14px;
+  }
+  @media (max-width: 750px) {
+    .alp-index-bottom-wrapper {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+    .alp-index-bottom-item {
+      width: 100%;
+    }
+    .alp-index-bottom-item:before{
+      display: none;
+    }
+    .alp-index-bottom-item img {
+      width: 24px;
+      height: 24px;
+    }
+    .alp-index-bottom-item-text {
+      margin-left: 1em;
+    }
+
+    .alp-index-bottom-item {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.65em;
+      width: calc(50% - 0.5em);
+    }
+
+    .alp-index-bottom-con {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 4em 1em;
+      position: relative;
+    }
+    .alp-index-bottom-con:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.15);
+      margin-top: 1em;
+    }
+
+    .alp-index-bottom-item-text {
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .alp-index-bottom-item-desc {
+      /* display: none; */
+      opacity: 0.65;
+      max-width: 140px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section alp-index-bottom-wrapper  {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container alp-index-bottom-container page-width {{ container }}">
+    <div class="alp-index-bottom-con">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          <div class="alp-index-bottom-item">
+            <a href="{{ bs.link }}" class="full-aa"></a>
+              {% render 'alp-single-image', image: bs.image, width: 1280 %}
+              <div class="alp-index-bottom-item-text">
+                <h2 class="alp-index-bottom-item-title headline__h6">{{ bs.title }}</h2>
+                <div class="alp-index-bottom-item-desc">{{ bs.desc }}</div>
+              </div>
+            </div>
+        {%- endfor -%}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

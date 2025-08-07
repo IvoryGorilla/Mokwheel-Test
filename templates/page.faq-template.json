@@ -1,0 +1,514 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "16635651268eedb1ef": {
+      "type": "faq-new",
+      "blocks": {
+        "40f05131-92ff-4926-a71e-2ee3a66aa844": {
+          "type": "faq-base",
+          "settings": {
+            "tag": "Products",
+            "tagId": "Products"
+          }
+        },
+        "8f3d07e7-65fc-4441-a773-65907b597a60": {
+          "type": "faq-base",
+          "settings": {
+            "tag": "Purchasing",
+            "tagId": "Purchasing"
+          }
+        },
+        "ef0a4c9d-43b2-4f13-a8fb-99fbe2325a03": {
+          "type": "faq-base",
+          "settings": {
+            "tag": "Trouble Shooting",
+            "tagId": "trouble-shooting"
+          }
+        },
+        "a2c2ae99-b583-4537-83ca-272f26c17e56": {
+          "type": "faq-base",
+          "settings": {
+            "tag": "Trending",
+            "tagId": "Trending"
+          }
+        },
+        "816cc5d2-0198-4a24-bbf9-aa9c56b6f0a1": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Do I need a license for riding Ebike?",
+            "answer": "<p>No, you don’t need a license for riding Ebike. Please read Safety Instructions carefully for your safety.<br/></p>",
+            "quesId": "Products"
+          }
+        },
+        "6fb2c132-82c1-47b2-8e5d-9e8679f95b2c": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "How do I charge my battery?",
+            "answer": "<p>You can check the Battery and Charger of our <a href=\"/pages/help-center\" title=\"Help Center\"><em><strong>E-BIKE USER MANUAL</strong></em></a>. The methods are listed in the manual with more detail.<br/><br/></p>",
+            "quesId": "Products"
+          }
+        },
+        "8295f68b-8234-4a85-b511-8dce48b58888": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "How to maintain my battery?",
+            "answer": "<p>Check our <a href=\"https://www.mokwheel.com/blogs/news/everything-you-need-to-know-about-e-bike-batteries?_pos=8&_sid=825b41acb&_ss=r\" title=\"Everything you need to know about e-bike batteries.\"><em><strong>blog article</strong></em></a> about how to maintain your battery.<br/><br/></p>",
+            "quesId": "Products"
+          }
+        },
+        "6b577225-d70c-438a-851c-62e2e363211c": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "How to find the Ebike that fits me?",
+            "answer": "<p>You can check our <a href=\"/pages/compare-models\" title=\"Compare Models\"><em><strong>Compare Models</strong></em></a> for the differential of our Ebike.<br/><br/></p>",
+            "quesId": "Products"
+          }
+        },
+        "b55e47c3-7c6d-4538-9cd7-93c26de1bfd4": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "How to clean my Ebike?",
+            "answer": "<p>We recommended you to take off the battery. Otherwise, you can clean the E-bike as the normal bike.<br/><br/></p>",
+            "quesId": "Products"
+          }
+        },
+        "66d4654b-a479-48a1-933f-c934d5828f4e": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "What should I know before I riding?",
+            "answer": "<p>Before You ride, We strongly recommend you read our <a href=\"/pages/help-center\" title=\"Help Center\"><em><strong>E-BIKE USER MANUAL</strong></em></a> for your safety.<br/><br/></p>",
+            "quesId": "Products"
+          }
+        },
+        "9a0965e1-6f72-4eac-a8d0-94e88ff0e54c": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "How long do electric bike batteries last?",
+            "answer": "<p>3-4 years.</p>",
+            "quesId": "Products"
+          }
+        },
+        "47c98fc9-0ce5-4782-ae81-34ff350f6164": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "What accessories come with Ebike?",
+            "answer": "<p>We send a wrench, bicycle pump and full fender, with our Ebike. </p>",
+            "quesId": "Products"
+          }
+        },
+        "63542bfa-d981-4089-a933-4d51f4b4f762": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Does my height fit the Mokwheel bike?",
+            "answer": "<p>The recommended height is 5\"4 or higher.</p>",
+            "quesId": "Products"
+          }
+        },
+        "1aaa9100-4452-4a3f-b68b-a978154c2508": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "How long until I receive my bike?",
+            "answer": "<p>The order will be process in 48 business hours. Once the order has shipped, a shipping confirmation email will be sent to your email. We use FedEx or UPS for shipping. Please allow 2~7 business days for the shipment to arrive to your designated location Any delivery dates provided by Mokwheel are estimates.<br/><br/></p>",
+            "quesId": "Purchasing"
+          }
+        },
+        "3abd4b25-d3dd-43da-8561-f1d28d3f98d1": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "What area is included in free shipping?",
+            "answer": "<p>We only ship to the lower 48 states in the US, please check <a href=\"https://www.mokwheel.com/pages/shipping\" title=\"Shipping\"><em><strong>Shipping</strong></em></a> for more information<br/><br/></p>",
+            "quesId": "Purchasing"
+          }
+        },
+        "b85a8d28-f1ae-4458-a72c-6415d4bd9b48": {
+          "type": "faq-quest",
+          "disabled": true,
+          "settings": {
+            "question": "Tax?",
+            "answer": "<p>State sales tax (and municipal sales tax when applicable) is required and will be collected on all orders shipped into the following states:<br/>Alabama / Arizona / Arkansas / California / Colorado / Connecticut / District of Columbia / Florida / Georgia / Hawaii / Idaho / Illinois / Indiana / Iowa / Kentucky / Louisiana / Maine / Maryland / Massachusetts / Michigan / Minnesota / Mississippi / Nebraska / Nevada / New Jersey / New Mexico / New York / North Carolina / North Dakota (starting in 2021) / Ohio / Oklahoma / Pennsylvania / Rhode Island / South Carolina / South Dakota / Tennessee / Texas / Utah / Virginia / Vermont / Washington / West Virginia / Wisconsin / Wyoming</p>",
+            "quesId": "Purchasing"
+          }
+        },
+        "a54b8323-fe5d-450c-bd15-93fc491b843a": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Will my Ebike assembled when it arrives?",
+            "answer": "<p>The Ebike is mostly assembled when it arrives, a few more steps to finish the assembling. Please carefully watch the assembly tutorial or read the <a href=\"/pages/help-center\" title=\"Help Center\"><em><strong>E-BIKE USER MANUAL</strong></em></a> for installation.<br/><br/></p>",
+            "quesId": "Purchasing"
+          }
+        },
+        "0889e239-f1b3-4f59-b44c-b7b6b14bf770": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Tracking information",
+            "answer": "<p>Click <a href=\"https://www.17track.net/en\" title=\"https://www.17track.net/en\"><em><strong>here</strong></em></a> to check your status.</p>",
+            "quesId": "Purchasing"
+          }
+        },
+        "95738102-3d04-4531-8478-f3685359edd8": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Can I stack the two discounts repeatedly?",
+            "answer": "<p>Sorry that only one coupon can be used on one order, we do not support stacking coupons. Thanks for your understanding.<br/><br/>Final interpretation is owned by the Mokwheel company.</p>",
+            "quesId": "Purchasing"
+          }
+        },
+        "ce57ff26-5e98-45b6-bdae-8ba0872d8489": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Bike Won't Turn On",
+            "answer": "<p>If your Mokwheel E-Bike is not working, check the cables to make sure they did not come loose or unplugged. Simply unwrap the black spiral wire covering until the Quick Disconnect fitting is exposed, unplug and re-plug the Quick Disconnect fitting(s).<br/><br/></p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "a1e1b919-c838-40b5-b135-23f8e02474d3": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Error Code Diagnosis",
+            "answer": "<p>Troubleshooting Guide<br/>1. Brake error<br/>Check whether the brake cable is loose or dam- aged. If there is no damage, replace the brake or brake lever and cable.<br/>2. Power-assist sensor error<br/>Step one: Check whether the sensor cable is loose or falling off. If not, it may be due to the damage of the power-assist sensor. Step two: Remove and replace the power-assist sensor.<br/>3. Walk Cruise mode error<br/>Shut down and restart the Ebike (if this issue cannot be solved, consider replacing the controller).<br/>4. Real-time mode error<br/>Shut down and restart the Ebike (if this issue cannot be solved, consider replacing the controller).<br/>5. Low voltage error<br/>Step one: Remove the battery to check if there is enough battery power. Step two: Charge the battery. Step three: If the issue is not solved after completing the previous two steps, it may indicate motor damage. Replace the motor.<br/>6. Motor error<br/>Check whether the motor connecting cable is loose, falling off, or plugged in backward (if not, it may indicate motor damage, consider replacing the motor).<br/>7. Thumb throttle error<br/>Check whether the connecting cable is loose or falling off (if not, it may indicate thumb throttle damage, replace the thumb throttle).</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "39d64c5d-174a-4b02-98d4-f59e49cef335": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Brake Pad Replacement Guide",
+            "answer": "<p>Tools Needed:<br/>Needle nose pliers<br/>Hex keys<br/>Replacement brake pads<br/><br/>Step 1: Brake Pad Removal<br/>1. Get the bike ready for maintenance. First turn off the bike to remove the battery.<br/>2. Locate the brake pads. The brake pads are located inside the brake caliper on each wheel (see photos for reference)<br/>3. Remove the brake caliper first. Use a hex key to remove the two brake caliper bolts from the bike frame(Warning: Be careful not to lose or misplace the washers inside of the brake caliper bolts.)<br/>4. Carefully straighten the retention pin using needle-nose pliers to remove the brake caliper by pushing it upwards. <br/>5. Remove the old brake pads. The pin and the old brakes can be removed by pressing the leaf spring.<br/><br/>Step 2: Brake Pad Installation<br/>1. Install the new brake pads into the brake caliper. Assemble the brake pads in the same configuration as the old pads. The friction material should be facing each other. Make sure the top hole of each pad is aligned with the retention pinhole. Slide the new brakes into the caliper to complete installation.<br/>2. Replace the brake retention pin. Make sure the brake caliper is secure by carefully bending the retention pin to a 90°angle with needle-nose pliers.<br/>3. Reinstall the caliper.  Position the caliper so that the mounting holes on the frame align with the mounting points on the caliper. Using a hex key, insert the bolts and evenly tighten both bolts. <br/>4. Before riding the bike, reinstall the battery and test the brakes to ensure proper installation.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "b8d585a8-8838-4c10-857e-5ac1a79b5cb4": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Brake Adjustment (Loosen/Tighten)",
+            "answer": "<p>Tip: The best way to maintain your brakes is to use both brakes together and engage the rear brake first to avoid excessive strain on the front wheel and fork.<br/>The brake adjustment will involve:<br/>• Checking the wheel to make sure it is fully seated in the frame dropouts. An improperly seated wheel can cause the brake disc to rub against the brake pads and generate noise.<br/>• Checking that the brake disc is straight and in good condition. Damaged or dirty brake discs can result in reduced brake performance or noise.<br/>• Centering the brake caliper by adjusting the positioning so the inner pad, a stationary component of the brake caliper, is close and parallel to the brake discs. A brake pad or brake caliper that is not properly positioned can lead to reduced brake performance or noise.<br/>• Adjusting the brake cable tension and checking the brake lever. These final adjustments will help ensure the brakes were adjusted correctly.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "9e1b89c8-6f96-4d57-85ec-6745de16a1c5": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Crankset Replacement Guide",
+            "answer": "<p>Get the bike ready for maintenance. Remove the battery and press and hold the power button for 10 seconds to discharge the remaining power.<br/>1. Remove the left crank first. Unscrew the bolt with a hex key and insert a crank puller to remove the crank.<br/><br/>2. Move onto the right crank with the same steps, remove the bolt first with a hex key and insert a crank puller into the opening. <br/><br/>3. Test the chain once new cranks are installed. The bike needs to be propped on the kickstand so that the rear wheel is elevated, and the cranks must be rotated backward to rotate the rear wheel. Ensure that the chain is properly attached to the chain ring.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "4d0aa1e3-7e40-4558-a97b-fc01d42d8c3e": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "PAS Sensor Replacement Guide",
+            "answer": "<p>PAS Sensor Troubleshooting<br/>Crank should be removed (refer to crank removal guide)<br/>1. Locate the PAS sensor behind the left pedal to check if it’s loose.<br/>2. If the PAS sensor is not loose, trace the cable coming out of the PAS sensor to the connector.<br/>3. Unplug the PAS sensor connector and take out the controller.<br/>4. Location the connecting cable between the controller and PAS sensor to check if it’s loose.<br/>5. Inspect the inside of the connector for dirt, damage, or moisture. If there is dirt, damage, or moisture inside the connector, the sensor may need to be replaced.<br/>PAS Sensor Replacement<br/>1. Remove the old PAS sensor, unplug the cable from the main controller and pull free.<br/>PAS sensor Installment<br/>1. Install the new sensor, make sure the side with arrow is facing towards the bike.<br/>Before riding the bike, reinstall the battery and test it fully.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "50640975-120e-4add-9329-de7464483ab3": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Wiring Cables Troubleshooting",
+            "answer": "<p>The wiring harness connects various electrical components on your bike. If instructed by MokWheel Product Support to perform a wiring harness connector check, follow the steps below to check that the connector is plugged in and in working order.<br/><br/>Tools Needed:<br/>Hex keys<br/>Get the bike ready for maintenance. Remove the battery and press and hold the power button for 10 seconds to discharge the remaining power.<br/>Flip over the bike and rest on the handlebars in order to prevent damage to the LCD display while performing maintenance.<br/>1. Locate and take out the controller.<br/>2. Check if the connecting cable is loose, unplug and reconnect again. The connector must be unplugged by pulling both sides straight apart, without twisting. If it looks normal on the inside, align the internal notch and pins and press directly together, without twisting.<br/>3. Reinstall the controller following the steps mentioned above.<br/>4. Before riding the bike, reinstall the battery and test it fully.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "f5d8b3d6-0f91-4274-927f-64b2483b9cf1": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Handle Grips & Stem Replacement Guide",
+            "answer": "<p>Tools needed:<br/>Pliers<br/>Hex keys<br/>1. To remove the handlebar, loosen the handle grip bolts first.<br/>2. Then pry off the handlebar caps and slide the handle grips off the handlebar.<br/>Stem Removal<br/>1. Loosen the side bolts on the handlebar stem and remove the middle bolt from the center of the stem. Then pull the stem away from the fork.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "1522e41c-99bd-454d-84a9-962ff83f47d3": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Odometer Replacement Guide",
+            "answer": "<p>Tools Needed:<br/>Hex key<br/><br/>Step 1: LED Display Removal<br/>1. Getting the bike ready for maintenance. Remove the battery and press and hold the power button for 10 seconds to discharge the remaining power.<br/>2. Unplug the LED Display connector. Follow the cable from the back of the LED Display to the wiring harness.<br/>3. Disconnect the LED Display from the connected cable by pulling both ends apart without twisting.<br/>4. Remove the LED Screen. Use an hex key to loosen the bolts connecting the LED Screen and pull away from the handlebars.<br/>5. Remove the Odometer Controls. Loosen the clamp bolts with an hex key and remove.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "fd8901ff-03a8-43c6-a71a-d6effa46e0ca": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Brake Lever Replacement Guide",
+            "answer": "<p>1. To remove the brake levers, first loosen the brake cables from the brake caliper.<br/>2. Squeeze the levers to show the innner mechanism and release the brake cable cap from the levers.<br/>3. Next disconnect the connecting wire for the brakes by pulling away and loosen the bolts on the lever to remove.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "31738a14-ae6a-48f1-a11c-7628fb8dcbf9": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Brake Disc Replacement Guide",
+            "answer": "<p>1. Remove the wheels first before removing the brake discs (see wheel replacement guide for help).<br/>2. Use a hex key to remove the five bolts securing the disc onto the wheel and simply lift the disc to remove.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "0338e123-bbab-4674-bcb8-efe62fbb73c3": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Wheels & Kickstand Replacement Guide",
+            "answer": "<p>Kickstand Removal<br/>1. Remove the bolts for the kickstand that is attached onto the chainstay.<br/>Front Wheel Removal<br/>(This is done similar to when you first installed the wheel)<br/>1. Flip over the bike and stabilize the bike on the handlebar </p><p>2. Remove the two front wheel bolts at each side with a wrench. Locate and loosen front wheel bolts and remove them with a wrench.<br/>3. Remove the front wheel. Lift the front wheel gently off the front fork<br/><br/>Back Wheel Removal<br/>1. Flip the bike around and remove the kickstand first(see above), and then unscrew the bolts attaching the back wheel.<br/>2. Cut the zip ties and disconnect the motor wire.<br/>3. Move the derailler out fo the way and lift the back wheel. Isolate the back wheel by removing the brake disc(see brake disc removal).</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "854e1f94-3cce-4e13-bb8a-c7a17f3fafed": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Shifter Replacement Guide",
+            "answer": "<p>1. To remove the shifter, snip off the tip of the shifter cable and release it from the derailleur.<br/>2. After removing the brake grip, throttle, and brake lever(see brake grip, throttle, and brake lever replacement guide), unscrew the bolt from underneath the shifter and slide off to remove along with the shifter cable from inside the hollow wire housing.<br/>3. When installing the new shifter, insert the cable into the wire housing and push through.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "ea064028-2211-4b8d-a171-4978c1045bd9": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Rearlight Replacement Guide",
+            "answer": "<p>1. Cut the zip ties to release the connecting wire and unplug by pulling apart. Then unscrew the bolts behind the rearlight to remove.<br/></p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "1163b72b-c9f7-49ae-8923-046c75a710e3": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Throttle Replacement Guide",
+            "answer": "<p>1. To remove the throttle, the handle grips have to be removed first(see handle grip replacement guide).<br/>2. Loosen the bolt and disconnect the wire connecting to the throttle. Pull the throttle off the handlebar to remove.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "af224d7d-73da-495b-97fb-8e08ad907796": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Derailleur Replacement Guide",
+            "answer": "<p>1. Push the derailleur forward to release the chain from the crank.<br/>2. Unscrew the outer chip from the derailleur to release the chain fron the derailleur.<br/>3. Unscrew the bolt for the middle chip of the derailleur.<br/>4. Unscrew the center bolt which connects the derailleur onto the bike to remove.<br/>5. Once removed, loosen the screw holding the shifter cable and twist off the cable from the derailleur.<br/>Installation Guide<br/>1. To install, attach the derailleur to the bike first.<br/>2. Next install the middle chip with the chain going over it.<br/>3. Install the outer chip with the chain going over it as shown.<br/>4. Lastly, insert the shifter cable back into the derailleur and tighten.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "c9b4324f-8d6e-4e77-b134-e7ce1c383941": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Headlight Replacement Guide",
+            "answer": "<p>1. Unscrew the headlight bolts from the front fender and disconnect the wire to remove the headlight.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "315dec61-8483-4ca1-b7c1-0fc7001d3be9": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Derailleur Adjustment Guide",
+            "answer": "<p>1. Get the bike ready for maintenance. Remove the battery and press and hold the power button for 10 seconds to discharge the remaining power.<br/>2. Test the alignment. Rotate the pedals forward while simultaneously shifting gears with one hand. Be sure that the chain moves smoothly to each gear when you use the derailleur. Test by turning the wheels one to two full turn at a time.<br/>a. The shifter cable tension may be too tight. Loosen the barrel adjuster on the derailleur. Loosen the barrel adjuster on the derailleur by turning it half or one full turn.<br/>b. The shifter cable may be too loose. Tighten the barrel adjuster on the derailleur. The derailleur barrel adjuster should be turned half a turn to a full turn.<br/>3. Shift between all gears to test the alignment. Using one hand, turn the cranks forward while adjusting the gears simultaneously. Be sure that the derailleur moves the chain smoothly from 1st gear to the 7th gear.<br/>4. Before riding the bike, reinstall the battery and test it fully.</p>",
+            "quesId": "trouble-shooting"
+          }
+        },
+        "fab535f1-0d35-4fcc-9cdc-fa45e5eb0566": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "How to maintain my battery?",
+            "answer": "<p>Check our <a href=\"https://www.mokwheel.com/blogs/news/everything-you-need-to-know-about-e-bike-batteries?_pos=8&_sid=825b41acb&_ss=r\" title=\"Everything you need to know about e-bike batteries.\"><em><strong>blog article</strong></em></a> about how to maintain your battery.<br/><br/></p>",
+            "quesId": "Trending"
+          }
+        },
+        "78684605-2d52-4906-8455-988990b4e3db": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "How to find the Ebike that fits me?",
+            "answer": "<p>You can check our <a href=\"/pages/compare-models\" title=\"Compare Models\"><em><strong>Compare Models</strong></em></a> for the differential of our Ebike.<br/><br/></p>",
+            "quesId": "Trending"
+          }
+        },
+        "c9b2a283-5344-4ac8-9128-c58ec36f901a": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "How to clean my Ebike?",
+            "answer": "<p>We recommended you to take off the battery. Otherwise, you can clean the E-bike as the normal bike.<br/><br/></p>",
+            "quesId": "Trending"
+          }
+        },
+        "78afbc12-85d3-4685-9eb3-18bea045ecf5": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "How long do electric bike batteries last?",
+            "answer": "<p>3-4 years.</p>",
+            "quesId": "Trending"
+          }
+        },
+        "aefdbac7-df71-48a4-84c1-0cde23fac124": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "How long until I receive my bike?",
+            "answer": "<p>The order will be process in 48 business hours. Once the order has shipped, a shipping confirmation email will be sent to your email. We use FedEx or UPS for shipping. Please allow 2~7 business days for the shipment to arrive to your designated location Any delivery dates provided by Mokwheel are estimates.<br/><br/></p>",
+            "quesId": "Trending"
+          }
+        },
+        "42c10e8a-45f3-42d4-aa5b-690fad2addd3": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Will my Ebike assembled when it arrives?",
+            "answer": "<p>The Ebike is mostly assembled when it arrives, a few more steps to finish the assembling. Please carefully watch the assembly tutorial or read the <a href=\"/pages/help-center\" title=\"Help Center\"><em><strong>E-BIKE USER MANUAL</strong></em></a> for installation.<br/><br/></p>",
+            "quesId": "Trending"
+          }
+        },
+        "ef5ac286-f91a-46e3-a098-48d7dc475adf": {
+          "type": "faq-quest",
+          "settings": {
+            "question": "Tracking information",
+            "answer": "<p>Click <a href=\"https://www.17track.net/en\" title=\"https://www.17track.net/en\"><em><strong>here</strong></em></a> to check your status.</p>",
+            "quesId": "Trending"
+          }
+        }
+      },
+      "block_order": [
+        "40f05131-92ff-4926-a71e-2ee3a66aa844",
+        "8f3d07e7-65fc-4441-a773-65907b597a60",
+        "ef0a4c9d-43b2-4f13-a8fb-99fbe2325a03",
+        "a2c2ae99-b583-4537-83ca-272f26c17e56",
+        "816cc5d2-0198-4a24-bbf9-aa9c56b6f0a1",
+        "6fb2c132-82c1-47b2-8e5d-9e8679f95b2c",
+        "8295f68b-8234-4a85-b511-8dce48b58888",
+        "6b577225-d70c-438a-851c-62e2e363211c",
+        "b55e47c3-7c6d-4538-9cd7-93c26de1bfd4",
+        "66d4654b-a479-48a1-933f-c934d5828f4e",
+        "9a0965e1-6f72-4eac-a8d0-94e88ff0e54c",
+        "47c98fc9-0ce5-4782-ae81-34ff350f6164",
+        "63542bfa-d981-4089-a933-4d51f4b4f762",
+        "1aaa9100-4452-4a3f-b68b-a978154c2508",
+        "3abd4b25-d3dd-43da-8561-f1d28d3f98d1",
+        "b85a8d28-f1ae-4458-a72c-6415d4bd9b48",
+        "a54b8323-fe5d-450c-bd15-93fc491b843a",
+        "0889e239-f1b3-4f59-b44c-b7b6b14bf770",
+        "95738102-3d04-4531-8478-f3685359edd8",
+        "ce57ff26-5e98-45b6-bdae-8ba0872d8489",
+        "a1e1b919-c838-40b5-b135-23f8e02474d3",
+        "39d64c5d-174a-4b02-98d4-f59e49cef335",
+        "b8d585a8-8838-4c10-857e-5ac1a79b5cb4",
+        "9e1b89c8-6f96-4d57-85ec-6745de16a1c5",
+        "4d0aa1e3-7e40-4558-a97b-fc01d42d8c3e",
+        "50640975-120e-4add-9329-de7464483ab3",
+        "f5d8b3d6-0f91-4274-927f-64b2483b9cf1",
+        "1522e41c-99bd-454d-84a9-962ff83f47d3",
+        "fd8901ff-03a8-43c6-a71a-d6effa46e0ca",
+        "31738a14-ae6a-48f1-a11c-7628fb8dcbf9",
+        "0338e123-bbab-4674-bcb8-efe62fbb73c3",
+        "854e1f94-3cce-4e13-bb8a-c7a17f3fafed",
+        "ea064028-2211-4b8d-a171-4978c1045bd9",
+        "1163b72b-c9f7-49ae-8923-046c75a710e3",
+        "af224d7d-73da-495b-97fb-8e08ad907796",
+        "c9b4324f-8d6e-4e77-b134-e7ce1c383941",
+        "315dec61-8483-4ca1-b7c1-0fc7001d3be9",
+        "fab535f1-0d35-4fcc-9cdc-fa45e5eb0566",
+        "78684605-2d52-4906-8455-988990b4e3db",
+        "c9b2a283-5344-4ac8-9128-c58ec36f901a",
+        "78afbc12-85d3-4685-9eb3-18bea045ecf5",
+        "aefdbac7-df71-48a4-84c1-0cde23fac124",
+        "42c10e8a-45f3-42d4-aa5b-690fad2addd3",
+        "ef5ac286-f91a-46e3-a098-48d7dc475adf"
+      ],
+      "settings": {
+        "baseImage": "shopify://shop_images/PC_8c2c9c37-df03-4626-a256-0d905b248b12.jpg",
+        "mbaseImage": "shopify://shop_images/M_494ab5a8-dda7-4a3f-8c32-00b152ab66fd.jpg",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "418d41cd-f2cf-454b-a2c7-af850e0a7e88": {
+      "type": "alp-manual-download",
+      "blocks": {
+        "template--16824631787766__418d41cd-f2cf-454b-a2c7-af850e0a7e88-16855171028190d2ac-0": {
+          "type": "item",
+          "settings": {
+            "file_name": "User Manual for Basalt",
+            "file_link": "https://cdn.shopify.com/s/files/1/0550/4424/3702/files/Basalt_2023.07.21.pdf?v=1693374673"
+          }
+        },
+        "03e02e5f-5621-432c-ae4f-53290930f867": {
+          "type": "item",
+          "settings": {
+            "file_name": "User Manual for Basalt ST",
+            "file_link": "https://cdn.shopify.com/s/files/1/0550/4424/3702/files/Basalt_ST_2023.07.21.pdf?v=1693374670"
+          }
+        },
+        "e6e4991d-9947-43da-870a-e00448ae9808": {
+          "type": "item",
+          "settings": {
+            "file_name": "User Manual for Scoria",
+            "file_link": "https://cdn.shopify.com/s/files/1/0550/4424/3702/files/Scoria_2023.07.pdf?v=1693374725"
+          }
+        },
+        "9e6aaabf-68e9-4f87-b11a-b545a9c06908": {
+          "type": "item",
+          "settings": {
+            "file_name": "User Manual for Asphalt and Asphalt ST",
+            "file_link": "https://cdn.shopify.com/s/files/1/0550/4424/3702/files/2023.07._21pdf.pdf?v=1693359782"
+          }
+        },
+        "96c80c96-f47d-406d-b338-da3293258ab1": {
+          "type": "item",
+          "settings": {
+            "file_name": "User Manual for Mesa Plus ST",
+            "file_link": "https://cdn.shopify.com/s/files/1/0550/4424/3702/files/2023.07.pdf?v=1693374723"
+          }
+        },
+        "ac4657c8-21f1-4b23-8f47-ae4ae295323b": {
+          "type": "item",
+          "settings": {
+            "file_name": "User Manual for Tor Plus",
+            "file_link": "https://cdn.shopify.com/s/files/1/0550/4424/3702/files/2023.07_ecf56035-4e85-419d-a840-567fc4e91a17.pdf?v=1693374726"
+          }
+        }
+      },
+      "block_order": [
+        "template--16824631787766__418d41cd-f2cf-454b-a2c7-af850e0a7e88-16855171028190d2ac-0",
+        "03e02e5f-5621-432c-ae4f-53290930f867",
+        "e6e4991d-9947-43da-870a-e00448ae9808",
+        "9e6aaabf-68e9-4f87-b11a-b545a9c06908",
+        "96c80c96-f47d-406d-b338-da3293258ab1",
+        "ac4657c8-21f1-4b23-8f47-ae4ae295323b"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Manual"
+      }
+    },
+    "alp_hidden_heading_WXer48": {
+      "type": "alp-hidden-heading",
+      "blocks": {
+        "item_ifjkXf": {
+          "type": "item",
+          "settings": {
+            "text": "Faq - Mokwheel Ebikes",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "item_ifjkXf"
+      ],
+      "settings": {
+        "title": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16635651268eedb1ef",
+    "418d41cd-f2cf-454b-a2c7-af850e0a7e88",
+    "alp_hidden_heading_WXer48"
+  ]
+}

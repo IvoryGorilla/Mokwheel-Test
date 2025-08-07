@@ -1,0 +1,255 @@
+{% schema %}
+{
+  "name": "referal-win-section5",
+  "class": "referal-win-section5",
+  "settings": [
+    {
+      "type": "text",
+      "id": "referal-win-section5-title",
+      "label": "Referal Win Section5 Title"
+    },
+    {
+      "type": "text",
+      "id": "referal-win-section5-subtitle",
+      "label": "Referal Win Section5 Subtitle"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card-item-pc",
+      "name": "Card Item Desktop",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "referal-win-section5-card-pc-image1",
+          "label": "Referal Win Section5 Card Desktop Image1"
+        },
+        {
+          "type": "image_picker",
+          "id": "referal-win-section5-card-pc-image2",
+          "label": "Referal Win Section5 Card Desktop Image2"
+        },
+        {
+          "type": "image_picker",
+          "id": "referal-win-section5-card-pc-image3",
+          "label": "Referal Win Section5 Card Desktop Image3"
+        }
+      ]
+    },
+    {
+      "type": "card-item-mb",
+      "name": "Card Item Mobile",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "referal-win-section5-card-mb-image1",
+          "label": "Referal Win Section5 Card Mobile Image1"
+        },
+        {
+          "type": "image_picker",
+          "id": "referal-win-section5-card-mb-image2",
+          "label": "Referal Win Section5 Card Mobile Image2"
+        },
+        {
+          "type": "image_picker",
+          "id": "referal-win-section5-card-mb-image3",
+          "label": "Referal Win Section5 Card Mobile Image3"
+        }
+      ]
+    },
+  ],
+  "presets": [
+    {
+      "name": "referal-win-section5"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+  --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+  .referal-win-section5-container {
+    margin-bottom: 100px;
+  }
+  .referal-win-section5-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .referal-win-section5-subtitle {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .referal-win-section5-content {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .referal-win-section5-card {
+    display: flex;
+    gap: 24px;
+  }
+  .referal-win-section5-card-image {
+    width: 100%;
+    height: 360px;
+  }
+  .referal-win-section5-card-image img {
+    height: 100%;
+  }
+  @media (max-width: 768px) {
+    .referal-win-section5-container {
+      margin-bottom: 60px;
+    }
+    .referal-win-section5-title {
+      font-size: 28px;
+    }
+    .referal-win-section5-subtitle {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    .referal-win-section5-content {
+      margin-top: 24px;
+      gap: 10px;
+    }
+    .referal-win-section5-card {
+      gap: 10px;
+    }
+    .referal-win-section5-card-image {
+      height: 130px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}"  style="{{ style }}" >
+  <div class="alp-section-container page-width {{ container }} referal-win-section5-container">
+    <div class="referal-win-section5-top">
+      <h2 class="referal-win-section5-title">{{ st.referal-win-section5-title }}</h2>
+      <div class="referal-win-section5-subtitle">{{st.referal-win-section5-subtitle }}</div>
+    </div>
+    <div class="referal-win-section5-content">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        {%- case block.type -%}
+          {%- when 'card-item-pc' -%}
+            <div class="referal-win-section5-card hide_mobile">
+              {% if bs.referal-win-section5-card-pc-image1 %}
+                <div class="referal-win-section5-card-image">
+                  <img
+                    src="{{ bs.referal-win-section5-card-pc-image1 | image_url: width: 1200 }}"
+                    width="auto"
+                    height="auto"
+                  >
+                </div>
+              {% endif %}
+              {% if bs.referal-win-section5-card-pc-image2 %}
+                <div class="referal-win-section5-card-image">
+                  <img
+                    src="{{ bs.referal-win-section5-card-pc-image2 | image_url: width: 1200 }}"
+                    width="auto"
+                    height="auto"
+                  >
+                </div>
+              {% endif %}
+              {% if bs.referal-win-section5-card-pc-image3 %}
+                <div class="referal-win-section5-card-image">
+                  <img
+                    src="{{ bs.referal-win-section5-card-pc-image3 | image_url: width: 1200 }}"
+                    width="auto"
+                    height="auto"
+                  >
+                </div>
+              {% endif %}
+            </div>
+          {%- when 'card-item-mb' -%}
+            <div class="referal-win-section5-card hide_desktop">
+              {% if bs.referal-win-section5-card-mb-image1 %}
+                <div class="referal-win-section5-card-image">
+                  <img
+                    src="{{ bs.referal-win-section5-card-mb-image1 | image_url: width: 1200 }}"
+                    width="auto"
+                    height="auto"
+                  >
+                </div>
+              {% endif %}
+              {% if bs.referal-win-section5-card-mb-image2 %}
+                <div class="referal-win-section5-card-image">
+                  <img
+                    src="{{ bs.referal-win-section5-card-mb-image2 | image_url: width: 1200 }}"
+                    width="auto"
+                    height="auto"
+                  >
+                </div>
+              {% endif %}
+              {% if bs.referal-win-section5-card-mb-image3 %}
+                <div class="referal-win-section5-card-image">
+                  <img
+                    src="{{ bs.referal-win-section5-card-mb-image3 | image_url: width: 1200 }}"
+                    width="auto"
+                    height="auto"
+                  >
+                </div>
+              {% endif %}
+            </div>
+        {%- endcase -%}    
+      {%- endfor -%}
+    </div>
+  </div>
+</div>

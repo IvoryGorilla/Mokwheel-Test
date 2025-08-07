@@ -1,0 +1,309 @@
+<style>
+    @media (min-width:751px) {
+        .pc{
+            display: block;
+        }
+        .mobile{
+            display: none;
+        }
+      
+        .guide_display-all{
+            display: flex;
+            height: 986px;
+            background-color: #2D3033;
+            background-size: 60px;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .guide_display_top{
+            max-width: 1380px;
+            padding: 0 10px;
+            margin: 0 auto;
+        }
+        .guide_display-box{
+            display: flex;
+            justify-content:flex-start;
+            max-width: 1380px;
+            padding: 0 10px;
+            margin: 0 auto;
+            margin-top: 80px;
+        }
+        .guide_display-title{
+            color: #fff;
+            font-size: 64px;
+            font-weight: 600;
+            line-height: 1;
+           
+        }
+        .guide_display-text{
+            font-size: 20px;
+            line-height: 30px;
+            padding-top: 30px;
+            color: #fff;
+            
+        }
+        .guide_display-left{
+            width: 23%;
+        }
+        .guide_display-left img{
+            width: 100%;
+            cursor: pointer;
+        }
+        .guide_display-title{
+           
+            line-height: 1;
+            font-weight: 600;
+        }
+        .guide_display-text{
+            
+            line-height: 30px;
+            font-weight: 500;
+        }
+        .guide_display-right{
+           cursor: pointer;
+            padding-left: 84px;
+            width: 77%;
+        }
+       
+        .guide_display-right{
+            color: #fff;
+            font-size: 22px;
+            
+        }
+        .guide_display-right .swiper-slide-thumb-active{
+            color: #EE751C;
+        }
+        .guide_display-right .swiper-slide:hover{
+            color: #EE751C;
+        }
+        .guide_display-right .swiper-slide:first-child{
+            height: 66px !important;
+        }
+     
+    }
+    
+    @media (max-width:750px) {
+      .pc{
+        display: none;
+    }
+    .mobile{
+        display: block;
+    }
+    .guide_display-all{
+            padding: 50px 0;
+            height: 986px;
+            background-color: #2D3033;
+            background-size: 60px;
+           
+           
+        }
+        .guide_display_top{
+            width: 100%;
+            padding: 0 15px;
+            
+        }
+        .guide_display-box{
+            
+            width: 100%;
+            padding: 0 15px;
+            
+        }
+        .guide_display-title{
+            color: #fff;
+            font-size: 42px;
+            font-weight: 600;
+            line-height: 1;
+           
+        }
+        .guide_display-text{
+            font-size: 14px;
+            
+            padding-top: 20px;
+            color: #fff;
+            
+        }
+        
+       
+      
+        .guide_display-title{
+           
+            line-height: 1;
+            font-weight: 600;
+        }
+        .guide_display-text{
+            
+            line-height: 1.5;
+            font-weight: 500;
+        }
+        .guide_display-right{
+           
+           padding: 0 15px;
+        }
+        .guide_display-right strong{
+            display: block;
+            font-size: 18px;
+        }
+        .guide_display-right{
+            color: #fff;
+            font-size: 14px;
+            
+        }
+        .guideDisplayLeft_img{
+            display: flex;
+            justify-content: center;
+        }
+        .guideDisplayLeft_img img{
+            margin: 50px 0 73px 0;
+            width: 68%;
+         
+        }
+        .guide_display-all .swiper-container-horizontal>.swiper-pagination-bullets, .guide_display-all .swiper-pagination-custom, .guide_display-all .swiper-pagination-fraction{
+            bottom: 26%;
+        }
+        .guide_display-all .swiper-button-next, .guide_display-all .swiper-button-prev {
+            top: 38%;
+            color: #fff;
+        }
+        .guide_display-all .swiper-button-next:after, .guide_display-all  .swiper-button-prev:after{
+            font-weight: 600;
+            font-size: 22px;
+        }
+        .guide_display-all  .swiper-pagination-bullet{
+            background: #A0AEB6;
+        }
+
+}
+.guide_display-all .swiper-pagination {
+    z-index: 1;
+}
+.guide_display-all .swiper-pagination-bullet-active{
+    background: #fff;
+}
+
+</style>
+
+
+<div class="guide_display-all">
+    <div class="guide_display_top">
+        <div class="guide_display-title">
+            {{section.settings.title }}
+        </div>
+        <div class="guide_display-text">
+            {{section.settings.text }}
+        </div>
+    </div>
+    <div class="pc">
+        <div class="guide_display-box">
+            <div class="guide_display-left">
+                <div class="swiper guideDisplayLeft">
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                            <div class="swiper-slide">
+                                <img loading="lazy"  class="preview-image" {% render 'image-attributes', image: block.settings.img, sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>   
+            </div>
+            <div class="guide_display-right">
+                <div thumbsSlider="" class="swiper guideDisplayMediaRight">
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                            <div class="swiper-slide">
+                                {{block.settings.text_right }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div>
+    <div class="mobile">
+        <div class="swiper guideDisplayLeft">
+            <div class="swiper-wrapper">
+                {% for block in section.blocks %}
+                    <div class="swiper-slide">
+                        <div class="guideDisplayLeft_img">
+                            <img loading="lazy"  class="preview-image" {% render 'image-attributes', image: block.settings.img, sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                        </div>
+                        <div class="guide_display-right">{{block.settings.text_right }}</div>
+                    </div>
+                   
+                {% endfor %}
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>   
+    </div>
+</div>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+     var swiper = new Swiper(".guideDisplayMediaRight", {
+        direction: "vertical",
+        watchSlidesProgress: true,
+        height: 100,//你的slide高度
+        touchRatio: 0,
+        // slidesPerView: 10,
+        slidesPerGroup: 10,
+       
+    });
+    var swiper2 = new Swiper(".guideDisplayLeft", {
+        thumbs: {
+            swiper: swiper,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+    });
+  });
+    
+</script>
+{% schema %}
+{
+    "name": "Guide display",
+    "settings": [
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+    },
+    {
+        "type": "richtext",
+        "id": "text",
+        "label": "text"
+    }
+   
+    
+    ],
+    "blocks": [
+    {
+        "name": "Guide",
+        "type": "Guide",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "img",
+                "label": "img"
+            },
+            {
+                "type": "richtext",
+                "id": "text_right",
+                "label": "Right text"
+            }
+        ]
+    }
+   
+    ],
+    "presets": [{
+    "name": "Guide display"
+    
+    }]
+}
+{% endschema %}

@@ -1,0 +1,197 @@
+{% schema %}
+{
+  "name": "Alp Dealer Two Content",
+  "class": "alp-dealer-two-content",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "dealer_item",
+      "name": "Dealer Item",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "dealer_item_image_pc",
+          "label": "Dealer Item Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "dealer_item_image_mb",
+          "label": "Dealer Item Image Mobile"
+        },
+        {
+          "type": "text",
+          "id": "dealer_item_title",
+          "label": "Dealer Item Title"
+        },
+        {
+          "type": "richtext",
+          "id": "dealer_item_content",
+          "label": "Dealer Item Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Dealer Two Content"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .dealer_two_container {
+    display: flex;
+    align-items: flex-start;
+    gap:clamp(16px, 3vw, 64px);
+  }
+  .dealer_two_item {
+    flex:1
+  }
+  .dealer_two_item_image_pc img,.dealer_two_item_image_mb img {
+    display: block;
+    border-radius:4px;
+  }
+  .dealer_two_item_title {
+    margin-top:32px;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 120%;
+    text-transform: capitalize;
+    letter-spacing: -0.5px;
+    color: #1A1A1A;
+    margin-bottom: 0;
+  }
+  .dealer_two_item_content {
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 150%;
+    text-transform: capitalize;
+    letter-spacing: -0.5px;
+    color: #1A1A1A; 
+  }
+  .dealer_two_item_content p {
+    margin: 0;
+  }
+  @media (max-width: 750px) {
+    .dealer_two_container {
+      flex-direction: column;
+      gap: 48px;
+    }
+    .dealer_two_item_title {
+      font-size: 24px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container dealer_two_container page-width {{ container }}">
+    {%- for block in section.blocks -%}
+      {% liquid
+        assign bs = block.settings
+      %}
+        <div class="dealer_two_item">
+          {% if bs.dealer_item_image_pc != blank %}
+            <div class="dealer_two_item_image_pc hide_mobile">
+              <img
+                src="{{ bs.dealer_item_image_pc | image_url: width: 1200 }}"
+                width="auto"
+                height="auto"
+                class="lazy"
+              >
+            </div>
+          {% endif %}
+          {% if bs.dealer_item_image_mb %}
+            <div class="dealer_two_item_image_mb hide_desktop">
+              <img
+                src="{{ bs.dealer_item_image_mb | image_url: width: 1200 }}"
+                width="auto"
+                height="auto"
+                class="lazy"
+              >
+            </div>
+          {% endif %}
+          <h3 class="dealer_two_item_title headline__h3">
+            {{ bs.dealer_item_title }}
+          </h3>
+          <div class="dealer_two_item_content">
+            {{ bs.dealer_item_content }}
+          </div>
+        </div>
+      {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,239 @@
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+  
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+<style>
+    .paymentInstructions_conter{
+    margin-left: 8.3%;
+    margin-right: 8.3%;
+    border-radius: 16px;
+    }
+    .paymentInstructions_bottom{
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+    margin-top: 48px;
+    }
+   .instructionsImage_list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   }
+   .instructionsImage_text{
+    width: 35%;
+   }
+   .instructionsImage_image{
+    width: 55%;
+   }
+   .instructionsImage_image picture img{
+    display: block;
+   }
+   .instructionsImage_image.InstructionsImage2{
+    display: flex;
+    gap: 26px;
+   }
+   {%- for block in section.blocks -%}
+        {% if block.settings.reverse %}
+            #block-{{ section.id }}-{{ block.id }} {
+                flex-direction: row-reverse;
+            } 
+            #block2-{{ section.id }}-{{ block.id }} {
+                flex-direction: row-reverse;
+            } 
+        {% endif %}
+    {%- endfor -%}
+    @media screen and (max-width: 999px){
+        .paymentInstructions_bottom{
+            margin-top: 0;
+            gap: 24px;
+        }
+        .instructionsImage_list{
+            flex-direction: column;
+        }
+        .instructionsImage_text{
+            width: 100%;
+        }
+        .instructionsImage_image{
+            width: 100%;
+            margin-top: 16px;
+        }
+        .instructionsImage_image.InstructionsImage2{
+            flex-direction: column;
+        }
+        {%- for block in section.blocks -%}
+                {% if block.settings.reverse %}
+                    #block-{{ section.id }}-{{ block.id }} {
+                        flex-direction: column-reverse; ;
+                    } 
+                    #block2-{{ section.id }}-{{ block.id }} {
+                        flex-direction: column;
+                    } 
+                {% endif %}
+            {%- endfor -%}
+    }
+  
+</style>
+
+<div class="alp-section {{ reset_spacing }} paymentInstructions_conter" style="{{ style }}">
+    <div class="alp-section-container paymentInstructions-conter page-width {{ container }}">
+        <div class="paymentInstructions_top">
+            <div class="headline__h2s">{{ st.instructions_title}}</div>
+        </div>
+       <div class="paymentInstructions_bottom">
+        {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            {%- case block.type -%}
+                {%- when 'InstructionsImage1' -%}
+                <div class="instructionsImage_list" id="block-{{ section.id }}-{{ block.id }}">
+                    <div class="instructionsImage_text text_content">{{ bs.text }}</div>
+                    <div class="instructionsImage_image">
+                        {% render 'alp-single-image', image: bs.image, width: 1280 %}
+                    </div>
+                </div>
+                {%- when 'InstructionsImage2' -%}
+                    <div class="instructionsImage_list" id="block2-{{ section.id }}-{{ block.id }}">
+                        <div class="instructionsImage_text text_content">{{ bs.text }}</div>
+                        <div class="instructionsImage_image InstructionsImage2">
+                            {% render 'alp-single-image', image: bs.image1, width: 1280 %}
+                            {% render 'alp-single-image', image: bs.image2, width: 1280 %}
+                        </div>
+                    </div>
+            {%- endcase -%}
+        {% endfor %}
+       </div>
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Alp Payment Instructions",
+    "settings": [
+        {
+            "type": "text",
+            "id": "instructions_title",
+            "label": "Title"
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#000000"
+        },
+        {
+            "type": "select",
+            "id": "container",
+            "label": "Layout",
+            "default": "alp-container",
+            "options": [
+            {
+                "value": "alp-container",
+                "label": "Default"
+            },
+            {
+                "value": "alp-container-fluid",
+                "label": "Fluid container"
+            },
+            {
+                "value": "alp-full-width",
+                "label": "Full width"
+            }
+            ]
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "Padding top",
+            "default": 10,
+            "min": 0,
+            "max": 50,
+            "step": 1,
+            "unit": "em"
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "Padding bottom",
+            "default": 10,
+            "min": 0,
+            "max": 50,
+            "step": 1,
+            "unit": "em"
+        },
+        {
+            "type": "checkbox",
+            "id": "reset_spacing",
+            "label": "Remove default space between sections",
+            "default": false
+        }
+    ],
+    "blocks" : [
+    {
+        "type": "InstructionsImage1",
+        "name": "instructions_image1",
+        "settings":[
+            {
+                "type": "checkbox",
+                "id": "reverse",
+                "label": "Right text and left figure",
+                "default": false
+            },
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "richtext",
+                "id": "text",
+                "label": "text"
+            }
+        ]
+    },
+    {
+        "type": "InstructionsImage2",
+        "name": "instructions_image2",
+        "settings":[
+            {
+                "type": "checkbox",
+                "id": "reverse",
+                "label": "Right text and left figure",
+                "default": false
+            },
+            {
+                "type": "image_picker",
+                "id": "image1",
+                "label": "Image 1"
+            },
+            {
+                "type": "image_picker",
+                "id": "image2",
+                "label": "Image 2"
+            },
+            {
+                "type": "richtext",
+                "id": "text",
+                "label": "text"
+            }
+        ]
+    }
+    ],
+    "presets": [{
+        "name": "Alp Payment Instructions"
+    }]
+}
+{% endschema %}

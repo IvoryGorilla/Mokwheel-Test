@@ -1,0 +1,320 @@
+{% schema %}
+{
+  "name": "Inverter Media2",
+  "class": "inverter-media2-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mb",
+      "label": "Image Mobile"
+    },
+    {
+      "type": "video",
+      "id": "preview_video",
+      "label": "Preview Video"
+    },
+    {
+      "type": "video",
+      "id": "preview_video_mb",
+      "label": "Preview Video Mobile"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "text",
+      "id": "video_button",
+      "label": "Video Button"
+    },
+    {
+      "type": "text",
+      "id": "order_button",
+      "label": "Order Button"
+    },
+    {
+      "type": "text",
+      "id": "aspect",
+      "label": "Aspect",
+      "default": "1440/768"
+    },
+    {
+      "type": "text",
+      "id": "aspect_mb",
+      "label": "Aspect Mobile",
+      "default": "343/550"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inverter Media2"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --aspect-pc: {{ st.aspect }};
+   --aspect-mb: {{ st.aspect_mb }};
+  }
+</style>
+
+{% style %}
+  .inverter-media2-header {
+    max-width: 900px;
+    margin: auto;
+    margin-bottom: 48px;
+  }
+  .inverter-media2-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .inverter-media2-subtitle {
+    margin: 20px 40px 0;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+  }
+  .inverter-media2-content {
+    display: flex;
+    gap: 20px;
+    position: relative;
+  }
+  .inverter-media2-video video {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: var(--aspect-pc);
+    border-radius: 4px;
+  }
+  .inverter-media2-image {
+    height: 100%;
+  }
+  .inverter-media2-image img {
+    height: 100%;
+    display: block;
+    border-radius: 4px;
+    aspect-ratio: var(--aspect-pc);
+  }
+  .inverter-media2-button {
+    position: absolute;
+    bottom: 64px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .inverter-media2-videourl {
+    padding: 14px 30.5px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 120%;
+    border-radius: 4px;
+    color: #1a1a1a;
+    background: #ffffff;
+    text-align: center;
+  }
+  .inverter-media2-producturl {
+    padding: 14px 33.5px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 120%;
+    border-radius: 4px;
+    color: #1a1a1a;
+    background: #ffffff;
+    text-align: center;
+  }
+  @media screen and (max-width: 999px) {
+    .inverter-media2-header {
+      margin-bottom: 32px;
+    }
+    .inverter-media2-title {
+      font-size: 30px;
+    }
+    .inverter-media2-subtitle {
+      margin: 6px 0 0;
+      font-size: 14px;
+    }
+    .inverter-media2-content {
+      flex-direction: column;
+      gap: 6px;
+    }
+    .inverter-media2-video video {
+      aspect-ratio: var(--aspect-mb);
+    }
+    .inverter-media2-image img {
+      aspect-ratio: var(--aspect-mb);
+      display: block
+    }
+    .inverter-media2-button {
+      flex-direction: column;
+      bottom: 40px;
+    }
+    .inverter-media2-videourl {
+      font-size: 14px;
+      padding: 14px 18.5px;
+    }
+    .inverter-media2-producturl {
+      font-size: 14px;
+      padding: 14px 29px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" data-stid="{{ section.id }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }} inverter-media2-container">
+    {% if st.title != blank %}
+      <div class="inverter-media2-header">
+        <h2 class="inverter-media2-title">{{ st.title }}</h2>
+        <div class="inverter-media2-subtitle">{{ st.subtitle }}</div>
+      </div>
+    {% endif %}
+    <div class="inverter-media2-content">
+      {%- if st.preview_video != blank -%}
+        <div class="inverter-media2-video hide_mobile">
+          <video
+            class="lazy"
+            muted
+            preload
+            autoplay
+            loop
+            x5-video-player-type="h5"
+            x5-video-player-fullscreen="true"
+            x5-playsinline
+            playsinline
+            webkit-playsinline
+          >
+            {%- for source in st.preview_video.sources -%}
+              <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+            {%- endfor -%}
+          </video>
+        </div>
+      {%- elsif st.image != blank -%}
+        <div class="inverter-media2-image hide_mobile">
+          <img
+            src="{{ st.image | image_url: width: 1920 }}"
+            width="auto"
+            height="auto"
+          >
+        </div>
+      {%- endif -%}
+
+      {%- if st.preview_video_mb != blank -%}
+        <div class="inverter-media2-video hide_desktop">
+          <video
+            class="lazy"
+            muted
+            preload
+            autoplay
+            loop
+            x5-video-player-type="h5"
+            x5-video-player-fullscreen="true"
+            x5-playsinline
+            playsinline
+            webkit-playsinline
+          >
+            {%- for source in st.preview_video_mb.sources -%}
+              <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+            {%- endfor -%}
+          </video>
+        </div>
+      {%- elsif st.image_mb != blank -%}
+        <div class="inverter-media2-image hide_desktop">
+          <img
+            src="{{ st.image_mb | image_url: width: 800 }}"
+            width="auto"
+            height="auto"
+            style="aspect-ratio: {{ st.single_aspect_mb }};"
+          >
+        </div>
+      {%- endif -%}
+
+      <div class="inverter-media2-button">
+        {% if st.video_button != blank %}
+          <a class="inverter-media2-videourl" href="{{ st.video.sources[1].url }}" data-fslightbox="full_video">
+            {{ st.video_button }}
+          </a>
+        {% endif %} 
+        {% if st.order_button != blank %}
+          <a class="inverter-media2-producturl" href="javascript:history.back()" >
+            {{ st.order_button }}
+          </a>
+        {% endif %} 
+      </div>
+    </div>
+  </div>
+</div>
+

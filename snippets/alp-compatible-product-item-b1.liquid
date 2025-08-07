@@ -1,0 +1,76 @@
+{% comment %}
+  {% render 'alp-compatible-product-item', product: product %}
+{% endcomment %}
+{%- if product -%}
+  {%- assign free_text = bs.free_text | default: 'Free' -%}
+  <div
+    class="alp-compatible-item alp-compatible-item-b1"
+    data-compatible-product
+    data-compatible-variant="{{ product.first_available_variant.id }}"
+    data-compatible-price="{{ product.metafields.custom.pack_original_price | default: product.price }}"
+  >
+    <div class="compatible-item-flex select-trigger">
+      <div class="compatible-item-image">
+        <div class="compatible-select">{% render 'icon-check-2' %}</div>
+        <div class="relative">
+          <a class="full-aa" href="{{ product.featured_image | image_url: width: 1920 }}" data-fslightbox></a>
+          {{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+        </div>
+      </div>
+      <div class="compatible-item-info">
+        <div class="compatible-item-title">
+          <div class="c-title">{{ product.title }}</div>
+          {% comment %}
+            {%- if product.metafields.custom.new_description != blank -%}
+              <div class="c-option-des">
+                {{ product.metafields.custom.new_description | truncatewords: 15 }}
+              </div>
+            {%- endif -%}
+          {% endcomment %}
+          {%- if product.metafields.custom.shipping_time != blank -%}
+            <div class="c-option-des c-shipping-time">
+              {{ product.metafields.custom.shipping_time }}
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="compatible-item-price">
+          <div class="alp-addional-product-price">
+            {%- if bs.all_discount > 0 -%}
+              {%- assign discount_num = 100 | minus: bs.all_discount -%}
+              {%- assign discount_rate = discount_num | divided_by: 100.0 -%}
+              {%- assign discount_price = product.price | times: discount_rate -%}
+              {%- if discount_price == 0 -%}
+                {%- assign discount_price = free_text -%}
+              {%- else -%}
+                {%- assign discount_price = discount_price | money -%}
+              {%- endif -%}
+              {% assign origin_product_price = product.price | money %}
+              <s class="cart-item__old-price ">
+                {{- product.metafields.custom.pack_original_price | default: origin_product_price -}}
+              </s>
+              <strong class="price--final" data-discount-price="{{ product.metafields.custom.discount_price }}">
+                {{- discount_price -}}
+              </strong>
+            {%- elsif product.metafields.custom.discount_price != blank -%}
+              {%- assign discount_price = product.metafields.custom.discount_price -%}
+              {%- if discount_price == 0 -%}
+                {%- assign discount_price = free_text -%}
+              {%- else -%}
+                {%- assign discount_price = discount_price | money -%}
+              {%- endif -%}
+              {% assign origin_product_price = product.price | money %}
+              <s class="cart-item__old-price ">
+                {{- product.metafields.custom.pack_original_price | default: origin_product_price -}}
+              </s>
+              <strong class="price--final" data-discount-price="{{ product.metafields.custom.discount_price }}">
+                {{- discount_price -}}
+              </strong>
+            {%- else -%}
+              <span class="normal-price ">{{ product.price | money }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

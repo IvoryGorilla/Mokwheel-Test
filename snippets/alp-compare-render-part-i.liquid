@@ -1,0 +1,100 @@
+{% comment %} Color Switch {% endcomment %}
+<div class="pro_img_wrappper alp_pro_color_switch">
+  <a href="{{ product.url }}" class="new_index_pro_wrapa"></a>
+  <div class="alp-product-item-image">
+    {% for variant in product.variants %}
+      {% liquid
+        assign options_string = ''
+        for option in variant.options
+          assign options_string = options_string | append: option | append: ','
+        endfor
+      %}
+      <div
+        class="product-item-image-i {% if forloop.index == 1 %} active{% endif %}"
+        data-variant="{{ variant.id }}"
+        data-options="{{ options_string }}"
+      >
+        {%- assign alt_title = product.title | append: ' - ' | append: variant.title -%}
+        {% render 'alp-single-image', image: variant.image, width: 1280, aspect_ratio: '3/2', alt: alt_title %}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="pro_bot alp_pro_sltext">
+    <div class="pro_color_list_2">
+      <div class="alp-product-item-color-swatch">
+        {% render 'alp-color-swatch-for-list', product: product %}
+      </div>
+      <div class="cp_new_desc">
+        {{ product.metafields.custom.new_description | metafield_tag | strip_html }}
+      </div>
+    </div>
+  </div>
+</div>
+{% comment %} Color Switch End {% endcomment %}
+{% comment %} Feature List {% endcomment %}
+<div class="compare_spec_wrapper_2">
+  <div class="compare_spec_list">
+    {% for item in product.metafields.custom.product_comparison.value %}
+      <div class="compare_spec_list_item_2">
+        {%- if item.title != '' -%}
+          <div class="csl-title">{{ item.title }}</div>
+        {%- endif -%}
+        {%- if item.dec != '' -%}
+          <div class="csl-desc">{{ item.dec }}</div>
+        {%- endif -%}
+      </div>
+    {% endfor %}
+    <div class="compare_spec_list_item_2 ctp_price">
+      <div class="p_price">
+        {% for variant in product.variants %}
+          {% liquid
+            assign options_string = ''
+            for option in variant.options
+              assign options_string = options_string | append: option | append: ','
+            endfor
+          %}
+          <div
+            class="product-item-price-i {% if forloop.index == 1 %} active{% endif %}"
+            data-variant="{{ variant.id }}"
+            data-options="{{ options_string }}"
+          >
+            <span class="price_iii">
+              {{- variant.price | money -}}
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% comment %} Feature List End {% endcomment %}
+{% comment %} View More And Price (Dynamic Render) {% endcomment %}
+<div class="compare-bottom-button">
+  <div class="compare-bottom-button-flex">
+    <div class="to_detail">
+      <a href="{{ product.url }}">
+        <div class="p_price">
+          {% for variant in product.variants %}
+            {% liquid
+              assign options_string = ''
+              for option in variant.options
+                assign options_string = options_string | append: option | append: ','
+              endfor
+            %}
+            <div
+              class="product-item-price-i {% if forloop.index == 1 %} active{% endif %}"
+              data-variant="{{ variant.id }}"
+              data-options="{{ options_string }}"
+            >
+              <span class="price_iii">
+                {{- variant.price | money -}}
+              </span>
+            </div>
+          {% endfor %}
+        </div>
+        <span>View Detail</span>
+      </a>
+    </div>
+  </div>
+</div>
+{% comment %} View More And Price (Dynamic Render) End {% endcomment %}

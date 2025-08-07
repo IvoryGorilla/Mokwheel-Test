@@ -1,0 +1,54 @@
+{% comment %}
+  {% render 'nav-product-list', collection: collection ,limit: 10 %}
+{% endcomment %}
+{%- assign the_limit = limit | default: 12 -%}
+<div class="nav-collection-items-list">
+  {%- if bs.mega_content != blank -%}
+    <div class="mega-menu-richcontent-mobile-p2">{{ bs.mega_content }}</div>
+  {%- endif -%}
+  <div class="nav-collection-items-grid">
+    {%- for item in collection.products limit: the_limit -%}
+      <div class="nav-image-link-item-grid is-products">
+        <a href="{{ item.url }}" class="nav-image-link full-aa"></a>
+        <div class="nav-image-link-image">
+          {%- if item.first_available_variant.featured_image -%}
+            {% comment %} {{ item.first_available_variant.featured_image | image_url: width: 320 | image_tag: loading: 'lazy' }} {% endcomment %}
+            <img
+              data-src="{{ item.first_available_variant.featured_image | image_url: width: 300 }}"
+              alt="{{ item.title | default: image.alt }}"
+              loading="lazy"
+              width="auto"
+              height="auto"
+              class="lazy"
+            >
+          {%- else -%}
+            {% comment %} {{ item.featured_image | image_url: width: 320 | image_tag: loading: 'lazy' }} {% endcomment %}
+            <img
+              data-src="{{ item.featured_image | image_url: width: 300 }}"
+              alt="{{ item.title | default: image.alt }}"
+              loading="lazy"
+              width="auto"
+              height="auto"
+              class="lazy"
+            >
+          {%- endif -%}
+        </div>
+        <div class="nav-product-i-info">
+          <div>
+            <div class="nav-image-link-title headline__h6">{{ item.title }}</div>
+            {%- if item.metafields.custom.new_description != blank -%}
+              <div class="nav-image-link-description">
+                {%- if item.metafields.custom.new_description_nav != blank -%}
+                  {{- item.metafields.custom.new_description_nav | metafield_tag | strip_html | strip -}}
+                {%- else -%}
+                  {{- item.metafields.custom.new_description | metafield_tag | strip_html | strip -}}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+          <div class="nav-image-link-price">{% render 'price', product: item %}</div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>

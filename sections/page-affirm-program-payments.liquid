@@ -1,0 +1,164 @@
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+  
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  .affirm-program-payments-container p{
+    margin: 0;
+  }
+  .affirm-program-payments-container .item-list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 48px;
+  }
+  .affirm-program-payments-container .item-list .item{
+    background: #f8f8f8;
+    border-radius: 16px;
+    padding: 40px;
+    width: 30%;
+  }
+  .affirm-program-payments-container .description{
+    font-size: clamp(18px, 4vw, 24px);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+  .affirm-program-payments-container .description .right p{
+    font-weight: 500;
+  }
+  @media screen and (max-width: 999px){
+    .affirm-program-payments-container .item-list{
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .affirm-program-payments-container .item-list .item{
+      padding: 32px;
+      width: 100%;
+    }
+    .affirm-program-payments-container .description{
+      margin-top: 24px;
+    }
+  }
+</style>
+
+  <div class="affirm-program-payments-wrapper alp-section {{ reset_spacing }}" style="{{ style }}">
+    <div class="affirm-program-payments-container alp-section-container page-width {{ container }}">
+        <h2 class="headline__h2s">{{section.settings.title}}</h2>
+        <div class="item-list">
+          {% for item in section.blocks %}
+            <div class="item">
+              <h2 class="headline__h2s">{{item.settings.title}}</h2>
+              <div class="description">{{item.settings.description}}</div>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+
+  <script>
+    (()=>{
+
+    })()
+  </script>
+
+  {% schema %}
+  {
+  "name": "affirm-program-payments",
+  "class": "affirm-program-payments",
+  "presets": [{
+    "name": "affirm-program-payments",
+    "settings": {
+  
+    }
+  }],
+  "blocks": [{
+    "type": "mega_menu", 
+    "name": "Mega menu", 
+    "settings":[{
+      "type": "richtext",
+      "id": "title",
+      "label": "title" 
+    },{
+      "type": "textarea",
+      "id": "description",
+      "label": "description" 
+    }]
+  }],
+  "settings": [{
+    "type": "text",
+    "id": "title",
+    "label": "title" 
+  },
+  {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#000000"
+        },
+        {
+            "type": "select",
+            "id": "container",
+            "label": "Layout",
+            "default": "alp-container",
+            "options": [
+            {
+                "value": "alp-container",
+                "label": "Default"
+            },
+            {
+                "value": "alp-container-fluid",
+                "label": "Fluid container"
+            },
+            {
+                "value": "alp-full-width",
+                "label": "Full width"
+            }
+            ]
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "Padding top",
+            "default": 10,
+            "min": 0,
+            "max": 50,
+            "step": 1,
+            "unit": "em"
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "Padding bottom",
+            "default": 10,
+            "min": 0,
+            "max": 50,
+            "step": 1,
+            "unit": "em"
+        },
+        {
+            "type": "checkbox",
+            "id": "reset_spacing",
+            "label": "Remove default space between sections",
+            "default": false
+        }]
+  }
+  {% endschema %}
+
+

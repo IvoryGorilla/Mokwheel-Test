@@ -1,0 +1,15 @@
+{% comment %} {%- assign bs = block.settings -%} {% endcomment %}
+
+<div
+  class="alp_frame_style_selector_item {% if is_active %} active{% endif %}"
+  data-target-index="{{ text | strip_html | handle }}"
+>
+  {%- assign info_list = info | split: ';' -%}
+  {%- for info in info_list -%}
+    {%- assign info_title = info | split: ':' -%}
+    <div class="alp_frame_style_selector_item_info relative {{ info_title[2] | default: '' }}">
+      <a class="full-aa" href="{{ info_title[1] | default: '#' }}"></a>
+      <span>{{ info_title[0] }}</span>
+    </div>
+  {%- endfor -%}
+</div>

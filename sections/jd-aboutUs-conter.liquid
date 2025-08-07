@@ -1,0 +1,365 @@
+<style>
+    @media (max-width:750px) {
+        .pc {
+            display: none;
+        }
+
+        .mobile {
+            display: block;
+        }
+
+        .aboutUs_img {
+            width: 100%;
+        }
+
+        .aboutUs_img img {
+            width: 100%;
+        }
+        .aboutUs_conterList {
+            padding-top: 60px;
+        }
+        .activity_all {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 60px;
+        }
+
+        .aboutUs_conter {
+           padding: 0 15px;
+        }
+
+        .aboutUs_conterTitle {
+            font-size: 32px;
+            font-weight: 600;
+            color: #000000;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        .aboutUs-conterText {
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .aboutUs-conterText .aboutUs_conterText:first-of-type {
+            margin-top: 0;
+        }
+
+        .aboutUs-conterText .aboutUs_conterText {
+            margin-top: 16px;
+        }
+
+        .aboutUs_conterText {
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.5;
+            font-weight: normal;
+            color: #1B1B1B;
+            margin: 0;
+        }
+
+        .aboutUs_conterTitle1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #1B1B1B;
+            margin-top: 50px;
+            line-height: 1.5;
+        }
+        .aboutUs_conterText {
+            margin-top: 30px;
+        }
+
+        .aboutUs_conterTitle2 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #1B1B1B;
+            line-height: 1.5;
+        }
+        .activity_all iframe {
+            height: 194px;
+        }
+    }
+
+    @media (min-width:751px) {
+        .pc {
+            display: block;
+        }
+
+        .mobile {
+            display: none;
+        }
+
+        .aboutUs_img {
+            width: 100%;
+        }
+
+        .aboutUs_img img {
+            width: 100%;
+        }
+
+        .aboutUs_conterList {
+            padding-top: 60px;
+        }
+
+        .activity_all {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        .activity_all img{
+            height: 636px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .aboutUs_conter {
+            max-width: 1440px;
+            margin: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .aboutUs_conterTitle {
+            font-size: 48px;
+            font-weight: bold;
+            color: #000000;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .aboutUs-conterText {
+            padding-top: 32px;
+            text-align: center;
+            text-align: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .aboutUs-conterText .aboutUs_conterText:first-of-type {
+            margin-top: 0;
+        }
+
+        .aboutUs-conterText .aboutUs_conterText {
+            margin-top: 35px;
+        }
+
+        .aboutUs_conterText p {
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.5;
+            font-weight: normal;
+            color: #1B1B1B;
+            margin: 0;
+        }
+
+        .aboutUs_conterTitle1 {
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: #1B1B1B;
+            margin-top: 75px;
+            line-height: 1.5;
+        }
+        .aboutUs_conterText {
+            margin-top: 55px;
+        }
+
+        .aboutUs_conterTitle2 {
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: #1B1B1B;
+            line-height: 1.5;
+        }
+
+        .activity_all iframe {
+            height: 788px;
+        }
+
+   
+
+    }
+</style>
+<div class="aboutUs-box">
+    {% if section.settings.aboutUs_img != blank %}
+    <div class="aboutUs_img">
+        <img loading="lazy" class="preview-image pc" {% render 'image-attributes' , image: section.settings.aboutUs_img,
+            sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+        <img loading="lazy" class="preview-image mobile" {% render 'image-attributes' , image:
+            section.settings.aboutUs_img1,
+            sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+    </div>
+    {% endif %}
+    <div class="aboutUs-conter">
+        <div class="aboutUs_conter">
+            {% for block in section.blocks %}
+            <div class="aboutUs_conterList">
+                <div class="aboutUs_conterTop">
+                    {% if block.settings.aboutUs_conterTitle != blank %}
+                    <div class="aboutUs_top">
+                        <div class="aboutUs_conterTitle">{{block.settings.aboutUs_conterTitle}}</div>
+                        <div class="aboutUs-conterText">
+                            <div class="aboutUs_conterText pc">{{block.settings.aboutUs_conterText}}</div>
+                            <div class="aboutUs_conterText mobile">{{block.settings.aboutUs_conterText | strip_html}}</div>
+                            {% if block.settings.aboutUs_conterText1 != blank %}
+                            <div class="aboutUs_conterText pc">{{block.settings.aboutUs_conterText1}}</div>
+                            <div class="aboutUs_conterText mobile">{{block.settings.aboutUs_conterText1 | strip_html}}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if block.settings.aboutUs_conterTitle1 != blank %}
+                    <div class="aboutUs_middle">
+                        <div class="aboutUs_conterTitle1">{{block.settings.aboutUs_conterTitle1}}</div>
+                        <div class="aboutUs_conterText pc">{{block.settings.aboutUs_conterText2}}</div>
+                        <div class="aboutUs_conterText mobile">{{block.settings.aboutUs_conterText2 | strip_html}}</div>
+                    </div>
+                    {% endif %}
+                    {% if block.settings.aboutUs_conterTitle2 != blank %}
+                    <div class="aboutUs_bottom">
+                        <div class="aboutUs_conterTitle1">{{block.settings.aboutUs_conterTitle2}}</div>
+                        <div class="aboutUs_conterText pc">{{block.settings.aboutUs_conterText3}}</div>
+                        <div class="aboutUs_conterText mobile">{{block.settings.aboutUs_conterText3 | strip_html}}</div>
+                    </div>
+                    {% endif %}
+                    {% if block.settings.aboutUs_conterTitle3 != blank %}
+                    <div class="aboutUs_bottom1">
+                        <div class="aboutUs_conterTitle2">{{block.settings.aboutUs_conterTitle3}}</div>
+                        <div class="aboutUs_conterText pc">{{block.settings.aboutUs_conterText4}}</div>
+                        <div class="aboutUs_conterText mobile">{{block.settings.aboutUs_conterText4 | strip_html}}</div>
+                    </div>
+                    {% endif %}
+
+                </div>
+                <div class="activity_all">
+                    {% if block.settings.aboutUs_conterVideo != blank %}
+                    <video class="" width="100%" muted autoplay preload loop x5-video-player-fullscreen="true"
+                        x5-playsinline playsinline webkit-playsinline>
+                        <source src="{{ block.settings.aboutUs_conterVideo }}">
+                    </video>
+                    {% else %}
+                    {% if block.settings.aboutUs_conterVideo1 != blank %}
+                    <iframe width="100%" height="200"
+                        src="https://www.youtube.com/embed/{{block.settings.aboutUs_conterVideo1.id}}?controls=0&autoplay=1&mute=1"
+                        title="YouTube video player" frameborder="0" loop = 1
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    {% else %}
+                    {% if block.settings.aboutUs_conterImg != blank %}
+                    <img loading="lazy" class="preview-image pc" {% render 'image-attributes' , image:
+                        block.settings.aboutUs_conterImg,
+                        sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                    <img loading="lazy" class="preview-image mobile" {% render 'image-attributes' , image:
+                        block.settings.aboutUs_conterImg1,
+                        sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                    {% endif %}
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+"name": "AboutUs Conter",
+"settings": [
+{
+"type": "image_picker",
+"id": "aboutUs_img",
+"label": "image"
+},
+{
+"type": "image_picker",
+"id": "aboutUs_img1",
+"label": "image m"
+}
+],
+"blocks" : [
+{
+"type": "aboutUsConter",
+"name": "aboutUs_conter",
+"settings":[
+{
+"type": "text",
+"id": "aboutUs_conterTitle",
+"label": "First-level Title"
+},
+{
+"type": "richtext",
+"id": "aboutUs_conterText",
+"label": "text"
+},
+{
+"type": "richtext",
+"id": "aboutUs_conterText1",
+"label": "text"
+},
+{
+"type": "text",
+"id": "aboutUs_conterTitle3",
+"label": "Secondary heading"
+},
+{
+"type": "richtext",
+"id": "aboutUs_conterText4",
+"label": "Secondary Title Copy"
+},
+{
+"type": "text",
+"id": "aboutUs_conterTitle1",
+"label": "Tertiary heading"
+},
+{
+"type": "richtext",
+"id": "aboutUs_conterText2",
+"label": "Tertiary copywriting"
+},
+{
+"type": "text",
+"id": "aboutUs_conterTitle2",
+"label": "Tertiary heading"
+},
+{
+"type": "richtext",
+"id": "aboutUs_conterText3",
+"label": "Tertiary copywriting"
+},
+{
+"type": "image_picker",
+"id": "aboutUs_conterImg",
+"label": "image"
+},
+{
+"type": "image_picker",
+"id": "aboutUs_conterImg1",
+"label": "image m"
+},
+{
+"type": "url",
+"id": "aboutUs_conterVideo",
+"label": "Video Link"
+},
+{
+"type": "video_url",
+"id": "aboutUs_conterVideo1",
+"label": "YouTube Video Link",
+"accept": ["youtube"]
+}
+]
+}
+],
+"presets": [{
+"name": "AboutUs Conter"
+}]
+}
+{% endschema %}

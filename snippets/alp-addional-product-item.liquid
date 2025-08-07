@@ -1,0 +1,48 @@
+{% comment %}
+  Usage:
+  {% render 'alp-addional-product-item', product: product, properties: false %}
+{% endcomment %}
+
+{%- assign add_properties = properties | default: false -%}
+
+<div
+  class="alp-addional-product-item"
+  data-variantPrice=""
+  data-productId="{{- product.id -}}"
+  data-addional-product
+>
+  <div class="alp-addional-product-flex">
+    <div class="alp-addional-product-image">
+      {{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+      {% render 'icon-check-2' %}
+    </div>
+    <div class="alp-addional-product-content">
+      <div class="alp-addional-product-title">
+        <div>
+          {%- if product.metafields.custom.additional_options_title != blank -%}
+            {{ product.metafields.custom.additional_options_title }}
+          {%- else -%}
+            {{ product.title }}
+          {%- endif -%}
+        </div>
+        <div class="alp-addional-product-price" data-select-price></div>
+      </div>
+      <div class="alp-addional-product-description">
+        {%- if product.metafields.custom.new_description != blank -%}
+          {{ product.metafields.custom.new_description | truncatewords: 15 }}
+        {%- elsif product.description != blank -%}
+          {{ product.description | strip_html | truncatewords: 15 }}
+        {%- else -%}
+          Select {{ product.title }} For Your E-Bike
+        {%- endif -%}
+      </div>
+      <div class="alp-addional-product-select">
+        {% render 'alp-variant-select', product: product, text: 'Select Your Option' %}
+      </div>
+    </div>
+  </div>
+  {%- if add_properties -%}
+    <input class="the-properties" type="hidden" name="properties[*Option:{{- product.title -}}]" value="">
+    <input class="the-properties-id" type="hidden" name="properties[_OptionId:{{- product.title -}}]" value="">
+  {%- endif -%}
+</div>

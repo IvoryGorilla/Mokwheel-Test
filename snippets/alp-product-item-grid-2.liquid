@@ -1,0 +1,148 @@
+{% comment %}
+  use snippet alp-product-item-1.liquid
+  Accepts:
+    product
+  Usage:
+  {% render 'alp-product-item-grid', product: product , aspect_ratio: aspect_ratio %}
+{% endcomment %}
+
+{%- assign show_features = show_features | default: false -%}
+{%- assign show_icon_features = show_icon_features | default: true -%}
+{%- assign show_discount_badge = show_discount_badge | default: true -%}
+{%- assign show_reviews = show_reviews | default: false -%}
+{%- assign show_description = show_description | default: true -%}
+
+<div
+  class="alp-product-item-grid alp-product-item-wrapper type-grid-2"
+  data-swatch-wrapper
+  style="--aspect-ratio:{{ aspect_ratio | default: '1/1' }}"
+>
+  <a class="alp-product-item-link full-aa" href="{{ product.url }}" title="{{ product.title }}"></a>
+
+  <div class="alp-grid-container-image {% unless show_reviews %} no_reviews{% endunless %} {% unless show_features %} no_features{% endunless %}">
+    {%- if show_reviews -%}
+      <!-- Stamped - Begin Star Rating Badge -->
+      <span
+        class="stamped-product-reviews-badge stamped-main-badge alp-product-item-features"
+        data-id="{{ product.id }}"
+        data-product-sku="{{ product.handle }}"
+        data-product-title="{{product.title}}"
+        data-product-type="{{product.type}}"
+        style="display: block;"
+      >
+      </span>
+      <!-- Stamped - End Star Rating Badge -->
+    {%- endif -%}
+
+    <div class="alp-product-item-features {% if show_reviews %} has_reviews{% endif %}">
+      {%- if show_discount_badge -%}
+        {%- if product.metafields.custom.full_reduction != blank -%}
+          <div class="alp_product__badge_i">{{- product.metafields.custom.full_reduction -}}</div>
+        {%- endif -%}
+      {%- endif -%}
+      {%- if show_features -%}
+        {%- assign features = product.metafields.custom.new_feature_list -%}
+        {%- if features.value.size > 0 -%}
+          {%- for item in features.value -%}
+            <div class="product-features-i">{{ item }}</div>
+          {%- endfor -%}
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+
+    <div class="alp-product-item-image">
+      {%- if product.variants.size > 0 -%}
+        {% for variant in product.variants %}
+          {% liquid
+            assign options_string = ''
+            for option in variant.options
+              assign options_string = options_string | append: option | append: ','
+            endfor
+          %}
+          <div
+            class="product-item-image-i {% if forloop.index == 1 %} active{% endif %}"
+            data-variant="{{ variant.id }}"
+            data-options="{{ options_string }}"
+          >
+            {%- assign alt_title = product.title | append: ' - ' | append: variant.title -%}
+            {%- if variant.image -%}
+              {% render 'alp-single-image',
+                image: variant.image,
+                width: 1280,
+                aspect_ratio: aspect_ratio,
+                alt: alt_title
+              %}
+            {%- else -%}
+              {% render 'alp-single-image',
+                image: product.featured_image,
+                width: 1280,
+                aspect_ratio: aspect_ratio,
+                alt: product.title
+              %}
+            {%- endif -%}
+          </div>
+        {% endfor %}
+      {%- else -%}
+        {% render 'alp-single-image',
+          image: product.featured_image,
+          width: 1280,
+          aspect_ratio: aspect_ratio,
+          alt: product.title
+        %}
+      {%- endif -%}
+    </div>
+    <a class="alp-product-item-link full-aa" href="{{ product.url }}" title="{{ product.title }}"></a>
+  </div>
+
+  <div class="alp-grid-item-info-wrapper">
+    <div class="alp-product-item-info p-grid">
+      <div class="alp-product-item-color-swatch">
+        {% render 'alp-color-swatch-for-list', product: product %}
+      </div>
+      <div class="alp-product-item-info-flex info-flex-column">
+        <div class="alp-product-item-info-grid-wrapper">
+          <div class="alp-product-item-title">
+            <h2 class="headline__h6l">{{ product.title }}</h2>
+            {%- if product.metafields.custom.new_description != blank and show_description -%}
+              <div class="product-list-description">
+                {{- product.metafields.custom.new_description | strip_html | strip -}}
+              </div>
+            {%- endif -%}
+            <!-- Stamped - Begin Star Rating Badge -->
+            <span
+              class="stamped-product-reviews-badge stamped-main-badge product-item-title-bottom"
+              data-id="{{ product.id }}"
+              data-product-sku="{{ product.handle }}"
+              data-product-title="{{product.title}}"
+              data-product-type="{{product.type}}"
+              style="display: block;"
+            >
+            </span>
+            <!-- Stamped - End Star Rating Badge -->
+          </div>
+          {% comment %} {% render 'installment-block', product: product %} {% endcomment %}
+        </div>
+        <div class="alp-product-item-info-prices-flex">
+          <div class="alp-product-item-price small">{% render 'price', product: product %}</div>
+          {% render 'quick-add-button', product: product %}
+        </div>
+      </div>
+    </div>
+    {% if product.metafields.custom.product_configuration.value != blank and show_icon_features %}
+      <div class="alp-productAcessories">
+        <div class="productAcessories_conter">
+          {% for item in product.metafields.custom.product_configuration.value %}
+            <div class="productAcessories_lsit">
+              <div class="productAcessories_lsitImg">
+                <img loading="lazy" src="{{ item.img }}" alt="" width="96" height="96">
+              </div>
+              <div class="productAcessories_lsitTitle">
+                {{ item.title }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

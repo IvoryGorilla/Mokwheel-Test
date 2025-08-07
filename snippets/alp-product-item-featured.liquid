@@ -1,0 +1,88 @@
+{% comment %}
+  use snippet alp-product-item-1.liquid
+  Accepts:
+    product
+  Usage:
+  {% render 'alp-product-item-featured', product: product , aspect_ratio: aspect_ratio %}
+{% endcomment %}
+
+{%- assign show_icon_features = show_icon_features | default: false -%}
+{%- assign show_discount_badge = show_discount_badge | default: false -%}
+{%- assign show_description = show_description | default: true -%}
+
+<style>
+  .alp-product-item-featured{
+    border: 1px solid #E7E7E7;
+    border-radius: 16px;
+  }
+  .alp-product-item-featured .alp-grid-container-image{
+      background-color: #fff;
+      padding-top: 0;
+  }
+  .alp-product-item-featured .alp-product-item-title-wrap{
+    flex-direction: column;
+    align-items: baseline;
+  }
+</style>
+
+<div
+  class="alp-product-item-featured alp-product-item-wrapper"
+  data-swatch-wrapper
+  style="--aspect-ratio:{{ aspect_ratio | default: '1/1' }}"
+>
+  <a class="alp-product-item-link full-aa" href="{{ product.url }}" title="{{ product.title }}"></a>
+
+  <div class="alp-product-item-image">
+    {%- if product.variants.size > 0 -%}
+      {% for variant in product.variants %}
+        {% liquid
+          assign options_string = ''
+          for option in variant.options
+            assign options_string = options_string | append: option | append: ','
+          endfor
+        %}
+        <div
+          class="product-item-image-i {% if forloop.index == 1 %} active{% endif %}"
+          data-variant="{{ variant.id }}"
+          data-options="{{ options_string }}"
+        >
+          {%- assign alt_title = product.title | append: ' - ' | append: variant.title -%}
+          {%- if variant.image -%}
+            {% render 'alp-single-image',
+              image: variant.image,
+              width: 1280,
+              aspect_ratio: aspect_ratio,
+              alt: alt_title
+            %}
+          {%- else -%}
+            {% render 'alp-single-image',
+              image: product.featured_image,
+              width: 1280,
+              aspect_ratio: aspect_ratio,
+              alt: product.title
+            %}
+          {%- endif -%}
+        </div>
+      {% endfor %}
+    {%- else -%}
+      {% render 'alp-single-image',
+        image: product.featured_image,
+        width: 1280,
+        aspect_ratio: aspect_ratio,
+        alt: product.title
+      %}
+    {%- endif -%}
+  </div>
+
+  <div class="alp-product-item-info">
+    <div class="alp-product-item-title-wrap">
+      <div class="alp-product-item-color-swatch">
+        {% render 'alp-color-swatch-for-list', product: product %}
+      </div>
+      <div class="alp-product-item-title">
+        <h3 class="headline__h5l">{{ product.title }}</h3>
+        <div class="alp-product-item-price">{% render 'price', product: product %}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1274 @@
+{% schema %}
+{
+  "name": "AXX Global Compare Full",
+  "class": "axx-global-compare-full",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Global Compare"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "model_tile",
+      "label": "Model Title",
+      "default": "Model"
+    },
+    {
+      "type": "text",
+      "id": "show_difference",
+      "label": "Show Difference",
+      "default": "Show Difference"
+    },
+    {
+      "type": "text",
+      "id": "select_ebikes",
+      "label": "Select Ebikes",
+      "default": "Select Ebikes"
+    },
+    {
+      "type": "text",
+      "id": "price_title",
+      "label": "Price Title",
+      "default": "Price"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "View Product"
+    },
+    {
+      "type": "text",
+      "id": "fetch_url",
+      "label": "Fetch URL",
+      "default": "/pages/compare-models-data"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "preset_product",
+      "name": "Preset Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product",
+          "info": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AXX Global Compare Full"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign section_id = section.id | split: '--' | last | prepend: 'axx_'
+%}
+
+{% stylesheet %}
+  .global-compare-inner-flex {
+    display: flex;
+    white-space: nowrap;
+    flex-direction: column;
+    overflow-x: auto;
+    height: 100%;
+    overflow-y: auto;
+  }
+  .global-compare-inner-flex > .products-new-compare-wrapper {
+    display: flex;
+    white-space: nowrap;
+  }
+  .global-compare-inner-flex .products-new-compare-wrapper > div {
+    min-width: 320px;
+    padding: 0px;
+    width: 33%;
+  }
+
+  .global-compare {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .global-compare .global-compare-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 6;
+    display: block;
+  }
+
+  .global-compare-wrapper {
+    background-color: #fff;
+    width: 96%;
+    height: 96%;
+    max-height: 800px;
+    position: relative;
+    z-index: 10;
+    border-radius: var(--alp-border-radius);
+  }
+
+  .global-compare-selector span svg {
+    width: 12px;
+  }
+
+  .global-compare-selector span {
+    display: inline-flex;
+    gap: 0.3em;
+    font-weight: 500;
+  }
+
+  .global-compare-option img {
+    width: 48px;
+  }
+
+  .global-compare-option {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    font-weight: 500;
+  }
+
+  span.global-compare-option-check-box {
+    width: 14px;
+    height: 14px;
+    border: 1px solid #636363;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  span.global-compare-option-check-box svg {
+    width: 10px;
+  }
+
+  .global-compare-option.selected span.global-compare-option-check-box {
+    background: #000;
+  }
+
+  .global-compare-selector {
+    position: relative;
+  }
+
+  .global-compare-options {
+    position: absolute;
+    top: 100%;
+    background: #fff;
+    padding: 10px 14px;
+    left: -14px;
+    min-width: 160px;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0px 4px 10px #0000001a;
+    border-radius: 4px;
+  }
+
+  .global-compare-options-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  span.global-compare-diff-check-box {
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #636363;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  span.global-compare-diff-check-box svg {
+    width: 12px;
+  }
+  .global-compare-diff-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    font-weight: 500;
+  }
+  .global-compare-wrapper {
+    padding: 24px 24px;
+    padding-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .global-compare-inner {
+    flex: 1;
+    height: calc(100% - 60px);
+    padding-bottom: 0px;
+    position: relative;
+  }
+
+  .global-compare-inner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(255, 255, 255);
+    z-index: 66;
+    display: none;
+  }
+
+  .global-compare-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 67;
+    margin: auto;
+    width: 3.15em;
+    height: 3.15em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-dasharray='16' stroke-dashoffset='16' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 3c4.97 0 9 4.03 9 9'%3E%3Canimate fill='freeze' attributeName='stroke-dashoffset' dur='0.2s' values='16;0'/%3E%3CanimateTransform attributeName='transform' dur='1.5s' repeatCount='indefinite' type='rotate' values='0 12 12;360 12 12'/%3E%3C/path%3E%3C/svg%3E");
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    display: none;
+  }
+
+  .global-compare.first-load .global-compare-inner::after,
+  .global-compare.first-load .global-compare-inner::before {
+    display: block;
+  }
+
+  .global-compare-inner-flex-parent {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .global-compare-header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 48px;
+    position: relative;
+    z-index: 20;
+    padding-bottom: 10px;
+  }
+
+  .global-compare-controller {
+    display: flex;
+    gap: 24px;
+  }
+
+  .axx_compare_product_title {
+    font-weight: 500;
+    line-height: 1.2;
+    font-size: clamp(12px, 1.2vw, 16px);
+    text-align: center;
+  }
+
+  .product-new-compare-item.is-first-row .axx_compare_product_title {
+    text-align: left;
+  }
+
+  .product-new-compare-i .axx-product-item-image {
+    margin: auto;
+    max-width: 280px;
+  }
+
+  .product-new-compare-i span.axx-product-form__label {
+    display: none;
+  }
+
+  .product-new-compare-i .axx-product-form__input:not([data-swatch-type='color-swatch']) {
+    display: none;
+  }
+
+  .product-new-compare-i .axx-product-form__swatch {
+    justify-content: center;
+  }
+
+  .product-new-compare-i .axx_compare_spec_list .axx_compare_spec_list_item {
+    padding: 24px;
+    text-align: center;
+    line-height: 1.45;
+    font-size: clamp(14px, 1.2vw, 16px);
+    border-bottom: 1px solid #eee;
+  }
+
+  .axcp-title {
+    display: none;
+  }
+
+  .products-new-compare-wrapper.is-title {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .products-new-compare-wrapper.is-title > div {
+    background: #fff;
+    padding-bottom: 8px;
+    padding-top: 12px;
+  }
+
+  .products-new-compare-wrapper.is-button {
+    position: sticky;
+    bottom: 0;
+    z-index: 11;
+  }
+  .axx_compare_spec_list_item {
+    white-space: normal;
+  }
+
+  .axx_compare_spec_list_item .axcp-desc {
+    max-width: 300px;
+    margin: auto;
+  }
+
+  .product-new-compare-item.is-button .axx_compare_product_button {
+    text-align: center;
+    padding-bottom: 12px;
+    padding-top: 16px;
+    background: var(--background, #fff);
+    display: block;
+  }
+
+  a.axx_compare_product_url_button_a {
+    font-weight: 500;
+    font-size: clamp(14px, 1.2vw, 16px);
+    color: #ffffff;
+    background: #1a1a1a;
+    padding: 0.5em 1em;
+    display: inline-flex;
+  }
+
+  .product-new-compare-i .axx_compare_spec_list.is-first-row .axx_compare_spec_list_item {
+    text-align: left;
+    padding-left: 0;
+  }
+  .product-new-compare-i .axx_compare_spec_list {
+    margin-top: 32px;
+    border-top: 1px solid #eee;
+  }
+  .axx_compare_spec_list_item {
+    height: var(--height);
+    display: flex;
+    align-items: center;
+  }
+  .product-new-compare-i .axx-images-with-swatch {
+    display: block;
+    mix-blend-mode: darken;
+  }
+  .product-new-compare-i .axx-images-with-swatch {
+    min-height: var(--height);
+  }
+  .product-new-compare-item.is-button.is-first-row a.axx_compare_product_url_button_a {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .global-compare.loading .global-compare-inner {
+    opacity: 0.5;
+    pointer-events: none;
+    transition: 0.3s opacity;
+  }
+  .global-compare-inner-flex .products-new-compare-wrapper > div.is-first-row {
+    min-width: 180px;
+    max-width: 320px;
+    position: sticky;
+    left: 0;
+    background: #fff;
+    z-index: 8;
+  }
+  .global-compare-inner-flex .products-new-compare-wrapper > div:nth-child(even) {
+    --background: #fafafa;
+    background: var(--background);
+    /* background: linear-gradient(180deg, #fafafa 85%, rgba(250, 250, 250, 0) 100%); */
+  }
+  .global-compare-controller > div {
+    cursor: pointer;
+  }
+  .global-compare.show_diff .axx_compare_spec_list_item:not(.diff) {
+    display: none;
+  }
+  .global-compare.show_diff span.global-compare-diff-check-box {
+    background: #000;
+  }
+
+  .global-compare-close {
+    cursor: pointer;
+  }
+
+  .global-compare-checkbox svg {
+    width: 1em;
+  }
+
+  .global-compare-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .global-compare-checkbox .icon-checkmark {
+    display: inline-flex;
+    border: 1px solid #1f1f1f;
+    width: 1.2em;
+    height: 1.2em;
+    padding: 1px;
+    color: #fff;
+    border-radius: 2px;
+  }
+
+  .global-compare-checkbox .icon-checkmark path {
+  }
+
+  .global-compare-checkbox.checked .icon-checkmark {
+    background: #000;
+  }
+
+  /* 适用于Webkit浏览器（如Chrome, Safari） */
+  .global-compare-inner-flex::-webkit-scrollbar {
+    width: 4px; /* 设置滚动条宽度 */
+    height: 4px;
+  }
+
+  .global-compare-inner-flex::-webkit-scrollbar-track {
+    background: transparent; /* 隐藏滚动条背景 */
+  }
+
+  .global-compare-inner-flex::-webkit-scrollbar-thumb {
+    background-color: rgb(145, 145, 145); /* 设置滚动条颜色 */
+    border-radius: 2px; /* 圆角效果 */
+  }
+
+  /* 隐藏上下箭头 */
+  .global-compare-inner-flex::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  .global-compare-floating-tab {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    z-index: 800;
+    pointer-events: none;
+  }
+
+  .global-comparable-button-text {
+    display: table;
+    writing-mode: tb;
+    transform: rotate(-180deg);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
+  }
+
+  .global-compare-floating-tab-content {
+    background: #000;
+    color: #fff;
+    padding-right: 6px;
+    padding-bottom: 8px;
+    border-radius: 8px 0px 0 8px;
+    position: relative;
+    padding-top: 18px;
+    padding-left: 8px;
+    transition: 0.3s;
+    transform: translateX(100%);
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .global-compare-floating-tab.show .global-compare-floating-tab-content {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+    transition: 0.5s 0.8s;
+  }
+
+  .global-comparable-button-img img {
+    display: block;
+    width: 24px;
+    transform: rotate(90deg);
+  }
+
+  .compare-products-count {
+    position: absolute;
+    background: #e8400d;
+    width: 18px;
+    height: 18px;
+    border-radius: 100px;
+    top: -6px;
+    left: -4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+  }
+  .global-compare:not(.hidden) + .global-compare-floating-tab.show .global-compare-floating-tab-content {
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s;
+  }
+
+  .product-new-compare-item.is-title {
+    position: relative;
+  }
+
+  .product-compare-remove {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    cursor: pointer;
+  }
+
+  .product-compare-remove svg {
+    background: #303030;
+    color: #fff;
+    display: inline-flex;
+    border-radius: 4px;
+  }
+
+  .product-compare-remove:hover svg {
+    background: #000;
+  }
+
+  body .coder-compare-checkbox,
+  body .coder-compareder-compare {
+    display: none;
+  }
+
+  @media screen and (max-width: 767px) {
+    .global-compare-header {
+      justify-content: space-between;
+    }
+    .global-compare-inner-flex .products-new-compare-wrapper > div {
+      min-width: 112px;
+    }
+    .global-compare-inner-flex .products-new-compare-wrapper > div.is-first-row {
+      min-width: 85px;
+    }
+
+    .product-new-compare-i .axx_compare_spec_list .axx_compare_spec_list_item {
+      padding: 20px 10px;
+      word-break: normal;
+      font-size: 13px;
+    }
+
+    .product-new-compare-i .axx_compare_spec_list.is-first-row .axx_compare_spec_list_item {
+      font-size: 12px;
+    }
+
+    a.axx_compare_product_url_button_a {
+      padding: 0.6em 0.8em;
+      font-size: 12px;
+    }
+    .global-compare-wrapper {
+      padding: 12px 4px;
+      padding-bottom: 0;
+      width: 98%;
+    }
+
+    .axx_compare_spec_list_item .axcp-desc {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .product-new-compare-item.is-title .axx_compare_product_title {
+      text-align: left;
+      padding: 0 1em;
+    }
+
+    .product-compare-remove svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .global-compare-wrapper .product-new-compare-i .axx-product-form__swatch {
+      flex-wrap: wrap;
+    }
+  }
+{% endstylesheet %}
+
+{% style %}
+{% endstyle %}
+
+{%- assign preset_products = '' -%}
+{%- if section.blocks.size > 0 -%}
+  {%- for block in section.blocks -%}
+    {% liquid
+      assign bs = block.settings
+      assign product = bs.product
+    %}
+    {%- if forloop.index < 4 -%}
+      {%- liquid
+        assign preset_products = preset_products | append: product.id | append: ','
+      %}
+    {%- endif -%}
+  {%- endfor -%}
+{% else %}
+  {% for product in st.collection.products %}
+    {%- if forloop.index < 4 -%}
+      {%- liquid
+        assign preset_products = preset_products | append: product.id | append: ','
+      %}
+    {%- endif -%}
+  {% endfor %}
+{% endif %}
+{%- assign preset_products = preset_products | remove_last: ',' -%}
+
+<div class="axx-section" data-section-id="{{- section_id -}}">
+  <div
+    class="global-compare hidden first-load"
+    data-fetch-url="{{- st.fetch_url -}}"
+    data-preset-products="{{- preset_products -}}"
+  >
+    <div class="global-compare-overlay"></div>
+    <div class="global-compare-wrapper">
+      <div class="global-compare-header">
+        <div class="global-compare-controller">
+          <div class="global-compare-selector">
+            <span>
+              {%- render 'icon-plus' -%}
+              {{- st.select_ebikes -}}
+            </span>
+            <div class="global-compare-options hidden">
+              <div class="global-compare-options-inner">
+                {% for product in st.collection.products %}
+                  <div class="global-compare-option" data-product-id="{{ product.id }}">
+                    <span class="global-compare-option-check-box">
+                      {% render 'icon-checkmark' %}
+                    </span>
+                    <div class="global-compare-option-title">
+                      {{ product.title }}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="global-compare-diff-trigger">
+            <div class="global-compare-diff-text">
+              <span class="global-compare-diff-check-box">
+                {% render 'icon-checkmark' %}
+              </span>
+              {{- st.show_difference -}}
+            </div>
+          </div>
+        </div>
+        <div class="global-compare-close">
+          <span>
+            {% render 'icon-close' %}
+          </span>
+        </div>
+      </div>
+      <div class="global-compare-inner">
+        <div class="global-compare-inner-flex-parent">
+          <div class="global-compare-inner-flex">
+            <div class="products-new-compare-wrapper is-title">
+              {% comment %} render titles {% endcomment %}
+              {%- if section.blocks.size > 0 -%}
+                {%- for block in section.blocks -%}
+                  {% liquid
+                    assign bs = block.settings
+                    assign product = bs.product
+                  %}
+                  {%- if forloop.first -%}
+                    <div class="product-new-compare-item is-first-row">
+                      <div class="axx_compare_product_title">
+                        <a href="javascript:void(0);" class="axx_compare_product_title_a">{{ st.model_tile }}</a>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              {% else %}
+                {% for product in st.collection.products %}
+                  {%- if forloop.first -%}
+                    <div class="product-new-compare-item is-first-row">
+                      <div class="axx_compare_product_title">
+                        <a href="javascript:void(0);" class="axx_compare_product_title_a">{{ st.model_tile }}</a>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {% endfor %}
+              {% endif %}
+              {% comment %} render products {% endcomment %}
+              {%- if section.blocks.size > 0 -%}
+                {%- for block in section.blocks -%}
+                  {% liquid
+                    assign bs = block.settings
+                    assign product = bs.product
+                  %}
+                  {%- if forloop.index < 2 -%}
+                    <div class="product-new-compare-item is-title" data-product-id="{{ product.id }}">
+                      <div class="axx_compare_product_title">
+                        <a href="{{ product.url }}" class="axx_compare_product_title_a">{{ product.title }}</a>
+                      </div>
+                      <div class="product-compare-remove">
+                        {% render 'icon-close' %}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              {% else %}
+                {% for product in st.collection.products %}
+                  {%- if forloop.index < 2 -%}
+                    <div class="product-new-compare-item is-title" data-product-id="{{ product.id }}">
+                      <div class="axx_compare_product_title">
+                        <a href="{{ product.url }}" class="axx_compare_product_title_a">{{ product.title }}</a>
+                      </div>
+                      <div class="product-compare-remove">
+                        {% render 'icon-close' %}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {% endfor %}
+              {% endif %}
+            </div>
+            <div class="products-new-compare-wrapper has-compare-data">
+              {% comment %} render titles {% endcomment %}
+              {%- if section.blocks.size > 0 -%}
+                {%- for block in section.blocks -%}
+                  {% liquid
+                    assign bs = block.settings
+                    assign product = bs.product
+                  %}
+                  {%- if forloop.first -%}
+                    <div class="product-new-compare-item is-first-row">
+                      <div class="product-new-compare-i">
+                        <div class="axx-images-with-swatch" style="--height: 214px;"></div>
+                        <div class="axx_compare_spec_list is-first-row">
+                          <div class="axx_compare_spec_list_item the_price_item">
+                            <div class="axcpf-title">{{ st.price_title }}</div>
+                          </div>
+                          {% for item in product.metafields.custom.product_comparison.value %}
+                            <div class="axx_compare_spec_list_item">
+                              {%- if item.title != '' -%}
+                                <div class="axcpf-title">{{ item.title }}</div>
+                              {%- endif -%}
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              {% else %}
+                {% for product in st.collection.products %}
+                  {%- if forloop.first -%}
+                    <div class="product-new-compare-item is-first-row">
+                      <div class="product-new-compare-i">
+                        <div class="axx-images-with-swatch" style="--height: 214px;"></div>
+                        <div class="axx_compare_spec_list is-first-row">
+                          <div class="axx_compare_spec_list_item the_price_item">
+                            <div class="axcpf-title">{{ st.price_title }}</div>
+                          </div>
+                          {% for item in product.metafields.custom.product_comparison.value %}
+                            <div class="axx_compare_spec_list_item">
+                              {%- if item.title != '' -%}
+                                <div class="axcpf-title">{{ item.title }}</div>
+                              {%- endif -%}
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {% endfor %}
+              {% endif %}
+              {% comment %} render products {% endcomment %}
+              {%- if section.blocks.size > 0 -%}
+                {%- for block in section.blocks -%}
+                  {% liquid
+                    assign bs = block.settings
+                    assign product = bs.product
+                  %}
+                  {%- if forloop.index < 2 -%}
+                    <div class="product-new-compare-item" data-product-id="{{ product.id }}">
+                      {% render 'axx-compare-render-part', product: product, st: st, section: section %}
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              {% else %}
+                {% for product in st.collection.products %}
+                  {%- if forloop.index < 2 -%}
+                    <div class="product-new-compare-item" data-product-id="{{ product.id }}">
+                      {% render 'axx-compare-render-part', product: product, st: st, section: section %}
+                    </div>
+                  {%- endif -%}
+                {% endfor %}
+              {% endif %}
+            </div>
+            <div class="products-new-compare-wrapper is-button">
+              <div class="product-new-compare-item is-button is-first-row">
+                <div class="axx_compare_product_button">
+                  <a href="javascript:void(0);" class="axx_compare_product_url_button_a">{{ st.button_text }}</a>
+                </div>
+              </div>
+              {% comment %} render products {% endcomment %}
+              {%- if section.blocks.size > 0 -%}
+                {%- for block in section.blocks -%}
+                  {% liquid
+                    assign bs = block.settings
+                    assign product = bs.product
+                  %}
+                  {%- if forloop.index < 2 -%}
+                    <div class="product-new-compare-item is-button" data-product-id="{{ product.id }}">
+                      <div class="axx_compare_product_button">
+                        <a href="{{ product.url }}" class="axx_compare_product_url_button_a">{{ st.button_text }}</a>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              {% else %}
+                {% for product in st.collection.products %}
+                  {%- if forloop.index < 2 -%}
+                    <div class="product-new-compare-item is-button" data-product-id="{{ product.id }}">
+                      <div class="axx_compare_product_button">
+                        <a href="{{ product.url }}" class="axx_compare_product_url_button_a">{{ st.button_text }}</a>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% comment %} .global-compare-floating-tab {% endcomment %}
+  {%- assign compare_text = settings.compare_text | default: 'Compare' -%}
+  <div class="global-compare-floating-tab">
+    <div class="global-compare-floating-tab-content">
+      <div class="compare-products-count">0</div>
+      <div class="global-comparable-button-text">{{ compare_text }}</div>
+      <div class="global-comparable-button-img">
+        <img src="/cdn/shop/files/5401e6cf4e0953017ffbcfce5411867.png" alt="" loading="lazy" width="24" height="24">
+      </div>
+    </div>
+  </div>
+</div>
+
+{% javascript %}
+  window.addEventListener('load', () => {
+    class GlobalCompare {
+      // checkbox : .global-compare-checkbox with [data-product-id]
+      // trigger : [data-global-compare-open] with [data-global-compare-open=' product.id ']
+      // options selector : .global-compare-selector
+      // options : .global-compare-options with [data-product-id]
+      // floating tab: .global-compare-floating-tab
+
+      constructor() {
+        // 存储事件处理函数
+        this.checkboxs = [];
+        this.eventListeners = new Map();
+        this.compareParent = document.querySelector('.global-compare');
+        this.floatingTab = document.querySelector('.global-compare-floating-tab');
+        this.init();
+      }
+
+      init() {
+        this.removePreloadProducts();
+        this.triggerSelectOpen();
+        this.updateSelectedProduct();
+        this.setSameHeightForItems();
+        this.hanldeSelectorChange();
+        this.findTheItemsDiff();
+        this.triggerOpen();
+        this.triggerCompareCheckboxInit();
+        this.updateFlotingTabStatus(this.getCookie());
+        this.clickFlotingTab();
+        window.addEventListener('resize', () => this.setSameHeightForItems());
+        window.addEventListener('CompareTrigger', () => this.checkboxEventUpdate());
+        this.compareParent.querySelector('.global-compare-diff-trigger').addEventListener('click', () => {
+          this.compareParent.classList.toggle('show_diff');
+          this.setSameHeightForItems();
+        });
+      }
+
+      triggerSelectOpen() {
+        const globalCompareSelector = document.querySelector('.global-compare-selector span');
+        const globalCompareOptions = globalCompareSelector
+          .closest('.global-compare-selector')
+          .querySelector('.global-compare-options');
+        globalCompareSelector.addEventListener('click', () => {
+          globalCompareOptions.classList.toggle('hidden');
+        });
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.global-compare-selector')) {
+            globalCompareOptions.classList.add('hidden');
+          }
+        });
+      }
+
+      updateSelectedProduct() {
+        const options = document.querySelectorAll('.global-compare-option');
+        options.forEach((option) => {
+          option.classList.remove('selected');
+        });
+        options.forEach((option) => {
+          const productId = option.dataset.productId;
+          const productEl = this.compareParent.querySelector(
+            `.products-new-compare-wrapper [data-product-id="${productId}"]`
+          );
+          if (productEl) option.classList.add('selected');
+        });
+      }
+
+      setSameHeightForItems() {
+        const rows = document.querySelectorAll(
+          '.products-new-compare-wrapper .product-new-compare-i .axx_compare_spec_list'
+        );
+        const items = rows[0]?.querySelectorAll('.axx_compare_spec_list_item') || [];
+        // 重置高度
+        rows.forEach((row) => {
+          row.querySelectorAll('.axx_compare_spec_list_item').forEach((item) => {
+            item.style.setProperty('--height', 'auto');
+          });
+        });
+        // 设置规格高度
+        items.forEach((_, index) => {
+          let maxHeight = 0;
+          rows.forEach((row) => {
+            const item = row.querySelectorAll('.axx_compare_spec_list_item')[index];
+            maxHeight = Math.max(maxHeight, item.offsetHeight);
+          });
+          rows.forEach((row) => {
+            const item = row.querySelectorAll('.axx_compare_spec_list_item')[index];
+            item.style.setProperty('--height', `${maxHeight}px`);
+          });
+        });
+        // 设置图片高度
+        const imageWrappers = document.querySelectorAll(
+          '.products-new-compare-wrapper .product-new-compare-i .axx-images-with-swatch'
+        );
+        const maxImageHeight = Math.max(...[...imageWrappers].map((img) => img.offsetHeight), 0);
+        imageWrappers.forEach((img) => img.style.setProperty('--height', `${maxImageHeight}px`));
+      }
+
+      hanldeSelectorChange() {
+        const options = document.querySelectorAll('.global-compare-option');
+        options.forEach((option) => {
+          option.addEventListener('click', () => {
+            const productId = option.dataset.productId;
+            option.classList.toggle('selected');
+            option.classList.contains('selected') ? this.addProduct(productId) : this.removeProduct(productId);
+          });
+        });
+      }
+
+      removePreloadProducts() {
+        this.compareParent
+          .querySelectorAll('.products-new-compare-wrapper .product-new-compare-item[data-product-id]')
+          .forEach((el) => el.remove());
+      }
+
+      async addProduct(ids) {
+        // 处理多id输入并去重
+        const idArray = Array.isArray(ids)
+          ? ids
+          : ids
+              .toString()
+              .split(',')
+              .filter((id) => id.trim() !== '');
+        const uniqueIds = [...new Set(idArray)];
+        const fetchUrl = this.compareParent.dataset.fetchUrl;
+        this.compareParent.classList.add('loading');
+        // compare ids and the existing products `.product-new-compare-item[data-product-id="${id}"]`
+        const existingProducts = this.compareParent.querySelectorAll('.product-new-compare-item[data-product-id]');
+        const existingIds = [...existingProducts].map((el) => el.dataset.productId);
+        const newIds = uniqueIds.filter((id) => !existingIds.includes(id));
+        if (newIds.length === 0) {
+          this.compareParent.classList.remove('loading');
+          this.compareParent.classList.remove('first-load');
+          return;
+        }
+        // continue to add products
+        try {
+          const response = await fetch(fetchUrl);
+          const responseText = await response.text();
+          const html = new DOMParser().parseFromString(responseText, 'text/html');
+          const sourceParents = html.querySelectorAll('.products-new-compare-wrapper');
+          const targetWrappers = this.compareParent.querySelectorAll('.products-new-compare-wrapper');
+          // 遍历每个唯一id添加产品
+          uniqueIds.forEach((id) => {
+            sourceParents.forEach((sourceEl, index) => {
+              const targetEl = targetWrappers[index];
+              if (!targetEl) return;
+              const exitProductEl = targetEl.querySelector(`.product-new-compare-item[data-product-id="${id}"]`);
+              // if (exitProductEl) exitProductEl.remove();
+              if (exitProductEl) return;
+              const productEl = sourceEl.querySelector(`.product-new-compare-item[data-product-id="${id}"]`);
+              if (productEl) targetEl.appendChild(productEl);
+              const removeEl = productEl.querySelector('.product-compare-remove');
+              if (removeEl) this.handleRemoveProductTrigger(removeEl);
+            });
+          });
+        } finally {
+          this.findTheItemsDiff();
+          this.updateSelectedProduct();
+          this.setSameHeightForItems();
+          if (window.axxVariantsSwatch) window.axxVariantsSwatch.update();
+          this.compareParent.classList.remove('loading');
+          this.compareParent.classList.remove('first-load');
+          this.setCookie();
+          this.updateCheckboxStatus();
+        }
+      }
+
+      removeProduct(id) {
+        this.compareParent
+          .querySelectorAll(`.products-new-compare-wrapper [data-product-id="${id}"]`)
+          .forEach((el) => el.remove());
+        this.findTheItemsDiff();
+        this.updateSelectedProduct();
+        this.setSameHeightForItems();
+        this.setCookie();
+        this.updateCheckboxStatus();
+      }
+
+      handleRemoveProductTrigger(el) {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          const parent = el.closest('.product-new-compare-item');
+          const productId = parent.dataset.productId;
+          this.removeProduct(productId);
+        });
+      }
+
+      setCookie() {
+        const uniqueIds = [];
+        this.compareParent
+          .querySelectorAll('.global-compare-option.selected')
+          .forEach((el) => uniqueIds.push(el.dataset.productId));
+        // 存储id到cookie（30天过期）
+        const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString();
+        document.cookie = `selectedIds=${uniqueIds.join(',')}; expires=${expires}; path=/`;
+        this.updateFlotingTabStatus(`${uniqueIds.join(',')}`);
+      }
+
+      getCookie() {
+        // let presetIds = this.compareParent.dataset.presetProducts;
+        const cookieValue =
+          document.cookie
+            .split('; ')
+            .find((row) => row.startsWith('selectedIds='))
+            ?.split('=')[1] || '';
+        if (cookieValue) {
+          return cookieValue;
+        }
+      }
+
+      addIdToCookie(id) {
+        let ids = this.getCookie();
+        if (!ids) {
+          ids = id;
+        } else {
+          ids = `${ids},${id}`;
+        }
+        const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString();
+        document.cookie = `selectedIds=${ids}; expires=${expires}; path=/`;
+        this.updateFlotingTabStatus(ids);
+      }
+
+      removeIdFromCookie(id) {
+        let ids = this.getCookie();
+        if (ids) {
+          ids = ids
+            .split(',')
+            .filter((i) => i !== id)
+            .join(',');
+          const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString();
+          document.cookie = `selectedIds=${ids}; expires=${expires}; path=/`;
+          this.updateFlotingTabStatus(ids);
+        }
+      }
+
+      findTheItemsDiff() {
+        document
+          .querySelectorAll(
+            '.products-new-compare-wrapper.has-compare-data .axx_compare_spec_list .axx_compare_spec_list_item'
+          )
+          .forEach((item) => {
+            item.classList.remove('diff');
+          });
+        const allRows = document.querySelectorAll(
+          '.products-new-compare-wrapper.has-compare-data .axx_compare_spec_list'
+        );
+        const rows = document.querySelectorAll(
+          '.products-new-compare-wrapper.has-compare-data [data-product-id] .axx_compare_spec_list'
+        );
+        const firstRowItems = rows[0]?.querySelectorAll('.axx_compare_spec_list_item') || [];
+        firstRowItems.forEach((_, index) => {
+          const values = [...rows].map(
+            (row) => row.querySelectorAll('.axx_compare_spec_list_item')[index]?.querySelector('.axcp-desc').textContent
+          );
+          const hasDiff = new Set(values).size > 1;
+          if (hasDiff) {
+            allRows.forEach((row) => {
+              row.querySelectorAll('.axx_compare_spec_list_item')[index].classList.add('diff');
+            });
+          }
+        });
+      }
+
+      triggerCompareCheckboxInit() {
+        this.checkboxs = document.querySelectorAll('.global-compare-checkbox');
+        if (this.checkboxs.length > 0) {
+          this.updateCheckboxStatus();
+          this.checkboxs.forEach((checkbox) => {
+            const handler = (e) => this.checkboxToggle(checkbox);
+            this.eventListeners.set(checkbox, handler);
+            checkbox.addEventListener('click', handler);
+          });
+        }
+      }
+
+      checkboxEventUpdate() {
+        this.checkboxs.forEach((checkbox) => {
+          const handler = this.eventListeners.get(checkbox);
+          if (handler) {
+            checkbox.removeEventListener('click', handler);
+          }
+        });
+        this.triggerCompareCheckboxInit();
+      }
+
+      checkboxToggle(checkbox) {
+        const productId = checkbox.dataset.productId;
+        if (checkbox.classList.contains('checked')) {
+          checkbox.classList.remove('checked');
+          this.removeIdFromCookie(productId);
+        } else {
+          this.addIdToCookie(productId);
+        }
+        this.updateCheckboxStatus();
+      }
+
+      updateCheckboxStatus() {
+        let ids = this.getCookie();
+        // remove class
+        this.checkboxs.forEach((checkbox) => {
+          checkbox.classList.remove('checked');
+        });
+        // update classlist
+        if (ids) {
+          ids.split(',').forEach((id) => {
+            this.checkboxs.forEach((checkbox) => {
+              let checkboxId = parseInt(checkbox.dataset.productId);
+              if (checkboxId == id) {
+                checkbox.classList.add('checked');
+              }
+            });
+          });
+          this.updateFlotingTabStatus(ids);
+        }
+      }
+
+      updateFlotingTabStatus(selectedIds) {
+        let floatingTab = this.floatingTab;
+        if (!floatingTab) {
+          return;
+        }
+        if (selectedIds) {
+          const selectedIdsArray = selectedIds.split(',');
+          const selectedIdsCount = selectedIdsArray.length;
+          if (selectedIdsCount > 0) {
+            floatingTab.classList.add('show');
+          } else {
+            floatingTab.classList.remove('show');
+          }
+          floatingTab.querySelector('.compare-products-count').textContent = selectedIdsCount;
+        } else {
+          floatingTab.classList.remove('show');
+        }
+      }
+
+      clickFlotingTab() {
+        let floatingTab = this.floatingTab;
+        if (!floatingTab) {
+          return;
+        }
+        floatingTab.addEventListener('click', (e) => {
+          e.preventDefault();
+          let ids = this.getCookie() ? this.getCookie() : presetIds;
+          if (ids) {
+            this.addProduct(ids);
+            this.compareParent.classList.remove('hidden');
+          }
+        });
+      }
+
+      triggerOpen() {
+        const triggers = document.querySelectorAll('[data-global-compare-open]');
+        triggers.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            const productId = el.dataset.globalCompareOpen || 'null';
+            const productEl = this.compareParent.querySelector(
+              `.product-new-compare-item[data-product-id="${productId}"]`
+            );
+            if (productEl) {
+              this.compareParent.classList.remove('hidden');
+              this.setSameHeightForItems();
+            } else {
+              let presetIds = this.compareParent.dataset.presetProducts;
+              let ids = this.getCookie() ? this.getCookie() : presetIds;
+              if (!ids) {
+                ids = productId;
+              } else {
+                ids = `${ids},${productId}`;
+              }
+              this.addProduct(ids);
+              this.compareParent.classList.remove('hidden');
+            }
+          });
+        });
+        const closeTriggers = this.compareParent.querySelectorAll('.global-compare-close, .global-compare-overlay');
+        closeTriggers.forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.compareParent.classList.add('hidden');
+          });
+        });
+      }
+    }
+
+    window.axxGlobalCompare = new GlobalCompare();
+  });
+{% endjavascript %}

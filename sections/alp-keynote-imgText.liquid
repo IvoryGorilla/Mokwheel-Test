@@ -1,0 +1,326 @@
+{% schema %}
+{
+  "name": "Alp Keynote ImgText",
+  "class": "alp-keynote-imgText",
+  "settings": [
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "3/1"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio_mobile",
+      "label": "Image Aspect Ratio Mobile",
+      "default": "3/2"
+    },
+    {
+      "type": "text",
+      "id": "min_height",
+      "label": "Min Height",
+      "default": "420px"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_pc",
+          "label": "Image Pc"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image Mobile"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "video",
+          "id": "video_mobile",
+          "label": "Video Mobile"
+        },
+        {
+          "type": "checkbox",
+          "id": "text_left",
+          "label": "Text in Left",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Keynote ImgText"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --st-min-height: {{ st.min_height }};
+   --aspect-pc: {{ st.image_aspect_ratio }};
+   --aspect-mobile: {{ st.image_aspect_ratio_mobile }};
+  }
+</style>
+
+{% style %}
+  .alp-keynote-imgText,
+  .alp-keynote-imgText img {
+    aspect-ratio: var(--aspect-pc);
+    min-height: var(--st-min-height);
+    width: 100%;
+  }
+
+  .alp-keynote-imgText-item {
+    position: relative;
+  }
+
+  [data-has-video].alp-keynote-imgText-item img {
+    opacity: 0;
+  }
+
+  .alp-keynote-imgText-item img {
+    display: block;
+  }
+
+  .alp-keynote-imgText-info {
+    width: 42%;
+    max-width: 512px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+  }
+  .alp-keynote-imgText-item .alp-keynote-imgText-info {
+    right: 0;
+    margin-right: 6%;
+  }
+  .alp-keynote-imgText-item.text_left .alp-keynote-imgText-info {
+    left: 0;
+    margin-left: 13%;
+  }
+  .alp-keynote-imgText-info p {
+    margin: 0;
+  }
+
+  .alp-keynote-imgText-info-title {
+    margin-bottom: 48px;
+  }
+
+  .alp-keynote-imgText-info-description {
+    font-size: clamp(14px, 1.5vw, 20px);
+  }
+
+  .full-sc1-video.full-img-wrap {
+    overflow: hidden;
+  }
+
+  .full-sc1-video.full-img-wrap video {
+    transform: scale(1.015);
+  }
+
+  @media screen and (max-width: 999px) {
+    .alp-keynote-imgText,
+    .alp-keynote-imgText img {
+      aspect-ratio: var(--aspect-mobile);
+    }
+    .alp-keynote-imgText-info {
+      top: 13%;
+      transform: none;
+    }
+    .alp-keynote-imgText-item .alp-keynote-imgText-info {
+      /* text-align: end;
+      right: 32px;
+      margin-right: 0; */
+      text-align: start;
+      left: 32px;
+      margin-left: 0;
+      width: 86%;
+      max-width: initial;
+    }
+    .alp-keynote-imgText-item.text_left .alp-keynote-imgText-info {
+      text-align: start;
+      left: 32px;
+      margin-left: 0;
+      width: 86%;
+      max-width: initial;
+    }
+    .alp-keynote-imgText-info-title {
+      margin-bottom: 16px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" data-stid="{{ section.id }}" style="{{ style }}">
+  <div class="alp-section-container alp-keynote-imgText-container page-width {{ container }}">
+    <div class="alp-keynote-imgText-con">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          <div
+            class="alp-keynote-imgText-item relative {% if bs.text_left %}text_left{% endif %}"
+            {% if bs.video != blank %}
+              data-has-video
+            {% endif %}
+          >
+            {% render 'alp-responsive-image',
+              image: bs.image_pc,
+              image_mobile: bs.image_mobile,
+              desktop_width: 1920,
+              mobile_width: 900
+            %}
+            {%- if bs.video != blank -%}
+              <div
+                class="full-sc1-video full-img-wrap {% if bs.video_mobile != blank %} hide_mobile{% endif %}"
+                data-id="{{ block.id | replace: '-', '' }}"
+              >
+                <video
+                  class="lazy"
+                  muted
+                  preload
+                  autoplay
+                  loop
+                  x5-video-player-type="h5"
+                  x5-video-player-fullscreen="true"
+                  x5-playsinline
+                  playsinline
+                  webkit-playsinline
+                >
+                  {%- for source in bs.video.sources -%}
+                    <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+                  {%- endfor -%}
+                </video>
+              </div>
+            {%- endif -%}
+            {%- if bs.video_mobile != blank -%}
+              <div class="full-sc1-video full-img-wrap hide_desktop" data-id="{{ block.id | replace: '-', '' }}">
+                <video
+                  class="lazy"
+                  muted
+                  preload
+                  autoplay
+                  loop
+                  x5-video-player-type="h5"
+                  x5-video-player-fullscreen="true"
+                  x5-playsinline
+                  playsinline
+                  webkit-playsinline
+                >
+                  {%- for source in bs.video_mobile.sources -%}
+                    <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+                  {%- endfor -%}
+                </video>
+              </div>
+            {%- endif -%}
+            <div class="alp-keynote-imgText-info">
+              {%- if bs.title != blank -%}
+                <h2 class="headline__h2 alp-keynote-imgText-info-title">{{ bs.title }}</h2>
+              {%- endif -%}
+              {%- if bs.description != blank -%}
+                <div class="alp-keynote-imgText-info-description">{{ bs.description }}</div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

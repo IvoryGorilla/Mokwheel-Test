@@ -1,0 +1,412 @@
+{% schema %}
+{
+  "name": "pmax-section2",
+  "class": "pmax-section2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pmax-section2-title",
+      "label": "Pmax Section2 Title"
+    },
+    {
+      "type": "text",
+      "id": "pmax-section2-subtitle",
+      "label": "Pmax Section2 Subtitle"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card-item",
+      "name": "Card Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "pmax-section2-card-image",
+          "label": "Pmax Section2 Card Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "pmax-section2-card-logo",
+          "label": "Pmax Section2 Card logo"
+        },
+        {
+          "type": "product",
+          "id": "pmax-section2-card-product",
+          "label": "Pmax Section2 Card Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "pmax-section2"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{% style %}
+  .pmax-section2-container {
+    margin-top: 100px;
+  }
+  .pmax-section2-title {
+    font-family: Manrope;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    text-transform: capitalize;
+    color: #1a1a1a;
+  }
+  .pmax-section2-subtitle {
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+    color: #1a1a1a;
+    margin-top: 10px;
+  }
+  .pmax-section2-content {
+    max-width: 1200px;
+    margin: 48px auto;
+    gap: 48px;
+    display: flex;
+    flex-direction: column;
+  }
+  .pmax-section2-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #e83f0c;
+    border-radius: 4px;
+  }
+  .pmax-section2-card-left {
+    width: 49%;
+    position: relative;
+  }
+  .pmax-section2-card-left img {
+    display: block;
+  }
+  .pmax-section2-card-logo {
+    position: absolute;
+    height: 100px;
+    object-fit: contain;
+    left: 40px;
+    width: auto;
+    top: 40px;
+  }
+  .pmax-section2-card-right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 50px;
+  }
+  .pmax-section2-card-title {
+    font-family: Manrope;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 120%;
+    text-transform: capitalize;
+    letter-spacing: 0px;
+    color: #1a1a1a;
+  }
+  .pmax-section2-card-desc {
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+    letter-spacing: 0px;
+    color: #666666;
+    margin-top: 6px;
+  }
+  .pmax-section2-card-price-box {
+    margin-top: 24px;
+  }
+  .pmax-section2-card-price .price--on-sale .price__sale {
+    align-items: center;
+    gap: 16px;
+  }
+  .pmax-section2-card-price span.price-item.price-item--sale {
+    font-family: Manrope;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 120%;
+    text-transform: capitalize;
+    letter-spacing: 0px;
+    color: #e83f0c;
+  }
+  .pmax-section2-card-price s.price-item.price-item--regular {
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 120%;
+    text-transform: capitalize;
+    letter-spacing: 0px;
+    text-decoration: line-through;
+    color: #666666;
+  }
+  .pmax-section2-card-affirm {
+    font-size: 16px;
+    margin-top: 5px;
+  }
+  .pmax-section2-productAcessories {
+    grid-template-columns: repeat(2, 2fr);
+    display: grid;
+    gap: 16px 0;
+    margin: 43px 0;
+  }
+  .pmax-section2-productAcessories-list {
+    position: relative;
+  }
+  .pmax-section2-productAcessories-list:nth-child(4) {
+    display: none;
+  }
+  .pmax-section2-productAcessories-list:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #1a1a1a;
+  }
+  .pmax-section2-productAcessories-list-title {
+    display: flex;
+    flex-direction: column;
+    margin-left: 18px;
+
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 120%;
+    letter-spacing: 0px;
+    color: #767676;
+  }
+  .pmax-section2-productAcessories-list-title b {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 120%;
+    letter-spacing: 0px;
+    color: #1a1a1a;
+  }
+  .pmax-section2-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .pmax-section2-container {
+      margin-top: 60px;
+    }
+    .pmax-section2-title {
+      font-size: 28px;
+    }
+    .pmax-section2-subtitle {
+      font-size: 16px;
+    }
+    .pmax-section2-content {
+      margin-top: 24px;
+      gap: 24px;
+    }
+    .pmax-section2-card {
+      flex-direction: column;
+    }
+    .pmax-section2-card-left {
+      width: 100%;
+    }
+    .pmax-section2-card-logo {
+      height: 70px;
+      left: 20px;
+      top: 20px;
+    }
+    .pmax-section2-card-right {
+      width: 100%;
+      padding: 16px;
+    }
+    .pmax-section2-card-title {
+      font-size: 22px;
+    }
+    .pmax-section2-card-desc {
+      margin-top: 4px;
+      font-size: 14px;
+    }
+    .pmax-section2-card-price-box {
+      margin-top: 10px;
+    }
+    .pmax-section2-card-price span.price-item.price-item--sale {
+      font-size: 22px;
+    }
+    .pmax-section2-card-price s.price-item.price-item--regular {
+      font-size: 16px;
+    }
+    .pmax-section2-productAcessories {
+      margin: 20px 0;
+      gap: 12px 0;
+    }
+  }
+{% endstyle %}
+
+{%- assign show_features = show_features | default: false -%}
+{%- assign show_icon_features = show_icon_features | default: true -%}
+{%- assign show_discount_badge = show_discount_badge | default: true -%}
+{%- assign show_reviews = show_reviews | default: true -%}
+{%- assign show_description = show_description | default: true -%}
+
+<div class="alp-section {{ reset_spacing }}">
+  <div class="alp-section-container page-width {{ container }} pmax-section2-container">
+    <div class="pmax-section2-top">
+      <h2 class="pmax-section2-title">{{ st['pmax-section2-title'] }}</h2>
+      <div class="pmax-section2-subtitle">
+        {{ st['pmax-section2-subtitle'] }}
+      </div>
+    </div>
+    <div class="pmax-section2-content">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+          assign product = bs['pmax-section2-card-product']
+        %}
+        <div
+          class="pmax-section2-card"
+          {% unless product.available %}
+            data-is-available="false"
+          {% endunless %}
+          data-swatch-wrapper
+          data-href="{{ product.url }}"
+        >
+          <div class="pmax-section2-card-left">
+            {% if bs['pmax-section2-card-image'] != blank %}
+              <img
+                src="{{ bs.pmax-section2-card-image | image_url: width: 1200 }}"
+                width="auto"
+                height="auto"
+              >
+            {% endif %}
+            {% if bs['pmax-section2-card-logo'] != blank %}
+              <img
+                src="{{ bs.pmax-section2-card-logo | image_url: width: 1200 }}"
+                width="auto"
+                height="auto"
+                class="pmax-section2-card-logo"
+              >
+            {% endif %}
+          </div>
+          {% liquid
+            assign product = bs['pmax-section2-card-product']
+          %}
+          <div class="pmax-section2-card-right">
+            <div class="alp-product-item-title pmax-section2-card-title-box">
+              <div class="alp-product-item-title-flex">
+                <h2 class="headline__h4 pmax-section2-card-title">{{ product.title }}</h2>
+              </div>
+              {%- if product.metafields.custom.new_description != blank and show_description -%}
+                <div class="pmax-section2-card-desc">
+                  {{- product.metafields.custom.new_description | strip_html | strip -}}
+                </div>
+              {%- endif -%}
+            </div>
+
+            <div class="pmax-section2-card-price-box">
+              <div class="pmax-section2-card-price">{% render 'price-with-variants', product: product %}</div>
+              {% render 'installment-block', product: product %}
+            </div>
+
+            {% if product.metafields.custom.product_configuration.value != blank and show_icon_features %}
+              <div class="pmax-section2-productAcessories">
+                {% for item in product.metafields.custom.product_configuration.value %}
+                  <div class="pmax-section2-productAcessories-list">
+                    <div class="pmax-section2-productAcessories-list-title">
+                      {{ item.title }}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <div class="alp-product-item-info-buttons-flex hs_compare_btn pmax-section2-card-bottom">
+              <div class="alp-product-item-color-swatch pmax-section2-card-swatch">
+                {% render 'alp-color-swatch-for-list', product: product %}
+              </div>
+              <div class="list-buy-button-flex pmax-section2-card-buybtn">
+                {%- if product.available -%}
+                  <div class="alp-quick-add" data-add-variant="{{ product.first_available_variant.id }}">
+                    {% comment %} <span>{{ 'products.product.add_to_cart' | t }}</span> {% endcomment %}
+                    {%- assign free_gift_title = settings.text_free_gift_title | default: 'Free Gifts' -%}
+                    {%- assign free_gift_content = product.metafields.custom.product_gift_info.value -%}
+                    {%- if free_gift_content != blank -%}
+                      <input
+                        class="product-properties"
+                        type="hidden"
+                        data-property-title="{{- free_gift_title -}}"
+                        name="properties[{{- free_gift_title-}}]"
+                        value="{{- free_gift_content | strip_html -}}"
+                      >
+                    {%- endif -%}
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 256 256">
+                        <path fill="currentColor" d="M228.61 60.16A6 6 0 0 0 224 58H61l-6.37-35.07a6 6 0 0 0-5.9-4.93H24a6 6 0 0 0 0 12h19.72l25.81 141.94a21.93 21.93 0 0 0 6.24 11.77a26 26 0 1 0 38.12 6.29h52.22A26 26 0 1 0 188 178H91.17a10 10 0 0 1-9.84-8.21L77.73 150H196.1a22 22 0 0 0 21.65-18.06l12.15-66.87a6 6 0 0 0-1.29-4.91M106 204a14 14 0 1 1-14-14a14 14 0 0 1 14 14m96 0a14 14 0 1 1-14-14a14 14 0 0 1 14 14m3.94-74.21a10 10 0 0 1-9.84 8.21H75.55L63.19 70h153.62Z" />
+                      </svg>
+                    </span>
+                    <div class="loading-svg">{% render 'icon-loading' %}</div>
+                  </div>
+                {%- else -%}
+                  <div class="alp-quick-add disabled">
+                    {% comment %} <span>{{ 'products.product.sold_out' | t }}</span> {% endcomment %}
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 256 256">
+                        <path fill="currentColor" d="M228.61 60.16A6 6 0 0 0 224 58H61l-6.37-35.07a6 6 0 0 0-5.9-4.93H24a6 6 0 0 0 0 12h19.72l25.81 141.94a21.93 21.93 0 0 0 6.24 11.77a26 26 0 1 0 38.12 6.29h52.22A26 26 0 1 0 188 178H91.17a10 10 0 0 1-9.84-8.21L77.73 150H196.1a22 22 0 0 0 21.65-18.06l12.15-66.87a6 6 0 0 0-1.29-4.91M106 204a14 14 0 1 1-14-14a14 14 0 0 1 14 14m96 0a14 14 0 1 1-14-14a14 14 0 0 1 14 14m3.94-74.21a10 10 0 0 1-9.84 8.21H75.55L63.19 70h153.62Z" />
+                      </svg>
+                    </span>
+                  </div>
+                {%- endif -%}
+                <div class="list-buy-button">
+                  <a href="{{ product.url }}" class="">
+                    <span>{{ settings.text_view_more | default: 'View More' }}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>

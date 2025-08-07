@@ -1,0 +1,202 @@
+<style>
+    @media (max-width:750px) {
+        .pc {
+            display: none;
+        }
+
+        .mobile {
+            display: block;
+        }
+        .contactUs_img {
+         width: 100%;
+        }
+        .contactUs_img img {
+            width: 100%;
+        }
+        .contactUs_conter {
+            position: relative;
+        }
+        .contactUs_box {
+            width: 90%;
+            position: absolute;
+            top: 23%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .bannerText {
+            margin-top: 25px;
+        }
+        .bannerTitle {
+            font-size: 42px;
+            font-weight: bold;
+            color: #FFFFFF;
+            line-height: 1.5;
+        }
+        .bannerText p {
+            font-size: 14px;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 1.5;
+        }
+        .bannerBotton-text {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .bannerBotton_text {
+            width: 180px;
+            height: 40px;
+            border: 1px solid #FFFFFF;
+            border-radius: 23px;
+            font-size: 14px;
+            font-weight: 400;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 20px;
+        }
+        .bannerBotton_text:last-of-type {
+            margin-right: 0;
+        }
+    }
+
+    @media (min-width:750px) {
+        .pc {
+            display: block;
+        }
+
+        .mobile {
+            display: none;
+        }
+        .contactUs_img {
+         width: 100%;
+        }
+        .contactUs_img img {
+            width: 100%;
+        }
+        .contactUs_conter {
+            position: relative;
+        }
+        .contactUs_box {
+            width: 56%;
+            position: absolute;
+            top: 45%;
+            left: 41%;
+            transform: translate(-50%,-50%);
+        }
+        .bannerText {
+            margin-top: 20px;
+        }
+        .bannerTitle {
+            font-size: 72px;
+            font-weight: bold;
+            color: #FFFFFF;
+            line-height: 1.5;
+        }
+        .bannerText p {
+            font-size: 20px;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 1.5;
+        }
+        .bannerBotton-text {
+            display: flex;
+            align-items: center;
+            margin-top: 55px;
+        }
+        .bannerBotton_text {
+            width: 260px;
+            height: 45px;
+            border: 1px solid #FFFFFF;
+            border-radius: 23px;
+            font-size: 22px;
+            font-weight: 400;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 45px;
+            margin-right: 40px;
+            cursor: pointer;
+        }
+        .bannerBotton_text:last-of-type {
+            margin-right: 0;
+        }
+    }
+</style>
+<div class="contactUs_conter">
+    <div class="contactUs_img">
+        <img loading="lazy" class="preview-image pc" {% render 'image-attributes' , image: section.settings.contactUs_img,
+        sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+    <img loading="lazy" class="preview-image mobile" {% render 'image-attributes' , image:
+        section.settings.contactUs_img1,
+        sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+    </div>
+    <div class="contactUs_box">
+        <div class="bannerTitle">{{section.settings.bannerTitle}}</div>
+        <div class="bannerText">{{section.settings.bannerText}}</div>
+        <div class="bannerBotton-text">
+            <div class="bannerBotton_text customerService">{{section.settings.bannerBotton_text}}</div>
+            <div class="bannerBotton_text businessInquiries">{{section.settings.bannerBotton_text1}}</div>
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+"name": "ContactUs Banner",
+"settings": [
+{
+"type": "image_picker",
+"id": "contactUs_img",
+"label": "image"
+},
+{
+"type": "image_picker",
+"id": "contactUs_img1",
+"label": "image m"
+},
+{
+"type": "text",
+"id": "bannerTitle",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "bannerText",
+"label": "text"
+},
+{
+"type": "text",
+"id": "bannerBotton_text",
+"label": "Botton Text"
+},
+{
+"type": "text",
+"id": "bannerBotton_text1",
+"label": "Botton Text"
+}
+],
+"blocks" : [],
+"presets": [{
+"name": "ContactUs Banner"
+}]
+}
+{% endschema %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // 点击按钮跳到对应的模块   
+  $('.customerService').click(function(){
+  document.querySelector(".customerService_conter").scrollIntoView({   
+    behavior:"smooth",
+    block:"center",
+    inline:"nearest"
+  })
+  })
+  $('.businessInquiries').click(function(){
+  document.querySelector(".partner-inquiries-all").scrollIntoView({   
+    behavior:"smooth",
+    block:"start",
+    inline:"nearest"
+  })
+  })
+  });
+
+</script>

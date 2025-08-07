@@ -1,0 +1,58 @@
+{% comment %}
+  Use:
+  {% render 'alp-single-image', image: image, width: 1280, aspect_ratio: '1/1', alt: 'Alt text' %}
+{% endcomment %}
+
+{%- assign image_width = width | default: 1280 -%}
+{%- capture aspect_ratio_style -%}
+    {%- if aspect_ratio != blank -%}
+        --aspect-ratio:{{ aspect_ratio }}
+    {%- endif -%}
+{%- endcapture -%}
+
+{%- if image -%}
+  <picture style="{{ aspect_ratio_style }}">
+    {{
+      image
+      | image_url: width: image_width
+      | image_tag:
+        widths: '200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2200',
+        alt: image.alt
+      | default: alt, loading: 'lazy'
+    }}
+  </picture>
+{%- endif -%}
+
+{% comment %} theme-check-disable {% endcomment %}
+{% comment %} vanilla-lazyload Lazy Loading {% endcomment %}
+{% comment %}
+  <picture style="{{ aspect_ratio_style }}">
+    <img
+      data-srcset="
+        {{ image | image_url: width: 200 }} 200w,
+        {{ image | image_url: width: 300 }} 300w,
+        {{ image | image_url: width: 400 }} 400w,
+        {{ image | image_url: width: 500 }} 500w,
+        {{ image | image_url: width: 600 }} 600w,
+        {{ image | image_url: width: 700 }} 700w,
+        {{ image | image_url: width: 800 }} 800w,
+        {{ image | image_url: width: 900 }} 900w,
+        {{ image | image_url: width: 1000 }} 1000w,
+        {{ image | image_url: width: 1100 }} 1100w,
+        {{ image | image_url: width: 1200 }} 1200w,
+        {{ image | image_url: width: 1300 }} 1300w,
+        {{ image | image_url: width: 1400 }} 1400w,
+        {{ image | image_url: width: 1500 }} 1500w,
+        {{ image | image_url: width: 1600 }} 1600w,
+        {{ image | image_url: width: 1700 }} 1700w,
+        {{ image | image_url: width: 1800 }} 1800w,
+        {{ image | image_url: width: 1900 }} 1900w,
+        {{ image | image_url: width: 2000 }} 2000w,
+        {{ image | image_url: width: 2200 }} 2200w
+      "
+      class="lazy"
+      data-src="{{ image | image_url: width: image_width }}"
+      alt="{{ alt | default: '' }}"
+    >
+  </picture>
+{% endcomment %}

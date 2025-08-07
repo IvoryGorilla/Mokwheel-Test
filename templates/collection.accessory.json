@@ -1,0 +1,158 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "5b85dcc6-5d97-4a27-be40-bcfb14a25ddb": {
+      "type": "alp-hero-banner",
+      "blocks": {
+        "6961e650-2590-49ba-976c-f2a4cf72d201": {
+          "type": "heading",
+          "settings": {
+            "text": "{{ collection.title }}",
+            "heading_type": "h1"
+          }
+        },
+        "fd96ed58-cafc-4fe3-9827-ff2d1d537b4c": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "text": "<p>{{ collection.metafields.custom.description | metafield_tag }}</p>"
+          }
+        },
+        "78b540cd-0e95-4059-8636-316d3d5e077a": {
+          "type": "breadcrumb",
+          "settings": {
+            "position_set": true,
+            "position_top": "30px"
+          }
+        },
+        "count_down_text_iWX34U": {
+          "type": "count_down_text",
+          "disabled": true,
+          "settings": {
+            "color": "#ffffff",
+            "text": "<p>Mokwheel Accessories</p>",
+            "link": "",
+            "countdown_date": "2024-08-26T00:00:00",
+            "countdown_hours": 480,
+            "countdown_text": "",
+            "show_countdown": true
+          }
+        }
+      },
+      "block_order": [
+        "6961e650-2590-49ba-976c-f2a4cf72d201",
+        "fd96ed58-cafc-4fe3-9827-ff2d1d537b4c",
+        "78b540cd-0e95-4059-8636-316d3d5e077a",
+        "count_down_text_iWX34U"
+      ],
+      "settings": {
+        "title": "{{ collection.title }}",
+        "text_alignment": "center",
+        "bg_color": "#121212",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/PC_89e6ceaf-33fb-4f06-b69b-11d99b4254ad.jpg",
+        "bg_image_mobile": "shopify://shop_images/M_713ec3b9-5e1a-4c6c-a4ad-e695c65784ee.jpg",
+        "bg_opacity": 50,
+        "image_aspect_ratio": "3/1",
+        "block_max_width": "600px",
+        "min_height": "220px",
+        "container": "alp-container-fluid",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "reset_spacing": true
+      }
+    },
+    "068efb60-06f6-49bb-a670-94ece84744ea": {
+      "type": "alp-separator",
+      "settings": {
+        "title": "Section Title",
+        "target": "",
+        "bg_color": "#ffffff",
+        "text_color": "#f3f3f3",
+        "container": "alp-full-width",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 3,
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "312dd263-140c-4f0b-8224-e3bdfc634934": {
+      "type": "alp-main-products-list",
+      "settings": {
+        "title": "Product List",
+        "products_per_page": 12,
+        "columns_width": "max(30%,300px)",
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "default_list_view": false,
+        "hide_view_switch": true,
+        "item_type": "type_2",
+        "image_aspect_ratio": "5/4",
+        "filter_show_collection": true,
+        "filter_collection_label": "Collections",
+        "filter_collections": [
+          "all-accessories",
+          "enrichment-accessories",
+          "electrical-components-parts",
+          "mechanical-components-parts",
+          "hardware-fasteners",
+          "promotional-items"
+        ],
+        "filter_type": "vertical",
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "show_compare": false,
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "5b85dcc6-5d97-4a27-be40-bcfb14a25ddb",
+    "068efb60-06f6-49bb-a670-94ece84744ea",
+    "product-grid",
+    "312dd263-140c-4f0b-8224-e3bdfc634934"
+  ]
+}

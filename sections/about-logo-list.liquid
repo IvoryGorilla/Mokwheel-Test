@@ -1,0 +1,245 @@
+<style>
+  @media (min-width: 751px) {
+    .pc {
+      display: block;
+    }
+    .mobile {
+      display: none;
+    }
+    .logo-list-all {
+      padding: 24px 0;
+      background-color: #2d3033;
+      fill: #fff;
+    }
+
+    .logo-list-content {
+      max-width: 1380px;
+      padding: 0 10px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .logo-list-item {
+      padding: 0 25px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .logo-list-all .logo-list_img {
+      width: 27px;
+      height: 27px;
+      margin-top: 8px;
+    }
+    .item-text-box {
+      padding-left: 18px;
+    }
+    .item-text-box .item-title {
+      font-size: 18px;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.5;
+    }
+    .item-text-box .item-text p {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: 400;
+      color: #b1b9c5;
+      line-height: 1.5;
+    }
+    .item-text-box .item-text p a {
+      text-decoration: unset;
+      text-underline-offset: unset;
+    }
+    .item-text-box .item-text p a:hover {
+      color: #fff;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .pc {
+      display: none;
+    }
+    .mobile {
+      display: block;
+    }
+
+    .logo-list-all {
+      padding: 24px 0;
+      background-color: #2d3033;
+      fill: #fff;
+    }
+
+    .logo-list-content {
+      text-align: left;
+    }
+    .logo-list-all .logo-list_img {
+      width: 27px;
+      height: 27px;
+      margin-top: 8px;
+    }
+    .logo-list-item:not(:first-child) .logo-list_img {
+      margin-top: 5px;
+    }
+
+    .logo-list-item {
+      padding: 0 25px;
+      display: flex;
+    }
+    .logo-list-item:not(:last-child) {
+      padding-bottom: 44px;
+    }
+    .item-text-box {
+      padding-left: 28px;
+    }
+    .item-text-box .item-title {
+      font-size: 18px;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.5;
+    }
+    .item-text-box .item-text p {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: 400;
+      color: #b1b9c5;
+      line-height: 1.5;
+    }
+    .item-text-box .item-text p a {
+      text-decoration: unset;
+      text-underline-offset: unset;
+    }
+    .item-text-box .item-text p a:hover {
+      color: #fff;
+    }
+  }
+  .alink-content-us {
+    cursor: pointer;
+  }
+</style>
+
+<div class="logo-list-all">
+  <div class="logo-list-content container">
+    <!--
+      <div class="swiper logoSwiper">
+      <div class="swiper-wrapper">
+    -->
+    {%- for block in section.blocks -%}
+      <!-- <div class="swiper-slide"> -->
+      <div class="logo-list-item">
+        <div class="logo-list_img">{{ block.settings.image }}</div>
+        <div class="item-text-box">
+          <div class="item-title">{{ block.settings.title }}</div>
+          <div class="item-text {% if block.settings.content %} alink-content-us {% endif %} ">
+            {% if block.settings.isContact %}
+              <p>
+                <a onclick="tidioChatApi.display(true);tidioChatApi.open()" href="javascription:viod(0);">Contact us</a>
+              </p>
+            {% else %}
+              {{ block.settings.text_link }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+    {%- endfor -%}
+
+    <script>
+      (() => {
+        let domList = document.querySelectorAll('.alink-content-us');
+        domList.forEach((e) => {
+          e.addEventListener('click', () => {
+            tidioChatApi.display(true);
+            tidioChatApi.open();
+          });
+        });
+      })();
+    </script>
+    <!--
+      </div>
+      </div>
+    -->
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    var swiper = new Swiper('.logoSwiper', {
+      observer: true,
+      observeParents: true,
+      breakpoints: {
+        375: {
+          //当屏幕宽度大于等于320
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        768: {
+          //当屏幕宽度大于等于768
+          slidesPerView: 3,
+        },
+        1200: {
+          //当屏幕宽度大于等于1280
+          slidesPerView: 3,
+        },
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "about Lists",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "logo-item",
+      "name": "Logo Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text_link",
+          "label": "Text Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "content",
+          "label": "content",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "isContact",
+          "label": "isContact",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "about Lists",
+      "blocks": [
+        {
+          "type": "logo-item"
+        },
+        {
+          "type": "logo-item"
+        },
+        {
+          "type": "logo-item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

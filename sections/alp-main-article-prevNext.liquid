@@ -1,0 +1,293 @@
+{% schema %}
+  {
+    "name": "Alp Main Article PrevNext",
+    "class": "alp-main-article-prevNext",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "select",
+        "id": "container",
+        "label": "Layout",
+        "default": "alp-container",
+        "options": [
+          {
+            "value": "alp-container",
+            "label": "Default"
+          },
+          {
+            "value": "alp-container-fluid",
+            "label": "Fluid container"
+          },
+          {
+            "value": "alp-full-width",
+            "label": "Full width"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Padding top",
+        "default": 10,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "em"
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Padding bottom",
+        "default": 10,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "em"
+      },
+      {
+        "type": "checkbox",
+        "id": "reset_spacing",
+        "label": "Remove default space between sections",
+        "default": false
+      }
+    ],
+    "presets": [
+      {
+        "name": "Alp Main Article PrevNext"
+      }
+    ]
+  }
+  {% endschema %}
+  
+  {% liquid
+    assign st = section.settings
+    assign container = st.container
+    assign reset_spacing = ''
+    if st.reset_spacing
+      assign reset_spacing = ' remove_spacing'
+    endif
+  %}
+  
+  {%- capture style -%}
+      --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+  {%- endcapture -%}
+  
+  {% style %}
+    .alp-main-article-prevNext-con{
+      display: flex;
+      justify-content: space-between;
+    }
+    .alp-main-article-prevNext-info{
+      /* padding: max(1em,3%); */
+      width: 100%;
+    }
+    .alp-main-article-prevNext-indicate-wrapper{
+      width: 48%;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 16px;
+    }
+    .alp-main-article-prevNext-indicate-wrapper:hover .alp-main-article-prevNext-info .alp-main-article-prevNext-title{
+      text-decoration: underline;
+      text-underline-offset: 0.3rem;
+    }
+     .alp-main-article-prevNext-indicate.next_article{
+      text-align: right;
+    }
+    .alp-main-article-prevNext-indicate{
+      cursor: pointer;
+      position: relative;
+      width: -webkit-fill-available;
+    }
+    .alp-main-article-prevNext-indicate a{
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .alp-main-article-prevNext-indicate.previous_article::before{
+      content: '< Previous blog';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+   .alp-main-article-prevNext-indicate.next_article::after{
+      content: 'Next blog  >';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .alp-main-article-prevNext-item{
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 1em;
+    }
+    .alp-main-article-prevNext-item picture{
+      width: 100%;
+      overflow: hidden;
+    }
+    .alp-main-article-prevNext-item picture img{
+      display: block;
+      aspect-ratio: 5 / 3;
+      transition: transform 0.3s ease;
+      display: none;
+    }
+    .alp-main-article-prevNext-item:hover picture img{
+      transform: scale(1.05); 
+    }
+    .alp-main-article-prevNext-tags{
+      color: #4E57EF;
+      margin-bottom: calc(var(--alp-gutter-y) * 0.25);
+    }
+    .alp-main-article-prevNext-bottom{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: calc(var(--alp-gutter-y) * 0.25);
+    }
+    .alp-main-article-prevNext-title {
+      height: 60px;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+    .alp-main-article-prevNext-bottom a{
+      text-decoration: underline;
+    }
+    .alp-main-article-prevNext-bottom span{
+      opacity: 0.5;
+    }
+    .alp-main-article-prevNext-btn .alp-btn.small:not(.button-type-btn-link){
+      font-weight: 400;
+      padding: 0;
+    }
+    .alp-main-article-prevNext-btn svg path{
+      fill: #4E57EF; 
+    }
+    @media screen and (max-width: 999px){
+      .alp-main-article-prevNext-con{
+        flex-direction: column;
+        gap: 16px;
+      }
+      .alp-main-article-prevNext-top{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3em;
+        overflow: hidden;
+      }
+      .alp-main-article-prevNext-indicate-wrapper{
+        width: 100%;
+      }
+      .alp-main-article-prevNext-indicate.next_article{
+        margin-bottom: auto;
+      }
+      .alp-main-article-prevNext-title {
+        height: auto;
+      }
+    }
+  {% endstyle %}
+  
+  <div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+    <div class="alp-section-container page-width {{ container }}">
+         <div class="alp-main-article-prevNext-con">
+          {% if blog.previous_article %}
+            <div class="alp-main-article-prevNext-indicate-wrapper">
+              <p class="alp-main-article-prevNext-indicate previous_article"><a href="{{ blog.previous_article }}">{{ blog.previous_article.title }}</a></p>
+              <div class="alp-main-article-prevNext-item">
+                {%- if blog.previous_article.url != blank -%}
+                  <a class="full-aa" href="{{ blog.previous_article.url }}" title="{{ blog.previous_article.title }}"></a>
+                {%- endif -%}
+                {% render 'alp-single-image', image: blog.previous_article.image, width: 1280 %}
+                <div class="alp-main-article-prevNext-info">
+                  <div class="alp-main-article-prevNext-tags">{{ article.tags }}</div>
+                  <h2 class="alp-main-article-prevNext-title headline__h4">{{ blog.previous_article.title }}</h2>
+                  <div class="alp-main-article-prevNext-bottom"> 
+                    <span class="circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
+                    <div class="alp-main-article-prevNext-btn">
+                      {% render 'alp-btn',
+                        url: blog.previous_article.url,
+                        type: 'primary',
+                        text: 'READ MORE',
+                        textcolor: '#000',
+                        bgcolor: '#fff',
+                        size: 'small'
+                      %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% if blog.next_article %}
+            <div class="alp-main-article-prevNext-indicate-wrapper">
+              <p class="alp-main-article-prevNext-indicate next_article"><a href="{{ blog.next_article }}">{{ blog.next_article.title }}</a></p>
+              <div class="alp-main-article-prevNext-item">
+                {%- if blog.next_article.url != blank -%}
+                  <a class="full-aa" href="{{ blog.next_article.url }}" title="{{ blog.next_article.title }}"></a>
+                {%- endif -%}
+                {% render 'alp-single-image', image: blog.next_article.image, width: 1280 %}
+                <div class="alp-main-article-prevNext-info">
+                  <div class="alp-main-article-prevNext-tags">{{ article.tags }}</div>
+                  <h2 class="alp-main-article-prevNext-title headline__h4">{{ blog.next_article.title }}</h2>
+                  <div class="alp-main-article-prevNext-bottom"> 
+                    <span class="circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
+                    <div class="alp-main-article-prevNext-btn">
+                      {% render 'alp-btn',
+                        url: blog.next_article.url,
+                        type: 'primary',
+                        text: 'READ MORE',
+                        textcolor: '#000',
+                        bgcolor: '#fff',
+                        size: 'small'
+                      %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      //
+      function limitWords(txt){
+          var str = txt
+          str = str.substr(0,10) + '...'
+          return str
+     }
+      jQuery(function(){
+          jQuery('.alp-main-article-prevNext-indicate a').each(function(){
+              let asum = jQuery(this).text()
+              asum = limitWords(asum)
+              jQuery(this).html(asum)
+          })
+      })
+  
+    });
+  </script>
+  

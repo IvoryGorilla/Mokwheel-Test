@@ -1,0 +1,40 @@
+<div class="list-buy-button-flex">
+  {%- if product.available -%}
+    <div class="alp-quick-add" data-add-variant="{{ product.first_available_variant.id }}">
+      {% comment %} <span>{{ 'products.product.add_to_cart' | t }}</span> {% endcomment %}
+      {%- assign free_gift_title = settings.text_free_gift_title | default: 'Free Gifts' -%}
+      {%- assign free_gift_content = product.metafields.custom.product_gift_info.value -%}
+      {%- if free_gift_content != blank -%}
+        <input
+          class="product-properties"
+          type="hidden"
+          data-property-title="{{- free_gift_title -}}"
+          name="properties[{{- free_gift_title-}}]"
+          value="{{- free_gift_content | strip_html -}}"
+        >
+      {%- endif -%}
+      <span>
+        {{ 'products.product.add_to_cart' | t }}
+      </span>
+      <div class="loading-svg">{% render 'icon-loading' %}</div>
+    </div>
+  {%- else -%}
+    <div class="alp-quick-add disabled">
+      {% comment %} <span>{{ 'products.product.sold_out' | t }}</span> {% endcomment %}
+      <span>{{ 'products.product.add_to_cart' | t }}</span>
+      {% comment %}
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 256 256">
+            <path fill="currentColor" d="M228.61 60.16A6 6 0 0 0 224 58H61l-6.37-35.07a6 6 0 0 0-5.9-4.93H24a6 6 0 0 0 0 12h19.72l25.81 141.94a21.93 21.93 0 0 0 6.24 11.77a26 26 0 1 0 38.12 6.29h52.22A26 26 0 1 0 188 178H91.17a10 10 0 0 1-9.84-8.21L77.73 150H196.1a22 22 0 0 0 21.65-18.06l12.15-66.87a6 6 0 0 0-1.29-4.91M106 204a14 14 0 1 1-14-14a14 14 0 0 1 14 14m96 0a14 14 0 1 1-14-14a14 14 0 0 1 14 14m3.94-74.21a10 10 0 0 1-9.84 8.21H75.55L63.19 70h153.62Z" />
+          </svg>
+        </span>
+      {% endcomment %}
+    </div>
+  {%- endif -%}
+
+  <div class="list-buy-button">
+    <a href="{{ product.url }}" class="">
+      <span>{{ settings.text_view_more | default: 'View More' }}</span>
+    </a>
+  </div>
+</div>

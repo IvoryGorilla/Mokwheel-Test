@@ -1,0 +1,170 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
+{
+  "sections": {
+    "cd08a778-a6b8-4148-81b4-07bb549d345b": {
+      "type": "alp-hero-banner",
+      "blocks": {
+        "ab9ff3da-5d09-4d22-b458-41f32d454419": {
+          "type": "heading",
+          "settings": {
+            "text": "{{ page.title }}",
+            "heading_type": "h1"
+          }
+        },
+        "3e356408-b887-4ab4-bb90-06ea9036ecd2": {
+          "type": "breadcrumb",
+          "settings": {
+            "position_set": true,
+            "position_top": "90px"
+          }
+        }
+      },
+      "block_order": [
+        "ab9ff3da-5d09-4d22-b458-41f32d454419",
+        "3e356408-b887-4ab4-bb90-06ea9036ecd2"
+      ],
+      "custom_css": [
+        "@media (max-width: 999px) {.alp-hero-banner .alp-hero-banner-wrapper {min-height: 180px; } .alp-hero-banner .alp-hero-banner-breadcrumbs.position_set_topleft {top: 30px; }}"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "center",
+        "bg_color": "#f5f5f5",
+        "text_color": "#ffffff",
+        "bg_image": "shopify:\/\/shop_images\/Rectangle_1161_7f9c2b90-4491-4664-b78e-5341fbcb9d2d.png",
+        "bg_image_mobile": "shopify:\/\/shop_images\/Rectangle_1161_1_9a124227-3591-4e42-9ab3-967ed1fb0a6c.png",
+        "bg_opacity": 100,
+        "image_aspect_ratio": "3\/1",
+        "block_max_width": "720px",
+        "min_height": "300px",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "8c2cb30f-5c5f-49da-8fd9-e86ccddcf7e5": {
+      "type": "alp-page-section",
+      "disabled": true,
+      "settings": {
+        "title": "Page",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 10,
+        "reset_spacing": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "alp_dealers_map_zDwg6a": {
+      "type": "alp-dealers-map",
+      "settings": {
+        "bigtitle": "",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 15,
+        "padding_bottom": 15,
+        "reset_spacing": true
+      }
+    },
+    "alp_contact_info_Fq6MML": {
+      "type": "alp-contact-info",
+      "blocks": {
+        "item_NcpxDX": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Group_39998.png",
+            "title": "Find a location",
+            "desc": "<p>Find a suitable test ride location on the map<\/p>"
+          }
+        },
+        "item_9mn6Uy": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Group_39995.png",
+            "title": "Contact",
+            "desc": "<p>Make a reservation on phone or Email<\/p>"
+          }
+        },
+        "item_F3LcRV": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Group_39996.png",
+            "title": "Take a test ride",
+            "desc": "<p>Come to the store and start your test ride<\/p>"
+          }
+        },
+        "item_NPakwD": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Group_40000.png",
+            "title": "Get a discount",
+            "desc": "<p>Interested in Mokwheel e-bikes? Use the provider's link and discount code.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_NcpxDX",
+        "item_9mn6Uy",
+        "item_F3LcRV",
+        "item_NPakwD"
+      ],
+      "settings": {
+        "title": "How it works",
+        "bg_color": "#f8f8f8",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "alp_featured_collection_n68Cj7": {
+      "type": "alp-featured-collection",
+      "settings": {
+        "title": "Featured Collection",
+        "product_list": [
+          "asphalt",
+          "asphalt-st",
+          "basalt",
+          "basalt-st",
+          "new-mesa-lite",
+          "mesa-lite-st",
+          "new-mesa-lite-st",
+          "mesa-plus-st"
+        ],
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "cd08a778-a6b8-4148-81b4-07bb549d345b",
+    "8c2cb30f-5c5f-49da-8fd9-e86ccddcf7e5",
+    "main",
+    "alp_dealers_map_zDwg6a",
+    "alp_contact_info_Fq6MML",
+    "alp_featured_collection_n68Cj7"
+  ]
+}

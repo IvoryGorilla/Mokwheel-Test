@@ -1,0 +1,206 @@
+{% schema %}
+{
+  "name": "referal-win-section4",
+  "class": "referal-win-section4",
+  "settings": [
+    {
+      "type": "text",
+      "id": "referal-win-section4-title",
+      "label": "Referal Win Section4 Title"
+    },
+    {
+      "type": "richtext",
+      "id": "referal-win-section4-subtitle",
+      "label": "Referal Win Section4 Subtitle"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card-item",
+      "name": "Card Item",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "referal-win-section4-card-title",
+          "label": "Referal Win Section4 Card Title"
+        },
+        {
+          "type": "text",
+          "id": "referal-win-section4-card-subtitle",
+          "label": "Referal Win Section4 Card Subtitle"
+        },
+        {
+          "type": "richtext",
+          "id": "referal-win-section4-card-content",
+          "label": "Referal Win Section4 Card Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "referal-win-section4"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+  --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+  .referal-win-section4-container {
+    margin-bottom: 100px;
+  }
+  .referal-win-section4-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-transform: capitalize;
+  }
+  .referal-win-section4-subtitle {
+    margin-top: 16px;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+  }
+  .referal-win-section4-subtitle p {
+    margin: 0;
+  }
+  .referal-win-section4-subtitle p:last-child {
+    margin-top: 5px;
+  }
+  .referal-win-section4-content {
+    margin-top: 48px;
+    display: flex;
+    gap: 32px;
+  }
+  .referal-win-section4-card {
+    padding: 32px;
+    background: #f8f8f8;
+    width: 50%;
+  }
+  .referal-win-section4-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 120%;
+    text-transform: capitalize;
+  }
+  .referal-win-section4-card-subtitle {
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 150%;
+  }
+  .referal-win-section4-card-content {
+    margin-top: 14px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 180%;
+  }
+  .referal-win-section4-card-content ul {
+    padding-left: 25px;
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .referal-win-section4-container {
+      margin-bottom: 60px;
+    }
+    .referal-win-section4-title {
+      font-size: 28px;
+    }
+    .referal-win-section4-subtitle {
+      font-size: 16px;
+    }
+    .referal-win-section4-content {
+      margin-top: 24px;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .referal-win-section4-card {
+      padding: 16px;
+      width: 100%;
+    }
+    .referal-win-section4-card-title {
+      font-size: 16px;
+    }
+    .referal-win-section4-card-subtitle {
+      margin-top: 16px;
+      font-size: 14px;
+    }
+    .referal-win-section4-card-content {
+      margin-top: 6px;
+      font-size: 14px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}" >
+  <div class="alp-section-container page-width {{ container }} referal-win-section4-container">
+    <div class="referal-win-section4-top">
+      <h2 class="referal-win-section4-title">{{ st.referal-win-section4-title }}</h2>
+      <div class="referal-win-section4-subtitle">{{st.referal-win-section4-subtitle }}</div>
+    </div>
+    <div class="referal-win-section4-content">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        <div class="referal-win-section4-card">
+          <h3 class="referal-win-section4-card-title">{{ bs.referal-win-section4-card-title }}</h3>
+          <div class="referal-win-section4-card-subtitle">{{bs.referal-win-section4-card-subtitle }}</div>
+          <div class="referal-win-section4-card-content">{{bs.referal-win-section4-card-content }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>

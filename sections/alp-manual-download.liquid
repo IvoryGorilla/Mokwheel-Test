@@ -1,0 +1,221 @@
+{% schema %}
+{
+  "name": "Alp Manual Download",
+  "class": "manual_download",
+  "max_blocks": 50,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Manual Item",
+      "type": "item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "file_name",
+          "label": "File Name"
+        },
+        {
+          "type": "url",
+          "id": "file_link",
+          "label": "File Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Manual Download",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "file_name": "MOKWHEEL BIKE Manual",
+            "file_link": "https://cdn.shopify.com/s/files/1/0550/4424/3702/files/sample-manual-file.pdf"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .manual-item-icon svg {
+    max-width: 32px;
+    height: auto;
+  }
+
+  .manual-item-icon svg path {
+    fill: #a3a3a3;
+  }
+
+  .manual-item-download-icon svg {
+    max-width: 32px;
+    height: auto;
+  }
+
+  .manual-item-download-icon svg path {
+    transition: 0.5s;
+  }
+
+  .manual-item-container {
+    display: flex;
+    position: relative;
+    gap: 1em;
+    padding: 1em;
+    border: 1px solid #c1c1c1;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .manual-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .manual-list > div {
+    flex-basis: calc(50% - 5px);
+  }
+
+  .manual-item-wrapper {
+    position: relative;
+  }
+  .manual-item-c-1 {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .manual-item-name {
+    line-height: 1.45;
+  }
+
+  .manual-item-container {
+    flex-wrap: wrap;
+  }
+
+  a.manual-item-link {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 8;
+  }
+
+  .manual-item-wrapper:hover .manual-item-download-icon svg path {
+    fill: #eb7924;
+  }
+
+  .manual-item-container {
+    transition: 0.5s;
+  }
+
+  .manual-item-wrapper:hover .manual-item-container {
+    border: 1px solid #ee751c;
+  }
+
+  @media screen and (min-width: 1000px) {
+    .manual-wrapper .title {
+      font-size: 48px;
+      font-weight: 600;
+      color: #343434;
+      line-height: 1;
+      margin-bottom: 30px;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    .manual-wrapper .title {
+      font-size: 30px;
+    }
+    .manual-list > div {
+      flex-basis: 100%;
+    }
+    .manual-wrapper .title {
+      font-weight: 600;
+      margin-bottom: 30px;
+      color: #343434;
+      line-height: 1;
+    }
+  }
+
+  /*faq-new*/
+  .faq-item.manual-fake {
+    box-sizing: border-box;
+    height: 0px;
+    overflow: hidden;
+    padding: 0 !important;
+  }
+  @media screen and (min-width: 1000px) {
+    .faq-new-box .container-pc .menu .swiper-slide {
+      width: 20%;
+    }
+  }
+</style>
+
+<div class="faq-new-box">
+  <div class="container container-pc">
+    <div class="manual-wrapper">
+      <div class="manual-wrapper">
+        <div class="title">{{- section.settings.title -}}</div>
+        <div class="manual-list">
+          {% for block in section.blocks %}
+            <div class="manual-item-wrapper">
+              <div class="manual-item-container">
+                <div class="manual-item-c-1">
+                  <div class="manual-item-icon">
+                    <svg
+                      t="1685346119723"
+                      class="icon"
+                      viewBox="0 0 1024 1024"
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      p-id="5580"
+                      width="512"
+                      height="512"
+                    >
+                      <path d="M582.4 864H170.666667c-6.4 0-10.666667-4.266667-10.666667-10.666667V170.666667c0-6.4 4.266667-10.666667 10.666667-10.666667h309.333333V320c0 40.533333 34.133333 74.666667 74.666667 74.666667h160v38.4c0 17.066667 14.933333 32 32 32s32-14.933333 32-32V298.666667c0-8.533333-4.266667-17.066667-8.533334-23.466667l-170.666666-170.666667c-6.4-6.4-14.933333-8.533333-23.466667-8.533333H170.666667C130.133333 96 96 130.133333 96 170.666667v682.666666c0 40.533333 34.133333 74.666667 74.666667 74.666667h411.733333c17.066667 0 32-14.933333 32-32s-14.933333-32-32-32z m132.266667-550.4v17.066667H554.666667c-6.4 0-10.666667-4.266667-10.666667-10.666667V160h19.2l151.466667 153.6z" fill="#eb7924" p-id="5581"></path><path d="M332.8 533.333333c-12.8 0-19.2 2.133333-25.6 6.4-6.4 4.266667-8.533333 12.8-8.533333 23.466667v206.933333c0 6.4 2.133333 12.8 6.4 19.2 4.266667 4.266667 10.666667 8.533333 21.333333 8.533334s17.066667-4.266667 21.333333-8.533334c4.266667-4.266667 6.4-10.666667 6.4-19.2v-64h32c57.6 0 89.6-29.866667 89.6-87.466666 0-27.733333-8.533333-51.2-23.466666-64-14.933333-14.933333-36.266667-21.333333-66.133334-21.333334h-53.333333z m87.466667 85.333334c0 12.8-2.133333 23.466667-8.533334 27.733333-4.266667 4.266667-14.933333 8.533333-27.733333 8.533333h-32v-70.4H384c12.8 0 21.333333 2.133333 27.733333 8.533334 6.4 4.266667 8.533333 12.8 8.533334 25.6zM667.733333 571.733333c-8.533333-12.8-21.333333-21.333333-34.133333-29.866666-14.933333-4.266667-32-8.533333-51.2-8.533334h-61.866667c-8.533333 0-17.066667 0-23.466666 8.533334-2.133333 4.266667-4.266667 10.666667-4.266667 19.2V768c0 8.533333 2.133333 14.933333 4.266667 19.2 6.4 8.533333 14.933333 8.533333 23.466666 8.533333h64c19.2 0 34.133333-4.266667 49.066667-10.666666 12.8-6.4 25.6-17.066667 34.133333-29.866667 8.533333-12.8 14.933333-25.6 19.2-42.666667 4.266667-14.933333 6.4-32 6.4-49.066666 0-17.066667-2.133333-34.133333-6.4-49.066667-4.266667-14.933333-10.666667-29.866667-19.2-42.666667z m-42.666666 153.6c-8.533333 12.8-21.333333 19.2-38.4 19.2h-38.4v-160H576c21.333333 0 38.4 6.4 46.933333 19.2 10.666667 12.8 14.933333 34.133333 14.933334 59.733334 2.133333 27.733333-4.266667 46.933333-12.8 61.866666zM851.2 533.333333h-106.666667c-8.533333 0-17.066667 2.133333-21.333333 6.4-6.4 4.266667-8.533333 12.8-8.533333 21.333334v209.066666c0 6.4 2.133333 12.8 6.4 17.066667 4.266667 6.4 10.666667 8.533333 21.333333 8.533333 8.533333 0 17.066667-2.133333 21.333333-8.533333 2.133333-4.266667 6.4-8.533333 6.4-19.2v-85.333333h72.533334c12.8 0 23.466667-6.4 25.6-17.066667 2.133333-8.533333 2.133333-14.933333 0-17.066667-2.133333-4.266667-6.4-17.066667-25.6-17.066666H768v-49.066667h81.066667c8.533333 0 14.933333-2.133333 19.2-4.266667 4.266667-2.133333 8.533333-8.533333 8.533333-21.333333 2.133333-12.8-8.533333-23.466667-25.6-23.466667z" fill="#eb7924" p-id="5582"></path>
+                    </svg>
+                  </div>
+                  <div class="manual-item-name">
+                    <div class="quest">{{- block.settings.file_name -}}</div>
+                  </div>
+                </div>
+                <div class="manual-item-download-icon">
+                  <svg
+                    t="1685346269474"
+                    class="icon"
+                    viewBox="0 0 1024 1024"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    p-id="6620"
+                    width="512"
+                    height="512"
+                  >
+                    <path d="M624 706.3h-74.1V464c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v242.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.7c3.2 4.1 9.4 4.1 12.6 0l112-141.7c4.1-5.2 0.4-12.9-6.3-12.9z" p-id="6621" fill="#2c2c2c"></path><path d="M811.4 366.7C765.6 245.9 648.9 160 512.2 160S258.8 245.8 213 366.6C127.3 389.1 64 467.2 64 560c0 110.5 89.5 200 199.9 200H304c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8h-40.1c-33.7 0-65.4-13.4-89-37.7-23.5-24.2-36-56.8-34.9-90.6 0.9-26.4 9.9-51.2 26.2-72.1 16.7-21.3 40.1-36.8 66.1-43.7l37.9-9.9 13.9-36.6c8.6-22.8 20.6-44.1 35.7-63.4 14.9-19.2 32.6-35.9 52.4-49.9 41.1-28.9 89.5-44.2 140-44.2s98.9 15.3 140 44.2c19.9 14 37.5 30.8 52.4 49.9 15.1 19.3 27.1 40.7 35.7 63.4l13.8 36.5 37.8 10C846.1 454.5 884 503.8 884 560c0 33.1-12.9 64.3-36.3 87.7-23.4 23.4-54.5 36.3-87.6 36.3H720c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h40.1C870.5 760 960 670.5 960 560c0-92.7-63.1-170.7-148.6-193.3z" p-id="6622" fill="#2c2c2c"></path>
+                  </svg>
+                </div>
+              </div>
+              <a class="manual-item-link" href="{{- block.settings.file_link -}}" target="_blank"></a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  //在faq-new中添加manual标记
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('#Manual').parentElement.classList.add('manual-fake');
+  });
+</script>

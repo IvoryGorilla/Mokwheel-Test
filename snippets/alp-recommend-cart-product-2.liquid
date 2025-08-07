@@ -1,0 +1,62 @@
+{% comment %}
+  {% render 'alp-recommend-cart-product-2', product: product %}
+{% endcomment %}
+{%- if product -%}
+  <div
+    class="alp-recommend-cart-product alp-r-cart-p-2"
+    data-recommend-product
+    data-recommend-product-variant="{{ product.first_available_variant.id }}"
+    data-recommend-product-price="{{ product.price }}"
+  >
+    <div class="recommend-cart-item-flex-2 relative">
+      <a class="full-aa" href="{{ product.url }}" title="{{ product.title }}"></a>
+      <div class="recommend-cart-item-image">
+        {% comment %} {{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }} {% endcomment %}
+        {% render 'alp-responsive-image',
+          image: product.featured_image,
+          desktop_width: 300,
+          mobile_width: 200,
+          aspect_ratio: aspect_ratio
+        %}
+      </div>
+      <div class="recommend-cart-item-info">
+        <div class="recommend-cart-item-title">
+          <div class="r-title">{{ product.title }}</div>
+          {%- if product.metafields.custom.new_description != blank -%}
+            <div class="r-option-des">
+              {{ product.metafields.custom.new_description | metafield_tag | strip_html | truncatewords: 15 }}
+            </div>
+          {%- endif -%}
+        </div>
+        {% comment %}
+          <div class="recommend-cart-item-price">
+            {%- if product.metafields.custom.discount_price != blank -%}
+              {%- assign discount_price = product.metafields.custom.discount_price -%}
+              {%- if discount_price == 0 -%}
+                {%- assign discount_price = 'FREE' -%}
+              {%- else -%}
+                {%- assign discount_price = discount_price | money -%}
+              {%- endif -%}
+              <strong class="price--final" data-discount-price="{{ product.metafields.custom.discount_price }}">
+                {{- discount_price -}}
+              </strong>
+              <s class="cart-item__old-price ">{{ product.price | money }}</s>
+            {%- else -%}
+              <span>{{ product.price | money }}</span>
+            {%- endif -%}
+          </div>
+        {% endcomment %}
+        <div class="recommend-cart-item-price">
+          <strong class="price--final">
+            {{ product.metafields.custom.pack_final_price.value }}
+          </strong>
+          <s class="cart-item__old-price ">{{ product.metafields.custom.pack_original_price.value }}</s>
+        </div>
+      </div>
+      <div class="recommend-cart-add relative">
+        <span>Add To Cart</span>
+        <div class="loading-svg">{% render 'icon-loading' %}</div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

@@ -1,0 +1,48 @@
+<style>
+     @media (min-width:751px) {
+        #shopify-section-{{ section.id }} .pageBanner_img {
+        width: 100%;
+    }
+    #shopify-section-{{ section.id }} .pageBanner_img img {
+        width: 100%;
+    }
+     }
+ @media (min-width:751px) {
+    #shopify-section-{{ section.id }} .pageBanner_img {
+        width: 100%;
+    }
+    #shopify-section-{{ section.id }} .pageBanner_img img {
+        width: 100%;
+    }
+ }
+</style>
+<div class="pageBanner_img">
+    <img loading="lazy" class="preview-image hidden-phone hide_mobile " {% render 'image-attributes' , image: section.settings.iamge,
+        sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+    <img loading="lazy" class="preview-image hidden-tablet-and-up hide_desktop" {% render 'image-attributes' , image:
+    section.settings.iamgeM,
+        sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+</div>
+{% schema %}
+{
+"name": "Page Banner",
+"settings": [
+{
+"type": "image_picker",
+"id": "iamge",
+"label": "Image"
+},
+{
+"type": "image_picker",
+"id": "iamgeM",
+"label": "Image M"
+}
+],
+"presets": [
+{
+"name": "Page Banner",
+"category": "Image"
+}
+]
+}
+{% endschema %}

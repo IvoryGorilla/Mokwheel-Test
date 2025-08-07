@@ -1,0 +1,76 @@
+{%- unless template == 'index' or template == '404' -%}
+    {%- assign t = template | split: '.' | first -%}
+    <nav class="breadcrumbs" role="navigation" aria-label="breadcrumbs">
+      <div class="alp__breadcrumb-list ">
+        <div class="alp__breadcrumb-item">
+          <a class="alp__breadcrumb-link" href="/">Home</a>
+          <span aria-hidden="true" class="alp__breadcrumb-separator ">></span>
+        </div>
+        {%- case t -%}
+          {%- when 'page' -%}
+            <div class="alp__breadcrumb-item">
+              <span class="alp__breadcrumb-link" aria-current="page">{{ page.title }}</span>
+            </div>
+          {%- when 'product' -%}
+            {%- if product.collections[0] -%}
+              <div class="alp__breadcrumb-item">
+                {%- assign current_collection = current_collection | default: product.collections[0] -%}
+                {{ current_collection.title | link_to: current_collection.url }}
+                <span aria-hidden="true" class="alp__breadcrumb-separator ">></span>
+              </div>
+            {%- endif -%}
+            <div class="alp__breadcrumb-item">
+              <span class="alp__breadcrumb-link" aria-current="page">{{ product.title }}<span>
+            </div>
+          {%- when 'collection' and collection.handle -%}
+            {%- if current_tags -%}
+              <div class="alp__breadcrumb-item">
+                {{ collection.title | link_to: collection.url }}
+              </div>
+              <div class="alp__breadcrumb-item">
+                {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: '+' }}{%- endcapture -%}
+                <span aria-hidden="true" class="alp__breadcrumb-separator">/</span>
+                <span class="alp__breadcrumb-link" aria-current="page">
+                  {{- current_tags | join: ' + ' -}}
+                </span>
+              </div>
+            {%- else -%}
+              <div class="alp__breadcrumb-item">
+                <span class="alp__breadcrumb-link" aria-current="page">
+                  {{- collection.title -}}
+                </span>
+              </div>
+            {%- endif -%}
+          {%- when 'blog' -%}
+            {%- if current_tags -%}
+              <div class="alp__breadcrumb-item">
+                {{ blog.title | link_to: blog.url }}
+              </div>
+              <div class="alp__breadcrumb-item">
+                {%- capture tag_url -%}{{ blog.url }}/tagged/{{ current_tags | join: '+' }}{%- endcapture -%}
+                <span aria-hidden="true" class="alp__breadcrumb-separator">/</span>
+                <span class="alp__breadcrumb-link" aria-current="page">
+                  {{- current_tags | join: ' + ' -}}
+                </span>
+              </div>
+            {%- else -%}
+              <div class="alp__breadcrumb-item">
+                <span class="alp__breadcrumb-link" aria-current="page">{{ blog.title }}</span>
+              </div>
+            {%- endif -%}
+          {%- when 'article' -%}
+            <div class="alp__breadcrumb-item">
+              {{ blog.title | link_to: blog.url }}
+            </div>
+            <div class="alp__breadcrumb-item">
+              <span aria-hidden="true" class="alp__breadcrumb-separator">/</span>
+              <span class="alp__breadcrumb-link" aria-current="page">{{ article.title }}</span>
+            </div>
+          {%- else -%}
+            <div class="alp__breadcrumb-item">
+              <span class="alp__breadcrumb-link" aria-current="page">{{ page_title }}</span>
+            </div>
+        {%- endcase -%}
+    </div>
+    </nav>
+  {%- endunless -%}

@@ -1,0 +1,421 @@
+{% schema %}
+{
+  "name": "pmax-section1",
+  "class": "pmax-section1",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pmax-section1-title",
+      "label": "Pmax Section1 Title"
+    },
+    {
+      "type": "text",
+      "id": "pmax-section1-subtitle",
+      "label": "Pmax Section1 Subtitle"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card-item",
+      "name": "Card Item",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "pmax-section1-card-image",
+          "label": "Pmax Section1 Card Image"
+        },
+        {
+          "type": "text",
+          "id": "pmax-section1-card-title",
+          "label": "Pmax Section1 Card Title"
+        },
+        {
+          "type": "textarea",
+          "id": "pmax-section1-card-content",
+          "label": "Pmax Section1 Card Content"
+        }
+      ]
+    },
+    {
+      "type": "card-item-mb",
+      "name": "Card Item Mobile",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "pmax-section1-card-mb-image1",
+          "label": "Pmax Section1 Card Mobile Image1"
+        },
+        {
+          "type": "image_picker",
+          "id": "pmax-section1-card-mb-image2",
+          "label": "Pmax Section1 Card Mobile Image2"
+        },
+        {
+          "type": "text",
+          "id": "pmax-section1-card-title",
+          "label": "Pmax Section1 Card Mobile Title"
+        },
+        {
+          "type": "textarea",
+          "id": "pmax-section1-card-content",
+          "label": "Pmax Section1 Card Mobile Content"
+        }
+      ]
+    },
+    {
+      "type": "card-item-sp",
+      "name": "Card Item Special",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "pmax-section1-card-sp-title",
+          "label": "Pmax Section1 Card Special Title"
+        },
+        {
+          "type": "richtext",
+          "id": "pmax-section1-card-sp-content",
+          "label": "Pmax Section1 Card Special Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "pmax-section1-card-sp-left-image",
+          "label": "Pmax Section1 Card Special Left Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "pmax-section1-card-sp-right-image",
+          "label": "Pmax Section1 Card Special Right Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse",
+          "label": "Reverse Item",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "pmax-section1"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{% style %}
+  .pmax-section1-container {
+    margin-top: 100px;
+  }
+  .pmax-section1-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    text-transform: capitalize;
+    color: #1a1a1a;
+  }
+  .pmax-section1-subtitle {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+    color: #1a1a1a;
+    margin-top: 10px;
+  }
+  .pmax-section1-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 创建3列，每列等宽 */
+    max-width: 1200px;
+    margin: 48px auto 0;
+    gap: 20px;
+  }
+  .pmax-section1-card {
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 30px 43px;
+    background: #f8f8f8;
+    box-sizing: border-box;
+    border: 1.5px solid #e83f0c;
+  }
+  .pmax-section1-card-image {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+  }
+  .pmax-section1-card-image img {
+    height: 100%;
+    width: auto;
+  }
+  .pmax-section1-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 150%;
+    text-align: center;
+    color: #1a1a1a;
+    min-height: 72px;
+  }
+  .pmax-section1-card-content {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+    color: #1a1a1a;
+  }
+  .pmax-section1-card-mb {
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px;
+    background: #f8f8f8;
+    box-sizing: border-box;
+    border: 1.5px solid #e83f0c;
+  }
+  .pmax-section1-card-mb-image {
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+  .pmax-section1-card-mb-image img {
+    height: 100%;
+    width: auto;
+  }
+  .pmax-section1-card-mb-title {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    color: #1a1a1a;
+  }
+  .pmax-section1-card-mb-content {
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+    color: #1a1a1a;
+  }
+  .pmax-section1-card-sp {
+    grid-column: 1 / -1; /* 从第1列跨越到最后一列 */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f8f8;
+    box-sizing: border-box;
+    border: 1.5px solid #e83f0c;
+    border-radius: 4px;
+  }
+  .pmax-section1-card-sp.reverse {
+    flex-direction: row-reverse;
+  }
+  .pmax-section1-card-sp-left {
+    padding: 30px 43px;
+    height: 100%;
+  }
+  .pmax-section1-card-sp-title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 150%;
+    color: #1a1a1a;
+  }
+  .pmax-section1-card-sp-content {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+    color: #1a1a1a;
+  }
+  .pmax-section1-card-sp-content p {
+    margin: 0;
+  }
+  .pmax-section1-card-sp-left-image {
+    margin-top: 23px;
+    width: 100%;
+    height: auto;
+    mix-blend-mode: darken;
+  }
+  .pmax-section1-card-sp-left-image img {
+    display: block;
+    max-height: 142px;
+    object-fit: contain;
+    width: auto;
+  }
+  .pmax-section1-card-sp-right {
+    display: flex;
+    height: 100%;
+    max-width: 624px;
+  }
+  .pmax-section1-card-sp-right img {
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (max-width: 750px) {
+    .pmax-section1-container {
+      margin-top: 60px;
+    }
+    .pmax-section1-title {
+      font-size: 28px;
+    }
+    .pmax-section1-subtitle {
+      font-size: 16px;
+    }
+    .pmax-section1-content {
+      margin-top: 24px;
+      gap: 8.5px;
+      grid-template-columns: repeat(2, 1fr); /* 创建3列，每列等宽 */
+    }
+    .pmax-section1-card-sp {
+      flex-direction: column-reverse;
+      max-height: none;
+      gap: 0;
+    }
+    .pmax-section1-card-sp-left {
+      width: 100%;
+      padding: 12px 10px;
+    }
+    .pmax-section1-card-sp-title {
+      font-size: 16px;
+    }
+    .pmax-section1-card-sp-content {
+      font-size: 14px;
+    }
+    .pmax-section1-card-sp-left-image {
+      margin-top: 16px;
+    }
+    .pmax-section1-card-sp-left-image img {
+      max-height: 100px;
+      margin: auto;
+    }
+    .pmax-section1-card-sp-right {
+      width: 100%;
+      max-width: none;
+    }
+    .pmax-section1-card-sp.reverse {
+      flex-direction: column-reverse;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}">
+  <div class="alp-section-container page-width {{ container }} pmax-section1-container">
+    <div class="pmax-section1-top">
+      <h2 class="pmax-section1-title">{{ st['pmax-section1-title'] }}</h2>
+      <div class="pmax-section1-subtitle">
+        {{ st['pmax-section1-subtitle'] }}
+      </div>
+    </div>
+    <div class="pmax-section1-content">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        {%- case block.type -%}
+          {%- when 'card-item' -%}
+            <div class="pmax-section1-card hide_mobile">
+              <div class="pmax-section1-card-image">
+                <img
+                  src="{{ bs.pmax-section1-card-image | image_url: width: 1200 }}"
+                  width="auto"
+                  height="auto"
+                >
+              </div>
+              <div class="pmax-section1-card-title">{{ bs['pmax-section1-card-title'] }}</div>
+              <div class="pmax-section1-card-content">
+                {{ bs['pmax-section1-card-content'] }}
+              </div>
+            </div>
+          {%- when 'card-item-mb' -%}
+            <div class="pmax-section1-card-mb hide_desktop">
+              <div class="pmax-section1-card-mb-image">
+                {% if bs['pmax-section1-card-mb-image1'] != blank %}
+                  <img
+                    src="{{ bs.pmax-section1-card-mb-image1 | image_url: width: 1200 }}"
+                    width="auto"
+                    height="auto"
+                  >
+                {% endif %}
+                {% if bs['pmax-section1-card-mb-image2'] != blank %}
+                  <img
+                    src="{{ bs.pmax-section1-card-mb-image2 | image_url: width: 1200 }}"
+                    width="auto"
+                    height="auto"
+                  >
+                {% endif %}
+              </div>
+              <div class="pmax-section1-card-mb-title">{{ bs['pmax-section1-card-title'] }}</div>
+              <div class="pmax-section1-card-mb-content">
+                {{ bs['pmax-section1-card-content'] }}
+              </div>
+            </div>
+          {%- when 'card-item-sp' -%}
+            <div class="pmax-section1-card-sp {% if bs.reverse %} reverse {% endif %}">
+              <div class="pmax-section1-card-sp-left">
+                <div class="pmax-section1-card-sp-title">{{ bs['pmax-section1-card-sp-title'] }}</div>
+                <div class="pmax-section1-card-sp-content">
+                  {{ bs['pmax-section1-card-sp-content'] }}
+                </div>
+                <div class="pmax-section1-card-sp-left-image">
+                  <img
+                    src="{{ bs.pmax-section1-card-sp-left-image | image_url: width: 1200 }}"
+                    width="auto"
+                    height="auto"
+                  >
+                </div>
+              </div>
+              <div class="pmax-section1-card-sp-right">
+                <div class="pmax-section1-card-sp-right-image">
+                  <img
+                    src="{{ bs.pmax-section1-card-sp-right-image | image_url: width: 1200 }}"
+                    width="auto"
+                    height="auto"
+                  >
+                </div>
+              </div>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>

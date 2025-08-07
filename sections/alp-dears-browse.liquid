@@ -1,0 +1,520 @@
+{% schema %}
+{
+  "name": "Alp Dears Browse",
+  "class": "alp-dears-browse",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sub Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_image",
+      "label": "Review Image"
+    },
+    {
+      "type": "url",
+      "id": "review_image_url",
+      "label": "Review Image URL"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_item",
+      "name": "Category Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Title"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Dears Browse"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-category-list-items.swiper .swiper-slide {
+    width: auto;
+  }
+  .alp-dears-browse-container {
+    display: flex;
+    gap: 48px;
+    justify-content: space-between;
+  }
+  .alp-dears-browse-inner-1 {
+    width: 240px;
+  }
+  .alp-dears-browse-title h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 16px 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+  }
+  .alp-dears-browse-subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .alp-dears-browse-subtitle svg {
+    transition: transform 0.3s ease;
+  }
+  
+  .alp-dears-browse-subtitle.active svg {
+    transform: rotate(180deg);
+  }
+
+  .alp-dears-browse-inner-1 .h-category-list-item span{
+    font-size: 16px;
+  }
+
+  .alp-dears-browse-category-s {
+    transition: all 0.3s ease;
+  }
+
+  .alp-dears-browse-inner-1 .h-category-list-item {
+    padding: 16px 0;
+    background: none;
+    color: #1a1a1a;
+    text-decoration: underline;
+  }
+  .alp-dears-browse-inner-1 .active > .h-category-list-item {
+    padding: 16px 0;
+    background: none;
+    color: #1a1a1a;
+  }
+
+  .alp-products-swiper.swiper {
+    overflow: visible;
+  }
+
+  .alp-dears-browse.alp-section {
+    overflow: hidden;
+  }
+
+  .alp-dears-browse-inner-2 {
+    position: relative;
+    width: calc(100% - 240px - 48px);
+    overflow: hidden;
+  }
+
+  .alp-dears-browse-inner-2 .swiper-pagination-bullets span.swiper-pagination-bullet:after{
+    height: 4px;
+  }
+
+  .swiper-pagination-products {
+    margin-top: 48px;
+  }
+
+  .alp-dears-browse-inner-2[data-switch-target] > div:not(:first-child) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .alp-dears-browse-inner-2[data-switch-target] > div {
+    transition: 0.4s;
+    opacity: 0;
+  }
+
+  .alp-dears-browse-inner-2[data-switch-target] > div.active {
+    opacity: 1;
+  }
+
+  [data-target-index] .alp-product-item-slie-item {
+    transform: translate(30px, 0px);
+    opacity: 0;
+    transition: transform 0.5s 0.5s, opacity 0.5s 0s;
+  }
+
+  [data-target-index].active .alp-product-item-slie-item {
+    transform: translate(0px, 0px);
+    opacity: 1;
+    transition: transform 0.8s calc(var(--transition-delay) + 0.1s), opacity 0.5s calc(var(--transition-delay) + 0.1s);
+  }
+
+  .alp-dears-browse .alp-product-item-grid-n1 .alp-productAcessories + .alp-product-item-price {
+    margin-top: 8px;
+  }
+
+  .alp-dears-browse .alp-product-grid-i .alp-product-item-info-buttons-flex{
+    display: none;
+  }
+
+  .alp-dears-browse .alp-product-item-features .alp_product__badge_i {
+    /* min-height: 40px; */
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #1a1a1a;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-weight: 500;
+    /* font-size: clamp(14px, 1.25vw, 16px); */
+  }
+
+  .alp-dears-browse-review-image-wrapper img {
+    display: block;
+    max-width: clamp(239px, 55vw, 310px);
+  }
+
+  @media (min-width: 999px) {
+    .alp-products-swiper.swiper .swiper-wrapper .swiper-slide {
+      height: auto;
+      align-self: stretch;
+      display: flex;
+    }
+
+    .alp-products-swiper.swiper .swiper-wrapper {
+      align-items: stretch;
+    }
+
+    .alp-products-swiper.swiper .swiper-wrapper .swiper-slide .alp-product-item-slie-item {
+      display: flex;
+      height: 100%;
+    }
+
+    .alp-products-swiper.swiper
+      .swiper-wrapper
+      .swiper-slide
+      .alp-product-item-slie-item
+      .alp-product-item-1.type-item-02.alp-product-item-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .alp-products-swiper.swiper
+      .swiper-wrapper
+      .swiper-slide
+      .alp-product-item-slie-item
+      .alp-product-item-1.type-item-02.alp-product-item-wrapper
+      .alp-product-item-info.type-02 {
+      flex: 1;
+      align-items: stretch;
+      justify-content: stretch;
+      flex-direction: column;
+    }
+
+    .alp-products-swiper.swiper
+      .swiper-wrapper
+      .swiper-slide
+      .alp-product-item-slie-item
+      .alp-product-item-1.type-item-02.alp-product-item-wrapper
+      .alp-product-item-info.type-02
+      .alp-product-item-title-wrap {
+      flex: 1;
+    }
+  }
+
+  @media (max-width: 999px) {
+    .alp-dears-browse-container{
+      flex-direction: column;
+      gap: 0;
+    }
+    .alp-dears-browse-inner-1 {
+      margin-bottom: 24px;
+      width: 100%;
+    }
+
+    .alp-dears-browse-subtitle {
+      font-size: 18px;
+    }
+
+    .alp-dears-browse-category-s {
+      display: none;
+    }
+    
+    .alp-dears-browse-subtitle svg {
+      transform: rotate(180deg);
+    }
+
+    .alp-dears-browse-inner-2{
+      width: 100%;
+    }
+
+    .alp-dears-browse-container .swiper-pagination-products {
+      margin-top: 24px;
+    }
+
+    .alp-dears-browse.alp-section {
+      padding-top: calc(var(--padding-top) * 2.6667px);
+    }
+
+    .alp-dears-browse .alp-product-item-features .alp_product__badge_i {
+      /* min-height: 32px; */
+    }
+
+    .alp-dears-browse-inner-1.has-review-image {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 24px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-dears-browse alp-section {{ reset_spacing }}" style="{{ style }}" data-switch-wrapper>
+  <div class="alp-section-container alp-dears-browse-container page-width {{ container }}">
+    <div class="alp-dears-browse-inner-1 {% if st.review_image != blank %} has-review-image{% endif %}">
+      {%- if st.title != blank -%}
+        <div class="alp-dears-browse-title">
+          <h2 class="headline__h2">{{ st.title }}</h2>
+        </div>
+      {%- endif -%}
+      {%- if st.subtitle != blank -%}
+        <div class="alp-dears-browse-subtitle">
+          <span>{{ st.subtitle }}</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            fill="none"
+            version="1.1"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+          >
+            <g><g></g><g transform="matrix(1,0,0,-1,0,21)"><path d="M8,16.70711L13.8536,10.853553L13.1464,10.146447L8,15.29289L2.853553,10.146447L2.146447,10.853553L8,16.70711Z" fill-rule="evenodd" fill="#1A1A1A" fill-opacity="1"/></g></g>
+          </svg>
+        </div>
+      {%- endif -%}
+      <div class="alp-dears-browse-category-s">
+        <div class="alp-dears-browse-category-list" data-switch-trigger>
+          <div class="alp-category-list-items swiper" data-blockId="{{ section.id }}">
+            <div class="swiper-wrapper">
+              {%- for block in section.blocks -%}
+                {% liquid
+                  assign bs = block.settings
+                %}
+                <div
+                  class="swiper-slide {% if forloop.index == 1 %} active{% endif %}"
+                  data-trigger-index="{{ forloop.index0 }}"
+                >
+                  <div
+                    class="h-category-list-item button-type-2"
+                  >
+                    <span>{{ bs.text }}</span>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% if st.review_image != blank %}
+        <div class="alp-dears-browse-review-image-wrapper relative">
+          {% if st.review_image_url != blank %}
+            <a rel="sponsored" class="full-aa" href="{{ st.review_image_url }}" target="_blank"></a>
+          {% endif %}
+          <img
+            data-src="{{ st.review_image | image_url: width: 800 }}"
+            width="auto"
+            height="auto"
+            alt=""
+            loading="lazy"
+            class="lazy alp_product__reviews_tre_image"
+          >
+        </div>
+      {% endif %}
+    </div>
+    <div class="alp-dears-browse-inner-2" data-switch-target>
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        <div
+          class="alp-products-swiper-wrapper {% if forloop.index == 1 %} active{% endif %}"
+          data-target-index="{{ forloop.index0 }}"
+        >
+          <div class="alp-products-swiper swiper" data-blockId="{{ block.id }}">
+            <div class="swiper-wrapper">
+              {%- for product in bs.collection.products -%}
+                <div class="swiper-slide delay">
+                  <div class="alp-product-item-slie-item">
+                    <div class="alp-product-grid-i">
+                      {% render 'alp-product-item-grid-n1', product: product %}
+                      {% comment %} {% render 'nav-collection-list', collections: bs.product %} {% endcomment %}
+                    </div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+            <div class="swiper-navs swiper-pagination-products">
+              {% render 'swiper-pagination', class: 'pagination-products' %}
+              {% render 'swiper-navigation', class: '' %}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script
+  type="module"
+>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+   $('.alp-dears-browse-subtitle').click(function () {
+      const $parent = $(this).parent();
+      const $categoryS = $parent.find('.alp-dears-browse-category-s');
+      const $svg = $(this).find('svg');
+      
+      $categoryS.slideToggle(300, function() {
+        if ($categoryS.is(':visible')) {
+          $svg.css('transform', 'rotate(180deg)');
+        } else {
+          $svg.css('transform', 'rotate(0deg)');
+        }
+      });
+    });
+
+    //
+    let swiperId = '{{ section.id }}';
+    let swiperIdnum = swiperId.replace(/\D/g, '');
+    let swiperVar = 'TheSwiper' + swiperIdnum;
+    swiperVar = new Swiper(`.alp-category-list-items[data-blockId="${swiperId}"]`, {
+      slidesPerView: 'auto',
+      spaceBetween: 0,
+      direction: 'vertical',  
+    });
+    //
+    let is_mobile = window.innerWidth < 999;
+    {% for block in section.blocks %}
+        let swiperId_{{ forloop.index }} = '{{ block.id }}';
+        let swiperIdnum_{{ forloop.index }} = swiperId_{{ forloop.index }}.replace(/\D/g, '');
+        let swiperVar_{{ forloop.index }} = 'TheSwiper' + swiperIdnum_{{ forloop.index }};
+        swiperVar_{{ forloop.index }} = new Swiper(`.alp-products-swiper[data-blockId="${swiperId_{{ forloop.index }}}"]`, {
+            slidesPerView: 1,
+            slidesPerGroup : 1,
+            spaceBetween: 16,
+            speed:600,
+            //freeMode: true,
+            //cssMode: is_mobile,
+            touchRatio : 0.75,
+            pagination: {
+              el: '.pagination-products',
+              clickable :true,
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+            // add breakpoints
+            breakpoints: { 
+              320: {  
+                slidesPerView: 1,
+                slidesPerGroup : 1,
+              },
+              768: {  
+                slidesPerView: 2,
+                slidesPerGroup : 2,
+              },
+              1280: {  
+                slidesPerView: 3,
+                slidesPerGroup : 2,
+                spaceBetween: 24,
+              },
+              1600: {  
+                slidesPerView: 3.3,
+                slidesPerGroup : 2,
+                spaceBetween: 24,
+              },
+            },
+        });
+    {% endfor %}
+  });
+</script>

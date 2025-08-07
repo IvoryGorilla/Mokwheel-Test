@@ -1,0 +1,15 @@
+{% comment %}
+  {% render 'mega-menu-linklist', menu_list: bs.menu_a, title: bs.menu_a_title %}
+{% endcomment %}
+<div class="mega-menu-list-item">
+  <div class="mega-menu-link-title headline__h6">{{- title | default: '' -}}</div>
+  <ul class="mega-list-menu-ul">
+    {%- for link in menu_list.links -%}
+      <li class="mega-list-menu-li">
+        <a href="{{ link.url }}">
+          <span>{{- link.title | strip -}}</span>
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>

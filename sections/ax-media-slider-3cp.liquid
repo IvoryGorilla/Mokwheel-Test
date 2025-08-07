@@ -1,0 +1,502 @@
+{% schema %}
+{
+  "name": "AX Media Slider 3CP",
+  "class": "ax-media-slider-3cp",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Aspect Ratio",
+      "default": "580/530"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio_mobile",
+      "label": "Aspect Ratio Mobile",
+      "default": "340/230"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container-fluid",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom Class"
+    },
+    {
+      "type": "text",
+      "id": "img_width_desktop",
+      "label": "Image Width Desktop",
+      "default": "1920"
+    },
+    {
+      "type": "text",
+      "id": "img_width_mobile",
+      "label": "Image Width Mobile",
+      "default": "750"
+    },
+    {
+      "type": "text",
+      "id": "st_max_width",
+      "label": "Content Max Width",
+      "default": "var(--gl-max-width)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image Mobile"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "video",
+          "id": "bg_video",
+          "label": "Background Video"
+        },
+        {
+          "type": "url",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "id": "video_url",
+          "type": "video_url",
+          "label": "Video url",
+          "accept": ["youtube", "vimeo"],
+          "info": "youtube or vimeo url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AX Media Slider 3CP"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+    --aspect-ratio: {{ st.image_aspect_ratio }};
+    --aspect-ratio-mobile: {{ st.image_aspect_ratio_mobile }};
+    --content-max-width: {{ st.st_max_width }};
+  }
+  [data-stid="{{ section.id }}"].alp-section.no-padding-top {
+    padding-top: 0;
+  }
+</style>
+
+{% style %}
+  .ax-media-slider-three-cp.alp-section {
+    padding: var(--spacing) 0;
+  }
+  .ax-media-slider-three-cp-title {
+    text-align: center;
+    margin-bottom: clamp(32px, 4.25vw, 64px);
+  }
+
+  .ax-media-slider-three-cp-item-image-inner {
+    aspect-ratio: var(--aspect-ratio);
+    width: 100%;
+  }
+
+  .ax-media-slider-three-cp-item-image-inner img {
+    display: block;
+    border-radius: var(--alp-border-radius);
+  }
+
+  .ax-media-slider-three-cp-description {
+    font-size: clamp(14px, 1.05vw, 18px);
+    line-height: 1.5;
+    opacity: 0.8;
+  }
+
+  .ax-media-slider-three-cp-item-content {
+    font-size: clamp(14px, 1.05vw, 16px);
+    opacity: 0.8;
+  }
+  .ax-media-slider-three-cp-title {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 950px;
+  }
+  .ax-media-slider-three-cp-item-content p {
+    margin: 0;
+  }
+
+  .ax-media-slider-three-cp-item-image-inner {
+    overflow: hidden;
+    border-radius: var(--alp-border-radius);
+  }
+
+  .ax-media-slider-three-cp-container.page-width {
+    --gl-max-width: var(--content-max-width, 1440px);
+  }
+
+  .ax-media-slider-three-cp-item-inner {
+    background: var(--bg-color);
+    overflow: hidden;
+  }
+
+  .ax-full-bg-video.full-img-wrap + .ax-media-slider-three-cp-thumbnail-container {
+    display: none;
+  }
+
+  .ax-media-slider-three-cp-image-item.swiper-slide > div {
+    overflow: hidden;
+  }
+
+  .ax-media-slider-three-cp-drag-bar {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    width: 38px;
+    margin-right: -19px;
+    z-index: 10;
+  }
+
+  .ax-media-slider-three-cp-drag-bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    margin: auto;
+    background: #fff;
+  }
+
+  .ax-media-slider-three-cp-image-item.swiper-slide:nth-child(2) .ax-media-slider-three-cp-drag-bar {
+    left: 0;
+    right: auto;
+    margin-left: -19px;
+  }
+
+  img.ax-media-cp-drag-bar {
+    width: 100%;
+    height: 66px;
+    object-fit: contain;
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    .ax-media-slider-three-cp-description p {
+      margin-bottom: 0;
+    }
+
+    .ax-media-slider-three-cp-description p:not(:first-child) {
+      margin-top: 0.25em;
+    }
+  }
+  @media (max-width: 767px) {
+    .ax-media-slider-three-cp-item-image-inner img {
+      aspect-ratio: var(--aspect-ratio-mobile);
+    }
+
+    .ax-media-slider-three-cp-item-image-inner {
+      aspect-ratio: var(--aspect-ratio-mobile);
+      width: 100%;
+    }
+
+    .ax-media-slider-three-cp-title {
+      text-align: left;
+    }
+
+    .ax-media-slider-three-cp-drag-bar {
+      width: 28px;
+      margin-right: -14px;
+    }
+
+    .ax-media-slider-three-cp-image-item.swiper-slide:nth-child(2) .ax-media-slider-three-cp-drag-bar {
+      margin-left: -14px;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="ax-media-slider-three-cp alp-section overflow-hidden  {{ reset_spacing }} {{ st.custom_class }}"
+  data-stid="{{ section.id }}"
+  style="{{ style }}"
+>
+  <div class="alp-section-container ax-media-slider-three-cp-container page-width {{ container }}">
+    <div class="ax-media-slider-three-cp-title">
+      {%- if st.title != blank -%}
+        <h2 class="headline__h2 big-title">{{ st.title }}</h2>
+      {%- endif -%}
+      {%- if st.subtitle != blank -%}
+        <div class="ax-media-slider-three-cp-description">{{ st.subtitle }}</div>
+      {%- endif -%}
+    </div>
+    <div class="ax-media-slider-three-cp-images">
+      <div
+        class="ax-media-slider-three-cp-images-swiper swiper overflow-visible"
+        id="{{ section.id | replace: '-', '' | prepend: 'id_' }}"
+      >
+        {%- if section.blocks.size > 0 -%}
+          <div class="swiper-wrapper">
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign bs = block.settings
+              -%}
+
+              <div class="ax-media-slider-three-cp-image-item swiper-slide">
+                {%- if forloop.index < 3 -%}
+                  <div class="ax-media-slider-three-cp-drag-bar">
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0550/4424/3702/files/1061_4x_0418ac35-db4f-483f-874e-270a1562721a.png?v=1748262155"
+                      alt=""
+                      class="ax-media-cp-drag-bar"
+                      loading="lazy"
+                      width="38"
+                      height="66"
+                    >
+                  </div>
+                {%- endif -%}
+                <div class="ax-media-slider-three-cp-item-inner relative">
+                  {% liquid
+                    assign bs = block.settings
+                    assign video_id = ''
+                    if bs.video_url.type == 'youtube'
+                      assign video_id = bs.video_url | replace: 'https://www.youtube.com/watch?v=', ''
+                    elsif bs.video_url.type == 'vimeo'
+                      assign video_id = bs.video_url | replace: 'https://vimeo.com/', ''
+                    endif
+                  %}
+                  {%- capture online_video_url -%}
+                          {%- if bs.video_url.type == 'youtube' -%}
+                          https://www.youtube.com/embed/{{ video_id }}?controls=0&autoplay=1&mute=0&playsinline=1&loop=0&playlist={{ video_id }}
+                          {%- elsif bs.video_url.type == 'vimeo' -%}
+                          https://player.vimeo.com/video/{{ video_id }}?controls=0background=1&autoplay=1&muted=0&loop=0
+                          {%- endif -%}
+                          {%- endcapture -%}
+                  {% if bs.video != blank %}
+                    <a
+                      class="full-aa"
+                      href="{{ bs.video }}"
+                      data-fslightbox="reviews"
+                    ></a>
+                  {%- endif -%}
+                  {%- if bs.video_url.type == 'youtube' -%}
+                    <a
+                      class="full-aa"
+                      href="{{ bs.video_url }}"
+                      data-embed="{{ online_video_url }}"
+                      data-fslightbox="reviews"
+                    ></a>
+                  {%- elsif bs.video_url.type == 'vimeo' -%}
+                    <a
+                      class="full-aa"
+                      href="#{{ block.id | replace: '-', '' | prepend: 'vimeoid_' }}"
+                      data-embed="{{ online_video_url }}"
+                      data-fslightbox="reviews"
+                    ></a>
+                    <iframe
+                      data-src="https://player.vimeo.com/video/{{ video_id }}?controls=0background=1&autoplay=0&muted=0&loop=0"
+                      frameborder="0"
+                      allowfullscreen
+                      class="hidden"
+                      id="{{ block.id | replace: '-', '' | prepend: 'vimeoid_' }}"
+                      class="lazy"
+                    ></iframe>
+                  {%- endif -%}
+                  <div class="ax-media-slider-three-cp-item-image-inner relative" data-swiper-parallax="100%">
+                    {%- if bs.bg_video != blank -%}
+                      <div
+                        class="full-img-wrap ax-full-bg-video"
+                        data-id="{{ block.id | replace: '-', '' }}"
+                      >
+                        <video
+                          class="lazy"
+                          muted
+                          preload
+                          autoplay
+                          loop
+                          x5-video-player-fullscreen="true"
+                          x5-playsinline
+                          playsinline
+                          webkit-playsinline
+                        >
+                          {%- for source in bs.bg_video.sources -%}
+                            <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+                          {%- endfor -%}
+                        </video>
+                      </div>
+                    {%- endif -%}
+                    {% if bs.image != blank %}
+                      <div class="ax-media-slider-three-cp-thumbnail-container">
+                        {% render 'alp-responsive-image',
+                          image: bs.image,
+                          image_mobile: bs.image_mobile,
+                          desktop_width: 1600,
+                          mobile_width: 600
+                        %}
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="ax-media-slider-three-cp-item-text-inner">
+                    {%- if bs.title != blank -%}
+                      <h3 class="headline__h5l ax-media-slider-three-cp-item-title hide_desktop">
+                        {{ bs.title | strip_html | strip }}
+                      </h3>
+                    {%- endif -%}
+                    {%- if bs.content != blank -%}
+                      <div class="ax-media-slider-three-cp-item-content">{{ bs.content }}</div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script
+  type="module"
+>
+  document.addEventListener('DOMContentLoaded', () => {
+    // swiper
+    let is_Swiper_Mobile = window.innerWidth < 999;
+    var BlockId = '{{ section.id | replace: '-', '' | prepend: 'id_' }}';
+    var Swiper_Main_{{ section.id | replace: '-', '' }} = new Swiper(`.ax-media-slider-three-cp-images-swiper.swiper#${BlockId}`, {
+      parallax: true,
+      speed: 600,
+      resistanceRatio: 0,
+      freeMode: {
+        momentum: false,
+        momentumBounce: false,
+      },
+      spaceBetween: 0,
+      scrollbar: {
+        el: `.swiper#${BlockId} .swiper-scrollbar`,
+        draggable: true,
+      },
+      pagination: {
+        el: `[data-stid="{{ section.id }}"] .alp-swiper-pagination`,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: `[data-stid="{{ section.id }}"] .swiper-button-next`,
+        prevEl: `[data-stid="{{ section.id }}"] .swiper-button-prev`,
+      },
+      on: {
+        init: function(swiper){
+          // this.setProgress(0.5, 100);
+          let swiperWidth = $(`.ax-media-slider-three-cp-images-swiper.swiper#${BlockId}`).width();
+          setTimeout(() => {
+            this.translateTo(swiperWidth * -0.5, 500)
+          },500)
+        },
+      },
+    });
+    
+  });
+</script>

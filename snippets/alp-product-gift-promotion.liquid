@@ -1,0 +1,43 @@
+<div class="alp-product-gift-promotion">
+  <div class="the-product-form-title">
+    <h3 class="headline__h6">
+      {{ bs.title }}
+    </h3>
+    <div class="gift_content">
+      {{ bs.content }}
+    </div>
+  </div>
+  <div class="the-accessories-container alp-gift-list-container">
+    {% for product_item in bs.product_list -%}
+      <div
+        class="product-item-gift is_select_gift"
+        data-productId="{{ product_item.id }}"
+        data-variantId="{{ product_item.first_available_variant.id }}"
+        data-quantity="1"
+      >
+        {% render 'icon-check' %}
+        <div class="info-box">
+          <div class="img-box">
+            <img
+              width="auto"
+              height="auto"
+              data-src="{{ product_item.featured_image | image_url: width: 300 }}"
+              alt=""
+              loading="lazy"
+              class="lazy"
+            >
+          </div>
+          <div class="contents-box">
+            <div class="title">{{ product_item.title }}</div>
+            <div class="price-box-ee">
+              <p price="{{ product_item.price }}" data-compare_price="{{ product_item.price }}">
+                {{ product_item.price | money }}
+              </p>
+              <span class="the-free-text">Free</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endfor %}
+  </div>
+</div>

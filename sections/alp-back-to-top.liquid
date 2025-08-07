@@ -1,0 +1,150 @@
+{% schema %}
+{
+  "name": "Alp Back To Top",
+  "class": "alp-back-to-top",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Back To Top"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-back-to-top {
+    width: 42px;
+    height: 42px;
+    background-color: var(--main-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    z-index: 99;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  .alp-back-to-top svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--text-color);
+  }
+  @media (max-width: 767px) {
+    .alp-back-to-top {
+      /* bottom: 64px; */
+      width: 36px;
+      height: 36px;
+      right: 12px;
+      padding: 8px;
+    }
+    html.template-product .alp-back-to-top {
+      bottom: 64px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    <div class="alp-back-to-top">
+      {% render 'icon-back-to-top' %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > $(window).height()) {
+        $('.alp-back-to-top').fadeIn();
+      } else {
+        $('.alp-back-to-top').fadeOut();
+      }
+    });
+
+    $('.alp-back-to-top').click(function () {
+      $('html, body').animate({ scrollTop: 0 }, 0);
+    });
+  });
+</script>

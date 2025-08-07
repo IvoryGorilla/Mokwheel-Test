@@ -1,0 +1,434 @@
+{% schema %}
+{
+  "name": "Alp Test Ride Images",
+  "class": "alp-test-ride-images-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "default": "default",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "type-1",
+          "label": "Style 1"
+        },
+        {
+          "value": "type-2",
+          "label": "Style 2"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_type",
+      "label": "Heading type",
+      "options": [
+        {
+          "value": "h1",
+          "label": "Big Heading"
+        },
+        {
+          "value": "h2",
+          "label": "Medium Heading"
+        },
+        {
+          "value": "h3",
+          "label": "Small Heading"
+        }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "text",
+      "id": "section_id",
+      "label": "Section ID"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "textarea",
+      "id": "sub_title",
+      "label": "Sub Title"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "1/1"
+    },
+    {
+      "type": "text",
+      "id": "block_normal_width",
+      "label": "Block Normal Width",
+      "default": "30%"
+    },
+    {
+      "type": "text",
+      "id": "block_max_width",
+      "label": "Block Max Width",
+      "default": "420px"
+    },
+    {
+      "type": "text",
+      "id": "block_max_width_mobile",
+      "label": "Block Max Width Mobile",
+      "default": "280px"
+    },
+    {
+      "type": "text",
+      "id": "min_height",
+      "label": "Min Height",
+      "default": "220px"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "video",
+      "id": "bg_video",
+      "label": "Background Video"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Background Opacity",
+      "default": 50
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show Button",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Subtext"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image Mobile"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Discover More"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Test Ride Images"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --block-max-width: min({{ st.block_normal_width }},{{ st.block_max_width }});
+   --st-min-height: {{ st.min_height }};
+  }
+  @media (max-width: 999px) {
+    [data-stid="{{ section.id }}"] {
+      --block-max-width: max({{ st.block_normal_width }},{{ st.block_max_width_mobile }});
+    }
+  }
+</style>
+
+{% style %}
+  .ais_show_button .alp-image-sliders .swiper-pagination-button {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    width: calc(100% + 6em);
+    margin-left: 0;
+    z-index: 2;
+    left: -3em;
+  }
+  .alp-test-ride-images .alp-image-slider-bg {
+    border-radius: 4px;
+  }
+  .alp-test-ride-images .alp-image-slide-title {
+    justify-content: center;
+    text-align: center;
+  }
+  @media (min-width: 1000px) {
+    .ais_show_button .alp-image-sliders .swiper-pagination-button div {
+      width: 38px;
+      height: 38px;
+    }
+  }
+  @media (max-width: 999px) {
+    .ais_show_button .alp-image-sliders .swiper-pagination-button {
+      display: none;
+    }
+    /* .alp-image-slide-container {
+      padding-top: 12px;
+      padding-bottom: 18px;
+    } */
+    .alp-image-slider-info .alp-btn span {
+      font-size: 16px;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-section alp-image-slide-wrapper alp-test-ride-images overflow-hidden relative {% if st.show_button %} ais_show_button{% endif %} {{ reset_spacing }} style-{{ st.style }}"
+  data-stid="{{ section.id }}"
+  data-section-id="{{ st.section_id }}"
+  style="{{ style }}"
+>
+  {%- if st.bg_image -%}
+    <div class="alp-image-slide-bg full-img-wrap" style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}">
+      {% render 'alp-single-image', image: st.bg_image, width: 2000, aspect_ratio: 'auto', alt: st.title %}
+    </div>
+  {%- endif -%}
+  {%- if st.bg_video -%}
+    <div class="alp-image-slide-bg-video full-img-wrap" style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}">
+      {% comment %} {{ st.bg_video | video_tag: loop: 'loop', muted: true, playsinline: true, autoplay: true, controls: false }} {% endcomment %}
+      <video
+        class="lazy"
+        autoplay
+        muted
+        preload
+        x5-video-player-fullscreen="true"
+        x5-playsinline
+        playsinline
+        webkit-playsinline
+      >
+        {%- for source in st.bg_video.sources -%}
+          <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+        {%- endfor -%}
+      </video>
+    </div>
+  {%- endif -%}
+  <div class="alp-section-container alp-image-slide-container page-width relative {{ container }}">
+    <div class="alp-image-slide-title">
+      {%- if st.heading_type == 'h1' -%}
+        <h2 class="headline__h2">{{ st.title }}</h2>
+      {%- elsif st.heading_type == 'h2' -%}
+        <h3 class="headline__t2">{{ st.title }}</h3>
+      {%- elsif st.heading_type == 'h3' -%}
+        <h3 class="headline__h3">{{ st.title }}</h3>
+      {%- endif -%}
+      {%- if st.description != blank -%}
+        <div class="alp-image-slide-des">{{ st.description | newline_to_br }}</div>
+      {%- endif -%}
+      {%- if st.sub_title != blank -%}
+        <div class="alp-image-slide-sub-title">
+          <div class="headline__h5">{{ st.sub_title | newline_to_br }}</div>
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="alp-image-sliders margin-top">
+      <div class="alp-image-slide-swiper swiper overflow-visible" data-blockId="{{ section.id }}">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div class="alp-image-slider-item swiper-slide">
+              <div class="alp-image-slider-inner overflow-hidden relative">
+                {%- if bs.link != blank -%}
+                  <a class="full-aa" href="{{ bs.link }}" title="{{ bs.text }}"></a>
+                {%- endif -%}
+                <div class="alp-image-slider-bg">
+                  {% render 'alp-responsive-image',
+                    image: bs.image,
+                    image_mobile: bs.image_mobile,
+                    desktop_width: 1280,
+                    mobile_width: 600,
+                    aspect_ratio: st.image_aspect_ratio,
+                    alt: bs.text
+                  %}
+                </div>
+                <div class="alp-image-slider-info">
+                  <div>
+                    {%- if bs.text != blank -%}
+                      <h3 class="alp-image-slider-text headline__h4">{{ bs.text | newline_to_br }}</h3>
+                    {%- endif -%}
+                    {%- if bs.subtext != blank -%}
+                      <div class="alp-image-slider-subtext">{{ bs.subtext | newline_to_br }}</div>
+                    {%- endif -%}
+                    {%- if bs.link_text != blank -%}
+                      {% render 'alp-btn',
+                        url: bs.link,
+                        type: 'btn-link',
+                        text: bs.link_text,
+                        textcolor: '#ffffff',
+                        bgcolor: 'var(--main-color)',
+                        size: 'small'
+                      %}
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+        <div class="swiper-navs swiper-pagination-image-slider hidden">
+          {% render 'swiper-pagination', class: 'pagination-image-slider' %}
+        </div>
+        {% if st.show_button == true %}
+          {% render 'swiper-navigation', class: 'swiper-pagination-button' %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+    let is_Swiper_Mobile = window.innerWidth < 999;
+    let swiperId = '{{ section.id }}';
+    let swiperIdnum = swiperId.replace(/\D/g, '');
+    let swiperVar = 'TheSwiper' + swiperIdnum;
+    swiperVar = new Swiper(`.alp-image-slide-swiper[data-blockId="${swiperId}"]`, {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 16,
+      speed: 600,
+      //freeMode: true,
+      //cssMode: is_Swiper_Mobile,
+      touchRatio: 0.75,
+      pagination: {
+        el: '.pagination-image-slider',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: `.alp-image-slide-swiper[data-blockId="${swiperId}"] .swiper-button-next`,
+        prevEl: `.alp-image-slide-swiper[data-blockId="${swiperId}"] .swiper-button-prev`,
+      },
+      // add breakpoints
+      breakpoints: {
+        320: {
+          slidesPerView: 1.1,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1280: {
+          slidesPerView: 4,
+          slidesPerGroup: 1,
+          spaceBetween: 24,
+        },
+      },
+    });
+  });
+</script>

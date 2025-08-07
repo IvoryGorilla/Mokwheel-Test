@@ -1,0 +1,14 @@
+{% comment %}
+  Renders button
+  Accepts:
+  - url
+  - text
+  - type
+
+  Usage:
+  {% render 'alp-button', url:url , text:text , type:type %}
+{% endcomment %}
+
+<a href="{{-url-}}" class="alp-link-btn {{type}}">
+  <span>{{ text }}</span>
+</a>

@@ -1,0 +1,243 @@
+{% schema %}
+{
+  "name": "Inverter Swiper2",
+  "class": "inverter-swiper2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Section Subtitle"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products",
+      "limit": 12
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inverter Swiper2"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+  .inverter-swiper2-container {
+    padding-top: 110px;
+    padding-bottom: 110px;
+  }
+  .inverter-swiper2-section.alp-section {
+    overflow: hidden;
+  }
+  .inverter-swiper2-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+  }
+  .inverter-swiper2-subtitle {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+    max-width: 820px;
+    margin: 20px auto 0;
+  }
+  .inverter-swiper2-content {
+    margin-top: 80px;
+  }
+  .inverter-swiper2-swiper.swiper {
+    overflow: visible;
+  }
+  .inverter-swiper2-swiper.swiper .swiper-wrapper .swiper-slide {
+    height: auto;
+    align-self: stretch;
+    display: flex;
+  }
+  .inverter-swiper2-swiper.swiper .swiper-wrapper .swiper-slide .alp-product-item-slie-item {
+    display: flex;
+    height: 100%;
+  }
+  .inverter-swiper2-container .swiper-pagination-products {
+    margin-top: 60px;
+  }
+  .inverter-swiper2-container .alp-product-item-features .alp_product__badge_i {
+    /* min-height: 40px; */
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #1a1a1a;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-weight: 500;
+    /* font-size: clamp(14px, 1.25vw, 16px); */
+  }
+  .inverter-swiper2-container .alp-product-item-grid-n1 .alp-productAcessories {
+    display: none;
+  }
+  .inverter-swiper2-container .alp-product-item-grid-n1 .alp-productAcessories + .alp-product-item-price {
+    margin-top: 8px;
+  }
+  .inverter-swiper2-container .alp-product-item-grid-n1 .installment-container-custom {
+    display: none;
+  }
+  @media (max-width: 999px) {
+    .inverter-swiper2-container {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    .inverter-swiper2-title {
+      font-size: 24px;
+    }
+    .inverter-swiper2-subtitle {
+      font-size: 14px;
+      margin: 4px auto 0;
+    }
+    .inverter-swiper2-content {
+      margin-top: 32px;
+    }
+    .inverter-swiper2-container .swiper-pagination-products {
+      margin-top: 40px;
+    }
+    .swiper-pagination-bullets span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+      width: 24px;
+    }
+  }
+{% endstyle %}
+
+<div class="inverter-swiper2-section alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container inverter-swiper2-container page-width {{ container }}">
+    <div class="inverter-swiper2-header">
+      <h2 class="inverter-swiper2-title">{{ st.title }}</h2>
+      <div class="inverter-swiper2-subtitle">{{ st.subtitle }}</div>
+    </div>
+
+    <div class="inverter-swiper2-content">
+      <div class="inverter-swiper2-swiper swiper" data-blockId="{{ section.id }}">
+        <div class="swiper-wrapper">
+          {%- for product in st.product_list -%}
+            <div class="swiper-slide delay">
+              <div class="alp-product-item-slie-item">
+                <div class="alp-product-grid-i">
+                  {% render 'alp-product-item-grid-n1',
+                    product: product,
+                    aspect_ratio: '4/3',
+                    show_features: false
+                  %}
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+        <div class="swiper-navs swiper-pagination-products">
+          {% render 'swiper-pagination', class: 'pagination-products' %}
+          {% render 'swiper-navigation', class: '' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+    let swiperId = '{{ section.id }}';
+    let swiperIdnum = swiperId.replace(/\D/g, '');
+    let swiperVar = 'TheSwiper' + swiperIdnum;
+    swiperVar = new Swiper(`.inverter-swiper2-swiper[data-blockId="${swiperId}"]`, {
+      slidesPerView: 1,
+      slidesPerGroup : 1,
+      spaceBetween: 16,
+      speed:600,
+      touchRatio : 0.75,
+      pagination: {
+        el: '.pagination-products',
+        clickable :true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      // add breakpoints
+      breakpoints: { 
+        320: {  
+          slidesPerView: 1,
+          slidesPerGroup : 1,
+        },
+        768: {  
+          slidesPerView: 2,
+          slidesPerGroup : 2,
+        },
+        1280: {  
+          slidesPerView: 3,
+          slidesPerGroup : 2,
+          spaceBetween: 24,
+        },
+        1600: {  
+          slidesPerView: 3.3,
+          slidesPerGroup : 2,
+          spaceBetween: 24,
+        },
+      },
+    });
+  });
+</script>

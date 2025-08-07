@@ -1,0 +1,428 @@
+{% schema %}
+{
+  "name": "Alp Keynote Features BK",
+  "class": "alp-keynote-features",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sub Title",
+      "default": "Design Meets Value"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Features Highlight"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Keynote Features BK"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-keynote-features-container:hover {
+    background-attachment: fixed;
+  }
+  .alp-keynote-features-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .alp-keynote-features-title > span {
+    font-size: clamp(14px, 1vw, 16px);
+  }
+  .alp-keynote-features-title > div {
+    font-size: clamp(24px, 3vw, 48px);
+    font-weight: bold;
+  }
+  .swiperText {
+    margin-top: 80px;
+  }
+  .alp-keynote-features-text-title {
+    margin-bottom: 16px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .swiper-slide .alp-keynote-features-text-title {
+    opacity: 0.4;
+    font-weight: 400;
+    font-size: clamp(14px, 1.6vw, 18px);
+  }
+  .swiper-slide-thumb-active .alp-keynote-features-text-title {
+    opacity: 1;
+    font-weight: bold;
+    font-size: clamp(14px, 1.6vw, 24px);
+  }
+  .swiper-slide .alp-keynote-features-text-title::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 4px;
+    height: 20px;
+    opacity: 0.4;
+    background: #fff;
+  }
+  .swiper-slide-thumb-active .alp-keynote-features-text-title::before {
+    background: #e83f0c;
+    opacity: 1;
+  }
+  .alp-keynote-features-text-des {
+    font-size: clamp(14px, 1vw, 16px);
+    padding-left: 18px;
+    display: none;
+  }
+  .swiper-slide-thumb-active .alp-keynote-features-text-des {
+    display: block;
+  }
+  .alp-keynote-features-text-des p {
+    margin: 0;
+  }
+  .swiperImg {
+    width: 53%;
+    margin: initial;
+  }
+  @media screen and (min-width: 1000px) {
+    .alp-keynote-features .alp-keynote-features-container {
+      padding: 0 6%;
+    }
+    .alp-keynote-features-left {
+      max-width: 500px;
+    }
+    .alp-keynote-features .pagination-keynote-features {
+      display: none;
+    }
+    .swiper-slide .alp-keynote-features-text {
+      margin-left: 40px;
+    }
+    .swiper-slide-thumb-active .alp-keynote-features-text {
+      margin-bottom: 32px;
+      margin-left: 0;
+    }
+    .swiperImg {
+      max-height: 680px;
+    }
+  }
+
+  @media screen and (max-width: 999px) {
+    .alp-keynote-features .alp-keynote-features-container {
+      flex-direction: column;
+      padding: 0 32px;
+      gap: 32px;
+    }
+    .swiperText {
+      margin-top: 32px;
+    }
+    .alp-keynote-features-left {
+      max-width: 100%;
+    }
+    .alp-keynote-features-text-des {
+      padding-left: 0;
+    }
+    .swiperImg {
+      width: 100%;
+    }
+    .pagination-keynote-features {
+      justify-content: center;
+      margin-top: 32px;
+    }
+    .pagination-keynote-features.swiper-pagination-bullets span.swiper-pagination-bullet {
+      width: 32px;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-section alp-keynote-features-wrapper {{ reset_spacing }}"
+  style="{{ style }}"
+  data-stid="{{ section.id }}"
+>
+  <div class="alp-section-container alp-keynote-features-container page-width {{ container }}">
+    <div class="alp-keynote-features-left">
+      <div class="alp-keynote-features-title">
+        <span>{{ st.subtitle }}</span>
+        <div>{{ st.title }}</div>
+      </div>
+      <div class="swiperText swiper" id="{{ section.id | replace: '-', '' | prepend: 'id_' }}">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div class="swiper-slide">
+              <div class="alp-keynote-features-text">
+                <div class="alp-keynote-features-text-title">{{ bs.title }}</div>
+                <div class="alp-keynote-features-text-des">{{ bs.description }}</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+    <div class="swiperImg swiper" id="{{ section.id | replace: '-', '' | prepend: 'id_' }}">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          <div class="alp-keynote-features-img swiper-slide">
+            {% render 'alp-single-image', image: bs.image %}
+          </div>
+        {%- endfor -%}
+      </div>
+      {% render 'swiper-pagination', class: 'pagination-keynote-features' %}
+    </div>
+  </div>
+</div>
+
+<script
+  type="module"
+>
+  document.addEventListener('DOMContentLoaded', () => {
+    var BlockId = '{{ section.id | replace: '-', '' | prepend: 'id_' }}';
+    let is_Swiper_Mobile = window.innerWidth < 999;
+    let swiperText_{{ section.id | replace: '-', '' }};
+    let swiperImg_{{ section.id | replace: '-', '' }};
+    let swiperText = swiperText_{{ section.id | replace: '-', '' }};
+    let swiperImg = swiperImg_{{ section.id | replace: '-', '' }};
+
+    if(is_Swiper_Mobile){
+      swiperText = new Swiper(`.swiperText.swiper#${BlockId}`, {
+        slidesPerView: 1,
+        speed: 600,  
+      });
+      swiperImg = new Swiper(`.swiperImg.swiper#${BlockId}`, {
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        spaceBetween: alp_global.gap,
+        speed: 600,
+        pagination: {
+            el: '.pagination-keynote-features',
+            clickable: true,
+        },
+        mousewheel: {
+            enable: true,       
+            sensitivity: 0.3,  
+            eventsTarget: `.alp-keynote-features-container`, 
+            releaseOnEdges: true  
+        }, 
+        on: {
+          init: function () {
+            this.isMousewheelActive = true; // 初始状态激活
+          },
+          slideChange: function () {
+            if (this.isEnd) {
+              this.mousewheel.disable();
+              this.isMousewheelActive = false;
+              // 标记已到底部（用于后续判断）
+              this.isAtBottom = true;
+            } else {
+              this.isAtBottom = false;
+            }
+          }
+        },
+        thumbs: {
+          swiper: swiperText,
+        }
+      });
+    }else{
+      swiperText = new Swiper(`.swiperText.swiper#${BlockId}`, {
+        slidesPerView: 'auto',
+        speed: 600,
+        direction: 'vertical',
+        loop: true,   
+      });
+      swiperImg = new Swiper(`.swiperImg.swiper#${BlockId}`, {
+        slidesPerView: 1,
+        spaceBetween: alp_global.gap,
+        speed: 600,
+        direction: 'vertical', 
+        pagination: {
+            el: '.pagination-keynote-features',
+            clickable: true,
+        },
+        mousewheel: {
+            enable: true,       
+            sensitivity: 0.3,  
+            eventsTarget: `.alp-keynote-features-container`, 
+            releaseOnEdges: true  
+        }, 
+        on: {
+          init: function () {
+            this.isMousewheelActive = true; // 初始状态激活
+          },
+          slideChange: function () {
+            if (this.isEnd) {
+              this.mousewheel.disable();
+              this.isMousewheelActive = false;
+              // 标记已到底部（用于后续判断）
+              this.isAtBottom = true;
+            } else {
+              this.isAtBottom = false;
+            }
+          }
+        },
+        thumbs: {
+          swiper: swiperText,
+        }
+      });
+    }
+
+    // 全局滚动监听（优化版）
+    let lastScrollY = window.scrollY;
+    let isScrolling = false;
+
+    window.addEventListener('wheel', (e) => {
+      if (isScrolling) return;
+      isScrolling = true;
+
+      // 获取 Swiper 容器位置和视口信息
+      const swiperRect = swiperImg.el.getBoundingClientRect();
+      const isInsideSwiper = e.clientY >= swiperRect.top && e.clientY <= swiperRect.bottom;
+      const isScrollingUp = e.deltaY < 0; // 向上滚动
+
+      // 核心逻辑
+      if (isInsideSwiper) {
+        // 情况1：Swiper 已到底部且用户向上滚动 → 重新激活
+        if (swiperImg.isAtBottom && isScrollingUp) {
+          swiperImg.mousewheel.enable();
+          swiperImg.isMousewheelActive = true;
+          swiperImg.isAtBottom = false; // 重置标记
+          e.preventDefault();
+        }
+        // 情况2：用户向下滚动但 Swiper 未激活 → 强制激活
+        else if (!swiperImg.isMousewheelActive && !isScrollingUp) {
+          swiperImg.mousewheel.enable();
+          swiperImg.isMousewheelActive = true;
+          e.preventDefault();
+        }
+      }
+
+      // 节流控制
+      setTimeout(() => {
+        isScrolling = false;
+      }, 100);
+    }, { passive: false });
+
+    // 监听页面滚动事件（用于方向辅助判断）
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      const isPageScrollingUp = currentScrollY < lastScrollY;
+      lastScrollY = currentScrollY;
+
+      // 如果页面整体向上滚动且 Swiper 在视口中 → 尝试激活 Swiper
+      if (isPageScrollingUp) {
+        const swiperTop = swiperImg.el.offsetTop;
+        const swiperBottom = swiperTop + swiperImg.el.offsetHeight;
+        const viewportBottom = window.scrollY + window.innerHeight;
+
+        if (viewportBottom >= swiperTop && viewportBottom <= swiperBottom) {
+          swiperImg.mousewheel.enable();
+          swiperImg.isMousewheelActive = true;
+        }
+      }
+    });
+
+   
+  });
+</script>

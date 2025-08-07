@@ -1,0 +1,149 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "alp_hero_banner_new_kQGYQk": {
+      "type": "alp-hero-banner-new",
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "default",
+        "bg_color": "#ffffff",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/About_us_banner_pc.jpg",
+        "bg_image_mobile": "shopify://shop_images/About_us_banner_m.jpg",
+        "bg_opacity": 100,
+        "image_aspect_ratio": "3/1",
+        "block_max_width": "720px",
+        "min_height": "320px",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true,
+        "show_breadcrumb": true
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "jd_about_us_conter_qz6wCQ": {
+      "type": "jd-aboutUs-conter",
+      "blocks": {
+        "about_us_conter_94xkKM": {
+          "type": "aboutUsConter",
+          "settings": {
+            "aboutUs_conterTitle": "Our Story",
+            "aboutUs_conterText": "<p>Before the creation of Mokwheel, the founders were highly successful in the electric mobility scene with products such as the hoverboard and electric scooters. Their success was not only built based on their knowledge and understanding of the electric mobility scene but also on their dedication to quality and service to build a reputable brand people can trust.</p>",
+            "aboutUs_conterText1": "<p>That was how CoolReall & Leray companies became successful. Having been in the industry since 2014, they decided to create Mokwheel because they saw something missing - a Power Station E-bike. And as Mokwheel continues to grow and expand, so will the drive to continue to innovate and become pioneers in the E-bike industry.</p>",
+            "aboutUs_conterTitle3": "",
+            "aboutUs_conterText4": "",
+            "aboutUs_conterTitle1": "",
+            "aboutUs_conterText2": "",
+            "aboutUs_conterTitle2": "",
+            "aboutUs_conterText3": "",
+            "aboutUs_conterImg": "shopify://shop_images/12_3542d171-9bb9-43d5-857a-1c5da4399836.png",
+            "aboutUs_conterImg1": "shopify://shop_images/12_3542d171-9bb9-43d5-857a-1c5da4399836.png",
+            "aboutUs_conterVideo": "",
+            "aboutUs_conterVideo1": ""
+          }
+        },
+        "about_us_conter_PhnCTW": {
+          "type": "aboutUsConter",
+          "settings": {
+            "aboutUs_conterTitle": "About MOKWHEEL",
+            "aboutUs_conterText": "<p>Mokwheel is the first e-bike to actually partake in innovation and bring forth a new feature into the scene, </p><p>and that is the first power station e-bike, Basalt. Although Mokwheel is relatively new to the scene, it starts strong with a charming </p><p>new product with features never seen.</p>",
+            "aboutUs_conterText1": "<p>Unlike other brands that focus on putting parts together and sticking to a brand name, Mokwheel creates its own and </p><p>seeks to do things differently to bring not only products of value but also products of trust.</p>",
+            "aboutUs_conterTitle3": "",
+            "aboutUs_conterText4": "",
+            "aboutUs_conterTitle1": "",
+            "aboutUs_conterText2": "",
+            "aboutUs_conterTitle2": "",
+            "aboutUs_conterText3": "",
+            "aboutUs_conterImg": "shopify://shop_images/About_Us_59b36c5e-ae73-41da-9af6-43e43093e2b4.jpg",
+            "aboutUs_conterImg1": "shopify://shop_images/Group_40026.jpg",
+            "aboutUs_conterVideo": "",
+            "aboutUs_conterVideo1": ""
+          }
+        },
+        "about_us_conter_BnReEP": {
+          "type": "aboutUsConter",
+          "settings": {
+            "aboutUs_conterTitle": "World-Class Product Support",
+            "aboutUs_conterText": "<p>To enable users to work with the product safely, Denny took the battery management system (BMS) usually incorporated within electric cars<br/>into electric bikes. Mokwheel uses a BMS by Texas Instruments and battery cells by LG/Samsung to create a safe environment for our power<br/>station feature. You can use the battery from the bike to charge your other appliances.<br/>Denny understands the hardships he will face and the challenges he must overcome to have a place in the current consumer market.<br/>Mokwheel will not falter and will place service & quality to our customers above everything else.</p>",
+            "aboutUs_conterText1": "",
+            "aboutUs_conterTitle3": "",
+            "aboutUs_conterText4": "",
+            "aboutUs_conterTitle1": "",
+            "aboutUs_conterText2": "",
+            "aboutUs_conterTitle2": "",
+            "aboutUs_conterText3": "",
+            "aboutUs_conterImg": "shopify://shop_images/20230204162845_ee5ece0b-6301-4011-89c0-e5d9336845b5.png",
+            "aboutUs_conterImg1": "shopify://shop_images/20230204162838_777f3a1c-21a0-46bb-be41-82f03ba063e7.png",
+            "aboutUs_conterVideo": "",
+            "aboutUs_conterVideo1": ""
+          }
+        },
+        "about_us_conter_qtKWFN": {
+          "type": "aboutUsConter",
+          "settings": {
+            "aboutUs_conterTitle": "The First All-Terrain E-Bike with Power Station Tech",
+            "aboutUs_conterText": "<p>The Electrify Expo, the largest e-mobility festival in North America, is taking place through November 2022. We attended the first weekend of the event and want to report a revolutionary new tech found at this show. This is an epic all-purpose e-bike produced by Mokwheel called BASALT: the world’s first power all-terrain e-bike fusion that is integrated with power station technology.</p>",
+            "aboutUs_conterText1": "",
+            "aboutUs_conterTitle3": "",
+            "aboutUs_conterText4": "",
+            "aboutUs_conterTitle1": "",
+            "aboutUs_conterText2": "",
+            "aboutUs_conterTitle2": "",
+            "aboutUs_conterText3": "",
+            "aboutUs_conterImg": "shopify://shop_images/12_3542d171-9bb9-43d5-857a-1c5da4399836.png",
+            "aboutUs_conterImg1": "shopify://shop_images/12_3542d171-9bb9-43d5-857a-1c5da4399836.png",
+            "aboutUs_conterVideo": "https://cdn.shopify.com/videos/c/o/v/ee83b9d2691b44dfbe15081bd7500f91.mp4",
+            "aboutUs_conterVideo1": ""
+          }
+        }
+      },
+      "block_order": [
+        "about_us_conter_94xkKM",
+        "about_us_conter_PhnCTW",
+        "about_us_conter_BnReEP",
+        "about_us_conter_qtKWFN"
+      ],
+      "settings": {}
+    },
+    "alp_hidden_heading_4jaebj": {
+      "type": "alp-hidden-heading",
+      "blocks": {
+        "item_wydRYH": {
+          "type": "item",
+          "settings": {
+            "text": "About Us - Mokwheel Ebikes",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "item_wydRYH"
+      ],
+      "settings": {
+        "title": "About Us - Mokwheel Ebikes"
+      }
+    }
+  },
+  "order": [
+    "alp_hero_banner_new_kQGYQk",
+    "main",
+    "jd_about_us_conter_qz6wCQ",
+    "alp_hidden_heading_4jaebj"
+  ]
+}

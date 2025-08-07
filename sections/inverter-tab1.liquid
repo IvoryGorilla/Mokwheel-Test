@@ -1,0 +1,460 @@
+{% schema %}
+{
+  "name": "Inverter Tab1",
+  "class": "inverter-tab1-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "aspect_ratio",
+      "label": "Aspect Ratio",
+      "default": "1440/768"
+    },
+    {
+      "type": "text",
+      "id": "aspect_ratio_mobile",
+      "label": "Aspect Ratio Mobile",
+      "default": "343/230"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab_item",
+      "name": "Tab Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab title"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_image",
+          "label": "Item Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_image_mb",
+          "label": "Item Image Mobile"
+        },
+        {
+          "type": "video",
+          "id": "item_video",
+          "label": "Item Video"
+        },
+        {
+          "type": "video",
+          "id": "item_video_mb",
+          "label": "Item Video Mobile"
+        },
+        {
+          "type": "text",
+          "id": "aspect",
+          "label": "Aspect",
+          "default": "1440/768"
+        },
+        {
+          "type": "text",
+          "id": "aspect_mb",
+          "label": "Aspect Mobile",
+          "default": "343/230"
+        },
+        {
+          "type": "text",
+          "id": "item_title1",
+          "label": "Item title1"
+        },
+        {
+          "type": "text",
+          "id": "item_desc1",
+          "label": "Item desc1"
+        },
+        {
+          "type": "text",
+          "id": "item_title2",
+          "label": "Item title2"
+        },
+        {
+          "type": "text",
+          "id": "item_desc2",
+          "label": "Item desc2"
+        },
+        {
+          "type": "text",
+          "id": "item_title3",
+          "label": "Item title3"
+        },
+        {
+          "type": "text",
+          "id": "item_desc3",
+          "label": "Item desc3"
+        },
+        {
+          "type": "text",
+          "id": "item_title4",
+          "label": "Item title4"
+        },
+        {
+          "type": "text",
+          "id": "item_desc4",
+          "label": "Item desc4"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inverter Tab1"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --aspect-pc: {{ st.aspect_ratio }};
+   --aspect-mb: {{ st.aspect_ratio_mobile }};
+  }
+</style>
+
+{% style %}
+  .inverter-tab1-container {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  .inverter-tab1-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+  }
+  .inverter-tab1-content {
+    margin-top: 48px;
+  }
+  .inverter-tab1-tabtitle {
+    display: flex;
+    justify-content: center;
+  }
+  .inverter-tab1-tabtitle-item {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 120%;
+    text-align: center;
+    padding-bottom: 14px;
+    transition: all 0.5s;
+    width: 263px;
+  }
+  .inverter-tab1-tabtitle-item.active {    
+    font-weight: bold; 
+    border-bottom: 2px solid #FFFFFF;
+    margin-bottom: -2px;
+    font-weight: 600;
+  }
+  .inverter-tab1-tabtitle-item:not(.active) {     
+    border-bottom: 2px solid #1a1a1a;
+    margin-bottom: -2px;
+  }
+  .inverter-tab1-tabcontent {
+    margin-top: 66px;
+  }
+  .inverter-tab1-video video {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: var(--aspect-pc);
+  }
+  .inverter-tab1-image img {
+    aspect-ratio: var(--aspect-pc);
+    display: block
+  }
+  .inverter-tab1-tabcontent-item {
+    position: relative;
+    display: none;
+  }
+  .inverter-tab1-tabcontent-item.active {
+    animation: fadeIn 0.5s ease;
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .inverter-tab1-item-text {
+    display: flex;
+    position: absolute;
+    bottom: 72px;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  .inverter-tab1-textitem-title {
+    font-size: 36px;
+    font-weight: bold;
+    line-height: normal;
+    text-align: center;
+  }
+  .inverter-tab1-textitem-desc {
+    margin-top: 4px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: normal;
+    text-align: center;
+    max-width: 150px;
+    margin: auto;
+  }
+  @media screen and (max-width: 999px) {
+    .inverter-tab1-container {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    .inverter-tab1-video video {
+      aspect-ratio: var(--aspect-mb);
+    }
+    .inverter-tab1-image img {
+      aspect-ratio: var(--aspect-mb);
+      display: block
+    }
+    .inverter-tab1-title {
+      font-size: 30px;
+      text-align: start;
+    }
+    .inverter-tab1-content {
+      margin-top: 24px;
+    }
+    .inverter-tab1-tabtitle {
+      flex-direction: column;
+      gap: 0;
+    }
+    .inverter-tab1-tabtitle-item {
+      font-size: 14px;
+      padding: 7.5px 12px;
+      text-align: start;
+    }
+    .inverter-tab1-tabtitle-item.active {     
+      border-bottom: 0;
+      border-left: 2px solid #FFFFFF;
+      margin-bottom: 0;
+      margin-left: -2px;
+    }
+    .inverter-tab1-tabtitle-item:not(.active) {   
+      border-bottom: 0;  
+      border-left: 2px solid #ccc;
+      margin-bottom: 0;
+      margin-left: -2px;
+    }
+    .inverter-tab1-tabcontent {
+      margin-top: 24px;
+    }
+    .inverter-tab1-item-text {
+      margin-top: 15px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      position: static;
+      gap: 25px 15px;
+    }
+    .inverter-tab1-textitem-title {
+      font-size: 20px;
+    }
+    .inverter-tab1-textitem-desc {
+      font-size: 14px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" data-stid="{{ section.id }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }} inverter-tab1-container">
+    <div class="inverter-tab1-header">
+      <h2 class="inverter-tab1-title">{{ st.title }}</h2>
+    </div>
+    <div class="inverter-tab1-content">
+      <div class="inverter-tab1-tabtitle">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign bs = block.settings
+            -%}
+            <div 
+              class="inverter-tab1-tabtitle-item {% if forloop.index == 1 %} active{% endif %}" 
+              data-target="tab{{ forloop.index }}"
+            >
+              {{ bs.tab_title }}
+            </div>
+          {%- endfor -%}
+        {% endif %}
+      </div>
+      <div class="inverter-tab1-tabcontent">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign bs = block.settings
+            -%}
+            <div class="inverter-tab1-tabcontent-item tab{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
+              {%- if bs.item_video != blank -%}
+                <div class="inverter-tab1-video hide_mobile">
+                  <video
+                    class="lazy"
+                    muted
+                    preload
+                    autoplay
+                    loop
+                    x5-video-player-type="h5"
+                    x5-video-player-fullscreen="true"
+                    x5-playsinline
+                    playsinline
+                    webkit-playsinline
+                  >
+                    {%- for source in bs.item_video.sources -%}
+                      <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+                    {%- endfor -%}
+                  </video>
+                </div>
+              {%- elsif bs.item_image != blank -%}
+                <div class="inverter-tab1-image hide_mobile">
+                  <img
+                    src="{{ bs.item_image | image_url: width: 1920 }}"
+                    width="auto"
+                    height="auto"
+                  >
+                </div>
+              {%- endif -%}
+
+              {%- if bs.item_video_mb != blank -%}
+                <div class="inverter-tab1-video hide_desktop">
+                  <video
+                    class="lazy"
+                    muted
+                    preload
+                    autoplay
+                    loop
+                    x5-video-player-type="h5"
+                    x5-video-player-fullscreen="true"
+                    x5-playsinline
+                    playsinline
+                    webkit-playsinline
+                  >
+                    {%- for source in bs.item_video_mb.sources -%}
+                      <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+                    {%- endfor -%}
+                  </video>
+                </div>
+              {%- elsif bs.item_image_mb != blank -%}
+              <div class="inverter-tab1-image hide_desktop">
+                <img
+                  src="{{ bs.item_image_mb | image_url: width: 800 }}"
+                  width="auto"
+                  height="auto"
+                >
+              </div>
+              {%- endif -%}
+              <div class="inverter-tab1-item-text">
+                <div class="inverter-tab1-textitem">
+                  <div class="inverter-tab1-textitem-title">{{ bs.item_title1 }}</div>
+                  <div class="inverter-tab1-textitem-desc">{{ bs.item_desc1 }}</div>
+                </div>
+                <div class="inverter-tab1-textitem">
+                  <div class="inverter-tab1-textitem-title">{{ bs.item_title2 }}</div>
+                  <div class="inverter-tab1-textitem-desc">{{ bs.item_desc2 }}</div>
+                </div>
+                <div class="inverter-tab1-textitem">
+                  <div class="inverter-tab1-textitem-title">{{ bs.item_title3 }}</div>
+                  <div class="inverter-tab1-textitem-desc">{{ bs.item_desc3 }}</div>
+                </div>
+                <div class="inverter-tab1-textitem">
+                  <div class="inverter-tab1-textitem-title">{{ bs.item_title4 }}</div>
+                  <div class="inverter-tab1-textitem-desc">{{ bs.item_desc4 }}</div>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabContainers = document.querySelectorAll('.inverter-tab1-container');
+    
+    tabContainers.forEach(container => {
+      const tabButtons = container.querySelectorAll('.inverter-tab1-tabtitle-item');
+      const tabItems = container.querySelectorAll('.inverter-tab1-tabcontent-item');
+      
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetClass = button.getAttribute('data-target'); // 改成 data-target
+          
+          // 更新按钮状态
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          // 更新内容面板
+          tabItems.forEach(item => item.classList.remove('active'));
+          
+          // 改用 querySelector 查找匹配的类
+          const targetTab = container.querySelector(`.${targetClass}`);
+          if (targetTab) {
+            targetTab.classList.add('active');
+          } else {
+            console.error(`找不到类名为 ${targetClass} 的内容面板`);
+          }
+        });
+      });
+    });
+  });
+</script>

@@ -1,0 +1,270 @@
+{% schema %}
+{
+  "name": "Alp Secondary Recomment",
+  "class": "alp-secondary-recomment",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image Mobile"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "text_right",
+      "label": "Text in Right",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Secondary Recomment"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-secondary-recomment-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .alp-secondary-recomment-title h2 {
+    margin-bottom: 48px;
+    font-size: clamp(24px, 3vw, 50px);
+    font-weight: 700;
+  }
+  .alp-secondary-recomment-img {
+    display: block;
+  }
+  .alp-secondary-recomment-swiper {
+    margin: inherit;
+  }
+  .alp-secondary-recomment-item img {
+    display: block;
+    height: 35px;
+    width: auto;
+    object-fit: contain;
+  }
+  .alp-secondary-recomment-item-content {
+    margin-top: 48px;
+    font-size: clamp(14px, 1vw, 16px);
+  }
+  .alp-secondary-recomment-item-content p {
+    margin: 0;
+  }
+  .alp-secondary-recomment-navigation {
+    justify-content: end;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .alp-secondary-recomment-navigation > div {
+    --swiper-navigation-size: 32px;
+    /* width: 32px;
+    height: 32px; */
+  }
+  .alp-secondary-recomment-container.text_right .alp-secondary-recomment-navigation{
+    left: 0;
+    right: auto;
+  }
+  @media (min-width: 1000px) {
+    .alp-secondary-recomment-container{
+      padding: 0 12%;
+    }
+    .alp-secondary-recomment-container.text_right{
+      flex-direction: row-reverse;
+    }
+    .alp-secondary-recomment-container.text_right .alp-secondary-recomment-item-content{
+      margin-top: 83px;
+    }
+    .alp-secondary-recomment-text {
+      width: 43%;
+      padding: 0 64px;
+    }
+    .alp-secondary-recomment-img {
+      width: 57%;
+    }
+    .alp-secondary-recomment-swiper {
+      max-width: 512px;
+    }
+  }
+  @media (max-width: 999px) {
+    .alp-section.alp-secondary-recomment-wrapper{
+      padding-top: calc(var(--padding-top) * 2.5px);
+      padding-bottom: calc(var(--padding-bottom) * 2.5px);
+    }
+    .alp-secondary-recomment .alp-secondary-recomment-container {
+      flex-direction: column-reverse;
+      padding: 0 16px;
+      gap: 48px;
+    }
+    .alp-secondary-recomment-text{
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-section alp-secondary-recomment-wrapper {{ reset_spacing }}"
+  data-stid="{{ section.id }}"
+  style="{{ style }}"
+>
+  <div class="alp-section-container alp-secondary-recomment-container page-width {{ container }} {% if st.text_right %}text_right{% endif %}">
+    <div class="alp-secondary-recomment-text">
+      <div class="alp-secondary-recomment-title">
+        <h2 class="headline__h2">{{ st.title | newline_to_br }}</h2>
+      </div>
+      <div class="alp-secondary-recomment-swiper swiper" data-blockId="{{ section.id }}">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div class="alp-secondary-recomment-item swiper-slide">
+              {%- if bs.image != blank -%}
+                {% render 'alp-single-image', image: bs.image, width: 1280 %}
+              {%- endif -%}
+              {%- if bs.content != blank -%}
+                <div class="alp-secondary-recomment-item-content">{{ bs.content }}</div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+        {% render 'swiper-navigation', class: 'alp-secondary-recomment-navigation' %}
+      </div>
+    </div>
+    <div class="alp-secondary-recomment-img">
+      {% render 'alp-responsive-image',
+        image: st.image,
+        image_mobile: st.image_mobile,
+        desktop_width: 1280,
+        mobile_width: 600,
+        aspect_ratio: st.image_aspect_ratio,
+        alt: st.text
+      %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+    let swiperId = '{{ section.id }}';
+    let swiperIdnum = swiperId.replace(/\D/g, '');
+    let swiperVar = 'TheSwiper' + swiperIdnum;
+    let swiperVar_thumb = 'TheSwiper_thumb' + swiperIdnum;
+
+    swiperVar_thumb = new Swiper(`.alp-secondary-recomment-swiper[data-blockId="${swiperId}"]`, {
+      slidesPerView: 1,
+      speed: 600,
+      autoHeight: true,
+      loop: true,
+      spaceBetween: alp_global.gap,
+      navigation: {
+        nextEl: `.alp-secondary-recomment-swiper[data-blockId="${swiperId}"] .swiper-button-next`,
+        prevEl: `.alp-secondary-recomment-swiper[data-blockId="${swiperId}"] .swiper-button-prev`,
+      },
+    });
+  });
+</script>

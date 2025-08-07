@@ -1,0 +1,448 @@
+{% schema %}
+{
+  "name": "Inverter Tab2",
+  "class": "inverter-tab2-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "aspect_ratio",
+      "label": "Aspect Ratio",
+      "default": "1440/768"
+    },
+    {
+      "type": "text",
+      "id": "aspect_ratio_mobile",
+      "label": "Aspect Ratio Mobile",
+      "default": "343/230"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab_item",
+      "name": "Tab Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab title"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_image",
+          "label": "Item Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_image_mb",
+          "label": "Item Image Mobile"
+        },
+        {
+          "type": "product",
+          "id": "item_product1",
+          "label": "Item Product1"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_product1_image",
+          "label": "Item Product1 Image"
+        },
+        {
+          "type": "product",
+          "id": "item_product2",
+          "label": "Item Product2"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_product2_image",
+          "label": "Item Product2 Image"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inverter Tab2"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --aspect-pc: {{ st.aspect_ratio }};
+   --aspect-mb: {{ st.aspect_ratio_mobile }};
+  }
+</style>
+
+{% style %}
+  .inverter-tab2-container {
+    padding-top: 120px;
+    padding-bottom: 140px;
+  }
+  .inverter-tab2-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+  }
+  .inverter-tab2-content {
+    margin-top: 48px;
+  }
+  .inverter-tab2-tabtitle {
+    display: flex;
+    justify-content: center;
+  }
+  .inverter-tab2-tabtitle-item {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 120%;
+    text-align: center;
+    padding-bottom: 32px;
+    transition: all 0.5s;
+    width: 263px;
+  }
+  .inverter-tab2-tabtitle-item.active {   
+    font-weight: bold;
+    border-bottom: 2px solid #FFFFFF;
+    margin-bottom: -2px;
+    font-weight: 600;
+  }
+  .inverter-tab2-tabtitle-item:not(.active) {     
+    border-bottom: 2px solid #1a1a1a;
+    margin-bottom: -2px;
+  }
+  .inverter-tab2-tabcontent {
+    margin-top: 66px;
+  }
+  .inverter-tab2-image {
+    height: 100%
+  }
+  .inverter-tab2-image img {
+    display: block;
+    height: 100%;
+  }
+  .inverter-tab2-tabcontent-item {
+    position: relative;
+    display: none;
+    gap: 64px;
+    max-width: 1376px;
+  }
+  .inverter-tab2-tabcontent-item.active {
+    animation: fadeIn 0.5s ease;
+    display: flex;
+    
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .inverter-tab2-tabcontent-right {
+    flex: 1;
+  }
+  .inverter-tab2-product {
+    width: 370px;
+    position: relative;
+  }
+  .inverter-tab2-product:not(:first-child) {
+    margin-top: 48px;
+    margin-bottom: 22px;
+  }
+  .inverter-tab2-product img {
+    border-radius: 10px;
+  }
+  .inverter-tab2-product-title {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 120%;
+  }
+  .inverter-tab2-product-price {
+    margin-top: 9.5px;
+  }
+  .inverter-tab2-product-price .price--on-sale .price__sale {
+    align-items: center;
+  }
+  .inverter-tab2-product-price span.price-item.price-item--regular {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 120%;
+    color: #ffffff;
+  }
+  .inverter-tab2-product-price span.price-item.price-item--sale {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 120%;
+    color: #ffffff;
+  }
+  .inverter-tab2-product-price s.price-item.price-item--regular {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 120%;
+    text-decoration: line-through;
+    color: #ffffff;
+  }
+  @media screen and (max-width: 999px) {
+    .inverter-tab2-container {
+      padding-top: 60px;
+      padding-bottom: 72px;
+    }
+    .inverter-tab2-image img {
+      aspect-ratio: var(--aspect-mb);
+      display: block
+    }
+    .inverter-tab2-title {
+      font-size: 30px;
+      text-align: start;
+    }
+    .inverter-tab2-content {
+      margin-top: 24px;
+    }
+    .inverter-tab2-tabtitle {
+      flex-direction: column;
+      gap: 0;
+    }
+    .inverter-tab2-tabtitle-item {
+      font-size: 14px;
+      padding: 7.5px 12px;
+      text-align: start;
+    }
+    .inverter-tab2-tabtitle-item.active {     
+      border-bottom: 0;
+      border-left: 2px solid #FFFFFF;
+      margin-bottom: 0;
+      margin-left: -2px;
+    }
+    .inverter-tab2-tabtitle-item:not(.active) {   
+      border-bottom: 0;  
+      border-left: 2px solid #ccc;
+      margin-bottom: 0;
+      margin-left: -2px;
+    }
+    .inverter-tab2-tabcontent {
+      margin-top: 32px;
+    }
+    .inverter-tab2-tabcontent-item {
+      flex-direction: column;
+      gap: 15px;
+    }
+    .inverter-tab2-tabcontent-right {
+      display: flex;
+      gap: 15px;
+    }
+    .inverter-tab2-product {
+      width: auto;
+    }
+    .inverter-tab2-product:not(:first-child) {
+      margin: 0px;
+    }
+    .inverter-tab2-image {
+      height: auto;
+    }
+    .inverter-tab2-product-title {
+      margin-top: 18px;
+      font-size: 16px;
+    }
+    .inverter-tab2-product-price {
+      margin-top: 4px;
+    }
+    .inverter-tab2-product-price span.price-item.price-item--regular {
+      font-size: 16px;
+    }
+    .inverter-tab2-product-price span.price-item.price-item--sale {
+      font-size: 16px;
+    }
+    .inverter-tab2-product-price s.price-item.price-item--regular {
+      font-size: 12px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" data-stid="{{ section.id }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }} inverter-tab2-container">
+    <div class="inverter-tab2-header">
+      <h2 class="inverter-tab2-title">{{ st.title }}</h2>
+    </div>
+    <div class="inverter-tab2-content">
+      <div class="inverter-tab2-tabtitle">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign bs = block.settings
+            -%}
+            <div 
+              class="inverter-tab2-tabtitle-item {% if forloop.index == 1 %} active{% endif %}" 
+              data-target="tab{{ forloop.index }}"
+            >
+              {{ bs.tab_title }}
+            </div>
+          {%- endfor -%}
+        {% endif %}
+      </div>
+      <div class="inverter-tab2-tabcontent">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign bs = block.settings
+            -%}
+            <div class="inverter-tab2-tabcontent-item tab{{ forloop.index }} {% if forloop.index == 1 %}active{% endif %}">
+              <div class="inverter-tab2-tabcontent-left">
+                {%- if bs.item_image != blank -%}
+                  <div class="inverter-tab2-image hide_mobile">
+                    <img
+                      src="{{ bs.item_image | image_url: width: 1920 }}"
+                      width="auto"
+                      height="auto"
+                    >
+                  </div>
+                {%- endif -%}
+
+                {%- if bs.item_image_mb != blank -%}
+                  <div class="inverter-tab2-image hide_desktop">
+                    <img
+                      src="{{ bs.item_image_mb | image_url: width: 800 }}"
+                      width="auto"
+                      height="auto"
+                    >
+                  </div>
+                {%- endif -%}
+              </div>
+              <div class="inverter-tab2-tabcontent-right">
+                <div class="inverter-tab2-product">
+                  <a class="full-aa" href="{{ bs.item_product1.url }}"></a>
+                  {%- if bs.item_product1_image != blank -%}
+                    <div class="inverter-tab2-image">
+                      <img
+                        src="{{bs.item_product1_image | image_url }}"
+                        width="auto"
+                        height="auto"
+                      >
+                    </div>
+                  {%- endif -%}
+                  <div class="inverter-tab2-product-title">{{ bs.item_product1.title }}</div>
+                  <div class="inverter-tab2-product-price">
+                    {%- render 'price',
+                      product: bs.item_product1,
+                      use_variant: true,
+                      show_badges: false,
+                      price_class: 'price--large'
+                    -%}
+                  </div>
+                </div>
+                <div class="inverter-tab2-product">
+                  <a class="full-aa" href="{{ bs.item_product2.url }}"></a>
+                  {%- if bs.item_product2_image != blank -%}
+                    <div class="inverter-tab2-image">
+                      <img
+                        src="{{bs.item_product2_image | image_url }}"
+                        width="auto"
+                        height="auto"
+                      >
+                    </div>
+                  {%- endif -%}
+                  <div class="inverter-tab2-product-title">{{ bs.item_product2.title }}</div>
+                  <div class="inverter-tab2-product-price">
+                    {%- render 'price',
+                      product: bs.item_product2,
+                      use_variant: true,
+                      show_badges: false,
+                      price_class: 'price--large'
+                    -%}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabContainers = document.querySelectorAll('.inverter-tab2-container');
+    
+    tabContainers.forEach(container => {
+      const tabButtons = container.querySelectorAll('.inverter-tab2-tabtitle-item');
+      const tabItems = container.querySelectorAll('.inverter-tab2-tabcontent-item');
+      
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetClass = button.getAttribute('data-target'); // 改成 data-target
+          
+          // 更新按钮状态
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          // 更新内容面板
+          tabItems.forEach(item => item.classList.remove('active'));
+          
+          // 改用 querySelector 查找匹配的类
+          const targetTab = container.querySelector(`.${targetClass}`);
+          if (targetTab) {
+            targetTab.classList.add('active');
+          } else {
+            console.error(`找不到类名为 ${targetClass} 的内容面板`);
+          }
+        });
+      });
+    });
+  });
+</script>

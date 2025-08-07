@@ -1,0 +1,527 @@
+{% schema %}
+{
+  "name": "videos-list",
+  "class": "videos-list",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "id": "video_url",
+          "type": "video_url",
+          "label": "Video url",
+          "accept": ["youtube", "vimeo"],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "info": "youtube or vimeo url"
+        },
+        {
+          "type": "text",
+          "id": "model",
+          "label": "Model",
+          "default": "Model: Basalt St"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Title",
+          "default": "<p>UI8 Design TeamReleased the Sapiens - Illustration builder</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_img",
+          "label": "Author Image"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name",
+          "default": "Floyd Buckridge"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "Feb 03, 2021"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "videos-list"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .shopify-section.videos-list > div {
+    width: 100%;
+  }
+  .videos-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .videos-list p {
+    margin: 0;
+  }
+  .videos-list-bigtitle {
+    margin-bottom: calc(var(--alp-gutter-y) * 1.25);
+  }
+  .videos-list-item {
+    width: 33.3%;
+    flex-basis: calc(33.3% - 20px);
+    border-radius: 16px;
+    /* border: 1px solid #d5d5d5; */
+    margin-bottom: calc(var(--alp-gutter-y) * 1);
+    padding: 2% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .videos-list-item {
+    background: var(--main-background, #f7f7f7);
+    border-radius: calc(var(--alp-border-radius) * 1.5);
+    padding: calc(var(--alp-gutter-y) * 0.75);
+  }
+  .videos-list-item .image-box {
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+    transition: filter 0.1s ease;
+    margin-bottom: 1.5em;
+  }
+  .videos-list-item .image-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: calc(var(--alp-border-radius) * 1);
+  }
+  .videos-list-item .image-box .play_image {
+    width: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+  }
+  .videos-list-item .image-box .play_image svg {
+    display: block;
+    width: 100%;
+  }
+  .videos-list-item .model {
+    display: inline-block;
+    color: #fff;
+    border-radius: calc(var(--alp-border-radius) * 1);
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 0em 1em;
+    font-weight: 500;
+    background: var(--main-color-3);
+    line-height: 2;
+  }
+  .videos-list-item .title {
+    margin: 1.5rem 0 2rem;
+    font-size: 18px;
+  }
+  .videos-list-item .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    align-items: flex-end;
+    width: 100%;
+  }
+  .videos-list-item .author {
+    display: flex;
+    align-items: center;
+  }
+  .videos-list-item .author img {
+    width: 24px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 100px;
+    display: block;
+  }
+  .videos-list-item .author span {
+    padding-left: 6px;
+  }
+  .videos-list-item .bottom .date {
+    display: none;
+  }
+  .swiper-pagination-index-reviewers {
+    margin-top: calc(var(--alp-gutter-y) * 1.5);
+  }
+  /* 点击播放视频 */
+  .index-reviewers-full {
+    overflow: hidden;
+    position: relative;
+  }
+  div.index-reviewers-full-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000000c7;
+    z-index: 199;
+    display: block;
+    opacity: 0;
+    transition: 0.3s;
+    pointer-events: none;
+  }
+  div.index-reviewers-full-bg.active {
+    display: block;
+    opacity: 1;
+  }
+  .index-reviewers-full-item {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    pointer-events: none;
+    margin: 4vw;
+    z-index: 300;
+    transition: 0.3s;
+    max-width: 1200px;
+    max-height: 80%;
+    margin: auto;
+    display: none;
+  }
+  .index-reviewers-full-item.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .index-reviewers-full-item video,
+  .index-reviewers-full-item .video-foreground {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+    border-radius: 12px;
+  }
+  .index-reviewers-full-item .video-foreground iframe {
+    width: 100%;
+    height: 100%;
+  }
+  .index-reviewers-full-item .close {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    right: -2em;
+    top: -2em;
+    cursor: pointer;
+    z-index: 31;
+  }
+  .index-reviewers-full-item .close svg {
+    width: 36px;
+    height: 36px;
+    margin-top: 2px;
+    margin-left: 2px;
+  }
+  .index-reviewers-full-item .close svg path {
+    stroke-width: 1;
+  }
+  @media screen and (max-width: 749px) {
+    .videos-list-bigtitle{
+      margin-bottom: 24px;
+      margin-left: 3%;
+    }
+    .videos-list-bigtitle h2{
+      font-size: 18px;
+    }
+    .videos-list{
+      justify-content: center;
+    }
+    .videos-list-item {
+      width: 100%;
+      flex-basis: calc(100% - 20px);
+    }
+    .index-reviewers-full-item {
+      padding-left: 8px;
+      padding-right: 8px;
+      max-height: max-content;
+    }
+    .index-reviewers-full-item video,
+    .index-reviewers-full-item .video-foreground {
+      aspect-ratio: 16 / 9;
+    }
+    .index-reviewers-full-item .video-foreground iframe{
+      border: none;
+      border-radius: 16px;
+    }
+    .index-reviewers-full-item .close{
+      right: 0.5em;
+      top: 0em;
+      width: 30px;
+      height: 30px;
+    }
+    .index-reviewers-full-item .close svg{
+      width: 28px;
+      height: 28px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }} ">
+    <div class="videos-list-bigtitle">
+      <h2 class="headline__h2s">{{ st.title }}</h2>
+    </div>
+    <div class="videos-list">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          <div class="videos-list-item" data-id="{{ block.id | replace: '-', '' }}">
+            <div class="image-box">
+              {% if bs.image %}
+                {% render 'alp-single-image', image: bs.image, width: 1280, aspect_ratio: '1280/720' %}
+              {% else %}
+                <div class="thumbnail-container"></div>
+              {% endif %}
+              <div class="play_image">{% render 'icon-play-2' %}</div>
+            </div>
+            <div class="model">{{ bs.model }}</div>
+            <h3 class="headline__h6 title">{{ bs.title }}</h3>
+            <div class="bottom">
+              <div class="author">
+                {% render 'alp-single-image', image: bs.author_img, width: 1280, aspect_ratio: '1/1' %}
+                <span>{{ bs.author_name }}</span>
+              </div>
+              <div class="date">{{ bs.date }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {% endif %}
+    </div>
+    <div class="index-reviewers-full">
+      <div class="index-reviewers-full-bg"></div>
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+            assign video_url = bs.video_url
+            assign video_id = ''
+            if video_url.type == 'youtube'
+              assign video_id = video_url | replace: 'https://www.youtube.com/watch?v=', ''
+            elsif video_url.type == 'vimeo'
+              assign video_id = video_url | replace: 'https://vimeo.com/', ''
+            endif
+          %}
+          <div class="index-reviewers-full-item" data-id="{{ block.id | replace: '-', '' }}">
+            <div class="close">
+              {% render 'icon-close' %}
+            </div>
+            {% if bs.video %}
+              <video
+                src="{{ bs.video }}"
+                muted
+                controls
+                preload
+                loop
+                x5-video-player-fullscreen="true"
+                x5-playsinline
+                playsinline
+                webkit-playsinline
+              ></video>
+            {%- else -%}
+              {% if bs.video_url %}
+                <div class="video-foreground">
+                  {%- if video_url.type == 'youtube' -%}
+                    <video-youtube data-id="{{ block.id }}">
+                      <iframe
+                        class="lazy"
+                        data-src="https://www.youtube.com/embed/{{ video_id }}?controls=1&autoplay=0&mute=0&playsinline=1&loop=1&playlist={{ video_id }}"
+                      ></iframe>
+                    </video-youtube>
+                  {%- elsif video_url.type == 'vimeo' -%}
+                    <iframe
+                      class="lazy"
+                      data-src="https://player.vimeo.com/video/{{ video_id }}?controls=1&background=1&autoplay=0&muted=0&loop=1"
+                      frameborder="0"
+                      allowfullscreen
+                    ></iframe>
+                  {%- endif -%}
+                </div>
+              {%- endif %}
+            {%- endif %}
+          </div>
+        {%- endfor -%}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // click
+    $( '.videos-list-item .image-box').click(function(){
+      let $this = $(this)
+      let $parents = $this.parents('.videos-list-item')
+      let $item_id = $parents.attr('data-id')
+      $('.videos-list').find(`.index-reviewers-full-item[data-id="${$item_id}"]`).css('display', 'block')
+      setTimeout(() => {
+      $('.videos-list').find(`.index-reviewers-full-item[data-id="${$item_id}"]`).addClass('active').siblings().removeClass('active')
+      $this.parents('.videos-list').find('.index-reviewers-full-bg').addClass('active')
+      }, 100)
+    })
+    $('.index-reviewers-full .close').click(function(){
+      let $this =$(this)
+      $this.parents('.videos-list').find('.index-reviewers-full-bg').removeClass('active')
+      $this.parents('.videos-list').find('.index-reviewers-full-item').removeClass('active')
+      setTimeout(() => {
+        $this.parents('.videos-list').find('.index-reviewers-full-item').css('display', 'none')
+      },500)
+    })
+     // swiper
+     var BlockId = '{{ section.id | replace: '-', '' | prepend: 'id_' }}';
+     var Swiper_reviews_egf = new Swiper(`.videos-list .swiper#${BlockId}`, {
+      pagination: {
+        el: '.pagination-products',
+        clickable :true,
+      },
+      speed:600,
+      // freeMode: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      slidesPerView: 1,
+      spaceBetween: alp_global.gap ,
+      breakpoints: { 
+        320: {
+          slidesPerView: 'auto',
+          slidesPerGroup: 1,
+        },
+        420: {
+          slidesPerView: 'auto',
+          slidesPerGroup: 1,
+        },
+        1280: {
+          slidesPerView: 'auto',
+          slidesPerGroup: 1,
+          spaceBetween: alp_global.gap * 1.5,
+        },
+      }
+    })
+
+    $(`.index-reviewers-full-item`).each(function () {
+      var VideoBlockId = 'shopify-section-{{ section.id  }}';
+      var videoid = $(this).attr('data-id')
+      var videoUrl = $(this).find('.video-foreground iframe').attr('data-src')
+      var videoId = getYouTubeVideoId(videoUrl);
+      // var thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg';
+      var thumbnailUrl = 'http://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg';
+      // 创建一个图片元素
+      var img = $('<img>').attr('src', thumbnailUrl);
+
+      // 将图片元素插入到页面中
+      $(`#${VideoBlockId} .videos-list-item[data-id="${videoid}"] .thumbnail-container`).append(img);
+
+      function getYouTubeVideoId(url) {
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+        var match = url.match(regExp);
+        return (match && match[7].length === 11) ? match[7] : false;
+      }
+    });
+  });
+</script>

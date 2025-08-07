@@ -1,0 +1,627 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "alp_hero_banner_index_Crnbb9": {
+      "type": "alp-hero-banner-index",
+      "blocks": {
+        "heading_8xjmnV": {
+          "type": "heading",
+          "settings": {
+            "text": "Father’s Day Special",
+            "heading_type": "h1"
+          }
+        },
+        "description_tkzhbq": {
+          "type": "description",
+          "settings": {
+            "text": "<h2><strong>$100 Off All E-bikes — Up to $800 in Total Savings!</strong></h2>"
+          }
+        },
+        "button_MYdxMf": {
+          "type": "button",
+          "settings": {
+            "text": "SHOP NOW",
+            "url": "shopify://collections/electric-bikes"
+          }
+        }
+      },
+      "block_order": [
+        "heading_8xjmnV",
+        "description_tkzhbq",
+        "button_MYdxMf"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "default",
+        "bg_color": "#ffffff",
+        "text_color": "#ffffff",
+        "bg_video": "shopify://files/videos/0524-首页banner视频2.mp4",
+        "bg_video_mobile": "shopify://files/videos/0526-首页banner视频2-竖屏.mp4",
+        "bg_opacity": 100,
+        "aspect_ratio_desktop": "1920/820",
+        "aspect_ratio_mobile": "380/600",
+        "block_max_width": "820px",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 5,
+        "reset_spacing": true,
+        "show_breadcrumb": false
+      }
+    },
+    "bd55491d-a3f9-4d2b-b0fa-112b1026177a": {
+      "type": "alp-home-products",
+      "blocks": {
+        "81bda381-9b93-47dd-8201-2975f8119fd5": {
+          "type": "category_item",
+          "settings": {
+            "text": "BEST SELLER",
+            "product_list": [
+              "basalt",
+              "obsidian",
+              "obsidian-st",
+              "slate"
+            ]
+          }
+        },
+        "category_item_Uebzp3": {
+          "type": "category_item",
+          "settings": {
+            "text": "New Arrival",
+            "product_list": [
+              "granite",
+              "asphalt",
+              "obsidian"
+            ]
+          }
+        }
+      },
+      "block_order": [
+        "81bda381-9b93-47dd-8201-2975f8119fd5",
+        "category_item_Uebzp3"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 15,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "7b6cd7d1-26be-4cc6-87c2-dcaddf33fbf3": {
+      "type": "alp-images-slider",
+      "blocks": {
+        "d8656001-9454-4f48-bf03-7af875752476": {
+          "type": "item",
+          "settings": {
+            "text": "Power Station E-bike",
+            "subtext": "",
+            "image": "shopify://shop_images/20240105164357.jpg",
+            "link": "shopify://collections/power-station-ebikes",
+            "link_text": "Discover More"
+          }
+        },
+        "3c2769ea-e487-4ade-89a5-9e3bf2a93fb6": {
+          "type": "item",
+          "settings": {
+            "text": "Fat Tire E-bike",
+            "subtext": "",
+            "image": "shopify://shop_images/Product-i_6f77219c-3698-4d6d-83f7-a612221c03fe.jpg",
+            "link": "shopify://collections/fat-tire",
+            "link_text": "Discover More"
+          }
+        },
+        "2d6a4bbb-8fe2-45d7-9b60-284e9cb959e8": {
+          "type": "item",
+          "settings": {
+            "text": "Step-Through E-bike",
+            "subtext": "",
+            "image": "shopify://shop_images/Frame_39997.jpg",
+            "link": "shopify://collections/step-through",
+            "link_text": "Discover More"
+          }
+        },
+        "2077211f-7078-45ae-9a33-79389515b79a": {
+          "type": "item",
+          "settings": {
+            "text": "City & Commuter E-bike",
+            "subtext": "",
+            "image": "shopify://shop_images/Product-i-1_1ee8eb0e-0070-47c1-9535-239283d9e7cc.jpg",
+            "link": "shopify://collections/city-commuter",
+            "link_text": "Discover More"
+          }
+        },
+        "item_tRwQ47": {
+          "type": "item",
+          "settings": {
+            "text": "Folding E-bike",
+            "subtext": "",
+            "image": "shopify://shop_images/39_2x_b03f553e-366a-4dd9-994b-fc9af791567c.jpg",
+            "link": "shopify://collections/folding-ebikes",
+            "link_text": "Discover More"
+          }
+        },
+        "5d7142e3-fbac-4f26-81e0-5132b4076bb5": {
+          "type": "item",
+          "settings": {
+            "text": "Tricycles E-bike",
+            "subtext": "",
+            "image": "shopify://shop_images/17_2x_ba355971-d9e1-4236-88ce-862625d4515d.jpg",
+            "link": "shopify://collections/electric-tricycles",
+            "link_text": "Discover More"
+          }
+        }
+      },
+      "block_order": [
+        "d8656001-9454-4f48-bf03-7af875752476",
+        "3c2769ea-e487-4ade-89a5-9e3bf2a93fb6",
+        "2d6a4bbb-8fe2-45d7-9b60-284e9cb959e8",
+        "2077211f-7078-45ae-9a33-79389515b79a",
+        "item_tRwQ47",
+        "5d7142e3-fbac-4f26-81e0-5132b4076bb5"
+      ],
+      "disabled": true,
+      "settings": {
+        "style": "default",
+        "heading_type": "h1",
+        "section_id": "",
+        "title": "A Ride Style For Everyone",
+        "description": "",
+        "sub_title": "",
+        "image_aspect_ratio": "4/5",
+        "block_normal_width": "30%",
+        "block_max_width": "420px",
+        "block_max_width_mobile": "280px",
+        "min_height": "220px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_opacity": 50,
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false,
+        "show_button": false
+      }
+    },
+    "8935460d-7e52-4c9e-a742-e3ba3be4fa9f": {
+      "type": "alp-content-with-thumb-slider",
+      "blocks": {
+        "26843587-65aa-496d-bfa6-3d6a6e2c4b50": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "content": "<p>\"This is an area where I think Mokwheel has set the Basalt up for some success – it’s an e-bike that I think of as an off-roader first, whereas others I think of as for paved trails that I could do light offroading with.\"</p>",
+            "subtext": "Electric bike report",
+            "image": "shopify://shop_images/electric_7ce0b7b6-8692-4ba2-9ec4-81a3972098a7.svg",
+            "image_mobile": "shopify://shop_images/electric_6b36e6a4-1b54-4a17-a6f4-d540a28025e4.svg",
+            "link": "https://electricbikereport.com/mokwheel-basalt-review/",
+            "link_text": ""
+          }
+        },
+        "c798990d-6c61-4032-9761-311c5fead542": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "content": "<p>\"The Mokwheel Obsidian is a great fat tire e-bike and will surely make its owners happy on its own. But it shines with the energy harvesting and sharing accessories that turn the e-bike into something special.\"</p>",
+            "subtext": "Electrek.co",
+            "image": "shopify://shop_images/electrek.svg",
+            "image_mobile": "shopify://shop_images/electrek_745780f4-9672-4206-aff4-fa16e6c247d8.svg",
+            "link": "https://electrek.co/2023/11/15/review-mokwheel-obsidian-fat-tire-e-bike-boasts-a-solar-power-station/",
+            "link_text": ""
+          }
+        },
+        "def234c3-781c-45de-9311-758b0fe865a5": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "content": "<p>\"The best part about Mokwheel is their soft seating with extra cushioning which helps the bum stay on the seat during a long ride which is the case most of the time with its range of 45Miles. The bike does weigh a bit so it is more suitable for people with a larger build, anywhere from 5’3″ ~ 6’4″.\"</p>",
+            "subtext": "CleanTechnica",
+            "image": "shopify://shop_images/clean.svg",
+            "image_mobile": "shopify://shop_images/clean_74133d99-98c5-4a4b-93c4-0e61fadab1ba.svg",
+            "link": "https://cleantechnica.com/2022/02/15/mokwheel-a-powerful-contender-in-the-e-bike-market/",
+            "link_text": ""
+          }
+        },
+        "0f9298e3-4122-49ad-964d-bf10ec183d68": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "content": "<p>\"The size and up-right position take the Mokwheel Basalt Electric Bicycle out of the mountain bike sphere. From uneven pavement to muddy gravel roads, However the bike is confidence inspiring anywhere it goes.\"</p>",
+            "subtext": "Mountain Weekly News",
+            "image": "shopify://shop_images/mwn.webp",
+            "image_mobile": "shopify://shop_images/mwn_362cb36b-ca77-4a62-a409-3c6c878f45aa.webp",
+            "link": "https://mtnweekly.com/reviews/mokwheel-basalt-ebike/",
+            "link_text": ""
+          }
+        },
+        "79e2e106-694d-4600-b4b6-0699e48815c8": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "content": "<p>\"Mokwheel strives to reach the hearts of consumers by offering exceptional products and services with honesty and transparency.\"</p>",
+            "subtext": "YahooNews",
+            "image": "shopify://shop_images/yahho.svg",
+            "image_mobile": "shopify://shop_images/yahho_548b3b56-5b01-4cb1-8a9f-b181188cf0a6.svg",
+            "link": "https://www.yahoo.com/now/mokwheel-launches-basalt-world-first-140000571.html",
+            "link_text": ""
+          }
+        },
+        "item_JGwyHR": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "content": "<p>\"The Basalt ST is a 7-speed Ebike, and it utilizes the Shimano Tourney rear derailleur. On the handlebars, just left of the locking ergonomic grips, is the Shimano SIS Index thumb shifter. There are pluses to using trigger shifters, but on the Basalt we feel like the SIS Index shifter made sense.\"</p>",
+            "subtext": "electrifiedreviews",
+            "image": "shopify://shop_images/electrifiedreviews.svg",
+            "image_mobile": "shopify://shop_images/electrifiedreviews_1.svg",
+            "link": "https://www.electrifiedreviews.com/blog/mokwheel-basalt-st-review-1799-step-through-mobile-power-station-electric-bike",
+            "link_text": ""
+          }
+        },
+        "item_wF4FLf": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "content": "<p>\"The fat tire Mokwheel Basalt is not your average ebike; it’s a step towards a self-sustaining ride. As a part of Mokwheel’s “power station” ebikes, the Basalt allows solar charging and utilizes the bike’s battery as a portable power bank. \"</p>",
+            "subtext": "Ebike escape",
+            "image": "shopify://shop_images/be6a7089-90f6-482d-8c1e-6ee1a220c815.png",
+            "image_mobile": "shopify://shop_images/be6a7089-90f6-482d-8c1e-6ee1a220c815_1.png",
+            "link": "https://ebikeescape.com/mokwheel-basalt-review/",
+            "link_text": ""
+          }
+        },
+        "item_iTKAQp": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "content": "<p>\"For urban commuters seeking an electric bike that is budget friendly, delivers solid performance and features, the Mokwheel Asphalt offers a compelling choice. \"</p>",
+            "subtext": "Activegearreview",
+            "image": "shopify://shop_images/b0cf59ba-5c74-46ae-8351-86bf67aa3734.jpg",
+            "image_mobile": "shopify://shop_images/b0cf59ba-5c74-46ae-8351-86bf67aa3734_aa80b5a8-eb00-4f1d-ab2c-21d3769be063.jpg",
+            "link": "https://www.activegearreview.com/cycling/electric-bikes/mokwheel-asphalt-review/",
+            "link_text": ""
+          }
+        },
+        "item_c7CEBc": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "content": "<p>\"Brace yourself for the Mokwheel Asphalt, a revolution in affordable urban commuting. Imagine cruising through city streets on a bike that combines style, functionality, and comfort without putting you in the poor house.\"</p>",
+            "subtext": "Ebikes.org",
+            "image": "shopify://shop_images/8abf156a-a38b-468f-af19-bac6770000c1.svg",
+            "image_mobile": "shopify://shop_images/8abf156a-a38b-468f-af19-bac6770000c1.svg",
+            "link": "https://ebikes.org/e-bike-reviews/mokwheel-asphalt/",
+            "link_text": ""
+          }
+        },
+        "item_MPCJiU": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "content": "<p>Mokwheel is known for their high-quality design, rugged frames, and powerful electric motors, making their bikes perfect for those who crave both adventure and performance. If you’re on the lookout for anelectric mountain bike Black Friday deal, Mokwheel’s collection will exceed your expectations.</p>",
+            "subtext": "Savingsays",
+            "image": "shopify://shop_images/Header-4.png",
+            "image_mobile": "shopify://shop_images/Header-4.png",
+            "link": "https://savingsays.com/mokwheel-black-friday-mountain-bike-deals/",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "26843587-65aa-496d-bfa6-3d6a6e2c4b50",
+        "c798990d-6c61-4032-9761-311c5fead542",
+        "def234c3-781c-45de-9311-758b0fe865a5",
+        "0f9298e3-4122-49ad-964d-bf10ec183d68",
+        "79e2e106-694d-4600-b4b6-0699e48815c8",
+        "item_JGwyHR",
+        "item_wF4FLf",
+        "item_iTKAQp",
+        "item_c7CEBc",
+        "item_MPCJiU"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media (max-width: 999px) {.alp-content-slider .alp-content-slide-wrapper {margin-bottom: 0; padding-bottom: 60px; }}"
+      ],
+      "settings": {
+        "title": "We're Recommended By Industry Leaders",
+        "image_aspect_ratio": "2.5/1",
+        "block_max_width": "1080px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "eabc9637-e557-4a6d-8321-a1c5c7ef1333": {
+      "type": "alp-images-slider",
+      "blocks": {
+        "2739eddf-7e10-458e-8779-27b7b86a7674": {
+          "type": "item",
+          "settings": {
+            "text": "About Us",
+            "subtext": "Mokwheel creates its own and\nseeks to do things differently to bring not only products of value but also products of trust.",
+            "image": "shopify://shop_images/Adv-i_d8f73c80-f1cd-441b-9ff1-9f5d7208658c.jpg",
+            "link": "shopify://pages/about-us",
+            "link_text": "Learn More"
+          }
+        },
+        "9e9b35ee-4c64-4234-8558-0a5878001885": {
+          "type": "item",
+          "settings": {
+            "text": "FAQ",
+            "subtext": "Get answers to common questions here. Need more help? Contact our support team!",
+            "image": "shopify://shop_images/Adv-i-1_0bed14a2-0bd4-493a-974b-24a6f33528ca.jpg",
+            "link": "shopify://pages/faq",
+            "link_text": "Learn More"
+          }
+        },
+        "c2a18f01-50ea-442c-849d-ee411e803561": {
+          "type": "item",
+          "settings": {
+            "text": "E-Bike for Trees",
+            "subtext": "Ride green and support a healthier planet with our E-Bikes.",
+            "image": "shopify://shop_images/Adv-i-2.jpg",
+            "link": "https://www.mokwheel.com/blogs/news/the-best-time-to-plant-a-tree-is-now-mokwheel-give-back-to-nature",
+            "link_text": "Learn More"
+          }
+        },
+        "94146ccd-e9ae-4bd4-8c6e-332f64a6a3e3": {
+          "type": "item",
+          "settings": {
+            "text": "Technology",
+            "subtext": "Mokwheel BASALT: the world’s first power all-terrain e-bike fusion that is integrated with power station technology.",
+            "image": "shopify://shop_images/Adv-i_7bfc83a1-8e20-4c59-961d-9e33a414c0d9.jpg",
+            "link": "https://www.mokwheel.com/blogs/news/new-technology-rising-at-electrify-expo-1",
+            "link_text": "Learn More"
+          }
+        }
+      },
+      "block_order": [
+        "2739eddf-7e10-458e-8779-27b7b86a7674",
+        "9e9b35ee-4c64-4234-8558-0a5878001885",
+        "c2a18f01-50ea-442c-849d-ee411e803561",
+        "94146ccd-e9ae-4bd4-8c6e-332f64a6a3e3"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media (max-width: 999px) {.alp-image-slider .alp-image-slide-wrapper {margin-bottom: 0; }}"
+      ],
+      "settings": {
+        "style": "default",
+        "heading_type": "h1",
+        "section_id": "",
+        "title": "The Full Force of \nMokwheel",
+        "description": "Mokwheel is the first company to innovate and bring forth a new feature in the e-bike industry by launching a new product with features never seen - The World's First Power Station E-Bike, the Basalt.",
+        "sub_title": "Find out what you want quickly",
+        "image_aspect_ratio": "4/3",
+        "block_normal_width": "33%",
+        "block_max_width": "520px",
+        "block_max_width_mobile": "330px",
+        "min_height": "280px",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "bg_video": "shopify://files/videos/8_2.mp4",
+        "bg_opacity": 25,
+        "container": "alp-container-fluid",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "reset_spacing": false,
+        "show_button": false
+      }
+    },
+    "alp_index_remark_c_LHyVdK": {
+      "type": "alp-index-remark-c",
+      "blocks": {
+        "item_mcNeWi": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/281025_7734531064054_18f45ca9_51bf_4254_8a47_765099bf2937.webp",
+            "title": "Trevor P.",
+            "content_title": "The real deal..",
+            "desc": "<p>This bike is a tank! I have thrown every Utah trail imaginable at the basalt from snow, mud, sand, gravel and rock! So far this bike has been unstoppable! In my opinion I have twice the bike at half the cost of the big names in this category! The customer service is also unbeatable!</p>",
+            "content_model": "Basalt",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "SHOP NOW"
+          }
+        },
+        "item_PDBRxN": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1_9faeb242-2b3b-4d09-8455-5571424e1efb.png",
+            "title": "Steve Harding",
+            "content_title": "Beast Bike",
+            "desc": "<p>First day out and absolutely no complaints. This bike is a beast!</p>",
+            "content_model": "Basalt ST",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "SHOP NOW"
+          }
+        },
+        "item_CqLYVH": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/281025_7734557475062_ab666fac_2278_406f_93c6_f17147608b1d.webp",
+            "title": "Barbara H.",
+            "content_title": "I love my new bike",
+            "desc": "<p>I used to ride a Scoria and it was great, this bike gets me up the hills faster and easier and the battery lasts longer.</p>",
+            "content_model": "Scoria",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "SHOP NOW"
+          }
+        },
+        "item_QrQ6q4": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/281025_7444055884022_bfcda7d1_51e1_4e5f_b420_346278723389.webp",
+            "title": "Rafe L.",
+            "content_title": "Pleasant Surprise",
+            "desc": "<p>The bike is a beauty and easy to assemble. I received it in a timely fashion. Haven’t had a chance to take it out yet, we are buried in snow, but look forward to my first ride.</p>",
+            "content_model": "Mesa Plus ST",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "SHOP NOW"
+          }
+        },
+        "item_MRLEDE": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/3_f9f6fbe5-4406-4d6f-b700-05c6728e22a6.png",
+            "title": "Jim Gilbert",
+            "content_title": "Love it!",
+            "desc": "<p>She loves her Mokwheel Mesa+ST♥️<br/>Me LOVELY Wifie!-----From her loving husband</p>",
+            "content_model": "Mesa Plus ST",
+            "link": "shopify://collections/electric-bikes",
+            "link_text": "SHOP NOW"
+          }
+        }
+      },
+      "block_order": [
+        "item_mcNeWi",
+        "item_PDBRxN",
+        "item_CqLYVH",
+        "item_QrQ6q4",
+        "item_MRLEDE"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media (min-width: 1000px) {.alp-index-remark .alp-index-remark-container {padding-bottom: 36px; padding-top: 36px; }}",
+        "@media (max-width: 999px) {.alp-index-remark .alp-index-remark-wrapper {margin-bottom: 0; } .alp-index-remark .alp-index-remark-container {padding-bottom: 0; }}"
+      ],
+      "settings": {
+        "title": "What Our Customers Say",
+        "link_text_title": "View More",
+        "link_url_title": "shopify://pages/electric-bike-press-reviews",
+        "heading_type": "h1",
+        "image_aspect_ratio": "1/1",
+        "block_max_width": "420px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "12869bd7-a3da-4dd8-b537-b81324a41f23": {
+      "type": "alp-index-warranty",
+      "disabled": true,
+      "settings": {
+        "image_pc": "shopify://shop_images/PC_8cbfe6e5-7f62-4e75-8c6c-790800e40423.jpg",
+        "image_mobile": "shopify://shop_images/M_52f9af68-bd2e-4c21-980b-422271446e69.jpg",
+        "image_aspect_ratio": "3/1",
+        "image_aspect_ratio_mobile": "3/2",
+        "min_height": "420px",
+        "bg_opacity": 50,
+        "title": "<h2>Affirm</h2>",
+        "subtitle": "<p>Pay at your pace, get 0% APR over 24 months.</p>",
+        "link": "https://www.mokwheel.com/pages/affirm-program",
+        "link_text": "Learn More",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "alp_index_reviewers_GkCKfJ": {
+      "type": "alp-index-reviewers",
+      "blocks": {
+        "item_4QkhAr": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=7_VET6qkc3A",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST Review Took An Unexpected Turn</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Apr 26, 2023"
+          }
+        },
+        "item_fXRxMz": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=AEuk1m9MCL0",
+            "model": "Model: Obsidian",
+            "title": "<p>Mokwheel Obsidian Revealed: The Ultimate E-Bike</p>",
+            "author_img": "shopify://shop_images/10001_0c42705e-521a-4e2e-8104-5c82039ccc05.jpg",
+            "author_name": "Stay Connected with EV's",
+            "date": "Feb 20, 2024"
+          }
+        },
+        "item_PB7gnj": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=kARjYKE1aYI",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt Review | Fast, Powerful E-Bike With Solar Panel & Inverter Accessories!</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Aug 05, 2023"
+          }
+        },
+        "item_gyLnAP": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=kARjYKE1aYI",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt Review | Fast, Powerful E-Bike With Solar Panel & Inverter Accessories!</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Aug 05, 2023"
+          }
+        }
+      },
+      "block_order": [
+        "item_4QkhAr",
+        "item_fXRxMz",
+        "item_PB7gnj",
+        "item_gyLnAP"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".alp-index-reviewers .alp-index-reviewers-item .bottom .date {display: none;}"
+      ],
+      "settings": {
+        "title": "Rider Reviews",
+        "link_text_title": "More Reviews",
+        "link_url_title": "shopify://pages/electric-bike-review-videos",
+        "image_aspect_ratio": "3/2",
+        "block_normal_width": "30%",
+        "block_max_width": "420px",
+        "block_max_width_mobile": "280px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 5,
+        "padding_bottom": 20,
+        "reset_spacing": true
+      }
+    }
+  },
+  "order": [
+    "alp_hero_banner_index_Crnbb9",
+    "bd55491d-a3f9-4d2b-b0fa-112b1026177a",
+    "7b6cd7d1-26be-4cc6-87c2-dcaddf33fbf3",
+    "8935460d-7e52-4c9e-a742-e3ba3be4fa9f",
+    "eabc9637-e557-4a6d-8321-a1c5c7ef1333",
+    "alp_index_remark_c_LHyVdK",
+    "12869bd7-a3da-4dd8-b537-b81324a41f23",
+    "alp_index_reviewers_GkCKfJ"
+  ]
+}

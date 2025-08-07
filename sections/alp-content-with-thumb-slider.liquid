@@ -1,0 +1,293 @@
+{% schema %}
+{
+  "name": "Alp Content Slider",
+  "class": "alp-content-slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "2.5/1"
+    },
+    {
+      "type": "text",
+      "id": "block_max_width",
+      "label": "Block Max Width",
+      "default": "880px"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Subtext"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image Mobile"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Content Slider"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --block-max-width: {{ st.block_max_width }};
+  }
+</style>
+
+{% style %}
+  @media (max-width: 999px) {
+  }
+{% endstyle %}
+
+<div
+  class="alp-section alp-content-slide-wrapper overflow-hidden {{ reset_spacing }}"
+  data-stid="{{ section.id }}"
+  style="{{ style }}"
+>
+  <div class="alp-section-container alp-content-slide-container page-width {{ container }}">
+    <div class="alp-content-slide-in-wrapper">
+      <div class="alp-content-slide-title">
+        <h2 class="headline__h2">{{ st.title | newline_to_br }}</h2>
+      </div>
+      <div class="alp-content-sliders margin-top">
+        <div class="alp-content-slide-swiper swiper" data-blockId="{{ section.id }}">
+          <div class="swiper-wrapper">
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="alp-content-slide-item swiper-slide">
+                <div class="alp-content-slide-inner overflow-hidden relative">
+                  {%- if bs.link != blank -%}
+                    <a class="full-aa" target="_blank" href="{{ bs.link }}" title="{{ bs.text }}"></a>
+                  {%- endif -%}
+
+                  <div class="alp-content-slide-info">
+                    <div>
+                      {%- if bs.text != blank -%}
+                        <h3 class="alp-content-slide-text headline__h4">{{ bs.text | newline_to_br }}</h3>
+                      {%- endif -%}
+                      {%- if bs.content != blank -%}
+                        <div class="alp-content-slide-content">{{ bs.content }}</div>
+                      {%- endif -%}
+                      {%- if bs.subtext != blank -%}
+                        <div class="alp-content-slide-subtext">
+                          {% render 'icon-comment-quote' %}
+                          {{ bs.subtext | newline_to_br }}
+                        </div>
+                      {%- endif -%}
+                      {%- if bs.link_text != blank -%}
+                        {% render 'alp-btn',
+                          url: bs.link,
+                          type: 'btn-link',
+                          text: bs.link_text,
+                          textcolor: '#ffffff',
+                          bgcolor: 'var(--main-color)',
+                          size: 'small'
+                        %}
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+        <div class="alp-content-thumbs-swiper swiper margin-top" data-blockId="{{ section.id }}">
+          <div class="swiper-wrapper">
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="alp-content-thumb-item swiper-slide">
+                <div class="alp-content-slide-image">
+                  {% render 'alp-responsive-image',
+                    image: bs.image,
+                    image_mobile: bs.image_mobile,
+                    desktop_width: 1280,
+                    mobile_width: 600,
+                    aspect_ratio: st.image_aspect_ratio,
+                    alt: bs.text
+                  %}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+          <div class="swiper-navs swiper-pagination-image-slider">
+            {% render 'swiper-pagination', class: 'pagination-image-slider' %}
+            {% render 'swiper-navigation', class: '' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+    let swiperId = '{{ section.id }}';
+    let swiperIdnum = swiperId.replace(/\D/g, '');
+    let swiperVar = 'TheSwiper' + swiperIdnum;
+    let swiperVar_thumb = 'TheSwiper_thumb' + swiperIdnum;
+
+    swiperVar_thumb = new Swiper(`.alp-content-thumbs-swiper[data-blockId="${swiperId}"]`, {
+      slidesPerView: 1,
+      speed: 600,
+      spaceBetween: alp_global.gap,
+      direction: 'horizontal',
+      watchSlidesVisibility: true,
+      centerInsufficientSlides: true,
+      pagination: {
+        el: '.pagination-image-slider',
+        clickable: true,
+      },
+      // add breakpoints
+      breakpoints: {
+        280: {
+          slidesPerView: 3,
+          slidesPerGroup: 1,
+        },
+        640: {
+          slidesPerView: 5,
+          slidesPerGroup: 1,
+        },
+        1180: {
+          slidesPerView: 5,
+          slidesPerGroup: 1,
+          spaceBetween: alp_global.gap * 1.5,
+        },
+      },
+    });
+
+    swiperVar = new Swiper(`.alp-content-slide-swiper[data-blockId="${swiperId}"]`, {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: alp_global.gap,
+      speed: 600,
+      autoHeight: true,
+      //freeMode: true,
+      touchRatio: 0.75,
+      thumbs: {
+        swiper: swiperVar_thumb,
+        //autoScrollOffset: 1,
+      },
+    });
+  });
+</script>

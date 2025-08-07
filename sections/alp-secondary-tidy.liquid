@@ -1,0 +1,457 @@
+{% schema %}
+{
+  "name": "alp Secondary Tidy",
+  "class": "alp-secondary-tidy",
+  "settings": [
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "3/2"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block-item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title",
+          "default": "David W."
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "Desc",
+          "default": "Exceeds the reputation of  99% of sellers - Consistently rated 5 Stars across all models in our store"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "alp Secondary Tidy"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+      --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+  {%- endcapture -%}
+
+{% style %}
+  .alp-section.alp-secondary-tidy-wrapper {
+    padding: var(--spacing) 0;
+  }
+  .alp-index-real-new-item {
+    overflow: hidden;
+    position: relative;
+  }
+  .alp-index-real-new-item img {
+    display: block;
+  }
+  .alp-image-real-item-info {
+    text-align: left;
+    max-width: 610px;
+    margin: 32px auto 0;
+  }
+  .alp-image-real-item-title {
+    font-size: clamp(18px, 2.35vw, 32px);
+    font-weight: 500;
+    line-height: 1.8;
+  }
+  .alp-image-real-item-desc {
+    font-size: clamp(14px, 1vw, 16px);
+  }
+
+  /* .alp-secondary-tidy-container .swiperImageWrapper.go-margin-out .swiperImage.swiper {
+    margin-left: -100%;
+    margin-right: -100%;
+  } */
+
+  /* .alp-secondary-tidy-container .swiperImage.swiper .swiper-slide .alp-index-real-new-item {
+    transition: 0.3s;
+    opacity: 0;
+  } */
+
+  /* .alp-secondary-tidy-container .swiperImage.swiper .swiper-slide.swiper-slide-visible .alp-index-real-new-item {
+    transition: 0.3s;
+    opacity: 1;
+  } */
+
+  /*  */
+  .pagination-secondary-tidy {
+    margin-top: 32px;
+  }
+  .swiper-pagination-alp-secondary-tidy
+    .swiper-pagination-bullets
+    span.swiper-pagination-bullet.swiper-pagination-bullet-active:after {
+    height: 6px;
+  }
+  .swiper-pagination-alp-secondary-tidy .swiper-pagination-bullets span.swiper-pagination-bullet:after {
+    height: 2px;
+  }
+  .swiper-pagination-alp-secondary-tidy
+    .swiper-pagination-bullets
+    span.swiper-pagination-bullet.swiper-pagination-bullet-active,
+  .swiper-pagination-alp-secondary-tidy .swiper-pagination-bullets span.swiper-pagination-bullet {
+    width: 46px;
+  }
+  /*  */
+
+  /*  */
+  .alp-secondary-tidy-container .alp-swiper-navigation {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 48px);
+    z-index: 5;
+    pointer-events: none;
+  }
+  .alp-secondary-tidy-container .swiper-button-prev,
+  .alp-secondary-tidy-container .swiper-button-next {
+    pointer-events: auto;
+  }
+  /* .alp-secondary-tidy-container .swiper-button-prev,
+  .alp-secondary-tidy-container .swiper-button-next {
+    display: block;
+    position: static;
+    background: #ffffff;
+    color: #0000009e;
+    border: 1px solid #000;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-top: 0;
+  } */
+  .alp-secondary-tidy-container .swiper-button-prev::after,
+  .alp-secondary-tidy-container .swiper-button-next::after {
+    display: none;
+  }
+
+  .swiperImage.swiper .alp-index-real-new-item {
+    transition: 0.3s;
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  .swiperImage.swiper .swiper-slide-active {
+    z-index: 5;
+  }
+
+  @media (min-width: 1000px) {
+    .alp-index-real-new-item-img img {
+      aspect-ratio: 10/7;
+    }
+
+    .swiperImage.swiper .swiper-slide-active .alp-index-real-new-item {
+      transform: scale(1.5);
+      opacity: 1;
+    }
+
+    .swiperImage.swiper {
+      --padding: calc(100vw / 5 * (7 / 10) * 0.5 / 2);
+      padding-top: var(--padding);
+      padding-bottom: var(--padding);
+    }
+
+    .alp-image-real-item-info {
+      max-width: calc(100vw / 5 * 1.5 - 24px);
+    }
+  }
+  @media (max-width: 999px) {
+    .alp-secondary-tidy-container {
+      padding: 0;
+    }
+    .alp-secondary-tidy-con {
+      margin-top: 0;
+      flex-direction: column;
+    }
+    .alp-secondary-tidy-container .swiperImageWrapper.go-margin-out .swiperImage.swiper {
+      margin-left: -140%;
+      margin-right: -140%;
+    }
+    .alp-image-real-item-info {
+      max-width: none;
+      margin: 32px 16px 0 24px;
+    }
+    .swiper-pagination-alp-secondary-tidy
+      .swiper-pagination-bullets
+      span.swiper-pagination-bullet.swiper-pagination-bullet-active,
+    .swiper-pagination-alp-secondary-tidy .swiper-pagination-bullets span.swiper-pagination-bullet {
+      width: 37px;
+    }
+
+    .swiperImage.swiper .swiper-slide-active .alp-index-real-new-item {
+      transform: scale(1.25);
+      opacity: 1;
+    }
+
+    .swiperImage.swiper {
+      --padding: calc(100vw / 5 * (7 / 10) * 0.25 / 2);
+      padding-top: var(--padding);
+      padding-bottom: var(--padding);
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-section alp-secondary-tidy-wrapper relative overflow-hidden {{ reset_spacing }}"
+  style="{{ style }}"
+  data-stid="{{ section.id }}"
+>
+  <div class="alp-section-container alp-secondary-tidy-container page-width {{ container }}">
+    <div class="alp-secondary-tidy-con">
+      <div class="swiperImageWrapper go-margin-out">
+        <div class="swiperImage swiper overflow-visible">
+          <div class="swiper-wrapper">
+            {%- if section.blocks.size > 0 -%}
+              {%- for block in section.blocks -%}
+                {% liquid
+                  assign bs = block.settings
+                %}
+                <div class="swiper-slide">
+                  <div class="alp-index-real-new-item">
+                    <div class="alp-index-real-new-item-img">
+                      {% render 'alp-single-image', image: bs.image, width: 800, aspect_ratio: st.image_aspect_ratio %}
+                    </div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            {% endif %}
+          </div>
+          {% render 'swiper-navigation-new-3', class: 'alp-swiper-navigation-new-1 hide_mobile' %}
+        </div>
+      </div>
+      <div class="swiperTextWrapper">
+        <div class="swiperText swiper">
+          <div class="swiper-wrapper">
+            {%- if section.blocks.size > 0 -%}
+              {%- for block in section.blocks -%}
+                {% liquid
+                  assign bs = block.settings
+                %}
+                <div class="swiper-slide">
+                  <div class="alp-image-real-item-info">
+                    <div class="alp-image-real-item-title">{{ bs.title | newline_to_br }}</div>
+                    <div class="alp-image-real-item-desc">{{ bs.desc | newline_to_br }}</div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            {% endif %}
+          </div>
+          <div class="swiper-navs swiper-pagination-alp-secondary-tidy">
+            {% render 'swiper-pagination', class: 'pagination-secondary-tidy' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    let swiperId = '{{ section.id }}';
+    let swiperIdnum = swiperId.replace(/\D/g, '');
+    let swiperVar = 'TheSwiper' + swiperIdnum;
+    const isMobile = window.innerWidth < 768;
+
+    var swiperTextWrapper = new Swiper(`.alp-secondary-tidy-wrapper[data-stid="${swiperId}"] .swiperText`, {
+      spaceBetween: 24,
+      watchSlidesProgress: true,
+      slidesPerView: 1,
+      allowTouchMove: false,
+      // centeredSlides: true,
+      // loop: true,
+      speed: 600,
+      // autoplay: true,
+      effect: 'creative',
+      creativeEffect: {
+        prev: {
+          origin: 'right center',
+          translate: ['-25%', 0, -200],
+          rotate: [0, 0, 0],
+          opacity: 0,
+        },
+        next: {
+          origin: 'left center',
+          translate: ['25%', 0, -200],
+          rotate: [0, 0, 0],
+          opacity: 0,
+        },
+      },
+    });
+    if (!isMobile) {
+      var swiperVarImage = new Swiper(`.alp-secondary-tidy-wrapper[data-stid="${swiperId}"] .swiperImage`, {
+        spaceBetween: 24,
+        watchSlidesProgress: true,
+        slidesPerView: 1,
+        centeredSlides: true,
+        loop: true,
+        loopedSlides: 5,
+        speed: 600,
+        autoplay: {
+          delay: 4000,
+        },
+        // allowTouchMove: false,
+        pagination: {
+          el: `.alp-secondary-tidy-wrapper[data-stid="${swiperId}"] .pagination-secondary-tidy`,
+          clickable: true,
+        },
+        navigation: {
+          nextEl: `.alp-secondary-tidy-wrapper[data-stid="${swiperId}"] .swiper-button-next`,
+          prevEl: `.alp-secondary-tidy-wrapper[data-stid="${swiperId}"] .swiper-button-prev`,
+        },
+        breakpoints: {
+          1280: {
+            slidesPerView: 5,
+          },
+        },
+        on: {
+          init: function () {
+            // this.el.addEventListener('mouseenter', () => {
+            //   this.autoplay.stop();
+            // });
+            // this.el.addEventListener('mouseleave', () => {
+            //   this.autoplay.start();
+            // });
+          },
+          progress: function (progress) {},
+          slideChange: function () {
+            let index = this.realIndex;
+            swiperTextWrapper.slideTo(index);
+          },
+        },
+      });
+      document
+        .querySelector(`.alp-secondary-tidy-wrapper[data-stid="${swiperId}"] .swiperImage.swiper .swiper-wrapper`)
+        .addEventListener('click', (e) => {
+          let event_target = e.target;
+          let prev_slide = event_target.closest('.swiper-slide').previousElementSibling;
+          let next_slide = event_target.closest('.swiper-slide').nextElementSibling;
+          if (event_target.closest('.swiper-slide-next') || prev_slide?.classList.contains('swiper-slide-next')) {
+            swiperVarImage.slideNext();
+          } else if (
+            event_target.closest('.swiper-slide-prev') ||
+            next_slide?.classList.contains('swiper-slide-prev')
+          ) {
+            swiperVarImage.slidePrev();
+          }
+        });
+    } else {
+      var swiperVarImage = new Swiper(`.alp-secondary-tidy-wrapper[data-stid="${swiperId}"] .swiperImage`, {
+        spaceBetween: 24,
+        watchSlidesProgress: true,
+        slidesPerView: 5,
+        centeredSlides: true,
+        loop: true,
+        loopedSlides: 5,
+        speed: 600,
+        autoplay: {
+          delay: 4000,
+        },
+        pagination: {
+          el: `.alp-secondary-tidy-wrapper[data-stid="${swiperId}"] .pagination-secondary-tidy`,
+          clickable: true,
+        },
+        navigation: {
+          nextEl: `.alp-secondary-tidy-wrapper[data-stid="${swiperId}"] .swiper-button-next`,
+          prevEl: `.alp-secondary-tidy-wrapper[data-stid="${swiperId}"] .swiper-button-prev`,
+        },
+        on: {
+          init: function () {
+            // this.el.addEventListener('mouseenter', () => {
+            //   this.autoplay.stop();
+            // });
+            // this.el.addEventListener('mouseleave', () => {
+            //   this.autoplay.start();
+            // });
+          },
+          progress: function (progress) {},
+          slideChange: function () {
+            let index = this.realIndex;
+            swiperTextWrapper.slideTo(index);
+          },
+        },
+      });
+    }
+    swiperVarImage.update();
+  });
+</script>

@@ -1,0 +1,214 @@
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+{% endstyle %}
+<style>
+  .bicycle-details-banner-inverter .swiper-navigations.media-swiper-arrow {
+    padding: 0 max(1em, 2%);
+  }
+  @media screen and (min-width: 999px) {
+    .bicycle-details-banner-inverter {
+    }
+    .inverterSwiper {
+      position: relative;
+    }
+    .inverterSwiper > .swiper-button-next {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      top: auto;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+    .inverterSwiper > .swiper-button-next::after {
+      display: none;
+    }
+    .bicycle-details-banner-inverter img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+    }
+  }
+
+  @media screen and (max-width: 999px) {
+    .bd-banner-inverter .alp-section {
+        margin-bottom: 60px;
+    }
+    .inverterSwiper {
+      position: relative;
+    }
+    .inverterSwiper > .swiper-button-next {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      top: auto;
+      pointer-events: auto;
+      pointer-events: none;
+    }
+    .inverterSwiper > .swiper-button-next::after {
+      display: none;
+    }
+    .bicycle-details-banner-inverter img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+  }
+</style>
+<div class="alp-section  overflow-hidden{{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    <div class="bicycle-details-banner-inverter">
+      <div class="swiper inverterSwiper overflow-visible">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide ">
+              {% render 'alp-responsive-image',
+                image: block.settings.image,
+                image_mobile: block.settings.m_image,
+                desktop_width: 3840,
+                mobile_width: 1800
+              %}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-button-next"></div>
+        {% render 'swiper-navigation', class: 'media-swiper-arrow' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let is_Swiper_Mobile = window.innerWidth < 999;
+    var swiper = new Swiper('.inverterSwiper', {
+      loop: true,
+      speed: 800,
+      //cssMode: is_Swiper_Mobile,
+      slidesPerView: 1,
+      spaceBetween: 12,
+      breakpoints: {
+        768: {
+          //当屏幕宽度大于等于768
+          slidesPerView: 1,
+          spaceBetween: alp_global.gap * 1.5,
+        },
+      },
+      navigation: {
+        nextEl: '.bicycle-details-banner-inverter .swiper-button-next',
+        prevEl: '.bicycle-details-banner-inverter .swiper-button-prev',
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "bd-banner-inverter",
+  "class": "bd-banner-inverter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "m_image",
+          "label": "M_Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "bd-banner-inverter"
+    }
+  ]
+}
+{% endschema %}

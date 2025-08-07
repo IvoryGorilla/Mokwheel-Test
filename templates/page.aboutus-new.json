@@ -1,0 +1,733 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "alp_hidden_heading_4jaebj": {
+      "type": "alp-hidden-heading",
+      "blocks": {
+        "item_wydRYH": {
+          "type": "item",
+          "settings": {
+            "text": "About Us - Mokwheel Ebikes",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "item_wydRYH"
+      ],
+      "settings": {
+        "title": "About Us - Mokwheel Ebikes"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "ax_hero_banner_DKHr64": {
+      "type": "ax-hero-banner",
+      "blocks": {
+        "heading_WrVFxC": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>RIDE. TRUST. PIONEER</p>",
+            "heading_type": "h1"
+          }
+        },
+        "description_YimTAP": {
+          "type": "description",
+          "settings": {
+            "text": "<p>We believe the future of mobility is electric</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_WrVFxC",
+        "description_YimTAP"
+      ],
+      "name": "AX Hero Banner",
+      "settings": {
+        "title": "About Hero Banner A",
+        "text_alignment": "center",
+        "bg_color": "#121212",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/1_1.5x.jpg",
+        "bg_image_mobile": "shopify://shop_images/1_1.5x_ce17f2eb-7e11-46fa-b84a-aea9836150d3.jpg",
+        "bg_opacity": 0,
+        "image_aspect_ratio": "2.25/1",
+        "image_aspect_ratio_mobile": "1/1.75",
+        "block_max_width": "950px",
+        "min_height": "320px",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false,
+        "is_popup": false,
+        "bg_is_inner": false,
+        "custom_class": "",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750"
+      }
+    },
+    "alp_about_content_a_XgThrw": {
+      "type": "alp-about-content-a",
+      "blocks": {
+        "item_w9jTqk": {
+          "type": "item",
+          "settings": {
+            "title": "Mission",
+            "content": "<p>Be the leading force of revolutionizing, intelligent transportation products to make the world a healthier, more enjoyable, and more efficient place.</p>"
+          }
+        },
+        "item_fABqNH": {
+          "type": "item",
+          "settings": {
+            "title": "Vision",
+            "content": "<p>Mokwheel aims to bring value to its customers through innovation, with ebikes that hold true value.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_w9jTqk",
+        "item_fABqNH"
+      ],
+      "name": "Alp About Content A",
+      "settings": {
+        "title": "Our Story",
+        "content": "<p>Before the creation of Mokwheel, the founders were highly successful in the electric mobility scene with products such as the hoverboard and electric scooters. Their success was not only built based on their knowledge and understanding of the electric mobility scene but also on their dedication to quality and service to build a reputable brand people can trust.</p><p>That was how CoolReall & Leray companies became successful. Having been in the industry since 2014, they decided to create Mokwheel because they saw something missing - a Power Station E-bike. And as Mokwheel continues to grow and expand, so will the drive to continue to innovate and become pioneers in the E-bike industry.</p>",
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "block_max_width": "950px",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "ax_images_slider_hiLTiK": {
+      "type": "ax-images-slider",
+      "blocks": {
+        "item_Nntqni": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "subtext": "",
+            "description": "",
+            "extra_text": "",
+            "rating": 5,
+            "image": "shopify://shop_images/2-1_1.5x.jpg",
+            "image_mobile": "shopify://shop_images/2-1_1.5x_2ed401bd-aa35-4212-940d-d4a5ea34cced.jpg",
+            "bg_color": "#000000",
+            "bg_opacity": 0,
+            "link": "",
+            "link_text": "",
+            "video_url": ""
+          }
+        },
+        "item_Qa6DqY": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "subtext": "",
+            "description": "",
+            "extra_text": "",
+            "rating": 5,
+            "image": "shopify://shop_images/2-2_1.5x.jpg",
+            "image_mobile": "shopify://shop_images/2-2_1.5x_784128f9-eb03-4355-b500-06c6df15ccd2.jpg",
+            "bg_color": "#000000",
+            "bg_opacity": 0,
+            "link": "",
+            "link_text": "",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_Nntqni",
+        "item_Qa6DqY"
+      ],
+      "name": "AX Image Slider",
+      "settings": {
+        "style": "normal",
+        "use_border_radius": false,
+        "heading_type": "h1",
+        "data_title": "About Image Slider",
+        "title": "",
+        "sub_title": "",
+        "description": "",
+        "image_aspect_ratio": "1.9/1",
+        "image_aspect_ratio_mobile": "1/1",
+        "block_normal_width": "calc(50% - 8px)",
+        "block_max_width": "2000px",
+        "block_max_width_mobile": "calc(50% - 4px)",
+        "product_list": [],
+        "item_type": "type_1",
+        "block_gap": 16,
+        "min_height": "220px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_opacity": 0,
+        "overlay_color": "#000000",
+        "container": "alp-full-width",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "show_button": false,
+        "disable_swipe": false,
+        "is_popup": false
+      }
+    },
+    "ax_hero_banner_DGVdjB": {
+      "type": "ax-hero-banner",
+      "blocks": {
+        "heading_rEVQdC": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Born to Innovate</p>",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rEVQdC"
+      ],
+      "name": "AX Hero Banner",
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "center",
+        "bg_color": "#121212",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/2_1.5x.jpg",
+        "bg_image_mobile": "shopify://shop_images/2_1.5x_33b9e0c9-d4a1-4651-a25b-d3a88115614b.jpg",
+        "bg_opacity": 0,
+        "image_aspect_ratio": "2.25/1",
+        "image_aspect_ratio_mobile": "1/1.75",
+        "block_max_width": "600px",
+        "min_height": "320px",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false,
+        "is_popup": false,
+        "bg_is_inner": false,
+        "custom_class": "",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750"
+      }
+    },
+    "alp_about_content_a_BcAtcj": {
+      "type": "alp-about-content-a",
+      "name": "Alp About Content A",
+      "settings": {
+        "title": "Partners in Progress",
+        "content": "<p>At Mokwheel, we believe the future of mobility is electric — but the soul of our company is deeply human.</p><p>Founded on the timeless values of trust, integrity, and loyalty, Mokwheel is more than an e-bike brand. We’re a community of riders, dealers, and innovators committed to reshaping how the world moves — together. In an age of one-click transactions and fleeting interactions, we’re choosing a different path: one rooted in personal connection and long-term partnerships.</p>",
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "block_max_width": "950px",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "ax_images_slider_8fCLga": {
+      "type": "ax-images-slider",
+      "blocks": {
+        "item_34yyje": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "subtext": "",
+            "description": "",
+            "extra_text": "",
+            "rating": 5,
+            "image": "shopify://shop_images/3-1_1.5x.jpg",
+            "image_mobile": "shopify://shop_images/3-1_1.5x_473aa339-fdd8-4091-8d6f-305eb984448b.jpg",
+            "bg_color": "#000000",
+            "bg_opacity": 0,
+            "link": "",
+            "link_text": "",
+            "video_url": ""
+          }
+        },
+        "item_pxzbaM": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "subtext": "",
+            "description": "",
+            "extra_text": "",
+            "rating": 5,
+            "image": "shopify://shop_images/3-2_1.5x.jpg",
+            "image_mobile": "shopify://shop_images/3-2_1.5x_1f1a6b7c-ab86-403f-b975-f1405e94be8d.jpg",
+            "bg_color": "#000000",
+            "bg_opacity": 0,
+            "link": "",
+            "link_text": "",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_34yyje",
+        "item_pxzbaM"
+      ],
+      "name": "AX Image Slider",
+      "settings": {
+        "style": "normal",
+        "use_border_radius": false,
+        "heading_type": "h1",
+        "data_title": "About Image Slider",
+        "title": "",
+        "sub_title": "",
+        "description": "",
+        "image_aspect_ratio": "1.9/1",
+        "image_aspect_ratio_mobile": "1/1",
+        "block_normal_width": "calc(50% - 8px)",
+        "block_max_width": "2000px",
+        "block_max_width_mobile": "calc(50% - 4px)",
+        "product_list": [],
+        "item_type": "type_1",
+        "block_gap": 16,
+        "min_height": "220px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_opacity": 0,
+        "overlay_color": "#000000",
+        "container": "alp-full-width",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "show_button": false,
+        "disable_swipe": false,
+        "is_popup": false
+      }
+    },
+    "ax_hero_banner_k4Xzmf": {
+      "type": "ax-hero-banner",
+      "blocks": {
+        "heading_WBpgpd": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Community. Commitment. Connection</p>",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_WBpgpd"
+      ],
+      "name": "AX Hero Banner",
+      "settings": {
+        "title": "About Hero Banner B",
+        "text_alignment": "center",
+        "bg_color": "#121212",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/3_1.5x.jpg",
+        "bg_image_mobile": "shopify://shop_images/3_1.5x_352aa09d-684b-47c7-a330-1b0736e54c39.jpg",
+        "bg_opacity": 0,
+        "image_aspect_ratio": "2.25/1",
+        "image_aspect_ratio_mobile": "1/1.75",
+        "block_max_width": "px",
+        "min_height": "500px",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false,
+        "is_popup": false,
+        "bg_is_inner": false,
+        "custom_class": "",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750"
+      }
+    },
+    "alp_about_content_a_FJaPWE": {
+      "type": "alp-about-content-a",
+      "name": "Alp About Content A",
+      "settings": {
+        "title": "World-Class Product Support",
+        "content": "<p>To enable users to work with the product safely, Denny took the battery management system (BMS) usually incorporated within electric cars into electric bikes. Mokwheel uses a BMS by Texas Instruments to create a safe environment for our power station feature. You can use the battery from the bike to charge your other appliances. </p><p>Denny understands the hardships he will face and the challenges he must overcome to have a place in the current consumer market. Mokwheel will not falter and will place service & quality to our customers above everything else.<br/><br/></p>",
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "block_max_width": "950px",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "ax_images_slider_UQffQF": {
+      "type": "ax-images-slider",
+      "blocks": {
+        "item_DVJeK9": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "subtext": "",
+            "description": "",
+            "extra_text": "",
+            "rating": 5,
+            "image": "shopify://shop_images/4-1_1.5x.jpg",
+            "image_mobile": "shopify://shop_images/4-1_1.5x_15c264f6-11d9-48fa-8470-a866df45be16.jpg",
+            "bg_color": "#000000",
+            "bg_opacity": 0,
+            "link": "",
+            "link_text": "",
+            "video_url": ""
+          }
+        },
+        "item_7c8qhq": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "subtext": "",
+            "description": "",
+            "extra_text": "",
+            "rating": 5,
+            "image": "shopify://shop_images/4-2_1.5x.jpg",
+            "bg_color": "#000000",
+            "bg_opacity": 0,
+            "link": "",
+            "link_text": "",
+            "video_url": ""
+          }
+        },
+        "item_epkwYi": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "subtext": "",
+            "description": "",
+            "extra_text": "",
+            "rating": 5,
+            "image": "shopify://shop_images/4-3_1.5x.jpg",
+            "image_mobile": "shopify://shop_images/4-2_1.5x_0b9f6848-6144-42f2-ab95-1c9eba50ce07.jpg",
+            "bg_color": "#000000",
+            "bg_opacity": 0,
+            "link": "",
+            "link_text": "",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_DVJeK9",
+        "item_7c8qhq",
+        "item_epkwYi"
+      ],
+      "name": "AX Image Slider",
+      "settings": {
+        "style": "normal",
+        "use_border_radius": false,
+        "heading_type": "h1",
+        "data_title": "About Image Slider",
+        "title": "",
+        "sub_title": "",
+        "description": "",
+        "image_aspect_ratio": "1.8/1",
+        "image_aspect_ratio_mobile": "1/1",
+        "block_normal_width": "calc(33.33% - 10px)",
+        "block_max_width": "2000px",
+        "block_max_width_mobile": "calc(50% - 4px)",
+        "product_list": [],
+        "item_type": "type_1",
+        "block_gap": 16,
+        "min_height": "220px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_opacity": 0,
+        "overlay_color": "#000000",
+        "container": "alp-full-width",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "show_button": false,
+        "disable_swipe": false,
+        "is_popup": false
+      }
+    },
+    "ax_hero_banner_kF8VNa": {
+      "type": "ax-hero-banner",
+      "blocks": {
+        "heading_UgU4yn": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Auto Strength, Human Spirit</p>",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_UgU4yn"
+      ],
+      "name": "AX Hero Banner",
+      "settings": {
+        "title": "About Hero Banner",
+        "text_alignment": "center",
+        "bg_color": "#121212",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/4_1.5x.jpg",
+        "bg_image_mobile": "shopify://shop_images/4_1.5x_06f9b3ca-b030-41c0-ab8a-16120b9d60f3.jpg",
+        "bg_opacity": 0,
+        "image_aspect_ratio": "2.25/1",
+        "image_aspect_ratio_mobile": "1/1.75",
+        "block_max_width": "px",
+        "min_height": "320px",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false,
+        "is_popup": false,
+        "bg_is_inner": false,
+        "custom_class": "",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750"
+      }
+    },
+    "alp_about_content_a_h9Ttkt": {
+      "type": "alp-about-content-a",
+      "name": "Alp About Content A",
+      "settings": {
+        "title": "Offline Store",
+        "content": "<p>To bring our products closer to the community, Mokwheel is expanding into offline retail locations nationwide. These stores offer customers a hands-on experience—test rides, personalized consultations, and expert guidance—all designed to help riders find their perfect match. Each space is built to reflect our commitment to quality, safety, and innovation. In an increasingly competitive market, we believe that real-world connections create lasting impact. Mokwheel is not just delivering bikes—we’re delivering trust, support, and a stronger bond with every rider we meet.<br/><br/></p>",
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "block_max_width": "950px",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "ax_images_slider_VFW9Y3": {
+      "type": "ax-images-slider",
+      "blocks": {
+        "item_hFVViD": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "subtext": "",
+            "description": "",
+            "extra_text": "",
+            "rating": 5,
+            "image": "shopify://shop_images/5-1_1.5x.jpg",
+            "image_mobile": "shopify://shop_images/5-1_1.5x_ca4ba45c-94d7-4a1d-afa9-5a893952f286.jpg",
+            "bg_color": "#000000",
+            "bg_opacity": 0,
+            "link": "",
+            "link_text": "",
+            "video_url": ""
+          }
+        },
+        "item_V6pP4H": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "subtext": "",
+            "description": "",
+            "extra_text": "",
+            "rating": 5,
+            "image": "shopify://shop_images/5-2_1.5x.jpg",
+            "image_mobile": "shopify://shop_images/5-2_1.5x_4c3ed1e3-695c-4985-9bc8-6c638e5c7944.jpg",
+            "bg_color": "#000000",
+            "bg_opacity": 0,
+            "link": "",
+            "link_text": "",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_hFVViD",
+        "item_V6pP4H"
+      ],
+      "name": "AX Image Slider",
+      "settings": {
+        "style": "normal",
+        "use_border_radius": false,
+        "heading_type": "h1",
+        "data_title": "About Image Slider",
+        "title": "",
+        "sub_title": "",
+        "description": "",
+        "image_aspect_ratio": "1.9/1",
+        "image_aspect_ratio_mobile": "1/1",
+        "block_normal_width": "calc(50% - 8px)",
+        "block_max_width": "2000px",
+        "block_max_width_mobile": "calc(50% - 4px)",
+        "product_list": [],
+        "item_type": "type_1",
+        "block_gap": 16,
+        "min_height": "220px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_opacity": 0,
+        "overlay_color": "#000000",
+        "container": "alp-full-width",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "show_button": false,
+        "disable_swipe": false,
+        "is_popup": false
+      }
+    },
+    "ax_images_slider_X38pLN": {
+      "type": "ax-images-slider",
+      "blocks": {
+        "item_Yf3m3B": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "subtext": "",
+            "description": "",
+            "extra_text": "",
+            "rating": 5,
+            "image": "shopify://shop_images/5-3_1.5x.jpg",
+            "image_mobile": "shopify://shop_images/5-3_1.5x_5918d7d1-bfca-4bc2-ad4b-16ce657a0486.jpg",
+            "bg_color": "#000000",
+            "bg_opacity": 0,
+            "link": "",
+            "link_text": "",
+            "video_url": ""
+          }
+        },
+        "item_YHpA3B": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "subtext": "",
+            "description": "",
+            "extra_text": "",
+            "rating": 5,
+            "image": "shopify://shop_images/5-4_1.5x.jpg",
+            "image_mobile": "shopify://shop_images/5-4_1.5x_e5cca9c8-223d-4f49-a3bb-162a4d26a3d0.jpg",
+            "bg_color": "#000000",
+            "bg_opacity": 0,
+            "link": "",
+            "link_text": "",
+            "video_url": ""
+          }
+        },
+        "item_DGkcxC": {
+          "type": "item",
+          "settings": {
+            "text": "",
+            "subtext": "",
+            "description": "",
+            "extra_text": "",
+            "rating": 5,
+            "image": "shopify://shop_images/5-5_1.5x.jpg",
+            "bg_color": "#000000",
+            "bg_opacity": 0,
+            "link": "",
+            "link_text": "",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_Yf3m3B",
+        "item_YHpA3B",
+        "item_DGkcxC"
+      ],
+      "name": "AX Image Slider",
+      "settings": {
+        "style": "normal",
+        "use_border_radius": false,
+        "heading_type": "h1",
+        "data_title": "About Image Slider",
+        "title": "",
+        "sub_title": "",
+        "description": "",
+        "image_aspect_ratio": "1.8/1",
+        "image_aspect_ratio_mobile": "1/1",
+        "block_normal_width": "calc(33.33% - 10px)",
+        "block_max_width": "2000px",
+        "block_max_width_mobile": "calc(50% - 4px)",
+        "product_list": [],
+        "item_type": "type_1",
+        "block_gap": 16,
+        "min_height": "220px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_opacity": 0,
+        "overlay_color": "#000000",
+        "container": "alp-full-width",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "show_button": false,
+        "disable_swipe": false,
+        "is_popup": false
+      }
+    },
+    "ax_hero_banner_TYhUxP": {
+      "type": "ax-hero-banner",
+      "blocks": {
+        "heading_wfGtjx": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Beyond Mobility, Beyond Limits</p>",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_wfGtjx"
+      ],
+      "name": "AX Hero Banner",
+      "settings": {
+        "title": "About Hero Banner",
+        "text_alignment": "center",
+        "bg_color": "#121212",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/5_1.5x.jpg",
+        "bg_image_mobile": "shopify://shop_images/5_1.5x_0083cecc-72a1-4079-a427-eca49bb02cac.jpg",
+        "bg_opacity": 0,
+        "image_aspect_ratio": "2.25/1",
+        "image_aspect_ratio_mobile": "1/1.75",
+        "block_max_width": "px",
+        "min_height": "320px",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true,
+        "is_popup": false,
+        "bg_is_inner": false,
+        "custom_class": "",
+        "img_width_desktop": "1920",
+        "img_width_mobile": "750"
+      }
+    }
+  },
+  "order": [
+    "alp_hidden_heading_4jaebj",
+    "main",
+    "ax_hero_banner_DKHr64",
+    "alp_about_content_a_XgThrw",
+    "ax_images_slider_hiLTiK",
+    "ax_hero_banner_DGVdjB",
+    "alp_about_content_a_BcAtcj",
+    "ax_images_slider_8fCLga",
+    "ax_hero_banner_k4Xzmf",
+    "alp_about_content_a_FJaPWE",
+    "ax_images_slider_UQffQF",
+    "ax_hero_banner_kF8VNa",
+    "alp_about_content_a_h9Ttkt",
+    "ax_images_slider_VFW9Y3",
+    "ax_images_slider_X38pLN",
+    "ax_hero_banner_TYhUxP"
+  ]
+}

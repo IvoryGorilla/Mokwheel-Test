@@ -1,0 +1,71 @@
+{% liquid
+  assign st = section.settings
+%}
+
+<div class="alp-icons-list">
+  {% comment %} render lang_switcher {% endcomment %}
+  {%- if st.show_country_selector -%}
+    {% assign langs = st.language_linklist | split: ',' %}
+    {% assign langs_icons = st.language_linklist_icon | newline_to_br | split: '<br />' %}
+    {% assign langs_links = st.language_linklist_link | newline_to_br | split: '<br />' %}
+    <div class="lang_switcher alp-icon">
+      <div class="lang_switcher__current">
+        <a href="javascript:void(0);" class="lang_switcher__item_init">
+          <img src="{{- langs_icons[0] -}}" alt="{{ langs[0] | strip }}" width="32" height="32" loading="lazy">
+          <span>{{ langs[0] | strip }}</span>
+        </a>
+        {% render 'icon-arrow-down' %}
+      </div>
+      <div class="lang_switcher__list">
+        {%- assign lang_index = 0 -%}
+        {% for link in langs %}
+          {% if lang_index != 0 %}
+            <div>
+              <a href="{{ langs_links[lang_index] | strip }}" class="lang_switcher__item">
+                <img
+                  src="{{- langs_icons[lang_index] -}}"
+                  alt="{{ link | strip }}"
+                  width="32"
+                  height="32"
+                  loading="lazy"
+                >
+                <span>{{ link | strip }}</span>
+              </a>
+            </div>
+          {% endif %}
+          {%- assign lang_index = lang_index | plus: 1 -%}
+        {% endfor %}
+      </div>
+    </div>
+  {%- endif -%}
+  {% comment %} {% comment %} render lang_switcher {% endcomment %} end {% endcomment %}
+  <div class="alp-icon-search alp-icon search-open hide_desktop">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9z"/>
+      </svg>
+    </div>
+  </div>
+  <div class="alp-icon-login alp-icon hide_mobile">
+    <div>
+      <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19ZM12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4Z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="alp-icon-cart alp-icon">
+    <div class="alp-icon-cart-count">
+      <span class="cart-count">{{ cart.item_count }}</span>
+      {% render 'icon-cart-b' %}
+    </div>
+  </div>
+  <div class="slide-menu-open alp-icon hide_desktop hide_mobile">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
+        <path fill="currentColor" d="M2 3.75A.75.75 0 0 1 2.75 3h10.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75m0 4A.75.75 0 0 1 2.75 7h10.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.75m0 4a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75"/>
+      </svg>
+    </div>
+  </div>
+</div>

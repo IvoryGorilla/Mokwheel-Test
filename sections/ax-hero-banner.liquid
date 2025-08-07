@@ -1,0 +1,566 @@
+{% schema %}
+{
+  "name": "AX Hero Banner",
+  "class": "ax-hero-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Hero Banner"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Background Image Mobile"
+    },
+    {
+      "type": "video",
+      "id": "bg_video",
+      "label": "Background Video"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Background Opacity",
+      "default": 50
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Aspect Ratio",
+      "default": "3/1"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio_mobile",
+      "label": "Aspect Ratio Mobile",
+      "default": "1/1"
+    },
+    {
+      "type": "text",
+      "id": "block_max_width",
+      "label": "Content Max Width",
+      "default": "720px"
+    },
+    {
+      "type": "text",
+      "id": "min_height",
+      "label": "Min Height",
+      "default": "320px"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "is_popup",
+      "label": "Popup",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "bg_is_inner",
+      "label": "Background is inner",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom Class"
+    },
+    {
+      "type": "text",
+      "id": "img_width_desktop",
+      "label": "Image Width Desktop",
+      "default": "1920"
+    },
+    {
+      "type": "text",
+      "id": "img_width_mobile",
+      "label": "Image Width Mobile",
+      "default": "750"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Title"
+        },
+        {
+          "type": "select",
+          "id": "heading_type",
+          "label": "Heading type",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            }
+          ],
+          "default": "h1"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "breadcrumb",
+      "name": "Breadcrumb",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "position_set",
+          "label": "Set position",
+          "default": false,
+          "info": "固定左上角位置"
+        },
+        {
+          "type": "text",
+          "id": "position_top",
+          "label": "Position top",
+          "default": "90px",
+          "info": "Top position in px"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Button link"
+        }
+      ]
+    },
+    {
+      "type": "count_down_text",
+      "name": "Count Down Text",
+      "settings": [
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Announcement Text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "link"
+        },
+        {
+          "type": "text",
+          "id": "countdown_date",
+          "label": "Count Down",
+          "default": "2023-05-15T00:00:00",
+          "info": "格式: 2023-05-15T00:00:00"
+        },
+        {
+          "type": "number",
+          "id": "countdown_hours",
+          "label": "多少小时内显示倒计时",
+          "default": 48
+        },
+        {
+          "type": "text",
+          "id": "countdown_text",
+          "label": "Count Down 文字",
+          "default": "Only Remaining"
+        },
+
+        {
+          "type": "checkbox",
+          "id": "show_countdown",
+          "label": "Show Count Down",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AX Hero Banner"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};--content-max-width: {{ st.block_max_width }};
+    --aspect-ratio: {{ st.image_aspect_ratio }};--aspect-ratio-mobile: {{ st.image_aspect_ratio_mobile  }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+    --st-min-height: {{ st.min_height }};
+   }
+  @media (max-width: 999px) {
+  }
+</style>
+
+{% style %}
+  .alp-hero-banner-wrapper[data-bg-is-inner] {
+    margin-left: var(--alp-padding-x);
+    margin-right: var(--alp-padding-x);
+    border-radius: clamp(var(--alp-border-radius), 2vw, calc(var(--alp-border-radius) * 1.5));
+  }
+  .ax-hero-banner-heading:not(:first-child) {
+    margin-top: clamp(24px, 3vw, 40px);
+  }
+  .ax-hero-banner-description p {
+    margin: 0;
+    font-size: clamp(16px, 1.8vw, 24px);
+    font-weight: 500;
+    line-height: 1.35;
+  }
+  .ax-hero-banner-heading h1.alp-hero-banner-heading {
+    font-size: clamp(32px, 4vw, 64px);
+    line-height: 1.25;
+  }
+  .ax-hero-banner.alp-hero-banner-wrapper {
+    aspect-ratio: var(--aspect-ratio);
+    max-height: 100vh;
+    width: 100%;
+  }
+  .alp-hero-banner-heading p {
+    margin: 0;
+  }
+
+  .alp-hero-banner-buttons-wrapper:not(:empty) {
+    margin-top: clamp(24px, 3vw, 52px);
+    display: flex;
+    gap: 8px;
+  }
+
+  .alp-hero-banner-button a.alp-btn.button-type-primary {
+    border: 1px solid;
+  }
+
+  .alp-hero-banner-button a.alp-btn.button-type-primary:hover {
+    border-color: var(--main-color);
+  }
+
+  .alp-hero-banner-button:last-child a.alp-btn.button-type-primary {
+    background: transparent;
+  }
+
+  .alp-hero-banner-button:last-child a.alp-btn.button-type-primary:hover {
+    background: #000;
+    border-color: #000;
+  }
+
+  .alp-hero-banner-button:last-child a.alp-btn.button-type-primary span {
+    color: #fff;
+  }
+
+  .ax-image-slide-bg-video.full-img-wrap + .alp-image-slide-bg.full-img-wrap {
+    display: none;
+  }
+
+  /*  */
+  [data-title='about-hero-banner-a'] .ax-hero-banner-heading:not(:last-child) {
+    margin-bottom: clamp(20px, 2.65vw, 32px);
+  }
+  [data-title='about-hero-banner-b'] .ax-section-container {
+    margin-top: max(12vw, 18vh);
+  }
+  /*  */
+  [data-title='hero-banner-tech'] .ax-hero-banner-heading:not(:first-child) {
+    margin-top: 12px;
+  }
+
+  .alp-section[data-title='hero-banner-tech-2'] {
+    padding: clamp(40px, 4vw, 64px) 0;
+  }
+  .alp-section[data-title='hero-banner-tech-2'] .ax-hero-banner-description p {
+    font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    .ax-hero-banner.alp-hero-banner-wrapper {
+      aspect-ratio: var(--aspect-ratio-mobile);
+    }
+    .alp-section.ax-hero-banner[data-title='hero-banner-tech'] {
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+    .alp-section.ax-hero-banner[data-title='hero-banner-tech'] .ax-hero-banner-heading h1.alp-hero-banner-heading {
+      font-size: 36px;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-section ax-hero-banner alp-hero-banner-wrapper overflow-hidden relative {{ st.text_alignment | prepend: "text-al-" }} {{ reset_spacing }} {{ st.custom_class }}"
+  style="{{ style }}"
+  data-stid="{{- section.id -}}"
+  data-title="{{- st.title | handle -}}"
+  {% if st.is_popup %}
+    data-popup
+  {% endif %}
+  {%- if st.bg_is_inner -%}
+    data-bg-is-inner
+  {%- endif -%}
+>
+  {%- if st.bg_video -%}
+    <div
+      class="ax-image-slide-bg-video full-img-wrap"
+      style=""
+      {%- if st.bg_is_inner -%}
+        data-bg-is-inner
+      {%- endif -%}
+    >
+      {{ st.bg_video | video_tag: loop: 'loop', muted: true, playsinline: true, autoplay: true, controls: false }}
+      <div
+        class="full-img-wrap"
+        style="opacity:{{ st.bg_opacity | divided_by: 100.0 }};background-color:{{ st.bg_color }}"
+      ></div>
+    </div>
+  {%- endif -%}
+  {%- if st.bg_image or st.bg_image_mobile -%}
+    <div
+      class="alp-image-slide-bg full-img-wrap"
+      style=""
+      {%- if st.bg_is_inner -%}
+        data-bg-is-inner
+      {%- endif -%}
+    >
+      {% render 'alp-responsive-image',
+        image: st.bg_image,
+        image_mobile: st.bg_image_mobile,
+        desktop_width: st.img_width_desktop,
+        mobile_width: st.img_width_mobile,
+        aspect_ratio: st.image_aspect_ratio,
+        alt: st.title
+      %}
+      <div
+        class="full-img-wrap"
+        style="opacity:{{ st.bg_opacity | divided_by: 100.0 }};background-color:{{ st.bg_color }}"
+      ></div>
+    </div>
+  {%- endif -%}
+
+  {% comment %} Breadcrumb {% endcomment %}
+  {%- for block in section.blocks -%}
+    {% liquid
+      assign bs = block.settings
+    %}
+    {%- case block.type -%}
+      {%- when 'breadcrumb' -%}
+        {% if bs.position_set %}
+          <div
+            class="ax-hero-banner-breadcrumbs position_set_topleft page-width {{ container }}"
+            style="--top:{{ bs.position_top }}"
+          >
+            {% render 'breadcrumbs' %}
+          </div>
+        {% endif %}
+    {%- endcase -%}
+  {%- endfor -%}
+  {% comment %} Breadcrumb {% endcomment %}
+
+  <div class="ax-section-container alp-hero-banner-container relative page-width {{ container }}">
+    <div class="alp-hero-banner-inner">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          {%- case block.type -%}
+            {%- when 'heading' -%}
+              {%- if bs.text != blank -%}
+                <div class="ax-hero-banner-heading">
+                  <{{ bs.heading_type }} class="alp-hero-banner-heading">
+                    {{- bs.text | newline_to_br -}}
+                  </{{ bs.heading_type }}>
+                </div>
+              {%- endif -%}
+            {%- when 'description' -%}
+              {%- if bs.text != blank -%}
+                <div class="ax-hero-banner-description">{{ bs.text }}</div>
+              {%- endif -%}
+            {%- when 'breadcrumb' -%}
+              {% unless bs.position_set %}
+                <div class="ax-hero-banner-breadcrumbs">
+                  {% render 'breadcrumbs' %}
+                </div>
+              {% endunless %}
+            {%- when 'count_down_text' -%}
+              <div class="ax_banner__count_down_text" style="--color:{{ bs.color }}">
+                <div class="ax-announcement-bar-ixx">
+                  {%- if bs.link -%}
+                    <a href="{{ bs.link }}"></a>
+                  {%- endif -%}
+                  <div class="ax-announcement-bar-text">
+                    {{ bs.text }}
+                  </div>
+                  {%- if bs.show_countdown -%}
+                    {% render 'alp-countdown-snippet2',
+                      text: bs.countdown_text,
+                      id: block.id,
+                      countdown_date: bs.countdown_date,
+                      countdown_hours: bs.countdown_hours
+                    %}
+                  {%- endif -%}
+                </div>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      {% endif %}
+      {%- if section.blocks.size > 0 -%}
+        <div class="alp-hero-banner-buttons-wrapper">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign bs = block.settings
+            -%}
+            {%- case block.type -%}
+              {%- when 'button' -%}
+                <div class="alp-hero-banner-button">
+                  {% render 'alp-btn',
+                    url: bs.url,
+                    type: 'primary',
+                    text: bs.text,
+                    textcolor: '#000',
+                    bgcolor: '#FFF',
+                    size: 'normal',
+                    popup: st.is_popup
+                  %}
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

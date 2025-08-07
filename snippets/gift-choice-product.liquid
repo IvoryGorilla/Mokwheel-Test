@@ -1,0 +1,24 @@
+<div
+  class="gift-product-item {{ class }}"
+  data-select-radio
+  data-gift-productId="{{ product.id }}"
+  data-gift-variantId="{{ product.first_available_variant.id }}"
+  data-gift-quantity="1"
+  data-gift-giftprice="{{ product.price }}"
+>
+  {% render 'select-icon' %}
+  <div class="info-box">
+    <div class="img-box">
+      {{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+    </div>
+    <div class="content-box">
+      <div class="gf-title">{{ product.title }}</div>
+      <div class="gf-price">
+        <span data-compare_price="{{ product.price }}">
+          {{ product.price | money }}
+        </span>
+        <b class="gf-free-text">Free</b>
+      </div>
+    </div>
+  </div>
+</div>

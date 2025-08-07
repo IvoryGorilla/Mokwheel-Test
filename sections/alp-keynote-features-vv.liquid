@@ -1,0 +1,500 @@
+{% schema %}
+{
+  "name": "Alp Keynote Features VV",
+  "class": "alp-keynote-features-vv",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sub Title",
+      "default": "Design Meets Value"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Features Highlight"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Keynote Features VV"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  /* .alp-keynote-features-container:hover {
+    background-attachment: fixed;
+  } */
+  .alp-keynote-features-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .alp-keynote-features-title > span {
+    font-size: clamp(14px, 1vw, 16px);
+  }
+  .alp-keynote-features-title > div {
+    font-size: clamp(24px, 3vw, 48px);
+    font-weight: bold;
+  }
+  .swiperText {
+    margin-top: 80px;
+  }
+  .alp-keynote-features-text-title {
+    margin-bottom: 16px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .swiper-slide .alp-keynote-features-text-title {
+    opacity: 0.4;
+    font-weight: 400;
+    font-size: clamp(14px, 1.6vw, 18px);
+  }
+  .swiper-slide-thumb-active .alp-keynote-features-text-title {
+    opacity: 1;
+    font-weight: bold;
+    font-size: clamp(14px, 1.6vw, 24px);
+    margin-bottom: 8px;
+  }
+  .swiper-slide .alp-keynote-features-text-title::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 4px;
+    height: 20px;
+    opacity: 0.4;
+    background: #fff;
+  }
+  .swiper-slide-thumb-active .alp-keynote-features-text-title::before {
+    background: #e83f0c;
+    opacity: 1;
+  }
+  .alp-keynote-features-text-des {
+    font-size: clamp(14px, 1vw, 16px);
+    padding-left: 18px;
+    display: none;
+  }
+  .swiper-slide-thumb-active .alp-keynote-features-text-des {
+    display: block;
+  }
+  .alp-keynote-features-text-des p {
+    margin: 0;
+  }
+  .swiperImg {
+    width: 53%;
+    margin: initial;
+  }
+
+  /* sticky */
+
+  .alp-keynote-features-sticky-wrapper .alp-section.alp-keynote-features-wrapper {
+    position: sticky;
+    top: calc(var(--header-height) * 1px + var(--bar-height) * 1px);
+  }
+
+  @media screen and (min-width: 1000px) {
+    .alp-keynote-features .alp-keynote-features-container {
+      padding: 0 6%;
+    }
+    .alp-keynote-features-left {
+      max-width: 500px;
+    }
+    .alp-keynote-features .pagination-keynote-features {
+      display: none;
+    }
+    .swiper-slide .alp-keynote-features-text {
+      margin-left: 40px;
+      /* transition: 0.2s; */
+    }
+    .swiper-slide-thumb-active .alp-keynote-features-text {
+      margin-bottom: 32px;
+      margin-left: 0;
+    }
+    .swiperText {
+      margin-top: clamp(32px, 2.75vw, 80px);
+    }
+    .swiperImg {
+      /* max-height: 680px; */
+      max-height: min(calc(80vh - var(--bar-height, 0) * 1px - var(--header-height, 70) * 1px), 680px);
+    }
+    .alp-keynote-features-img img {
+      max-height: calc(80vh - var(--bar-height, 0) * 1px - var(--header-height, 70) * 1px);
+      width: auto;
+      height: 100%;
+    }
+    .swiper-slide-active .alp-keynote-features-text {
+      padding-bottom: 1.5em;
+    }
+    .swiper-slide-active .alp-keynote-features-text-title {
+      opacity: 1;
+      font-weight: bold;
+      font-size: clamp(14px, 1.6vw, 24px);
+      margin-bottom: 8px;
+    }
+    .swiper-slide-active .alp-keynote-features-text-title::before {
+      background: #e83f0c;
+      opacity: 1;
+    }
+    .swiper-slide-active .alp-keynote-features-text-des {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 999px) {
+    .alp-keynote-features .alp-keynote-features-container {
+      flex-direction: column;
+      padding: 0 32px;
+      gap: 32px;
+    }
+    .swiperText {
+      margin-top: 32px;
+    }
+    .alp-keynote-features-left {
+      max-width: 100%;
+    }
+    .alp-keynote-features-text-des {
+      padding-left: 0;
+    }
+    .swiperImg {
+      width: 100%;
+    }
+    .pagination-keynote-features {
+      justify-content: center;
+      margin-top: 32px;
+    }
+    .pagination-keynote-features.swiper-pagination-bullets span.swiper-pagination-bullet {
+      width: 32px;
+    }
+    .swiper-slide .alp-keynote-features-text-title {
+      opacity: 1;
+      font-weight: bold;
+      font-size: clamp(14px, 1.6vw, 24px);
+    }
+    .alp-keynote-features-text-des {
+      display: block;
+    }
+    .swiper-slide-active .alp-keynote-features-text-title::before {
+      background: #e83f0c;
+      opacity: 1;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-keynote-features-sticky-wrapper">
+  <div
+    class="alp-section alp-keynote-features-wrapper {{ reset_spacing }}"
+    style="{{ style }}"
+    data-stid="{{ section.id }}"
+  >
+    <div class="alp-section-container alp-keynote-features-container page-width {{ container }}">
+      <div class="alp-keynote-features-left">
+        <div class="alp-keynote-features-title">
+          <span>{{ st.subtitle }}</span>
+          <div>{{ st.title }}</div>
+        </div>
+        <div class="swiperText swiper" id="{{ section.id | replace: '-', '' | prepend: 'id_' }}">
+          <div class="swiper-wrapper">
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="swiper-slide" data-index="{{ forloop.index0 }}">
+                <div class="alp-keynote-features-text">
+                  <div class="alp-keynote-features-text-title">{{ bs.title }}</div>
+                  <div class="alp-keynote-features-text-des">{{ bs.description }}</div>
+                </div>
+              </div>
+            {%- endfor -%}
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="swiper-slide" data-index="{{ forloop.index0 }}">
+                <div class="alp-keynote-features-text">
+                  <div class="alp-keynote-features-text-title">{{ bs.title }}</div>
+                  <div class="alp-keynote-features-text-des">{{ bs.description }}</div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+      <div class="swiperImg swiper" id="{{ section.id | replace: '-', '' | prepend: 'id_' }}">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div class="alp-keynote-features-img swiper-slide">
+              {% comment %} {% render 'alp-single-image', image: bs.image %} {% endcomment %}
+              {% render 'alp-responsive-image',
+                image: bs.image,
+                desktop_width: 1200,
+                mobile_width: 500,
+                aspect_ratio: '880/660'
+              %}
+            </div>
+          {%- endfor -%}
+        </div>
+        {% render 'swiper-pagination', class: 'pagination-keynote-features' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script
+  type="module"
+>
+  document.addEventListener('DOMContentLoaded', () => {
+    var BlockId = '{{ section.id | replace: '-', '' | prepend: 'id_' }}';
+    let is_Swiper_Mobile = window.innerWidth < 999;
+    let swiperText_{{ section.id | replace: '-', '' }};
+    let swiperImg_{{ section.id | replace: '-', '' }};
+    let swiperText = swiperText_{{ section.id | replace: '-', '' }};
+    let swiperImg = swiperImg_{{ section.id | replace: '-', '' }};
+
+    if(is_Swiper_Mobile){
+      swiperText = new Swiper(`.swiperText.swiper#${BlockId}`, {
+        slidesPerView: 1,
+        speed: 600, 
+        autoHeight: true, 
+      });
+      swiperImg = new Swiper(`.swiperImg.swiper#${BlockId}`, {
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        spaceBetween: alp_global.gap,
+        speed: 600,
+        pagination: {
+            el: '.pagination-keynote-features',
+            clickable: true,
+        },
+        on: {
+          init: function () {
+
+          },
+          slideChangeTransitionEnd: function(){
+            // followSlideChanged();
+          },
+        },
+        controller: {
+          control: swiperText,
+        },
+      });
+      swiperText.controller.control = swiperImg;
+    } 
+    else {
+      swiperText = new Swiper(`.swiperText.swiper#${BlockId}`, {
+        slidesPerView: 'auto',
+        speed: 600,
+        direction: 'vertical',
+        loop: true,
+        loopedSlides: 8,
+        loopAdditionalSlides: 3,
+        allowTouchMove: false,
+        // autoHeight: true, 
+      });
+      swiperImg = new Swiper(`.swiperImg.swiper#${BlockId}`, {
+        slidesPerView: 1,
+        spaceBetween: alp_global.gap,
+        speed: 600,
+        direction: 'vertical', 
+        pagination: {
+            el: '.pagination-keynote-features',
+            clickable: true,
+        },
+        on: {
+          init: function () {
+            setSwiperTextMaxHeight();
+          },
+          slideChange: function(){
+            setSwiperTextMaxHeight();
+            swiperText.update();
+          },
+          slideChangeTransitionEnd: function(){
+            followSlideChanged();
+            setSwiperTextMaxHeight();
+            swiperText.update();
+          },
+        },
+        controller: {
+          control: swiperText,
+        },
+      });
+    }
+
+    function setSwiperTextMaxHeight(){
+      let swiperTextEl = document.querySelector(`.swiperText.swiper#${BlockId}`);
+      let swiperTextWrapper = swiperTextEl.querySelector('.swiper-wrapper');
+      let swiperTextSlide = swiperTextWrapper.querySelectorAll('.swiper-slide');
+      let $length = swiperTextSlide.length / 2;
+      let allHeight = 0;
+      for(let i = 0; i < $length; i++){
+        allHeight += swiperTextSlide[i].offsetHeight;
+      }
+      swiperTextEl.style.maxHeight = `${allHeight}px`;
+    }
+    setSwiperTextMaxHeight();
+    window.addEventListener('resize', setSwiperTextMaxHeight);
+
+    function CalcWrapperHeight() {
+      if(is_Swiper_Mobile){
+        return; 
+      }
+      let wrapper = document.querySelector(`.alp-keynote-features-wrapper[data-stid="{{ section.id }}"]`);
+      let wrapperParent = wrapper.parentNode;
+      let wrapperHeight = wrapper.offsetHeight;
+      // let wrapperTop = wrapper.getBoundingClientRect().top; 
+      let swiperSlideLength = wrapper.querySelectorAll('.swiperImg .swiper-slide').length;
+      // set extend height for wrapperParent when swiperSlideLength > 1
+      if(swiperSlideLength > 1){
+        wrapperParent.style.height = `${wrapperHeight + 200 * swiperSlideLength }px`; 
+      }
+    }
+    CalcWrapperHeight();
+    window.addEventListener('resize', CalcWrapperHeight);
+
+    // when wrapperParent scroll to top, calc the swiperslide length and switch swiper slide based on extend height of wrapperParent
+    function ScrollStickySwitcher() {
+      if(is_Swiper_Mobile){
+        return; 
+      }
+      let wrapper = document.querySelector(`.alp-keynote-features-wrapper[data-stid="{{ section.id }}"]`);
+      let wrapperHeight = wrapper.offsetHeight;
+      let wrapperParent = wrapper.parentNode;
+      let wrapperParentHeight = wrapperParent.offsetHeight;
+      let wrapperTop = wrapper.getBoundingClientRect().top; 
+      let wrapperParentTop = wrapperParent.getBoundingClientRect().top;
+      let swiperSlideLength = wrapper.querySelectorAll('.swiperImg .swiper-slide').length;
+      if(wrapperParentTop <= 0 && wrapperTop > 0){
+        let range = wrapperParentHeight - wrapperHeight;
+        let percent = ((wrapperParentTop*-1) / range) * 100;
+        let slideIndex = Math.floor(swiperSlideLength * (percent / 100));
+        swiperImg.slideTo(slideIndex);
+      }
+    }
+
+    window.addEventListener('scroll', function () {
+      ScrollStickySwitcher();
+    })
+
+    function followSlideChanged() {
+      let wrapper = document.querySelector(`.alp-keynote-features-wrapper[data-stid="{{ section.id }}"]`);
+      let wrapperHeight = wrapper.offsetHeight;
+      let wrapperParent = wrapper.parentNode;
+      let wrapperParentHeight = wrapperParent.offsetHeight;
+      let wrapperTop = wrapper.getBoundingClientRect().top; 
+      let wrapperParentTop = wrapperParent.getBoundingClientRect().top;
+      let swiperSlideLength = wrapper.querySelectorAll('.swiperImg .swiper-slide').length;
+      if(wrapperParentTop <= 0 && wrapperTop > 0){
+        let parentOffsetTop = wrapperParent.offsetTop;
+        let range = wrapperParentHeight - wrapperHeight;
+        let activeSlideIndex = swiperImg.activeIndex;
+        let scrollTop = parentOffsetTop + (activeSlideIndex * (range / swiperSlideLength)) + 20;
+        window.scrollTo({
+          top: scrollTop,
+          behavior: 'instant' 
+        })
+      }
+    }
+   
+  });
+</script>

@@ -1,0 +1,92 @@
+{% comment %} Load Javascript Libraries in the head. {% endcomment %}
+{% comment %}
+  <script src="{{ 'jquery.min.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'lazyload.min.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'gsap.min.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'Observer.min.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'Draggable.min.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'headroom.min.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'iconify-icon.min.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'fslightbox.js' | asset_url }}" defer="defer"></script>
+{% endcomment %}
+{% comment %} combine all js files into one file {% endcomment %}
+<script src="{{ 'all.js' | asset_url }}" defer="defer"></script>
+
+{% comment %} Load Alp CSS in the head. {% endcomment %}
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'overlayscrollbars.min.css' | asset_url | stylesheet_tag }} {% endcomment %}
+{% comment %} {{ 'delay.css' | asset_url | stylesheet_tag }} {% endcomment %}
+{%- if settings.predictive_search_enabled -%}
+  <link
+    rel="stylesheet"
+    href="{{ 'component-predictive-search.css' | asset_url }}"
+    media="print"
+    onload="this.media='all'"
+  >
+{%- endif -%}
+{{ 'base.css' | asset_url | stylesheet_tag }}
+{{ 'alp.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+  {% render 'base-css' %}
+  {% render 'alp-css' %}
+{% endcomment %}
+
+<script>
+  // global variables
+  var alp_global = {
+    gap: 12,
+  };
+</script>
+
+<!-- Affirm -->
+<script defer>
+  window.addEventListener('load', function () {
+    _affirm_config = {
+      public_api_key: '12WPP6VGYOM4YS98',
+      script: 'https://cdn1.affirm.com/js/v2/affirm.js',
+    };
+    (function (l, g, m, e, a, f, b) {
+      var d,
+        c = l[m] || {},
+        h = document.createElement(f),
+        n = document.getElementsByTagName(f)[0],
+        k = function (a, b, c) {
+          return function () {
+            a[b]._.push([c, arguments]);
+          };
+        };
+      c[e] = k(c, e, 'set');
+      d = c[e];
+      c[a] = {};
+      c[a]._ = [];
+      d._ = [];
+      c[a][b] = k(c, a, b);
+      a = 0;
+      for (b = 'set add save post open empty reset on off trigger ready setProduct'.split(' '); a < b.length; a++)
+        d[b[a]] = k(c, e, b[a]);
+      a = 0;
+      for (b = ['get', 'token', 'url', 'items']; a < b.length; a++) d[b[a]] = function () {};
+      h.async = !0;
+      h.src = g[f];
+      n.parentNode.insertBefore(h, n);
+      delete g[f];
+      d(g);
+      l[m] = c;
+    })(window, _affirm_config, 'affirm', 'checkout', 'ui', 'script', 'ready');
+  });
+  // Use your live public API Key and https://cdn1.affirm.com/js/v2/affirm.js script to point to Affirm production environment.
+</script>
+<!-- End Affirm -->
+
+{% comment %}
+  <script
+    async
+    data-environment="production"
+    src="https://js.klarna.com/web-sdk/v1/klarna.js"
+    data-client-id="579fc031-7b54-5eff-88d8-d112d0dc91d1"
+  ></script>
+{% endcomment %}
+
+{% render 'gsf-conversion-pixels' %}

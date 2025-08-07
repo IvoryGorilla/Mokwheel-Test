@@ -1,0 +1,159 @@
+/* alp-featured-post */
+.alp-featured-post-con {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5em;
+  margin-top: 1em;
+}
+.alp-featured-post-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  margin-bottom: 0.75em;
+  align-items: center;
+}
+.alp-featured-post-item:first-child {
+  margin-top: 0;
+}
+.alp-featured-post-item:last-child {
+  margin-bottom: 0;
+}
+.alp-featured-post-item picture {
+  width: 25%;
+}
+.alp-featured-post-item picture img {
+  aspect-ratio: 1/1;
+  display: block;
+  border-radius: 8px;
+}
+.alp-featured-post-title {
+  width: 70%;
+  font-weight: 500;
+  padding-right: 1em;
+  font-size: 16px;
+  line-height: 1.2;
+}
+.alp-featured-post-title p {
+  font-size: 14px;
+  text-decoration: underline;
+  margin-top: 1em;
+  color: #666;
+}
+/* ebikes_category */
+.alp-ebikes-category-con {
+  margin-bottom: 5em;
+  margin-top: 1em;
+  position: relative;
+}
+.alp-ebikes-category .sub-menu-level-2 .slide-sub-menu-title {
+  border-top: none;
+  border-bottom: 1px solid #eee;
+}
+.alp-ebikes-category .sub-menu-level-2 .slide-sub-menu-title.heading{
+  font-size: 16px;
+  font-weight: 500;
+}
+.alp-ebikes-category .sub-menu-level-2:last-child {
+  border-bottom: none;
+}
+/* ebikes_category_new */
+.alp-ebikes-category-con-new {
+  margin-bottom: 5em;
+  margin-top: 1em;
+  position: relative;
+}
+.alp-ebikes-category-new .link-bar__link-item  {
+  padding: 1em 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-top: 1px solid #eee;
+  border-top: none;
+  border-bottom: 1px solid #eee;
+}
+.alp-ebikes-category-new .link-bar__link-item a{
+  font-size: 16px;
+  font-weight: 500;
+}
+.alp-ebikes-category-new .link-bar__link-item:last-child {
+  border-bottom: none;
+}
+
+/* alp-exclusive-deals */
+.alp-exclusive-deals {
+  position: relative;
+  margin-bottom: 5em;
+}
+.alp-exclusive-deals picture img {
+  display: block;
+  border-radius: 8px;
+}
+.alp-exclusive-deals-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+}
+.alp-exclusive-deals-title {
+  color: #fff;
+  margin-bottom: 0.75em;
+  font-size: clamp(20px,3.7vw,24px);
+  font-weight: 700;
+}
+/* hot_selling_ebikes */
+.alp-hot-selling-con {
+  margin-bottom: 5em;
+}
+.alp-hot-selling-title {
+  margin-bottom: 1em;
+}
+.alp-hot-selling-item {
+  background: #f7f7f7;
+}
+.alp-hot-selling .alp-product-item-title {
+  margin-bottom: 0.5em;
+}
+.alp-hot-selling .alp-product-item-title h3{
+  font-weight: 700;
+}
+.alp-hot-selling .product-list-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.alp-hot-selling .alp-product-item-color-swatch {
+  padding-left: calc(var(--alp-gutter-x) * 1);
+  padding-right: calc(var(--alp-gutter-x) * 1);
+  display: flex;
+  justify-content: end;
+  padding-bottom: calc(var(--alp-gutter-y) * 1);
+  z-index: 22px;
+}
+.alp-hot-selling .swiper-pagination-hot-selling {
+  margin-top: calc(var(--alp-gutter-y) * 1);
+}
+
+@media screen and (max-width: 999px) {
+  .alp-featured-post {
+    margin-top: 5em;
+  }
+  .alp-exclusive-deals {
+    margin-bottom: 0;
+  }
+  .alp-hot-selling {
+    margin-top: 60px;
+  }
+  .alp-ebikes-category-con-new{
+    margin-bottom: 0;
+  }
+  .alp-hot-selling-con{
+    margin-bottom: 60px;
+  }
+}

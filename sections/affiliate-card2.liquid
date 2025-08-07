@@ -1,0 +1,233 @@
+{% schema %}
+{
+  "name": "affiliate-card2",
+  "class": "affiliate-card2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "affiliate-card2-title",
+      "label": "Affiliate Card2 Title"
+    },
+    {
+      "type": "text",
+      "id": "affiliate-card2-subtitle",
+      "label": "Affiliate Card2 Subtitle"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card-item",
+      "name": "Card Item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "affiliate-card2-item-image",
+          "label": "Affiliate Card2 Item Image"
+        },
+        {
+          "type": "text",
+          "id": "affiliate-card2-item-title",
+          "label": "Affiliate Card2 Item Title"
+        },
+        {
+          "type": "text",
+          "id": "affiliate-card2-item-content",
+          "label": "Affiliate Card2 Item Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "affiliate-card2"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+  --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+  .affiliate-card2-container {
+    padding-bottom: 100px;
+  }
+  .affiliate-card2-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .affiliate-card2-subtitle {
+    margin-top: 16px;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+  }
+  .affiliate-card2-content {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+  .affiliate-card2-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .affiliate-card2-item-image {
+    width: 110px;
+    height: 110px;
+  }
+  .affiliate-card2-item-line {
+    width: 48px;
+    height: 2px;
+    background: #e83f0c;
+  }
+  .affiliate-card2-item-line:empty {
+    display: block;
+  }
+  .affiliate-card2-item-title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 150%;
+    text-align: center;
+  }
+  .affiliate-card2-item-content {
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .affiliate-card2-container {
+      padding-bottom: 60px;
+    }
+    .affiliate-card2-title {
+      font-size: 28px;
+      text-align: left;
+    }
+    .affiliate-card2-subtitle {
+      display: none;
+    }
+    .affiliate-card2-content {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .affiliate-card2-item {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .affiliate-card2-item-image {
+      width: 48px;
+      height: 48px;
+    }
+    .affiliate-card2-item-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      flex: 1;
+    }
+    .affiliate-card2-item-title {
+      font-size: 16px;
+    }
+    .affiliate-card2-item-line {
+      width: 32px;
+    }
+    .affiliate-card2-item-content {
+      font-size: 16px;
+      margin-top: 0;
+      text-align: left;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }} ">
+  <div class="alp-section-container page-width {{ container }} affiliate-card2-container">
+    <div class="affiliate-card2-top">
+      <h2 class="affiliate-card2-title">{{ st.affiliate-card2-title }}</h2>
+      <div class="affiliate-card2-subtitle">{{ st.affiliate-card2-subtitle }}</div>
+    </div>
+    <div class="affiliate-card2-content">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+          <div class="affiliate-card2-item">
+            {% if bs.affiliate-card2-item-image != blank %}
+              <div class="affiliate-card2-item-image">
+                <img
+                  src="{{ bs.affiliate-card2-item-image | image_url: width: 1200 }}"
+                  width="auto"
+                  height="auto"
+                >
+              </div>
+            {% endif %}
+            <div class="affiliate-card2-item-line hide_mobile"></div>
+            <div class="affiliate-card2-item-text">
+              <div class="affiliate-card2-item-title">{{ bs.affiliate-card2-item-title }}</div>
+              <div class="affiliate-card2-item-line hide_desktop"></div>
+              <div class="affiliate-card2-item-content">{{ bs.affiliate-card2-item-content }}</div>
+            </div>
+          </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>

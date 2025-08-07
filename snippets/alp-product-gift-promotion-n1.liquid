@@ -1,0 +1,47 @@
+<div class="alp-product-upgrades-new-n1 alp-product-gift-promotion-n1">
+  <div class="alp-product-upgrades-title-new-n1">
+    <h3 class="headline__h6">
+      {{ bs.title }}
+    </h3>
+  </div>
+  <div class="alp-pug-group-wrapper-new-n1 gift-promotion-n1">
+    <div class="gift_content title-description">
+      {{ bs.content }}
+    </div>
+    {% for product_item in bs.product_list -%}
+      <div
+        class="product-item-gift-n1 is_select_gift"
+        data-productId="{{ product_item.id }}"
+        data-variantId="{{ product_item.first_available_variant.id }}"
+        data-quantity="1"
+      >
+        <div class="info-box-n1">
+          <div class="img-box-n1 relative">
+            <a class="full-aa" href="{{ product_item.featured_image | image_url: width: 1920 }}" data-fslightbox></a>
+            <img
+              width="auto"
+              height="auto"
+              data-src="{{ product_item.featured_image | image_url: width: 300 }}"
+              alt=""
+              loading="lazy"
+              class="lazy"
+            >
+          </div>
+          <div class="contents-box-n1">
+            <div class="alp-addional-product-title">{{ product_item.title }}</div>
+            <div class="">
+              <strong class="price--final">FREE</strong>
+              <s
+                class="cart-item__old-price "
+                price="{{ product_item.price }}"
+                data-compare_price="{{ product_item.price }}"
+              >
+                {{ product_item.price | money }}
+              </s>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endfor %}
+  </div>
+</div>

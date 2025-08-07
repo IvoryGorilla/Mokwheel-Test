@@ -1,0 +1,68 @@
+{%- if section.blocks.size > 0 -%}
+  <nav class="alp-header-menu-list">
+    <ul class="list-menu-ul">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        {%- case block.type -%}
+          {%- when 'normal-menu' -%}
+            {% comment %} Normal Menu {% endcomment %}
+            <li class="list-menu-li-parent normal-menu">
+              <a href="{{ bs.url | default: 'javascript:void(0);' }}" class="alp-list-item-a">
+                <span>{{- bs.menu_title | strip -}}</span>
+                {%- if bs.menu.links.size > 0 -%}
+                  {% render 'icon-arrow-down' %}
+                {%- endif -%}
+              </a>
+              {%- if bs.menu.links.size > 0 -%}
+                {% render 'alp-dropdown-sub-menu', menu_list: bs.menu.links %}
+              {%- endif -%}
+            </li>
+
+          {%- when 'mega-menu-type-1' -%}
+            {% comment %} Mega Menu {% endcomment %}
+            <li class="list-menu-li-parent mega-menu">
+              <a href="{{ bs.url | default: 'javascript:void(0);' }}" class="alp-list-item-a">
+                <span>{{- bs.menu_title | strip -}}</span>
+                {% render 'icon-arrow-down' %}
+              </a>
+              {% render 'alp-dropdown-sub-mega-menu',
+                block: block,
+                container: container,
+                style: bs.list_style,
+                show_price: bs.show_price,
+                product_limit: bs.product_limit
+              %}
+            </li>
+          {%- when 'mega-menu-type-2' -%}
+            {% comment %} Mega Menu {% endcomment %}
+            <li class="list-menu-li-parent mega-menu">
+              <a href="{{ bs.url | default: 'javascript:void(0);' }}" class="alp-list-item-a">
+                <span>{{- bs.menu_title | strip -}}</span>
+                {% render 'icon-arrow-down' %}
+              </a>
+              {%
+                render 'alp-dropdown-sub-mega-menu-2',
+                block: block,
+                container: container,
+              %}
+            </li>
+          {%- when 'mega-menu-type-3' -%}
+            {% comment %} Mega Menu {% endcomment %}
+            <li class="list-menu-li-parent mega-menu">
+              <a href="{{ bs.url | default: 'javascript:void(0);' }}" class="alp-list-item-a">
+                <span>{{- bs.menu_title | strip -}}</span>
+                {% render 'icon-arrow-down' %}
+              </a>
+              {%
+                render 'alp-dropdown-sub-mega-menu-3',
+                block: block,
+                container: container,
+              %}
+            </li>
+        {%- endcase -%}
+      {%- endfor -%}
+    </ul>
+  </nav>
+{% endif %}

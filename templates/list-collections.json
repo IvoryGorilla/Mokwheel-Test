@@ -1,0 +1,288 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "alp_blog_breadcrumbs_HbLxQA": {
+      "type": "alp-blog-breadcrumbs",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 10,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "4f15db6d-9c17-4a5d-a34d-6582503d496c": {
+      "type": "alp-hero-banner",
+      "blocks": {
+        "43c2ae3b-a381-4f8f-97d6-e9a20f82e48d": {
+          "type": "heading",
+          "settings": {
+            "text": "Electric Bikes & Accessories Collections",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "43c2ae3b-a381-4f8f-97d6-e9a20f82e48d"
+      ],
+      "custom_css": [
+        "@media (max-width: 999px) {.alp-hero-banner .alp-hero-banner-wrapper {min-height: 120px; } .alp-hero-banner .alp-hero-banner-heading {line-height: 1.5; }}"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "center",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_opacity": 50,
+        "image_aspect_ratio": "3/1",
+        "block_max_width": "720px",
+        "min_height": "210px",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "main": {
+      "type": "main-list-collections",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "sort": "alphabetical",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "columns_mobile": "2"
+      }
+    },
+    "alp_main_list_collections_TgiLbF": {
+      "type": "alp-main-list-collections",
+      "blocks": {
+        "collections_accessories_8XBtWD": {
+          "type": "collections_accessories",
+          "settings": {
+            "title": "Accessories Type",
+            "menu": "all-accessories"
+          }
+        },
+        "collections_accessories_eEHnQk": {
+          "type": "collections_accessories",
+          "disabled": true,
+          "settings": {
+            "title": "Accessories Category",
+            "menu": "accessories-category"
+          }
+        },
+        "collections_accessories_REfX67": {
+          "type": "collections_accessories",
+          "disabled": true,
+          "settings": {
+            "title": "Accessories Compatibility",
+            "menu": "accessories-compatibility"
+          }
+        },
+        "exclusived_deals_await_zLyaLG": {
+          "type": "exclusived_deals_await",
+          "disabled": true,
+          "settings": {
+            "image_aspect_ratio": "2/3",
+            "image": "shopify://shop_images/Rectangle_823.png",
+            "title": "Exclusive Deals Await",
+            "link": "",
+            "link_text": "Learn More"
+          }
+        }
+      },
+      "block_order": [
+        "collections_accessories_8XBtWD",
+        "collections_accessories_eEHnQk",
+        "collections_accessories_REfX67",
+        "exclusived_deals_await_zLyaLG"
+      ],
+      "settings": {
+        "all_product_collection": [
+          "electric-bikes",
+          "all-accessories"
+        ],
+        "product_collection": [
+          "power-station-ebikes",
+          "step-through",
+          "city-commuter",
+          "fat-tire",
+          "folding-ebikes"
+        ],
+        "product_collection2": [
+          "electric-tricycles"
+        ],
+        "image_type": "image-type-a",
+        "sort": "alphabetical",
+        "image_ratio": "rectangle",
+        "columns_desktop": 2,
+        "columns_mobile": "2",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "alp_hero_banner_new_636rBN": {
+      "type": "alp-hero-banner-new",
+      "blocks": {
+        "heading_ahdWDD": {
+          "type": "heading",
+          "settings": {
+            "text": "Exclusive Deals Await",
+            "heading_type": "h2"
+          }
+        },
+        "button_CwFJJG": {
+          "type": "button",
+          "settings": {
+            "text": "",
+            "url": "shopify://pages/deals"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ahdWDD",
+        "button_CwFJJG"
+      ],
+      "custom_css": [
+        ".alp-hero-banner-heading {font-size: clamp(24px, 4.2vw, 32px);}",
+        ".alp-hero-banner-button a {background: #e83f0c;}",
+        ".full-img-wrap {left: var(--alp-padding-x); right: var(--alp-padding-x);}",
+        ".full-img-wrap img {border-radius: 16px;}",
+        "@media (max-width: 999px) {.alp-hero-banner-wrapper {margin-bottom: 60px; margin-top: -10px; height: 450px; margin-left: 10px; margin-right: 10px; }}"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "center",
+        "bg_color": "#ffffff",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/Rectangle_835.png",
+        "bg_image_mobile": "shopify://shop_images/Rectangle_823_24eb4a27-dbdc-404a-b38d-290dd5c8fa08.png",
+        "bg_opacity": 100,
+        "image_aspect_ratio": "3/1",
+        "block_max_width": "720px",
+        "min_height": "300px",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false,
+        "show_breadcrumb": false
+      }
+    },
+    "715ec332-2fb9-4754-abc9-2ed344a58cb9": {
+      "type": "alp-separator",
+      "disabled": true,
+      "settings": {
+        "title": "Separator",
+        "target": "",
+        "bg_color": "#ffffff",
+        "text_color": "#f3f3f3",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "alp_collections_swiper_MaJKfY": {
+      "type": "alp-collections-swiper",
+      "blocks": {
+        "item_pcdPMf": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_824.png",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"58\" height=\"58\" viewbox=\"0 0 58 58\" fill=\"none\">\n  <path d=\"M28.8395 5.37598L35.0675 9.91903L42.7764 9.90436L45.1446 17.2406L51.3899 21.7599L48.9938 29.0869L51.3899 36.4139L45.1446 40.9332L42.7764 48.2694L35.0675 48.2548L28.8395 52.7978L22.6115 48.2548L14.9026 48.2694L12.5343 40.9332L6.28906 36.4139L8.6852 29.0869L6.28906 21.7599L12.5343 17.2406L14.9026 9.90436L22.6115 9.91903L28.8395 5.37598Z\" stroke=\"white\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n  <path d=\"M20.5391 29.0869L26.4668 35.0146L38.3222 23.1592\" stroke=\"white\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>",
+            "title": "Help Center",
+            "link": "shopify://pages/help-center"
+          }
+        },
+        "item_mcqqiw": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_825.png",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"58\" height=\"58\" viewbox=\"0 0 58 58\" fill=\"none\">\n  <path d=\"M28.875 52.7978C41.9702 52.7978 52.5859 42.1821 52.5859 29.0869C52.5859 15.9917 41.9702 5.37598 28.875 5.37598C15.7798 5.37598 5.16406 15.9917 5.16406 29.0869C5.16406 32.3017 5.80387 35.3672 6.96309 38.1627C7.56161 39.6061 8.2986 40.9776 9.15749 42.2606C9.44574 42.6911 8.90497 45.4132 7.53515 50.4267C12.5487 49.0569 15.2707 48.5161 15.7013 48.8044C16.9843 49.6632 18.3557 50.4003 19.7991 50.9987C22.5947 52.158 25.6601 52.7978 28.875 52.7978Z\" stroke=\"white\" stroke-width=\"3\" stroke-linejoin=\"round\"></path>\n  <path d=\"M20.1055 24.1313H39.9981\" stroke=\"white\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n  <path d=\"M26.3215 19.2917L22.8672 38.8822\" stroke=\"white\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n  <path d=\"M34.6223 19.2917L31.168 38.8822\" stroke=\"white\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n  <path d=\"M17.7344 33.8291H37.627\" stroke=\"white\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>",
+            "title": "FAQS",
+            "link": "shopify://pages/faq"
+          }
+        },
+        "item_CgCkzn": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_826.png",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"57\" height=\"58\" viewbox=\"0 0 57 58\" fill=\"none\">\n  <path d=\"M52.1796 8.93262H4.75781V44.499H15.4277V50.4267L27.2832 44.499H52.1796V8.93262Z\" stroke=\"white\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n  <path d=\"M16.6133 24.9375V28.4941\" stroke=\"white\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n  <path d=\"M28.4688 24.9375V28.4941\" stroke=\"white\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n  <path d=\"M40.3242 24.9375V28.4941\" stroke=\"white\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>",
+            "title": "Reviews",
+            "link": "shopify://pages/electric-bike-reviews"
+          }
+        }
+      },
+      "block_order": [
+        "item_pcdPMf",
+        "item_mcqqiw",
+        "item_CgCkzn"
+      ],
+      "settings": {
+        "image_aspect_ratio": "3/2",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "alp_main_collections_blog_jGbxf3": {
+      "type": "alp-main-collections-blog",
+      "blocks": {
+        "item_6D8FfB": {
+          "type": "item",
+          "settings": {
+            "blog": "news/best-rated-electric-bikes-for-hunting-in-2024"
+          }
+        },
+        "item_Vykddm": {
+          "type": "item",
+          "settings": {
+            "blog": "news/mokwheel-best-electric-bikes-for-commuting"
+          }
+        }
+      },
+      "block_order": [
+        "item_6D8FfB",
+        "item_Vykddm"
+      ],
+      "settings": {
+        "title": "Featured Blog Posts",
+        "link_text_title": "View More >",
+        "link_url_title": "https://www.mokwheel.com/blogs/news",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "alp_blog_breadcrumbs_HbLxQA",
+    "4f15db6d-9c17-4a5d-a34d-6582503d496c",
+    "main",
+    "alp_main_list_collections_TgiLbF",
+    "alp_hero_banner_new_636rBN",
+    "715ec332-2fb9-4754-abc9-2ed344a58cb9",
+    "alp_collections_swiper_MaJKfY",
+    "alp_main_collections_blog_jGbxf3"
+  ]
+}

@@ -1,0 +1,22 @@
+{% comment %}
+  {% render 'nav-collection-list', collections: collection_list %}
+{% endcomment %}
+<div class="nav-collection-items-list">
+  <div class="nav-collection-items-flex">
+    {%- for item in collections -%}
+      <div class="nav-image-link-item is-collection">
+        <a href="{{ item.url }}" class="nav-image-link full-aa"></a>
+        <div class="nav-image-link-image">
+          {% comment %} {{ item.featured_image | image_url: width: 320 | image_tag: loading: 'lazy' }} {% endcomment %}
+          {% render 'alp-responsive-image', image: item.featured_image, desktop_width: 320, mobile_width: 200 %}
+        </div>
+        <div class="nav-collection-i-info">
+          <div class="nav-image-link-title headline__h6">{{ item.title }}</div>
+          {%- if item.description != blank -%}
+            <div class="nav-image-link-description">{{- item.description | strip_html | strip -}}</div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>

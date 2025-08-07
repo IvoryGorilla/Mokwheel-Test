@@ -1,0 +1,13 @@
+{%- assign scene_image = product.metafields.custom.scene_image.value -%}
+{%- if scene_image != blank -%}
+  <div class="product-scene-image full-img-wrap">
+    {% render 'alp-responsive-media',
+      media: scene_image,
+      media_mobile: scene_image,
+      desktop_width: 640,
+      mobile_width: 400,
+      aspect_ratio: 'auto',
+      alt: product.title
+    %}
+  </div>
+{%- endif -%}

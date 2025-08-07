@@ -1,0 +1,129 @@
+
+  <div class="page-how-mobile affirm-program-step">
+    <div class="container">
+        <div class="title">
+          {{section.settings.title}}
+        </div>
+        <div class="item-list">
+          <div class="swiper step-swiper">
+            <div class="swiper-wrapper">
+                {% for item in section.blocks %}
+                <div class="swiper-slide swiper-no-swiping">
+                  <div class="item">
+                    <div class="number">0{{forloop.index}}</div>
+                    <div class="title">{{item.settings.title}}</div>
+                    <div class="description">{{item.settings.description}}</div>
+                    <div class="img-box">
+                      <img src="{{item.settings.img | img_url: '1920x'}}" alt="">
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>  
+        </div>
+    </div>
+  </div>
+
+  <script>
+     document.addEventListener('DOMContentLoaded', () => {
+ let mySwiper = new Swiper ('.affirm-program-step .step-swiper', {
+        loop: false, // 循环模式选项
+        slidesPerView:3,
+        breakpoints:{
+          100: {
+            slidesPerView:1
+          },
+          1280: {
+            slidesPerView:3
+          }
+        }
+      })  
+
+
+      let affirmProgramSteps = document.querySelectorAll('.affirm-program-step .swiper-no-swiping');
+
+      if(document.body.clientWidth < 1000)  {
+        affirmProgramSteps.forEach(e=>{
+          e.classList.remove('swiper-no-swiping')
+        })
+      }
+  });
+  </script>
+
+  {% schema %}
+  {
+  "name": "page-how-mobile",
+  "class": "page-how-mobile-box",
+  "presets": [{
+    "name": "page-how-mobile",
+    "settings": {
+  
+    }
+  }],
+  "blocks": [{
+    "type": "mega_menu", 
+    "name": "Mega menu", 
+    "settings":[{
+      "type": "richtext",
+      "id": "title",
+      "label": "title" 
+    },{
+      "type": "richtext",
+      "id": "description",
+      "label": "description" 
+    },{
+      "type": "image_picker",
+      "id": "img",
+      "label": "image" 
+    }]
+  }],
+  "settings": [{
+    "type": "text",
+    "id": "title",
+    "label": "title" 
+  }]
+  }
+  {% endschema %}
+
+
+  <style>
+
+  </style>
+
+  {{ 'affirm-program-step.css' | asset_url | stylesheet_tag }}
+
+  <style>
+    .affirm-program-step {
+        background: rgba(255,255,255);
+    }
+    @media screen and (min-width:1000px) {
+      .affirm-program-step .item-list {
+        margin-top:30px;
+      }
+      .affirm-program-step .item-list .swiper-slide .item .title {
+        font-size: 24px;
+      }
+      .affirm-program-step .container > .title {
+        font-size: 64px;
+        font-weight: 600;
+        color: #1B1B1B;
+        line-height: 64px;
+      }
+    }
+    @media screen and (max-width:1000px) {
+      .affirm-program-step .item-list {
+        margin-top:30px;
+      }
+      .affirm-program-step .item-list .swiper-slide .item .title {
+        font-size: 18px;
+      }
+      .affirm-program-step .container > .title {
+        font-size: 42px;
+        font-weight: 600;
+        color: #1B1B1B;
+        line-height: 1;
+        text-align:center;
+      }
+    }
+  </style>

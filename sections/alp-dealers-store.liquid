@@ -1,0 +1,233 @@
+{% schema %}
+{
+  "name": "Alp Dealers Store",
+  "class": "alp-dealers-store",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bigtitle",
+      "label": "Big Title",
+      "default": "MOKWHEEL BIKE STORE"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Mokwheel E-Bikes Huntington Beach"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Dealers Store"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-dealers-store-bigtitle{
+    color: #E83F0C;
+  }
+  .alp-dealers-store-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: calc(var(--alp-gutter-y) * 1.25);
+  }
+  .alp-dealers-store-left{
+    width: 50%;
+  }
+  .alp-dealers-store-left picture img{
+   display: block; 
+   aspect-ratio: 3 / 2;
+  }
+  .alp-dealers-store-right{
+    width: 45%;
+  }
+  .alp-dealers-store-title{
+    width: 85%;
+  }
+  .alp-dealers-store-content{
+    margin-top: calc(var(--alp-gutter-y) * 1.25);
+    width: 90%;
+    text-transform: capitalize;
+  }
+  .alp-dealers-store-content p{
+    margin: 0;
+  }
+  .alp-dealers-store-image{
+    display: flex;
+    justify-content: space-between;
+  }
+  .alp-dealers-store-image picture{
+    width: 32%;
+    margin-top: calc(var(--alp-gutter-y) * 1);
+  }
+  .alp-dealers-store-image picture img{
+    display: block;
+    aspect-ratio: 3 / 2;
+  }
+  @media screen and (max-width: 999px){
+    .alp-dealers-store-bigtitle{
+      text-align: center;
+    }
+    .alp-dealers-store-box{
+      flex-direction: column;
+      margin-top: calc(var(--alp-gutter-y) * 0.65);
+    }
+    .alp-dealers-store-left{
+      width: 100%;
+    }
+    .alp-dealers-store-right{
+      width: 100%;
+    }
+    .alp-dealers-store-image picture{
+      margin-top: calc(var(--alp-gutter-y) * 0.3);
+    }
+    .alp-dealers-store-title{
+      width: 100%;
+      text-align: center;
+      margin-top: calc(var(--alp-gutter-y) * 1.5);
+    }
+    .alp-dealers-store-content{
+      width: 100%;
+      margin-top: calc(var(--alp-gutter-y) * 1);
+    }
+  }
+}
+{% endstyle %}
+
+<div class="alp-dealers-store alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-dealers-store-con alp-section-container page-width {{ container }}">
+    <h2 class="alp-dealers-store-bigtitle headline__h3">{{ st.bigtitle }}</h2>
+    <div class="alp-dealers-store-box">
+      <div class="alp-dealers-store-left">
+        {% render 'alp-single-image', image: st.image, width: 1280 %}
+        <div class="alp-dealers-store-image hide_desktop">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              {% render 'alp-single-image', image: bs.image, width: 1280 %}
+            {%- endfor -%}
+          {% endif %}
+        </div>
+      </div>
+      <div class="alp-dealers-store-right">
+        <div class="alp-dealers-store-title headline__h3">{{ st.title }}</div>
+        <div class="alp-dealers-store-content">{{ st.content }}</div>
+        <div class="alp-dealers-store-image hide_mobile">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              {% render 'alp-single-image', image: bs.image, width: 1280 %}
+            {%- endfor -%}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

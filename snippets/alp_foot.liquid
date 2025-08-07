@@ -1,0 +1,35 @@
+<script src="{{ 'alp.js' | asset_url }}" defer="defer"></script>
+{% comment %}
+  <script>
+    window.addEventListener('load', () => {
+      if (quicklink) {
+        quicklink.listen();
+        console.log('quicklink loaded');
+      }
+    });
+  </script>
+{% endcomment %}
+
+{% comment %}
+  <!-- Extend -- Load Extend SDK Configuration script -->
+  {% render 'extend-configuration-new' %}
+  <!-- Extend -- End Extend code -->
+
+  <!-- Extend -- Load cart integration script -->
+  {% render 'extend-cart-intergration-new' %}
+  <!-- Extend -- End Extend code -->
+
+  <!-- Extend -- Load product integration script -->
+  {% render 'extend-product-integration-new' %}
+  <!-- Extend -- End Extend code -->
+{% endcomment %}
+
+<!-- Extend -- Load Extend SDK Configuration script -->
+{% render 'extend-configuration-new-all' %}
+
+{% comment %}
+  <!-- fareharbor -->
+  {% # theme-check-disable %}
+  <link rel="stylesheet" href="https://fh-kit.com/buttons/v2/?red=ed4525" type="text/css" media="screen">
+  <script src="https://fareharbor.com/embeds/api/v1/?autolightframe=yes" defer="defer"></script>
+{% endcomment %}

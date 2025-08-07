@@ -1,0 +1,167 @@
+{% schema %}
+{
+  "name": "Alp Cookie Banner",
+  "class": "alp-cookie-banner-section",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Cookie Banner"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p></p>"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Cookie Banner"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-cookie-container {
+    position: fixed;
+    right: var(--alp-gutter-x);
+    bottom: var(--alp-gutter-x);
+    z-index: 800;
+    background: var(--bg-color, #fff);
+    color: var(--text-color, #000);
+    left: var(--alp-gutter-x);
+    margin-left: auto;
+    max-width: 420px;
+    box-shadow: 10px 0px 30px #0000002b;
+    border-radius: var(--alp-border-radius);
+    padding: var(--alp-gutter-x);
+  }
+
+  .alp-cookie-container > div > span,
+  .alp-cookie-container > div > .alp-cookie-description {
+    display: block;
+    margin-bottom: var(--alp-gutter-x);
+  }
+
+  .alp-cookie-button.alp-btn {
+    padding: 0.5em 2em;
+    background: #000;
+    color: #fff;
+    line-height: 1.2;
+    cursor: pointer;
+    text-transform: capitalize;
+  }
+
+  .alp-cookie-button.alp-btn.c-accept {
+    background: var(--main-color);
+  }
+
+  .alp-cookie-description p {
+    margin-top: 0;
+  }
+
+  .alp-cookie-description a {
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
+  .alp-cookie-container {
+    transition: 0.4s;
+    transform: translate(0px, 0px);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .alp-cookie-container.cookie-hidden {
+    transform: translate(0px, 100px);
+    opacity: 0;
+    pointer-events: none;
+  }
+{% endstyle %}
+
+<div class="alp-cookie-section" style="{{ style }}">
+  <div class="alp-cookie-container cookie-hidden" id="cookies-banner">
+    <div>
+      <div class="alp-cookie-description">{{ st.description }}</div>
+      <div class="alp-cookie-button alp-btn c-decline" style="" onclick="handleDecline()">Decline</div>
+      <div class="alp-cookie-button alp-btn c-accept" style="" onclick="handleAccept()">Accept</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function getBannerEl() {
+    return document.getElementById('cookies-banner');
+  }
+
+  function hideBanner(res) {
+    getBannerEl().classList.add('cookie-hidden');
+  }
+
+  function showBanner() {
+    getBannerEl().classList.remove('cookie-hidden');
+  }
+
+  function handleAccept(e) {
+    window.Shopify.customerPrivacy.setTrackingConsent(true, hideBanner);
+
+    document.addEventListener('trackingConsentAccepted', function () {
+      console.log('trackingConsentAccepted event fired');
+    });
+  }
+
+  function handleDecline() {
+    window.Shopify.customerPrivacy.setTrackingConsent(false, hideBanner);
+  }
+
+  function initCookieBanner() {
+    const userCanBeTracked = window.Shopify.customerPrivacy.userCanBeTracked();
+    const userTrackingConsent = window.Shopify.customerPrivacy.getTrackingConsent();
+
+    if (!userCanBeTracked && userTrackingConsent === 'no_interaction') {
+      showBanner();
+    }
+  }
+
+  window.Shopify.loadFeatures(
+    [
+      {
+        name: 'consent-tracking-api',
+        version: '0.1',
+      },
+    ],
+    function (error) {
+      if (error) {
+        throw error;
+      }
+
+      initCookieBanner();
+    }
+  );
+</script>

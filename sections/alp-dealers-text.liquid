@@ -1,0 +1,133 @@
+{% schema %}
+{
+  "name": "Alp Dealers Text",
+  "class": "alp-dealers-text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Why Choose Mokwheel dealers?"
+    },
+    {
+      "type": "richtext",
+      "id": "des",
+      "label": "Description",
+      "default": "<p>Mokwheel’s network of dealers offers customers a more personalized experience when shopping for Mokwheel electric bikes. Dealer provides customers with the benefit of seeing and test-riding ebikes and ultimately finding the right fit with the guidance.</p>"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Dealers Text"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+.alp-dealers-text-title{
+  margin-bottom: 12px;
+}
+.alp-dealers-text-desc{
+  font-size: 18px;
+}
+.alp-dealers-text-desc p{
+  margin: 0;
+}
+@media screen and (max-width: 999px){
+  .alp-dealers-text-wrapper{
+    padding-top: 0;
+    padding-bottom: 24px;
+  }
+  .alp-dealers-text-con{
+    /* text-align: center; */
+  }
+  .alp-dealers-text-desc{
+    font-size: 16px;
+  }
+}
+{% endstyle %}
+
+<div class="alp-dealers-text-wrapper alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-dealers-text-con alp-section-container page-width {{ container }}">
+    <h2 class="alp-dealers-text-title headline__h2l">{{ st.title }}</h2>
+    <div class="alp-dealers-text-desc">{{ st.des }}</div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

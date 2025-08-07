@@ -1,0 +1,312 @@
+{% schema %}
+{
+  "name": "Alp Secondary Code",
+  "class": "alp-secondary-code",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "desc",
+      "label": "Desc"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_pc",
+      "label": "Image Pc"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image Mobile"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Video Mobile"
+    },
+    {
+      "type": "textarea",
+      "id": "rich_content",
+      "label": "Richtext"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "3/1"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio_mobile",
+      "label": "Image Aspect Ratio Mobile",
+      "default": "3/2"
+    },
+    {
+      "type": "text",
+      "id": "min_height",
+      "label": "Min Height",
+      "default": "420px"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Secondary Code"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --st-min-height: {{ st.min_height }};
+   --aspect-pc: {{ st.image_aspect_ratio }};
+   --aspect-mobile: {{ st.image_aspect_ratio_mobile }};
+  }
+</style>
+
+{% style %}
+  .alp-secondary-code-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 64px;
+  }
+  .alp-secondary-code-title{
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 1.2;
+    width: 35%;
+  }
+  .alp-secondary-code-desc{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.5;
+    width: 50%;
+    opacity: 0.5;
+  }
+  .alp-secondary-code-img img {
+    aspect-ratio: var(--aspect-pc);
+    min-height: var(--st-min-height);
+    display: block;
+  }
+
+  [data-has-video].alp-keynote-code-img img {
+    opacity: 0;
+  }
+
+  .alp-secondary-code-img {
+    width: 100%;
+    aspect-ratio: var(--aspect-pc);
+    min-height: var(--st-min-height);
+  }
+
+  .alp-secondary-code-item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 64px;
+    opacity: 0.5;
+  }
+
+  .alp-secondary-code-item .info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+  }
+
+  .alp-secondary-code-item .info_img {
+    display: block;
+    width: 32px;
+  }
+  .alp-secondary-code-item .info_title {
+    font-size: 24px;
+    margin-top: 12px;
+    font-weight: 400;
+  }
+
+  .full-sc-video.full-img-wrap {
+    overflow: hidden;
+  }
+
+  .full-sc-video.full-img-wrap video {
+    transform: scale(1.015);
+  }
+  @media screen and (min-width: 1000px){
+    .alp-secondary-code-container{
+      padding: 130px 9%;
+    }
+    .alp-secondary-code-img img,
+    .alp-secondary-code-img video{
+      border-radius: 16px;
+    }
+  }
+  @media screen and (max-width: 999px) {
+    .alp-secondary-code-top{
+      display: none;
+    }
+    .alp-secondary-code-container{
+      padding: 0;
+    }
+    .alp-secondary-code-img img {
+      aspect-ratio: var(--aspect-mobile);
+    }
+    .alp-secondary-code-item {
+      display: none;
+    }
+    .alp-secondary-code-img {
+      aspect-ratio: var(--aspect-mobile);
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" data-stid="{{ section.id }}" style="{{ style }}">
+  <div class="alp-section-container alp-secondary-code-container page-width {{ container }}">
+    <div class="alp-secondary-code-top">
+      <div class="alp-secondary-code-title">{{ st.title }}</div>
+      <div class="alp-secondary-code-desc">{{ st.desc }}</div>
+    </div>
+      <div class="alp-secondary-code-img relative" 
+      {% if st.video != blank %}
+        data-has-video
+      {% endif %}
+      >
+        {% render 'alp-responsive-image',
+          image: st.image_pc,
+          image_mobile: st.image_mobile,
+          desktop_width: 1920,
+          mobile_width: 900
+        %}
+        {%- if st.video != blank -%}
+          <div
+            class="full-sc-video full-img-wrap {% if st.video_mobile != blank %} hide_mobile{% endif %}"
+            data-id="{{ section.id | replace: '-', '' }}"
+          >
+            <video
+              class="lazy"
+              muted
+              preload
+              autoplay
+              loop
+              x5-video-player-type="h5"
+              x5-video-player-fullscreen="true"
+              x5-playsinline
+              playsinline
+              webkit-playsinline
+            >
+              {%- for source in st.video.sources -%}
+                <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+              {%- endfor -%}
+            </video>
+          </div>
+        {%- endif -%}
+        {%- if st.video_mobile != blank -%}
+          <div class="full-sc-video full-img-wrap hide_desktop" data-id="{{ section.id | replace: '-', '' }}">
+            <video
+              class="lazy"
+              muted
+              preload
+              autoplay
+              loop
+              x5-video-player-type="h5"
+              x5-video-player-fullscreen="true"
+              x5-playsinline
+              playsinline
+              webkit-playsinline
+            >
+              {%- for source in st.video_mobile.sources -%}
+                <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+              {%- endfor -%}
+            </video>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="alp-secondary-code-item page-width">{{ st.rich_content }}</div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

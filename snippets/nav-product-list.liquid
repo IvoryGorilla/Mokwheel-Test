@@ -1,0 +1,41 @@
+{% comment %}
+  {% render 'nav-product-list', collection: collection ,limit: 10 %}
+{% endcomment %}
+{%- assign the_limit = limit | default: 12 -%}
+<div class="nav-collection-items-list">
+  <div class="nav-collection-items-flex">
+    {%- for item in collection.products limit: the_limit -%}
+      <div class="nav-image-link-item is-products">
+        <a href="{{ item.url }}" class="nav-image-link full-aa"></a>
+        <div class="nav-image-link-image">
+          {%- if item.first_available_variant.featured_image -%}
+            {% comment %} {{ item.first_available_variant.featured_image | image_url: width: 320 | image_tag: loading: 'lazy' }} {% endcomment %}
+            {% render 'alp-responsive-image',
+              image: item.first_available_variant.featured_image,
+              desktop_width: 320,
+              mobile_width: 200
+            %}
+          {%- else -%}
+            {% comment %} {{ item.featured_image | image_url: width: 320 | image_tag: loading: 'lazy' }} {% endcomment %}
+            {% render 'alp-responsive-image', image: item.featured_image, desktop_width: 320, mobile_width: 200 %}
+          {%- endif -%}
+        </div>
+        <div class="nav-product-i-info">
+          <div>
+            <div class="nav-image-link-title headline__h6">{{ item.title }}</div>
+            {%- if item.metafields.custom.new_description != blank -%}
+              <div class="nav-image-link-description">
+                {%- if item.metafields.custom.new_description_nav != blank -%}
+                  {{- item.metafields.custom.new_description_nav | metafield_tag | strip_html | strip -}}
+                {%- else -%}
+                  {{- item.metafields.custom.new_description | metafield_tag | strip_html | strip -}}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+          <div class="nav-image-link-price">{% render 'price', product: item %}</div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>

@@ -1,0 +1,102 @@
+{% comment %}
+  Renders product buy-buttons.
+  Accepts:
+  - product: {Object} product object.
+  - block: {Object} passing the block information.
+  - product_form_id: {String} product form id.
+  - section_id: {String} id of section to which this snippet belongs.
+  - show_pickup_availability: {Boolean} for the pickup availability. If true the pickup availability is rendered, false - not rendered (optional).
+
+  Usage:
+  {% render 'alp-buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true %}
+{% endcomment %}
+<div {{ block.shopify_attributes }}>
+  {%- if bs.show_custom_text -%}
+    <div class="alp-add-to-cart-wrapper-custom alp-submit-button" style="--bg-color:{{ bs.custom_text_bg_color }};">
+      <button class="alp-add-to-cart-button button button--full-width button--primary">
+        <span>{{ bs.custom_text }}</span>
+      </button>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        $('.alp-sticky-product-trigger-add-to-cart-button').addClass('hidden');
+      });
+    </script>
+  {%- endif -%}
+  {%- if product != blank -%}
+    {%- liquid
+      assign gift_card_recipient_feature_active = false
+      if block.settings.show_gift_card_recipient and product.gift_card?
+        assign gift_card_recipient_feature_active = true
+      endif
+
+      assign show_dynamic_checkout = false
+      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
+        assign show_dynamic_checkout = true
+      endif
+    -%}
+
+    <div
+      class="alp-product-form-buttons {% if bs.show_custom_text %} hidden{% endif %}"
+      data-hide-errors="{{ gift_card_recipient_feature_active }}"
+      data-section-id="{{ section.id }}"
+    >
+      {% # theme-check-disable %}
+      {%- assign cart_qty = cart | item_count_for_variant: product.selected_or_first_available_variant.id -%}
+      {% # theme-check-enable %}
+      <div class="alp-add-to-cart-wrapper">
+        <div class="alp-submit-button">
+          <input
+            type="hidden"
+            name="id"
+            value="{{ product.selected_or_first_available_variant.id }}"
+            {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+              disabled
+            {% endif %}
+            class="product-variant-id"
+          >
+          <button
+            id="ProductSubmitButton-{{ section_id }}"
+            type="submit"
+            name="add"
+            class="alp-add-to-cart-button button button--full-width button--primary"
+            {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+              disabled
+            {% endif %}
+          >
+            <span>
+              {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- else -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- endif -%}
+            </span>
+            {%- render 'loading-spinner', class: 'loading__spinner' -%}
+          </button>
+        </div>
+      </div>
+      {%- if show_dynamic_checkout -%}
+        {% comment %}
+          <div class="alp-payment-button-wrapper">
+            {% form 'product', product, id: product_form_id %}
+              {{ form | payment_button }}
+            {% endform %}
+          </div>
+        {% endcomment %}
+      {%- endif -%}
+    </div>
+  {%- else -%}
+    <div class="alp-product-form-buttons {% if bs.show_custom_text %} hidden{% endif %}">
+      <div class="product-form__buttons form">
+        <button
+          type="submit"
+          name="add"
+          class="product-form__submit button button--full-width button--primary"
+          disabled
+        >
+          {{ 'products.product.sold_out' | t }}
+        </button>
+      </div>
+    </div>
+  {%- endif -%}
+</div>

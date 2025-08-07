@@ -1,0 +1,641 @@
+{% schema %}
+{
+  "name": "Alp Sizefit Info",
+  "class": "alp-sizefit-info",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "home_text",
+      "label": "Home Text",
+      "default": "Size & Fit"
+    },
+    {
+      "type": "richtext",
+      "id": "title1",
+      "label": "Title 1"
+    },
+    {
+      "type": "richtext",
+      "id": "des1",
+      "label": "Desc 1"
+    },
+    {
+      "type": "richtext",
+      "id": "title2",
+      "label": "Title 2"
+    },
+    {
+      "type": "richtext",
+      "id": "des2_green",
+      "label": "Desc 2 Green"
+    },
+    {
+      "type": "richtext",
+      "id": "des2_red",
+      "label": "Desc 2 Red"
+    },
+    {
+      "type": "richtext",
+      "id": "des3",
+      "label": "Desc 3"
+    },
+    {
+      "type": "textarea",
+      "id": "rich_content",
+      "label": "Richtext"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "sizefit_type_right",
+      "name": "Sizefit Type Right",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": " Title"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": " Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Sizefit Info"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+      --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+  {%- endcapture -%}
+
+{% style %}
+  .alp-sizefit-info-item-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+  .ImageSwiper img {
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+  .sizefit-info-left-desc a {
+    text-decoration: underline;
+  }
+  .alp-sizefit-info p {
+    margin: 0;
+  }
+  .alp-sizefit-info .bigtitle {
+    text-align: center;
+  }
+  .sizefit-info-left-title {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    font-size: clamp(18px, 3.7vw, 24px);
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .sizefit-info-left-title i {
+    font-style: normal;
+  }
+  .sizefit-info-left-desc {
+    font-size: clamp(12px, 1.8vw, 16px);
+    margin-top: calc(var(--alp-gutter-y) * 0.5);
+  }
+  .sizefit-info-left-text .text2 .icon svg {
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+  }
+  .sizefit-info-right-title {
+    font-size: clamp(12px, 1.8vw, 16px);
+    padding: 0.25em 2em;
+    padding-right: 1em;
+    margin-bottom: 0;
+    cursor: pointer;
+    margin: calc(var(--alp-gutter-y) * 0.5) 0;
+  }
+  .sizefit-info-right-title.active {
+    border-radius: calc(var(--alp-border-radius) * 12);
+    background: #e8e8e8;
+    position: relative;
+  }
+  .sizefit-info-right-title.active::after {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: calc(var(--alp-border-radius) * 10);
+    background: var(--main-color);
+  }
+  .sizefit-info-right-desc {
+    text-align: center;
+  }
+  .alp-sizefit-info-item-wrapper {
+    padding: max(2em, 5vw) max(2em, 4vw);
+    background: var(--main-background, #f7f7f7);
+    border-radius: 12px;
+  }
+  @media screen and (min-width: 999px) {
+    .sizefit-info-left-text .alp-line {
+      width: 100%;
+    }
+    .ImageSwiper {
+      margin-bottom: 1em;
+    }
+
+    .alp-sizefit-info-item-content {
+      height: auto;
+      display: flex;
+      justify-content: space-between;
+      margin-top: calc(var(--alp-gutter-y) * 2.5);
+      gap: 5%;
+    }
+    .sizefit-info-left {
+      width: 50%;
+      display: flex;
+      gap: max(18%, 100px);
+      justify-content: space-between;
+      padding-left: 50px;
+    }
+    .sizefit-info-draggable {
+      position: relative;
+      width: 10px;
+      height: auto;
+      display: flex;
+      align-items: center;
+      border-radius: 100px;
+      background: #eee;
+      min-height: 450px;
+    }
+    div.flair_progress__bar:empty {
+      display: block;
+    }
+    .flair_progress__bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: calc(var(--progress, 100) * 100%);
+      background: var(--main-color);
+      border-radius: 100px;
+    }
+    .sizefit-info-draggable .flair {
+      width: 100px;
+      height: 100px;
+      font-size: clamp(12px, 1.8vw, 16px);
+      border-radius: 1000px;
+      background: var(--main-color);
+      margin-left: -45px;
+      display: flex;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+    }
+    .sizefit-info-left-text {
+      gap: max(2em);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex: 1;
+    }
+    .sizefit-info-left-text .text2 .icon {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    }
+    .sizefit-info-left-text .text2 .icon svg {
+      margin-right: calc(var(--alp-gutter-y) * 0.5);
+    }
+    .sizefit-info-right {
+      width: 50%;
+    }
+    .title-swiper {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  @media screen and (max-width: 999px) {
+    .sizefit-info-right-title {
+      flex: 1;
+    }
+    .alp-sizefit-info-item-wrapper {
+      padding: max(2em, 5vw) max(1.25em, 4vw);
+    }
+    .sizefit-info-left-text .alp-line {
+      display: none;
+    }
+    .alp-sizefit-info-item-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .sizefit-info-left {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: space-between;
+    }
+    .sizefit-info-draggable {
+      position: relative;
+      width: min(380px, 100%);
+      height: 10px;
+      display: flex;
+      align-items: center;
+      border-radius: 100px;
+      background: #eee;
+      margin: calc(var(--alp-gutter-y) * 2) 0;
+    }
+
+    div.flair_progress__bar:empty {
+      display: block;
+    }
+    .flair_progress__bar {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: calc(var(--progress, 100) * 100%);
+      background: var(--main-color);
+      border-radius: 100px;
+    }
+    .sizefit-info-draggable .flair {
+      width: 50px;
+      height: 50px;
+      font-size: clamp(12px, 1.8vw, 16px);
+      border-radius: 1000px;
+      background: var(--main-color);
+      display: flex;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+    }
+    .sizefit-info-left-text {
+      text-align: center;
+    }
+    .sizefit-info-left-text .text1 {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+    .sizefit-info-left-text .text1 .sizefit-info-left-title {
+      margin: calc(var(--alp-gutter-y) * 0.3) 0 calc(var(--alp-gutter-y) * 0.5);
+    }
+    .sizefit-info-left-text .text1 .sizefit-info-left-desc,
+    .sizefit-info-left-text .text2 .sizefit-info-left-desc,
+    .sizefit-info-left-text .text3 .sizefit-info-left-desc {
+      font-size: 1em;
+      margin-top: 0.5em;
+    }
+    .sizefit-info-left-text .text2 .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .sizefit-info-left-text .text2 .icon .sizefit-info-left-title {
+      margin: calc(var(--alp-gutter-y) * 0.25) 0;
+    }
+    .sizefit-info-right {
+      width: 100%;
+    }
+    .title-swiper {
+      display: flex;
+      justify-content: space-between;
+    }
+    .sizefit-info-right-title.active::after {
+      left: 8px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-sizefit-info alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-sizefit-info-con alp-section-container page-width {{ container }}">
+    <div class="alp-sizefit-info-item-wrapper">
+      <h2 class="headline__h2 bigtitle">{{ st.home_text | newline_to_br }}</h2>
+      <div class="alp-sizefit-info-item-content">
+        <div class="sizefit-info-left">
+          <div class="sizefit-info-draggable">
+            <div class="wrapper">
+              <div class="flair"></div>
+            </div>
+            <div class="flair_progress__bar" style="--progress: 0.5"></div>
+          </div>
+          <div class="sizefit-info-left-text">
+            <div class="text1">
+              <div class="sizefit-info-left-title"><i class="calc_number" data-range="60"></i>{{ st.title1 }}</div>
+              <div class="sizefit-info-left-desc">{{ st.des1 }}</div>
+            </div>
+            <div class="alp-line"></div>
+            <div class="text2">
+              <div class="icon">
+                <svg
+                  class="icon icon--check-circle"
+                  viewBox="0 0 24 24"
+                  role="presentation"
+                  data-gtm-vis-has-fired9896195_762="1"
+                >
+                  <path fill="green" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" data-gtm-vis-has-fired9896195_762="1"></path>
+                </svg>
+                <svg
+                  class="icon icon--triangle-error"
+                  viewBox="0 0 16 13"
+                  fill="none"
+                  style="display: none;"
+                  data-gtm-vis-has-fired9896195_762="1"
+                >
+                  <path d="M0.666687 13.0002H15.3334L8.00002 0.333496L0.666687 13.0002ZM8.66669 11.0002H7.33335V9.66683H8.66669V11.0002ZM8.66669 8.3335H7.33335V5.66683H8.66669V8.3335Z" fill="#DF320C" data-gtm-vis-has-fired9896195_762="1"></path>
+                </svg>
+                <div class="sizefit-info-left-title">{{ st.title2 }}</div>
+              </div>
+              <div class="sizefit-info-left-desc green">{{ st.des2_green }}</div>
+              <div class="sizefit-info-left-desc red">{{ st.des2_red }}</div>
+            </div>
+            <div class="alp-line"></div>
+            <div class="text3">
+              <div class="sizefit-info-left-title"></div>
+              <div class="sizefit-info-left-desc">{{ st.des3 }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="sizefit-info-right">
+          <div class="ImageSwiper swiper">
+            <div class="swiper-wrapper">
+              {%- for block in section.blocks -%}
+                {% liquid
+                  assign bs = block.settings
+                %}
+                <div class="swiper-slide">
+                  {% render 'alp-single-image', image: bs.image, width: 1280, aspect_ratio: '3/2' %}
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+          <div class="title-swiper">
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="sizefit-info-right-title">
+                {{ bs.title }}
+              </div>
+            {%- endfor -%}
+          </div>
+          <div class="TextSwiper swiper">
+            <div class="swiper-wrapper">
+              {%- for block in section.blocks -%}
+                {% liquid
+                  assign bs = block.settings
+                %}
+                <div class="swiper-slide">
+                  <div class="sizefit-info-right-desc alp_product__description">{{ bs.desc }}</div>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    // swiper
+    var ImageSwiper = new Swiper('.ImageSwiper', {
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true,
+      },
+      on: {
+        transitionStart: function () {
+          let index = this.activeIndex;
+          $('.sizefit-info-right .sizefit-info-right-title p')
+            .eq(index)
+            .addClass('active')
+            .siblings()
+            .removeClass('active');
+          let $offfleft = $('.sizefit-info-right .sizefit-info-right-title').eq(index).offset().left - 15;
+          scrollTooo($offfleft);
+        },
+      },
+    });
+    var TextSwiper = new Swiper('.TextSwiper', {
+      autoHeight: true,
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true,
+      },
+      on: {
+        transitionStart: function () {
+          let index = this.activeIndex;
+          $('.sizefit-info-right .sizefit-info-right-title')
+            .eq(index)
+            .addClass('active')
+            .siblings()
+            .removeClass('active');
+          let $offfleft = $('.sizefit-info-right .sizefit-info-right-title').eq(index).offset().left - 15;
+          scrollTooo($offfleft);
+        },
+      },
+    });
+    ImageSwiper.controller.control = TextSwiper;
+    TextSwiper.controller.control = ImageSwiper;
+
+    $('.sizefit-info-right .sizefit-info-right-title:first-of-type').addClass('active');
+    $('.sizefit-info-right .sizefit-info-right-title').click(function () {
+      var index = $(this).index();
+      TextSwiper.slideTo(index, 600, false);
+    });
+
+    function scrollTooo(distence) {
+      document.querySelector('.title-swiper').scrollTo({
+        left: distence,
+        behavior: 'smooth',
+      });
+    }
+
+    // draggable
+    let $calc_number = Number($('.calc_number').attr('data-range'));
+    let $container = $('.sizefit-info-draggable');
+    let $target = $('.sizefit-info-draggable .flair');
+    let CalcElementPosition = function () {
+      let $target_offset_top = $target.offset().top - $container.offset().top;
+      let $range = $container.height() - $target.height();
+      let $progress = $target_offset_top / $range;
+      $progress = $progress > 1 ? 1 : $progress;
+      $progress = $progress < 0 ? 0 : $progress;
+
+      return {
+        top: $target_offset_top,
+        range: $range,
+        progress: Math.round((1 - $progress) * 1000) / 1000,
+      };
+    };
+    let CalcElementPositionMobile = function () {
+      let $target_offset_left = $target.offset().left - $container.offset().left;
+      let $range_mobile = $container.width() - $target.width();
+      let $progress_mobile = $target_offset_left / $range_mobile;
+      $progress_mobile = $progress_mobile > 1 ? 1 : $progress_mobile;
+      $progress_mobile = $progress_mobile < 0 ? 0 : $progress_mobile;
+
+      return {
+        left: $target_offset_left,
+        range_mobile: $range_mobile,
+        progress_mobile: Math.round((1 - $progress_mobile) * 1000) / 1000,
+      };
+    };
+    gsap.registerPlugin(Draggable);
+
+    if (window.innerWidth > 999) {
+      Draggable.create('.sizefit-info-draggable .flair', {
+        type: 'y',
+        bounds: '.sizefit-info-draggable',
+        onDrag: function () {
+          // console.log(this);
+          let $number_output = CalcElementPosition().progress * $calc_number * 0.3333333333333333333334 + 20;
+          $('.calc_number').html(Math.round($number_output * 10) / 10);
+          $('.sizefit-info-draggable .flair').html(Math.round($number_output));
+          $('.flair_progress__bar').css('--progress', CalcElementPosition().progress);
+
+          if ($number_output < 24.5 || $number_output > 32.25) {
+            $('.icon--triangle-error, .sizefit-info-left-desc.red').css('display', 'block');
+            $('.icon--check-circle, .sizefit-info-left-desc.green').css('display', 'none');
+          } else {
+            $('.icon--check-circle, .sizefit-info-left-desc.green').css('display', 'block');
+            $('.icon--triangle-error, .sizefit-info-left-desc.red').css('display', 'none');
+          }
+        },
+      });
+    } else {
+      Draggable.create('.sizefit-info-draggable .flair', {
+        type: 'x',
+        bounds: '.sizefit-info-draggable',
+        onDrag: function () {
+          // console.log(this);
+          let $number_output_mobile =
+            CalcElementPositionMobile().progress_mobile * $calc_number * 0.3333333333333333333334 + 20;
+          $('.calc_number').html(Math.round($number_output_mobile * 10) / 10);
+          $('.sizefit-info-draggable .flair').html(Math.round($number_output_mobile));
+          $('.flair_progress__bar').css('--progress', CalcElementPositionMobile().progress_mobile);
+
+          if ($number_output_mobile < 24.5 || $number_output_mobile > 32.25) {
+            $('.icon--triangle-error, .sizefit-info-left-desc.red').css('display', 'block');
+            $('.icon--check-circle, .sizefit-info-left-desc.green').css('display', 'none');
+          } else {
+            $('.icon--check-circle, .sizefit-info-left-desc.green').css('display', 'block');
+            $('.icon--triangle-error, .sizefit-info-left-desc.red').css('display', 'none');
+          }
+        },
+      });
+    }
+    if (window.innerWidth > 999) {
+      $(function () {
+        let $number_output = CalcElementPosition().progress * $calc_number * 0.3333333333333333333334 + 20;
+        $('.calc_number').html(Math.round($number_output * 10) / 10);
+        $('.sizefit-info-draggable .flair').html(Math.round($number_output));
+        $('.flair_progress__bar').css('--progress', CalcElementPosition().progress);
+        $('.icon--check-circle, .sizefit-info-left-desc.green').css('display', 'block');
+        $('.icon--triangle-error, .sizefit-info-left-desc.red').css('display', 'none');
+      });
+    } else {
+      $(function () {
+        let $number_output_mobile =
+          CalcElementPositionMobile().progress_mobile * $calc_number * 0.3333333333333333333334 + 10;
+        $('.calc_number').html(Math.round($number_output_mobile * 10) / 10);
+        $('.sizefit-info-draggable .flair').html(Math.round($number_output_mobile));
+        let $wrapper_width = $('.sizefit-info-draggable').width();
+        $('.sizefit-info-draggable .flair').css('left', `calc(${$wrapper_width / 2}px - 25px)`);
+        $('.flair_progress__bar').css('--progress', CalcElementPositionMobile().progress_mobile);
+        $('.icon--check-circle, .sizefit-info-left-desc.green').css('display', 'block');
+        $('.icon--triangle-error, .sizefit-info-left-desc.red').css('display', 'none');
+      });
+    }
+  });
+</script>

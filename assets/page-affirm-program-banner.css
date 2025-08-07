@@ -1,0 +1,129 @@
+.affirm-program-banner-container {
+  position: relative;
+}
+
+.affirm-program-banner-container .bg-image,
+.affirm-program-banner-container .bg-image-m {
+  width: 100%;
+}
+
+.affirm-program-banner-container .bg-image img,
+.affirm-program-banner-container .bg-image-m img {
+  display: block;
+  width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+  .affirm-program-banner-container .bg-image-m {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .affirm-program-banner-container .bg-image {
+    display: none;
+  }
+}
+
+.affirm-program-banner-container .container {
+  position: absolute;
+  left: 50%;
+  top: 93px;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 1400px) {
+  .affirm-program-banner-container .container {
+    max-width: 1200px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .affirm-program-banner-container .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .affirm-program-banner-container .container .bg-image-m {
+    display: none;
+  }
+  .affirm-program-banner-container .container .left-box {
+    max-width: 523px;
+  }
+  .affirm-program-banner-container .container .left-box .tips {
+    font-size: 32px;
+    color: #ffffff;
+    line-height: 1;
+  }
+  .affirm-program-banner-container .container .left-box .title {
+    padding-top: 32px;
+    font-size: 64px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1;
+  }
+  .affirm-program-banner-container .container .right-box {
+    max-width: 380px;
+  }
+  .affirm-program-banner-container .container .right-box .description {
+    font-size: 22px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 30px;
+  }
+  .affirm-program-banner-container .container .right-box .button {
+    margin-top: 40px;
+    font-size: 30px;
+    color: #ffffff;
+    line-height: 1;
+    padding: 20px 40px;
+    display: inline-block;
+    background-color: #ee751c;
+    border-radius: 100px;
+    text-transform: none;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .affirm-program-banner-container .container {
+    max-width: 100%;
+    padding: 0 18px;
+    text-align: center;
+  }
+  .affirm-program-banner-container .container .bg-image {
+    display: none;
+  }
+  .affirm-program-banner-container .container .left-box .tips {
+    font-size: 18px;
+    color: #ffffff;
+    line-height: 1;
+  }
+  .affirm-program-banner-container .container .left-box .title {
+    font-size: 42px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 42px;
+    padding: 20px 0;
+  }
+  .affirm-program-banner-container .container .right-box .description {
+    font-size: 14px;
+    font-weight: normal;
+    color: #ffffff;
+    line-height: 18px;
+  }
+  .affirm-program-banner-container .container .right-box .button {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1;
+    padding: 13px 60px;
+    border-radius: 100px;
+    text-transform: none;
+    display: inline-block;
+    background-color: #ee751c;
+    margin-top: 40px;
+  }
+}
+/*# sourceMappingURL=page-affirm-program-banner.css.map */

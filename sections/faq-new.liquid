@@ -1,0 +1,400 @@
+{{ 'faq-new.css' | asset_url | stylesheet_tag }}
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+      --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+  {%- endcapture -%}
+
+<style>
+  .show-none {
+    display: none !important;
+  }
+</style>
+<div class="faq-new-box alp-section  {{ reset_spacing }}" style="{{ style }}">
+  <div class="pop-tips">
+    <div class="icon-box">
+      <svg
+        t="1663578205248"
+        class="icon"
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        p-id="2360"
+        width="200"
+        height="200"
+      >
+        <path d="M407.04 844.8c-9.728 0-18.944-3.584-26.112-9.728l-291.328-245.76c-8.704-7.168-9.728-19.968-2.56-28.672s19.968-9.728 28.672-2.56l291.328 245.76 498.688-616.96c7.168-8.704 19.968-10.24 28.672-3.072 8.704 7.168 10.24 19.968 3.072 28.672L438.784 829.44c-7.168 8.704-16.896 13.824-28.16 14.848-1.024 0.512-2.56 0.512-3.584 0.512z" p-id="2361" fill="#F0F9EB"></path>
+      </svg>
+    </div>
+    <div class="content">A total of 7 pieces of data are queried</div>
+  </div>
+  <div class="search-box">
+    <div class="image-box">
+      <img class="m-none" src="{{section.settings.baseImage | img_url: '1920x'}}" alt="">
+      <img class="pc-none" src="{{section.settings.mbaseImage | img_url: '1920x'}}" alt="">
+    </div>
+    <div class="content-box container">
+      <div class="title">FAQ</div>
+      <div class="search">
+        <div class="placeholder">
+          <div>
+            <svg focusable="false" width="18" height="18" class="icon icon--header-search   " viewBox="0 0 18 18">
+              <path d="M12.336 12.336c2.634-2.635 2.682-6.859.106-9.435-2.576-2.576-6.8-2.528-9.435.106C.373 5.642.325 9.866 2.901 12.442c2.576 2.576 6.8 2.528 9.435-.106zm0 0L17 17" fill="none" stroke="currentColor" stroke-width="1.8"></path>
+            </svg>
+          </div>
+          <span>What are you looking for?</span>
+        </div>
+        <input class="search-input" type="text">
+      </div>
+    </div>
+  </div>
+  <div class="container container-pc">
+    <div class="swiper menu">
+      <div class="swiper-wrapper">
+        {% for item in section.blocks %}
+          {% if item.type == 'faq-base' %}
+            <div class="swiper-slide">
+              <a
+                id="{{item.settings.tagId}}Tag"
+                href="#{{item.settings.tagId}}"
+                class="menu-item {% if forloop.index == 1 %}active{% endif %}"
+              >
+                <span>{{ item.settings.tag }}</span>
+              </a>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="faq-box alp-section-container page-width-2 {{ container }}">
+      {% for item in section.blocks %}
+        {% if item.type == 'faq-base' %}
+          <div class="faq-item">
+            <div id="{{item.settings.tagId}}" class="marsk" style="display: block"></div>
+            <div class="title">
+              {{ item.settings.tag }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19 9l-7 6l-7-6"/>
+              </svg> 
+            </div>
+            <div class="faq-list">
+              {% for ques in section.blocks %}
+                {% if ques.type == 'faq-quest' and ques.settings.quesId == item.settings.tagId %}
+                  <div class="item">
+                    <div class="quest">
+                      {{ ques.settings.question }}
+                    </div>
+                    <div class="answer">
+                      {{ ques.settings.answer }}
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<script>
+  (() => {
+    document.addEventListener('DOMContentLoaded', () => {
+      
+    
+    let _activeTag = 0;
+    let inputTimmer = null; //输入计时器
+    let anTimer = null;
+    let _activeBike = 0;
+
+    let rootDom = document.querySelector('.faq-new-box');
+    let searchInput = rootDom.querySelector('.search-input');
+    let menuItemList = Array.from(rootDom.querySelectorAll('.container-pc .menu .swiper-slide .menu-item'));
+    {% comment %} update {% endcomment %}
+    let faqList = document.querySelectorAll('.container-pc .faq-box .faq-item .faq-list .item , .manual-list > div');
+    console.log(faqList);
+    let faqItemList = Array.from(rootDom.querySelectorAll('.faq-new-box .container-pc .faq-box .faq-item'));
+    let faqItemListReverse = faqItemList.reverse();
+    let bikeItemList = Array.from(
+      rootDom.querySelectorAll('.container-pc .faq-box .troubleshooting-box .bike-list .swiper-slide .bike-item')
+    );
+    let troubleshootingfaqList = Array.from(
+      document.querySelectorAll('.faq-new-box .container-pc .faq-box .troubleshooting-box .faq-list')
+    );
+
+    let isContain = (el) => {
+      const rect = el.getBoundingClientRect();
+      const vWidth = window.innerWidth || document.documentElement.clientWidth;
+      const vHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      if (rect.right < 0 || rect.bottom < 0 || rect.left > vWidth || rect.top > vHeight) {
+        return false;
+      }
+
+      return true;
+    };
+
+    let mySwiper = new Swiper('.menu', {
+      slidesPerView: 'auto',
+    });
+    let mySwiper2 = new Swiper('.bike-list', {
+      slidesPerView: 'auto',
+    });
+
+    Object.defineProperty(this, 'activeTag', {
+      get: () => {
+        return _activeTag;
+      },
+      set: (val) => {
+        menuItemList[_activeTag].classList.remove('active');
+        menuItemList[val].classList.add('active');
+        mySwiper.slideTo(val);
+        _activeTag = val;
+      },
+    });
+
+    Object.defineProperty(this, 'activeBike', {
+      get: () => {
+        return _activeBike;
+      },
+      set: (val) => {
+        bikeItemList[_activeBike].classList.remove('active');
+        bikeItemList[val].classList.add('active');
+        troubleshootingfaqList[val].style.display = 'block';
+        troubleshootingfaqList[_activeBike].style.display = 'none';
+        _activeBike = val;
+      },
+    });
+
+    faqList.forEach((e) => {
+      e.querySelector('.quest').addEventListener('click', () => {
+        if (e.classList.contains('active')) {
+          e.classList.remove('active');
+        } else {
+          e.classList.add('active');
+        }
+      });
+    });
+
+    let searchTitle = (keyWords) => {
+      let activeNum = 0;
+      faqList.forEach((e) => {
+        let title = e.querySelector('.quest').innerText.toLowerCase();
+        let rgx = new RegExp(keyWords.toLowerCase());
+        console.log(keyWords);
+        if (rgx.test(title) && keyWords != '') {
+          e.classList.remove('show-none');
+          e.classList.add('search-actie');
+          activeNum++;
+        } else {
+          e.classList.remove('search-actie');
+          if (keyWords == '') {
+            e.classList.remove('show-none');
+          } else {
+            e.classList.add('show-none');
+          }
+        }
+      });
+
+      if (activeNum > 0) {
+        // A total of 7 pieces of data are queried
+        rootDom.querySelector('.pop-tips .content').innerText = `A total of ${activeNum} pieces of data are queried`;
+        console.log('activeNum', activeNum);
+        rootDom.querySelector('.pop-tips').classList.remove('pop-tips-show');
+        rootDom.querySelector('.pop-tips').classList.remove('pop-tips-hide');
+        rootDom.querySelector('.pop-tips').classList.add('pop-tips-show');
+        clearTimeout(anTimer);
+        anTimer = setTimeout(() => {
+          rootDom.querySelector('.pop-tips').classList.remove('pop-tips-show');
+          rootDom.querySelector('.pop-tips').classList.add('pop-tips-hide');
+          setTimeout(() => {
+            rootDom.querySelector('.pop-tips').classList.remove('pop-tips-hide');
+          }, 500);
+        }, 5000);
+      } else {
+      }
+    };
+
+    searchInput.addEventListener('input', () => {
+      clearTimeout(inputTimmer);
+      inputTimmer = setTimeout(() => {
+        searchTitle(searchInput.value);
+      }, 500);
+      if (searchInput.value != '') {
+        rootDom.querySelector('.search-box .content-box .search .placeholder span').style.height = '0';
+        rootDom.querySelector('.search-box .content-box .search .placeholder svg').style.display = 'none';
+      } else {
+        rootDom.querySelector('.search-box .content-box .search .placeholder span').style.height = 'auto';
+        rootDom.querySelector('.search-box .content-box .search .placeholder svg').style.display = 'block';
+      }
+    });
+
+    menuItemList.forEach((e, i) => {
+      e.addEventListener('click', () => {
+        activeTag = i;
+      });
+    });
+
+    let fflag = 0;
+
+    document.addEventListener('scroll', () => {
+      if (fflag++ % 3 == 0) {
+        let activeFlag = -1;
+        faqItemListReverse.forEach((e, i) => {
+          if (isContain(e)) {
+            activeFlag = faqItemList.length - i - 1;
+          }
+        });
+        activeTag = activeFlag;
+      }
+    });
+
+    bikeItemList.forEach((e, i) => {
+      console.log('i', i);
+      e.addEventListener('click', () => {
+        activeBike = i;
+      });
+    });
+
+});
+  })();
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    $('.faq-new-box .container-pc .faq-box .faq-item .title').click(function () {
+      let $this = $(this).parent();
+      $this.toggleClass('active').siblings().removeClass('active');
+      $this.find('.faq-new-box .container-pc .faq-box .faq-item .faq-list').slideToggle(400);
+      $this.siblings().find('.faq-new-box .container-pc .faq-box .faq-item .faq-list').slideUp(400);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "faq-new",
+  "class": "faq-new",
+  "blocks": [
+    {
+      "type": "faq-base",
+      "name": "faq-base",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "tag Name"
+        },
+        {
+          "type": "text",
+          "id": "tagId",
+          "label": "tag Id"
+        }
+      ]
+    },
+    {
+      "type": "faq-quest",
+      "name": "faq-quest",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "answer"
+        },
+        {
+          "type": "text",
+          "id": "quesId",
+          "label": "question Id"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "background Image",
+      "id": "baseImage"
+    },
+    {
+      "type": "image_picker",
+      "label": "mpbile background Image",
+      "id": "mbaseImage"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "faq-new"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,368 @@
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  .Guide_box-ul {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #1a1a1a2e;
+    width: 200px;
+    height: 50px;
+    border-radius: 16px;
+  }
+  .Guide_box-ul-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+  .Guide_box-ul:hover .Guide_box-ul-content {
+    display: block;
+  }
+  .Guide_box-ul-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  .Guide_box-ul-content a:hover {
+    background-color: #f1f1f1;
+  }
+
+  .Guide_box-ul-content a.active,
+  .Guide_box-ul-content a:hover {
+    background-color: #e83f0c;
+    color: white;
+  }
+
+  .dropdown-toggle::after {
+    content: '\25BC';
+    font-size: 12px;
+    padding-left: 48px;
+    vertical-align: middle;
+  }
+  .dropdown-toggle {
+    text-align: center;
+    display: block;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  @media (min-width: 751px) {
+    .Guide_product_box {
+      margin-top: 32px;
+    }
+
+    .Guide_box-ul li {
+      font-size: 22px;
+      list-style: none;
+      padding: 0 50px 0 10px;
+      cursor: pointer;
+      line-height: 54px;
+    }
+
+    .Guide_box-ul li.active {
+      font-weight: 600;
+      position: relative;
+    }
+
+    .Guide_box-ul li.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 54%;
+      transform: translateX(-68%);
+      width: 74%;
+      height: 5px;
+      background-color: #151515;
+    }
+
+    .Guide_box-de {
+      padding: 0;
+      overflow: hidden;
+      margin-top: 60px;
+      padding: 0 8%;
+    }
+    .Guide_box-de img {
+      width: 100%;
+    }
+    .Guide_box-de video {
+      display: none;
+      width: 100%;
+    }
+    .Guide_box-de li {
+      display: none;
+    }
+
+    .Guide_box-de li.selected {
+      display: block;
+    }
+    .Guide-tab .swiper {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .Guide-tab.alp-section {
+      padding-top: 6px;
+      padding-bottom: 0px;
+    }
+    .Guide_product_box {
+      margin-top: 24px;
+    }
+    .Guide_box-de {
+      padding: 0;
+      margin-top: 32px;
+    }
+    .Guide_box-de {
+      overflow: hidden;
+    }
+
+    .Guide_box-de li.selected {
+      display: block;
+    }
+    .Guide_box-de video {
+      display: none;
+      width: 100%;
+    }
+    .Guide_box-de img {
+      width: 100%;
+      aspect-ratio: 800/450;
+    }
+    .Guide_box-de-Top {
+      padding-right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 42px;
+    }
+    .Guide_box-de-Top a {
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+  }
+</style>
+
+<div id="alinkGuiList" class="Guide-tab jd-Top alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width-2 {{ container }}">
+    <div class="Guide-product_head">
+      <h2 class="Guide_p_h headline__h2l">{{ section.settings.header }}</h2>
+      <div class="Guide_p_d text_content">{{ section.settings.desc }}</div>
+    </div>
+    <div class="Guide_product_box">
+      <div class="Guide_box-ul">
+        <a href="#" id="dropdownTitle" class="dropdown-toggle"></a>
+        <div class="Guide_box-ul-content">
+          {% for item in section.blocks %}
+            <a
+              class="{% if item.settings.slideshow %}active{%endif%}"
+              href="{{item.settings.url}}#alinkGuiList"
+              onclick="setActiveLink(this)"
+            >
+              {{- item.settings.cate_name -}}
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <ul class="Guide_box-de">
+        <div class="swiper guideTabSwiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              <li class="swiper-slide {% if forloop.first %}selected{%endif%}">
+                {% if block.settings.video_url != blank %}
+                  <img
+                    loading="lazy"
+                    class="preview-img"
+                    {% render 'image-attributes',
+                      image: block.settings.img,
+                      sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000'
+                    %}
+                  >
+
+                  <video
+                    data-component="responsive-video"
+                    playsinline=""
+                    class="responsive-video preview-video js-video-preview lazyloaded"
+                    preload="auto"
+                    autoplay=""
+                    controls
+                    loop=""
+                    muted="muted"
+                    src="{{block.settings.video_url }}"
+                    poster=""
+                  ></video>
+                {% elsif block.settings.video_url == blank %}
+                  <img
+                    loading="lazy"
+                    class="preview-image"
+                    {% render 'image-attributes',
+                      image: block.settings.img,
+                      sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000'
+                    %}
+                  >
+                {% endif %}
+              </li>
+            {% endfor %}
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    var aTags = $('.Guide_box-ul-content a.active');
+    document.getElementById('dropdownTitle').textContent = aTags.text();
+    document.getElementById('dropdownTitle').href = aTags.attr('href');
+
+    // 点击下拉菜单更新标题
+    var dropdownContent = document.querySelector('.Guide_box-ul-content');
+    dropdownContent.addEventListener('click', function (event) {
+      if (event.target.tagName === 'A') {
+        document.getElementById('dropdownTitle').textContent = event.target.textContent;
+        document.getElementById('dropdownTitle').href = event.target.href;
+      }
+    });
+
+    // 轮播
+    var swiper2 = new Swiper('.guideTabSwiper', {
+      slidesPerView: 'auto',
+    });
+
+    // 视频播放
+    $('.preview-img').click(function () {
+      $(this).css({ display: 'none' });
+      $(this).parent().find('.preview-video').css({ display: 'block' });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Alp Guide tab",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "header",
+      "label": "header"
+    },
+    {
+      "type": "textarea",
+      "id": "desc",
+      "label": "desc"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Guide",
+      "type": "Guide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "cate_name",
+          "label": "Categroy Name"
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "link"
+        },
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "img"
+        },
+        {
+          "type": "checkbox",
+          "id": "slideshow",
+          "label": "active",
+          "default": false
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Guide tab"
+    }
+  ]
+}
+{% endschema %}

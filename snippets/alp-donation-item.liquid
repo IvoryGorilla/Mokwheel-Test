@@ -1,0 +1,81 @@
+{%- if product -%}
+  <div
+    class="alp-donation-item relative"
+    data-donation-item
+    data-donation-quantity="0"
+    data-pack-variant="{{ product.first_available_variant.id }}"
+  >
+    <div class="full-img-wrap">
+      {% render 'alp-responsive-image',
+        image: bs.image,
+        image_mobile: bs.image,
+        desktop_width: 600,
+        mobile_width: 400
+      %}
+    </div>
+    <div class="donation-item-container relative">
+      <div class="donation-item-flex-1">
+        <div class="donation-item-logo">
+          {{ bs.logo_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+        </div>
+        <div class="donation-item-title">
+          <b>{{ bs.title }}</b>
+        </div>
+        <div class="donation-item-quantity">
+          <div data-minus>&minus;</div>
+          <div data-quantity-wrapper>
+            {{ bs.price_format }}
+            {% comment %} input {% endcomment %}
+            <input
+              type="number"
+              name="quantity"
+              min="0"
+              step="1"
+              value="0"
+              data-quantity
+            >
+          </div>
+          <div data-plus>&#43;</div>
+        </div>
+      </div>
+      <div class="donation-item-flex-2">
+        <div class="donation-item-description">
+          {{ bs.description }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      const donationItem = document.querySelector('[data-donation-item]');
+      let quantity = donationItem.getAttribute('data-donation-quantity');
+      let input = document.querySelector('[data-donation-item] input');
+      donationItem.querySelector('[data-minus]').addEventListener('click', () => {
+        if (quantity > 0) {
+          quantity--;
+          donationItem.setAttribute('data-donation-quantity', quantity);
+          donationItem.querySelector('[data-quantity]').value = quantity;
+        }
+      });
+      donationItem.querySelector('[data-plus]').addEventListener('click', () => {
+        quantity++;
+        donationItem.setAttribute('data-donation-quantity', quantity);
+        donationItem.querySelector('[data-quantity]').value = quantity;
+      });
+      donationItem.querySelector('[data-quantity]').addEventListener('change', (e) => {
+        quantity = e.target.value;
+        if (quantity < 0) {
+          quantity = 0;
+          donationItem.querySelector('[data-quantity]').value = quantity;
+        }
+        donationItem.setAttribute('data-donation-quantity', quantity);
+      });
+      donationItem.querySelector('[data-quantity]').addEventListener('blur', function() {
+          if (input.value === '') {
+            input.value = '0';
+          }
+      });
+    });
+  </script>
+{%- endif -%}

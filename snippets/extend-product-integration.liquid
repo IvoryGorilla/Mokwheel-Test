@@ -1,0 +1,115 @@
+<script>
+  // Run scripts on DOMContentLoaded to avoid affecting site load time
+  window.addEventListener('DOMContentLoaded', function () {
+    // Checks if Extend lives in the window and the active currency is USD before showing Extend offers
+    if (
+      window.Extend &&
+      window.ExtendShopify &&
+      window.Shopify.currency.active === 'USD' &&
+      meta.page.pageType === 'product'
+    ) {
+      /************************/
+      /* Initial Variables */
+      /************************/
+      const productFormSelector = '.alp-buy-form'; // Change this to the product form element
+      const addToCartButtonSelector = `.alp-submit-button [type="submit"]`; // Change this to the Add-To-Cart element
+      const productForm = document.querySelector(productFormSelector);
+      const addToCartButton = productForm.querySelector(addToCartButtonSelector);
+      const extendOffer = document.createElement('div');
+      const productCategory = meta && meta.product ? meta.product.type : null;
+      const insertElement = document.querySelector('.alp-extend-block');
+      extendOffer.className = 'extend-offer';
+      //addToCartButton.parentElement.insertBefore(extendOffer, addToCartButton);
+      insertElement.parentElement.insertBefore(extendOffer, insertElement);
+
+      /************************/
+      /* QA Cypress Variables */
+      /************************/
+      window.Extend.integration.productForm = productForm;
+      window.Extend.integration.addToCartButton = addToCartButton;
+      window.Extend.integration.extendOffer = extendOffer;
+
+      /************************/
+      /* initProductOffer */
+      /************************/
+      // Initializes product offers and handles ATC button functionality for the main PDP ATC
+      function initProductOffer() {
+        // Fail safes
+        if (!productForm || !addToCartButton || !extendOffer || !insertElement) return;
+
+        // Check if product is an extend warranty, if so disable the atc
+        function isExtend() {
+          if (meta.product && meta.product.vendor === 'Extend') {
+            addToCartButton.disabled = true;
+          }
+        }
+
+        // Checks if product is an Extend warranty and if so disables
+        isExtend();
+
+        let variantId = productForm.id.value;
+        let productPrice =
+          meta && meta.product && meta.product.variants
+            ? parseInt(
+                meta.product.variants.filter((variant) => variant.id.toString() === variantId.toString())[0].price
+              )
+            : null;
+
+        // Listens for changes to the productForm and sets the activeProduct for extend via variantID
+        productForm.addEventListener('change', function () {
+          variantId = productForm.id.value;
+          if (variantId) {
+            productPrice =
+              meta && meta.product && meta.product.variants
+                ? parseInt(
+                    meta.product.variants.filter((variant) => variant.id.toString() === variantId.toString())[0].price
+                  )
+                : null;
+            Extend.setActiveProduct(extendOffer, {
+              referenceId: variantId,
+              price: productPrice,
+              category: productCategory,
+            });
+            isExtend();
+          }
+        });
+
+        // Grabs the variantId from the productForm and renders the initial offers for it
+        variantId = productForm.id.value;
+
+        Extend.buttons.render(extendOffer, { referenceId: variantId, price: productPrice, category: productCategory });
+
+        //click simulation handling add to cart
+        function handleAddToCart(e) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+
+          const quantityEl = productForm.querySelector('[name="quantity"]');
+          const quantity = quantityEl && quantityEl.value;
+          ExtendShopify.handleAddToCart(extendOffer, {
+            quantity: quantity,
+            modal: true,
+            done: function () {
+              // Trigger Analytics
+              if (window.Extend.integration.analytics) window.Extend.integration.productAnalytics(variantId, quantity);
+              // remove default click listener
+              addToCartButton.removeEventListener('click', handleAddToCart, true);
+              //click atc button
+              addToCartButton.click();
+              // add default click listener back
+              addToCartButton.addEventListener('click', handleAddToCart, true);
+            },
+          });
+        }
+
+        //run handleCaddtoCart when we click ATC, capturing event
+        addToCartButton.addEventListener('click', handleAddToCart, true);
+      }
+
+      // Initial product offer render
+      initProductOffer();
+    }
+  });
+</script>
+
+<style></style>

@@ -1,0 +1,284 @@
+{% schema %}
+{
+  "name": "Alp Product FAQ",
+  "class": "alp-product-faq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "faqtitle",
+      "label": "Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item_tab",
+      "name": "Item Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "faqs_question",
+          "label": "Faqs Question",
+          "default": "Specifications"
+        },
+        {
+          "type": "richtext",
+          "id": "faqs_answer",
+          "label": "Faqs Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Product FAQ"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .arrow-up {
+    display: none;
+  }
+  .help-faq-all {
+    max-width:1600px;
+    margin:0 auto;
+    padding:64px 0;
+  }
+  .help-faq-title {
+    font-size: 48px;
+    line-height: 120%;
+    text-align: center;
+    color: #1A1A1A;
+  }
+
+  .help-faq-content {
+    margin-top: 60px;
+  }
+
+  .help-faq-question p {
+    margin: 0;
+  }
+  .help-faq-answer p {
+    margin-top: 0;
+  }
+  .help-faq-item .help-faq-question {
+    display: flex;
+    align-items: center;
+    line-height: 1.2;
+    font-size: clamp(16px, 2vw, 18px);
+    justify-content: space-between;
+    color: #1a1a1a;
+    cursor: pointer;
+    padding: 1em 6px 1em 0;
+    font-weight: 500;
+  }
+  .help-faq-item {
+    border-bottom: 1px solid #E1E3E4;
+  }
+  .help-faq-answer {
+    display: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin-bottom: calc(var(--alp-gutter-y) * 1);
+    line-height: 1.65;
+    opacity: 0.75;
+  }
+
+  .help-faq-item .help-faq-question {
+    font-weight: 600;
+  }
+
+  span.arrow-down svg,
+  span.arrow-up svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 1em;
+  }
+
+  .test-ride-faq .help-faq-item .help-faq-question {
+    gap: 12px;
+    padding: 20px 0;
+  }
+
+  .faq-arrow {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .faq-arrow svg {
+    color: #aaaaaa;
+    display: block;
+    transition: 0.2s;
+    width: 12px;
+  }
+  .help-faq-item.active span.faq-arrow svg {
+    transform: rotate(180deg);
+  }
+  .test-ride-faq .help-faq-answer {
+    color: #767676;
+    opacity: 1;
+    padding: 24px 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
+  }
+  .help-faq-item-title.headline__h6l {
+    font-weight: 400;
+    margin: 0;
+    font-size: 16px;
+    line-height: 120%;
+    color: #1A1A1A;
+  }
+
+  @media (max-width: 750px) {
+    .help-faq-all {
+      padding: 0;
+    }
+    .help-faq-title {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 120%;
+      text-align: center;
+    }
+    .help-faq-content {
+      margin-top: 24px;
+    }
+    .test-ride-faq .help-faq-item .help-faq-question {
+      padding:21.5px 0;
+    }
+    .test-ride-faq .help-faq-answer {
+      font-size: 14px;
+      line-height: 150%;
+    }
+    .help-faq-item-title.headline__h6l {
+      font-size: 14px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container test-ride-faq page-width {{ container }}">
+    <div class="help-faq-all">
+      <h2 class="help-faq-title headline__t2">
+        {{ st.faqtitle }}
+      </h2>
+      <div class="help-faq-content">
+        <div class="help-faq-box">
+          <div class="help-faq-left">
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="help-faq-item">
+                <h3 class="help-faq-question">
+                  <div class="help-faq-item-title headline__h6l">
+                    {{ bs.faqs_question -}}
+                  </div>
+                  <span class="faq-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" fill="none">
+                      <path d="M1 1L9.5 9.5L18 1" stroke="black" stroke-opacity="0.8"/>
+                    </svg>
+                  </span>
+                </h3>
+                <div class="help-faq-answer headline__p4">{{ bs.faqs_answer }}</div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // $('.help-faq-item:nth-child(1) .help-faq-answer').css('display', 'block');
+    // $('.help-faq-item:nth-child(1)').addClass('active');
+
+    $('.help-faq-question').on('click', function (e) {
+      if ($(this).parent().find('.help-faq-answer').css('display') == 'none') {
+        $(this).parent().addClass('active');
+        $(this).parent().find('.help-faq-answer').stop().slideDown(200);
+      } else {
+        $(this).parent().removeClass('active');
+        $(this).parent().find('.help-faq-answer').stop().slideUp(200);
+      }
+    });
+  });
+</script>

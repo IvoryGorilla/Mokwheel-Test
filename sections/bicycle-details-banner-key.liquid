@@ -1,0 +1,307 @@
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --block-max-width: {{ st.block_max_width }};
+  }
+</style>
+
+{% style %}
+{% endstyle %}
+<style>
+  .bicycle-details-banner-key .subBtitle {
+    font-weight: 500;
+    margin-top: 0.75em;
+    margin-bottom: 0.5em;
+  }
+  .Btitle.headline__h2 p {
+    margin-bottom: 0;
+  }
+  .subBtitle.headline__h3 p {
+    margin-bottom: 0;
+  }
+  .bicycle-details-banner-key .desc p {
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .bicycle-details-banner-key .image img {
+    width: 100%;
+    display: block;
+    height: auto;
+  }
+  .bicycle-details-banner-key .keySwiperImage {
+    margin-top: calc(var(--alp-gutter-y) * 1.25);
+  }
+
+  .alp-bdbk-slider-item.swiper-slide {
+    width: min(100%, var(--block-max-width));
+  }
+
+  @media screen and (min-width: 999px) {
+    .bicycle-details-banner-key .Btitle {
+      text-transform: capitalize;
+    }
+    .bicycle-details-banner-key .subBtitle {
+      color: #000;
+      /* font-family: OPPOSans; */
+      text-transform: capitalize;
+    }
+    .bicycle-details-banner-key .image {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .bicycle-details-banner-key .desc {
+      color: #717171;
+      /* font-family: Poppins; */
+      text-transform: capitalize;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%; /* 22.5px */
+    }
+
+    .bicycle-details-banner-key .jianju {
+      margin-top: calc(var(--alp-gutter-y) * 1.25);
+    }
+
+    .bicycle-details-banner-key .swiper-button-prev::after,
+    .bicycle-details-banner-key .swiper-button-next::after {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 999px) {
+    .alp-bdbk-slider-item.swiper-slide {
+      width: min(100%, calc(var(--block-max-width) * 0.8));
+    }
+    .bicycle-details-banner-key {
+    }
+    .bicycle-details-banner-key .Btitle {
+      /*  */
+    }
+    .bicycle-details-banner-key .keySwiperImage {
+      margin-top: calc(var(--alp-gutter-y) * 0.65);
+    }
+    .bicycle-details-banner-key .subBtitle {
+      margin-top: 0.5em;
+      margin-bottom: 0.15em;
+      color: #000;
+      /*  */
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 150%;
+      text-transform: capitalize;
+    }
+    .bicycle-details-banner-key .image {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .bicycle-details-banner-key .desc {
+      color: #717171;
+      /* font-family: Poppins; */
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%; /* 18px */
+      text-transform: capitalize;
+    }
+    .bicycle-details-banner-key .swiper-button-prev::after,
+    .bicycle-details-banner-key .swiper-button-next::after {
+      display: none;
+    }
+    .bicycle-details-banner-key .jianju {
+      margin-top: calc(var(--alp-gutter-y) * 1);
+    }
+  }
+</style>
+<div class="alp-section  overflow-hidden {{ reset_spacing }}" data-stid="{{ section.id }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    <div class="bicycle-details-banner-key bicycle-details">
+      <div class="BtitleSize">
+        <div class="Btitle headline__h2s">{{ section.settings.Btitle }}</div>
+      </div>
+      <div class="swiper keySwiperImage overflow-visible" id="{{ section.id }}">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="alp-bdbk-slider-item swiper-slide">
+              <div class="image">
+                {% render 'alp-single-image',
+                  image: block.settings.image,
+                  width: 1280,
+                  aspect_ratio: st.image_aspect_ratio
+                %}
+              </div>
+              <div class="subBtitle headline__h4">{{ block.settings.subBtitle | strip_html }}</div>
+              <div class="desc headline__h5">{{ block.settings.desc }}</div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-navs swiper-pagination-products jianju">
+          {% render 'swiper-pagination', class: 'pagination-products' %}
+          {% render 'swiper-navigation', class: '' %}
+        </div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    let swiperId = '{{ section.id }}';
+    let swiperIdnum = swiperId.replace(/\D/g, '');
+    let swiperVar = 'TheSwiper' + swiperIdnum;
+    swiperVar = new Swiper('.keySwiperImage#{{ section.id }}', {
+      breakpoints: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        480: {
+          //当屏幕宽度大于等于768
+          slidesPerView: 'auto',
+          spaceBetween: alp_global.gap * 1.5,
+        },
+        320: {
+          //当屏幕宽度大于等于320
+          slidesPerView: 1.2,
+          spaceBetween: 12,
+        },
+      },
+      pagination: {
+        el: '.pagination-products',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "bd-banner-key",
+  "class": "bd-banner-key",
+  "settings": [
+    {
+      "type": "text",
+      "id": "Btitle",
+      "label": "Big Btitle"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "3/2"
+    },
+    {
+      "type": "text",
+      "id": "block_max_width",
+      "label": "Block Max Width",
+      "default": "420px"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "subBtitle",
+          "label": "Sub Btitle"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Desc"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "bd-banner-key"
+    }
+  ]
+}
+{% endschema %}

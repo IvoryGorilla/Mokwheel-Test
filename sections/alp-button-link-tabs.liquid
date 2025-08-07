@@ -1,0 +1,192 @@
+{% schema %}
+{
+  "name": "Alp Button Link Tabs",
+  "class": "alp-button-link-tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_active",
+          "label": "Is active",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Button Link Tabs"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-button-link-tab-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .alp-button-link-tab-items {
+    display: flex;
+    border: 1px solid #d4d4d4;
+    border-radius: 100px;
+  }
+
+  .alp-button-link-tab-item a {
+    border-radius: 100px;
+    line-height: 1.2;
+    padding: 0.75em 2em;
+    transition: 0.3s;
+    display: inline-flex;
+  }
+
+  .alp-button-link-tab-item a.active {
+    background: var(--main-color);
+    color: #fff;
+  }
+
+  .alp-button-link-tab-items:hover .alp-button-link-tab-item a {
+    background: transparent;
+    color: currentColor;
+  }
+
+  .alp-button-link-tab-items:hover .alp-button-link-tab-item a:hover {
+    background: var(--main-color);
+    color: #fff;
+  }
+  .alp-button-link-tab-item a {
+    justify-content: center;
+    min-width: 140px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .alp-button-link-tab-section{
+      padding-bottom: 0;
+    }
+    .alp-button-link-tab-item a {
+      padding: 0.75em 1em;
+      font-size: 12px;
+      text-align: center;
+      min-width: 100px;
+      justify-content: center;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-button-link-tab-section alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-button-link-tab-container page-width {{ container }}">
+    <div class="alp-button-link-tab-items">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          <div class="alp-button-link-tab-item">
+            <a href="{{ bs.url }}" class="alp-button-link-tab-link {% if bs.is_active %} active{% endif %}">
+              {{- bs.text -}}
+            </a>
+          </div>
+        {%- endfor -%}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

@@ -1,0 +1,206 @@
+{% schema %}
+{
+  "name": "affiliate-image-text",
+  "class": "affiliate-image-text",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image-text-item",
+      "name": "Image Text Item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "affiliate-image-text-item-image",
+          "label": "Affiliate Image Text Item Image"
+        },
+        {
+          "type": "text",
+          "id": "affiliate-image-text-item-title",
+          "label": "Affiliate Image Text Item Title"
+        },
+        {
+          "type": "textarea",
+          "id": "affiliate-image-text-item-content",
+          "label": "Affiliate Image Text Item Content"
+        },
+        {
+          "type": "text",
+          "id": "affiliate-image-text-item-button",
+          "label": "Affiliate Image Text Item Button"
+        },
+        {
+          "type": "text",
+          "id": "affiliate-image-text-item-url",
+          "label": "Affiliate Image Text Item Url"
+        },
+        {
+          "type": "checkbox",
+          "id": "affiliate-image-text-item-reverse",
+          "label": "Affiliate Image Text Item Reverse",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "affiliate-image-text"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+  --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+  .affiliate-image-text-item {
+    display: flex;
+    align-items: center;
+    height: 450px;
+    gap: 64px;
+    padding-bottom: 100px;
+    box-sizing: content-box;
+  }
+  .image-text-reverse {
+    flex-direction: row-reverse;
+  }
+  .affiliate-image-text-item-image {
+    width: 100%;
+    height: 100%;
+    flex: 4;
+  }
+  .affiliate-image-text-item-image img {
+    display: block;
+    height: 100%;
+  }
+  .affiliate-image-text-item-text {
+    padding-right: 64px;
+    flex: 3;
+  }
+  .affiliate-image-text-item-title {
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 120%;
+    text-transform: capitalize;
+  }
+  .affiliate-image-text-item-content {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+  }
+  .affiliate-image-text-item-button {
+    margin-top: 60px;
+    padding: 15px 40px;
+    border: 1px solid #1A1A1A;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 120%;
+    text-transform: capitalize;
+    display: flex;
+    width: fit-content;
+    border-radius: 4px;
+  }
+  @media (max-width: 768px) {
+    .affiliate-image-text-item {
+      flex-direction: column;
+      gap: 24px;
+      height: auto;
+      padding-bottom: 60px;
+    }
+    .affiliate-image-text-item-text {
+      padding: 0;
+    }
+    .affiliate-image-text-item-title {
+      font-size: 24px;
+    }
+    .affiliate-image-text-item-content {
+      margin-top: 6px;
+      font-size: 16px;
+    }
+    .affiliate-image-text-item-button {
+      margin-top: 24px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }} ">
+  <div class="alp-section-container page-width {{ container }} ">
+    {%- for block in section.blocks -%}
+      {% liquid
+        assign bs = block.settings
+      %}
+        <div class="affiliate-image-text-item {% if bs.affiliate-image-text-item-reverse %} image-text-reverse {% endif %} ">
+          {% if bs.affiliate-image-text-item-image != blank %}
+            <div class="affiliate-image-text-item-image">
+              <img
+                src="{{ bs.affiliate-image-text-item-image | image_url: width: 1200 }}"
+                width="auto"
+                height="auto"
+              >
+            </div>
+          {% endif %}
+          <div class="affiliate-image-text-item-text">
+            <div class="affiliate-image-text-item-title">{{ bs.affiliate-image-text-item-title }}</div>
+            <div class="affiliate-image-text-item-content">{{ bs.affiliate-image-text-item-content }}</div>
+            {% if bs.affiliate-image-text-item-button != blank %}
+              <a class="affiliate-image-text-item-button" href="{{ bs.affiliate-image-text-item-url }}">
+                {{ bs.affiliate-image-text-item-button }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+    {%- endfor -%}
+  </div>
+</div>

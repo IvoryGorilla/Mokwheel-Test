@@ -1,0 +1,32 @@
+{%- assign free_text = bs.free_text | default: 'Free' -%}
+<div class="alp-addional-product-title">
+  <div>
+    {%- if product.metafields.custom.additional_options_title != blank -%}
+      {{ product.metafields.custom.additional_options_title }}
+    {%- else -%}
+      {{ product.title }}
+    {%- endif -%}
+  </div>
+  {%- if product.metafields.custom.new_description != blank -%}
+    <div class="alp-addional-product-description-n1">
+      {{ product.metafields.custom.new_description | metafield_tag }}
+    </div>
+  {%- endif -%}
+</div>
+<div class="alp-addional-product-price">
+  {%- if product.metafields.custom.discount_price != blank -%}
+    {%- assign discount_price = product.metafields.custom.discount_price -%}
+    {%- if discount_price == 0 -%}
+      {%- assign discount_price = free_text -%}
+    {%- else -%}
+      {%- assign discount_price = discount_price | money -%}
+    {%- endif -%}
+    <s class="cart-item__old-price ">{{ product.price | money }}</s>
+    <strong class="price--final" data-discount-price="{{ product.metafields.custom.discount_price }}">
+      {{- discount_price -}}
+    </strong>
+  {%- else -%}
+    <s class="cart-item__old-price ">{{ product.price | money }}</s>
+    <strong class="price--final" data-discount-price="0">{{ free_text }}</strong>
+  {%- endif -%}
+</div>

@@ -1,0 +1,272 @@
+{% schema %}
+{
+  "name": "Alp FAQ Info Bk",
+  "class": "alp-faq-info",
+  "settings": [
+    {
+      "type": "text",
+      "id": "home_text",
+      "label": "Home Text",
+      "default": "FAQ"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": " Button Text",
+      "default": "Get More FAQ"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": " Button URL"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": " Title",
+          "default": "Specifications"
+        },
+        {
+          "type": "richtext",
+          "id": "rich_content",
+          "label": "Richtext"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp FAQ Info Bk"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+      --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+  {%- endcapture -%}
+
+{% style %}
+  .alp-faq-info p {
+    margin: 0;
+  }
+  .alp-faq-info-con {
+    padding-bottom: calc(var(--padding-bottom) * 4px);
+    margin-bottom: var(--spacing);
+  }
+  .alp-faq-info-item {
+    border-bottom: 1px solid #b5b5b5;
+  }
+  .alp-faq-info-item-title {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: calc(var(--alp-gutter-y) * 0.75) 0;
+    border-top: 1px solid #b5b5b5;
+  }
+
+  /* .alp-faq-info-item-title svg {
+      color: var(--new-color);
+      transition: 0.5s;
+      display: block;
+    }
+    
+    .alp-faq-info-item.active .alp-faq-info-item-title svg {
+      transform: rotate(180deg);
+    } */
+
+  .alp-faq-info-item .jd-animated-plus::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  .alp-faq-info-item.active .jd-animated-plus::before {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .alp-faq-info-item .animated-plus {
+    position: relative;
+    width: 10px;
+    height: 10px;
+  }
+
+  .alp-faq-info-item .animated-plus::before,
+  .alp-faq-info-item .animated-plus::after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    background-color: currentColor;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  }
+
+  .alp-faq-info-item .animated-plus::before {
+    width: 10px;
+    height: 2px;
+    opacity: 1;
+  }
+
+  .alp-faq-info-item .animated-plus::after {
+    width: 2px;
+    height: 10px;
+  }
+
+  .alp-technical-info-item.active .animated-plus::before {
+    opacity: 0;
+  }
+
+  .alp-faq-info-item-content {
+    display: none;
+    padding-bottom: calc(var(--alp-gutter-y) * 1.5);
+  }
+
+  .faq-text-list .faq-text-item {
+    margin-bottom: calc(var(--alp-gutter-y) * 0.75);
+  }
+  .faq-text-list .faq-text-item .faq-text-item-title {
+    font-size: clamp(12px, 2.2vw, 18px);
+  }
+
+  .faq-text-item-title {
+    margin: 0;
+    font-weight: 600;
+  }
+  .faq-text-item-content {
+    margin-top: calc(var(--alp-gutter-y) * 0.25);
+  }
+
+  .faq-text-button {
+    font-weight: 600;
+  }
+
+  .faq-text-button a {
+    text-decoration: underline;
+    transition: 0.3s;
+  }
+
+  .faq-text-button a:hover {
+    color: var(--new-color);
+  }
+{% endstyle %}
+
+<div class="alp-faq-info alp-section  {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-faq-info-con alp-section-container page-width {{ container }}">
+    <div class="alp-faq-info-item">
+      <div class="alp-faq-info-item-title">
+        <div class="headline__h5">{{ st.home_text }}</div>
+        <span class="animated-plus jd-animated-plus"></span>
+        {% comment %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19 9l-7 6l-7-6"/>
+          </svg>
+        {% endcomment %}
+      </div>
+      <div class="alp-faq-info-item-content">
+        <div class="faq-text-list">
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div class="faq-text-item">
+              <div class="faq-text-item-title headline__h6">
+                {{ bs.title }}
+              </div>
+              <div class="faq-text-item-content">
+                {{ bs.rich_content }}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+        <div class="faq-text-button">
+          <a href="{{ st.button_url }}">{{ st.button_text }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    $('.alp-faq-info-item-title').click(function () {
+      let $this = $(this).parent();
+      $this.toggleClass('active');
+      $this.siblings().removeClass('active');
+      $this.find('.alp-faq-info-item-content').stop().slideToggle(400);
+      $this.siblings().find('.alp-faq-info-item-content').stop().slideUp(400);
+    });
+  });
+</script>

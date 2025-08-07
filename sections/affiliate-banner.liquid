@@ -1,0 +1,193 @@
+{% schema %}
+{
+  "name": "affiliate-banner",
+  "class": "affiliate-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "affiliate-banner-title",
+      "label": "Affiliate Banner Title"
+    },
+    {
+      "type": "richtext",
+      "id": "affiliate-banner-desc",
+      "label": "Affiliate Banner Desc"
+    },
+    {
+      "type": "text",
+      "id": "affiliate-banner-button",
+      "label": "Affiliate Banner Button"
+    },
+    {
+      "type": "url",
+      "id": "affiliate-banner-url",
+      "label": "Affiliate Banner Url"
+    },
+    {
+      "type": "image_picker",
+      "id": "affiliate-banner-image",
+      "label": "Affiliate Banner Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "affiliate-banner-image-mb",
+      "label": "Referal Win Section5 Image Mobile"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    
+  ],
+  "presets": [
+    {
+      "name": "affiliate-banner"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+  --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+  .affiliate-banner-image {
+    position: absolute;
+    width: 100%;
+    max-width: 2048px;
+    height: 600px;
+  }
+  .affiliate-banner-image img {
+    height: 100%;
+  }
+  .affiliate-banner-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 610px;
+    min-height: 600px;
+    position: relative;
+    justify-content: center;
+  }
+  .affiliate-banner-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-transform: capitalize;
+  }
+  .affiliate-banner-desc {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%;
+  }
+  .affiliate-banner-desc p {
+    margin: 0;
+  }
+  .affiliate-banner-button {
+    margin-top: 48px;
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 120%;
+    text-transform: capitalize;
+    color: #1a1a1a;
+    background: #ffffff;
+    display: flex;
+    border-radius: 4px;
+    width: fit-content;
+  }
+  @media (max-width: 768px) {
+    .affiliate-banner-image {
+      height: 450px;
+    }
+    .affiliate-banner-content {
+      align-items: center;
+      min-height: 450px;
+    }
+    .affiliate-banner-title {
+      font-size: 28px;
+    }
+    .affiliate-banner-desc {
+      font-size: 16px;
+      text-align: center;
+    }
+    .affiliate-banner-button {
+      margin-top: 24px;
+      padding: 15px 28px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }} ">
+  <div class="affiliate-banner-image hide_desktop">
+    <img
+      src="{{ st.affiliate-banner-image-mb | image_url: width: 1200 }}"
+      width="auto"
+      height="auto"
+    >
+  </div>
+  <div class="affiliate-banner-image hide_mobile">
+    <img
+      src="{{ st.affiliate-banner-image | image_url: width: 1200 }}"
+      width="auto"
+      height="auto"
+    >
+  </div>
+  <div class="alp-section-container page-width {{ container }} affiliate-banner-container">
+    <div class="affiliate-banner-content">
+      <h1 class="affiliate-banner-title">
+        {{ st.affiliate-banner-title }}
+      </h1>
+      <div class="affiliate-banner-desc">
+        {{ st.affiliate-banner-desc }}
+      </div>
+      <a class="affiliate-banner-button" href="{{ st.affiliate-banner-url }}">{{ st.affiliate-banner-button }}</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,426 @@
+{% schema %}
+{
+  "name": "Alp Rider Reviews New",
+  "class": "alp-rider-reviews-new",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "280/240"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "view",
+          "label": "View",
+          "default": "953 Views"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "hover_video",
+          "label": "Hover Video"
+        },
+        {
+          "type": "url",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "id": "video_url",
+          "type": "video_url",
+          "label": "Video url",
+          "accept": ["youtube", "vimeo"],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "info": "youtube or vimeo url"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Title",
+          "default": "<p>Momentum Reviews: The Aventon Soltera.2</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_img",
+          "label": "Author Image"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name",
+          "default": "Momentum-Smart Living by Bicycle"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Rider Reviews New"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --block-max-width: {{ st.block_max_width }};
+  }
+</style>
+
+{% style %}
+  .alp-rider-reviews-new.alp-section{
+    padding: var(--spacing) 0;
+  }
+  .rider-reviews-item-content {
+    border: 1px solid #000000;
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  h3.headline__h6.rider-reviews-item-title {
+    font-weight: bold;
+    font-size: clamp(16px, 1.5vw, 18px);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .rider-reviews-author-name {
+    color: #666666;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .rider-reviews-item-thumbnail-container img {
+    display: block;
+  }
+
+  .rider-reviews-item-image-inner {
+    position: relative;
+  }
+
+  .rider-reviews-play-btn {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .rider-reviews-play-btn svg {
+    width: 48px;
+    height: 48px;
+    opacity: 0.6;
+  }
+
+  .alp-rider-reviews-item-new.swiper-slide {
+    height: auto;
+  }
+
+  .alp-rider-reviews-item-new.swiper-slide > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .alp-rider-reviews-item-new.swiper-slide > div .rider-reviews-item-content {
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .swiper-navs-new-1.swiper-pagination-rider-reviews-new {
+    position: absolute;
+    top: 50%;
+    left: -25px;
+    right: -25px;
+    margin-top: -25px;
+  }
+{% endstyle %}
+
+<div
+  class="alp-rider-reviews-new alp-section overflow-hidden  {{ reset_spacing }}"
+  data-stid="{{ section.id }}"
+  style="{{ style }}"
+>
+  <div class="alp-section-container rider-reviews-new-container page-width {{ container }}">
+    {%- if st.title != blank -%}
+      <h2 class="headline__h2 big-title">{{ st.title }}</h2>
+    {%- endif -%}
+    <div
+      class="alp-rider-reviews-new-swiper swiper overflow-visible"
+      id="{{ section.id | replace: '-', '' | prepend: 'id_' }}"
+    >
+      <div class="swiper-wrapper">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+              assign video_id = ''
+              if bs.video_url.type == 'youtube'
+                assign video_id = bs.video_url | replace: 'https://www.youtube.com/watch?v=', ''
+              elsif bs.video_url.type == 'vimeo'
+                assign video_id = bs.video_url | replace: 'https://vimeo.com/', ''
+              endif
+            %}
+            {%- capture online_video_url -%}
+            {%- if bs.video_url.type == 'youtube' -%}
+            https://www.youtube.com/embed/{{ video_id }}?controls=0&autoplay=1&mute=0&playsinline=1&loop=0&playlist={{ video_id }}
+            {%- elsif bs.video_url.type == 'vimeo' -%}
+            https://player.vimeo.com/video/{{ video_id }}?controls=0background=1&autoplay=1&muted=0&loop=0
+            {%- endif -%}
+            {%- endcapture -%}
+            <div
+              class="alp-rider-reviews-item-new swiper-slide"
+              data-id="{{ block.id | replace: '-', '' }}"
+            >
+              <div class="alp-rider-reviews-item-new-inner relative">
+                {% if bs.video != blank %}
+                  <a
+                    class="full-aa"
+                    href="{{ bs.video }}"
+                    data-fslightbox="reviews"
+                  ></a>
+                {%- endif -%}
+                {%- if bs.video_url.type == 'youtube' -%}
+                  <a
+                    class="full-aa"
+                    href="{{ bs.video_url }}"
+                    data-embed="{{ online_video_url }}"
+                    data-fslightbox="reviews"
+                  ></a>
+                {%- elsif bs.video_url.type == 'vimeo' -%}
+                  <a
+                    class="full-aa"
+                    href="#{{ block.id | replace: '-', '' | prepend: 'vimeoid_' }}"
+                    data-embed="{{ online_video_url }}"
+                    data-fslightbox="reviews"
+                  ></a>
+                  <iframe
+                    data-src="https://player.vimeo.com/video/{{ video_id }}?controls=0background=1&autoplay=0&muted=0&loop=0"
+                    frameborder="0"
+                    allowfullscreen
+                    class="hidden"
+                    id="{{ block.id | replace: '-', '' | prepend: 'vimeoid_' }}"
+                    class="lazy"
+                  ></iframe>
+                {%- endif -%}
+                <div class="rider-reviews-item-content">
+                  <h3 class="headline__h6 rider-reviews-item-title">{{ bs.title | strip_html | strip }}</h3>
+                  <div class="rider-reviews-author">
+                    <span class="rider-reviews-author-name">@{{ bs.author_name }}</span>
+                  </div>
+                </div>
+                <div class="rider-reviews-item-image-inner relative">
+                  {%- if bs.hover_video != blank -%}
+                    <div
+                      class="rider-reviews-item-hover-video full-img-wrap hidden"
+                      data-id="{{ block.id | replace: '-', '' }}"
+                    >
+                      <video
+                        class="lazy"
+                        muted
+                        preload
+                        loop
+                        x5-video-player-fullscreen="true"
+                        x5-playsinline
+                        playsinline
+                        webkit-playsinline
+                      >
+                        {%- for source in bs.hover_video.sources -%}
+                          <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+                        {%- endfor -%}
+                      </video>
+                    </div>
+                  {%- endif -%}
+                  {% if bs.image != blank %}
+                    <div class="rider-reviews-item-thumbnail-container">
+                      {% render 'alp-single-image', image: bs.image, width: 1280, aspect_ratio: st.image_aspect_ratio %}
+                    </div>
+                  {% else %}
+                    <div class="rider-reviews-item-thumbnail-container">
+                      <img
+                        data-src="https://img.youtube.com/vi/{{ video_id }}/maxresdefault.jpg"
+                        alt="{{ bs.text }}"
+                        style="aspect-ratio: {{ st.image_aspect_ratio }};"
+                        width="100%"
+                        height="100%"
+                        loading="lazy"
+                        class="lazy"
+                      >
+                    </div>
+                  {% endif %}
+                  <div class="rider-reviews-play-btn">{% render 'icon-play-3' %}</div>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {% endif %}
+      </div>
+      <div class="swiper-navs-new-1 swiper-pagination-rider-reviews-new hide_mobile">
+        {% comment %} {% render 'swiper-pagination', class: 'pagination-products' %} {% endcomment %}
+        {% render 'swiper-navigation-new-1', class: '' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script
+  type="module"
+>
+  document.addEventListener('DOMContentLoaded', () => {
+    // swiper
+    let is_Swiper_Mobile = window.innerWidth < 999;
+    var BlockId = '{{ section.id | replace: '-', '' | prepend: 'id_' }}';
+    var Swiper_{{ section.id | replace: '-', '' }} = new Swiper(`.alp-rider-reviews-new .swiper#${BlockId}`, {
+      //cssMode: is_Swiper_Mobile,
+      pagination: {
+        el: '.pagination-products',
+        clickable :true,
+      },
+      navigation: {
+        nextEl: `.swiper#${BlockId} .swiper-button-next`,
+        prevEl: `.swiper#${BlockId} .swiper-button-prev`,
+      },
+      breakpoints: { 
+        1440: {  
+          slidesPerView: 4.5,
+          spaceBetween: 24,
+          // slidesPerGroup : 4,
+        },
+        1280: {  
+          slidesPerView: 4,
+          spaceBetween: 24,
+          // slidesPerGroup : 4,
+        },
+        768: {  
+          slidesPerView: 3,
+          spaceBetween: 16,
+          // slidesPerGroup : 4,
+        },
+        320: {  
+          slidesPerView: 1.15,
+          spaceBetween: 16,
+          // slidesPerGroup : 2,
+        }
+      }
+    });
+    $('.alp-rider-reviews-item-new-inner').on('mouseenter', function () {
+      if ($(this).find('video').length > 0) {
+        $(this).find('.rider-reviews-item-hover-video').removeClass('hidden');
+        $(this).find('.rider-reviews-play-btn').addClass('hidden_opacity');
+        // video onload and then play
+        $(this).find('video').on('loadeddata', function () {
+          $(this).get(0).play(); 
+        })
+        // if video has loadeddata, play it
+        if ($(this).find('video').get(0).readyState > 0) {
+          $(this).find('video').get(0).play(); 
+        }
+      }
+    })
+    $('.alp-rider-reviews-item-new-inner').on('mouseleave', function () {
+      if ($(this).find('video').length > 0) {
+        $(this).find('.rider-reviews-item-hover-video').addClass('hidden');
+        $(this).find('.rider-reviews-play-btn').removeClass('hidden_opacity');
+        $(this).find('video').get(0).pause(); 
+      }
+    })
+  });
+</script>

@@ -1,0 +1,226 @@
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+  
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+<style>
+     .alp-dealers-why-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .alp-dealers-why-box{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .alp-dealers-why-img picture img{
+        display: block;
+    }
+
+    @media screen and (min-width: 751px){
+        .alp-dealers-why-container{
+            gap: 72px;
+        }
+        .alp-dealers-why-img{
+             width: 52%;
+        }
+        .alp-dealers-why-text{
+            width: 42%;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        {%- for block in section.blocks -%}
+            {% if block.settings.reverse %}
+            #block-{{ section.id }}-{{ block.id }} {
+                flex-direction: row-reverse;
+            } 
+            {% endif %}
+        {% endfor %}
+    }
+
+    @media screen and (max-width: 750px){
+        .alp-dealers-why.shopify-section .alp-section  {
+            padding-top: 60px;
+        }
+        .alp-dealers-why-container{
+            gap: 60px;
+        }
+       .alp-dealers-why-box{
+        flex-direction: column;
+       }
+      .alp-dealers-why-img{
+        width: 100%;
+      }
+      .alp-dealers-why-item h2{
+        margin-top: 24px;
+      }
+      .alp-dealers-why-text a{
+            margin-top: 30px;
+        }
+    }
+  
+</style>
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+    <div class="alp-section-container alp-dealers-why-container page-width {{ container }}" {% if st.reverse %} style="flex-direction: row-reverse;" {% endif %}>
+            {%- for block in section.blocks -%}
+                {% liquid
+                  assign bs = block.settings
+                %}
+                <div class="alp-dealers-why-box" id="block-{{ section.id }}-{{ block.id }}">
+                    <div class="alp-dealers-why-img">
+                        {% render 'alp-single-image', image: bs.image, width: 1280 %}
+                    </div>
+                    <div class="alp-dealers-why-text">
+                        <div class="alp-dealers-why-item">
+                            <h2 class="headline__h2s">{{ bs.title}}</h2>
+                            <div class="text_content">{{ bs.text }}</div>
+                        </div>
+                        <div class="alp-dealers-why-item">
+                            <h2 class="headline__h2s">{{ bs.title_2}}</h2>
+                            <div class="text_content">{{ bs.text_2 }}</div>
+                        </div>
+                        {% if bs.button_text != blank %}
+                        <div>
+                            {% render 'alp-btn',
+                                url: bs.url,
+                                type: 'primary',
+                                text: bs.button_text,
+                                textcolor: '#fff',
+                                bgcolor: '#E83F0C',
+                                size: 'medium'
+                            %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Alp Dealers Why",
+    "class": "alp-dealers-why",
+    "settings": [
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#000000"
+        },
+        {
+            "type": "select",
+            "id": "container",
+            "label": "Layout",
+            "default": "alp-container",
+            "options": [
+            {
+                "value": "alp-container",
+                "label": "Default"
+            },
+            {
+                "value": "alp-container-fluid",
+                "label": "Fluid container"
+            },
+            {
+                "value": "alp-full-width",
+                "label": "Full width"
+            }
+            ]
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "Padding top",
+            "default": 10,
+            "min": 0,
+            "max": 50,
+            "step": 1,
+            "unit": "em"
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "Padding bottom",
+            "default": 10,
+            "min": 0,
+            "max": 50,
+            "step": 1,
+            "unit": "em"
+        },
+        {
+            "type": "checkbox",
+            "id": "reset_spacing",
+            "label": "Remove default space between sections",
+            "default": false
+        }
+    ],
+    "blocks" : [
+    {
+        "type": "Text",
+        "name": "text",
+        "settings":[
+            {
+                "type": "checkbox",
+                "id": "reverse",
+                "label": "Right text and left figure",
+                "default": false
+            },
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "richtext",
+                "id": "text",
+                "label": "text"
+            },
+            {
+                "type": "text",
+                "id": "title_2",
+                "label": "Title 2"
+            },
+            {
+                "type": "richtext",
+                "id": "text_2",
+                "label": "text 2"
+            },
+            {
+                "type": "text",
+                "id": "button_text",
+                "label": "Button text"
+            },
+            {
+                "type": "url",
+                "id": "url",
+                "label": "Button link"
+            }
+        ]
+    }
+    ],
+    "presets": [{
+        "name": "Alp Dealers Why"
+    }]
+}
+{% endschema %}

@@ -1,0 +1,519 @@
+{% schema %}
+{
+  "name": "Alp Index Remark C",
+  "class": "alp-index-remark-c",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What customer say for our E-Bike"
+    },
+    {
+      "type": "text",
+      "id": "link_text_title",
+      "label": "Link Text",
+      "default": "View More"
+    },
+    {
+      "type": "url",
+      "id": "link_url_title",
+      "label": "Link Url"
+    },
+    {
+      "type": "select",
+      "id": "heading_type",
+      "label": "Heading type",
+      "options": [
+        {
+          "value": "h1",
+          "label": "Big Heading"
+        },
+        {
+          "value": "h2",
+          "label": "Medium Heading"
+        },
+        {
+          "value": "h3",
+          "label": "Small Heading"
+        }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "1/1"
+    },
+    {
+      "type": "text",
+      "id": "block_max_width",
+      "label": "Block Max Width",
+      "default": "420px"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Gail Hilpert"
+        },
+        {
+          "type": "text",
+          "id": "content_title",
+          "label": "Content Title",
+          "default": "Amazing Bike"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Content Desc",
+          "default": "<p>Solardeland leads in solar technology, offering state-of-the-art solutions to meet evolving energy demands through continuous innovation.</p>"
+        },
+        {
+          "type": "text",
+          "id": "content_model",
+          "label": "Content Model",
+          "default": "Basalt ST"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Shop The Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Index Remark C"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --block-max-width: {{ st.block_max_width }};
+  }
+</style>
+
+{% style %}
+  .alp-index-remark-con {
+    margin-top: calc(var(--alp-gutter-y) * 1.25);
+  }
+  .swiper-pagination-index-remark {
+    margin-top: calc(var(--alp-gutter-y) * 1.25);
+  }
+
+  .alp-index-remark-bigtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .alp-index-remark-bigtitle .view-more {
+    /* color: #1a1a1a;
+    
+    font-size: clamp(12px, 4vw, 16px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 135%;
+    text-transform: capitalize;
+    text-decoration: underline; */
+    line-height: 1.2;
+    padding: 0.65em 1.5em;
+    border-radius: var(--alp-border-radius);
+    transition: 0.3s;
+    cursor: pointer;
+    background: var(--main-color);
+    color: white;
+    font-size: clamp(16px, 1vw, 18px);
+  }
+
+  /* .alp-index-remark-2-item {
+    display: flex;
+    gap: 1.25em;
+    align-items: flex-start;
+  } */
+
+  .alp-index-remark-2-desc {
+    opacity: 0.6;
+    line-height: 1.5;
+    font-size: 16px;
+  }
+
+  .alp-index-remark-3-item .image-box-2 {
+    overflow: hidden;
+    border-radius: calc(var(--alp-border-radius) * 1);
+    max-width: 144px;
+  }
+
+  .alp-index-remark-3-item .image-box-2 img {
+    display: block;
+    aspect-ratio: 1/1;
+  }
+
+  .alp-index-remark-2-item-wrapper {
+    border: 1px solid #eee;
+    padding: 1em;
+    border-radius: var(--alp-border-radius);
+    overflow: hidden;
+  }
+  .text-box-2 .icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .alp-index-remark-2-title {
+    margin-bottom: 0.5em;
+  }
+
+  .alp-index-remark-item-more-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(0 0 0 / 66%);
+    pointer-events: none;
+    transition: 0.4s;
+    opacity: 0;
+  }
+
+  .alp-index-remark-2-item-wrapper:hover .alp-index-remark-item-more-button {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .alp-index-remark-item-more-button > a {
+    transition: 0.4s;
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .alp-index-remark-2-item-wrapper:hover .alp-index-remark-item-more-button > a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .alp-index-remark-3-item-flex {
+    display: flex;
+    align-items: center;
+    gap: 1.25em;
+    margin-bottom: 1em;
+  }
+
+  .alp-index-remark-2c-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .alp-index-remark-2c-model::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: currentColor;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+  @media (max-width: 999px) {
+    /* .alp-index-remark-wrapper {
+      padding-top: 60px;
+      padding-bottom: 20px;
+    } */
+    /* .alp-index-remark-container {
+      padding-top: 18px;
+      padding-bottom: 0;
+    } */
+    .alp-index-remark-2-item-wrapper {
+      padding: 10px 10px 20px;
+    }
+    .alp-index-remark-con {
+      margin-top: calc(var(--alp-gutter-y) * 0.65);
+    }
+    .swiper-pagination-index-remark {
+      margin-top: calc(var(--alp-gutter-y) * 1);
+      display: none;
+    }
+    .alp-index-remark-2-desc {
+      font-size: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .alp-index-remark-wrapper .swiper-pagination-bullets span.swiper-pagination-bullet:after {
+      height: 3px;
+    }
+    .alp-index-remark-3-item-flex {
+      flex-direction: column;
+      align-items: baseline;
+    }
+    .alp-index-remark-c .view-more {
+      line-height: 1.2;
+      padding: 10px 32px;
+      border-radius: var(--alp-border-radius);
+      cursor: pointer;
+      border: 1px solid #e83f0c;
+      color: #e83f0c;
+      font-size: clamp(16px, 1vw, 18px);
+      max-width: 150px;
+      margin: 32px auto 0;
+    }
+    .alp-index-remark-3-item .image-box-2 {
+      max-width: none;
+      /* border-radius: 8px; */
+    }
+    .alp-index-remark-3-item .image-box-2 img {
+      aspect-ratio: 3/2;
+    }
+    .alp-index-remark-3-item .text-box-2 {
+      display: flex;
+      align-items: start;
+      width: 100%;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+    .alp-index-remark-3-item .alp-index-remark-2-title {
+      font-weight: bold;
+    }
+    .alp-index-remark-3-item .text-box-2 .icon svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-section alp-index-remark-wrapper overflow-hidden {{ reset_spacing }}"
+  data-stid="{{ section.id }}"
+  style="{{ style }}"
+>
+  <div class="alp-section-container alp-index-remark-container page-width {{ container }}">
+    <div class="alp-index-remark">
+      <div class="alp-index-remark-bigtitle">
+        {%- if st.heading_type == 'h1' -%}
+          <h2 class="headline__h2">{{ st.title }}</h2>
+        {%- elsif st.heading_type == 'h2' -%}
+          <h3 class="headline__h2s">{{ st.title }}</h3>
+        {%- elsif st.heading_type == 'h3' -%}
+          <h3 class="headline__h3">{{ st.title }}</h3>
+        {%- endif -%}
+        <div class="view-more headline__h6 hide_mobile">
+          {% if st.link_text_title %}
+            <a href="{{ st.link_url_title }}">{{ st.link_text_title }}</a>
+          {% endif %}
+        </div>
+      </div>
+      <div
+        class="alp-index-remark-con swiper overflow-visible"
+        id="{{ section.id | replace: '-', '' | prepend: 'id_' }}"
+      >
+        <div class="swiper-wrapper">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="swiper-slide">
+                <div class="alp-index-remark-2-item-wrapper relative">
+                  {%- if bs.link != blank -%}
+                    <a class="full-aa" href="{{ bs.link }}" title="{{ bs.title }}"></a>
+                  {%- endif -%}
+                  <div class="alp-index-remark-3-item">
+                    <div class="alp-index-remark-3-item-flex">
+                      <div class="image-box-2">
+                        {% comment %}
+                          {% render 'alp-single-image',
+                            image: bs.image,
+                            width: 1280,
+                            aspect_ratio: st.image_aspect_ratio
+                          %}
+                        {% endcomment %}
+                        <img
+                          data-src="{{ bs.image | image_url: width: 200 }}"
+                          alt="{{ bs.title | default: bs.image.alt }}"
+                          loading="lazy"
+                          width="auto"
+                          height="auto"
+                          class="lazy"
+                        >
+                      </div>
+                      <div class="text-box-2">
+                        <div>
+                          <div class="headline__h6 alp-index-remark-2-title">{{ bs.title | strip }}</div>
+                          <div class="icon">
+                            {% render 'icon-remarks' %}
+                          </div>
+                        </div>
+                        <div class="alp-index-remark-2-model hide_desktop">{{ bs.content_model | strip_html }}</div>
+                      </div>
+                    </div>
+                    <div class="alp-index-remark-2c">
+                      <div class="alp-index-remark-2c-title">{{ bs.content_title | strip_html }}</div>
+                      <div class="alp-index-remark-2-desc">{{ bs.desc | strip_html }}</div>
+                      <div class="alp-index-remark-2c-model hide_mobile">{{ bs.content_model | strip_html }}</div>
+                    </div>
+                  </div>
+                  {%- if bs.link != blank -%}
+                    <div class="alp-index-remark-item-more-button">
+                      {% render 'alp-btn',
+                        url: bs.link,
+                        type: 'primary',
+                        text: bs.link_text,
+                        textcolor: '#ffffff',
+                        bgcolor: 'var(--main-color)',
+                        size: 'small'
+                      %}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {%- endfor -%}
+          {% endif %}
+        </div>
+        <div class="swiper-navs swiper-pagination-index-remark">
+          {% render 'swiper-pagination', class: 'pagination-products' %}
+          {% render 'swiper-navigation', class: '' %}
+        </div>
+        <div class="view-more headline__h6 hide_desktop">
+          {% if st.link_text_title %}
+            <a href="{{ st.link_url_title }}">{{ st.link_text_title }}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+     // swiper
+     var BlockId = '{{ section.id | replace: '-', '' | prepend: 'id_' }}';
+     var swiper = new Swiper(`.alp-index-remark .swiper#${BlockId}`, {
+      pagination: {
+        el: '.pagination-products',
+        clickable :true,
+      },
+      speed:600,
+      // autoHeight: true, 
+      // freeMode: true,
+      spaceBetween: 16,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: { 
+        1680: { 
+          slidesPerView: 3.5,
+          spaceBetween: 24,
+        },
+        1280: { 
+          slidesPerView: 3,
+          spaceBetween: 24,
+        },
+        768: { 
+          slidesPerView: 2.4,
+        },
+        320: {  
+          slidesPerView: 1.2,
+        }
+      }
+    })
+  });
+</script>

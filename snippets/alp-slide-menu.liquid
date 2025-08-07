@@ -1,0 +1,155 @@
+{% liquid
+  assign st = section.settings
+%}
+<div class="alp-slide-menu-container alp-section-container page-width alp-container-fluid">
+  <div class="alp-slide-menu-search">
+    {% render 'search-input-form' %}
+  </div>
+  <div class="alp-slide-menu-ul">
+    {%- for block in section.blocks -%}
+      {% liquid
+        assign bs = block.settings
+      %}
+      {%- case block.type -%}
+        {%- when 'normal-menu' -%}
+          {% comment %} Normal Menu {% endcomment %}
+          <li class="list-menu-li-parent normal-slide-menu {% render 'track-tag-classname', name: bs.track_name %}">
+            <a
+              href="{{ bs.url | default: 'javascript:void(0);' }}"
+              class="alp-list-item-a"
+            >
+              <span>{{- bs.menu_title | strip -}}</span>
+              {%- if bs.menu.links.size > 0 -%}
+                {% render 'icon-arrow-right' %}
+              {%- endif -%}
+            </a>
+            {%- if bs.menu.links.size > 0 -%}
+              {% render 'alp-slide-sub-menu', menu_list: bs.menu.links, title: bs.menu_title, block: block %}
+            {%- endif -%}
+          </li>
+        {%- when 'mega-menu-type-0' -%}
+          {% comment %} Mega Menu {% endcomment %}
+          <li class="list-menu-li-parent mega-menu {% render 'track-tag-classname', name: bs.track_name %}">
+            <a
+              href="{{ bs.url | default: 'javascript:void(0);' }}"
+              class="alp-list-item-a"
+            >
+              <span>{{- bs.menu_title | strip -}}</span>
+              {% render 'icon-arrow-right' %}
+            </a>
+            {% render 'alp-slide-sub-mega-menu-swiper',
+              block: block,
+              container: container,
+              style: bs.list_style,
+              show_price: bs.show_price,
+              product_limit: bs.product_limit
+            %}
+          </li>
+        {%- when 'mega-menu-type-1' -%}
+          {% comment %} Mega Menu {% endcomment %}
+          <li class="list-menu-li-parent mega-menu {% render 'track-tag-classname', name: bs.track_name %}">
+            <a
+              href="{{ bs.url | default: 'javascript:void(0);' }}"
+              class="alp-list-item-a"
+            >
+              <span>{{- bs.menu_title | strip -}}</span>
+              {% render 'icon-arrow-right' %}
+            </a>
+            {% render 'alp-slide-sub-mega-menu',
+              block: block,
+              container: container,
+              style: bs.list_style,
+              show_price: bs.show_price,
+              product_limit: bs.product_limit
+            %}
+          </li>
+        {%- when 'mega-menu-type-2' -%}
+          {% comment %} Mega Menu {% endcomment %}
+          <li class="list-menu-li-parent mega-menu {% render 'track-tag-classname', name: bs.track_name %}">
+            <a
+              href="{{ bs.url | default: 'javascript:void(0);' }}"
+              class="alp-list-item-a"
+            >
+              <span>{{- bs.menu_title | strip -}}</span>
+              {% render 'icon-arrow-right' %}
+            </a>
+            {% render 'alp-slide-sub-mega-menu-2', block: block, container: container %}
+          </li>
+        {%- when 'mega-menu-type-3' -%}
+          {% comment %} Mega Menu {% endcomment %}
+          <li class="list-menu-li-parent mega-menu {% render 'track-tag-classname', name: bs.track_name %}">
+            <a
+              href="{{ bs.url | default: 'javascript:void(0);' }}"
+              class="alp-list-item-a"
+            >
+              <span>{{- bs.menu_title | strip -}}</span>
+              {% render 'icon-arrow-right' %}
+            </a>
+            {% render 'alp-slide-sub-mega-menu-3', block: block, container: container %}
+          </li>
+        {%- when 'mega-menu-type-4' -%}
+          {% comment %} Mega Menu {% endcomment %}
+          <li class="list-menu-li-parent mega-menu {% render 'track-tag-classname', name: bs.track_name %}">
+            <a
+              href="{{ bs.url | default: 'javascript:void(0);' }}"
+              class="alp-list-item-a"
+            >
+              <span>{{- bs.menu_title | strip -}}</span>
+              {% render 'icon-arrow-right' %}
+            </a>
+            {% render 'alp-slide-sub-mega-menu-4', block: block, container: container %}
+          </li>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+  <div class="alp-slide-menu-content-wrapper">
+    <div class="alp-slide-menu-lang-switcher">
+      {% comment %} render lang_switcher {% endcomment %}
+      {%- if st.show_country_selector -%}
+        {% assign langs = st.language_linklist | split: ',' %}
+        {% assign langs_icons = st.language_linklist_icon | newline_to_br | split: '<br />' %}
+        {% assign langs_links = st.language_linklist_link | newline_to_br | split: '<br />' %}
+        <div class="lang_switcher alp-footer-lang">
+          <div class="lang_switcher__current">
+            <a href="javascript:void(0);" class="lang_switcher__item_init">
+              <img src="{{- langs_icons[0] -}}" alt="{{ langs[0] | strip }}" width="32" height="32" loading="lazy">
+              <span>{{ langs[0] | strip }}</span>
+            </a>
+            {% render 'icon-arrow-down' %}
+          </div>
+          <div class="lang_switcher__list">
+            {%- assign lang_index = 0 -%}
+            {% for link in langs %}
+              {% if lang_index != 0 %}
+                <div>
+                  <a href="{{ langs_links[lang_index] | strip }}" class="lang_switcher__item">
+                    <img
+                      src="{{- langs_icons[lang_index] -}}"
+                      alt="{{ link | strip }}"
+                      width="32"
+                      height="32"
+                      loading="lazy"
+                    >
+                    <span>{{ link | strip }}</span>
+                  </a>
+                </div>
+              {% endif %}
+              {%- assign lang_index = lang_index | plus: 1 -%}
+            {% endfor %}
+          </div>
+        </div>
+      {%- endif -%}
+      {% comment %} {% comment %} render lang_switcher {% endcomment %} end {% endcomment %}
+    </div>
+    <div class="alp-slide-menu-content-liq">
+      {{ st.mega_content }}
+    </div>
+    <div class="alp-slide-menu-content-rich">
+      {{ st.mega_richtext }}
+    </div>
+    <div class="alp-slide-menu-content-rich-2">
+      {% render 'alp-account-links' %}
+    </div>
+    {% render 'secure-images' %}
+  </div>
+</div>

@@ -1,0 +1,42 @@
+{% comment %}
+  Usage:
+  {% render 'mega-menu-image-content', title: title, icon: icon, richtext: richtext, richtext2: richtext2 %}
+{% endcomment %}
+<div class="mega-menu-list-item mega-menu-image">
+  <div class="mega-menu-image-flex">
+    {%- if icon -%}
+      <div class="mega-menu-image">
+        {% comment %} {{- icon | image_url: width: 640 | image_tag: loading: 'lazy' -}} {% endcomment %}
+        <img
+          data-src="{{ icon | image_url: width: 640 }}"
+          alt="{{ title | default: icon.alt }}"
+          loading="lazy"
+          width="auto"
+          height="auto"
+          class="lazy"
+        >
+      </div>
+    {%- endif -%}
+    <div class="mega-menu-image-info">
+      <div class="mega-menu-image-title headline__h6">{{- title | default: '' -}}</div>
+      <div class="mega-menu-image-richtext">{{- richtext -}}</div>
+      <div class="mega-menu-image-rc-link">
+        <p>
+          <a
+            href="{{ url | default: 'javascript:void(0);' }}"
+            class="{% render 'track-tag-classname', name: track_name %}"
+          >
+            {{- richtext2 | strip_html -}}
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="mega-menu-image-link">
+    <a
+      href="{{ url | default: 'javascript:void(0);' }}"
+      class="{% render 'track-tag-classname', name: track_name %}"
+    >
+    </a>
+  </div>
+</div>

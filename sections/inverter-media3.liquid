@@ -1,0 +1,229 @@
+{% schema %}
+{
+  "name": "Inverter Media3",
+  "class": "inverter-media3",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "grid_item",
+      "name": "Grid Item",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "grid_image1",
+          "label": "Grid Image1"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image2",
+          "label": "Grid Image2"
+        },
+        {
+          "type": "image_picker",
+          "id": "grid_image3",
+          "label": "Grid Image3"
+        },
+        {
+          "type": "text",
+          "id": "gird_image1_aspect",
+          "label": "Grid Image1 Aspect",
+          "default": "698/768"
+        },
+        {
+          "type": "text",
+          "id": "gird_image2_aspect",
+          "label": "Grid Image2 Aspect",
+          "default": "722/374"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inverter Media3"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+  .inverter-media3-container {
+    padding-top: 170px;
+    padding-bottom: 142px;
+  }
+  .inverter-media3-header {
+    max-width: 900px;
+    margin: auto;
+  }
+  .inverter-media3-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .inverter-media3-subtitle {
+    margin: 20px 40px 0;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+  }
+  .inverter-media3-content {
+    margin-top: 48px;
+    max-width: 1440px;
+    max-height: 768px;
+    display: flex;
+    gap: 20px;
+  }
+  .inverter-media3-image {
+    height: 100%;
+  }
+  .inverter-media3-image img {
+    height: 100%;
+    display: block;
+    border-radius: 4px;
+  }
+  .inverter-media3-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  @media screen and (max-width: 999px) {
+    .inverter-media3-container {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    .inverter-media3-title {
+      font-size: 30px;
+    }
+    .inverter-media3-subtitle {
+      margin: 6px 0 0;
+      font-size: 14px;
+    }
+    .inverter-media3-content {
+      margin-top: 32px;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .inverter-media3-right {
+      gap: 6px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }} inverter-media3-container">
+    <div class="inverter-media3-header">
+      <h2 class="inverter-media3-title">{{ st.title }}</h2>
+      <div class="inverter-media3-subtitle">{{ st.subtitle }}</div>
+    </div>
+    <div class="inverter-media3-content">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign bs = block.settings
+          -%}
+          <div class="inverter-media3-left">
+            {%- if bs.grid_image1 != blank -%}
+              <div class="inverter-media3-image">
+                <img
+                  src="{{ bs.grid_image1 | image_url: width: 1920 }}"
+                  width="auto"
+                  height="auto"
+                  style="aspect-ratio: {{ bs.gird_image1_aspect }};"
+                >
+              </div>
+            {%- endif -%}
+          </div>
+          <div class="inverter-media3-right">
+            {%- if bs.grid_image2 != blank -%}
+              <div class="inverter-media3-image">
+                <img
+                  src="{{ bs.grid_image2 | image_url: width: 1920 }}"
+                  width="auto"
+                  height="auto"
+                  style="aspect-ratio: {{ bs.gird_image2_aspect }};"
+                >
+              </div>
+            {%- endif -%}
+            {%- if bs.grid_image3 != blank -%}
+              <div class="inverter-media3-image">
+                <img
+                  src="{{ bs.grid_image3 | image_url: width: 1920 }}"
+                  width="auto"
+                  height="auto"
+                  style="aspect-ratio: {{ bs.gird_image2_aspect }};"
+                >
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      {% endif %}
+    </div>
+  </div>
+</div>
+

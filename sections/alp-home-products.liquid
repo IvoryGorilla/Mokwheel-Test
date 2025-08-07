@@ -1,0 +1,432 @@
+{% schema %}
+{
+  "name": "Alp Home Products",
+  "class": "alp-home-products-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_image",
+      "label": "Review Image"
+    },
+    {
+      "type": "url",
+      "id": "review_image_url",
+      "label": "Review Image URL"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_item",
+      "name": "Category Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "track_name",
+          "label": "Track Name"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Title"
+        },
+        {
+          "type": "product_list",
+          "id": "product_list",
+          "label": "Products",
+          "limit": 12
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Home Products"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-category-list-items.swiper .swiper-slide {
+    width: auto;
+  }
+  .alp-home-products-inner-1 {
+    display: flex;
+    align-items: flex-end;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .alp-home-products-title .headline__h2 {
+    margin-bottom: -0.25em;
+    max-width: 520px;
+  }
+
+  .alp-home-products-title {
+    max-width: 900px;
+  }
+
+  .alp-home-products-inner-1 {
+    margin-bottom: 48px;
+  }
+  .alp-products-swiper.swiper {
+    overflow: visible;
+  }
+
+  .alp-home-products.alp-section {
+    overflow: hidden;
+  }
+
+  .alp-home-products-inner-2 {
+    position: relative;
+  }
+
+  .swiper-pagination-products {
+    margin-top: 48px;
+  }
+
+  .alp-home-products-inner-2[data-switch-target] > div:not(:first-child) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .alp-home-products-inner-2[data-switch-target] > div {
+    transition: 0.4s;
+    opacity: 0;
+  }
+
+  .alp-home-products-inner-2[data-switch-target] > div.active {
+    opacity: 1;
+  }
+
+  [data-target-index] .alp-product-item-slie-item {
+    transform: translate(30px, 0px);
+    opacity: 0;
+    transition: transform 0.5s 0.5s, opacity 0.5s 0s;
+  }
+
+  [data-target-index].active .alp-product-item-slie-item {
+    transform: translate(0px, 0px);
+    opacity: 1;
+    transition: transform 0.8s calc(var(--transition-delay) + 0.1s), opacity 0.5s calc(var(--transition-delay) + 0.1s);
+  }
+
+  .alp-home-products .alp-product-item-grid-n1 .alp-productAcessories {
+    display: none;
+  }
+
+  .alp-home-products .alp-product-item-grid-n1 .alp-productAcessories + .alp-product-item-price {
+    margin-top: 8px;
+  }
+
+  .alp-home-products .alp-product-item-features .alp_product__badge_i {
+    /* min-height: 40px; */
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #1a1a1a;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-weight: 500;
+    /* font-size: clamp(14px, 1.25vw, 16px); */
+  }
+
+  .alp-home-products-review-image-wrapper img {
+    display: block;
+    max-width: clamp(239px, 55vw, 310px);
+  }
+
+  @media (min-width: 99px) {
+    .alp-products-swiper.swiper .swiper-wrapper .swiper-slide {
+      height: auto;
+      align-self: stretch;
+      display: flex;
+    }
+
+    .alp-products-swiper.swiper .swiper-wrapper {
+      align-items: stretch;
+    }
+
+    .alp-products-swiper.swiper .swiper-wrapper .swiper-slide .alp-product-item-slie-item {
+      display: flex;
+      height: 100%;
+    }
+
+    .alp-products-swiper.swiper
+      .swiper-wrapper
+      .swiper-slide
+      .alp-product-item-slie-item
+      .alp-product-item-1.type-item-02.alp-product-item-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .alp-products-swiper.swiper
+      .swiper-wrapper
+      .swiper-slide
+      .alp-product-item-slie-item
+      .alp-product-item-1.type-item-02.alp-product-item-wrapper
+      .alp-product-item-info.type-02 {
+      flex: 1;
+      align-items: stretch;
+      justify-content: stretch;
+      flex-direction: column;
+    }
+
+    .alp-products-swiper.swiper
+      .swiper-wrapper
+      .swiper-slide
+      .alp-product-item-slie-item
+      .alp-product-item-1.type-item-02.alp-product-item-wrapper
+      .alp-product-item-info.type-02
+      .alp-product-item-title-wrap {
+      flex: 1;
+    }
+  }
+
+  @media (max-width: 999px) {
+    .alp-home-products-inner-1 {
+      margin-bottom: 24px;
+    }
+
+    .alp-home-products-container .swiper-pagination-products {
+      margin-top: 24px;
+    }
+
+    .alp-home-products.alp-section {
+      padding-top: calc(var(--padding-top) * 2.6667px);
+    }
+
+    .alp-home-products .alp-product-item-features .alp_product__badge_i {
+      /* min-height: 32px; */
+    }
+
+    .alp-home-products-inner-1.has-review-image {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 24px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-home-products alp-section {{ reset_spacing }}" style="{{ style }}" data-switch-wrapper>
+  <div class="alp-section-container alp-home-products-container page-width {{ container }}">
+    <div class="alp-home-products-inner-1 {% if st.review_image != blank %} has-review-image{% endif %}">
+      {%- if st.title != blank -%}
+        <div class="alp-home-products-title">
+          <h2 class="headline__h2">{{ st.title }}</h2>
+        </div>
+      {%- endif -%}
+      <div class="alp-home-products-category-s">
+        <div class="alp-home-products-category-list" data-switch-trigger>
+          <div class="alp-category-list-items swiper" data-blockId="{{ section.id }}">
+            <div class="swiper-wrapper">
+              {%- for block in section.blocks -%}
+                {% liquid
+                  assign bs = block.settings
+                %}
+                <div
+                  class="swiper-slide {% if forloop.index == 1 %} active{% endif %}"
+                  data-trigger-index="{{ forloop.index0 }}"
+                >
+                  <div
+                    class="h-category-list-item button-type-2 {% render 'track-tag-classname', name: bs.track_name %}"
+                  >
+                    <span>{{ bs.text }}</span>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% if st.review_image != blank %}
+        <div class="alp-home-products-review-image-wrapper relative">
+          {% if st.review_image_url != blank %}
+            <a rel="sponsored" class="full-aa" href="{{ st.review_image_url }}" target="_blank"></a>
+          {% endif %}
+          <img
+            data-src="{{ st.review_image | image_url: width: 800 }}"
+            width="auto"
+            height="auto"
+            alt=""
+            loading="lazy"
+            class="lazy alp_product__reviews_tre_image"
+          >
+        </div>
+      {% endif %}
+    </div>
+    <div class="alp-home-products-inner-2" data-switch-target>
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        <div
+          class="alp-products-swiper-wrapper {% if forloop.index == 1 %} active{% endif %}"
+          data-target-index="{{ forloop.index0 }}"
+        >
+          <div class="alp-products-swiper swiper" data-blockId="{{ block.id }}">
+            <div class="swiper-wrapper">
+              {%- for product in bs.product_list -%}
+                <div class="swiper-slide delay">
+                  <div class="alp-product-item-slie-item">
+                    <div class="alp-product-grid-i {% render 'track-tag-classname', name: product.metafields.custom.home_tracking_class_names.value %}">
+                      {% render 'alp-product-item-grid-n1',
+                        product: product,
+                        aspect_ratio: '4/3',
+                        show_features: false
+                      %}
+                    </div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+            <div class="swiper-navs swiper-pagination-products">
+              {% render 'swiper-pagination', class: 'pagination-products' %}
+              {% render 'swiper-navigation', class: '' %}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script
+  type="module"
+>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+    let swiperId = '{{ section.id }}';
+    let swiperIdnum = swiperId.replace(/\D/g, '');
+    let swiperVar = 'TheSwiper' + swiperIdnum;
+    swiperVar = new Swiper(`.alp-category-list-items[data-blockId="${swiperId}"]`, {
+      slidesPerView: 'auto',
+      spaceBetween: alp_global.gap,
+    });
+    //
+    let is_mobile = window.innerWidth < 999;
+    {% for block in section.blocks %}
+        let swiperId_{{ forloop.index }} = '{{ block.id }}';
+        let swiperIdnum_{{ forloop.index }} = swiperId_{{ forloop.index }}.replace(/\D/g, '');
+        let swiperVar_{{ forloop.index }} = 'TheSwiper' + swiperIdnum_{{ forloop.index }};
+        swiperVar_{{ forloop.index }} = new Swiper(`.alp-products-swiper[data-blockId="${swiperId_{{ forloop.index }}}"]`, {
+            slidesPerView: 1,
+            slidesPerGroup : 1,
+            spaceBetween: 16,
+            speed:600,
+            //freeMode: true,
+            //cssMode: is_mobile,
+            touchRatio : 0.75,
+            pagination: {
+              el: '.pagination-products',
+              clickable :true,
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+            // add breakpoints
+            breakpoints: { 
+              320: {  
+                slidesPerView: 1,
+                slidesPerGroup : 1,
+              },
+              768: {  
+                slidesPerView: 2,
+                slidesPerGroup : 2,
+              },
+              1280: {  
+                slidesPerView: 3,
+                slidesPerGroup : 2,
+                spaceBetween: 24,
+              },
+              1600: {  
+                slidesPerView: 3.3,
+                slidesPerGroup : 2,
+                spaceBetween: 24,
+              },
+            },
+        });
+    {% endfor %}
+  });
+</script>

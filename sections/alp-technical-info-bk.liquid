@@ -1,0 +1,210 @@
+{% schema %}
+{
+  "name": "Alp Technical Info Bk",
+  "class": "alp-technical-info",
+  "settings": [
+    {
+      "type": "text",
+      "id": "home_text",
+      "label": "Home Text",
+      "default": "Technical"
+    },
+    {
+      "type": "textarea",
+      "id": "rich_content",
+      "label": "Richtext"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Technical Info Bk"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+      --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+  {%- endcapture -%}
+
+{% style %}
+  .alp-technical-info p {
+    margin: 0;
+  }
+  .alp-technical-info-item-title {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: calc(var(--alp-gutter-y) * 0.75) 0;
+    border-top: 1px solid #b5b5b5;
+  }
+
+  .alp-technical-info-item .jd-animated-plus::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  .alp-technical-info-item.active .jd-animated-plus::before {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .alp-technical-info-item .animated-plus {
+    position: relative;
+    width: 10px;
+    height: 10px;
+  }
+
+  .alp-technical-info-item .animated-plus::before,
+  .alp-technical-info-item .animated-plus::after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    background-color: currentColor;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  }
+
+  .alp-technical-info-item .animated-plus::before {
+    width: 10px;
+    height: 2px;
+    opacity: 1;
+  }
+
+  .alp-technical-info-item .animated-plus::after {
+    width: 2px;
+    height: 10px;
+  }
+
+  .alp-technical-info-item.active .animated-plus::before {
+    opacity: 0;
+  }
+
+  .alp-technical-info-item-content {
+    padding-bottom: calc(var(--alp-gutter-y) * 1.5);
+  }
+
+  .technical-text-list .Sp_tech > div > div {
+    display: flex;
+    align-items: center;
+    font-size: clamp(12px, 2.2vw, 16px);
+    padding: calc(var(--alp-gutter-y) * 0.35) calc(var(--alp-gutter-y) * 0.5);
+    border-bottom: none;
+  }
+
+  .technical-text-list .Sp_tech > div > div:nth-child(odd) {
+    background: var(--main-background);
+  }
+  .technical-text-list .Sp_tech > div > div b {
+    flex-basis: 20%;
+  }
+  .technical-text-list .Sp_tech > div > div span {
+    flex-basis: 80%;
+    text-align: left;
+  }
+
+  @media (max-width: 750px) {
+    .technical-text-list .Sp_tech > div > div b {
+      flex-basis: 40%;
+    }
+    .technical-text-list .Sp_tech > div > div span {
+      flex-basis: 60%;
+      text-align: left;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-technical-info alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-technical-info-con alp-section-container page-width {{ container }}">
+    <div class="alp-technical-info-item active">
+      <div class="alp-technical-info-item-title">
+        <div class="headline__h5">{{ st.home_text }}</div>
+        <span class="animated-plus jd-animated-plus"></span>
+      </div>
+      <div class="alp-technical-info-item-content">
+        <div class="technical-text-list">
+          {{ st.rich_content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    $('.alp-technical-info-item-title').click(function () {
+      let $this = $(this).parent();
+      $this.toggleClass('active');
+      $this.siblings().removeClass('active');
+      $this.find('.alp-technical-info-item-content').stop().slideToggle(400);
+      $this.siblings().find('.alp-technical-info-item-content').stop().slideUp(400);
+    });
+  });
+</script>

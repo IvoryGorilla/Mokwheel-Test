@@ -1,0 +1,30 @@
+{% comment %}
+  Renders a standard dropdown style menu for the header.
+
+  Usage:
+  {% render 'alp-dropdown-sub-menu' menu_list: menu.links %}
+{% endcomment %}
+
+<div class="sub-menu-list">
+  <ul class="sub-list-menu-ul">
+    {%- for link in menu_list -%}
+      <li class="sub-list-menu-li">
+        <a
+          href="{{ link.url }}"
+          class="sub-list-item-a"
+          {% if link.current %}
+            aria-current="page"
+          {% endif %}
+        >
+          <span
+            {%- if link.current %}
+              class="sub-list-active"
+            {% endif %}
+          >
+            {{- link.title | strip -}}
+          </span>
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>

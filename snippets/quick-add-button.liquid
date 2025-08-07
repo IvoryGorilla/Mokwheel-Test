@@ -1,0 +1,13 @@
+{%- if product.available and product.variants.size > 1 -%}
+  <div class="alp-quick-add" data-add-none>
+    <a class="full-aa" href="{{ product.url }}" title="{{ product.title }}"></a>
+    <span>Select options</span>
+  </div>
+{%- elsif product.available -%}
+  <div class="alp-quick-add" data-add-variant="{{ product.first_available_variant.id }}">
+    <span>Add to cart</span>
+    <div class="loading-svg">{% render 'icon-loading' %}</div>
+  </div>
+{%- else -%}
+  <div class="alp-quick-add disabled"><span>Sold Out</span></div>
+{%- endif -%}

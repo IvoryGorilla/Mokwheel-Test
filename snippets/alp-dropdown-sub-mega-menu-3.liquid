@@ -1,0 +1,76 @@
+{% comment %}
+  Usage:
+  {% render 'alp-dropdown-sub-mega-menu-3' block: block, container: container %}
+{% endcomment %}
+{% liquid
+  assign bs = block.settings
+  if show_price
+    assign price_display = 'show_price'
+  endif
+%}
+
+<div
+  class="sub-mega-menu-wrapper"
+  data-list-style="{{ style | default: 'style_one' }}"
+  data-show-price="{{ price_display | default: '' }}"
+>
+  <div class="sub-mega-menu-container alp-section-container page-width {{ container | default: 'alp-container-fluid' }}">
+    <div class="sub-mega-menu-flex">
+      <div class="sub-mega-menu-inner-1">
+        <div class="sub-mega-menu-inner-1-flex">
+          <div>
+            <div class="mega-menu-title headline__h3">
+              {%- if bs.mega_title_url != blank -%}
+                <a class="full-aa" href="{{ bs.mega_title_url }}" title="{{ bs.mega_title }}"></a>
+              {%- endif -%}
+              {{ bs.mega_title }}
+            </div>
+            <div class="mega-menu-description">{{ bs.mega_description }}</div>
+            <div class="mega-menu-richcontent">{{ bs.mega_content }}</div>
+          </div>
+          <div class="mega-menu-buttons">{{ bs.mega_button_content }}</div>
+        </div>
+      </div>
+      <div class="sub-mega-menu-inner-2">
+        <div class="mega-linklist-wrapper mega-menu-icon-wrapper">
+          {%- if bs.menu_a_title != blank -%}
+            {% render 'mega-menu-icon-content',
+              title: bs.menu_a_title,
+              icon: bs.menu_a_icon,
+              richtext: bs.menu_a_content,
+              richtext2: bs.menu_a_link
+            %}
+          {%- endif -%}
+          {%- if bs.menu_b_title != blank -%}
+            {% render 'mega-menu-icon-content',
+              title: bs.menu_b_title,
+              icon: bs.menu_b_icon,
+              richtext: bs.menu_b_content,
+              richtext2: bs.menu_b_link
+            %}
+          {%- endif -%}
+          {%- if bs.menu_c_title != blank -%}
+            {% render 'mega-menu-icon-content',
+              title: bs.menu_c_title,
+              icon: bs.menu_c_icon,
+              richtext: bs.menu_c_content,
+              richtext2: bs.menu_c_link
+            %}
+          {%- endif -%}
+          {%- if bs.menu_d_title != blank -%}
+            {% render 'mega-menu-icon-content',
+              title: bs.menu_d_title,
+              icon: bs.menu_d_icon,
+              richtext: bs.menu_d_content,
+              richtext2: bs.menu_d_link
+            %}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {});
+</script>

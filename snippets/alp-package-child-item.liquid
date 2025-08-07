@@ -1,0 +1,31 @@
+<div class="compatible-item-flex is-page-child-item">
+  <div class="compatible-item-image">
+    <div class="relative">
+      <a class="full-aa" href="{{ product.featured_image | image_url: width: 1920 }}" data-fslightbox></a>
+      {{ product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+      {% comment %}
+        {% render 'alp-responsive-image',
+          image: product.featured_image,
+          desktop_width: 200,
+          mobile_width: 200,
+          aspect_ratio: '3/2'
+        %}
+      {% endcomment %}
+    </div>
+  </div>
+  <div class="compatible-item-info">
+    <div class="compatible-item-title">
+      <div class="c-title">{{ product.title }}</div>
+      {%- if product.metafields.custom.new_description != blank -%}
+        <div class="c-option-des">
+          {{ product.metafields.custom.new_description | truncatewords: 15 }}
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="compatible-item-price">
+      <div class="alp-addional-product-price">
+        <span class="normal-price ">{{ product.price | money }}</span>
+      </div>
+    </div>
+  </div>
+</div>

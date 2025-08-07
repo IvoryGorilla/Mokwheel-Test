@@ -1,0 +1,42 @@
+{% comment %}
+  Usage:
+  {% render 'alp-slide-sub-mega-menu-2' block: block, container: container %}
+{% endcomment %}
+
+{% liquid
+  assign bs = block.settings
+  if show_price
+    assign price_display = 'show_price'
+  endif
+%}
+
+<div
+  class="slide-sub-menu-wrapper"
+  data-list-style="{{ style | default: 'style_one' }}"
+  data-show-price="{{ price_display | default: '' }}"
+>
+  <div class="slide-sub-menu-header">
+    <div class="slide-menu-back-in">{% render 'icon-arrow-left' %}</div>
+    <div>{{- bs.menu_title | strip -}}</div>
+    <div class="slide-menu-close-in">
+      {%- render 'icon-close' -%}
+    </div>
+  </div>
+  <div class="slide-sub-menu-ul">
+    <div class="mega-linklist-wrapper">
+      {%- if bs.menu_a_title != blank -%}
+        {% render 'mega-menu-linklist', menu_list: bs.menu_a, title: bs.menu_a_title %}
+      {%- endif -%}
+      {%- if bs.menu_b_title != blank -%}
+        {% render 'mega-menu-linklist', menu_list: bs.menu_b, title: bs.menu_b_title %}
+      {%- endif -%}
+      {%- if bs.menu_c_title != blank -%}
+        {% render 'mega-menu-linklist', menu_list: bs.menu_c, title: bs.menu_c_title %}
+      {%- endif -%}
+      {%- if bs.menu_d_title != blank -%}
+        {% render 'mega-menu-linklist', menu_list: bs.menu_d, title: bs.menu_d_title %}
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="mega-menu-buttons">{{ bs.mega_button_content }}</div>
+</div>

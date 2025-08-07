@@ -1,0 +1,75 @@
+
+  <div class="affirm-program-banner-container">
+    <div class="bg-image">
+      <img src="{{section.settings.bgimg | img_url: '1920x'}}" alt="">
+    </div>
+    <div class="bg-image-m">
+      <img src="{{section.settings.mbgimg | img_url: '1920x'}}" alt="">
+    </div>
+    <div class="container">
+      <div class="left-box">
+        <div class="tips">{{section.settings.tips}}</div>
+        <div class="title">{{section.settings.title}}</div>
+      </div>
+      <div class="right-box">
+          <div class="description">{{section.settings.description}}</div>
+          <a href="{{section.settings.buttonLink}}" class="button" >{{section.settings.buttonText}}</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (()=>{
+
+    })()
+  </script>
+
+  {% schema %}
+  {
+  "name": "affirm-program-banner",
+  "class": "affirm-program-banner",
+  "presets": [{
+    "name": "affirm-program-banner",
+    "settings": {
+  
+    }
+  }],
+  "blocks": [],
+  "settings": [{
+    "type": "image_picker",
+    "id": "bgimg",
+    "label": "background image(pc)" 
+  },{
+    "type": "image_picker",
+    "id": "mbgimg",
+    "label": "background image(mobile)" 
+  },{
+    "type": "text",
+    "id": "tips",
+    "label": "tips" 
+  },{
+    "type": "text",
+    "id": "title",
+    "label": "title" 
+  },{
+    "type": "text",
+    "id": "description",
+    "label": "description" 
+  },{
+    "type": "text",
+    "id": "buttonText",
+    "label": "button text" 
+  },{
+    "type": "url",
+    "id": "buttonLink",
+    "label": "button link" 
+  }]
+  }
+  {% endschema %}
+
+
+  <style>
+
+  </style>
+
+  {{ 'page-affirm-program-banner.css' | asset_url | stylesheet_tag }}

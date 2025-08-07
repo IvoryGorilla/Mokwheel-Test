@@ -1,0 +1,259 @@
+<style>
+  @media (min-width: 751px) {
+    .pc {
+      display: block;
+    }
+    .mobile {
+      display: none;
+    }
+    .help-cards-all {
+      max-width: 1380px;
+      padding: 0 10px;
+      margin-top: 143px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .help-cards-title h2 {
+      font-size: 48px;
+      font-weight: 500;
+      color: #151515;
+      line-height: 72px;
+    }
+    .help-cards-box {
+      margin-top: 54px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 48px;
+    }
+    .help-cards-item {
+      background-color: #fff;
+      border: 1px solid #dcdcdc;
+      border-radius: 10px;
+      padding: 25px;
+    }
+    .help-cards-item img {
+      width: 22px;
+      height: 22px;
+    }
+    .help-cards-item-title {
+      font-size: 24px;
+      font-weight: 500;
+      color: #151515;
+      line-height: 72px;
+    }
+    .help-cards-item-text p {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.5;
+      padding: 8px 0;
+      margin: 0;
+      cursor: pointer;
+    }
+    .help-cards-item-text p a {
+      text-decoration: unset;
+      text-underline-offset: unset;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .pc {
+      display: none;
+    }
+    .mobile {
+      display: block;
+    }
+
+    .help-cards-all {
+      margin: 54px auto 60px;
+      /* margin-top: 54px; */
+    }
+    .help-cards-title h2 {
+      font-size: 26px;
+      font-weight: 500;
+      color: #151515;
+      line-height: 36px;
+    }
+    .help-cards-box {
+      margin-top: 54px;
+      display: grid;
+      column-gap: 48px;
+    }
+    .help-cards-item {
+      background-color: #fff;
+      border: 1px solid #dcdcdc;
+      border-radius: 10px;
+      padding: 25px;
+      position: relative;
+    }
+    .help-cards-item:not(:last-child) {
+      margin-bottom: 22px;
+    }
+    .help-cards-item img {
+      width: 22px;
+      height: 22px;
+    }
+    .help-cards-item-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #151515;
+      line-height: 36px;
+      margin-left: 18px;
+    }
+    .help-cards-item-title span {
+      position: absolute;
+      right: 28px;
+      transform: rotate(90deg) scaleY(2);
+      font-size: 18px;
+      font-weight: 400;
+      display: inline-block;
+    }
+    .help-cards-item-text p {
+      font-size: 14px;
+      font-weight: 400;
+      color: #151515;
+      line-height: 2;
+      margin: 0;
+      cursor: pointer;
+    }
+    .help-cards-item-text p a {
+      text-decoration: unset;
+      text-underline-offset: unset;
+    }
+    .help-cards-all .help-cards-icoTit {
+      display: flex;
+      align-items: center;
+    }
+    .help-cards-item:first-child .help-cards-item-text {
+      display: block;
+    }
+    .help-cards-item:first-child span {
+      transform: rotate(270deg) scaleY(2);
+    }
+    .help-cards-item-text {
+      display: none;
+      padding-left: 48px;
+    }
+  }
+  .help-cards-all .help-cards-item:nth-child(2) svg {
+    width: 33px;
+  }
+  .help-cards-all .help-cards-svg svg {
+    width: 30px;
+    height: 30px;
+  }
+  .help-cards-all .help-cards-svg .a {
+    fill: unset;
+  }
+  .help-cards-all .help-cards-svg .b {
+    clip-path: unset;
+  }
+
+  .help-cards-all .help-cards-svg {
+    width: 30px;
+  }
+</style>
+
+<div class="help-cards-all container">
+  <div class="help-cards-title">
+    <h2>{{ section.settings.title }}</h2>
+  </div>
+  <div class="pc">
+    <div class="help-cards-box">
+      {%- for block in section.blocks -%}
+        <div class="help-cards-item">
+          <div class="help-cards-icoTits">
+            <div class="help-cards-svg">{{ block.settings.svg }}</div>
+            <div class="help-cards-item-title">{{ block.settings.title }}</div>
+          </div>
+          <div class="help-cards-item-text">{{ block.settings.text_link }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+  <div class="mobile">
+    <div class="help-cards-box">
+      {%- for block in section.blocks -%}
+        <div class="help-cards-item">
+          <div class="help-cards-icoTit">
+            <div class="help-cards-svg">{{ block.settings.svg }}</div>
+            <div class="help-cards-item-title">
+              {{ block.settings.title -}}
+              <span>></span>
+            </div>
+          </div>
+          <div class="help-cards-item-text">{{ block.settings.text_link }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    $('.help-cards-icoTit').click(function () {
+      if ($(this).parent().find('.help-cards-item-text').css('display') == 'none') {
+        $(this).parent().find('span').css({ '-webkit-transform': 'rotate(270deg) scaleY(2)' });
+        $(this).parent().siblings().find('span').css({ '-webkit-transform': 'rotate(90deg) scaleY(2)' });
+        $(this).parent().find('.help-cards-item-text').slideDown();
+        $(this).parent().siblings().find('.help-cards-item-text').slideUp();
+      } else {
+        $(this).parent().find('span').css({ '-webkit-transform': 'rotate(90deg) scaleY(2)' });
+        $(this).parent().find('.help-cards-item-text').slideUp();
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Help Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item_card",
+      "name": "Item Card",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "svg",
+          "label": "svg"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text_link",
+          "label": "Text link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Help Cards",
+      "blocks": [
+        {
+          "type": "item_card"
+        },
+        {
+          "type": "item_card"
+        },
+        {
+          "type": "item_card"
+        },
+        {
+          "type": "item_card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

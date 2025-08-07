@@ -1,0 +1,15 @@
+{% liquid
+  assign options_string = ''
+  for option in variant.options
+    assign options_string = options_string | append: option | append: ','
+  endfor
+  assign aspect_ratio = aspect_ratio | default: '4/3'
+%}
+<div
+  class="product-item-image-i {% if forloop.index == 1 %} active{% endif %}"
+  data-variant="{{ variant.id }}"
+  data-options="{{ options_string }}"
+>
+  {%- assign alt_title = product.title | append: ' - ' | append: variant.title -%}
+  {% render 'alp-single-image', image: variant.image, width: 1280, aspect_ratio: aspect_ratio, alt: alt_title %}
+</div>

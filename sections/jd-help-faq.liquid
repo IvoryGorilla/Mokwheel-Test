@@ -1,0 +1,245 @@
+{% schema %}
+{
+  "name": "Help Faq",
+  "class": "help-faq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "faqtitle",
+      "label": "Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_all",
+      "label": "Show All",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item_tab",
+      "name": "Item Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "faqs_question",
+          "label": "Faqs Question",
+          "default": "Specifications"
+        },
+        {
+          "type": "richtext",
+          "id": "faqs_answer",
+          "label": "Faqs Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Help Faq"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .arrow-up {
+    display: none;
+  }
+
+  .help-faq-content {
+    margin-top: calc(var(--alp-gutter-y) * 0.75);
+  }
+  .help-faq-item {
+    border-bottom: 1px solid #ececec;
+  }
+  .help-faq-question p {
+    margin: 0;
+  }
+  .help-faq-answer p {
+    margin-top: 0;
+  }
+  .help-faq-item .help-faq-question {
+    display: flex;
+    align-items: center;
+    line-height: 1.2;
+    font-size: clamp(16px, 2vw, 18px);
+    justify-content: space-between;
+    color: #1a1a1a;
+    cursor: pointer;
+    padding: 1em 6px 1em 0;
+    font-weight: 500;
+  }
+
+  .help-faq-answer {
+    display: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin-bottom: calc(var(--alp-gutter-y) * 1);
+    line-height: 1.65;
+    opacity: 0.75;
+  }
+  .help-faq-bottom {
+    border-bottom: 1px solid #ececec;
+  }
+
+  .help-faq-all {
+    padding: 64px 48px;
+    background: #f8f8f8;
+    border-radius: var(--alp-border-radius);
+  }
+
+  .help-faq-item .help-faq-question {
+    font-weight: 600;
+  }
+
+  span.arrow-down svg,
+  span.arrow-up svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 1em;
+  }
+
+  .help-faq-item.show_all .help-faq-answer{
+    display: block;
+  }
+
+  @media (max-width: 750px) {
+    .help-faq-answer p {
+      font-size: 16px;
+      color: #000;
+    }
+    .help-faq-all {
+      padding: 48px 24px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    <div class="help-faq-all">
+      <h2 class="help-faq-title headline__h2s">
+        {{ st.faqtitle }}
+      </h2>
+      <div class="help-faq-content">
+        <div class="help-faq-box">
+          <div class="help-faq-left">
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="help-faq-item {% if st.show_all %}show_all{% endif %}">
+                <h3 class="help-faq-question headline__h3">
+                  {{ bs.faqs_question -}}
+                  <span class="arrow-down">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11" fill="none">
+                      <path d="M1 1L9.5 9.5L18 1" stroke="black" stroke-opacity="0.8"/>
+                    </svg>
+                  </span>
+                  <span class="arrow-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="10" viewBox="0 0 19 10" fill="none">
+                      <path d="M1 9.5L9.5 1L18 9.5" stroke="black" stroke-opacity="0.8"/>
+                    </svg>
+                  </span>
+                </h3>
+                <div class="help-faq-answer headline__h5">{{ bs.faqs_answer }}</div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // $('.help-faq-item:nth-child(1) .help-faq-answer').css('display', 'block');
+    // $('.help-faq-item:nth-child(1) .arrow-up').css('display', 'block');
+    // $('.help-faq-item:nth-child(1) .arrow-down').css('display', 'none');
+
+    $('.help-faq-question').on('click', function (e) {
+      if ($(this).parent().find('.help-faq-answer').css('display') == 'none') {
+        $(this).parent().find('.arrow-down').css('display', 'none');
+        $(this).parent().find('.arrow-up').css('display', 'block');
+        $(this).parent().find('.help-faq-answer').slideDown();
+      } else {
+        $(this).parent().find('.arrow-down').css('display', 'block');
+        $(this).parent().find('.arrow-up').css('display', 'none');
+        $(this).parent().find('.help-faq-answer').slideUp();
+      }
+    });
+  });
+</script>

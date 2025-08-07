@@ -1,0 +1,867 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "227b69f5-8273-45be-b3d6-fe00b5168132": {
+      "type": "alp-main-product",
+      "blocks": {
+        "27c3de63-2ec0-4217-b9c7-6f97151ae1db": {
+          "type": "viewer_block",
+          "settings": {
+            "title": "360 Viewer",
+            "image_name": "Obsidian_360_",
+            "image_number": 20,
+            "default_image": 5
+          }
+        },
+        "59c4eb60-789b-45a2-9986-35971268c4bf": {
+          "type": "breadcrumb",
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "672c6924-15a5-4be0-a429-f1b650305940": {
+          "type": "product_title",
+          "settings": {
+            "title": "{{ product.title }}",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "f9e8f6ce-9ec7-46bd-a141-b5dc95cecda3": {
+          "type": "product_badge",
+          "settings": {
+            "title_1": "{{ product.metafields.custom.full_reduction.value }}",
+            "color_1": "#dd1d1d",
+            "color_text_1": "#FFFFFF",
+            "title_2": "New Arrivals",
+            "color_2": "#334fb4",
+            "color_text_2": "#FFFFFF",
+            "title_3": "",
+            "color_3": "#000000",
+            "color_text_3": "#FFFFFF",
+            "position": "image"
+          }
+        },
+        "d170b49e-ce28-437a-acfd-bfa3ae772238": {
+          "type": "shopify://apps/stamped-reviews/blocks/star-rating-badge/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "use_metafields": false,
+            "sku_tagtype": "handle",
+            "is_featured_product": false,
+            "featured_product_handle": ""
+          }
+        },
+        "9a1987aa-8f36-4594-8a65-bab995d662c9": {
+          "type": "product_des",
+          "settings": {
+            "description": "<p>{{ product.metafields.custom.new_description | metafield_tag }}</p>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "27039ea3-cc6a-448d-b074-6e34e613b694": {
+          "type": "price",
+          "settings": {
+            "promotion_text": "Extra $200 Off For 2 E-Bikes",
+            "color": "#dd4223",
+            "color_text": "#FFFFFF",
+            "padding_top": 1,
+            "padding_bottom": 0
+          }
+        },
+        "cd35ecf7-551c-49e0-b7d8-2ac48a45a86d": {
+          "type": "affirm_block",
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "642950a7-cdd2-4425-90d7-a41c561403d9": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "padding_top": 3,
+            "padding_bottom": 2
+          }
+        },
+        "6b2cf8bd-c14a-4af2-ad64-21f8f0ab48a2": {
+          "type": "accessories_swpier",
+          "settings": {
+            "title": "Free Accessories Included",
+            "product_list": [
+              "air-pump",
+              "baby-seat",
+              "bike-cable-lock-2",
+              "bike-cover",
+              "bike-trunk-bag",
+              "folding-lock-black-friday-gift"
+            ],
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "c031bcaa-b59d-4df9-904e-2d226aedabeb": {
+          "type": "product_upgrades",
+          "settings": {
+            "block_title": "Customized Options",
+            "title_1": "Upgrades",
+            "product_list_1": [
+              "front-mounted-basket",
+              "rear-rackbasalt-st",
+              "charger",
+              "full-fender-basalt"
+            ],
+            "title_2": "Battery",
+            "product_list_2": [
+              "battery-mesa-lite-mesa-lite-st-bundled-1"
+            ],
+            "title_3": "",
+            "product_list_3": [],
+            "title_4": "",
+            "product_list_4": [],
+            "padding_top": 2,
+            "padding_bottom": 2
+          }
+        },
+        "8aa05b40-73a0-4f7e-a908-b04e4547c16e": {
+          "type": "extend_block",
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "fdc6458b-314b-47ed-aef9-8f9cea83e7b7": {
+          "type": "promotion_pack",
+          "settings": {
+            "title": "Christmas Wishlist",
+            "product_title": "$9.9 Accessories Kits",
+            "description": "Accessory gift pack (5 accessories with a total original price value of $361.04)",
+            "image": "shopify://shop_images/9_302d04b6-3d89-437f-84eb-1b0fdafa2756.png",
+            "product": "bundle-accessories-kits-1",
+            "final_price": "$9.9",
+            "bg_color": "#fafafa",
+            "border_color": "#e6e6e6",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "47d644c2-669e-444b-8b7e-01a4be419525": {
+          "type": "promotion_pack",
+          "settings": {
+            "title": "",
+            "product_title": "$199 Accessories Kits",
+            "description": "Accessory gift pack (10 accessories with a total original price value of $660)",
+            "image": "shopify://shop_images/3_b3e10b2d-3754-4720-9e12-baa57ddfd8ee.png",
+            "product": "bundle-accessories-kits-的副本",
+            "final_price": "$199",
+            "bg_color": "#fafafa",
+            "border_color": "#e6e6e6",
+            "padding_top": 0,
+            "padding_bottom": 2
+          }
+        },
+        "2373ff5b-f928-4b35-910b-dbd5d146baf7": {
+          "type": "compatible_products",
+          "settings": {
+            "title": "Compatible Accessories",
+            "product_list": [
+              "air-pump",
+              "battery",
+              "bike-adapter",
+              "bike-cable-lock-2",
+              "bike-cover",
+              "bike-trunk-bag",
+              "bike-pedals",
+              "bike-trunk-bag-1",
+              "brake-rotor"
+            ],
+            "discount_value": "0.8",
+            "discount_text_1": "Add",
+            "discount_text_2": "& Save 20%",
+            "discount_min": 0,
+            "discount_text_3": "Order Now & Save",
+            "padding_top": 0,
+            "padding_bottom": 2
+          }
+        },
+        "9f580fa2-557f-420f-816e-5a389c1808d7": {
+          "type": "promotions",
+          "settings": {
+            "title": "",
+            "image": "shopify://shop_images/1697790808_1_2a3b5e8a-bfd3-4470-82b5-1ed0a3142b70.png",
+            "link": "shopify://pages/deals",
+            "padding_top": 0,
+            "padding_bottom": 2
+          }
+        },
+        "be9bbd2c-f1b6-4b44-a273-c30360f7c0fb": {
+          "type": "product_shippingtime",
+          "settings": {
+            "shipping_text": "<p>{{ product.metafields.custom.shipping_time.value }}</p>",
+            "color": "#dd4223",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "579c9cd6-b803-4b7d-bec6-34e5ae3eef8b": {
+          "type": "alp_richtext",
+          "settings": {
+            "rich_content": "<h4>Have questions?</h4><p>Our world-class Customer Experience team is here to answer all of your questions.</p><p><a href=\"/pages/contact-us\" title=\"Contact Us\">Customer service</a></p>",
+            "padding_top": 2,
+            "padding_bottom": 2
+          }
+        },
+        "73e11739-b582-4da7-b3dd-05909fe9baab": {
+          "type": "alp_popup_slide",
+          "settings": {
+            "title": "Size & Fit",
+            "rich_content_1": "<div class=\"alp_su_one\">\n  <p>Asphalt ST comes in 1 size to suit most adults</p>\n  <p><b>Large : </b>5'6\" - 6'6\"</p>\n<p><b>Normal: </b>5'2\" - 6'2\"</p>\n</div>",
+            "image": "shopify://shop_images/20231117102847.jpg",
+            "rich_content_2": "<div class=\"Sp_alp\">\n  <div>\n    <h4>Frame Size</h4>\n    <div>Reach</div>\n    <div>Standover Height</div>\n    <div>Wheelbase</div>\n    <div>Min Saddle Height</div>\n    <div>Max Saddle Height</div>\n    <div>Total Length</div>\n    <div>Handlebar Height</div>\n  </div>\n  <div>\n    <h4>Large</h4>\n    <div>25.4\"</div>\n    <div>18.3\"</div>\n    <div>44.8\"</div>\n    <div>32.4\"</div>\n    <div>41.2\"</div>\n    <div>72.4\"</div>\n    <div>44.1\"</div>\n  </div>\n<div>\n    <h4>Normal</h4>\n    <div>25.0\"</div>\n    <div>18.3\"</div>\n    <div>44.4\"</div>\n    <div>30.9\"</div>\n    <div>40.9\"</div>\n    <div>72.0\"</div>\n    <div>44.1\"</div>\n</div>\n</div>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "00ead982-c03e-41d7-a63a-978c783c3862": {
+          "type": "alp_popup_slide",
+          "settings": {
+            "title": "Technical",
+            "rich_content_1": "",
+            "rich_content_2": "<div class=\"Sp_tech\">\n  <div>\n    <div>\n<b>Battery</b><span>LG 48V 14.7Ah</span>\n</div>\n    <div>\n<b>Charger</b><span>48V 3.0A 100-240V</span>\n</div>\n    <div>\n<b>Speed Class</b><span>Level 1(10mph),Level 2(15mph),Level 3(20mph),Level 4(25mph),Level 5(28mph)</span>\n</div>\n    <div>\n<b>Weight</b><span>60 lbs</span>\n</div>\n    <div>\n<b>Range</b><span>50~60miles</span>\n</div>\n    <div>\n<b>Motor</b><span>500W</span>\n</div>\n    <div>\n<b>Payload Capacity</b><span>300 lbs</span>\n</div>\n</div>\n</div>",
+            "padding_top": 1,
+            "padding_bottom": 1
+          }
+        },
+        "3a685a80-0a35-42df-af1e-3508460a925b": {
+          "type": "alp_popup_slide",
+          "settings": {
+            "title": "Performance",
+            "rich_content_1": "",
+            "rich_content_2": "<div class=\"Sp_tech\">\n\t<div>\n\t\t<div>\n\t\t\t<b>Tires</b><span>27.5\" x 2.4\" tires\n\t\t\t</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Display</b><span>LED Integrated</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Brakes</b><span>TEKTRO HD-E350 Hydraulic Disc Brakes\n\t\t\t</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Brake lever</b><span>Aluminum Alloy</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Chain</b><span>KMC Stainless Chain</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Crank Set</b><span>44T cassette, 170mm crank</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Derailleur</b><span>7-speed Shimano</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Controller</b><span>48V/22A</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Front Fork</b><span>100mm Adjustable Suspension</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Frame</b><span>6061 Aluminum Alloy</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Gearing</b><span>Shimano 7-Speed</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Throttle</b><span>Thumb Throttle</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Handlebar</b><span>Aluminum Alloy 31.8mm, 680mm</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Kickstand</b><span>6061 Aluminum Kickstand</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Rims</b><span>Aluminum Alloy</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Saddle</b><span>Customized Comfort Leather Seat\n\t\t\t</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Sensor</b><span>Torque Sensors\n\t\t\t</span>\n\t\t</div>\n\t\t<div>\n\t\t\t<b>Spokes</b><span>13 Gauge\n\t\t\t</span>\n\t\t</div>\n\t</div>\n</div>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "d53476d3-88c3-45c8-9091-01f7b54a515f": {
+          "type": "alp_line",
+          "settings": {}
+        },
+        "e007ec43-fe8c-4dac-b7c9-cea6622aba15": {
+          "type": "alp_richtext_2",
+          "settings": {
+            "rich_content": "<div class=\"alp-icon-list\">\n  <div>\n    <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/ddl_shipping.svg\" alt=\"\">\n    <p>\n      <span>Free Shipping</span>\n      Free Shipping on all online orders.\n    </p>\n  </div>\n  <div>\n    <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/ddl_return.svg\" alt=\"\">\n    <p>\n      <span>15-Day Trial</span>\n      All Mokwheel products can be returned within 15 days of purchase. Click\n      <a href=\"/pages/return-refund-policy-new\">here </a>\n      for more information.\n    </p>\n  </div>\n  <div>\n    <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/ddl_warrant.svg\" alt=\"\">\n    <p>\n      <span>2-Year Warranty</span>\n      The Two (2) Year Limited Warranty applies to purchases made from\n      authorized channels of Mokwheel. Click\n      <a href=\"/pages/warranty-new\">here </a>for more information.\n    </p>\n  </div>\n</div>",
+            "padding_top": 2,
+            "padding_bottom": 2
+          }
+        },
+        "b58c8d84-eff3-41f2-8087-f745af2f2c1d": {
+          "type": "alp_line",
+          "settings": {}
+        },
+        "100e5730-5901-410f-831c-679d5382fb4c": {
+          "type": "line_item_properties",
+          "settings": {
+            "title": "*Gifts",
+            "content": "<p>{{ product.metafields.custom.product_gift_info.value }}</p>"
+          }
+        },
+        "11e3bdba-2a60-4b29-8d5b-e527fff72b62": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false,
+            "custom_html": "",
+            "padding_top": 3,
+            "padding_bottom": 1
+          }
+        }
+      },
+      "block_order": [
+        "27c3de63-2ec0-4217-b9c7-6f97151ae1db",
+        "59c4eb60-789b-45a2-9986-35971268c4bf",
+        "672c6924-15a5-4be0-a429-f1b650305940",
+        "f9e8f6ce-9ec7-46bd-a141-b5dc95cecda3",
+        "d170b49e-ce28-437a-acfd-bfa3ae772238",
+        "9a1987aa-8f36-4594-8a65-bab995d662c9",
+        "27039ea3-cc6a-448d-b074-6e34e613b694",
+        "cd35ecf7-551c-49e0-b7d8-2ac48a45a86d",
+        "642950a7-cdd2-4425-90d7-a41c561403d9",
+        "6b2cf8bd-c14a-4af2-ad64-21f8f0ab48a2",
+        "c031bcaa-b59d-4df9-904e-2d226aedabeb",
+        "8aa05b40-73a0-4f7e-a908-b04e4547c16e",
+        "fdc6458b-314b-47ed-aef9-8f9cea83e7b7",
+        "47d644c2-669e-444b-8b7e-01a4be419525",
+        "2373ff5b-f928-4b35-910b-dbd5d146baf7",
+        "9f580fa2-557f-420f-816e-5a389c1808d7",
+        "be9bbd2c-f1b6-4b44-a273-c30360f7c0fb",
+        "579c9cd6-b803-4b7d-bec6-34e5ae3eef8b",
+        "73e11739-b582-4da7-b3dd-05909fe9baab",
+        "00ead982-c03e-41d7-a63a-978c783c3862",
+        "3a685a80-0a35-42df-af1e-3508460a925b",
+        "d53476d3-88c3-45c8-9091-01f7b54a515f",
+        "e007ec43-fe8c-4dac-b7c9-cea6622aba15",
+        "b58c8d84-eff3-41f2-8087-f745af2f2c1d",
+        "100e5730-5901-410f-831c-679d5382fb4c",
+        "11e3bdba-2a60-4b29-8d5b-e527fff72b62"
+      ],
+      "settings": {
+        "title": "{{ product.title }}",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "image_max_height": "800px",
+        "images_type": "horizontal",
+        "picture_type": "contain",
+        "container": "alp-container-fluid",
+        "padding_top": 5,
+        "padding_bottom": 5,
+        "reset_spacing": false
+      }
+    },
+    "09482fab-df23-481a-aef3-7a40b3b05e0f": {
+      "type": "bicycle-details-list",
+      "blocks": {
+        "c76dc49d-8422-46ac-8a02-4092337ea68d": {
+          "type": "Item",
+          "settings": {
+            "image": "shopify://shop_images/Vector.png",
+            "Btitle": "<p><em>4\" </em>Fat Tires</p>",
+            "desc": "<p>TIRES</p>"
+          }
+        },
+        "5594a3d8-2833-49de-8be6-99fafb03309f": {
+          "type": "Item",
+          "settings": {
+            "image": "shopify://shop_images/Vector.svg",
+            "Btitle": "<p>iOS</p>",
+            "desc": "<p>Power of motor</p>"
+          }
+        },
+        "fba42dcd-1d64-4683-a153-be339c111d59": {
+          "type": "Item",
+          "settings": {
+            "image": "shopify://shop_images/imagess.png",
+            "Btitle": "<p><em>500</em>W</p>",
+            "desc": "<p>motor power</p>"
+          }
+        },
+        "c80e3e3f-8927-4d25-967b-0395780530ed": {
+          "type": "Item",
+          "settings": {
+            "image": "shopify://shop_images/imagess_1.png",
+            "Btitle": "<p><em>28</em> MPH</p>",
+            "desc": "<p>Top speed</p>"
+          }
+        },
+        "e65086b8-7c8d-414c-9274-0008002a8b0d": {
+          "type": "Item",
+          "settings": {
+            "image": "shopify://shop_images/imagess_2.png",
+            "Btitle": "<p>Up to <em>60</em>miles</p>",
+            "desc": "<p>range</p>"
+          }
+        },
+        "13003297-7d73-44bb-b30f-17b92723f0d5": {
+          "type": "Item",
+          "settings": {
+            "image": "shopify://shop_images/imagess_3.png",
+            "Btitle": "<p><em>350 </em>lbs</p>",
+            "desc": "<p>Payload Capability</p>"
+          }
+        }
+      },
+      "block_order": [
+        "c76dc49d-8422-46ac-8a02-4092337ea68d",
+        "5594a3d8-2833-49de-8be6-99fafb03309f",
+        "fba42dcd-1d64-4683-a153-be339c111d59",
+        "c80e3e3f-8927-4d25-967b-0395780530ed",
+        "e65086b8-7c8d-414c-9274-0008002a8b0d",
+        "13003297-7d73-44bb-b30f-17b92723f0d5"
+      ],
+      "custom_css": [],
+      "settings": {
+        "Btitle": "Section Btitle",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 5,
+        "reset_spacing": false
+      }
+    },
+    "69378085-1376-4090-a93b-8c6dda406102": {
+      "type": "alp-images-slider",
+      "blocks": {
+        "6aa2e236-29bc-414b-8719-f67434c60df5": {
+          "type": "item",
+          "settings": {
+            "text": "Shimano Derailleur",
+            "subtext": "Professional shifting accessories, with stable shifting performance and clear digital display, smooth operation and easy control, safer riding.",
+            "image": "shopify://shop_images/Rectangle_669.jpg",
+            "link": "",
+            "link_text": ""
+          }
+        },
+        "01cc7ab3-3acf-43c9-8723-6d67f091a2ba": {
+          "type": "item",
+          "settings": {
+            "text": "Shimano Derailleur",
+            "subtext": "Professional shifting accessories, with stable shifting performance and clear digital display, smooth operation and easy control, safer riding.",
+            "image": "shopify://shop_images/Rectangle_669.jpg",
+            "link": "",
+            "link_text": ""
+          }
+        },
+        "25363e6a-f2bf-46e0-9ec3-d62cc2fa21e6": {
+          "type": "item",
+          "settings": {
+            "text": "Shimano Derailleur",
+            "subtext": "Professional shifting accessories, with stable shifting performance and clear digital display, smooth operation and easy control, safer riding.",
+            "image": "shopify://shop_images/Rectangle_669.jpg",
+            "link": "",
+            "link_text": ""
+          }
+        },
+        "1804bce1-f2ba-4399-8fe9-272f37ef3fab": {
+          "type": "item",
+          "settings": {
+            "text": "Shimano Derailleur",
+            "subtext": "Professional shifting accessories, with stable shifting performance and clear digital display, smooth operation and easy control, safer riding.",
+            "image": "shopify://shop_images/Rectangle_669.jpg",
+            "link": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "6aa2e236-29bc-414b-8719-f67434c60df5",
+        "01cc7ab3-3acf-43c9-8723-6d67f091a2ba",
+        "25363e6a-f2bf-46e0-9ec3-d62cc2fa21e6",
+        "1804bce1-f2ba-4399-8fe9-272f37ef3fab"
+      ],
+      "settings": {
+        "style": "type-1",
+        "heading_type": "h1",
+        "title": "Explore performance",
+        "description": "",
+        "sub_title": "",
+        "image_aspect_ratio": "4/3",
+        "block_normal_width": "30%",
+        "block_max_width": "420px",
+        "block_max_width_mobile": "280px",
+        "min_height": "220px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_opacity": 50,
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "3f95428f-ebc7-46f5-aa25-5ca94dae89d2": {
+      "type": "alp-rider-reviews",
+      "blocks": {
+        "9f88d925-39d6-48a3-b273-fa5306ee084e": {
+          "type": "item",
+          "settings": {
+            "view": "953 Views",
+            "image": "shopify://shop_images/14_5c4636c5-3b9c-4726-83ae-c9939e3cecb1.png",
+            "video": "https://cdn.shopify.com/videos/c/o/v/70d68abc5c424670b9b21f9d53c73fc9.mp4",
+            "title": "<p>Momentum Reviews: The Aventon Soltera.2</p>",
+            "author_img": "shopify://shop_images/20231207111020.jpg",
+            "author_name": "Momentum-Smart Living by Bicycle"
+          }
+        },
+        "18ecb9a0-0155-458b-b70a-0fa4b70f9cbb": {
+          "type": "item",
+          "settings": {
+            "view": "953 Views",
+            "image": "shopify://shop_images/14_5c4636c5-3b9c-4726-83ae-c9939e3cecb1.png",
+            "video": "https://cdn.shopify.com/videos/c/o/v/70d68abc5c424670b9b21f9d53c73fc9.mp4",
+            "title": "<p>Momentum Reviews: The Aventon Soltera.2</p>",
+            "author_img": "shopify://shop_images/20231207111020.jpg",
+            "author_name": "Momentum-Smart Living by Bicycle"
+          }
+        },
+        "a5715259-251d-47d1-b395-e2bc85cdde93": {
+          "type": "item",
+          "settings": {
+            "view": "953 Views",
+            "image": "shopify://shop_images/14_5c4636c5-3b9c-4726-83ae-c9939e3cecb1.png",
+            "video": "https://cdn.shopify.com/videos/c/o/v/70d68abc5c424670b9b21f9d53c73fc9.mp4",
+            "title": "<p>Momentum Reviews: The Aventon Soltera.2</p>",
+            "author_img": "shopify://shop_images/20231207111020.jpg",
+            "author_name": "Momentum-Smart Living by Bicycle"
+          }
+        },
+        "4e489ebf-05be-4055-b0c0-a6c0cbe28aae": {
+          "type": "item",
+          "settings": {
+            "view": "953 Views",
+            "image": "shopify://shop_images/14_5c4636c5-3b9c-4726-83ae-c9939e3cecb1.png",
+            "video": "https://cdn.shopify.com/videos/c/o/v/70d68abc5c424670b9b21f9d53c73fc9.mp4",
+            "title": "<p>Momentum Reviews: The Aventon Soltera.2</p>",
+            "author_img": "shopify://shop_images/20231207111020.jpg",
+            "author_name": "Momentum-Smart Living by Bicycle"
+          }
+        }
+      },
+      "block_order": [
+        "9f88d925-39d6-48a3-b273-fa5306ee084e",
+        "18ecb9a0-0155-458b-b70a-0fa4b70f9cbb",
+        "a5715259-251d-47d1-b395-e2bc85cdde93",
+        "4e489ebf-05be-4055-b0c0-a6c0cbe28aae"
+      ],
+      "settings": {
+        "title": "Rider Reviews",
+        "image_aspect_ratio": "3/2",
+        "block_max_width": "420px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "8e6beaf3-9a0d-456f-8ba4-091d8147ded5": {
+      "type": "bicycle-details-banner-inverter",
+      "blocks": {
+        "8d1ba9ee-29c4-42f6-bb4f-3badfd0145d1": {
+          "type": "Item",
+          "settings": {
+            "image": "shopify://shop_images/inverter-1.jpg",
+            "m_image": "shopify://shop_images/991_2.png"
+          }
+        },
+        "2485a916-c8bd-40a2-9515-be1f9c77aa67": {
+          "type": "Item",
+          "settings": {
+            "image": "shopify://shop_images/inverter-2.jpg",
+            "m_image": "shopify://shop_images/991_2.png"
+          }
+        },
+        "4f07dcc8-a1bf-4e03-b212-6733bd4d37cd": {
+          "type": "Item",
+          "settings": {
+            "image": "shopify://shop_images/3_6b6ae018-ebcf-46fe-87d3-5cb40dcc8005.jpg",
+            "m_image": "shopify://shop_images/991_2.png"
+          }
+        }
+      },
+      "block_order": [
+        "8d1ba9ee-29c4-42f6-bb4f-3badfd0145d1",
+        "2485a916-c8bd-40a2-9515-be1f9c77aa67",
+        "4f07dcc8-a1bf-4e03-b212-6733bd4d37cd"
+      ],
+      "settings": {
+        "title": "Section Title",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "87f15dcf-734a-4513-a6b7-19fc786f2e07": {
+      "type": "alp-sizefit-info",
+      "blocks": {
+        "fd0893dc-000b-4e29-a7dd-036ebec9fe74": {
+          "type": "sizefit_type_right",
+          "settings": {
+            "image": "shopify://shop_images/Height-Module-Katya-Runner-2_1.png",
+            "title": "<p>Katya-5’6’’</p>",
+            "desc": "<p>Katya's measurements: <br/>bike inseam 30\"/ 76cm, height 5'4\" /163cm</p>"
+          }
+        },
+        "609e3985-3220-47da-8593-52f5999c13c7": {
+          "type": "sizefit_type_right",
+          "settings": {
+            "image": "shopify://shop_images/Height-Module-Katya-Runner-2_1.png",
+            "title": "<p>Katya-5’6’’</p>",
+            "desc": "<p>Katya's measurements: <br/>bike inseam 30\"/ 76cm, height 5'4\" /163cm</p>"
+          }
+        },
+        "0ab758f8-47c8-45cb-9e6a-0275177bcff1": {
+          "type": "sizefit_type_right",
+          "settings": {
+            "image": "shopify://shop_images/Height-Module-Katya-Runner-2_1.png",
+            "title": "<p>Katya-5’6’’</p>",
+            "desc": "<p>Katya's measurements: <br/>bike inseam 30\"/ 76cm, height 5'4\" /163cm</p>"
+          }
+        }
+      },
+      "block_order": [
+        "fd0893dc-000b-4e29-a7dd-036ebec9fe74",
+        "609e3985-3220-47da-8593-52f5999c13c7",
+        "0ab758f8-47c8-45cb-9e6a-0275177bcff1"
+      ],
+      "settings": {
+        "home_text": "Tailor-fit comfort. \nFor every rider.",
+        "title1": "<p>\" Bike Inseam</p>",
+        "des1": "<p>Slide the scale for your bikeinseam measurement</p>",
+        "title2": "<p>RadRunner 2</p>",
+        "des2_green": "<p>You will be able to pedal and stand over the frame comfortably.</p>",
+        "des2_red": "<p>You will not be able to pedal and stand over the frame comfortably.</p>",
+        "des3": "<p><a href=\"#\" title=\"#\">Not sure how to measure your bike inseam?</a></p>",
+        "rich_content": "<div class=\"sizefit-info-left-text\">\n    <div>\n        <b><i class=\"calc_number\" data-range=\"60\">30</i> \" bike inseam</b>\n        <p>Slide the scale for your bikeinseam measurement</p>\n    </div>\n    <div>\n        <b>RadRunner 2</b>\n        <p>You will be able to pedal and stand over the frame comfortably.</p>\n    </div>\n    <div>\n        <b></b>\n        <p>Not sure how to measure your bike inseam?</p>\n    </div>\n</div>",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "0c54bf87-e37c-493e-88eb-4c6df1b2b7e5": {
+      "type": "alp-technical-info",
+      "settings": {
+        "home_text": "Technical",
+        "rich_content": "<div class=\"Sp_tech\">\n  <div>\n    <div>\n<b>Battery</b><span>LG 48V 14.7Ah</span>\n</div>\n    <div>\n<b>Charger</b><span>48V 3.0A 100-240V</span>\n</div>\n    <div>\n<b>Speed Class</b><span>Level 1(10mph),Level 2(15mph),Level 3(20mph),Level 4(25mph),Level 5(28mph)</span>\n</div>\n    <div>\n<b>Weight</b><span>60 lbs</span>\n</div>\n    <div>\n<b>Range</b><span>50~60miles</span>\n</div>\n    <div>\n<b>Motor</b><span>500W</span>\n</div>\n    <div>\n<b>Payload Capacity</b><span>300 lbs</span>\n</div>\n</div>\n</div>",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 4,
+        "padding_bottom": 4,
+        "reset_spacing": true
+      }
+    },
+    "5cc529c7-4206-4445-80d4-7b9e69c5abfe": {
+      "type": "alp-faq-info",
+      "blocks": {
+        "c421121c-a374-4b06-8b13-96101dec5cde": {
+          "type": "faq_item",
+          "settings": {
+            "title": "How long until I receive my bike?",
+            "rich_content": "<p>The order will be process in 48 business hours. Once the order has shipped, a shipping confirmation email will be sent to your email. We use FedEx or UPS for shipping. Please allow 2~7 business days for the shipment to arrive to your designated location. Any delivery dates provided by Mokwheel are estimates.</p>"
+          }
+        },
+        "0f0b0cf0-eec0-44d3-9659-c7910183036d": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Do I need a license for riding Ebike?",
+            "rich_content": "<p>No, you don’t need a license for riding Ebike. Please read Safety Instructions carefully for your safety.</p>"
+          }
+        },
+        "8b1fce4c-2900-4a3f-97ed-248251092b3e": {
+          "type": "faq_item",
+          "settings": {
+            "title": "How do I charge my battery?",
+            "rich_content": "<p>You can check the Battery and Charger of our E-BIKE USER MANUAL. The methods are listed in the manual with more detail.</p>"
+          }
+        },
+        "deacc67d-af01-4a68-b778-fdcd298511b1": {
+          "type": "faq_item",
+          "settings": {
+            "title": "How to find the Ebike that fits me?",
+            "rich_content": "<p>You can check our Compare Models for the differential of our Ebike.</p>"
+          }
+        },
+        "3b75f0bf-0f54-49c2-974f-e265cec4cd41": {
+          "type": "faq_item",
+          "settings": {
+            "title": "How to clean my Ebike?",
+            "rich_content": "<p>We recommended you to take off the battery. Otherwise, you can clean the E-bike as the normal bike.</p>"
+          }
+        },
+        "98ffc3ca-a509-42e0-88c0-e658f5be240e": {
+          "type": "faq_item",
+          "settings": {
+            "title": "What accessories come with Ebike?",
+            "rich_content": "<p>We send a wrench, bicycle pump and front full fender, with our Ebike.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "c421121c-a374-4b06-8b13-96101dec5cde",
+        "0f0b0cf0-eec0-44d3-9659-c7910183036d",
+        "8b1fce4c-2900-4a3f-97ed-248251092b3e",
+        "deacc67d-af01-4a68-b778-fdcd298511b1",
+        "3b75f0bf-0f54-49c2-974f-e265cec4cd41",
+        "98ffc3ca-a509-42e0-88c0-e658f5be240e"
+      ],
+      "settings": {
+        "home_text": "FAQ",
+        "button_text": "Get More FAQ",
+        "button_url": "https://www.mokwheel.com/products/basalt-st",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "133d0663-02b0-426b-b872-7f5a536e03ee": {
+      "type": "alp-compare",
+      "blocks": {
+        "d26a3fdb-69cc-49e8-848b-af49adc422b2": {
+          "type": "product-item",
+          "settings": {
+            "product": "basalt"
+          }
+        },
+        "264adf61-36a0-40e1-8dc1-996ac1966d7b": {
+          "type": "product-item",
+          "settings": {
+            "product": "basalt-st"
+          }
+        },
+        "6b2560a0-969e-430b-9b71-064d95f60f51": {
+          "type": "product-item",
+          "settings": {
+            "product": "asphalt-st"
+          }
+        }
+      },
+      "block_order": [
+        "d26a3fdb-69cc-49e8-848b-af49adc422b2",
+        "264adf61-36a0-40e1-8dc1-996ac1966d7b",
+        "6b2560a0-969e-430b-9b71-064d95f60f51"
+      ],
+      "settings": {
+        "title": "Compare Models",
+        "product_collection": "electric-bikes",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "35df427c-dcfe-4056-885e-45b66541722b": {
+      "type": "alp-images-slider",
+      "blocks": {
+        "1e981b40-96c4-47a7-863c-ab7ef55e14ae": {
+          "type": "item",
+          "settings": {
+            "text": "Low Seat crulsers",
+            "subtext": "",
+            "image": "shopify://shop_images/Product-i_2.jpg",
+            "link": "",
+            "link_text": ""
+          }
+        },
+        "bab4aae5-0351-402a-80a0-16b2a81cc443": {
+          "type": "item",
+          "settings": {
+            "text": "Low Seat crulsers",
+            "subtext": "",
+            "image": "shopify://shop_images/Product-i_2.jpg",
+            "link": "",
+            "link_text": ""
+          }
+        },
+        "cd0030ba-1bf3-4390-9009-fb81cb5ea04c": {
+          "type": "item",
+          "settings": {
+            "text": "Low Seat crulsers",
+            "subtext": "",
+            "image": "shopify://shop_images/Product-i_2.jpg",
+            "link": "",
+            "link_text": ""
+          }
+        },
+        "2f29093f-d632-47ac-aed1-84d39496925b": {
+          "type": "item",
+          "settings": {
+            "text": "Low Seat crulsers",
+            "subtext": "",
+            "image": "shopify://shop_images/Product-i_2.jpg",
+            "link": "",
+            "link_text": ""
+          }
+        },
+        "ad3ed13d-33bc-4858-8904-d59b984e4d2d": {
+          "type": "item",
+          "settings": {
+            "text": "Low Seat crulsers",
+            "subtext": "",
+            "image": "shopify://shop_images/Product-i_2.jpg",
+            "link": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "1e981b40-96c4-47a7-863c-ab7ef55e14ae",
+        "bab4aae5-0351-402a-80a0-16b2a81cc443",
+        "cd0030ba-1bf3-4390-9009-fb81cb5ea04c",
+        "2f29093f-d632-47ac-aed1-84d39496925b",
+        "ad3ed13d-33bc-4858-8904-d59b984e4d2d"
+      ],
+      "settings": {
+        "style": "default",
+        "heading_type": "h1",
+        "title": "Riding Gallery",
+        "description": "",
+        "sub_title": "",
+        "image_aspect_ratio": "4/5",
+        "block_normal_width": "30%",
+        "block_max_width": "420px",
+        "block_max_width_mobile": "280px",
+        "min_height": "220px",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_opacity": 50,
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 5,
+        "reset_spacing": false
+      }
+    },
+    "360652e9-5ee7-481f-9229-6763bd740833": {
+      "type": "alp-apps",
+      "blocks": {
+        "b2533a2d-0888-4ea5-ae30-e7bfb336afb4": {
+          "type": "shopify://apps/stamped-reviews/blocks/main-widget/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "animation": true,
+            "tags_exclude": "",
+            "tags_include": "",
+            "search": "",
+            "linkify": true,
+            "use_metafields": false,
+            "sku_tagtype": "sku"
+          }
+        }
+      },
+      "block_order": [
+        "b2533a2d-0888-4ea5-ae30-e7bfb336afb4"
+      ],
+      "settings": {
+        "title": "Section Title",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "227b69f5-8273-45be-b3d6-fe00b5168132",
+    "09482fab-df23-481a-aef3-7a40b3b05e0f",
+    "69378085-1376-4090-a93b-8c6dda406102",
+    "3f95428f-ebc7-46f5-aa25-5ca94dae89d2",
+    "8e6beaf3-9a0d-456f-8ba4-091d8147ded5",
+    "87f15dcf-734a-4513-a6b7-19fc786f2e07",
+    "0c54bf87-e37c-493e-88eb-4c6df1b2b7e5",
+    "5cc529c7-4206-4445-80d4-7b9e69c5abfe",
+    "133d0663-02b0-426b-b872-7f5a536e03ee",
+    "35df427c-dcfe-4056-885e-45b66541722b",
+    "360652e9-5ee7-481f-9229-6763bd740833"
+  ]
+}

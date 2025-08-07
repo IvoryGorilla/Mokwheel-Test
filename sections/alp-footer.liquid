@@ -1,0 +1,484 @@
+{% schema %}
+{
+  "name": "Alp Footer",
+  "class": "alp-footer-section",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 50,
+      "max": 550,
+      "step": 5,
+      "unit": "px",
+      "label": "Image width",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.payment_enable.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy",
+      "default": false,
+      "label": "t:sections.footer.settings.show_policy.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "link_list",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Quick links",
+          "label": "t:sections.footer.blocks.link_list.settings.heading.label"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+          "info": "t:sections.footer.blocks.link_list.settings.menu.info"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Cutsom Content Left",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 550,
+          "step": 5,
+          "unit": "px",
+          "label": "Image width",
+          "default": 100
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "default": true,
+          "label": "t:sections.footer.blocks.brand_information.settings.show_social.label",
+          "info": "t:sections.footer.blocks.brand_information.settings.show_social.info"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Heading",
+          "label": "t:sections.footer.blocks.text.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "default": "<p>Share contact information, store details, and brand content with your customers.</p>",
+          "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        }
+      ]
+    },
+    {
+      "type": "text_2",
+      "name": "Cutsom Content Right",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 550,
+          "step": 5,
+          "unit": "px",
+          "label": "Image width",
+          "default": 100
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "default": true,
+          "label": "t:sections.footer.blocks.brand_information.settings.show_social.label",
+          "info": "t:sections.footer.blocks.brand_information.settings.show_social.info"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Heading",
+          "label": "t:sections.footer.blocks.text.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "default": "<p>Share contact information, store details, and brand content with your customers.</p>",
+          "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        },
+        {
+          "type": "richtext",
+          "id": "contact_email",
+          "label": "Contact Email"
+        },
+        {
+          "type": "richtext",
+          "id": "contact_phone",
+          "default": "<p><b>Phone</b><a href=\"tel:+1234567890\">+1234567890</a></p>",
+          "label": "Contact Phone"
+        },
+        {
+          "type": "richtext",
+          "id": "contact_address",
+          "default": "<p><b>Address</b><br>Sample Address</p>",
+          "label": "Contact Address"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon1",
+          "label": "Icon 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon2",
+          "label": "Icon 2"
+        },
+        {
+          "type": "text",
+          "id": "review",
+          "label": "Review",
+          "default": "4.6"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_review",
+          "label": "Show Review",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Footer"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+{% endstyle %}
+
+<div class="alp-section alp-footer-wrapper {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container alp-footer-container page-width {{ container }}">
+    <div class="alp-footer-inner-1" style="--blocks:{{ section.blocks.size }}">
+      <div class="alp-footer-inner-1-a">
+        {%- if st.image != blank -%}
+          {%- assign image_size_2x = st.image_width | times: 2 | at_most: 5760 -%}
+          <div
+            class="alp-footer-image hide_desktop"
+            style="max-width: min(100%, {{ st.image_width }}px);"
+          >
+            <img
+              srcset="{{ st.image | image_url: width: st.image_width }}, {{ st.image | image_url: width: image_size_2x }} 2x"
+              src="{{ st.image | image_url: width: 760 }}"
+              alt="{{ st.image.alt | escape }}"
+              loading="lazy"
+              width="{{ st.image.width }}"
+              height="{{ st.image.height }}"
+            >
+          </div>
+        {%- endif -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          {%- case block.type -%}
+            {%- when 'link_list' -%}
+              <div class="alp-footer-inner-item footer-inner-linklist" data-slide-toggle-wrapper>
+                <h2 class="alp-footer-menu-heading headline__h6" data-slide-toggle-trigger>
+                  <span>{{- bs.heading -}}</span>
+                  {% render 'icon-plus' %}
+                </h2>
+                {%- if bs.menu != blank -%}
+                  <ul class="alp-footer-block-links list-unstyled" data-slide-toggle-target>
+                    {%- for link in bs.menu.links -%}
+                      {%- assign track_name = link.title | handle -%}
+                      {%- assign track_name = track_name | prepend: 'footer-' -%}
+                      <li>
+                        <a
+                          href="{{ link.url }}"
+                          class="alp-footer-list-menu-link {% render 'track-tag-classname', name: track_name %} {% if link.active %} active{% endif %}"
+                        >
+                          {{ link.title }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+            {%- when 'text' -%}
+              <div class="alp-footer-inner-item footer-inner-text">
+                {%- if bs.image != blank -%}
+                  {%- assign image_size_2x = bs.image_width | times: 2 | at_most: 5760 -%}
+                  <div
+                    class="alp-footer-image"
+                    style="max-width: min(100%, {{ bs.image_width }}px);"
+                  >
+                    <img
+                      srcset="{{ bs.image | image_url: width: bs.image_width }}, {{ bs.image | image_url: width: image_size_2x }} 2x"
+                      src="{{ bs.image | image_url: width: 760 }}"
+                      alt="{{ bs.image.alt | escape }}"
+                      loading="lazy"
+                      width="{{ bs.image.width }}"
+                      height="{{ bs.image.height }}"
+                    >
+                  </div>
+                {%- endif -%}
+                {%- if bs.show_social -%}
+                  {%- render 'social-icons', class: 'alp-footer-list-social' -%}
+                {%- endif -%}
+                {%- if bs.heading != blank -%}
+                  <div class="alp-footer-block-heading alp-inline-richtext headline__h5">
+                    {{- bs.heading -}}
+                  </div>
+                {%- endif -%}
+                {%- if bs.subtext != blank -%}
+                  <div class="alp-footer-block-subtext alp-inline-richtext">
+                    {{- bs.subtext -}}
+                  </div>
+                {%- endif -%}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+      <div class="alp-footer-inner-1-b">
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          {%- case block.type -%}
+            {%- when 'text_2' -%}
+              <div class="alp-footer-inner-item footer-inner-text">
+                <div class="alp-footer-block-review hide_desktop {% if bs.show_review %} show_review{% endif %}">
+                  <a
+                    rel="sponsored"
+                    href="{{ bs.link }}"
+                    target="_blank"
+                    class="full-aa {% render 'track-tag-classname', name: 'footer-Trustpilot' %}"
+                  ></a>
+                  <div class="icon1">
+                    {% render 'alp-single-image', image: bs.icon1, width: 1280 %}
+                  </div>
+                  <div class="icon2">
+                    {% render 'alp-single-image', image: bs.icon2, width: 1280 %}
+                  </div>
+                  <span>{{ bs.review }}</span>
+                </div>
+                {%- if bs.image != blank -%}
+                  {%- assign image_size_2x = bs.image_width | times: 2 | at_most: 5760 -%}
+                  <div
+                    class="alp-footer-image hide_mobile"
+                    style="max-width: min(100%, {{ bs.image_width }}px);"
+                  >
+                    <img
+                      srcset="{{ bs.image | image_url: width: bs.image_width }}, {{ bs.image | image_url: width: image_size_2x }} 2x"
+                      src="{{ bs.image | image_url: width: 760 }}"
+                      alt="{{ bs.image.alt | escape }}"
+                      loading="lazy"
+                      width="{{ bs.image.width }}"
+                      height="{{ bs.image.height }}"
+                    >
+                  </div>
+                {%- endif -%}
+                {%- if bs.show_social -%}
+                  {%- render 'social-icons', class: 'alp-footer-list-social' -%}
+                {%- endif -%}
+                <div class="alp-footer-block-review hide_mobile {% if bs.show_review %} show_review{% endif %}">
+                  <a
+                    rel="sponsored"
+                    href="{{ bs.link }}"
+                    target="_blank"
+                    class="full-aa {% render 'track-tag-classname', name: 'footer-Trustpilot' %}"
+                  ></a>
+                  <div class="icon1">
+                    {% render 'alp-single-image', image: bs.icon1, width: 1280 %}
+                  </div>
+                  <div class="icon2">
+                    {% render 'alp-single-image', image: bs.icon2, width: 1280 %}
+                  </div>
+                  <span>{{ bs.review }}</span>
+                </div>
+                {%- if bs.heading != blank -%}
+                  <div class="alp-footer-block-heading alp-inline-richtext headline__h5">
+                    {{- bs.heading -}}
+                  </div>
+                {%- endif -%}
+                {%- if bs.subtext != blank -%}
+                  <div class="alp-footer-block-subtext alp-inline-richtext">
+                    {{- bs.subtext -}}
+                  </div>
+                {%- endif -%}
+                <div class="alp-footer-block-contact">
+                  {%- if bs.contact_email != blank -%}
+                    <div class="alp-inline-contact-richtext">
+                      <iconify-icon icon="octicon:mail-16" width="20" height="20"></iconify-icon>
+                      {{- bs.contact_email -}}
+                    </div>
+                  {%- endif -%}
+                  {%- if bs.contact_phone != blank -%}
+                    <div class="alp-inline-contact-richtext">
+                      <iconify-icon icon="octicon:device-mobile-16" width="20" height="20"></iconify-icon>
+                      {{- bs.contact_phone -}}
+                    </div>
+                  {%- endif -%}
+                  {%- if bs.contact_address != blank -%}
+                    <div class="alp-inline-contact-richtext">
+                      <iconify-icon icon="octicon:location-16" width="20" height="20"></iconify-icon>
+                      {{- bs.contact_address -}}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="alp-footer-inner-2 margin-top">
+      <div class="alp-footer-copyright">
+        {% comment %}
+          <small class="copyright__content"
+            >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+          </small>
+        {% endcomment %}
+        <small class="copyright__content">©2025, Mokwheel Bikes. All Rights Reserved. </small>
+        {%- if section.settings.show_policy -%}
+          <ul class="policies list-unstyled">
+            {%- for policy in shop.policies -%}
+              {%- if policy != blank -%}
+                <li>
+                  <small class="copyright__content"
+                    ><a href="{{ policy.url }}">{{ policy.title }}</a></small
+                  >
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.payment_enable -%}
+        <div class="alp-footer-payment">
+          <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+          {% render 'payment-list' %}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

@@ -1,0 +1,294 @@
+<style>
+      .pc{
+          display: block;
+      }
+      .mobile{
+          display: none;
+      }
+      @media (max-width:750px){
+          .pc{
+              display: none;
+          }
+          .mobile{
+              display: block;
+          }
+          .about_update {
+              background: {{section.settings.background_color}};
+              padding: 50px 0;
+          }
+          .about-update{
+              padding: 0 15px;
+          }
+          .about-update .about-update_left div:nth-child(1){
+              font-size: 36px;
+              font-weight: 600;
+              line-height: 1;
+          }
+          .about-update .about-update_left div:last-child{
+              font-size: 14px;
+              font-weight: 500;
+              padding-top: 23px;
+          }
+          .about-update .about-update_rigt .newsletter_input{
+              width: 344px;
+              height: 50px;
+
+              border: 1px solid #000000;
+              border-radius: 40px;
+              position: relative;
+          }
+          .about-update .about-update_rigt .newsletter_input .input__field{
+              width: 70%;
+              height: 50px;
+              font-size: 14px;
+              border: unset;
+            height: 48px;
+           margin-left: 25px;
+                background: #f1faff;
+          }
+          .about-update .about-update_rigt .newsletter_input .input__label{
+              font-size: 12px;
+              font-weight: 500;
+              top: 17px;
+          }
+          .about-update .newsletter_input .input__submit-icon{
+              border-left: none;
+          }
+          .about-update .newsletter_input .icon{
+              width: 90px;
+              height: 43px;
+              background: #EE751C;
+              border-radius: 36px;
+              fill: #ffffff;
+              position: absolute;
+              right: 3px;
+              bottom: 3px;
+          }
+          .about-update .about-update_rigt{
+              margin: auto;
+          }
+          .about-update .about-update_rigt .input__submit-icon{
+              width: 90px;
+              height: 43px;
+              right: 0;
+
+          }
+
+          .about-update .about-update_rigt button::before{
+              content: none;
+          }
+      }
+      @media (min-width:750px) and (max-width:1200px){
+          .about_update {
+              background: {{section.settings.background_color}};
+              padding: 120px 0;
+          }
+          .about-update{
+              max-width: 1380px;
+              padding: 0 10px;
+              display: flex;
+              justify-content: space-between;
+          }
+          .about-update .about-update_left div:nth-child(1){
+              font-size: 64px;
+              font-weight: 600;
+              line-height: 1;
+          }
+          .about-update .about-update_left div:last-child{
+              font-size: 20px;
+              font-weight: 500;
+              padding-top: 26px;
+          }
+          .about-update .about-update_rigt .newsletter_input{
+              width: 611px;
+              height: 80px;
+              border: 1px solid #000000;
+              border-radius: 40px;
+              position: relative;
+              padding-left: 20px;
+          }
+          .about-update .about-update_rigt .newsletter_input .input__field{
+              width: 70%;
+              /* height: 80px; */
+            height: 65px;
+      margin-top: 5px;
+                background: #f1faff;
+          }
+          .about-update .about-update_rigt .newsletter_input .input__label{
+              line-height: 3;
+              font-size: 20px;
+              font-weight: 500;
+              left: 24px;
+          }
+          .about-update .newsletter_input .input__submit-icon{
+              border-left: none;
+          }
+          .about-update .newsletter_input .icon{
+              width: 160px;
+      height: 74px;
+      background: #EE751C;
+      border-radius: 36px;
+      fill: #ffffff;
+      position: absolute;
+      right: 3px;
+      bottom: 0;
+      bottom: 2px;
+  }
+          }
+          .about-update .about-update_rigt{
+              margin: auto;
+          }
+          .about-update .about-update_rigt .input__submit-icon{
+              cursor: pointer;
+              width: 180px;
+              height: 72px;
+              right: 0;
+          }
+
+          .about-update .about-update_rigt button::before{
+              content: none;
+          }
+      }
+      @media (min-width:1200px){
+          .about_update {
+              background: {{section.settings.background_color}};
+              padding: 120px 0;
+          }
+          .about-update{
+              max-width: 1380px;
+              padding: 0 10px;
+              margin: auto;
+              display: flex;
+              justify-content: space-between;
+
+          }
+          .about-update .about-update_left div:nth-child(1){
+              font-size: 64px;
+              font-weight: 600;
+              line-height: 1;
+          }
+          .about-update .about-update_left div:last-child{
+              font-size: 20px;
+              font-weight: 500;
+              padding-top: 26px;
+          }
+          .about-update .about-update_rigt .newsletter_input{
+              width: 611px;
+              height: 80px;
+              border: 1px solid #000000;
+              border-radius: 40px;
+              position: relative;
+              padding-left: 20px;
+          }
+          .about-update .about-update_rigt .newsletter_input .input__field{
+              width: 70%;
+              /* height: 80px; */
+              border: unset;
+               height: 65px;
+              margin-top: 5px;
+                background: #f1faff;
+          }
+          .about-update .about-update_rigt .newsletter_input .input__label{
+              line-height: 3;
+              font-size: 20px;
+              font-weight: 500;
+              left: 24px;
+              background: none;
+          }
+          .about-update .newsletter_input .input__submit-icon{
+              border-left: none;
+          }
+          .about-update .newsletter_input .icon{
+              width: 160px;
+      height: 74px;
+      background: #EE751C;
+      border-radius: 36px;
+      fill: #ffffff;
+      position: absolute;
+      right: 3px;
+      bottom: 0;
+      bottom: 2px;
+  }
+          }
+          .about-update .about-update_rigt{
+              margin: auto;
+          }
+          .about-update .about-update_rigt .input__submit-icon{
+              cursor: pointer;
+              width: 180px;
+              height: 72px;
+              right: 0;
+          }
+
+          .about-update .about-update_rigt button::before{
+              content: none;
+          }
+      }
+</style>
+<section>
+  <div class="about_update">
+    <div class="about-update">
+      <div class="about-update_left">
+        <div>{{ section.settings.title }}</div>
+        <div>{{ section.settings.second_title }}</div>
+      </div>
+      <div class="about-update_rigt">
+        {%- form 'customer', id: 'footer-newsletter', class: 'footer__newsletter-form form' -%}
+          <div class="input newsletter_input">
+            <input
+              type="email"
+              id="footer[contact][email]"
+              name="contact[email]"
+              class="input__field input__field--text"
+              placeholder="Type in Email adderss"
+            >
+            <!-- <label for="footer[contact][email]" class="input__label">{{ "Type in Email adderss" }}</label> -->
+            <!--
+              <button type="submit" class="input__submit-icon tap-area" title="{{ 'footer.newsletter.submit' | t }}"><svg t="1656062283214" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6518" width="200" height="200"><path d="M974.933333 497.066667l-213.333333-213.333333C757.333333 279.466667 753.066667 277.333333 746.666667 277.333333c-12.8 0-21.333333 8.533333-21.333333 21.333333 0 6.4 2.133333 10.666667 6.4 14.933333l177.066667 177.066667L64 490.666667c-12.8 0-21.333333 8.533333-21.333333 21.333333s8.533333 21.333333 21.333333 21.333333l844.8 0-177.066667 177.066667C727.466667 714.666667 725.333333 718.933333 725.333333 725.333333c0 12.8 8.533333 21.333333 21.333333 21.333333 6.4 0 10.666667-2.133333 14.933333-6.4l213.333333-213.333333c4.266667-4.266667 6.4-8.533333 6.4-14.933333S979.2 501.333333 974.933333 497.066667z" p-id="6519"></path></svg></button>
+            -->
+            <svg
+              t="1656062283214"
+              class="icon"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="6518"
+              width="200"
+              height="200"
+            >
+              <path d="M974.933333 497.066667l-213.333333-213.333333C757.333333 279.466667 753.066667 277.333333 746.666667 277.333333c-12.8 0-21.333333 8.533333-21.333333 21.333333 0 6.4 2.133333 10.666667 6.4 14.933333l177.066667 177.066667L64 490.666667c-12.8 0-21.333333 8.533333-21.333333 21.333333s8.533333 21.333333 21.333333 21.333333l844.8 0-177.066667 177.066667C727.466667 714.666667 725.333333 718.933333 725.333333 725.333333c0 12.8 8.533333 21.333333 21.333333 21.333333 6.4 0 10.666667-2.133333 14.933333-6.4l213.333333-213.333333c4.266667-4.266667 6.4-8.533333 6.4-14.933333S979.2 501.333333 974.933333 497.066667z" p-id="6519"></path>
+            </svg>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "aboutUs update",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "title label"
+    },
+    {
+      "type": "text",
+      "id": "second_title",
+      "label": "text label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "aboutUs update"
+    }
+  ]
+}
+{% endschema %}

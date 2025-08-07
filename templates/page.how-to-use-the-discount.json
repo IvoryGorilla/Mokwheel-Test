@@ -1,0 +1,159 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "alp_hero_banner_new_D3AwrP": {
+      "type": "alp-hero-banner-new",
+      "blocks": {
+        "heading_fhPEyT": {
+          "type": "heading",
+          "settings": {
+            "text": "How to use the discount code",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_fhPEyT"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "center",
+        "bg_color": "#ffffff",
+        "text_color": "#ffffff",
+        "bg_image": "shopify:\/\/shop_images\/4_b145ab77-bbaf-4745-bf3e-532a53bfa03a.png",
+        "bg_image_mobile": "shopify:\/\/shop_images\/17_d9583e77-bbe1-4cdb-b18c-7dfe8612ab6a.png",
+        "bg_opacity": 100,
+        "image_aspect_ratio": "3\/1",
+        "block_max_width": "720px",
+        "min_height": "320px",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true,
+        "show_breadcrumb": true
+      }
+    },
+    "suggestion_box_header_KYUYYz": {
+      "type": "suggestion-box-header",
+      "blocks": {
+        "suggestion_box_header_7x4NW8": {
+          "type": "suggestion-box-header",
+          "settings": {
+            "tag": "",
+            "tagId": ""
+          }
+        }
+      },
+      "block_order": [
+        "suggestion_box_header_7x4NW8"
+      ],
+      "disabled": true,
+      "settings": {
+        "baseImage": "shopify:\/\/shop_images\/4_b145ab77-bbaf-4745-bf3e-532a53bfa03a.png",
+        "mbaseImage": "shopify:\/\/shop_images\/17_d9583e77-bbe1-4cdb-b18c-7dfe8612ab6a.png",
+        "title": "How to use the discount code",
+        "description": ""
+      }
+    },
+    "alp_how_discount_code_wAjY4Y": {
+      "type": "alp-how-discount-code",
+      "blocks": {
+        "mega_menu_8wKGLw": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>Check your cart and click checkout.<\/p>",
+            "img": "shopify:\/\/shop_images\/Group_39990.png"
+          }
+        },
+        "mega_menu_7hUD6r": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>Click on the top to display the order summary.<\/p>",
+            "img": "shopify:\/\/shop_images\/Rectangle_1318_5a625404-79c4-41a5-88e9-ad53e4dc3cd9.png"
+          }
+        },
+        "mega_menu_NCggtK": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>Enter the discount code and click the Enter button.<\/p>",
+            "img": "shopify:\/\/shop_images\/Rectangle_1319_81761291-b2f4-4bbd-ba6b-4b3faa2bd1fa.png"
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_8wKGLw",
+        "mega_menu_7hUD6r",
+        "mega_menu_NCggtK"
+      ],
+      "custom_css": [
+        "@media (min-width: 751px) {.alp-how-discount-code-container .item-list .item {width: 33%; }}"
+      ],
+      "settings": {
+        "title": "Phone",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true,
+        "choose_three": false
+      }
+    },
+    "alp_how_discount_code_8J8MTa": {
+      "type": "alp-how-discount-code",
+      "blocks": {
+        "mega_menu_76qJPa": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p><strong>Choose your desired product, then click the \"Add to Cart\" button.<\/strong><\/p>",
+            "img": "shopify:\/\/shop_images\/20240726103604_6b3120fd-76c3-423c-84e3-3e817f89846c.png"
+          }
+        },
+        "mega_menu_MtpEWJ": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>Enter the discount code. Click the Apply button. Check out<\/p>",
+            "img": "shopify:\/\/shop_images\/20240726103823_4658cfb3-421b-4a3f-8ce7-b6537a63c4f2.png"
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_76qJPa",
+        "mega_menu_MtpEWJ"
+      ],
+      "settings": {
+        "title": "Computer",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true,
+        "choose_three": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "alp_hero_banner_new_D3AwrP",
+    "suggestion_box_header_KYUYYz",
+    "alp_how_discount_code_wAjY4Y",
+    "alp_how_discount_code_8J8MTa"
+  ]
+}

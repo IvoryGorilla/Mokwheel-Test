@@ -1,0 +1,953 @@
+{% comment %}
+  Use:
+  {% render "alp-product-form", product: product %}
+{% endcomment %}
+
+{% liquid
+  assign st = section.settings
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_form_id = 'product-form-' | append: section.id
+%}
+
+<div
+  class="alp-product-form"
+  id="ProductInfo-{{ section.id }}"
+  data-section="{{ section.id }}"
+  data-url="{{ product.url }}"
+>
+  {%- form 'product', product, id: product_form_id, class: 'alp-buy-form', novalidate: 'novalidate' -%}
+    <div class="alp-product-form-container">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        {%- capture style -%}
+          --bg-color: {{ bs.bg_color | default: st.bg_color }};--text-color: {{ bs.text_color | default: st.text_color  }};--block-padding-top: {{ bs.padding_top | default: 0 }};--block-padding-bottom: {{ bs.padding_bottom | default: 0 }};
+        {%- endcapture -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            <div data-product-block>{% render block %}</div>
+          {%- when 'breadcrumb' -%}
+            <div class="alp_product__breadcrumb" data-product-block style="{{ style }}">
+              {% render 'breadcrumbs' %}
+            </div>
+          {%- when 'product_badge' -%}
+            {%- if bs.position == 'form' -%}
+              <div class="alp_product__badge" data-product-block style="{{ style }}">
+                {%- if bs.title_1 != blank -%}
+                  <div
+                    class="alp_product__badge_i"
+                    style="background-color: {{ bs.color_1 }};color: {{ bs.color_text_1 }}"
+                  >
+                    {{ bs.title_1 }}
+                  </div>
+                {%- endif -%}
+                {%- if bs.title_2 != blank -%}
+                  <div
+                    class="alp_product__badge_i"
+                    style="background-color: {{ bs.color_2 }};color: {{ bs.color_text_2 }}"
+                  >
+                    {{ bs.title_2 }}
+                  </div>
+                {%- endif -%}
+                {%- if bs.title_3 != blank -%}
+                  <div
+                    class="alp_product__badge_i"
+                    style="background-color: {{ bs.color_3 }};color: {{ bs.color_text_3 }}"
+                  >
+                    {{ bs.title_3 }}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- when 'product_title' -%}
+            <div class="alp_product__title flex" {{ block.shopify_attributes }} data-product-block style="{{ style }}">
+              <h1 class="headline__h2">
+                <a href="{{ product.url }}" class="">
+                  {{ bs.title | escape }}
+                </a>
+              </h1>
+              <div class="alp_product__badge" data-product-title-badge>
+                {%- if bs.title_a != blank -%}
+                  <div
+                    class="alp_product__badge_i"
+                    style="background-color: {{ bs.color_1 }};color: {{ bs.color_text_1 }}"
+                  >
+                    {{ bs.title_a }}
+                  </div>
+                {%- endif -%}
+                {%- if bs.title_2 != blank -%}
+                  <div
+                    class="alp_product__badge_i"
+                    style="background-color: {{ bs.color_2 }};color: {{ bs.color_text_2 }}"
+                  >
+                    {{ bs.title_2 }}
+                  </div>
+                {%- endif -%}
+                {%- if bs.title_3 != blank -%}
+                  <div
+                    class="alp_product__badge_i"
+                    style="background-color: {{ bs.color_3 }};color: {{ bs.color_text_3 }}"
+                  >
+                    {{ bs.title_3 }}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- when 'product_des' -%}
+            <div class="alp_product__description" data-product-block style="{{ style }}">
+              <h3 class="paragraph_heading">
+                {%- if bs.description != blank -%}
+                  <div class="headline__h6l">{{ bs.description | strip_newlines }}</div>
+                {%- else -%}
+                  {{- product.description | strip_newlines -}}
+                {%- endif -%}
+                <div class="of_show">
+                  <b>show more</b>
+                  <b>show less</b>
+                </div>
+              </h3>
+            </div>
+          {%- when 'price' -%}
+            <div
+              class="alp_product__price"
+              id="price-{{ section.id }}"
+              role="status"
+              {{ block.shopify_attributes }}
+              data-product-block
+              style="{{ style }}"
+            >
+              {%- render 'price',
+                product: product,
+                use_variant: true,
+                show_badges: false,
+                price_class: 'price--large'
+              -%}
+              {%- if bs.promotion_text != blank -%}
+                <div
+                  class="alp_product__price_promotion"
+                  style="--main-color: {{ bs.color }};color: {{ bs.color_text }}"
+                >
+                  <span>{{ bs.promotion_text }}</span>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- when 'variant_picker' -%}
+            <div
+              class="alp_product__variant_picker"
+              {% unless product.has_only_default_variant %}
+                data-product-block
+              {% endunless %}
+              style="{{ style }}"
+            >
+              {% render 'alp-product-variant-picker',
+                product: product,
+                block: block,
+                product_form_id: product_form_id
+              %}
+            </div>
+          {%- when 'frame_selector' -%}
+            <div class="alp_product__frame_selector" data-product-block data-switch-wrapper style="{{ style }}">
+              <div
+                class="alp_product__frame_selector_wrapper"
+                {% if bs.text_1_child_info != blank or bs.text_2_child_info != blank or bs.text_3_child_info != blank %}
+                  data-has-child="true"
+                {% endif %}
+              >
+                <div class="form__label">
+                  <span class="swatch-selected-label">{{ bs.title }}</span>
+                  <span class="swatch-selected-value">
+                    {%- if bs.default_frame == '1' -%}
+                      {{ bs.text_1 }}
+                    {%- elsif bs.default_frame == '2' -%}
+                      {{ bs.text_2 }}
+                    {%- elsif bs.default_frame == '3' -%}
+                      {{ bs.text_3 }}
+                    {%- endif -%}
+                  </span>
+                </div>
+                <div class="alp_frame_selector_list">
+                  {%- if bs.text_1 != blank -%}
+                    {%- assign is_active = false -%}
+                    {%- if bs.default_frame == '1' -%}
+                      {%- assign is_active = true -%}
+                    {%- endif -%}
+                    {% render 'frame_selector_item',
+                      block: block,
+                      text: bs.text_1,
+                      info: bs.text_1_info,
+                      child_info: bs.text_1_child_info,
+                      image: bs.image_1,
+                      link: bs.link_1,
+                      is_active: is_active
+                    %}
+                  {%- endif -%}
+                  {%- if bs.text_2 != blank -%}
+                    {%- assign is_active = false -%}
+                    {%- if bs.default_frame == '2' -%}
+                      {%- assign is_active = true -%}
+                    {%- endif -%}
+                    {% render 'frame_selector_item',
+                      block: block,
+                      text: bs.text_2,
+                      info: bs.text_2_info,
+                      child_info: bs.text_2_child_info,
+                      image: bs.image_2,
+                      link: bs.link_2,
+                      is_active: is_active
+                    %}
+                  {%- endif -%}
+                  {%- if bs.text_3 != blank -%}
+                    {%- assign is_active = false -%}
+                    {%- if bs.default_frame == '3' -%}
+                      {%- assign is_active = true -%}
+                    {%- endif -%}
+                    {% render 'frame_selector_item',
+                      block: block,
+                      text: bs.text_3,
+                      info: bs.text_3_info,
+                      child_info: bs.text_3_child_info,
+                      image: bs.image_3,
+                      link: bs.link_3,
+                      is_active: is_active
+                    %}
+                  {%- endif -%}
+                </div>
+              </div>
+              {%- if bs.text_1_child_info != blank or bs.text_2_child_info != blank or bs.text_3_child_info != blank -%}
+                <div class="alp_product__frame_selector_wrapper second_frame_selector">
+                  <div class="form__label">
+                    <span class="swatch-selected-label">{{ bs.title2 }}</span>
+                  </div>
+                  <div class="alp_frame_style_selector_list">
+                    {%- if bs.text_1 != blank -%}
+                      {%- assign is_active = false -%}
+                      {%- if bs.default_frame == '1' -%}
+                        {%- assign is_active = true -%}
+                      {%- endif -%}
+                      {% render 'frame_style_selector_item',
+                        block: block,
+                        text: bs.text_1,
+                        info: bs.text_1_child_info,
+                        is_active: is_active
+                      %}
+                    {%- endif -%}
+                    {%- if bs.text_2 != blank -%}
+                      {%- assign is_active = false -%}
+                      {%- if bs.default_frame == '2' -%}
+                        {%- assign is_active = true -%}
+                      {%- endif -%}
+                      {% render 'frame_style_selector_item',
+                        block: block,
+                        text: bs.text_2,
+                        info: bs.text_2_child_info,
+                        is_active: is_active
+                      %}
+                    {%- endif -%}
+                    {%- if bs.text_3 != blank -%}
+                      {%- assign is_active = false -%}
+                      {%- if bs.default_frame == '3' -%}
+                        {%- assign is_active = true -%}
+                      {%- endif -%}
+                      {% render 'frame_style_selector_item',
+                        block: block,
+                        text: bs.text_3,
+                        info: bs.text_3_child_info,
+                        is_active: is_active
+                      %}
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- when 'quantity_selector' -%}
+            <div class="alp_product__quantity_selector" data-product-block style="{{ style }}">
+              <div class="headline__h6s">
+                <span>
+                  {{- 'products.product.quantity.label' | t: product: product.title | escape -}}
+                </span>
+              </div>
+              <div class="alp-quantity-input">
+                <quantity-input class="quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
+                  <button class="quantity__button no-js-hidden" name="minus" type="button">
+                    <span class="visually-hidden">
+                      {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+                    </span>
+                    {% render 'icon-minus' %}
+                  </button>
+                  <input
+                    class="quantity__input"
+                    type="number"
+                    name="quantity"
+                    id="Quantity-{{ section.id }}"
+                    data-cart-quantity="{{ cart_qty }}"
+                    data-min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                    min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                    {% if product.selected_or_first_available_variant.quantity_rule.max != null %}
+                      data-max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+                      max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+                    {% endif %}
+                    step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}"
+                    value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                    form="{{ product_form_id }}"
+                  >
+                  <button class="quantity__button no-js-hidden" name="plus" type="button">
+                    <span class="visually-hidden">
+                      {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+                    </span>
+                    {% render 'icon-plus' %}
+                  </button>
+                </quantity-input>
+              </div>
+            </div>
+          {%- when 'buy_buttons' -%}
+            <div class="alp_product__buy_buttons isSticky" data-product-block style="{{ style }}">
+              {%- if bs.custom_html != blank -%}
+                <div class="alp_product__custom_html">
+                  {{ bs.custom_html }}
+                </div>
+              {%- endif -%}
+              {%- render 'alp-buy-buttons-b',
+                block: block,
+                product: product,
+                product_form_id: product_form_id,
+                section_id: section.id,
+                show_pickup_availability: true,
+                bs: block.settings
+              -%}
+            </div>
+          {%- when 'sku' -%}
+            <div class="alp_product__sku" data-product-block style="{{ style }}">
+              <p
+                class="product__sku no-js-hidden"
+                id="Sku-{{ section.id }}"
+                role="status"
+                {{ block.shopify_attributes }}
+              >
+                <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
+                {{- product.selected_or_first_available_variant.sku -}}
+              </p>
+            </div>
+          {%- when 'custom_liquid' -%}
+            <div class="alp_product__custom_liquid" data-product-block style="{{ style }}">
+              {{ bs.custom_liquid }}
+            </div>
+          {%- when 'share' -%}
+            <div class="alp_product__share" data-product-block style="{{ style }}">
+              {% assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin %}
+              {% render 'share-button', block: block, share_link: share_url %}
+            </div>
+          {%- when 'affirm_block' -%}
+            <div class="alp_product__affirm_block" data-product-block style="{{ style }}">
+              <div>
+                {% render 'installment-block', product: product %}
+              </div>
+            </div>
+          {%- when 'extend_block' -%}
+            <div class="alp_product__extend_block" style="{{ style }}">
+              <div class="alp-extend-block"></div>
+            </div>
+          {%- when 'alp_line' -%}
+            <div class="alp-line"></div>
+          {%- when 'count_down_text' -%}
+            <div
+              class="alp_product__count_down_text"
+              style="{{ style }};--color:{{ bs.color }};--font-scale:{{ bs.font_size }}"
+            >
+              <div class="alp-announcement-bar-ixx">
+                {%- if bs.link -%}
+                  <a href="{{ bs.link }}"></a>
+                {%- endif -%}
+                <div class="alp-announcement-bar-text">
+                  {{ bs.text }}
+                </div>
+                {%- if bs.show_countdown -%}
+                  {% render 'alp-countdown-snippet2',
+                    text: bs.countdown_text,
+                    id: block.id,
+                    countdown_date: bs.countdown_date,
+                    countdown_hours: bs.countdown_hours
+                  %}
+                {%- endif -%}
+              </div>
+            </div>
+          {%- when 'line_item_properties' -%}
+            <input
+              class="product-properties"
+              type="hidden"
+              name="properties[{{- bs.title -}}]"
+              value="{{- bs.content | strip_html -}}"
+            >
+          {%- when 'variant_ship_properties' -%}
+            {%- assign variant_shipping = current_variant.metafields.custom.shipping_date.value -%}
+            {%- capture content_text -%}
+            {%- if variant_shipping != blank -%}
+              {{ variant_shipping }}
+            {%- else -%}
+              {{ bs.content }}
+            {%- endif -%}
+            {%- endcapture -%}
+            <div class="alp_product__variant_shipping_properties hidden">
+              <input
+                class="product-properties"
+                type="hidden"
+                name="properties[{{- bs.title -}}]"
+                value="{{- content_text | strip_html -}}"
+              >
+            </div>
+          {%- when 'product_shippingtime' -%}
+            {%- if bs.shipping_text != blank -%}
+              <div
+                class="alp_product__shippingtime"
+                data-product-block
+                style="{{ style }} --main-color: {{ bs.color }}"
+              >
+                <div>
+                  {% render 'icon-shipping' %}
+                  <div class="alp_product__shippingtime_text">{{ bs.shipping_text }}</div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- when 'product_shippingtime_v' -%}
+            {%- if bs.shipping_text != blank -%}
+              {%- assign variant_shipping = current_variant.metafields.custom.shipping_date.value -%}
+              {%- assign is_out_stock = current_variant.metafields.custom.out_of_stock.value -%}
+              {%- capture sale_style -%}
+              {%- if is_out_stock -%}
+                out_stock
+              {%- elsif current_variant.inventory_quantity < 1 -%}
+                out_stock
+              {%- else -%}
+                in_stock
+              {%- endif -%}
+              {%- endcapture -%}
+              {% capture stock_state %}
+              {%- if is_out_stock -%}
+                <span class="stock_state out_stock">Out of stock</span>
+              {%- elsif current_variant.inventory_quantity < 1 -%}
+                <span class="stock_state out_stock">Out of stock</span>
+              {%- else -%}
+                <span class="stock_state in_stock">In stock</span>
+              {%- endif -%}
+              {% endcapture %}
+              <div
+                class="alp_product__shippingtime_v"
+                data-product-block
+                style="{{ style }} --main-color: {{ bs.color }}; --in-stock-color: {{ bs.color_in_stock }}; --font-scale: {{ bs.font_scale }};"
+              >
+                <div class="{{ sale_style }}">
+                  {% render 'icon-shipping' %}
+                  <div class="alp_product__shippingtime_text">
+                    {%- if variant_shipping != blank -%}
+                      <span class="{{ sale_style }}">{{ variant_shipping }}</span>
+                      {{ stock_state }}
+                    {%- else -%}
+                      <span class="{{ sale_style }}">{{ bs.shipping_text }}</span>
+                      {{ stock_state }}
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- when 'product_gift_promotion' -%}
+            <div
+              class="alp_product_gift_promotion {{ bs.display_type }}"
+              data-product-block
+              style="{{ style }} --text-color: {{ bs.text_color }};--border-color: {{ bs.border_color }}"
+            >
+              {% render 'alp-product-gift-promotion-n1', bs: bs %}
+            </div>
+          {%- when 'product_accessories' -%}
+            <div class="alp_product__accessories" data-product-block style="{{ style }}">
+              <div class="alp-product-accessories">
+                <div class="the-product-form-title">
+                  <h3 class="headline__h6">
+                    {{ bs.title }}
+                  </h3>
+                </div>
+                <div class="the-accessories-container alp-gift-list-container">
+                  {% for product_item in bs.product_list -%}
+                    <div
+                      class="product-item-gift is_select_gift"
+                      data-productId="{{ product_item.id }}"
+                      data-variantId="{{ product_item.first_available_variant.id }}"
+                      data-quantity="1"
+                    >
+                      {% render 'icon-check' %}
+                      <div class="info-box">
+                        <div class="img-box relative">
+                          <a
+                            class="full-aa"
+                            href="{{ product_item.featured_image | image_url: width: 1920 }}"
+                            data-fslightbox
+                          ></a>
+                          <img
+                            width="auto"
+                            height="auto"
+                            src="{{ product_item.featured_image | image_url: width: 300 }}"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="contents-box">
+                          <div class="title">{{ product_item.title }}</div>
+                          <div class="price-box-ee">
+                            <p price="{{ product_item.price }}" data-compare_price="{{ product_item.price }}">
+                              {{ product_item.price | money }}
+                            </p>
+                            <span class="the-free-text">Free</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {%- endfor %}
+                </div>
+              </div>
+            </div>
+          {%- when 'accessories_swpier' -%}
+            <div class="alp_product__accessories hide_desktop" data-product-block style="{{ style }}">
+              <div class="alp-product-accessories">
+                <div class="the-product-form-title">
+                  <h3 class="headline__h6">
+                    {{ bs.title }}
+                  </h3>
+                </div>
+                <div class="the-accessories-swiper-container alp-gift-list-container">
+                  <div class="swiper the-accessories-swiper" id="{{ block.id | replace: '-', '' | prepend: 'id_' }}">
+                    <div class="swiper-wrapper">
+                      {% for product_item in bs.product_list -%}
+                        <div class="swiper-slide">
+                          <div
+                            class="product-item-gift is_select_gift"
+                            data-productId="{{ product_item.id }}"
+                            data-variantId="{{ product_item.first_available_variant.id }}"
+                            data-quantity="1"
+                          >
+                            {% render 'icon-check' %}
+                            <div class="info-box">
+                              <div class="img-box relative">
+                                <a
+                                  class="full-aa"
+                                  href="{{ product_item.featured_image | image_url: width: 1920 }}"
+                                  data-fslightbox
+                                ></a>
+                                <img
+                                  width="auto"
+                                  height="auto"
+                                  src="{{ product_item.featured_image | image_url: width: 300 }}"
+                                  alt=""
+                                  loading="lazy"
+                                >
+                              </div>
+                              <div class="contents-box">
+                                <div class="title">{{ product_item.title }}</div>
+                                <div class="price-box-ee">
+                                  <p price="{{ product_item.price }}" data-compare_price="{{ product_item.price }}">
+                                    {{ product_item.price | money }}
+                                  </p>
+                                  <span class="the-free-text">Free</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      {%- endfor %}
+                    </div>
+                    {% render 'swiper-pagination', class: 'pagination-products' %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script
+              type="module"
+            >
+              document.addEventListener('DOMContentLoaded', () => {
+                var BlockId = '{{ block.id | replace: '-', '' | prepend: 'id_' }}';
+                var Swiper_{{ block.id | replace: '-', '' }} = new Swiper(`.swiper.the-accessories-swiper#${BlockId}`, {
+                  slidesPerView: 2,
+                  slidesPerGroup : 2,
+                  speed: 600,
+                  spaceBetween: alp_global.gap / 1.5,
+                  watchSlidesVisibility: true,
+                  pagination: {
+                    el: '.pagination-products',
+                    clickable :true,
+                  },
+                });
+              });
+            </script>
+          {%- when 'product_upgrades' -%}
+            <div class="alp_product__upgrades" data-product-block style="{{ style }}">
+              <div class="alp-product-upgrades" data-switch-wrapper>
+                <div class="alp-product-upgrades-title">
+                  <div class="headline__h6">{{ bs.block_title }}</div>
+                  <div class="alp-pug-group-list-titles group-titles">
+                    <div class="active" data-title data-trigger-group data-trigger-index="none">Base</div>
+                    <div class="" data-title data-trigger-group data-trigger-index="all">Upgraded eBike</div>
+                  </div>
+                </div>
+                <div data-switch-wrapper data-target-index="all" class="alp-pug-group-wrapper">
+                  <div class="alp-pug-group-list-titles sub-titles">
+                    <div class="active" data-title data-trigger-index="all">All</div>
+                    {%- if bs.title_1 != blank and bs.product_list_1 -%}
+                      <div data-title data-trigger-index="{{ bs.title_1 }}">{{ bs.title_1 }}</div>
+                    {%- endif -%}
+                    {%- if bs.title_2 != blank and bs.product_list_2 -%}
+                      <div data-title data-trigger-index="{{ bs.title_2 }}">{{ bs.title_2 }}</div>
+                    {%- endif -%}
+                    {%- if bs.title_3 != blank and bs.product_list_3 -%}
+                      <div data-title data-trigger-index="{{ bs.title_3 }}">{{ bs.title_3 }}</div>
+                    {%- endif -%}
+                    {%- if bs.title_4 != blank and bs.product_list_4 -%}
+                      <div data-title data-trigger-index="{{ bs.title_4 }}">{{ bs.title_4 }}</div>
+                    {%- endif -%}
+                  </div>
+                  {% comment %} 1 {% endcomment %}
+                  {%- if bs.title_1 != blank and bs.product_list_1 -%}
+                    <div class="alp-product-upgrades-group active" data-target-index="{{ bs.title_1 }}">
+                      <div class="alp-pug-title">{{ bs.title_1 }}</div>
+                      <div class="alp-pug-wrapper">
+                        {%- for product in bs.product_list_1 -%}
+                          {% render 'alp-addional-product-item', product: product, properties: true %}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {% comment %} 2 {% endcomment %}
+                  {%- if bs.title_2 != blank and bs.product_list_2 -%}
+                    <div class="alp-product-upgrades-group active" data-target-index="{{ bs.title_2 }}">
+                      <div class="alp-pug-title">{{ bs.title_2 }}</div>
+                      <div class="alp-pug-wrapper">
+                        {%- for product in bs.product_list_2 -%}
+                          {% render 'alp-addional-product-item', product: product, properties: true %}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {% comment %} 3 {% endcomment %}
+                  {%- if bs.title_3 != blank and bs.product_list_3 -%}
+                    <div class="alp-product-upgrades-group active" data-target-index="{{ bs.title_3 }}">
+                      <div class="alp-pug-title">{{ bs.title_3 }}</div>
+                      <div class="alp-pug-wrapper">
+                        {%- for product in bs.product_list_3 -%}
+                          {% render 'alp-addional-product-item', product: product, properties: true %}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {% comment %} 4 {% endcomment %}
+                  {%- if bs.title_4 != blank and bs.product_list_4 -%}
+                    <div class="alp-product-upgrades-group active" data-target-index="{{ bs.title_4 }}">
+                      <div class="alp-pug-title">{{ bs.title_4 }}</div>
+                      <div class="alp-pug-wrapper">
+                        {%- for product in bs.product_list_4 -%}
+                          {% render 'alp-addional-product-item', product: product, properties: true %}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  <div class="alp-product-upgrades-show-more">
+                    <div class="alp-pug-show-more">
+                      <span>Show More</span>
+                      {% render 'icon-arrow-down' %}
+                    </div>
+                  </div>
+                  {% comment %} Group end {% endcomment %}
+                </div>
+              </div>
+            </div>
+          {%- when 'product_upgrades_new' -%}
+            <div class="alp_product__upgrades_new" data-product-block style="{{ style }}">
+              {% capture style_block %}
+                --border-color: {{ bs.border_color }};
+                --border-width: {{ bs.border_width }};
+              {% endcapture %}
+              {% render 'alp-product-upgrades-new-n1', style_block: style_block, bs: bs %}
+            </div>
+          {%- when 'product_promotion_new' -%}
+            <div class="alp_product__promotion_new" data-product-block style="{{ style }}">
+              {% render 'alp-product-promotion-new', bs: bs, product: product %}
+            </div>
+          {%- when 'promotions_hidden' -%}
+            {%- assign real_product = bs.product_real -%}
+            {% for product in real_product %}
+              <div
+                class="promotions-hidden hidden selected"
+                data-promotion-pack
+                data-pack-variant="{{ product.first_available_variant.id }}"
+              ></div>
+            {% endfor %}
+
+          {%- when 'donation_block' -%}
+            <div
+              class="alp_product__donation_block"
+              data-product-block
+              style="{{ style }}"
+            >
+              {% render 'alp-donation-item', product: bs.product, bs: bs %}
+            </div>
+
+          {%- when 'promotion_pack' -%}
+            <div
+              class="alp_product__promotion_pack {% if bs.switch_color %} ais_switch_color{% endif %}"
+              data-product-block
+              style="{{ style }} --block-bg-color: {{ bs.bg_color }};--block-border-color: {{ bs.border_color }};"
+            >
+              {% if bs.title != blank %}
+                <div class="the-product-form-title promotions-pack-title">
+                  <h3 class="headline__h6">
+                    <span>
+                      {{ bs.title }}
+                    </span>
+                  </h3>
+                </div>
+              {% endif %}
+              {% render 'alp-promotion-pack-item-one',
+                product: bs.product,
+                title: bs.product_title,
+                description: bs.description,
+                price: bs.final_price,
+                image: bs.image
+              %}
+            </div>
+          {%- when 'promotion_pack_n1' -%}
+            <div
+              class="alp_product__promotion_pack_n1"
+              data-product-block
+              style="{{ style }} --block-main-color: {{ bs.main_color }};--block-background: {{ bs.background }};"
+            >
+              <div class="alp_product__promotion_pack_n1_wrapper">
+                <div class="alp_product__promotion_pack_n1_titles">
+                  {% if bs.title != blank %}
+                    <div class="the-product-form-title promotions-pack-title">
+                      <h3 class="headline__h6">
+                        <span>
+                          {{ bs.title }}
+                        </span>
+                      </h3>
+                    </div>
+                  {% endif %}
+                  {%- if bs.show_countdown -%}
+                    {% render 'alp-countdown-snippet2',
+                      id: block.id,
+                      countdown_date: bs.countdown_date,
+                      countdown_hours: bs.countdown_hours
+                    %}
+                  {%- endif -%}
+                </div>
+                <div class="alp_product__promotion_pack_n1_products">
+                  {% for product in bs.product_list -%}
+                    {% render 'alp-promotion-products-n1',
+                      product: product,
+                      title: product.title,
+                      description: product.metafields.custom.promotion_new_description,
+                      price: product.metafields.custom.pack_final_price,
+                      original_price: product.metafields.custom.pack_original_price,
+                      image: product.featured_image
+                    %}
+                  {%- endfor -%}
+                </div>
+              </div>
+            </div>
+          {%- when 'promotion_pack_b_n1' -%}
+            <div
+              class="alp_product__promotion_pack_n1 pack_b_n1 hide_desktop"
+              data-product-block
+              style="{{ style }} --block-main-color: {{ bs.main_color }};--block-background: {{ bs.background }};"
+            >
+              <div class="alp_product__promotion_pack_n1_wrapper pack_b_n1">
+                <div class="alp_product__promotion_pack_n1_titles">
+                  {% if bs.title != blank %}
+                    <div class="the-product-form-title promotions-pack-title">
+                      <h3 class="headline__h6">
+                        <span>
+                          {{ bs.title }}
+                        </span>
+                      </h3>
+                    </div>
+                  {% endif %}
+                  {%- if bs.show_countdown -%}
+                    {% render 'alp-countdown-snippet2',
+                      id: block.id,
+                      countdown_date: bs.countdown_date,
+                      countdown_hours: bs.countdown_hours
+                    %}
+                  {%- endif -%}
+                </div>
+                <div class="alp_product__promotion_pack_n1_products pack_b_n1">
+                  {% for product in bs.product_list -%}
+                    {% render 'alp-promotion-products-n1',
+                      product: product,
+                      title: product.title,
+                      description: product.metafields.custom.promotion_new_description,
+                      price: product.metafields.custom.pack_final_price,
+                      original_price: product.metafields.custom.pack_original_price,
+                      image: product.featured_image
+                    %}
+                  {%- endfor -%}
+                </div>
+              </div>
+            </div>
+          {%- when 'promotion_pack_2' -%}
+            <div
+              class="alp_product__promotion_pack"
+              data-product-block
+              style="{{ style }} --block-bg-color: {{ bs.bg_color }};--block-border-color: {{ bs.border_color }};"
+            >
+              {% if bs.title != blank %}
+                <div class="the-product-form-title promotions-pack-title">
+                  <h3 class="headline__h6">
+                    <span>
+                      {{ bs.title }}
+                    </span>
+                  </h3>
+                </div>
+              {% endif %}
+              {% render 'alp-promotion-pack-item-2-new',
+                product: bs.product,
+                title: bs.product_title,
+                description: bs.description,
+                price: bs.final_price,
+                image: bs.image,
+                block: block
+              %}
+            </div>
+
+          {%- when 'promotion_pack_2_under' -%}
+            <div
+              class="alp_product__promotion_pack hide_desktop"
+              data-product-block
+              style="{{ style }} --block-bg-color: {{ bs.bg_color }};--block-border-color: {{ bs.border_color }};"
+            >
+              {% if bs.title != blank %}
+                <div class="the-product-form-title promotions-pack-title">
+                  <h3 class="headline__h6">
+                    <span>
+                      {{ bs.title }}
+                    </span>
+                  </h3>
+                </div>
+              {% endif %}
+              {% render 'alp-promotion-pack-item-2-new',
+                product: bs.product,
+                title: bs.product_title,
+                description: bs.description,
+                price: bs.final_price,
+                image: bs.image,
+                block: block
+              %}
+            </div>
+
+          {%- when 'compatible_products' -%}
+            <div
+              class="alp_compatible_products"
+              data-product-block
+              style="{{ style }}"
+            >
+              {% render 'alp-compatible-products', bs: bs, product: product %}
+            </div>
+
+          {%- when 'promotions' -%}
+            <div class="alp_product__promotions" data-product-block style="{{ style }}">
+              <div class="promotions-wrapper">
+                {% comment %} image link {% endcomment %}
+                {% if bs.link != blank %}
+                  <a class="full-aa" href="{{ bs.link }}" target="_blank"></a>
+                {% endif %}
+                {% if bs.title != blank %}
+                  <div class="the-product-form-title promotions-title">
+                    <h3 class="headline__h6">
+                      <span>
+                        {{ bs.title }}
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 10.5L21 3m-5 0h5v5m0 6v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+                      </svg>
+                    </h3>
+                  </div>
+                {% endif %}
+                <div class="promotions-image">
+                  <img
+                    width="auto"
+                    height="auto"
+                    src="{{ bs.image | image_url: width: 1280 }}"
+                    alt=""
+                    loading="lazy"
+                  >
+                </div>
+              </div>
+            </div>
+          {%- when 'alp_richtext' -%}
+            <div class="alp_product__richtext" data-product-block style="{{ style }}">
+              <div class="alp-richtext">
+                <div>
+                  {{ bs.rich_content }}
+                </div>
+              </div>
+            </div>
+          {%- when 'alp_richtext_2' -%}
+            <div class="alp_product__richtext_2" data-product-block style="{{ style }}">
+              <div class="alp-richtext-2">
+                <div>
+                  {{ bs.rich_content }}
+                </div>
+              </div>
+            </div>
+          {%- when 'alp_popup_slide' -%}
+            <div class="alp_product__popup_slide" style="{{ style }}">
+              <div class="alp-popup-slide">
+                <div class="alp-popup-slide-title">
+                  <div>
+                    <h4>
+                      <span> {{ bs.title }} </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m9 6l6 6l-6 6"/>
+                      </svg>
+                    </h4>
+                  </div>
+                </div>
+                <div class="alp-popup-slide-popup">
+                  <div class="alp-popup-slide-bg"></div>
+                  <div class="alp-popup-slide-wrapper">
+                    <h4>
+                      <span> {{ bs.title }} </span>
+                      <div class="alp-popup-slide-close">
+                        {% render 'icon-close' %}
+                      </div>
+                    </h4>
+                    <div class="alp-popup-slide-content">
+                      {{ bs.rich_content_1 }}
+                      {%- if bs.image -%}
+                        <div class="alp-popup-slide-img">
+                          {{ bs.image | image_url: width: 1500 | image_tag: loading: 'lazy' }}
+                        </div>
+                      {%- endif -%}
+                      {{ bs.rich_content_2 }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- when 'features_icontext' -%}
+            {% if product.metafields.custom.features_icon_text.value != blank %}
+              <div class="alp-features-icontext in_form hide_desktop">
+                <div class="alp-features-icontext-inner">
+                  {% for item in product.metafields.custom.features_icon_text.value %}
+                    <div class="alp-features-icontext-lsit">
+                      <div class="alp-features-icontext-img">
+                        <img loading="lazy" src="{{ item.img }}" alt="" width="36" height="36">
+                      </div>
+                      <div class="alp-features-icontext-text">
+                        <div class="icontext-subtitle">{{ item.subtitle }}</div>
+                        <div class="icontext-title">{{ item.title }}</div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  {% endform %}
+</div>

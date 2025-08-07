@@ -1,0 +1,70 @@
+{% comment %}
+  Usage:
+  {% render 'alp-slide-sub-mega-menu-4' block: block, container: container %}
+{% endcomment %}
+
+{% liquid
+  assign bs = block.settings
+  if show_price
+    assign price_display = 'show_price'
+  endif
+%}
+
+<div
+  class="slide-sub-menu-wrapper"
+  data-list-style="{{ style | default: 'style_one' }}"
+  data-show-price="{{ price_display | default: '' }}"
+>
+  <div class="slide-sub-menu-header">
+    <div class="slide-menu-back-in">{% render 'icon-arrow-left' %}</div>
+    <div>{{- bs.menu_title | strip -}}</div>
+    <div class="slide-menu-close-in">
+      {%- render 'icon-close' -%}
+    </div>
+  </div>
+  <div class="slide-sub-menu-ul">
+    <div class="mega-linklist-wrapper mega-menu-icon-wrapper mega-menu-icon-wrapper-2 mobile-only">
+      {%- if bs.menu_a_title != blank -%}
+        {% render 'mega-menu-image-content',
+          title: bs.menu_a_title,
+          icon: bs.menu_a_icon,
+          richtext: bs.menu_a_content,
+          richtext2: bs.menu_a_link,
+          track_name: bs.track_name_a,
+          url: bs.menu_a_url
+        %}
+      {%- endif -%}
+      {%- if bs.menu_b_title != blank -%}
+        {% render 'mega-menu-image-content',
+          title: bs.menu_b_title,
+          icon: bs.menu_b_icon,
+          richtext: bs.menu_b_content,
+          richtext2: bs.menu_b_link,
+          track_name: bs.track_name_b,
+          url: bs.menu_b_url
+        %}
+      {%- endif -%}
+      {%- if bs.menu_c_title != blank -%}
+        {% render 'mega-menu-image-content',
+          title: bs.menu_c_title,
+          icon: bs.menu_c_icon,
+          richtext: bs.menu_c_content,
+          richtext2: bs.menu_c_link,
+          track_name: bs.track_name_c,
+          url: bs.menu_c_url
+        %}
+      {%- endif -%}
+      {%- if bs.menu_d_title != blank -%}
+        {% render 'mega-menu-image-content',
+          title: bs.menu_d_title,
+          icon: bs.menu_d_icon,
+          richtext: bs.menu_d_content,
+          richtext2: bs.menu_d_link,
+          track_name: bs.track_name_d,
+          url: bs.menu_d_url
+        %}
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="mega-menu-buttons">{{ bs.mega_button_content }}</div>
+</div>

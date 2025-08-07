@@ -1,0 +1,172 @@
+<script>
+  //run scripts on DOMContentLoaded to avoid affecting site load time
+  window.addEventListener('DOMContentLoaded', function(){
+
+   //Only run ajax integration if Extend and ExtendShopify is defined, and the currency is set to USD
+   if (window.Extend && window.ExtendShopify && window.Shopify.currency.active === 'USD') {
+
+    /*****************************************/
+    /* Global Variables - THEME SPECIFIC */
+    /*****************************************/
+
+    let cartRowItem = '[ADD SELECTOR HERE]'; // This is the container element for each item in the cart
+    let cartRowItemTitle = '[ADD SELECTOR HERE]'; // This is the title anchor element for the product
+    let cartRowItemQuantity = '[ADD SELECTOR HERE]'; // This is the input element containing the product quantity
+
+    /***************************************/
+    /* Global Variables - No Change Needed */
+    /***************************************/
+    let offerClass = 'extend-cart-offer'; // This is the class that will be assigned to each Extend offer
+    let localCart = {{ cart | json }}; // Shopify Cart Object on initial load
+
+    // Fail safe for cart
+    if(!localCart) return;
+
+    /***********************/
+    /* util functions */
+    /***********************/
+    // findAll(element) - querySelectorAll to search for children in document OR a parentElement
+    function findAll(elementToFind, parentElement) {
+     const items = parentElement ? parentElement.querySelectorAll(elementToFind) : document.querySelectorAll(elementToFind);
+     return items;
+    }
+
+    /**************************************/
+    /* refreshCart - THEME SPECIFIC */
+    /**************************************/
+    // Refresh the cart (hard refresh by default)
+    function refreshCart() {
+     location.href = location.hash ? location.href.substring(0, location.href.indexOf('#')) : location.href;
+    }
+
+    /***********************/
+    /* createElement */
+    /***********************/
+    // createElement(product) - Takes in the product element, and creates the Extend offer element + appends the offer
+    function createElement(product, index){
+
+     // Removes existing offer elements before creating new ones
+     let extendOffer = product.querySelector('.' + offerClass);
+     if (extendOffer) extendOffer.remove();
+
+     // Grab the variantId
+     let variantId = localCart.items[index].id;
+
+     // Select quantity value
+     let quantity = product.querySelector(cartRowItemQuantity).value;
+
+     // Parent container to append ajax offer
+     let container = product.querySelector(cartRowItemTitle);
+
+     // Fail safes
+     if(!variantId || !quantity || !container) return;
+
+     // Create new element & set class, data-extend-variant, and data-extend-quantity attributes
+     let newExtendOffer = document.createElement('div');
+     newExtendOffer.className = offerClass;
+     newExtendOffer.setAttribute('data-extend-variant', variantId);
+     newExtendOffer.setAttribute('data-extend-quantity', quantity);
+
+     // Append the offer to the container element (THEME SPECIFIC)
+     container.append(newExtendOffer);
+
+    }
+
+    /************************/
+    /* Handle Styling */
+    /************************/
+    // Finds all cartRowItems and styles only Extend warranties
+    function handleStyling() {
+
+     findAll(cartRowItem).forEach(function(el, index) {
+
+      // Grab the title of the current item
+      let title = el.querySelector(cartRowItemTitle);
+
+      // Title fail safe
+      if(!title) return;
+
+      // If it's a warranty set isExtend to true and remove links
+      if (title.innerText.toLowerCase().indexOf('extend protection') > -1) {
+
+       // Select and remove pointerEvents from warranty title
+       title.style.pointerEvents = 'none';
+
+      } else {
+       // Create an offer element for each product
+       createElement(el, index);
+      }
+
+     });
+
+    }
+
+    /************************/
+    /* initializeCartOffer */
+    /************************/
+    // Invokes handleStyling and finds all offers in the cart, handling both normalization and balancing
+    function initializeCartOffer() {
+
+     // Handles styling and creates offer elements
+     handleStyling();
+
+     // Find all offer elements
+     findAll('.' + offerClass).forEach(function(el){
+
+      // Grab attributes out of element
+      let variantId = el.getAttribute('data-extend-variant');
+      let quantity = el.getAttribute('data-extend-quantity');
+
+      // If there's already a warranty in cart, return
+      if(ExtendShopify.warrantyAlreadyInCart(variantId, localCart.items)){
+       return;
+      }
+
+      // Render all other buttons
+      Extend.buttons.renderSimpleOffer(el, {
+       referenceId: variantId,
+       onAddToCart: function (options) {
+        ExtendShopify.addPlanToCart(
+         {
+          plan: options.plan,
+          product: options.product,
+          quantity: quantity,
+         },
+         function (err) {
+          // An error occurred
+          if (err) {
+           return;
+          } else {
+           refreshCart();
+          }
+         }
+        );
+       },
+      });
+     })
+
+     // Normalization ensures there is a 1:1 relationship between the product and the warranty
+     ExtendShopify.normalizeCart({cart: localCart, balance: true}, function (err, data) {
+      if (data && data.updates) {
+       // Calls refreshCart to update the cart for normalization
+       refreshCart();
+      }
+     });
+    }
+
+    // initializeCartOffer when script is initially rendered
+    initializeCartOffer();
+
+   }
+  });
+</script>
+
+<style>
+  #extend-offers-modal-iframe {
+    z-index: 99999999999 !important;
+  }
+
+  #extend-learn-more-modal-iframe {
+    z-index: 99999999999 !important;
+  }
+</style>

@@ -1,0 +1,254 @@
+{% liquid
+    assign st = section.settings
+    assign container = st.container
+    assign reset_spacing = ''
+    if st.reset_spacing
+      assign reset_spacing = ' remove_spacing'
+    endif
+  %}
+  
+  {%- capture style -%}
+      --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+  {%- endcapture -%}
+
+<style>
+  .help-banner-all .breadcrumbs{
+    position: absolute;
+    top: 32px;
+    left: calc(var(--alp-padding-x)* 2);;
+    z-index: 3;
+}
+.help-banner-all .breadcrumbs .alp__breadcrumb-item{
+    color: #fff;
+}
+.jd-header__search-bar input{
+  border: 0;
+  width:100%;
+  margin-left: 6px;
+}
+.jd-header__search-bar form{
+  display: flex;
+  align-items: center;
+}
+.jd-header__search-bar {
+    background-color: #fff;
+    border-radius: 16px;
+}
+.jd-header__search-bar svg{
+  color: #999;
+}
+@media (min-width:751px) {
+  .pc{
+    display: block;
+  }
+  .mobile{
+    display: none;
+  }
+
+  .help-banner-wrapper {
+    position: relative;
+  }
+  .help-text-box {
+    padding-left: calc(var(--alp-padding-x)* 2);
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    transform: translateY(-40%);
+  }
+  .help-banner-image-box img{
+    width:100%;
+    aspect-ratio: 4/1;
+  }
+  .help-text-title {
+    font-size: 48px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 72px;
+  }
+  .jd-header__search-bar {
+    width: 400px;
+    padding: 20px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width:750px) {
+  .pc{
+    display: none;
+  }
+  .mobile{
+    display: block;
+  }
+
+  .help-banner-wrapper {
+    position: relative;
+  }
+  .help-text-box {
+    padding-left: calc(var(--alp-padding-x)* 2);
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    transform: translateY(-40%);
+  }
+  .help-text-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 36px;
+  }
+
+  .jd-header__search-bar {
+    width: 300px;
+    padding: 15px 20px;
+    margin-top: 15px;
+  }
+}
+</style>
+
+
+<div class="help-banner-all alp-section {{ reset_spacing }}" style="{{ style }}">
+  
+  <div class="help-banner-wrapper alp-section-container {{ container }}">
+    {% render 'breadcrumbs' %}
+    <div class="help-banner-image-box">
+      {%- if section.settings.image -%}
+      {%- assign mobile_size = 370 | times: section.settings.image.aspect_ratio | ceil -%}
+      {%- assign tablet_size = 520 | times: section.settings.image.aspect_ratio | ceil -%}
+      {%- assign desktop_size = 600 | times: section.settings.image.aspect_ratio | ceil -%}
+
+      <img loading="lazy" sizes="(max-width: 740px) {{ mobile_size }}px, (max-width: 999px) {{ tablet_size }}px, {{ desktop_size }}px" class="help-banner__image pc" {% render 'image-attributes', image: section.settings.image, sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+      {%- else -%}
+      {{- 'image' | placeholder_svg_tag: 'help-banner__image placeholder-background pc' -}}
+      {%- endif -%}
+
+      {%- if section.settings.m_image -%}
+      {%- assign mobile_size = 370 | times: section.settings.m_image.aspect_ratio | ceil -%}
+      {%- assign tablet_size = 520 | times: section.settings.m_image.aspect_ratio | ceil -%}
+      {%- assign desktop_size = 600 | times: section.settings.m_image.aspect_ratio | ceil -%}
+
+      <img loading="lazy" sizes="(max-width: 740px) {{ mobile_size }}px, (max-width: 999px) {{ tablet_size }}px, {{ desktop_size }}px" class="help-banner__image mobile" {% render 'image-attributes', image: section.settings.m_image, sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+      {%- else -%}
+      {{- 'image' | placeholder_svg_tag: 'help-banner__image placeholder-background mobile' -}}
+      {%- endif -%}
+    </div>
+    <div class="help-text-box container">
+      <div class="help-text-title">{{section.settings.title}}</div>
+      <div class="jd-header__search-bar header__search-bar">
+        <form class="jd-predictive-search__form predictive-search__form search_form_help" action="{{ routes.search_url }}" method="get" role="search">
+          
+         
+          <input type="hidden" name="type" value="product">
+          <input type="hidden" name="options[prefix]" value="last">
+          <input type="hidden" name="options[unavailable_products]" value="{{ settings.search_unavailable_products }}">
+         
+
+    
+          {%- render 'icon-search'  -%}
+          <input type="text" name="search_index" class="predictive-search__input" id="search_index" onkeydown="entersearch1(event)"  onblur="if(this.value==''){this.value='How can we help you?'}" onfocus="if(this.value=='How can we help you?'){this.value=''}" value="How can we help you?"  />
+          <input class="predictive-search__input" is="predictive-search-input" type="text" name="q" autocomplete="off" autocorrect="off" aria-label="{{ 'search.general.title' | t }}" placeholder="How can we help you?" style="display: none;">
+        </form>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  function jump(){
+		 var searchval = $("#search_index").val();
+     window.location.href="/search?type=article&view=help&q="+ searchval
+	 }
+	 function entersearch1(event){  
+		    if (event.keyCode == 13)  
+		       {  
+		    	jump();  
+		       }  
+		}  
+</script>
+
+{% schema %}
+{
+  "name": "Help Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "m_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "select",
+        "id": "container",
+        "label": "Layout",
+        "default": "alp-container",
+        "options": [
+          {
+            "value": "alp-container",
+            "label": "Default"
+          },
+          {
+            "value": "alp-container-fluid",
+            "label": "Fluid container"
+          },
+          {
+            "value": "alp-full-width",
+            "label": "Full width"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Padding top",
+        "default": 10,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "em"
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Padding bottom",
+        "default": 10,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "em"
+      },
+      {
+        "type": "checkbox",
+        "id": "reset_spacing",
+        "label": "Remove default space between sections",
+        "default": false
+      }
+  ],
+  "presets": [{
+    "name": "Help Banner"
+  }]
+}
+{% endschema %}

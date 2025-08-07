@@ -1,0 +1,17 @@
+<div class="price_with_variants">
+  {% for variant in product.variants %}
+    {% liquid
+      assign options_string = ''
+      for option in variant.options
+        assign options_string = options_string | append: option | append: ','
+      endfor
+    %}
+    <div
+      class="price_with_variants_item {% if forloop.index == 1 %} active display-block{% endif %}"
+      data-variant="{{ variant.id }}"
+      data-options="{{ options_string }}"
+    >
+      {% render 'price', product: variant %}
+    </div>
+  {% endfor -%}
+</div>

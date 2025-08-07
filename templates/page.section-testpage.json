@@ -1,0 +1,152 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "alp_keynote_specification_aRkrhw": {
+      "type": "alp-keynote-specification",
+      "blocks": {
+        "spec_type_c_3aewdt": {
+          "type": "spec_type_c",
+          "settings": {
+            "tab_title": "Size & Fit",
+            "text": "Large",
+            "product_image": "shopify://shop_images/baslt_st_2.0_large_51519f87-f95b-4990-aa9d-008449764ae3.png",
+            "man_image": "shopify://shop_images/Subtract_72c40bb5-fadc-4531-a3c0-e475c6763c6d.png",
+            "title": "Height",
+            "desc": "Slide the scale for your bike inseam measurement",
+            "match_max": "6.67",
+            "match_min": "5.50",
+            "title_match": "Basalt ST 2.0  (Large)",
+            "desc_match": "You will be able to pedal and stand over the frame comfortably.",
+            "title_not_match": "Basalt ST 2.0  (Large)",
+            "desc_not_match": "You may experience discomfort on extended riding periods.",
+            "title_recommend": "",
+            "products": [],
+            "show_active": true
+          }
+        },
+        "spec_type_c_xBXjeh": {
+          "type": "spec_type_c",
+          "settings": {
+            "tab_title": "",
+            "text": "Standard",
+            "product_image": "shopify://shop_images/baslt_st_2.0_standar_da222a76-3300-44fc-a0c8-495683f7928d.png",
+            "man_image": "shopify://shop_images/Subtract_72c40bb5-fadc-4531-a3c0-e475c6763c6d.png",
+            "title": "Height",
+            "desc": "Slide the scale for your bike inseam measurement",
+            "match_max": "6.33",
+            "match_min": "5.1667",
+            "title_match": "Basalt ST 2.0 (Standard)",
+            "desc_match": "You will be able to pedal and stand over the frame comfortably.",
+            "title_not_match": "Basalt ST 2.0 (Standard)",
+            "desc_not_match": "You may experience discomfort on extended riding periods.",
+            "title_recommend": "",
+            "products": [],
+            "show_active": false
+          }
+        },
+        "spec_type_a_nAbwQR": {
+          "type": "spec_type_a",
+          "settings": {
+            "tab_title": "Geometry",
+            "rich_content": "<div class=\"Sp_alp_new\">\n  <div>\n<span>Rider Height</span> <span>5'6\" ~ 6'8\"</span>\n</div>\n  <div>\n<span>Reach</span> <span>16\"</span>\n</div>\n  <div>\n<span>Top Tube Length</span> <span>25\"</span>\n</div>\n  <div>\n<span>Standover Height</span> <span>30\"</span>\n</div>\n  <div>\n<span>Wheelbase</span> <span>46\"</span>\n</div>\n  <div>\n<span>Min Saddle Height</span> <span>37\"</span>\n</div>\n  <div>\n<span>Max Saddle Height</span> <span>42\"</span>\n</div>\n  <div>\n<span>Head Tube Length</span> <span>6\"</span>\n</div>\n</div>",
+            "image": "shopify://shop_images/Obsidian-geo-1.jpg",
+            "image_name": "Obsidian-geo-",
+            "image_number": 8,
+            "show_active": false
+          }
+        },
+        "spec_type_b_LpPFpR": {
+          "type": "spec_type_b",
+          "settings": {
+            "tab_title": "Technical",
+            "rich_content": "<div class=\"Sp_tech\">\n  <div>\n    <div>\n<b>Battery</b><span>48V 19.6A Complies with UL standards</span>\n</div>\n    <div>\n<b>Charger</b><span>48V 3A</span>\n</div>\n <div>\n<b>Motor</b><span>Continuous Power: 750W<p>\nPeak Power: 1100W</p>\n<p>\nTorque: 90Nm+</p></span>\n</div>\n    <div>\n<b>Speed Class</b><span>Up to 28 mph on Level 5 PAS</span>\n</div>\n    <div>\n<b>Weight</b><span>80 lbs</span>\n</div>\n    <div>\n<b>Range</b><span>60~80miles</span>\n</div>\n    <div>\n<b>Payload Capacity</b><span>350 lbs</span>\n</div>\n</div>\n</div>",
+            "show_active": false
+          }
+        },
+        "spec_type_b_cyxnCd": {
+          "type": "spec_type_b",
+          "settings": {
+            "tab_title": "Performance",
+            "rich_content": "<div class=\"Sp_tech\">\n  <div>\n<div>\n<b>Sensor</b><span>Dual-Side Torque Sensor\n</span>\n</div>\n    <div>\n<b>Tires</b><span>26x4.0\" Puncture Resistant Fat Tire</span>\n</div>\n    <div>\n<b>Display</b><span>Detachable High-Definition Display</span>\n</div>\n    <div>\n<b>Brakes</b><span>TEKTRO HD-E350 Hydraulic Disc Brakes</span>\n</div>\n<div>\n<b>Gearing</b><span>Shimano 7-Speed</span>\n</div>\n<div>\n<b>Derailleur</b><span>7 Speed Shimano Rear Derailleur</span>\n</div>\n    <div>\n<b>Chain</b><span>KMC Stainless Chain</span>\n</div>\n    <div>\n<b>Crank Set</b><span>52T ALUMINUM ALLOY CRANKSET</span>\n</div>\n    <div>\n<b>Front Fork</b><span>110mm Adjustable Suspension</span>\n</div>\n    <div>\n<b>Frame</b><span>6061 Aluminum Alloy with Internal Battery</span>\n</div>\n    <div>\n<b>Throttle</b><span>Thumb Throttle</span>\n</div>\n    <div>\n<b>Handlebar</b><span>Aluminum Alloy 31.8mm 680mm</span>\n</div>\n<div>\n<b>Kickstand</b><span>6061 Aluminum Kickstand\n</span>\n</div>\n<div>\n<b>Rims</b><span>Aluminum Alloy</span>\n</div>\n<div>\n<b>Saddle</b><span>Customized Comfort Leather Seat\n</span>\n</div>\n<div>\n<b>Spokes</b><span>Front 45#x12Gx248mm and Rear 45#×12G×219mm\n</span>\n</div>\n\n  </div>\n</div>",
+            "show_active": false
+          }
+        }
+      },
+      "block_order": [
+        "spec_type_c_3aewdt",
+        "spec_type_c_xBXjeh",
+        "spec_type_a_nAbwQR",
+        "spec_type_b_LpPFpR",
+        "spec_type_b_cyxnCd"
+      ],
+      "settings": {
+        "bigtitle": "Specification & Geometry",
+        "bg_color": "#f8f8f8",
+        "text_color": "#1a1a1a",
+        "container": "alp-container-fluid",
+        "padding_top": 25,
+        "padding_bottom": 25,
+        "reset_spacing": false
+      }
+    },
+    "86b31989-034a-4cfb-9cb6-ba990c6e5fe9": {
+      "type": "alp-compare",
+      "blocks": {
+        "76f411e0-6988-4454-a096-366f757908c7": {
+          "type": "product-item",
+          "settings": {
+            "product": "basalt"
+          }
+        },
+        "c83e1d5a-5bfc-4990-b357-98b379301fdf": {
+          "type": "product-item",
+          "settings": {
+            "product": "basalt-st-2-0-s"
+          }
+        },
+        "c4cd0a6d-b611-48cd-874a-1051ea921532": {
+          "type": "product-item",
+          "settings": {
+            "product": "asphalt-st"
+          }
+        }
+      },
+      "block_order": [
+        "76f411e0-6988-4454-a096-366f757908c7",
+        "c83e1d5a-5bfc-4990-b357-98b379301fdf",
+        "c4cd0a6d-b611-48cd-874a-1051ea921532"
+      ],
+      "settings": {
+        "title": "Compare Models",
+        "product_collection": "electric-bikes",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "alp_keynote_specification_aRkrhw",
+    "86b31989-034a-4cfb-9cb6-ba990c6e5fe9"
+  ]
+}

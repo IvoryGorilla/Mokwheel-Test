@@ -1,0 +1,380 @@
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  .alp-help-cards-container {
+    padding: 48px 32px;
+    background: #f8f8f8;
+    border-radius: 16px;
+  }
+  .alp-help-cards-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 28px;
+    margin-top: 24px;
+  }
+  .alp-help-cards-item {
+    height: 60px;
+    padding: 20px 40px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    cursor: pointer;
+  }
+  .alp-help-cards-item picture img {
+    display: block;
+    width: 24px;
+    margin-right: 10px;
+  }
+  .alp-help-cards-item .text_content {
+    line-height: 1;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+  /* 点击播放视频 */
+  .alp-help-cards-bg {
+    overflow: hidden;
+    position: relative;
+  }
+  div.alp-help-cards-full-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000000c7;
+    z-index: 199;
+    display: block;
+    opacity: 0;
+    transition: 0.3s;
+    pointer-events: none;
+  }
+  div.alp-help-cards-full-bg.active {
+    display: block;
+    opacity: 1;
+  }
+  .alp-help-cards-full-item {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    pointer-events: none;
+    margin: 4vw;
+    z-index: 300;
+    transition: 0.3s;
+    max-width: 1200px;
+    max-height: 80%;
+    margin: auto;
+    display: none;
+  }
+  .alp-help-cards-full-item.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .alp-help-cards-full-item .video-foreground {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+    border-radius: 12px;
+  }
+  .alp-help-cards-full-item .video-foreground iframe {
+    width: 100%;
+    height: 100%;
+  }
+  .alp-help-cards-full-item video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+    border-radius: 12px;
+  }
+  .alp-help-cards-full-item .close {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    right: -2em;
+    top: -2em;
+    cursor: pointer;
+    z-index: 31;
+  }
+  .alp-help-cards-full-item .close svg {
+    width: 36px;
+    height: 36px;
+    margin-top: 2px;
+    margin-left: 2px;
+  }
+  .alp-help-cards-full-item .close svg path {
+    stroke-width: 1;
+  }
+  @media (max-width: 999px) {
+    .alp-help-cards-container {
+      padding: 32px 20px;
+    }
+    .alp-help-cards-box {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .alp-help-cards-item {
+      height: 54px;
+      padding: 15px 32px;
+    }
+    .alp-help-cards-full-item {
+      padding-left: 8px;
+      padding-right: 8px;
+      max-height: max-content;
+    }
+    .alp-help-cards-full-item video,
+    .alp-help-cards-full-item .video-foreground {
+      aspect-ratio: 16 / 9;
+    }
+    .alp-help-cards-full-item .video-foreground iframe{
+      border: none;
+      border-radius: 16px;
+    }
+    .alp-help-cards-full-item .close{
+      right: 0em;
+      top: -0.5em;
+      width: 30px;
+      height: 30px;
+    }
+    .alp-help-cards-full-item .close svg{
+      width: 28px;
+      height: 28px;
+    }
+  }
+</style>
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="page-width {{ container }}">
+    <div class="alp-section-container alp-help-cards-container">
+      <div class="alp-help-cards-wrap">
+        <h4 class="headline__h4">{{ st.bigtitle }}</h4>
+        <div class="alp-help-cards-box">
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div class="alp-help-cards-item" data-id="{{ block.id | replace: '-', '' }}">
+              {% comment %} <a class="full-aa" href="{{ bs.link }}"></a>
+              {%- if bs.video_url != blank -%}
+                <a class="full-aa" href="{{ bs.video_url }}"></a>
+              {%- endif -%} {% endcomment %}
+              {% render 'alp-single-image', image: bs.icon, width: 1280 %}
+              <div class="text_content">{{ bs.title }}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      <div class="alp-help-cards-bg">
+        <div class="alp-help-cards-full-bg"></div>
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+              assign video_url = bs.video_url
+              assign video_id = ''
+              if video_url.type == 'youtube'
+                assign video_id = video_url | replace: 'https://www.youtube.com/watch?v=', ''
+              elsif video_url.type == 'vimeo'
+                assign video_id = video_url | replace: 'https://vimeo.com/', ''
+              endif
+            %}
+            <div class="alp-help-cards-full-item" data-id="{{ block.id | replace: '-', '' }}">
+              <div class="close">
+                {% render 'icon-close' %}
+              </div>
+              {% if bs.video %}
+                <video
+                  src="{{ bs.video }}"
+                  muted
+                  controls
+                  preload
+                  loop
+                  x5-video-player-fullscreen="true"
+                  x5-playsinline
+                  playsinline
+                  webkit-playsinline
+                ></video>
+              {%- else -%}
+                {% if bs.video_url %}
+                  <div class="video-foreground">
+                    {%- if video_url.type == 'youtube' -%}
+                      <video-youtube data-id="{{ block.id }}">
+                        <iframe
+                          src="https://www.youtube.com/embed/{{ video_id }}?controls=1&autoplay=0&mute=0&playsinline=1&loop=1&playlist={{ video_id }}"
+                        ></iframe>
+                      </video-youtube>
+                    {%- elsif video_url.type == 'vimeo' -%}
+                      <iframe
+                        src="https://player.vimeo.com/video/{{ video_id }}?controls=1&background=1&autoplay=0&muted=0&loop=1"
+                        frameborder="0"
+                        allowfullscreen
+                      ></iframe>
+                    {%- endif -%}
+                  </div>
+                {%- endif %}
+              {%- endif %}
+            </div>
+          {%- endfor -%}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // click
+    var BlockId = 'shopify-section-{{ section.id  }}';
+    $(`#${BlockId} .alp-help-cards-item`).click(function () {
+      let $this = $(this);
+      let $item_id = $this.attr('data-id');
+      $('.alp-help-cards-container').find(`.alp-help-cards-full-item[data-id="${$item_id}"]`).css('display', 'block')
+      setTimeout(() => {
+        $('.alp-help-cards-container').find(`.alp-help-cards-full-item[data-id="${$item_id}"]`).addClass('active').siblings().removeClass('active');
+        $this.parents('.alp-help-cards-container').find('.alp-help-cards-full-bg').addClass('active');
+      }, 100);
+    });
+    $('.alp-help-cards-full-item .close').click(function () {
+      let $this = $(this);
+      $this.parents('.alp-help-cards-container').find('.alp-help-cards-full-bg').removeClass('active');
+      $this.parents('.alp-help-cards-container').find('.alp-help-cards-full-item').removeClass('active');
+      setTimeout(() => {
+        $this.parents('.alp-help-cards-container').find('.alp-help-cards-full-item').css('display', 'none')
+      }, 500)
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Alp Help Cards 2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bigtitle",
+      "label": "Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item_card",
+      "name": "Item Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        // {
+        //   "type": "url",
+        //   "id": "link",
+        //   "label": "link"
+        // },
+        {
+          "type": "url",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "id": "video_url",
+          "type": "video_url",
+          "label": "Video url",
+          "accept": ["youtube", "vimeo"],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "info": "youtube or vimeo url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Help Cards 2"
+    }
+  ]
+}
+{% endschema %}

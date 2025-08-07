@@ -1,0 +1,468 @@
+{% schema %}
+{
+  "name": "Alp Media Slider New 2 BK",
+  "class": "alp-media-slider-new-2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Aspect Ratio",
+      "default": "1350/650"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio_mobile",
+      "label": "Aspect Ratio Mobile",
+      "default": "300/420"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#0E0E0E"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container-fluid",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image Mobile"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "url",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "id": "video_url",
+          "type": "video_url",
+          "label": "Video url",
+          "accept": ["youtube", "vimeo"],
+          "info": "youtube or vimeo url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Media Slider New 2 BK"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --aspect-ratio: {{ st.image_aspect_ratio }};
+   --aspect-ratio-mobile: {{ st.image_aspect_ratio_mobile }};
+  }
+</style>
+
+{% style %}
+  .alp-media-slider-new-2.alp-section {
+    padding: var(--spacing) 0;
+  }
+  .alp-media-slider-new-2-title {
+    text-align: center;
+    margin-bottom: clamp(32px, 3.5vw, 64px);
+  }
+
+  .alp-media-slider-new-item-image-inner img {
+    display: block;
+  }
+
+  .alp-media-slider-new-2-swiper-thumbs {
+    margin-top: clamp(32px, 3.5vw, 64px);
+  }
+  .alp-media-slider-new-description {
+    font-size: clamp(14px, 1.05vw, 18px);
+    line-height: 1.5;
+    opacity: 0.5;
+  }
+  .alp-media-slider-new-2-swiper.swiper {
+    max-width: 1350px;
+  }
+
+  .alp-media-slider-new-2-item.swiper-slide > div {
+    transition: 0.3s;
+    opacity: 0.3;
+  }
+  .alp-media-slider-new-2-item.swiper-slide-active > div {
+    opacity: 1;
+  }
+  .swiper-navs-new-3.swiper-pagination-media-slider-new {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+  }
+  .media-slider-new-2-thumbs-item.swiper-slide {
+    width: auto;
+    width: 33.333%;
+  }
+
+  .alp-media-slider-new-2-swiper-thumbs {
+    max-width: 1180px;
+    border-bottom: 1px solid #ffffff1f;
+  }
+
+  .alp-media-slider-new-2-item-title {
+    text-align: center;
+  }
+
+  .media-slider-new-2-thumbs-item.swiper-slide > .alp-media-slider-new-2-item-title {
+    padding-bottom: clamp(24px, 1.85vw, 32px);
+    padding-left: 1em;
+    padding-right: 1em;
+    border-bottom: 2px solid #ffffff00;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .media-slider-new-2-thumbs-item.swiper-slide.swiper-slide-thumb-active > .alp-media-slider-new-2-item-title {
+    border-color: #fff;
+  }
+
+  .alp-media-slider-new-2-swiper-content {
+    text-align: center;
+    margin-top: 32px;
+    max-width: 950px;
+  }
+
+  .alp-media-slider-new-2-item-content {
+    opacity: 0.65;
+    font-size: clamp(14px, 1.05vw, 18px);
+  }
+  .alp-media-slider-new-2-title {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 950px;
+  }
+
+  .swiper-navs-new-3.swiper-pagination-slider {
+    margin-top: 24px;
+  }
+  @media (min-width: 999px) {
+    .alp-media-slider-new-2-swiper.swiper {
+      width: 55%;
+    }
+  }
+  @media (max-width: 767px) {
+    .alp-media-slider-new-2-item-inner .alp-media-slider-new-item-image-inner img {
+      aspect-ratio: var(--aspect-ratio-mobile);
+    }
+    .alp-media-slider-new-2-swiper.swiper {
+      max-width: 88%;
+    }
+    .alp-media-slider-new-2-item-content h3.headline__h5l.alp-media-slider-new-2-item-title {
+      margin-bottom: 0.875em;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-media-slider-new-2 alp-section overflow-hidden  {{ reset_spacing }}"
+  data-stid="{{ section.id }}"
+  style="{{ style }}"
+>
+  <div class="alp-section-container alp-media-slider-new-2-container page-width {{ container }}">
+    <div class="alp-media-slider-new-2-title">
+      {%- if st.title != blank -%}
+        <h2 class="headline__h2 big-title">{{ st.title }}</h2>
+      {%- endif -%}
+      {%- if st.subtitle != blank -%}
+        <div class="alp-media-slider-new-description">{{ st.subtitle | newline_to_br }}</div>
+      {%- endif -%}
+    </div>
+    <div class="alp-media-slider-new-2-swiper-wrapper relative">
+      <div
+        class="alp-media-slider-new-2-swiper swiper overflow-visible"
+        id="{{ section.id | replace: '-', '' | prepend: 'id_' }}"
+      >
+        <div class="swiper-wrapper">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+                assign video_id = ''
+                if bs.video_url.type == 'youtube'
+                  assign video_id = bs.video_url | replace: 'https://www.youtube.com/watch?v=', ''
+                elsif bs.video_url.type == 'vimeo'
+                  assign video_id = bs.video_url | replace: 'https://vimeo.com/', ''
+                endif
+              %}
+              {%- capture online_video_url -%}
+                {%- if bs.video_url.type == 'youtube' -%}
+                https://www.youtube.com/embed/{{ video_id }}?controls=0&autoplay=1&mute=0&playsinline=1&loop=0&playlist={{ video_id }}
+                {%- elsif bs.video_url.type == 'vimeo' -%}
+                https://player.vimeo.com/video/{{ video_id }}?controls=0background=1&autoplay=1&muted=0&loop=0
+                {%- endif -%}
+                {%- endcapture -%}
+              <div
+                class="alp-media-slider-new-2-item swiper-slide"
+                data-id="{{ block.id | replace: '-', '' }}"
+              >
+                <div class="alp-media-slider-new-2-item-inner relative">
+                  {% if bs.video != blank %}
+                    <a
+                      class="full-aa"
+                      href="{{ bs.video }}"
+                      data-fslightbox="reviews"
+                    ></a>
+                  {%- endif -%}
+                  {%- if bs.video_url.type == 'youtube' -%}
+                    <a
+                      class="full-aa"
+                      href="{{ bs.video_url }}"
+                      data-embed="{{ online_video_url }}"
+                      data-fslightbox="reviews"
+                    ></a>
+                  {%- elsif bs.video_url.type == 'vimeo' -%}
+                    <a
+                      class="full-aa"
+                      href="#{{ block.id | replace: '-', '' | prepend: 'vimeoid_' }}"
+                      data-embed="{{ online_video_url }}"
+                      data-fslightbox="reviews"
+                    ></a>
+                    <iframe
+                      data-src="https://player.vimeo.com/video/{{ video_id }}?controls=0background=1&autoplay=0&muted=0&loop=0"
+                      frameborder="0"
+                      allowfullscreen
+                      class="hidden"
+                      id="{{ block.id | replace: '-', '' | prepend: 'vimeoid_' }}"
+                      class="lazy"
+                    ></iframe>
+                  {%- endif -%}
+                  <div class="alp-media-slider-new-item-image-inner">
+                    {% if bs.image != blank %}
+                      <div class="alp-media-slider-new-thumbnail-container">
+                        {% render 'alp-responsive-image',
+                          image: bs.image,
+                          image_mobile: bs.image_mobile,
+                          desktop_width: 1600,
+                          mobile_width: 900
+                        %}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          {% endif %}
+        </div>
+      </div>
+      <div class="swiper-navs-new-3 swiper-pagination-media-slider-new ">
+        {% render 'swiper-navigation-new-3', class: 'hide_mobile' %}
+      </div>
+    </div>
+    <div
+      class="alp-media-slider-new-2-swiper-thumbs swiper overflow-visible hide_mobile"
+      id="{{ section.id | replace: '-', '' | prepend: 'id_' }}"
+    >
+      <div class="swiper-wrapper">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div
+              class="media-slider-new-2-thumbs-item swiper-slide"
+              data-id="{{ block.id | replace: '-', '' }}"
+            >
+              <div class="alp-media-slider-new-2-item-title">
+                <h3 class="headline__h5l alp-media-slider-new-2-item-title">{{ bs.title | strip_html | strip }}</h3>
+              </div>
+            </div>
+          {%- endfor -%}
+        {% endif %}
+      </div>
+    </div>
+    <div
+      class="alp-media-slider-new-2-swiper-content swiper"
+      id="{{ section.id | replace: '-', '' | prepend: 'id_' }}"
+    >
+      <div class="swiper-wrapper">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div
+              class="swiper-slide"
+              data-id="{{ block.id | replace: '-', '' }}"
+            >
+              <div class="alp-media-slider-new-2-item-content-wrapper">
+                <h3 class="headline__h5l alp-media-slider-new-2-item-title hide_desktop">
+                  {{ bs.title | strip_html | strip }}
+                </h3>
+                <div class="alp-media-slider-new-2-item-content">{{ bs.content | strip_html | strip }}</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {% endif %}
+      </div>
+    </div>
+    <div class="swiper-navs-new-3 swiper-pagination-slider hide_desktop">
+      {% render 'swiper-pagination', class: '' %}
+    </div>
+  </div>
+</div>
+
+<script
+  type="module"
+>
+  document.addEventListener('DOMContentLoaded', () => {
+    // swiper
+    let is_Swiper_Mobile = window.innerWidth < 999;
+    var BlockId = '{{ section.id | replace: '-', '' | prepend: 'id_' }}';
+    var Swiper_Thumbs_{{ section.id | replace: '-', '' }} = new Swiper(`.alp-media-slider-new-2-swiper-thumbs.swiper#${BlockId}`, {
+      slidesPerView: 'auto',
+    });
+    var Swiper_Content_{{ section.id | replace: '-', '' }} = new Swiper(`.alp-media-slider-new-2-swiper-content.swiper#${BlockId}`, {
+      slidesPerView: 1,
+      effect : 'fade',
+      fadeEffect: {
+        crossFade: true,
+      },
+    });
+    var Swiper_Main_{{ section.id | replace: '-', '' }} = new Swiper(`.alp-media-slider-new-2-swiper.swiper#${BlockId}`, {
+      initialSlide: 1,
+      speed: 600,
+      scrollbar: {
+        el: `.swiper#${BlockId} .swiper-scrollbar`,
+        draggable: true,
+      },
+      pagination: {
+        el: `[data-stid="{{ section.id }}"] .alp-swiper-pagination`,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: `[data-stid="{{ section.id }}"] .swiper-button-next`,
+        prevEl: `[data-stid="{{ section.id }}"] .swiper-button-prev`,
+      },
+      breakpoints: { 
+        1440: {  
+          slidesPerView: 1,
+          spaceBetween: 32,
+          // slidesPerGroup : 4,
+        },
+        1280: {  
+          slidesPerView: 1,
+          spaceBetween: 24,
+          // slidesPerGroup : 4,
+        },
+        768: {  
+          slidesPerView: 1,
+          spaceBetween: 16,
+          // slidesPerGroup : 4,
+        },
+        320: {  
+          slidesPerView: 1,
+          spaceBetween: 16,
+          // slidesPerGroup : 2,
+        }
+      },
+      thumbs: {
+        swiper: Swiper_Thumbs_{{ section.id | replace: '-', '' }},
+      },
+      controller: {
+        control: Swiper_Content_{{ section.id | replace: '-', '' }},
+      },
+    });
+    Swiper_Content_{{ section.id | replace: '-', '' }}.controller.control = Swiper_Main_{{ section.id | replace: '-', '' }};
+  });
+</script>

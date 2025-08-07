@@ -1,0 +1,64 @@
+{% schema %}
+{
+  "name": "Alp Hidden Heading",
+  "class": "alp-index-heading",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Title"
+        },
+        {
+          "type": "select",
+          "id": "heading_type",
+          "label": "Heading type",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            }
+          ],
+          "default": "h1"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Hidden Heading"
+    }
+  ]
+}
+{% endschema %}
+
+{%- if section.blocks.size > 0 -%}
+  {%- for block in section.blocks -%}
+    {% liquid
+      assign bs = block.settings
+    %}
+    {%- if bs.text != blank -%}
+      <{{ bs.heading_type }} class="alp-index-heading">
+        {{- bs.text | newline_to_br -}}
+      </{{ bs.heading_type }}>
+    {%- endif -%}
+  {%- endfor -%}
+{% endif %}

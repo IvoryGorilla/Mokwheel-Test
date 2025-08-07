@@ -1,0 +1,40 @@
+{% liquid
+  assign bs = block.settings
+%}
+<div class="alp-d-banner-list-wrapper" style="--block-min-height: {{ bs.min_height }};">
+  <div class="alp-d-banner-list-inner overflow-hidden relative">
+    {%- if bs.link != blank -%}
+      <a class="full-aa" href="{{ bs.link }}" title="{{ bs.text }}"></a>
+    {%- endif -%}
+    <div class="alp-d-banner-bg" style="opacity:{{ bs.bg_opacity | divided_by: 100.0 }}">
+      {% render 'alp-responsive-image',
+        image: bs.image,
+        image_mobile: bs.image_mobile,
+        desktop_width: 1920,
+        mobile_width: 720,
+        aspect_ratio: bs.image_aspect_ratio,
+        alt: bs.text
+      %}
+    </div>
+    <div class="alp-d-banner-info">
+      <div>
+        {%- if bs.text != blank -%}
+          <h3 class="alp-image-slider-text headline__h4">{{ bs.text | newline_to_br }}</h3>
+        {%- endif -%}
+        {%- if bs.subtext != blank -%}
+          <div class="alp-image-slider-subtext">{{ bs.subtext | newline_to_br }}</div>
+        {%- endif -%}
+        {%- if bs.link_text != blank -%}
+          {% render 'alp-btn',
+            url: bs.link,
+            type: 'btn-link',
+            text: bs.link_text,
+            textcolor: '#ffffff',
+            bgcolor: 'var(--main-color)',
+            size: 'small'
+          %}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>

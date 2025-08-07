@@ -1,0 +1,801 @@
+{% schema %}
+{
+  "name": "Alp Cart Drawer (Backup)",
+  "class": "alp-cart-drawer",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shopping Cart"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "cart_items",
+      "name": "Cart Items",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Cart Items"
+        }
+      ]
+    },
+    {
+      "type": "recommendations",
+      "name": "Recommendations",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "You May Also Like"
+        },
+        {
+          "type": "product_list",
+          "id": "product_list",
+          "label": "Products"
+        }
+      ]
+    },
+    {
+      "type": "subtotal",
+      "name": "Sub Total",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "saving_text",
+          "label": "Saving Text",
+          "default": "You Saved"
+        }
+      ]
+    },
+    {
+      "type": "checkout_button",
+      "name": "Checkout Buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_additional_button",
+          "label": "Show Additional Button",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "taxes_shipping",
+      "name": "Taxes & Shipping",
+      "limit": 1
+    },
+    {
+      "type": "order_note",
+      "name": "Order Note",
+      "limit": 1
+    },
+    {
+      "type": "docapp_disount",
+      "name": "Docapp Discount",
+      "limit": 1
+    },
+    {
+      "type": "docapp_summary",
+      "name": "Docapp Summary",
+      "limit": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Cart Drawer (Backup)"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+{% endstyle %}
+
+{{ 'alp-cart-drawer.css' | asset_url | stylesheet_tag }}
+
+<div class="alp-main-cart alp-cart-drawer {% if cart == empty %}is-empty{% endif %}" data-ajax-cart style="{{ style }}">
+  <div class="alp-cart-overlay full-img-wrap"></div>
+  <div class="alp-cart-container">
+    <div class="alp-cart-title">
+      <h3>{{ st.title }}</h3>
+      <div class="alp-cart-close">
+        {%- render 'icon-close' -%}
+      </div>
+    </div>
+    {%- if section.blocks.size > 0 -%}
+      <div class="alp-cart-inner-1">
+        {%- for block in section.blocks -%}
+          {%- assign bs = block.settings -%}
+          {%- case block.type -%}
+            {%- when 'cart_items' -%}
+              <div class="alp-cart-items-wrapper">
+                {%- if cart != empty -%}
+                  <div class="alp-cart-items-container">
+                    {% for item in cart.items %}
+                      {%- assign compare_at_price = item.variant.compare_at_price -%}
+                      {%- if compare_at_price < item.original_price -%}
+                        {%- assign compare_at_price = item.original_price -%}
+                      {%- endif -%}
+                      {%- assign line_id = item.url_to_remove | split: '?id=' | last -%}
+                      {%- assign line_id = line_id | split: '&' | first -%}
+                      <div
+                        class="alp-cart-line-item line-item"
+                        data-line-item-id="{{ line_id }}"
+                        data-line-variant-id="{{ item.variant_id }}"
+                        data-line-product-id="{{ item.product_id }}"
+                        data-line-collections="{{ item.product.collections | map: 'id' | join: ',' }}"
+                        data-line-quantity="{{ item.quantity }}"
+                        data-compare-price="{{- compare_at_price -}}"
+                        data-final-price="{{- item.final_price -}}"
+                      >
+                        <div class="alp-cart-line-item-inner">
+                          <div class="alp-line-item-image">
+                            <a href="{{ item.url }}" class="full-aa" aria-hidden="true" tabindex="-1"> </a>
+                            <div class="alp-line-item-image-i">
+                              <img
+                                src="{{ item.image | image_url: width: 300 }}"
+                                class=""
+                                alt="{{ item.image.alt | escape }}"
+                                loading="lazy"
+                                width="250"
+                                height="{{ 250 | divided_by: item.image.aspect_ratio | ceil }}"
+                              >
+                            </div>
+                          </div>
+                          <div class="alp-line-item-content">
+                            <div class="alp-line-item-info">
+                              <div class="alp-line-item-title">
+                                <div class="the-product-title">
+                                  <a href="{{ item.url }}" class="line-item-name">{{ item.product.title | escape }}</a>
+                                </div>
+                                <div class="product-options">
+                                  {%- if item.product.has_only_default_variant == false -%}
+                                    {%- for option in item.options_with_values -%}
+                                      <div class="product-option">
+                                        <div>{{ option.name }}:</div>
+                                        <div>{{ option.value }}</div>
+                                      </div>
+                                      {%- unless forloop.last -%}
+                                        <div>/</div>
+                                      {%- endunless -%}
+                                    {%- endfor -%}
+                                  {%- endif -%}
+                                </div>
+                              </div>
+                              <div class="alp-line-item-options">
+                                {%- if item.product.has_only_default_variant == false
+                                  or item.properties.size != 0
+                                  or item.selling_plan_allocation != null
+                                -%}
+                                  <div class="product-properties">
+                                    {%- for property in item.properties -%}
+                                      {% unless property.first contains '||' %}
+                                        {%- assign property_first_char = property.first | slice: 0 -%}
+                                        {%- if property.last != blank and property_first_char != '_' -%}
+                                          <div class="product-property">
+                                            <div class="propertie-first">{{ property.first }}:</div>
+                                            <div class="propertie-last">
+                                              {%- if property.last contains '/uploads/' -%}
+                                                <a href="{{ property.last }}" class="link" target="_blank">
+                                                  {{ property.last | split: '/' | last }}
+                                                </a>
+                                              {%- else -%}
+                                                {{ property.last }}
+                                              {%- endif -%}
+                                            </div>
+                                          </div>
+                                        {%- endif -%}
+                                      {% endunless %}
+                                    {%- endfor -%}
+                                  </div>
+                                  <div class="product-selling-plan">
+                                    {{- item.selling_plan_allocation.selling_plan.name -}}
+                                  </div>
+                                {% endif %}
+                              </div>
+                              <div class="alp-line-item-discounts">
+                                <ul
+                                  class="alp_discounts_list list-unstyled"
+                                  role="list"
+                                  aria-label="{{ 'customer.order.discount' | t }}"
+                                >
+                                  {%- for discount in item.line_level_discount_allocations -%}
+                                    <li class="discounts__discount_item">
+                                      {%- render 'icon-discount' -%}
+                                      {{ discount.discount_application.title }}
+                                      | -{{ discount.amount | money }}
+                                    </li>
+                                  {%- endfor -%}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          {% comment %} product-additional-options {% endcomment %}
+                          {% liquid
+                            assign name_trigger = 'Option||'
+                            assign options_size = 0
+                            for property in item.properties
+                              assign property_first_char = property.first | slice: 0
+                              if property.first contains name_trigger and property.last != blank and property_first_char != '_'
+                                assign options_size = options_size | plus: 1
+                              endif
+                            endfor
+                          %}
+                          {%- if options_size > 0 -%}
+                            <div class="product-additional-options-wrapper" data-slide-toggle-wrapper>
+                              <div class="product-additional-options">
+                                <div class="cart-additional-options-trigger" data-slide-toggle-trigger>
+                                  <span>Product Options</span>
+                                  {% render 'icon-arrow-down' %}
+                                </div>
+                                <div class="cart-additional-options-container" data-slide-toggle-target>
+                                  <div>
+                                    {%- for property in item.properties -%}
+                                      {%- assign property_first_char = property.first | slice: 0 -%}
+                                      {%- if property.last != blank and property_first_char != '_' -%}
+                                        {% if property.first contains name_trigger %}
+                                          {%- assign title = property.first | split: '||' | last -%}
+                                          {%- assign variant_name = property.last | split: '|' | first -%}
+                                          {%- assign variant_price = property.last | split: '|' | last -%}
+                                          <div class="cart-additional-options-item">
+                                            <div class="additional-options-name">
+                                              <div>{{ title }}</div>
+                                              <div>{{ variant_name }}</div>
+                                            </div>
+                                            <div class="additional-options-price">{{ variant_price }}</div>
+                                          </div>
+                                        {% endif %}
+                                      {% endif %}
+                                    {%- endfor -%}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {% comment %} product-additional-options end {% endcomment %}
+                          {% comment %} product-price-and-quantity-and-actions {% endcomment %}
+                          <div class="alp-line-item-2-wrapper">
+                            <div class="alp-line-item-price">
+                              <div class="alp-cart-item__price-wrapper">
+                                {%- if item.original_price != item.final_price -%}
+                                  <div class="cart-item__discounted-prices">
+                                    <span class="visually-hidden">
+                                      {{ 'products.product.price.sale_price' | t }}
+                                    </span>
+                                    <strong class="cart-item__final-price  price--final">
+                                      {{ item.final_price | money }}
+                                    </strong>
+                                    <span class="visually-hidden">
+                                      {{ 'products.product.price.regular_price' | t }}
+                                    </span>
+                                    <s class="cart-item__old-price ">
+                                      {{- item.original_price | money -}}
+                                    </s>
+                                  </div>
+                                {%- elsif compare_at_price > item.final_price -%}
+                                  <div class="cart-item__discounted-prices">
+                                    <span class="visually-hidden">
+                                      {{ 'products.product.price.sale_price' | t }}
+                                    </span>
+                                    <strong class="cart-item__final-price  price--final">
+                                      {{ item.final_price | money }}
+                                    </strong>
+                                    <span class="visually-hidden">
+                                      {{ 'products.product.price.regular_price' | t }}
+                                    </span>
+                                    <s class="cart-item__old-price ">
+                                      {{- compare_at_price | money -}}
+                                    </s>
+                                  </div>
+                                {%- else -%}
+                                  <div class="product-price-original">
+                                    {{ item.original_price | money }}
+                                  </div>
+                                {%- endif -%}
+
+                                {%- if item.variant.available and item.unit_price_measurement -%}
+                                  <div class="unit-price caption">
+                                    <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                                    {{ item.unit_price | money }}
+                                    <span aria-hidden="true">/</span>
+                                    <span class="visually-hidden"
+                                      >&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span
+                                    >
+                                    {%- if item.unit_price_measurement.reference_value != 1 -%}
+                                      {{- item.unit_price_measurement.reference_value -}}
+                                    {%- endif -%}
+                                    {{ item.unit_price_measurement.reference_unit }}
+                                  </div>
+                                {%- endif -%}
+                              </div>
+                            </div>
+                            <div class="alp-line-item-quantity">
+                              <quantity-input class="alp-cart-quantity">
+                                <div class="alp_quantity__button quantity__button no-js-hidden" name="minus">
+                                  <span class="visually-hidden">
+                                    {{-
+                                      'products.product.quantity.decrease'
+                                      | t: product: item.product.title
+                                      | escape
+                                    -}}
+                                  </span>
+                                  {% render 'icon-minus' %}
+                                </div>
+                                <input
+                                  class="alp_quantity__input quantity__input"
+                                  data-quantity-variant-id="{{ item.variant.id }}"
+                                  type="number"
+                                  name="updates[]"
+                                  value="{{ item.quantity }}"
+                                  {% # theme-check-disable %}
+                                  data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+                                  min="{{ item.variant.quantity_rule.min }}"
+                                  {% if item.variant.quantity_rule.max != null %}
+                                    max="{{ item.variant.quantity_rule.max }}"
+                                  {% endif %}
+                                  step="{{ item.variant.quantity_rule.increment }}"
+                                  {% # theme-check-enable %}
+                                  aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                                  id="Quantity-{{ item.index | plus: 1 }}"
+                                  data-index="{{ item.index | plus: 1 }}"
+                                >
+                                <div class="alp_quantity__button quantity__button no-js-hidden" name="plus">
+                                  <span class="visually-hidden">
+                                    {{-
+                                      'products.product.quantity.increase'
+                                      | t: product: item.product.title
+                                      | escape
+                                    -}}
+                                  </span>
+                                  {% render 'icon-plus' %}
+                                </div>
+                              </quantity-input>
+                              <div
+                                class="alp-line-item-remove"
+                                id="Remove-{{ item.index | plus: 1 }}"
+                                data-index="{{ item.index | plus: 1 }}"
+                              >
+                                <a
+                                  href="{{ item.url_to_remove }}"
+                                  class="line-item-remove-link"
+                                  aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}"
+                                >
+                                  {% render 'icon-remove' %}
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                          {% comment %} product-price-and-quantity-and-actions end {% endcomment %}
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  <div class="alp-cart-items-container">
+                    <div class="alp-cart-empty">
+                      <div>
+                        <h2 class="cart__empty-text headline__h3">{{ 'sections.cart.empty' | t }}</h2>
+                        <a href="{{ routes.all_products_collection_url }}" class="button">
+                          {{ 'general.continue_shopping' | t }}
+                        </a>
+
+                        {%- if shop.customer_accounts_enabled and customer == null -%}
+                          <p class="cart__login-title h3">{{ 'sections.cart.login.title' | t }}</p>
+                          <p class="cart__login-paragraph">
+                            {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
+                          </p>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            {%- when 'recommendations' -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="alp-cart-inner-2">
+        {%- for block in section.blocks -%}
+          {%- assign bs = block.settings -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+            {%- when 'subtotal' -%}
+              <div class="alp-cart-subtotal" {{ block.shopify_attributes }}>
+                {%- if cart.cart_level_discount_applications.size > 0 -%}
+                  <div class="alp-cart-discounts">
+                    <ul
+                      class="alp_discounts_list list-unstyled"
+                      role="list"
+                      aria-label="{{ 'customer.order.discount' | t }}"
+                    >
+                      {%- for discount in cart.cart_level_discount_applications -%}
+                        <li class="alp_discounts__discount_item">
+                          {%- render 'icon-discount' -%}
+                          {{ discount.title }}
+                          (-{{ discount.total_allocated_amount | money }})
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
+                <div class="alp-cart-total">
+                  <h4 class="alp_totals_total_text">{{ 'sections.cart.estimated_total' | t }}</h4>
+                  <div class="totals_cart_price_wrapper">
+                    <div class="totals_total_compare">
+                      <span class="totals_final">{{ cart.total_price | money_with_currency }}</span>
+                      <span class="totals_original">{{ cart.original_total_price | money_with_currency }}</span>
+                    </div>
+                    <div class="totals_discount">
+                      <span>
+                        {{ bs.saving_text }}
+                        {{ cart.total_discount | money }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- when 'checkout_button' -%}
+              <div class="alp-checkout-buttons">
+                <form action="{{ routes.cart_url }}" method="post">
+                  <div class="alp-checkout-button" {{ block.shopify_attributes }}></div>
+                  <noscript>
+                    <button type="submit" class="cart__update-button button button--secondary" form="cart">
+                      {{ 'sections.cart.update' | t }}
+                    </button>
+                  </noscript>
+
+                  <button
+                    type="submit"
+                    id="checkout"
+                    class="alp-checkout-button alp-button"
+                    name="checkout"
+                    value="Checkout"
+                  >
+                    {{ 'sections.cart.checkout' | t }}
+                  </button>
+                </form>
+
+                {%- if additional_checkout_buttons and bs.show_additional_button -%}
+                  <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                    {{ content_for_additional_checkout_buttons }}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- when 'taxes_shipping' -%}
+              <div class="alp-tax-note-wrapper">
+                <small class="tax-note caption-large rte">
+                  {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                    {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                  {%- elsif cart.taxes_included -%}
+                    {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+                  {%- elsif shop.shipping_policy.body != blank -%}
+                    {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+                  {%- else -%}
+                    {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+                  {%- endif -%}
+                </small>
+              </div>
+            {%- when 'order_note' -%}
+              <div class="alp-cart-note-wrapper">
+                <form action="{{ routes.cart_url }}" method="post">
+                  <cart-note class="cart__note field">
+                    <label for="Cart-note">{{ 'sections.cart.note' | t }}</label>
+                    <textarea
+                      class="text-area field__input"
+                      name="note"
+                      form="cart"
+                      id="Cart-note"
+                      placeholder="{{ 'sections.cart.note' | t }}"
+                    >{{ cart.note }}</textarea>
+                  </cart-note>
+                </form>
+              </div>
+            {%- when 'docapp_disount' -%}
+              <div class="alp-docapp-discount-code">
+                <div class="docapp-coupon-input"></div>
+              </div>
+            {%- when 'docapp_summary' -%}
+              <div class="alp-docapp-summary">
+                <div class="docapp-cart-with-coupon-summary"></div>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% comment %} JS 已在 alp.js 中执行 {% endcomment %}
+
+{% comment %}
+  <script>
+    // jQuery
+    const $cart_ajax_name = '[data-ajax-cart]';
+    // RefreshCart
+    function refreshCart() {
+      // use axios
+      axios.get('/').then(function (response) {
+        let responseHtml = response.data;
+        let parser = new DOMParser();
+        let responseDoc = parser.parseFromString(responseHtml, 'text/html');
+        let $cartLineItemsContainer = responseDoc.querySelector(`${$cart_ajax_name} .alp-cart-items-container`);
+        let $cartSubTotalContainer = responseDoc.querySelector(`${$cart_ajax_name} .alp-cart-total`);
+        // replace target wrapper html
+        let $cartLineItemsWrapper = $(`${$cart_ajax_name} .alp-cart-items-wrapper`);
+        $cartLineItemsWrapper.html($cartLineItemsContainer);
+        let $cartSubtotalWrapper = $(`${$cart_ajax_name} .alp-cart-subtotal`);
+        $cartSubtotalWrapper.html($cartSubTotalContainer);
+        console.log('Cart Items Refreshed');
+        //
+        $($cart_ajax_name).removeClass('loading');
+        //
+        listenCartChange();
+      });
+    }
+    // QueryUpdateCart
+    async function QueryUpdateCart(id, quantity) {
+      //
+      $($cart_ajax_name).addClass('loading');
+      //
+      let $data = [];
+      $data.push({
+        id: id,
+        quantity: quantity,
+      });
+      console.log($data);
+      await AlpFn.UpdateCartQuantity($data);
+      console.log('Ajax Cart Updated');
+      refreshCart();
+    }
+    // ListenCartChange
+    function listenCartChange() {
+      let $quantity_input = $($cart_ajax_name + ' .alp_quantity__input[type=number]');
+      let $quantity_plus = $($cart_ajax_name + ' .alp_quantity__button[name="plus"]');
+      let $quantity_minus = $($cart_ajax_name + ' .alp_quantity__button[name="minus"]');
+      let $line_item_remove = $($cart_ajax_name + ' .alp-line-item-remove a');
+      let $line_item_class = '.alp-cart-line-item.line-item';
+      $quantity_input.on('change', function (e) {
+        // console.log(e.target.value);
+        let $this = $(this);
+        let $id = $this.attr('data-quantity-variant-id');
+        let $val = $this.val();
+        QueryUpdateCart($id, $val);
+      });
+      // 延迟触发
+      let delay = 500;
+      let timeoutId;
+      $quantity_plus.on('click', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+        let $parent = $this.closest($line_item_class);
+        let $quantity = $parent.find($quantity_input);
+        $quantity.val(parseInt($quantity.val()) + 1);
+        let $id = $quantity.attr('data-quantity-variant-id');
+        let $val = $quantity.val();
+        // 延迟触发
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(function () {
+          QueryUpdateCart($id, $val);
+        }, delay);
+      });
+      $quantity_minus.on('click', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+        let $parent = $this.closest($line_item_class);
+        let $quantity = $parent.find($quantity_input);
+        if ($quantity.val() > 1) {
+          $quantity.val(parseInt($quantity.val()) - 1);
+        } else {
+          return;
+        }
+        let $id = $quantity.attr('data-quantity-variant-id');
+        let $val = $quantity.val();
+        // 延迟触发
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(function () {
+          QueryUpdateCart($id, $val);
+        }, delay);
+      });
+      $line_item_remove.on('click', function (e) {
+        e.preventDefault();
+        let $this = $(this);
+        let $parent = $this.closest($line_item_class);
+        let $quantity = $parent.find($quantity_input);
+        let $id = $quantity.attr('data-quantity-variant-id');
+        QueryUpdateCart($id, 0);
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      $('.alp-icon-cart').on('click', function () {
+        if (window.location.pathname == '/cart') {
+          return;
+        }
+        $('.alp-cart-drawer').toggleClass('open');
+      });
+      $('.alp-cart-close , .alp-cart-overlay').on('click', function () {
+        $('.alp-cart-drawer').removeClass('open');
+      });
+      listenCartChange();
+    });
+  </script>
+{% endcomment %}
+
+{% comment %}
+  <script>
+    // 原生JavaScript
+    const $cart_ajax_name = '[data-ajax-cart]';
+    const $cart_ajax_selecter = document.querySelector($cart_ajax_name);
+
+    // RefreshCart
+    function refreshCart() {
+      // use fetch
+      fetch('/')
+        .then((response) => response.text())
+        .then((responseHtml) => {
+          let parser = new DOMParser();
+          let responseDoc = parser.parseFromString(responseHtml, 'text/html');
+          let $cartLineItemsContainer = responseDoc.querySelector(`${$cart_ajax_name} .alp-cart-items-container`);
+          let $cartSubTotalContainer = responseDoc.querySelector(`${$cart_ajax_name} .alp-cart-total`);
+
+          // replace target wrapper html
+          let $cartLineItemsWrapper = document.querySelector(`${$cart_ajax_name} .alp-cart-items-wrapper`);
+          $cartLineItemsWrapper.innerHTML = $cartLineItemsContainer.innerHTML;
+
+          let $cartSubtotalWrapper = document.querySelector(`${$cart_ajax_name} .alp-cart-subtotal`);
+          $cartSubtotalWrapper.innerHTML = $cartSubTotalContainer.innerHTML;
+
+          console.log('Cart Items Refreshed');
+
+          $cart_ajax_selecter.classList.remove('loading');
+
+          listenCartChange();
+        });
+    }
+
+    // QueryUpdateCart
+    async function queryUpdateCart(id, quantity) {
+      $cart_ajax_selecter.classList.add('loading');
+
+      let data = [
+        {
+          id: id,
+          quantity: quantity,
+        },
+      ];
+
+      console.log(data);
+
+      await AlpFn.UpdateCartQuantity(data);
+
+      console.log('Ajax Cart Updated');
+      refreshCart();
+    }
+
+    // ListenCartChange
+    function listenCartChange() {
+      let $quantity_input = $cart_ajax_selecter.querySelectorAll('.alp_quantity__input[type=number]');
+      let $quantity_plus = $cart_ajax_selecter.querySelectorAll('.alp_quantity__button[name="plus"]');
+      let $quantity_minus = $cart_ajax_selecter.querySelectorAll('.alp_quantity__button[name="minus"]');
+      let $line_item_remove = $cart_ajax_selecter.querySelectorAll('.alp-line-item-remove a');
+      let $line_item_class = '.alp-cart-line-item.line-item';
+
+      $quantity_input.forEach((input) => {
+        input.addEventListener('change', (e) => {
+          let $this = e.target;
+          let $id = $this.getAttribute('data-quantity-variant-id');
+          let $val = $this.value;
+          queryUpdateCart($id, $val);
+        });
+      });
+
+      // 延迟触发
+      let delay = 500;
+      let timeoutId;
+
+      $quantity_plus.forEach((button) => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          let $this = e.target;
+          let $parent = $this.closest($line_item_class);
+          let $quantity = $parent.querySelector('.alp_quantity__input[type=number]');
+          $quantity.value = parseInt($quantity.value) + 1;
+          let $id = $quantity.getAttribute('data-quantity-variant-id');
+          let $val = $quantity.value;
+
+          // 延迟触发
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            queryUpdateCart($id, $val);
+          }, delay);
+        });
+      });
+
+      $quantity_minus.forEach((button) => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          let $this = e.target;
+          let $parent = $this.closest($line_item_class);
+          let $quantity = $parent.querySelector('.alp_quantity__input[type=number]');
+
+          if ($quantity.value > 1) {
+            $quantity.value = parseInt($quantity.value) - 1;
+          } else {
+            return;
+          }
+
+          let $id = $quantity.getAttribute('data-quantity-variant-id');
+          let $val = $quantity.value;
+
+          // 延迟触发
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            queryUpdateCart($id, $val);
+          }, delay);
+        });
+      });
+
+      $line_item_remove.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          let $this = e.target;
+          let $parent = $this.closest($line_item_class);
+          let $quantity = $parent.querySelector('.alp_quantity__input[type=number]');
+          let $id = $quantity.getAttribute('data-quantity-variant-id');
+          queryUpdateCart($id, 0);
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.alp-icon-cart').addEventListener('click', () => {
+        if (window.location.pathname == '/cart') {
+          return;
+        }
+        $cart_ajax_selecter.classList.toggle('open');
+      });
+
+      document.querySelectorAll('.alp-cart-close, .alp-cart-overlay').forEach((element) => {
+        element.addEventListener('click', () => {
+          $cart_ajax_selecter.classList.remove('open');
+        });
+      });
+
+      listenCartChange();
+    });
+  </script>
+{% endcomment %}

@@ -1,0 +1,356 @@
+{% schema %}
+{
+  "name": "Alp Dealer FAQ",
+  "class": "alp-dealer-faq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "faqtitle",
+      "label": "Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item_tab",
+      "name": "Item Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "faqs_question",
+          "label": "Faqs Question",
+          "default": "Specifications"
+        },
+        {
+          "type": "richtext",
+          "id": "faqs_answer",
+          "label": "Faqs Answer"
+        },
+        {
+          "type": "richtext",
+          "id": "faqs_answer_a",
+          "label": "Faqs Answer A"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Dealer FAQ"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .arrow-up {
+    display: none;
+  }
+  .help-faq-all {
+    max-width:1600px;
+    margin:0 auto;
+    padding: 0;
+  }
+  .help-faq-title {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 120%;
+    color: #1A1A1A;
+  }
+  .help-faq-content {
+    margin-top: 10px;
+  }
+  .help-faq-item {
+    border-bottom: 1px solid #ececec;
+  }
+  .help-faq-question p {
+    margin: 0;
+  }
+  .help-faq-answer p {
+    margin-top: 0;
+  }
+  .help-faq-item .help-faq-question {
+    display: flex;
+    align-items: center;
+    line-height: 1.2;
+    font-size: clamp(16px, 2vw, 18px);
+    justify-content: space-between;
+    color: #1a1a1a;
+    cursor: pointer;
+    padding: 1em 6px 1em 0;
+    font-weight: 500;
+  }
+
+  .help-faq-answer {
+    display: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin-bottom: calc(var(--alp-gutter-y) * 1);
+    line-height: 1.65;
+    opacity: 0.75;
+  }
+  .help-faq-bottom {
+    border-bottom: 1px solid #ececec;
+  }
+
+  .help-faq-all {
+    border-radius: var(--alp-border-radius);
+  }
+
+  .help-faq-item .help-faq-question {
+    font-weight: 600;
+  }
+
+  span.arrow-down svg,
+  span.arrow-up svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 1em;
+  }
+
+  .test-ride-faq .help-faq-item .help-faq-question {
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 25px 0;
+  }
+
+  span.faq-arrow {
+    display: block;
+    margin: -4px 0;
+  }
+  span.faq-arrow svg {
+    color: #aaaaaa;
+    display: block;
+    transition: 0.2s;
+  }
+  .help-faq-item.active span.faq-arrow svg {
+    transform: rotate(180deg);
+    color: #D8D8D8;
+  }
+  .test-ride-faq .help-faq-answer {
+    padding-left: 36px;
+    color: #767676;
+    opacity: 1;
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 150%;
+    letter-spacing: 0px;
+  }
+  .help-faq-answer p {
+    margin: 0;
+  }
+  .help-faq-answer-a.flex-layout {
+    display:flex;
+    flex-wrap:wrap;
+    gap: 12px 0;
+  }
+  .help-faq-answer-a p {
+    flex: 20%;
+    text-decoration: underline;
+  }
+  .help-faq-item-title.headline__h6l {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 120%;
+    letter-spacing: 0px;
+  }
+  .test-ride-faq .help-faq-all {
+    border-radius: var(--alp-border-radius);
+  }
+  .help-faq-item.active {
+    border-color: #1a1a1a;
+  }
+
+  @media (max-width: 750px) {
+    .help-faq-title {
+      font-size: 28px;
+    }
+    .help-faq-answer-a.flex-layout {
+      display:none;
+      flex-wrap: nowrap !important;
+    }
+    .help-faq-answer-a p {
+      margin:16px 0;
+    }
+    .help-faq-answer-a p:first-child {
+      margin-top:0;
+    }
+    .help-faq-answer-a p:last-child {
+      margin-bottom:0;
+    }
+    .help-faq-content {
+      margin-top: 0;
+    }
+    .help-faq-item-title.headline__h6l {
+      font-size: 16px;
+      line-height: 120%;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container test-ride-faq page-width {{ container }}">
+    <div class="help-faq-all">
+      <h2 class="help-faq-title headline__t2">
+        {{ st.faqtitle }}
+      </h2>
+      <div class="help-faq-content">
+        <div class="help-faq-box">
+          <div class="help-faq-left">
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="help-faq-item">
+                <h3 class="help-faq-question">
+                  <span class="faq-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path fill="currentColor" d="m7 10l5 5l5-5z" />
+                    </svg>
+                  </span>
+                  <div class="help-faq-item-title headline__h6l">
+                    {{ bs.faqs_question -}}
+                  </div>
+                </h3>
+                {% if bs.faqs_answer != blank %} 
+                  <div class="help-faq-answer headline__p4">{{ bs.faqs_answer }}</div>
+                {% endif %}
+
+                {% if bs.faqs_answer_a != blank %}
+                  <div class="help-faq-answer help-faq-answer-a headline__p4">{{ bs.faqs_answer_a }}</div>
+                {% endif %}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 检测是否为移动端
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  // 1. 初始化所有FAQ
+  $('.help-faq-answer')
+    .css('display', 'none')
+    .each(function() {
+      if ($(this).hasClass('help-faq-answer-a')) {
+        $(this).addClass('flex-layout');
+      }
+    });
+
+  // 2. 默认展开第一个FAQ
+  {% comment %} const $firstAnswer = $('.help-faq-item:nth-child(1) .help-faq-answer');
+  const firstDisplay = isMobile ? 'block' : 
+    ($firstAnswer.hasClass('help-faq-answer-a') ? 'flex' : 'block');
+  
+  $firstAnswer.css('display', firstDisplay);
+  $('.help-faq-item:nth-child(1)').addClass('active'); {% endcomment %}
+
+  // 3. 点击事件处理（移动端适配）
+  $('.help-faq-question').on('click', function() {
+    const $parent = $(this).closest('.help-faq-item');
+    const $answer = $parent.find('.help-faq-answer');
+    const isActive = $parent.hasClass('active');
+
+    $parent.toggleClass('active');
+    
+    if (isActive) {
+      // 收起当前项
+      $answer.stop(true, true).slideUp(200);
+    } else {
+      // 展开当前项
+      const displayType = isMobile ? 'block' : 
+        ($answer.hasClass('help-faq-answer-a') ? 'flex' : 'block');
+      
+      $answer.stop(true, true).slideDown(200, function() {
+        $(this).css('display', displayType);
+      });
+    }
+  });
+
+  // 4. 窗口大小变化时重新检测
+  $(window).on('resize', function() {
+    if (window.matchMedia('(max-width: 768px)').matches !== isMobile) {
+      location.reload(); // 简单处理：尺寸变化时刷新页面
+    }
+  });
+});
+</script>
+

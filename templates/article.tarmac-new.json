@@ -1,0 +1,174 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "featured_image": {
+          "type": "featured_image",
+          "settings": {
+            "image_height": "adapt"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_author": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured_image",
+        "title",
+        "share",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "3e0d3b19-744e-4735-80bc-fd378355abd4": {
+      "type": "alp-blog-breadcrumbs",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "6c1ceb0d-be04-4629-a1f8-a6c335c26773": {
+      "type": "alp-main-article",
+      "blocks": {
+        "e1ff7e72-5059-4b2d-a289-e55c827079e2": {
+          "type": "title",
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_author": false
+          }
+        },
+        "cb7f600e-1d21-494a-bb4c-e9ff4f1c300e": {
+          "type": "content",
+          "settings": {}
+        },
+        "76cb5c48-ab37-4bfe-bad9-81729ab8d90c": {
+          "type": "hot_selling_ebikes",
+          "settings": {
+            "title": "Hot Selling E-bikes",
+            "product_list": [
+              "tarmac",
+              "obsidian-st",
+              "obsidian",
+              "basalt-st-2-0-s",
+              "basalt",
+              "scoria"
+            ]
+          }
+        },
+        "7f0ef1dc-c1d2-4ad4-8380-17487ffd09ea": {
+          "type": "exclusived_deals_await",
+          "settings": {
+            "image_aspect_ratio": "1/1",
+            "image": "shopify://shop_images/Group_39700.png",
+            "title": "Exclusive Deals Await",
+            "link": "shopify://pages/deals",
+            "link_text": "Learn More"
+          }
+        },
+        "ee9e057e-8003-4f65-a552-bac480d05b99": {
+          "type": "featured_blog_posts",
+          "settings": {
+            "title": "Featured Blog Posts",
+            "blog1": "news/where-to-buy-electric-bikes-near-me",
+            "blog2": "news/how-much-does-an-electric-bike-cost",
+            "blog3": "news/how-to-choose-an-electric-bike",
+            "blog4": "news/how-to-buy-an-electric-bike",
+            "blog5": "",
+            "blog6": ""
+          }
+        },
+        "c1533e18-9c75-41fc-ba56-6bdaa7074f6e": {
+          "type": "ebikes_category",
+          "disabled": true,
+          "settings": {
+            "title": "Ebikes Category",
+            "menu": "ebikes-category"
+          }
+        },
+        "ebikes_category_new_ACCj7x": {
+          "type": "ebikes_category_new",
+          "disabled": true,
+          "settings": {
+            "title": "Ebikes Category"
+          }
+        }
+      },
+      "block_order": [
+        "e1ff7e72-5059-4b2d-a289-e55c827079e2",
+        "cb7f600e-1d21-494a-bb4c-e9ff4f1c300e",
+        "76cb5c48-ab37-4bfe-bad9-81729ab8d90c",
+        "7f0ef1dc-c1d2-4ad4-8380-17487ffd09ea",
+        "ee9e057e-8003-4f65-a552-bac480d05b99",
+        "c1533e18-9c75-41fc-ba56-6bdaa7074f6e",
+        "ebikes_category_new_ACCj7x"
+      ],
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "12167f54-abf1-4c4b-b10a-6e148e378838": {
+      "type": "alp-main-article-share",
+      "settings": {
+        "title": "share this story:",
+        "bg_color": "#f8f8f8",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "5d83bc35-66fa-4525-817b-c0c8153337a8": {
+      "type": "alp-main-article-prevNext",
+      "settings": {
+        "bg_color": "#f8f8f8",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "3e0d3b19-744e-4735-80bc-fd378355abd4",
+    "6c1ceb0d-be04-4629-a1f8-a6c335c26773",
+    "12167f54-abf1-4c4b-b10a-6e148e378838",
+    "5d83bc35-66fa-4525-817b-c0c8153337a8"
+  ]
+}

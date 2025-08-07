@@ -1,0 +1,322 @@
+{% schema %}
+{
+  "name": "Alp Inverter Entrance",
+  "class": "alp-inverter-entrance",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_pc",
+      "label": "Image Pc"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image Mobile"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Video Mobile"
+    },
+    {
+      "type": "textarea",
+      "id": "rich_content",
+      "label": "Richtext"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "3/1"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio_mobile",
+      "label": "Image Aspect Ratio Mobile",
+      "default": "3/2"
+    },
+    {
+      "type": "text",
+      "id": "min_height",
+      "label": "Min Height",
+      "default": "420px"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Inverter Entrance"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --st-min-height: {{ st.min_height }};
+   --aspect-pc: {{ st.image_aspect_ratio }};
+   --aspect-mobile: {{ st.image_aspect_ratio_mobile }};
+  }
+</style>
+
+{% style %}
+  .alp-inverter-entrance-con {
+    position: relative;
+  }
+  .alp-inverter-entrance-img img {
+    aspect-ratio: var(--aspect-pc);
+    min-height: var(--st-min-height);
+    display: block;
+  }
+  [data-has-video].alp-inverter-entrance-img img {
+    opacity: 0;
+  }
+
+  .alp-inverter-entrance-img {
+    width: 100%;
+    aspect-ratio: var(--aspect-pc);
+    min-height: var(--st-min-height);
+  }
+
+  .alp-inverter-entrance-item {
+    max-width: 500px;
+    position: absolute;
+    bottom: 150px;
+    left: 13%;
+  }
+
+  .alp-inverter-entrance-item-title{
+    font-weight: 700;
+  }
+
+  .alp-inverter-entrance-item-description{
+    font-size: clamp(16px, 1.5vw, 20px);
+    line-height: 1.8;
+  }
+
+  .alp-inverter-entrance-item-button{
+    margin-top: 40px;
+  }
+  .alp-inverter-entrance-item-button .alp-btn.small:not(.button-type-btn-link){
+    padding: 14px 50px;
+    line-height: 1.2;
+  }
+
+  .full-sc-video.full-img-wrap {
+    overflow: hidden;
+  }
+
+  .full-sc-video.full-img-wrap video {
+    transform: scale(1.015);
+  }
+
+  @media screen and (max-width: 999px) {
+    .alp-inverter-entrance-img img {
+      aspect-ratio: var(--aspect-mobile);
+    }
+    .alp-inverter-entrance-img {
+      aspect-ratio: var(--aspect-mobile);
+    }
+    .alp-inverter-entrance-item {
+      max-width: none;
+      top: 50px;
+      bottom: auto;
+      left: 32px;
+      right: 32px;
+    }
+    .alp-inverter-entrance-item-button{
+      margin-top: 12px;
+    }
+    .alp-inverter-entrance-item-button .alp-btn.small:not(.button-type-btn-link){
+      padding: 12px 28px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" data-stid="{{ section.id }}" style="{{ style }}">
+  <div class="alp-section-container alp-inverter-entrance-container page-width {{ container }}">
+    <div class="alp-inverter-entrance-con">
+      {%- if st.url != blank -%}
+        <a href="{{- st.url -}}" class="full-aa"></a>
+      {%- endif -%}
+      <div
+        class="alp-inverter-entrance-img relative"
+        {% if st.video != blank %}
+          data-has-video
+        {% endif %}
+      >
+        {% render 'alp-responsive-image',
+          image: st.image_pc,
+          image_mobile: st.image_mobile,
+          desktop_width: 1920,
+          mobile_width: 900
+        %}
+        {%- if st.video != blank -%}
+          <div
+            class="full-sc-video full-img-wrap {% if st.video_mobile != blank %} hide_mobile{% endif %}"
+            data-id="{{ section.id | replace: '-', '' }}"
+          >
+            <video
+              class="lazy"
+              muted
+              preload
+              autoplay
+              loop
+              x5-video-player-type="h5"
+              x5-video-player-fullscreen="true"
+              x5-playsinline
+              playsinline
+              webkit-playsinline
+            >
+              {%- for source in st.video.sources -%}
+                <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+              {%- endfor -%}
+            </video>
+          </div>
+        {%- endif -%}
+        {%- if st.video_mobile != blank -%}
+          <div class="full-sc-video full-img-wrap hide_desktop" data-id="{{ section.id | replace: '-', '' }}">
+            <video
+              class="lazy"
+              muted
+              preload
+              autoplay
+              loop
+              x5-video-player-type="h5"
+              x5-video-player-fullscreen="true"
+              x5-playsinline
+              playsinline
+              webkit-playsinline
+            >
+              {%- for source in st.video_mobile.sources -%}
+                <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+              {%- endfor -%}
+            </video>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="alp-inverter-entrance-item">
+        <div class="alp-inverter-entrance-item-title headline__h2">
+          {{ st.title | strip_html | strip }}
+          </div>
+          <div class="alp-inverter-entrance-item-description headline__h5">
+            {{ st.description | strip_html | strip }}
+          </div>
+          {%- if st.link_text != blank -%}
+            <div class="alp-inverter-entrance-item-button">
+              {% render 'alp-btn',
+                url: st.url,
+                type: 'primary',
+                text: st.link_text,
+                textcolor: '#1A1A1A',
+                bgcolor: '#FFFFFF',
+                size: 'small'
+              %}
+            </div>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

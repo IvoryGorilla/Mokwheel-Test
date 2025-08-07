@@ -1,0 +1,207 @@
+{% schema %}
+{
+  "name": "press-banner",
+  "class": "press-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "text",
+      "label": "subcontent",
+      "id": "subcontent"
+    },
+    {
+      "type": "richtext",
+      "label": "content",
+      "id": "content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "press-banner"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .pressTitle {
+    text-align: center;
+    margin-bottom: calc(var(--alp-gutter-y) * 1.5);
+  }
+  .press-banner {
+    position: relative;
+  }
+  .press-banner .press-banner-box {
+    width: 100%;
+    position: absolute;
+    top: 55%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+  }
+  .press-banner-box {
+    padding: 0 34%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+
+    text-transform: capitalize;
+  }
+  .press-banner-box .subcontent {
+    font-weight: 400;
+  }
+  .press-banner-box .content {
+    text-align: right;
+    margin-top: calc(var(--alp-gutter-y) * 0.7);
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+  }
+  @media screen and (min-width: 750px) {
+  }
+
+  @media screen and (max-width: 749px) {
+    .press-banner .press-banner-box {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      top: auto;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    .press-banner-box {
+      padding: 0 24px 32px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+
+      text-transform: capitalize;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    <div class="pressTitle headline__h2 ">{{ st.title }}</div>
+    <div class=" press-banner">
+      <div class="press-banner-box">
+        <div class="subcontent headline__h5 ">{{ st.subcontent }}</div>
+        <div class="content headline__h5 ">{{ st.content }}</div>
+      </div>
+      <div class="images">
+        {% render 'alp-responsive-image',
+          image: st.image,
+          image_mobile: st.image_mobile,
+          desktop_width: 1280,
+          mobile_width: 600,
+          alt: 'Alt text'
+        %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

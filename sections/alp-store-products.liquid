@@ -1,0 +1,263 @@
+{% schema %}
+{
+  "name": "Alp Store Products",
+  "class": "alp-store-products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "aspect_ratio",
+      "label": "Aspect Ratio",
+      "default": "3/2"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "info": "二级标题"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link",
+          "info": "跳转链接"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Store Products"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-store-product-item {
+    background: #f8f8f8;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: max(4%, 2.5em);
+    text-align: center;
+  }
+
+  .alp-store-products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+  }
+
+  .alp-store-products-container > div {
+    width: calc(50% - 1em);
+  }
+
+  .alp-grid-container-image.store-grid .alp-colors-swatch-for-list {
+    justify-content: center;
+    margin-top: 1em;
+  }
+
+  .alp-store-item-info-buttons-flex {
+    margin-top: 2em;
+  }
+
+  .alp-grid-container-image.store-grid {
+    padding-top: 1em;
+  }
+  .alp-grid-store-title .headline__h3 {
+    font-weight: 600;
+  }
+  .alp-store-item-info-buttons-flex .alp-btn.button-type-primary {
+    border: 1px solid var(--TextColor);
+  }
+
+  .alp-store-item-info-buttons-flex .alp-btn.button-type-primary:hover {
+    border-color: #0000;
+  }
+  @media (max-width: 768px) {
+    .alp-store-products-container > div {
+      width: 100%;
+    }
+    .alp-store-product-item {
+      padding: 2em 1em;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section alp-store-products-wrapper {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-store-products-container page-width {{ container }}">
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+          assign product = bs.product
+          assign aspect_ratio = st.aspect_ratio
+        %}
+        <div class="alp-store-product-item" data-swatch-wrapper>
+          <div class="alp-grid-store-title">
+            <h2 class="headline__h6">{{ product.title }}</h2>
+            <h3 class="headline__h3">
+              {{ bs.text | default: product.metafields.custom.new_description | strip_html | strip }}
+            </h3>
+            <div class="alp-store-item-info-buttons-flex">
+              {%
+                render 'alp-btn',
+                url: bs.url | default: product.url,
+                type: 'primary',
+                text: 'Shop Now',
+                textcolor: '#000',
+                bgcolor: '#fff',
+                size: 'small',
+                icon: 'normal'
+              %}
+            </div>
+          </div>
+          <div class="alp-grid-container-image store-grid">
+            <div class="alp-product-item-image">
+              {%- if product.variants.size > 0 -%}
+                {% for variant in product.variants %}
+                  {% liquid
+                    assign options_string = ''
+                    for option in variant.options
+                      assign options_string = options_string | append: option | append: ','
+                    endfor
+                  %}
+                  <div
+                    class="product-item-image-i {% if forloop.index == 1 %} active{% endif %}"
+                    data-variant="{{ variant.id }}"
+                    data-options="{{ options_string }}"
+                  >
+                    {%- assign alt_title = product.title | append: ' - ' | append: variant.title -%}
+                    {%- if variant.image -%}
+                      {% render 'alp-single-image',
+                        image: variant.image,
+                        width: 1280,
+                        aspect_ratio: aspect_ratio,
+                        alt: alt_title
+                      %}
+                    {%- else -%}
+                      {% render 'alp-single-image',
+                        image: product.featured_image,
+                        width: 1280,
+                        aspect_ratio: aspect_ratio,
+                        alt: product.title
+                      %}
+                    {%- endif -%}
+                  </div>
+                {% endfor %}
+              {%- else -%}
+                {% render 'alp-single-image',
+                  image: product.featured_image,
+                  width: 1280,
+                  aspect_ratio: aspect_ratio,
+                  alt: product.title
+                %}
+              {%- endif -%}
+            </div>
+            <div class="alp-product-item-color-swatch">
+              {% render 'alp-color-swatch-for-list', product: product %}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    {% endif %}
+  </div>
+</div>
+
+<!-- fareharbor -->
+{% # theme-check-disable %}
+<link rel="stylesheet" href="https://fh-kit.com/buttons/v2/?red=ed4525" type="text/css" media="screen">
+<script src="https://fareharbor.com/embeds/api/v1/?autolightframe=yes" defer="defer"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

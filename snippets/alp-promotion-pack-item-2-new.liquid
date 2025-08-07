@@ -1,0 +1,164 @@
+{% comment %}
+  {% render 'alp-promotion-pack-item', product: product , title: title, description: description, price: price, image: image %}
+{% endcomment %}
+{%- assign bs = block.settings -%}
+{%- capture is_selected -%}
+{%- if bs.default_selected -%}
+    selected
+{%- endif -%}
+{%- endcapture -%}
+{%- capture unable_chaged -%}
+{%- if bs.disable_change -%}
+    unable_chaged
+{%- endif -%}
+{%- endcapture -%}
+{%- if product -%}
+  <div
+    class="alp-promotion-pack-item alp-promotion-pack-item-2 type-v3 {{ is_selected }} {{ unable_chaged }}"
+  >
+    {%- if bs.product_type == 'lists' -%}
+      {% for product in block.settings.product_list %}
+        <div
+          data-promotion-pack
+          data-pack-variant="{{ product.first_available_variant.id }}"
+          class="hidden {{ is_selected }}"
+        ></div>
+      {% endfor %}
+    {%- else -%}
+      <div
+        data-promotion-pack
+        data-pack-variant="{{ product.first_available_variant.id }}"
+        class="hidden {{ is_selected }}"
+      ></div>
+    {%- endif -%}
+    <div class="promotion-pack-item-flex">
+      <div class="promotion-pack-item-info-2">
+        <div class="promotion-pack-item-row hide_mobile">
+          <div class="promotion-pack-item-title has_icon_check">
+            <div class="promotion-pack-title-icon-check">
+              {% render 'icon-check-2' %}
+            </div>
+            <span>
+              {%- if title != blank -%}
+                {{ title }}
+              {%- else -%}
+                {{ product.title }}
+              {%- endif -%}
+            </span>
+          </div>
+          <div class="promotion-pack-item-des">
+            {% comment %}
+              {%- if description != blank -%}
+                {{ description }}
+              {%- elsif product.metafields.custom.new_description != blank -%}
+                {{ product.metafields.custom.new_description | metafield_tag | strip_html | truncatewords: 15 }}
+              {%- elsif -%}
+                {{ product.description | strip_html | truncatewords: 15 }}
+              {%- endif -%}
+            {% endcomment %}
+
+            {%- if product.metafields.custom.shipping_time != blank -%}
+              {{ product.metafields.custom.shipping_time }}
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="promotion-pack-item-row-m hide_desktop">
+          <div class="promotion-pack-item-row-m-overlay"></div>
+          <div class="promotions-product-image relative">
+            <a class="full-aa" href="{{ product.featured_image | image_url: width: 1920 }}" data-fslightbox></a>
+            {{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+          </div>
+          <div class="promotions-product-text">
+            <div class="promotions-product-title">
+              {%- if title != blank -%}
+                {{ title }}
+              {%- else -%}
+                {{ product.title }}
+              {%- endif -%}
+            </div>
+            <div class="promotion-pack-item-des">
+              {%- if product.metafields.custom.shipping_time != blank -%}
+                {{ product.metafields.custom.shipping_time }}
+              {%- endif -%}
+            </div>
+
+            <div class="promotion-pack-item-in hide_desktop">
+              <div class="promotion-pack-item-buttons">
+                <div class="button__select button__small">
+                  <span>Select</span>
+                  <span>Selected</span>
+                </div>
+              </div>
+              <div class="promotion-pack-item-price">
+                <span class="final-price">{{ price | default: '$99.00' }}</span>
+                {%- if bs.product_type == 'lists' -%}
+                  <span class="original-price">{{ priceCount | money }}</span>
+                {%- else -%}
+                  <span class="original-price">{{ product.price | money }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="promotions-bundle-product-list"
+          data-max-column="{{- bs.max_column -}}"
+          style="--max-column: {{- bs.max_column -}}"
+        >
+          {%- assign priceCount = 0 -%}
+          {% for product in block.settings.product_list %}
+            {%- assign priceCount = priceCount | plus: product.price -%}
+            <div class="promotions-product-item">
+              <div class="promotions-product-item-flex">
+                <div class="promotions-product-image relative">
+                  <a class="full-aa" href="{{ product.featured_image | image_url: width: 1920 }}" data-fslightbox></a>
+                  {{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+                </div>
+                <div class="promotions-product-text">
+                  <div class="promotions-product-title">
+                    {{ product.title }}
+                  </div>
+                  <div class="promotions-product-price">
+                    {{ product.price | money }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="promotion-pack-item-in hide_mobile">
+          <div class="promotion-pack-item-buttons">
+            <div class="button__select button__small">
+              <span>Select</span>
+              <span>Selected</span>
+            </div>
+            {%- if bs.product_type != 'lists' and bs.show_info_button -%}
+              <a href="{{ product.url }}" target="_blank" class="button__view button__small"><span>Info</span></a>
+            {%- endif -%}
+          </div>
+          <div class="promotion-pack-item-price hide_mobile">
+            <span class="label-price">Total: </span>
+            <span class="final-price">{{ price | default: '$99.00' }}</span>
+            {%- if bs.product_type == 'lists' -%}
+              <span class="original-price">{{ priceCount | money }}</span>
+            {%- else -%}
+              <span class="original-price">{{ product.price | money }}</span>
+            {%- endif -%}
+          </div>
+
+          {%- assign finalprice = product.metafields.custom.discount_price.value -%}
+          {%- assign pricesaved = product.price | minus: finalprice -%}
+          <div class="promotion-pack-item-price-saved hidden">
+            <span class="final-price"
+              ><span class="label-price">{{ st.save_text | default: 'Save' }} </span>
+              {{- pricesaved | money | split: '.' | first -}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

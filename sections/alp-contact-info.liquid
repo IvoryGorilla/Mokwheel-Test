@@ -1,0 +1,209 @@
+{% schema %}
+{
+  "name": "Alp Contact Info",
+  "class": "alp-contact-info",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Text"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Free shipping on all online orders.",
+          "default": "<p></p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Contact Info"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-contact-info-con{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .alp-contact-info-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f8f8f8;
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .alp-contact-info-item img{
+    display: block;
+    margin: auto;
+    max-width: 44px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+  }
+  .alp-contact-info-item-text{
+   text-align: center;
+  }
+  .alp-contact-info-item-title{
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 10px;
+  }
+  .alp-contact-info-item-desc{
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .alp-contact-info-item-desc p{
+    margin: 0;
+  }
+  @media (max-width: 750px) {
+    .alp-contact-info-con{
+      flex-direction: column;
+      margin-top: 24px;
+      gap: 10px;
+    }
+    .alp-contact-info-item{
+      width: 100%;
+      padding: 32px 20px;
+      flex-direction: row;
+      align-items: start;
+    }
+    .alp-contact-info-item img{
+      max-width: 32px;
+    }
+    .alp-contact-info-item-text{
+      text-align: left;
+      margin-left: 12px;
+    }
+    .alp-contact-info-item-title{
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .alp-contact-info-item-desc{
+      font-size: 16px;
+      color: #666;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section alp-contact-info-wrapper  {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container alp-contact-info-container page-width {{ container }}">
+    <div class="alp-container-info-title headline__h2s">{{ st.title }}</div>
+    <div class="alp-contact-info-con">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div class="alp-contact-info-item">
+              {% render 'alp-single-image', image: bs.image, width: 1280 %}
+              <div class="alp-contact-info-item-text">
+                  <h2 class="alp-contact-info-item-title headline__h4">{{ bs.title }}</h2>
+                  <div class="alp-contact-info-item-desc">{{ bs.desc }}</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

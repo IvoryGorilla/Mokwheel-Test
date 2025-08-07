@@ -1,0 +1,590 @@
+{% schema %}
+{
+  "name": "pmax-section4",
+  "class": "pmax-section4",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pmax-section4-title",
+      "label": "Pmax Section4 Title"
+    },
+    {
+      "type": "text",
+      "id": "pmax-section4-subtitle",
+      "label": "Pmax Section4 Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "pmax-section4-tab1-title",
+      "label": "Pmax Section4 Tab1 Title"
+    },
+    {
+      "type": "text",
+      "id": "pmax-section4-tab2-title",
+      "label": "Pmax Section4 Tab2 Title"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review-item",
+      "name": "Review Item",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "pmax-section4-review-video1",
+          "label": "Pmax Section4 Review Video1",
+          "accept": ["youtube", "vimeo"],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "info": "youtube or vimeo url"
+        },
+        {
+          "type":"text",
+          "id": "pmax-section4-review-product1",
+          "label": "Pmax Section4 Review Product1"
+        },
+        {
+          "type": "text",
+          "id": "pmax-section4-review-title1",
+          "label": "Pmax Section4 Review Title1"
+        },
+        {
+          "type": "image_picker",
+          "id": "pmax-section4-review-avatar1",
+          "label": "Pmax Section4 Review Avatar1"
+        },
+        {
+          "type": "text",
+          "id": "pmax-section4-review-author1",
+          "label": "Pmax Section4 Review Author1"
+        },
+        {
+          "type": "video_url",
+          "id": "pmax-section4-review-video2",
+          "label": "Pmax Section4 Review Video2",
+          "accept": ["youtube", "vimeo"],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "info": "youtube or vimeo url"
+        },
+        {
+          "type":"text",
+          "id": "pmax-section4-review-product2",
+          "label": "Pmax Section4 Review Product2"
+        },
+        {
+          "type": "text",
+          "id": "pmax-section4-review-title2",
+          "label": "Pmax Section4 Review Title2"
+        },
+        {
+          "type": "image_picker",
+          "id": "pmax-section4-review-avatar2",
+          "label": "Pmax Section4 Review Avatar2"
+        },
+        {
+          "type": "text",
+          "id": "pmax-section4-review-author2",
+          "label": "Pmax Section4 Review Author2"
+        },
+        {
+          "type": "video_url",
+          "id": "pmax-section4-review-video3",
+          "label": "Pmax Section4 Review Video3",
+          "accept": ["youtube", "vimeo"],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "info": "youtube or vimeo url"
+        },
+        {
+          "type":"text",
+          "id": "pmax-section4-review-product3",
+          "label": "Pmax Section4 Review Product3"
+        },
+        {
+          "type": "text",
+          "id": "pmax-section4-review-title3",
+          "label": "Pmax Section4 Review Title3"
+        },
+        {
+          "type": "image_picker",
+          "id": "pmax-section4-review-avatar3",
+          "label": "Pmax Section4 Review Avatar3"
+        },
+        {
+          "type": "text",
+          "id": "pmax-section4-review-author3",
+          "label": "Pmax Section4 Review Author3"
+        },
+        {
+          "type": "text",
+          "id": "pmax-section4-review-button",
+          "label": "Pmax Section4 Review button"
+        },
+        {
+          "type": "url",
+          "id": "pmax-section4-review-url",
+          "label": "Pmax Section4 Review Url"
+        },
+      ]
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "pmax-section4"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{% style %}
+  .pmax-section4-container {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+  .pmax-section4-title {
+    font-family: Manrope;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    text-transform: capitalize;
+    color: #1A1A1A;
+  }
+  .pmax-section4-subtitle {
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+    color: #1A1A1A;
+    margin-top: 10px;
+  }
+  .pmax-section4-content {
+    max-width: 1200px;
+    margin: 32px auto;
+  }
+  .pmax-section4-tab-header {
+    display: flex;
+    position: relative;
+    border-bottom: 2px solid #d8d8d8;
+    width: fit-content;
+    gap: 32px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  .pmax-section4-tab-btn {
+    padding: 12px 0;
+    cursor: pointer;
+    color: #1A1A1A;
+    position: relative;
+    transition: all 0.5s;
+    min-width: 178px;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+  }
+  .pmax-section4-tab-btn:not(.active) {     
+    border-bottom: 2px solid #d8d8d8;
+    margin-bottom: -2px;
+  }
+  .pmax-section4-tab-btn.active {     
+    font-weight: 600;
+    border-bottom: 2px solid #e83f0c;
+    margin-bottom: -2px;
+  }
+
+  .pmax-section4-tab-content {
+    margin-top: 64px;
+  }
+  .pmax-section4-tab-panel {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+  .pmax-section4-tab-panel.active {
+    display: flex;
+    animation: fadeIn 0.5s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .pmax-section4-review-slide {
+    background: #F8F8F8;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    position: relative;
+    width: min(100%, calc(max(30%, 292px) * 1));
+    height: auto;
+  }
+  .pmax-section4-review-content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 16px;
+    height: 100%;
+  }
+  .pmax-section4-review-video {
+    position: relative;
+  }
+  .pmax-section4-review-video .play_image{
+    width: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+  }
+  .pmax-section4-review-video .play_image svg {
+    display: block;
+    width: 100%;
+  }
+  .pmax-section4-review-product {
+    padding: 4px 12px;
+    background: #D9D9D9;
+
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 120%;
+    color: #1A1A1A;
+    width: fit-content;
+  }
+  .pmax-section4-review-title {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 150%;
+    color: #1A1A1A;
+    flex: 1;
+  }
+  .pmax-section4-review-author {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-top: 14px;
+  }
+  .pmax-section4-review-avatar {
+    width: 24px;
+    height: 24px;
+  }
+  .pmax-section4-review-avatar img {
+    height: 100%;
+    border-radius: 50%;
+  }
+  .pmax-section4-review-name {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 120%;
+    color: #1A1A1A;
+  }
+  .pmax-section4-review-button {
+    margin-top: 64px;
+    border-radius: 4px;
+    padding: 13.5px 40px;
+    box-sizing: border-box;
+    border: 1px solid #1A1A1A;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 120%;
+    text-transform: capitalize;
+    color: #1A1A1A;
+    width: fit-content;
+  }
+
+  /* 大屏时禁用轮播，变成网格布局 */
+  @media (min-width: 769px) {
+    .pmax-section4-review-swiper {
+      overflow: visible; /* 允许内容溢出 */
+    }
+    .pmax-section4-review-wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3列布局 */
+      gap: 20px;
+      transform: none !important; /* 覆盖 Swiper 的 transform */
+    }
+    .pmax-section4-review-slide {
+      width: auto !important; /* 取消 Swiper 的宽度限制 */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pmax-section4-container {
+      margin-top: 60px;
+      margin-bottom: 60px;
+    }
+    .pmax-section4-title {
+      font-size: 28px;
+    }
+    .pmax-section4-subtitle {
+      font-size: 16px;
+    }
+    .pmax-section4-content {
+      margin-top: 24px;
+    }
+    .pmax-section4-tab-header {
+      gap: 3px;
+    }
+    .pmax-section4-tab-btn {
+      font-size: 14px;
+      padding: 10px 0;
+      min-width: 150px;
+    }
+    .pmax-section4-tab-content {
+      margin-top: 24px;
+    }
+    .pmax-section4-review-content {
+      gap: 10px;
+    }
+    .pmax-section4-review-product {
+      font-size: 12px;
+      padding: 4px 6px;
+    }
+    .pmax-section4-review-title {
+      font-size: 14px;
+    }
+    .pmax-section4-review-author {
+      margin-top: 10px;
+    }
+    .pmax-section4-review-avatar {
+      width: 20px;
+      height: 20px;
+    }
+    .pmax-section4-review-name {
+      font-size: 12px;
+    }
+    .pmax-section4-review-button {
+      margin-top: 32px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}">
+  <div class="alp-section-container page-width {{ container }} pmax-section4-container">
+    <div class="pmax-section4-top">
+      <h2 class="pmax-section4-title">{{ st.pmax-section4-title }}</h2>
+      <div class="pmax-section4-subtitle">
+        {{ st.pmax-section4-subtitle }}
+      </div>
+    </div>
+    <div class="pmax-section4-content">
+      <div class="pmax-section4-tab-header">
+        <div class="pmax-section4-tab-btn active" 
+          data-tab="{{ st.pmax-section4-tab1-title }}">
+          {{ st.pmax-section4-tab1-title }}
+        </div>
+        <div class="pmax-section4-tab-btn" 
+          data-tab="{{ st.pmax-section4-tab2-title }}">
+          {{ st.pmax-section4-tab2-title }}
+        </div>
+      </div>
+
+      <div class="pmax-section4-tab-content">
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          {%- case block.type -%}
+            {%- when 'review-item' -%}
+              <div id="{{ st.pmax-section4-tab1-title }}" class="pmax-section4-review-swiper swiper pmax-section4-tab-panel active">
+                <div class="pmax-section4-review-wrapper swiper-wrapper">
+                  <div class="pmax-section4-review-slide swiper-slide">
+                    <a
+                      class="full-aa"
+                      href="{{ bs.pmax-section4-review-video1 }}"
+                      data-fslightbox="{{ st.pmax-section4-tab1-title }}"
+                    ></a>
+                    <div class="pmax-section4-review-content">
+                      <div class="pmax-section4-review-video">
+                        <img 
+                          src="https://img.youtube.com/vi/{{ bs.pmax-section4-review-video1.id }}/maxresdefault.jpg" 
+                          width="auto" 
+                          height="auto"
+                        >
+                        <div class="play_image">{% render 'icon-play-2' %}</div>
+                      </div>
+                      <div class="pmax-section4-review-product">{{ bs.pmax-section4-review-product1 }}</div>
+                      <div class="pmax-section4-review-title">
+                        {{ bs.pmax-section4-review-title1 }}
+                      </div>
+                      <div class="pmax-section4-review-author">
+                        <div class="pmax-section4-review-avatar">
+                          <img
+                            src="{{ bs.pmax-section4-review-avatar1 | image_url: width: 800 }}"
+                            width="auto"
+                            height="auto"
+                          >
+                        </div>
+                        <div class="pmax-section4-review-name">
+                          {{ bs.pmax-section4-review-author1 }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pmax-section4-review-slide swiper-slide">
+                    <a
+                      class="full-aa"
+                      href="{{ bs.pmax-section4-review-video2 }}"
+                      data-fslightbox="{{ st.pmax-section4-tab1-title }}"
+                    ></a>
+                    <div class="pmax-section4-review-content">
+                      <div class="pmax-section4-review-video">
+                        <img 
+                          src="https://img.youtube.com/vi/{{ bs.pmax-section4-review-video2.id }}/maxresdefault.jpg" 
+                          width="auto" 
+                          height="auto"
+                        >
+                        <div class="play_image">{% render 'icon-play-2' %}</div>
+                      </div>
+                      <div class="pmax-section4-review-product">{{ bs.pmax-section4-review-product2 }}</div>
+                      <div class="pmax-section4-review-title">
+                        {{ bs.pmax-section4-review-title2 }}
+                      </div>
+                      <div class="pmax-section4-review-author">
+                        <div class="pmax-section4-review-avatar">
+                          <img
+                            src="{{ bs.pmax-section4-review-avatar2 | image_url: width: 800 }}"
+                            width="auto"
+                            height="auto"
+                          >
+                        </div>
+                        <div class="pmax-section4-review-name">
+                          {{ bs.pmax-section4-review-author2 }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pmax-section4-review-slide swiper-slide">
+                    <a
+                      class="full-aa"
+                      href="{{ bs.pmax-section4-review-video3 }}"
+                      data-fslightbox="{{ st.pmax-section4-tab1-title }}"
+                    ></a>
+                    <div class="pmax-section4-review-content">
+                      <div class="pmax-section4-review-video">
+                        <img 
+                          src="https://img.youtube.com/vi/{{ bs.pmax-section4-review-video3.id }}/maxresdefault.jpg" 
+                          width="auto" 
+                          height="auto"
+                        >
+                        <div class="play_image">{% render 'icon-play-2' %}</div>
+                      </div>
+                      <div class="pmax-section4-review-product">{{ bs.pmax-section4-review-product3 }}</div>
+                      <div class="pmax-section4-review-title">
+                        {{ bs.pmax-section4-review-title3 }}
+                      </div>
+                      <div class="pmax-section4-review-author">
+                        <div class="pmax-section4-review-avatar">
+                          <img
+                            src="{{ bs.pmax-section4-review-avatar3 | image_url: width: 800 }}"
+                            width="auto"
+                            height="auto"
+                          >
+                        </div>
+                        <div class="pmax-section4-review-name">
+                          {{ bs.pmax-section4-review-author3 }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a href="{{ bs.pmax-section4-review-url }}" class="pmax-section4-review-button">
+                  {{ bs.pmax-section4-review-button }}
+                </a>
+              </div>
+            {%- when '@app' -%}
+              <div id="{{ st.pmax-section4-tab2-title }}" class="pmax-section4-tab-panel">
+                {% render block %}
+              </div>
+          {%- endcase -%}    
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabButtons = document.querySelectorAll('.pmax-section4-tab-btn');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tabId = button.getAttribute('data-tab');
+        
+        // 更新按钮状态
+        tabButtons.forEach(btn => {
+          btn.classList.remove('active');
+        });
+        button.classList.add('active');
+        
+        // 更新内容面板
+        document.querySelectorAll('.pmax-section4-tab-panel').forEach(panel => {
+          panel.classList.remove('active');
+        });
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    swiperVar = new Swiper('.pmax-section4-review-swiper', {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 16,
+      speed: 600,
+      touchRatio: 0.75,
+      // add breakpoints
+      breakpoints: {
+        320: {
+          slidesPerView: 'auto',
+          spaceBetween: 16,
+        },
+        768: {
+          slidesPerView: 'auto',
+          spaceBetween: 0,
+        },
+      },
+    });
+  })
+</script>

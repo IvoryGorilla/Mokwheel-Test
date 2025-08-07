@@ -1,0 +1,254 @@
+{% schema %}
+{
+  "name": "contactUs List",
+  "class": "contactUs-list",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "richtext",
+      "id": "desc",
+      "label": "Desc"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "sub Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "contactUs-list"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-contactUs-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: calc(var(--alp-padding-x) * 2);
+    padding-right: calc(var(--alp-padding-x) * 2);
+  }
+  .alp-contactUs-left{
+    width: 35%;
+  }
+  .contactUs-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 50px;
+    margin-top: calc(var( --alp-gutter-y) * 1);
+  }
+  .contactUs-list-item-title{
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .contactUs-list-item-title h5{
+    margin-left: 12px;
+    margin-bottom: 0;
+  }
+  .contactUs-list-item .text_content p{
+    margin: 0;
+  }
+  .contactUs-list-item picture img {
+    max-width: 44px;
+    display: block;
+  }
+  .contactUs-list-item p a{
+    text-decoration: underline;
+  }
+  .alp-contactUs-right{
+    width: 55%;
+  }
+  .alp-contactUs-right picture img {
+    display: block;
+  }
+  @media screen and (max-width: 750px) {
+    .alp-contactUs-container{
+      flex-direction: column;
+    }
+    .alp-contactUs-left,
+    .alp-contactUs-right
+    {
+      width: 100%;
+    }
+    .alp-contactUs-left h2{
+      font-size: clamp(24px, 3.5vw, 48px);
+    }
+    .contactUs-list{
+      gap: 20px;
+      margin-bottom: 20px;
+      margin-top: 28px;
+    }
+    .contactUs-list-item{
+      display: flex;
+    }
+    .contactUs-list-item picture img{
+      max-width: 32px;
+    }
+    .contactUs-list-item-title{
+      flex-direction: column;
+      align-items: start;
+      margin-left: 12px;
+      margin-bottom: 0;
+    }
+    .contactUs-list-item-title h5{
+      margin-left: 0;
+    }
+    .contactUs-list-item-title .text_content{
+      color: #666666;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container alp-contactUs-container page-width {{ container }}">
+    <div class="alp-contactUs-left">
+      <h2 class="headline__h2l">{{ st.title | strip_html | strip }}</h2>
+      <div class="text_content">{{ st.desc| strip_html }}</div>
+      <div class="contactUs-list hide_mobile">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div class="contactUs-list-item">
+              <div class="contactUs-list-item-title">
+                {% render 'alp-single-image', image: bs.icon, aspect_ratio: aspect_ratio, alt: alt_title %}
+                 <h5 class="headline__h5l">{{ bs.subtitle | strip_html | strip }}</h5>
+              </div>
+              <div class="text_content">{{ bs.content  }}</div>
+            </div>
+          {%- endfor -%}
+        {% endif %}
+      </div>
+      <div class="contactUs-list hide_desktop">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div class="contactUs-list-item">
+              {% render 'alp-single-image', image: bs.icon, aspect_ratio: aspect_ratio, alt: alt_title %}
+              <div class="contactUs-list-item-title">
+                 <h5 class="headline__h5l">{{ bs.subtitle | strip_html | strip }}</h5>
+                 <div class="text_content">{{ bs.content  }}</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {% endif %}
+      </div>
+    </div>
+    <div class="alp-contactUs-right">
+        {% render 'alp-single-image', image: st.image, aspect_ratio: aspect_ratio, alt: alt_title %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

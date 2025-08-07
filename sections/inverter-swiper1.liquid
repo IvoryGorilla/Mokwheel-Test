@@ -1,0 +1,290 @@
+{% schema %}
+{
+  "name": "Inverter Swiper1",
+  "class": "inverter-swiper1",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "swiper_item",
+      "name": "Swiper Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "item_image",
+          "label": "Item Image"
+        },
+        {
+          "type": "richtext",
+          "id": "item_content",
+          "label": "Item Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inverter Swiper1"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+<style>
+  .inverter-swiper1-section {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('{{ st.image | image_url: width: 1920 }}');
+  }
+</style>
+
+{% style %}
+  .inverter-swiper1-container {
+    padding-top: 13px;
+    padding-bottom: 178px;
+    overflow: hidden;
+  }
+  .inverter-swiper1-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    max-width: 900px;
+    margin: auto;
+  }
+
+  .inverter-swiper1-content {
+    margin-top: 72px;
+  }
+  .inverter-swiper1-swiper .swiper-wrapper {
+    display: flex;
+    gap: 43px;
+  }
+  .inverter-swiper1-item {
+    padding: 32px;
+    padding-bottom: 53px;
+    background: rgba(255, 255, 255, 0.1);
+    flex-shrink: 1;
+  }
+  .inverter-swiper1-item-image {
+    width: 201px;
+  }
+  .inverter-swiper1-item-content {
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 150%;
+  }
+  @media (max-width: 999px) {
+    .inverter-swiper1-container {
+      padding-top: 72px;
+      padding-bottom: 72px;
+    }
+    .inverter-swiper1-title {
+      font-size: 30px;
+    }
+    .inverter-swiper1-content {
+      margin-top: 52px;
+      padding: 0 10px;
+    }
+    .inverter-swiper1-container .swiper-pagination-products {
+      margin-top: 52px;
+    }
+    .inverter-swiper1-swiper .swiper-wrapper {
+      gap: 0;
+    }
+    .inverter-swiper1-item {
+      flex-shrink: 0;
+      padding: 14px 14px 24px;
+    }
+    .inverter-swiper1-item-image {
+      width: 191px;
+      margin: auto;
+    }
+    .inverter-swiper1-item-content {
+      text-align: center;
+      font-size: 14px;
+    }
+  }
+{% endstyle %}
+
+<div class="inverter-swiper1-section alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container inverter-swiper1-container page-width {{ container }}">
+    <div class="inverter-swiper1-header">
+      <h2 class="inverter-swiper1-title ">{{ st.title }}</h2>
+    </div>
+    <div class="inverter-swiper1-content">      
+      <div class="inverter-swiper1-swiper" data-blockId="{{ section.id }}">
+        <div class="swiper-wrapper">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign bs = block.settings
+              -%}
+              <div class="inverter-swiper1-item swiper-slide">
+                {%- if bs.item_image != blank -%}
+                  <div class="inverter-swiper1-item-image">
+                    <img
+                      src="{{ bs.item_image | image_url: width: 1920 }}"
+                      width="auto"
+                      height="auto"
+                    >
+                  </div>
+                {%- endif -%}
+                <div class="inverter-swiper1-item-content">
+                  {{ bs.item_content }}
+                </div>
+              </div>
+            {%- endfor -%}
+          {% endif %}
+        </div>
+        <div class="swiper-navs swiper-pagination-products">
+          {% render 'swiper-pagination', class: 'pagination-products' %}
+          {% render 'swiper-navigation', class: '' %}
+        </div>
+      </div> 
+
+    </div>
+  </div>
+</div>
+
+{% comment %} <script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+    let swiperId = '{{ section.id }}';
+    let swiperIdnum = swiperId.replace(/\D/g, '');
+    let swiperVar = 'TheSwiper' + swiperIdnum;
+    swiperVar = new Swiper(`.inverter-swiper1-swiper[data-blockId="${swiperId}"]`, {
+      slidesPerView: 1,
+      slidesPerGroup : 1,
+      spaceBetween: 16,
+      speed:600,
+      touchRatio : 0.75,
+      pagination: {
+        el: '.pagination-products',
+        clickable :true,
+      },
+      // add breakpoints
+      breakpoints: { 
+        320: {  
+          slidesPerView: 1,
+          slidesPerGroup : 1,
+        },
+        1280: {  
+          slidesPerView: 2,
+          slidesPerGroup : 2,
+        },
+      },
+    });
+  });
+</script>  {% endcomment %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let swiperId = '{{ section.id }}';
+    const swiperEl = document.querySelector(`.inverter-swiper1-swiper[data-blockId="${swiperId}"]`);
+    
+    // 只在移动端初始化Swiper
+    const initSwiper = () => {
+      if (window.innerWidth <= 750) {
+        if (!swiperEl.swiper) {
+          new Swiper(swiperEl, {
+            slidesPerView: 1,
+            slidesPerGroup : 1,
+            speed:600,
+            spaceBetween: 30,
+            touchRatio : 0.75,
+            pagination: {
+              el: '.pagination-products',
+              clickable :true,
+            },
+            // add breakpoints
+            breakpoints: { 
+              320: {  
+                slidesPerView: 1,
+                slidesPerGroup : 1,
+              },
+              1280: {  
+                slidesPerView: 2,
+                slidesPerGroup : 2,
+              },
+            },
+          });
+        }
+      } else {
+        // 桌面端销毁Swiper实例
+        if (swiperEl.swiper) {
+          swiperEl.swiper.destroy(true, true);
+        }
+      }
+    };
+    
+    // 初始检查
+    initSwiper();
+    
+    // 窗口大小变化时重新检查
+    window.addEventListener('resize', () => {
+      initSwiper();
+    });
+  });
+</script>

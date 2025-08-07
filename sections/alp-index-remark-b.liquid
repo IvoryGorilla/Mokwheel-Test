@@ -1,0 +1,334 @@
+{% schema %}
+{
+  "name": "Alp Index Remark B",
+  "class": "alp-index-remark",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What customer say for our E-Bike"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "1/1"
+    },
+    {
+      "type": "text",
+      "id": "block_max_width",
+      "label": "Block Max Width",
+      "default": "420px"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Gail Hilpert"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Desc",
+          "default": "<p>Solardeland leads in solar technology, offering state-of-the-art solutions to meet evolving energy demands through continuous innovation.</p>"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Shop The Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Index Remark B"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --block-max-width: {{ st.block_max_width }};
+  }
+</style>
+
+{% style %}
+  .alp-index-remark-con {
+    margin-top: calc(var(--alp-gutter-y) * 1.25);
+  }
+  .swiper-pagination-index-remark {
+    margin-top: calc(var(--alp-gutter-y) * 1.25);
+  }
+
+  .alp-index-remark-2-item {
+    display: flex;
+    gap: 1.25em;
+    align-items: flex-start;
+  }
+
+  .alp-index-remark-2-desc {
+    opacity: 0.6;
+    line-height: 1.5;
+  }
+
+  .alp-index-remark-2-item .image-box-2 {
+    overflow: hidden;
+    border-radius: 8px;
+    max-width: 144px;
+  }
+
+  .alp-index-remark-2-item .image-box-2 img {
+    display: block;
+  }
+
+  .alp-index-remark-2-item-wrapper {
+    border: 1px solid #eee;
+    padding: 1em;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .text-box-2 .icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .alp-index-remark-2-title {
+    margin-bottom: 0.5em;
+  }
+
+  .alp-index-remark-item-more-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(0 0 0 / 66%);
+    pointer-events: none;
+    transition: 0.4s;
+    opacity: 0;
+  }
+
+  .alp-index-remark-2-item-wrapper:hover .alp-index-remark-item-more-button {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .alp-index-remark-item-more-button > a {
+    transition: 0.4s;
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .alp-index-remark-2-item-wrapper:hover .alp-index-remark-item-more-button > a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (max-width: 999px) {
+    .alp-index-remark-con {
+      margin-top: calc(var(--alp-gutter-y) * 0.65);
+    }
+    .swiper-pagination-index-remark {
+      margin-top: calc(var(--alp-gutter-y) * 1);
+    }
+    .alp-index-remark-2-desc {
+      font-size: 12px;
+    }
+
+    .alp-index-remark-2-item .image-box-2 {
+      width: 30%;
+    }
+
+    .alp-index-remark-2-item .text-box-2 {
+      width: 70%;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-section alp-index-remark-wrapper overflow-hidden {{ reset_spacing }}"
+  data-stid="{{ section.id }}"
+  style="{{ style }}"
+>
+  <div class="alp-section-container alp-index-remark-container page-width {{ container }}">
+    <div class="alp-index-remark">
+      <div class="alp-index-remark-bigtitle">
+        <h2 class="headline__h2">{{ st.title }}</h2>
+      </div>
+      <div
+        class="alp-index-remark-con swiper overflow-visible"
+        id="{{ section.id | replace: '-', '' | prepend: 'id_' }}"
+      >
+        <div class="swiper-wrapper">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="swiper-slide">
+                <div class="alp-index-remark-2-item-wrapper relative">
+                  {%- if bs.link != blank -%}
+                    <a class="full-aa" href="{{ bs.link }}" title="{{ bs.title }}"></a>
+                  {%- endif -%}
+                  <div class="alp-index-remark-2-item">
+                    <div class="image-box-2">
+                      {% render 'alp-single-image', image: bs.image, width: 1280, aspect_ratio: st.image_aspect_ratio %}
+                    </div>
+                    <div class="text-box-2">
+                      <div class="headline__h6 alp-index-remark-2-title">{{ bs.title | strip }}</div>
+                      <div class="icon">
+                        {% render 'icon-remarks' %}
+                      </div>
+                      <div class="alp-index-remark-2-desc">{{ bs.desc | strip_html }}</div>
+                    </div>
+                  </div>
+                  {%- if bs.link != blank -%}
+                    <div class="alp-index-remark-item-more-button">
+                      {% render 'alp-btn',
+                        url: bs.link,
+                        type: 'primary',
+                        text: bs.link_text,
+                        textcolor: '#ffffff',
+                        bgcolor: 'var(--main-color)',
+                        size: 'small'
+                      %}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {%- endfor -%}
+          {% endif %}
+        </div>
+        <div class="swiper-navs swiper-pagination-index-remark">
+          {% render 'swiper-pagination', class: 'pagination-products' %}
+          {% render 'swiper-navigation', class: '' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+     // swiper
+     var BlockId = '{{ section.id | replace: '-', '' | prepend: 'id_' }}';
+     var swiper = new Swiper(`.alp-index-remark .swiper#${BlockId}`, {
+      pagination: {
+        el: '.pagination-products',
+        clickable :true,
+      },
+      speed:600,
+      // freeMode: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      spaceBetween: 16,
+      breakpoints: { 
+        1280: { 
+          slidesPerView: 3,
+          spaceBetween: 24,
+        },
+        768: { 
+          slidesPerView: 2.4,
+        },
+        320: {  
+          slidesPerView: 1,
+        }
+      }
+    })
+  });
+</script>

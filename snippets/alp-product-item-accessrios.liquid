@@ -1,0 +1,147 @@
+{% comment %}
+  use snippet alp-product-item-1.liquid
+  Accepts:
+    product
+  Usage:
+  {% render 'alp-product-item-blog', product: product , aspect_ratio: aspect_ratio %}
+{% endcomment %}
+
+{%- assign show_features = show_features | default: false -%}
+{%- assign show_icon_features = show_icon_features | default: true -%}
+{%- assign show_discount_badge = show_discount_badge | default: true -%}
+{%- assign show_reviews = show_reviews | default: true -%}
+{%- assign show_description = show_description | default: true -%}
+<style>
+  .alp-product-item-accessrios-price {
+    font-size: clamp(14px, 2.2vw, 16px);
+  }
+  .alp-product-item-accessrios {
+    background-color: var(--main-background);
+    margin-top: calc(var(--alp-gutter-y) * 0.75);
+    border-radius: var(--alp-border-radius);
+  }
+  .accessrios-titie {
+    color: #000;
+    font-weight: 700;
+    line-height: 150%; /* 33px */
+    text-transform: capitalize;
+  }
+  .alp-product-item-blog.alp-product-item-wrapper.alp-product-item-accessrios {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
+  .alp-hot-accessrios .alp-hot-selling-con .swiper-slide {
+    height: auto;
+    display: flex;
+    align-items: center;
+  }
+  .alp-hot-selling-con.swiper {
+    overflow: visible;
+  }
+
+  .shopify-section.jd-product-facet {
+    overflow: hidden;
+  }
+</style>
+<div
+  class="alp-product-item-blog alp-product-item-wrapper alp-product-item-accessrios"
+  data-swatch-wrapper
+  style="--aspect-ratio:{{ aspect_ratio | default: '1/1' }}"
+>
+  <a class="alp-product-item-link full-aa" href="{{ product.url }}" title="{{ product.title }}"></a>
+
+  <div class="alp-grid-accessrios-image">
+    <div class="alp-product-item-features {% if show_reviews %} has_reviews{% endif %}">
+      {%- if show_discount_badge -%}
+        {%- if product.metafields.custom.full_reduction != blank -%}
+          <div class="alp_product__badge_i">{{- product.metafields.custom.full_reduction -}}</div>
+        {%- endif -%}
+      {%- endif -%}
+      {%- if show_features -%}
+        {%- assign features = product.metafields.custom.new_feature_list -%}
+        {%- if features.value.size > 0 -%}
+          {%- for item in features.value -%}
+            <div class="product-features-i">{{ item }}</div>
+          {%- endfor -%}
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+
+    <div class="alp-product-item-image">
+      {%- if product.variants.size > 0 -%}
+        {% for variant in product.variants %}
+          {% liquid
+            assign options_string = ''
+            for option in variant.options
+              assign options_string = options_string | append: option | append: ','
+            endfor
+          %}
+          <div
+            class="product-item-image-i {% if forloop.index == 1 %} active{% endif %}"
+            data-variant="{{ variant.id }}"
+            data-options="{{ options_string }}"
+          >
+            {%- assign alt_title = product.title | append: ' - ' | append: variant.title -%}
+            {%- if variant.image -%}
+              {% render 'alp-responsive-image',
+                image: variant.image,
+                desktop_width: 800,
+                mobile_width: 400,
+                aspect_ratio: aspect_ratio,
+                alt: alt_title
+              %}
+            {%- else -%}
+              {% render 'alp-responsive-image',
+                image: product.featured_image,
+                desktop_width: 800,
+                mobile_width: 400,
+                aspect_ratio: aspect_ratio,
+                alt: alt_title
+              %}
+            {%- endif -%}
+          </div>
+        {% endfor %}
+      {%- else -%}
+        {% render 'alp-single-image',
+          image: product.featured_image,
+          width: 1280,
+          aspect_ratio: aspect_ratio,
+          alt: product.title
+        %}
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="alp-grid-item-info-wrapper">
+    <div class="alp-product-item-info p-grid">
+      <div class="alp-product-item-color-swatch acccos-swatch">
+        {% render 'alp-color-swatch-for-list', product: product %}
+      </div>
+      <div class="alp-product-item-info-flex">
+        <div class="alp-product-item-title">
+          <h3 class="headline__h6 accessrios-titie">{{ product.title }}</h3>
+          <div class="product-list-description hidden">
+            {{- product.description | strip_html | strip -}}
+          </div>
+        </div>
+        {%- if show_reviews -%}
+          <!-- Stamped - Begin Star Rating Badge -->
+          <span
+            class="stamped-product-reviews-badge stamped-main-badge "
+            data-id="{{ product.id }}"
+            data-product-sku="{{ product.handle }}"
+            data-product-title="{{product.title}}"
+            data-product-type="{{product.type}}"
+            style="display: block;"
+          >
+          </span>
+          <!-- Stamped - End Star Rating Badge -->
+        {%- endif -%}
+        <div class="alp-product-item-accessrios-price">{% render 'price', product: product %}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,316 @@
+{% schema %}
+{
+  "name": "Alp SMS Slider 1",
+  "class": "alp-sms-slider-1",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "User Recommendation"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp SMS Slider 1"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-sms-slider-1-swipers {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .alp-sms-slider-1-image-swiper > div.swiper {
+    float: left;
+    width: 121%;
+  }
+
+  h3.alp-sms-slider-1-title.headline__h3 {
+    font-weight: 700;
+    margin-bottom: 1.5em;
+    text-align: center;
+  }
+
+  .alp-sms-slider-1-text-swiper > .swiper {
+    height: 100%;
+    padding-bottom: 2em;
+  }
+
+  .alp-sms-slider-1-text-swiper > .swiper .swiper-pagination-bullets span.swiper-pagination-bullet {
+    flex: 1;
+    --swiper-pagination-bullet-height: 2px;
+  }
+  .alp-sms-slider-1-slide-content h3.alp-sms-slider-1-title.headline__h3 {
+    text-align: left;
+  }
+  .alp-sms-slider-1-slide-content {
+    padding-bottom: 2em;
+  }
+  .alp-sms-slider-1-image-wrap img {
+    border-radius: 4px;
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .alp-sms-slider-1-text-swiper {
+      width: 28%;
+    }
+
+    .alp-sms-slider-1-image-swiper {
+      width: 72%;
+      padding-left: 5%;
+    }
+  }
+  @media (max-width: 768px) {
+    .alp-sms-slider-1-swipers {
+      flex-direction: column-reverse;
+      gap: 2em;
+    }
+
+    .alp-sms-slider-1-swipers > div {
+      width: 100%;
+    }
+
+    h3.alp-sms-slider-1-title.headline__h3 {
+      margin-bottom: 1em;
+    }
+
+    .alp-sms-slider-1-slide-content {
+    }
+
+    .alp-sms-slider-1-image-swiper > div.swiper {
+      width: 180%;
+    }
+
+    .alp-sms-slider-1-text-swiper {
+      max-width: 88%;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    <h3 class="alp-sms-slider-1-title headline__h3 margin-bottom">
+      {{ st.title }}
+    </h3>
+    <div class="alp-sms-slider-1-swipers">
+      <div class="alp-sms-slider-1-text-swiper">
+        <div class="swiper alp-sms-text-swiper">
+          <div class="swiper-wrapper">
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="swiper-slide">
+                <div class="alp-sms-slider-1-slide-content">
+                  {% if bs.title != blank %}
+                    <h3 class="alp-sms-slider-1-title headline__h3">{{ bs.title }}</h3>
+                  {% endif %}
+                  {% if bs.description != blank %}
+                    <div class="alp-sms-slider-1-description text_content_s">{{ bs.description }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      <div class="alp-sms-slider-1-image-swiper">
+        <div class="swiper alp-sms-image-swiper">
+          <div class="swiper-wrapper">
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="swiper-slide">
+                {% if bs.image != blank %}
+                  <div class="alp-sms-slider-1-image-wrap">
+                    {% render 'alp-responsive-image', image: bs.image %}
+                  </div>
+                {% endif %}
+              </div>
+              {% if forloop.last %}
+                <div class="swiper-slide">
+                  <div class="alp-sms-slider-1-image-wrap">
+                    {% render 'alp-responsive-image', image: bs.image %}
+                  </div>
+                </div>
+              {% endif %}
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        if (window.Swiper) {
+          var textSwiper = new Swiper('.alp-sms-text-swiper', {
+            slidesPerView: 1,
+            // effect: 'fade',
+            speed: 600,
+            //loop: true,
+            navigation: {
+              nextEl: '.alp-sms-text-swiper .swiper-button-next',
+              prevEl: '.alp-sms-text-swiper .swiper-button-prev',
+            },
+            pagination: {
+              el: '.alp-sms-text-swiper .swiper-pagination',
+              clickable: true,
+            },
+            allowTouchMove: true,
+            autoHeight: true,
+          });
+
+          var imageSwiper = new Swiper('.alp-sms-image-swiper', {
+            slidesPerView: 2,
+            spaceBetween: 20,
+            speed: 600,
+            //loop: true,
+            effect: 'creative',
+            creativeEffect: {
+              prev: {
+                shadow: true,
+                origin: 'center center',
+                translate: ['-5%', 0, -200],
+                rotate: [0, 0, 0],
+              },
+              next: {
+                origin: 'left top',
+                translate: ['103%', '0%', 0],
+                rotate: [0, 0, 0],
+                scale: 0.65,
+                opacity: 0.4,
+              },
+            },
+            navigation: {
+              nextEl: '.alp-sms-image-swiper .swiper-button-next',
+              prevEl: '.alp-sms-image-swiper .swiper-button-prev',
+            },
+            pagination: {
+              el: '.alp-sms-image-swiper .swiper-pagination',
+              clickable: true,
+            },
+            allowTouchMove: true,
+            autoHeight: true,
+          });
+
+          // Link the two swipers
+          textSwiper.on('slideChange', function () {
+            if (imageSwiper.realIndex !== textSwiper.realIndex) {
+              imageSwiper.slideTo(textSwiper.realIndex);
+            }
+          });
+          imageSwiper.on('slideChange', function () {
+            if (textSwiper.realIndex !== imageSwiper.realIndex) {
+              textSwiper.slideTo(imageSwiper.realIndex);
+            }
+          });
+        }
+      });
+    </script>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

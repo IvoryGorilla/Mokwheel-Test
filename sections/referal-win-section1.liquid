@@ -1,0 +1,198 @@
+{% schema %}
+{
+  "name": "referal-win-section1",
+  "class": "referal-win-section1",
+  "settings": [
+    {
+      "type": "text",
+      "id": "referal-win-section1-title",
+      "label": "Referal Win Section1 Title"
+    },
+    {
+      "type": "richtext",
+      "id": "referal-win-section1-desc",
+      "label": "Referal Win Section1 Desc"
+    },
+    {
+      "type": "text",
+      "id": "referal-win-section1-button",
+      "label": "Referal Win Section1 Button"
+    },
+    {
+      "type": "url",
+      "id": "referal-win-section1-url",
+      "label": "Referal Win Section1 Url"
+    },
+    {
+      "type": "image_picker",
+      "id": "referal-win-section1-image",
+      "label": "Referal Win Section1 Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "referal-win-section1-image-mb",
+      "label": "Referal Win Section5 Image Mobile"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    
+  ],
+  "presets": [
+    {
+      "name": "referal-win-section1"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+  --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+  .referal-win-section1-image {
+    position: absolute;
+    width: 100%;
+    max-width: 2048px;
+    height: 600px;
+  }
+  .referal-win-section1-image img {
+    height: 100%;
+  }
+  .referal-win-section1-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 610px;
+    min-height: 600px;
+    position: relative;
+    justify-content: center;
+  }
+  .referal-win-section1-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-transform: capitalize;
+  }
+  .referal-win-section1-desc {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%;
+  }
+  .referal-win-section1-desc p {
+    margin: 0;
+  }
+  .referal-win-section1-button {
+    margin-top: 48px;
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 120%;
+    text-transform: capitalize;
+    color: #1a1a1a;
+    background: #ffffff;
+    display: flex;
+    border-radius: 4px;
+    width: fit-content;
+  }
+  @media (max-width: 768px) {
+    .referal-win-section1-image {
+      height: 450px;
+    }
+    .referal-win-section1-container {
+      padding: 0 30px;
+    }
+    .referal-win-section1-content {
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 450px;
+      padding-top: 64px;
+    }
+    .referal-win-section1-title {
+      font-size: 28px;
+    }
+    .referal-win-section1-desc {
+      font-size: 16px;
+      text-align: center;
+    }
+    .referal-win-section1-button {
+      margin-top: 24px;
+      padding: 15px 28px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }} ">
+  <div class="referal-win-section1-image hide_desktop">
+    <img
+      src="{{ st.referal-win-section1-image-mb | image_url: width: 1200 }}"
+      width="auto"
+      height="auto"
+    >
+  </div>
+  <div class="referal-win-section1-image hide_mobile">
+    <img
+      src="{{ st.referal-win-section1-image | image_url: width: 1200 }}"
+      width="auto"
+      height="auto"
+    >
+  </div>
+  <div class="alp-section-container page-width {{ container }} referal-win-section1-container">
+    <div class="referal-win-section1-content">
+      <h1 class="referal-win-section1-title">
+        {{ st.referal-win-section1-title }}
+      </h1>
+      <div class="referal-win-section1-desc">
+        {{ st.referal-win-section1-desc }}
+      </div>
+      <a class="referal-win-section1-button" href="{{ st.referal-win-section1-url }}">{{ st.referal-win-section1-button }}</a>
+    </div>
+  </div>
+</div>

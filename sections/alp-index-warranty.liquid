@@ -1,0 +1,279 @@
+{% schema %}
+{
+  "name": "Alp Index Warranty",
+  "class": "alp-index-warranty",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_pc",
+      "label": "Image Pc"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image Mobile"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "3/1"
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio_mobile",
+      "label": "Image Aspect Ratio Mobile",
+      "default": "3/2"
+    },
+    {
+      "type": "text",
+      "id": "min_height",
+      "label": "Min Height",
+      "default": "420px"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Overlay Opacity",
+      "default": 50
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Affirm+2-Year Warranty</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Sub Title",
+      "default": "<p>Pay at your pace, get 0% APR over 24 months.</p>"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Index Warranty"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --st-min-height: {{ st.min_height }};
+   --aspect-pc: {{ st.image_aspect_ratio }};
+   --aspect-mobile: {{ st.image_aspect_ratio_mobile }};
+  }
+</style>
+
+{% style %}
+  .alp-index-warranty {
+    position: relative;
+  }
+  .alp-index-warranty p {
+    margin: 0;
+  }
+  .alp-index-warranty img {
+    height: auto;
+    display: block;
+    border-radius: var(--alp-border-radius);
+  }
+  .alp-index-warranty-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: min(4em, 6%);
+  }
+  .alp-index-warranty-info-title {
+    color: #fff;
+  }
+  .alp-index-warranty-info-subtitle {
+    color: #fff;
+    margin-top: 0.5em;
+    font-size: 18px;
+  }
+  .alp-index-warranty-info .alp-btn {
+    margin-top: max(3vw, 3em);
+  }
+  .alp-index-warranty-info .alp-btn:hover {
+    background: var(--main-color);
+  }
+
+  .alp-index-warranty img {
+    aspect-ratio: var(--aspect-pc);
+    min-height: var(--st-min-height);
+  }
+
+  .full-img-wrap.wr-overlay {
+    display: block;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 67%);
+    /* border-radius: calc(var(--alp-border-radius) * 1.5); */
+    border-radius: var(--alp-border-radius);
+  }
+
+  .alp-index-warranty-info {
+    z-index: 10;
+  }
+  .alp-index-warranty-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: max(3vw, 2em) max(6vw, 2em);
+  }
+  @media screen and (max-width: 999px) {
+    /* .alp-index-warranty-container {
+      padding-top: 18px;
+      padding-bottom: 18px;
+    } */
+    .alp-index-warranty-info-title {
+      margin-bottom: 8px;
+    }
+    .alp-index-warranty-info-subtitle {
+      margin-top: 0;
+    }
+    .alp-index-warranty-info-subtitle {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .alp-index-warranty-info .alp-btn {
+      margin-top: 24px;
+      font-size: 16px;
+    }
+    .alp-index-warranty img {
+      aspect-ratio: var(--aspect-mobile);
+    }
+    .alp-index-warranty-info {
+      justify-content: flex-start;
+    }
+    .full-img-wrap.wr-overlay {
+      background: linear-gradient(169deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 80%);
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" data-stid="{{ section.id }}" style="{{ style }}">
+  <div class="alp-section-container alp-index-warranty-container page-width {{ container }}">
+    <div class="alp-index-warranty">
+      {% render 'alp-responsive-image',
+        image: st.image_pc,
+        image_mobile: st.image_mobile,
+        desktop_width: 1920,
+        mobile_width: 900
+      %}
+      <div class="full-img-wrap wr-overlay" style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}"></div>
+      <div class="alp-index-warranty-info">
+        {%- if st.title != blank -%}
+          <h2 class="headline__h2 alp-index-warranty-info-title">{{ st.title | strip_html | strip }}</h2>
+        {%- endif -%}
+        {%- if st.subtitle != blank -%}
+          <div class="alp-index-warranty-info-subtitle">{{ st.subtitle }}</div>
+        {%- endif -%}
+        {%- if st.link_text != blank -%}
+          {% render 'alp-btn',
+            url: st.link,
+            type: 'primary',
+            text: st.link_text,
+            textcolor: '#FFF',
+            bgcolor: 'var(--main-color)',
+            size: 'small'
+          %}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

@@ -1,0 +1,36 @@
+<div class="axx-product-item-image" data-product-swatch-images data-product-id="{{ product.id }}">
+  {% render 'axx-single-image',
+    image: product.selected_or_first_available_variant.featured_image,
+    width: 800,
+    aspect_ratio: '3/2',
+    alt: alt_title
+  %}
+  <script type="application/json">
+    {
+      "id": {{ product.id }},
+      "variants": [
+        {% for variant in product.variants %}
+          {
+            "id": {{ variant.id }},
+            "options": {{ variant.options | json }},
+            "image": {
+              "id": {{ variant.image.id }},
+              "src": "{{ variant.image | image_url: width: 800 }}",
+              "srcset": "{{ variant.image | image_url: width: 300 }} 500w, {{ variant.image | image_url: width: 600 }} 800w"
+            }
+          }{% if forloop.last == false %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  </script>
+</div>
+
+{% stylesheet %}
+  .axx-product-item-image img {
+    object-fit: contain;
+    width: 100%;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

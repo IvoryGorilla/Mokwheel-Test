@@ -1,0 +1,1549 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "alp_sticky_product_banner_arecxA": {
+      "type": "alp-sticky-product-banner",
+      "blocks": {
+        "item_ULpYUF": {
+          "type": "item",
+          "settings": {
+            "text": "Overview",
+            "target": "overview"
+          }
+        },
+        "item_PngE6y": {
+          "type": "item",
+          "settings": {
+            "text": "Specs & Fit",
+            "target": "specs_fit"
+          }
+        },
+        "item_H3WymK": {
+          "type": "item",
+          "settings": {
+            "text": "Reviews",
+            "target": "reviews"
+          }
+        }
+      },
+      "block_order": [
+        "item_ULpYUF",
+        "item_PngE6y",
+        "item_H3WymK"
+      ],
+      "settings": {
+        "title": "Sticky Product Banner",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 2,
+        "padding_bottom": 2,
+        "reset_spacing": true
+      }
+    },
+    "alp_main_product_new_c9CtCd": {
+      "type": "alp-main-product-new",
+      "blocks": {
+        "viewer_block_bXUHwm": {
+          "type": "viewer_block",
+          "settings": {
+            "title": "360 Viewer",
+            "image_name": "basalt_v360_Camera_",
+            "image_number": 20,
+            "default_image": 0,
+            "block_type": "popup"
+          }
+        },
+        "product_title_UrAPNi": {
+          "type": "product_title",
+          "settings": {
+            "title": "{{ product.title }}",
+            "title_a": "",
+            "color_1": "#000000",
+            "color_text_1": "#ffffff",
+            "title_2": "",
+            "color_2": "#000000",
+            "color_text_2": "#ffffff",
+            "title_3": "",
+            "color_3": "#000000",
+            "color_text_3": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "product_des_Px6XK8": {
+          "type": "product_des",
+          "settings": {
+            "description": "<p>{{ product.metafields.custom.new_description | metafield_tag }}</p>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "stamped_reviews_star_rating_badge_nUw4Fz": {
+          "type": "shopify://apps/stamped-reviews/blocks/star-rating-badge/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "use_metafields": false,
+            "sku_tagtype": "sku",
+            "is_featured_product": false,
+            "featured_product_handle": ""
+          }
+        },
+        "price_RJh4cA": {
+          "type": "price",
+          "settings": {
+            "promotion_text": "",
+            "color": "#dd4223",
+            "color_text": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "affirm_block_Y4F9Pm": {
+          "type": "affirm_block",
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "count_down_text_new_YY4zGh": {
+          "type": "count_down_text_new",
+          "settings": {
+            "color": "#000000",
+            "text": "<p><strong>Last Chance for Epic Savings</strong></p>",
+            "sub_text": "",
+            "link": "",
+            "countdown_date": "2025-08-04T00:00:00",
+            "countdown_hours": 960,
+            "show_countdown": true,
+            "show_newstyle": true,
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "version_selector_bbnBhY": {
+          "type": "version_selector",
+          "disabled": true,
+          "settings": {
+            "title": "Version",
+            "title2": "Style",
+            "link_1": "shopify://collections/basalt",
+            "text_1": "<p>Basalt</p>",
+            "text_1_info": "",
+            "text_1_child_info": "",
+            "link_2": "shopify://products/basalt-st-2-0-s",
+            "text_2": "<p>Basalt 2.</p>",
+            "text_2_info": "",
+            "text_2_child_info": "",
+            "link_3": "",
+            "text_3": "",
+            "text_3_info": "",
+            "text_3_child_info": "",
+            "default_frame": "1",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "frame_selector_QdqnME": {
+          "type": "frame_selector",
+          "settings": {
+            "title": "Frame:",
+            "title2": "Style",
+            "link_1": "shopify://products/basalt",
+            "text_1": "<p>Step Over</p>",
+            "text_1_info": "",
+            "text_1_child_info": "",
+            "link_2": "shopify://pages/home",
+            "text_2": "",
+            "text_2_info": "",
+            "text_2_child_info": "",
+            "link_3": "",
+            "text_3": "",
+            "text_3_info": "",
+            "text_3_child_info": "",
+            "default_frame": "1",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "variant_picker_FxWdk7": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "value_infos": "Size: Standard   5'7” - 6'1” | Large   5'8” - 6'8”",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "product_shippingtime_v_cfVLrH": {
+          "type": "product_shippingtime_v",
+          "settings": {
+            "shipping_text": "<p>{{ product.metafields.custom.shipping_time.value }}</p>",
+            "font_scale": 100,
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "promotions_qcwEgm": {
+          "type": "promotions",
+          "settings": {
+            "title": "",
+            "image": "shopify://shop_images/5_3x_491850ef-7f84-440b-9cad-b17b6950839a.png",
+            "link": "",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "product_accessories_QD7x9M": {
+          "type": "product_accessories",
+          "settings": {
+            "title": "Free Accessories",
+            "product_list": "{{ product.metafields.custom.binding.value }}",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "promotion_pack_n1_new_hQQfCt": {
+          "type": "promotion_pack_n1_new",
+          "settings": {
+            "title": " Accessory Pack",
+            "product_list": [
+              "bundle-accessories-kits-3",
+              "bundle-accessories-kits-4"
+            ],
+            "countdown_date": "2025-04-21T00:00:00",
+            "countdown_hours": 720,
+            "show_countdown": false,
+            "main_color": "#1a1a1a",
+            "background": "",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "compatible_products_WTeCAM": {
+          "type": "compatible_products",
+          "settings": {
+            "free_text": "FREE",
+            "more_text": "Show More",
+            "less_text": "Show Less",
+            "title": "Buy Any eBike, Get 68% OFF 2 Accessories",
+            "product_list": [
+              "battery-basalt-basalt-st",
+              "insulated-bag",
+              "phone-mount-metal",
+              "bike-cable-lock-2",
+              "helmet",
+              "rearview-mirror-1",
+              "bike-cover",
+              "pet-basket-carrier"
+            ],
+            "all_discount": 0,
+            "discount_value": "0.8",
+            "discount_text_1": "Add",
+            "discount_text_2": "& Save 20%",
+            "discount_min": 0,
+            "discount_text_3": "Order Now & Save",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "compatible_products_rxW3de": {
+          "type": "compatible_products",
+          "settings": {
+            "free_text": "FREE",
+            "more_text": "Show More",
+            "less_text": "Show Less",
+            "title": "Compatible Accessories",
+            "product_list": [
+              "solar-panel-inverter",
+              "230wsolar-panel-inverter",
+              "lnverter-2"
+            ],
+            "all_discount": 0,
+            "discount_value": "0.8",
+            "discount_text_1": "Add",
+            "discount_text_2": "& Save 20%",
+            "discount_min": 0,
+            "discount_text_3": "Order Now & Save",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "extend_block_pfptyx": {
+          "type": "extend_block",
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "extend_product_protection_product_protection_pdp_wE8QQU": {
+          "type": "shopify://apps/extend/blocks/product-protection-pdp/f3744d3b-bb7a-4029-9541-5ac3d5517b54",
+          "disabled": true,
+          "settings": {
+            "modal": false
+          }
+        },
+        "alp_frame_block_trEKBF": {
+          "type": "alp_frame_block",
+          "settings": {}
+        },
+        "product_shippingtime_m_bVjRQ7": {
+          "type": "product_shippingtime_m",
+          "settings": {
+            "shipping_text": "<p>{{ product.metafields.custom.shipping_time.value }}</p>",
+            "font_scale": 100,
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "buy_buttons_dLW6jG": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "show_custom_text": false,
+            "custom_text": "Launching Soon",
+            "custom_text_bg_color": "#858585",
+            "custom_html": "",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "compare_buttons_pTfcjR": {
+          "type": "compare_buttons",
+          "settings": {
+            "link": "https://www.mokwheel.com/pages/our-dealers",
+            "link_text": "Find Nearby Dealer",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "alp_popup_slide_new_98Vj3W": {
+          "type": "alp_popup_slide_new",
+          "settings": {
+            "heading": "Technical Specifications",
+            "bigtitle": "Technical & Specifications",
+            "title_a": "Size & Fit",
+            "rich_content_1": "<div class=\"alp_su_one\">\n  <p>Basalt comes in one size to suit most adults</p>\n  <p><b>Rider Height : </b>5'6\" - 6'8\"</p>\n</div>",
+            "image": "shopify://shop_images/Basalt_340aa0e5-557b-4a80-aba5-551909719dd6.png",
+            "rich_content_2": "<div class=\"Sp_alp\">\n  <div>\n    <div>Reach</div>\n    <div>Top Tube Length</div>\n    <div>Standover Height</div>\n    <div>Wheelbase</div>\n    <div>Min Saddle Height</div>\n    <div>Max Saddle Height</div>\n    <div>Total Length</div>\n    <div>Head Tube Length</div>\n  </div>\n  <div>\n    <div>17\"</div>\n    <div>25\"</div>\n    <div>29\"</div>\n    <div>46\"</div>\n    <div>33\"</div>\n    <div>42\"</div>\n    <div>75\"</div>\n    <div>6\"</div>\n  </div>\n</div>",
+            "title_b": "Technical",
+            "rich_content_b": "<div class=\"Sp_tech\">\n  <div>\n    <div>\n<b>Battery</b><span>48V 19.6A Complies with UL standards</span>\n</div>\n    <div>\n<b>Charger</b><span>48V 3A</span>\n</div>\n <div>\n<b>Motor</b><span>Continuous Power: 750W<p>\nPeak Power: 1100W</p>\n<p>\nTorque: 90Nm+</p></span>\n</div>\n    <div>\n<b>Speed Class</b><span>Up to 28 mph on Level 5 PAS</span>\n</div>\n    <div>\n<b>Weight</b><span>80 lbs</span>\n</div>\n    <div>\n<b>Range</b><span>60~80miles</span>\n</div>\n    <div>\n<b>Payload Capacity</b><span>400 lbs</span>\n</div>\n</div>\n</div>",
+            "title_c": "Performance",
+            "rich_content_c": "<div class=\"Sp_tech\">\n  <div>\n<div>\n<b>Sensor</b><span>Torque Sensors\n</span>\n</div>\n    <div>\n<b>Tires</b><span>26x4.0\" Puncture Resistant Fat Tire</span>\n</div>\n    <div>\n<b>Display</b><span>LED Integrated</span>\n</div>\n    <div>\n<b>Brakes</b><span>TEKTRO HD-E350 Hydraulic Disc Brakes</span>\n</div>\n<div>\n<b>Gearing</b><span>Shimano 7-Speed</span>\n</div>\n    <div>\n<b>Derailleur</b><span>7 Speed Shimano Rear Derailleur</span>\n</div>\n    <div>\n<b>Chain</b><span>KMC Stainless Chain</span>\n</div>\n    <div>\n<b>Crank Set</b><span>44T Aluminum Alloy Crankset</span>\n</div>\n    <div>\n<b>Front Fork</b><span>110mm Adjustable Suspension</span>\n</div>\n    <div>\n<b>Frame</b><span>6061 Aluminum Alloy with Internal Battery</span>\n</div>\n    <div>\n<b>Throttle</b><span>Thumb Throttle</span>\n</div>\n    <div>\n<b>Handlebar</b><span>Aluminum Alloy 31.8mm 720mm</span>\n</div>\n<div>\n<b>Kickstand</b><span>6061 Aluminum Kickstand\n</span>\n</div>\n<div>\n<b>Rims</b><span>Aluminum Alloy</span>\n</div>\n<div>\n<b>Saddle</b><span>Customized Comfort Leather Seat\n</span>\n</div>\n<div>\n<b>Spokes</b><span>Front 45#x12Gx248mm and Rear 45#×12G×219mm\n</span>\n</div>\n\n  </div>\n</div>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "alp_frame_block_mobile_x3486Q": {
+          "type": "alp_frame_block_mobile",
+          "settings": {}
+        },
+        "features_icontext_new_B8LcNa": {
+          "type": "features_icontext_new",
+          "settings": {}
+        },
+        "line_item_properties_JFiD6B": {
+          "type": "line_item_properties",
+          "settings": {
+            "title": "Free Gifts",
+            "content": "<p>{{ product.metafields.custom.product_gift_info.value }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "viewer_block_bXUHwm",
+        "product_title_UrAPNi",
+        "product_des_Px6XK8",
+        "stamped_reviews_star_rating_badge_nUw4Fz",
+        "price_RJh4cA",
+        "affirm_block_Y4F9Pm",
+        "count_down_text_new_YY4zGh",
+        "version_selector_bbnBhY",
+        "frame_selector_QdqnME",
+        "variant_picker_FxWdk7",
+        "product_shippingtime_v_cfVLrH",
+        "promotions_qcwEgm",
+        "product_accessories_QD7x9M",
+        "promotion_pack_n1_new_hQQfCt",
+        "compatible_products_WTeCAM",
+        "compatible_products_rxW3de",
+        "extend_block_pfptyx",
+        "extend_product_protection_product_protection_pdp_wE8QQU",
+        "alp_frame_block_trEKBF",
+        "product_shippingtime_m_bVjRQ7",
+        "buy_buttons_dLW6jG",
+        "compare_buttons_pTfcjR",
+        "alp_popup_slide_new_98Vj3W",
+        "alp_frame_block_mobile_x3486Q",
+        "features_icontext_new_B8LcNa",
+        "line_item_properties_JFiD6B"
+      ],
+      "settings": {
+        "title": "Product Title",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "image_max_height": "800px",
+        "images_list_type": "variants",
+        "images_type": "vertical",
+        "picture_type": "contain",
+        "hide_zoom": false,
+        "zoom_size": "300%",
+        "save_text": "Save",
+        "container": "alp-container-fluid",
+        "padding_top": 4,
+        "padding_bottom": 4,
+        "reset_spacing": false
+      }
+    },
+    "227b69f5-8273-45be-b3d6-fe00b5168132": {
+      "type": "alp-main-product",
+      "blocks": {
+        "27c3de63-2ec0-4217-b9c7-6f97151ae1db": {
+          "type": "viewer_block",
+          "settings": {
+            "title": "360 Viewer",
+            "image_name": "basalt_v360_Camera_",
+            "image_number": 20,
+            "default_image": 0,
+            "block_type": "popup"
+          }
+        },
+        "f9e8f6ce-9ec7-46bd-a141-b5dc95cecda3": {
+          "type": "product_badge",
+          "disabled": true,
+          "settings": {
+            "title_1": "{{ product.metafields.custom.full_reduction.value }}",
+            "color_1": "#dd1d1d",
+            "color_text_1": "#ffffff",
+            "title_2": "",
+            "color_2": "#ffc200",
+            "color_text_2": "#ffffff",
+            "title_3": "",
+            "color_3": "#000000",
+            "color_text_3": "#ffffff",
+            "position": "form"
+          }
+        },
+        "672c6924-15a5-4be0-a429-f1b650305940": {
+          "type": "product_title",
+          "settings": {
+            "title": "{{ product.title }}",
+            "title_a": "{{ product.metafields.custom.full_reduction.value }}",
+            "color_1": "#dd1d1d",
+            "color_text_1": "#ffffff",
+            "title_2": "",
+            "color_2": "#000000",
+            "color_text_2": "#ffffff",
+            "title_3": "",
+            "color_3": "#000000",
+            "color_text_3": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "9a1987aa-8f36-4594-8a65-bab995d662c9": {
+          "type": "product_des",
+          "settings": {
+            "description": "<p>{{ product.metafields.custom.new_description | metafield_tag }}</p>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "d170b49e-ce28-437a-acfd-bfa3ae772238": {
+          "type": "shopify://apps/stamped-reviews/blocks/star-rating-badge/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "use_metafields": false,
+            "sku_tagtype": "handle",
+            "is_featured_product": false,
+            "featured_product_handle": ""
+          }
+        },
+        "product_des_J3eV3X": {
+          "type": "product_des",
+          "settings": {
+            "description": "",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "count_down_text_XwaQWH": {
+          "type": "count_down_text",
+          "disabled": true,
+          "settings": {
+            "color": "#e83f0c",
+            "font_size": 125,
+            "text": "<p><strong>Tariff Increase – Prices Adjusting Soon.</strong></p>",
+            "link": "",
+            "countdown_date": "2025-04-14T00:00:00",
+            "countdown_hours": 480,
+            "countdown_text": "",
+            "show_countdown": true,
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "27039ea3-cc6a-448d-b074-6e34e613b694": {
+          "type": "price",
+          "settings": {
+            "promotion_text": "",
+            "color": "#dd4223",
+            "color_text": "#ffffff",
+            "padding_top": 1,
+            "padding_bottom": 0
+          }
+        },
+        "cd35ecf7-551c-49e0-b7d8-2ac48a45a86d": {
+          "type": "affirm_block",
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "donation_block_wUU836": {
+          "type": "donation_block",
+          "disabled": true,
+          "settings": {
+            "logo_image": "shopify://shop_images/802_4x_72a0501a-b3b6-433b-92ce-d8f93b3ba678.png",
+            "title": "{{ block.settings.product.title }}",
+            "description": "<p>{{ block.settings.product.metafields.custom.new_description | metafield_tag }}</p>",
+            "image": "shopify://shop_images/B7ECFB9BEFAF20016271F5F27433CC42.jpg",
+            "product": "donation-of-love",
+            "price_format": "$",
+            "font_color": "#ffffff",
+            "padding_top": 1,
+            "padding_bottom": 0
+          }
+        },
+        "promotions_KnKAEr": {
+          "type": "promotions",
+          "settings": {
+            "title": "",
+            "image": "shopify://shop_images/M.png",
+            "link": "shopify://pages/deals",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "product_shippingtime_v_3nxC8F": {
+          "type": "product_shippingtime_v",
+          "settings": {
+            "shipping_text": "<p>{{ product.metafields.custom.shipping_time.value }}</p>",
+            "color": "#dd4223",
+            "color_in_stock": "#1f8700",
+            "font_scale": 105,
+            "padding_top": 1,
+            "padding_bottom": 0
+          }
+        },
+        "642950a7-cdd2-4425-90d7-a41c561403d9": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "padding_top": 2,
+            "padding_bottom": 2
+          }
+        },
+        "quantity_selector_bMbMFx": {
+          "type": "quantity_selector",
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 2
+          }
+        },
+        "product_accessories_mYHVta": {
+          "type": "product_accessories",
+          "settings": {
+            "title": "Free Accessories",
+            "product_list": "{{ product.metafields.custom.binding.value }}",
+            "padding_top": 2,
+            "padding_bottom": 2
+          }
+        },
+        "promotion_pack_n1_HhDKzE": {
+          "type": "promotion_pack_n1",
+          "settings": {
+            "title": "Lower Than Ever – Now!",
+            "product_list": [
+              "bundle-accessories-kits-4",
+              "bundle-accessories-kits-3"
+            ],
+            "countdown_date": "2025-04-21T00:00:00",
+            "countdown_hours": 720,
+            "show_countdown": true,
+            "main_color": "#e83f0c",
+            "background": "",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "promotion_pack_b_n1_BqcRMt": {
+          "type": "promotion_pack_b_n1",
+          "settings": {
+            "title": "Select Package",
+            "product_list": [
+              "solar-panel-inverter",
+              "230wsolar-panel-inverter",
+              "battery-basalt-basalt-st",
+              "lnverter-2"
+            ],
+            "countdown_date": "2025-05-01T00:00:00",
+            "countdown_hours": 720,
+            "show_countdown": false,
+            "main_color": "#e83f0c",
+            "background": "",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "product_upgrades_new_8GhAic": {
+          "type": "product_upgrades_new",
+          "disabled": true,
+          "settings": {
+            "title_color": "#000000",
+            "desc_color": "#000000",
+            "border_color": "#dd4223",
+            "border_width": 2,
+            "block_title": "<p><strong>Free</strong> Cycling Essentials Bundle</p>",
+            "description": "<p>Limited quantity</p>",
+            "insert_properties": false,
+            "title_1": "",
+            "product_list_1": [
+              "bundle-accessories-kits-3"
+            ],
+            "title_2": "",
+            "product_list_2": [],
+            "title_3": "",
+            "product_list_3": [],
+            "title_4": "",
+            "product_list_4": [],
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "promotion_pack_HE8wiX": {
+          "type": "promotion_pack",
+          "disabled": true,
+          "settings": {
+            "title": "Select package!!",
+            "product_title": "",
+            "description": "",
+            "product": "solar-panel-inverter",
+            "final_price": "{{ block.settings.product.metafields.custom.pack_final_price.value }}",
+            "bg_color": "#fafafa",
+            "border_color": "#e6e6e6",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "switch_color": true
+          }
+        },
+        "promotion_pack_7Nm9r9": {
+          "type": "promotion_pack",
+          "disabled": true,
+          "settings": {
+            "title": "",
+            "product_title": "",
+            "description": "",
+            "product": "230wsolar-panel-inverter",
+            "final_price": "{{ block.settings.product.metafields.custom.pack_final_price.value }}",
+            "bg_color": "#fafafa",
+            "border_color": "#e6e6e6",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "switch_color": true
+          }
+        },
+        "promotion_pack_DDqGdQ": {
+          "type": "promotion_pack",
+          "disabled": true,
+          "settings": {
+            "title": "",
+            "product_title": "",
+            "description": "",
+            "product": "battery-basalt-basalt-st",
+            "final_price": "{{ block.settings.product.metafields.custom.pack_final_price.value }}",
+            "bg_color": "#fafafa",
+            "border_color": "#e6e6e6",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "switch_color": true
+          }
+        },
+        "product_gift_promotion_jQMN7m": {
+          "type": "product_gift_promotion",
+          "disabled": true,
+          "settings": {
+            "title": "Buy 2 E-bikes and Get an Extra Free Gift🎉",
+            "content": "<p>When you purchase any two electric bikes, choose one of the following accessories for<strong>FREE</strong>:</p>",
+            "text_color": "#dd4223",
+            "border_color": "#dd4223",
+            "product_list": [
+              "hitch-bike-racks-1",
+              "trailer"
+            ],
+            "display_type": "type-2",
+            "padding_top": 0,
+            "padding_bottom": 2
+          }
+        },
+        "promotion_pack_2_under_WzqN7e": {
+          "type": "promotion_pack_2_under",
+          "disabled": true,
+          "settings": {
+            "title": "",
+            "product_title": "Basic Accessory Pack",
+            "description": "",
+            "product_list": [
+              "rearview-mirror-1",
+              "water-bottle-holder-2",
+              "padded-seat-1",
+              "front-mounted-basket-1",
+              "bike-trunk-bag-1"
+            ],
+            "max_column": 3,
+            "product": "bundle-accessories-kits-3",
+            "product_type": "pack",
+            "show_info_button": false,
+            "default_selected": false,
+            "disable_change": false,
+            "final_price": "{{ block.settings.product.metafields.custom.pack_final_price.value }}",
+            "bg_color": "#ffffff",
+            "border_color": "#e6e6e6",
+            "padding_top": 0,
+            "padding_bottom": 1
+          }
+        },
+        "promotion_pack_2_under_NtHETU": {
+          "type": "promotion_pack_2_under",
+          "disabled": true,
+          "settings": {
+            "title": "",
+            "product_title": "Deluxe Accessory Pack",
+            "description": "",
+            "product_list": [
+              "bike-trunk-bag-1",
+              "suspension-seat-post",
+              "padded-seat-1",
+              "front-mounted-basket-1",
+              "bike-cover",
+              "helmet-glimmer-silver",
+              "folding-lock-black-friday-gift",
+              "rearview-mirror-1",
+              "phone-mount-metal",
+              "water-bottle-holder-2"
+            ],
+            "max_column": 3,
+            "product": "bundle-accessories-kits-4",
+            "product_type": "pack",
+            "show_info_button": false,
+            "default_selected": false,
+            "disable_change": false,
+            "final_price": "{{ block.settings.product.metafields.custom.pack_final_price.value }}",
+            "bg_color": "#ffffff",
+            "border_color": "#e6e6e6",
+            "padding_top": 0,
+            "padding_bottom": 2
+          }
+        },
+        "8aa05b40-73a0-4f7e-a908-b04e4547c16e": {
+          "type": "extend_block",
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 2
+          }
+        },
+        "extend_block_fLXeqH": {
+          "type": "extend_block",
+          "disabled": true,
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 2
+          }
+        },
+        "73e11739-b582-4da7-b3dd-05909fe9baab": {
+          "type": "alp_popup_slide",
+          "settings": {
+            "title": "Size & Fit",
+            "rich_content_1": "<div class=\"alp_su_one\">\n  <p>Basalt comes in one size to suit most adults</p>\n  <p><b>Rider Height : </b>5'6\" - 6'8\"</p>\n</div>",
+            "image": "shopify://shop_images/Basalt_340aa0e5-557b-4a80-aba5-551909719dd6.png",
+            "rich_content_2": "<div class=\"Sp_alp\">\n  <div>\n    <div>Reach</div>\n    <div>Top Tube Length</div>\n    <div>Standover Height</div>\n    <div>Wheelbase</div>\n    <div>Min Saddle Height</div>\n    <div>Max Saddle Height</div>\n    <div>Total Length</div>\n    <div>Head Tube Length</div>\n  </div>\n  <div>\n    <div>17\"</div>\n    <div>25\"</div>\n    <div>29\"</div>\n    <div>46\"</div>\n    <div>33\"</div>\n    <div>42\"</div>\n    <div>75\"</div>\n    <div>6\"</div>\n  </div>\n</div>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "00ead982-c03e-41d7-a63a-978c783c3862": {
+          "type": "alp_popup_slide",
+          "settings": {
+            "title": "Technical",
+            "rich_content_1": "",
+            "rich_content_2": "<div class=\"Sp_tech\">\n  <div>\n    <div>\n<b>Battery</b><span>48V 19.6A Complies with UL standards</span>\n</div>\n    <div>\n<b>Charger</b><span>48V 3A</span>\n</div>\n <div>\n<b>Motor</b><span>Continuous Power: 750W<p>\nPeak Power: 1100W</p>\n<p>\nTorque: 90Nm+</p></span>\n</div>\n    <div>\n<b>Speed Class</b><span>Up to 28 mph on Level 5 PAS</span>\n</div>\n    <div>\n<b>Weight</b><span>80 lbs</span>\n</div>\n    <div>\n<b>Range</b><span>60~80miles</span>\n</div>\n    <div>\n<b>Payload Capacity</b><span>400 lbs</span>\n</div>\n</div>\n</div>",
+            "padding_top": 1,
+            "padding_bottom": 1
+          }
+        },
+        "3a685a80-0a35-42df-af1e-3508460a925b": {
+          "type": "alp_popup_slide",
+          "settings": {
+            "title": "Performance",
+            "rich_content_1": "",
+            "rich_content_2": "<div class=\"Sp_tech\">\n  <div>\n<div>\n<b>Sensor</b><span>Torque Sensors\n</span>\n</div>\n    <div>\n<b>Tires</b><span>26x4.0\" Puncture Resistant Fat Tire</span>\n</div>\n    <div>\n<b>Display</b><span>LED Integrated</span>\n</div>\n    <div>\n<b>Brakes</b><span>TEKTRO HD-E350 Hydraulic Disc Brakes</span>\n</div>\n<div>\n<b>Gearing</b><span>Shimano 7-Speed</span>\n</div>\n    <div>\n<b>Derailleur</b><span>7 Speed Shimano Rear Derailleur</span>\n</div>\n    <div>\n<b>Chain</b><span>KMC Stainless Chain</span>\n</div>\n    <div>\n<b>Crank Set</b><span>44T Aluminum Alloy Crankset</span>\n</div>\n    <div>\n<b>Front Fork</b><span>110mm Adjustable Suspension</span>\n</div>\n    <div>\n<b>Frame</b><span>6061 Aluminum Alloy with Internal Battery</span>\n</div>\n    <div>\n<b>Throttle</b><span>Thumb Throttle</span>\n</div>\n    <div>\n<b>Handlebar</b><span>Aluminum Alloy 31.8mm 720mm</span>\n</div>\n<div>\n<b>Kickstand</b><span>6061 Aluminum Kickstand\n</span>\n</div>\n<div>\n<b>Rims</b><span>Aluminum Alloy</span>\n</div>\n<div>\n<b>Saddle</b><span>Customized Comfort Leather Seat\n</span>\n</div>\n<div>\n<b>Spokes</b><span>Front 45#x12Gx248mm and Rear 45#×12G×219mm\n</span>\n</div>\n\n  </div>\n</div>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "d53476d3-88c3-45c8-9091-01f7b54a515f": {
+          "type": "alp_line",
+          "settings": {}
+        },
+        "e007ec43-fe8c-4dac-b7c9-cea6622aba15": {
+          "type": "alp_richtext_2",
+          "disabled": true,
+          "settings": {
+            "rich_content": "<div class=\"alp-icon-list\">\n  <div>\n    <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/ddl_shipping.svg\" alt=\"\">\n    <p>\n      <span>Free Shipping</span>\n      Free Shipping on all online orders.\n    </p>\n  </div>\n  <div>\n    <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/ddl_return.svg\" alt=\"\">\n    <p>\n      <span>15-Day Trial</span>\n      All Mokwheel products can be returned within 15 days of purchase. Click\n      <a href=\"/pages/return-refund-policy-new\">here </a>\n      for more information.\n    </p>\n  </div>\n  <div>\n    <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/ddl_warrant.svg\" alt=\"\">\n    <p>\n      <span>2-Year Warranty</span>\n      The Two (2) Year Limited Warranty applies to purchases made from\n      authorized channels of Mokwheel. Click\n      <a href=\"/pages/warranty-new\">here </a>for more information.\n    </p>\n  </div>\n</div>",
+            "padding_top": 1,
+            "padding_bottom": 1
+          }
+        },
+        "features_icontext_JAF9qR": {
+          "type": "features_icontext",
+          "settings": {}
+        },
+        "100e5730-5901-410f-831c-679d5382fb4c": {
+          "type": "line_item_properties",
+          "settings": {
+            "title": "Free Gifts",
+            "content": "<p>{{ product.metafields.custom.product_gift_info.value }}</p>"
+          }
+        },
+        "11e3bdba-2a60-4b29-8d5b-e527fff72b62": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false,
+            "show_custom_text": false,
+            "custom_text": "Launching Soon",
+            "custom_text_bg_color": "#858585",
+            "custom_html": "",
+            "padding_top": 3,
+            "padding_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "27c3de63-2ec0-4217-b9c7-6f97151ae1db",
+        "f9e8f6ce-9ec7-46bd-a141-b5dc95cecda3",
+        "672c6924-15a5-4be0-a429-f1b650305940",
+        "9a1987aa-8f36-4594-8a65-bab995d662c9",
+        "d170b49e-ce28-437a-acfd-bfa3ae772238",
+        "product_des_J3eV3X",
+        "count_down_text_XwaQWH",
+        "27039ea3-cc6a-448d-b074-6e34e613b694",
+        "cd35ecf7-551c-49e0-b7d8-2ac48a45a86d",
+        "donation_block_wUU836",
+        "promotions_KnKAEr",
+        "product_shippingtime_v_3nxC8F",
+        "642950a7-cdd2-4425-90d7-a41c561403d9",
+        "quantity_selector_bMbMFx",
+        "product_accessories_mYHVta",
+        "promotion_pack_n1_HhDKzE",
+        "promotion_pack_b_n1_BqcRMt",
+        "product_upgrades_new_8GhAic",
+        "promotion_pack_HE8wiX",
+        "promotion_pack_7Nm9r9",
+        "promotion_pack_DDqGdQ",
+        "product_gift_promotion_jQMN7m",
+        "promotion_pack_2_under_WzqN7e",
+        "promotion_pack_2_under_NtHETU",
+        "8aa05b40-73a0-4f7e-a908-b04e4547c16e",
+        "extend_block_fLXeqH",
+        "73e11739-b582-4da7-b3dd-05909fe9baab",
+        "00ead982-c03e-41d7-a63a-978c783c3862",
+        "3a685a80-0a35-42df-af1e-3508460a925b",
+        "d53476d3-88c3-45c8-9091-01f7b54a515f",
+        "e007ec43-fe8c-4dac-b7c9-cea6622aba15",
+        "features_icontext_JAF9qR",
+        "100e5730-5901-410f-831c-679d5382fb4c",
+        "11e3bdba-2a60-4b29-8d5b-e527fff72b62"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "{{ product.title }}",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "image_max_height": "800px",
+        "images_list_type": "variants",
+        "images_type": "vertical",
+        "picture_type": "contain",
+        "hide_zoom": false,
+        "zoom_size": "300%",
+        "save_text": "Save",
+        "container": "alp-container-fluid",
+        "padding_top": 4,
+        "padding_bottom": 4,
+        "reset_spacing": false
+      }
+    },
+    "alp_separator_L87EzP": {
+      "type": "alp-separator",
+      "settings": {
+        "title": "Overview",
+        "target": "overview",
+        "bg_color": "#ffffff",
+        "text_color": "rgba(0,0,0,0)",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "alp_secondary_code_F99AfE": {
+      "type": "alp-secondary-code",
+      "settings": {
+        "title": "Advanced Four-Bar Linkage Design",
+        "desc": "Our 750W motor powers the Discover 2 to a top seed of 28MPH, adjustable for safe riding. The high-precision torque sensor ensures smooth, responsive rides, while the 705.6Wh battery delivers a 75-mile range-20% more than competitors.",
+        "video": "shopify://files/videos/墨蛟-详情页首屏视频.mp4",
+        "video_mobile": "shopify://files/videos/墨蛟系列-详情页首屏视频-M.mp4",
+        "rich_content": "<div class=\"info\">\n          <img class=\"info_img\" src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/4_Fat_Tires.png?v=1747645900\" alt=\"\">\n          <div class=\"info_title\">4” Fat Tires</div>\n        </div>\n        <div class=\"info\">\n          <img class=\"info_img\" src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/750W.png?v=1747645947\" alt=\"\">\n          <div class=\"info_title\">1300W</div>\n        </div>\n        <div class=\"info\">\n          <img class=\"info_img\" src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/Torque_Sensor.png?v=1747645928\" alt=\"\">\n          <div class=\"info_title\">Torque+Cadence Sensor</div>\n        </div>\n        <div class=\"info\">\n          <img class=\"info_img\" src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/28_MPH.png?v=1747645878\" alt=\"\">\n          <div class=\"info_title\">28 MPH</div>\n        </div>\n        <div class=\"info\">\n          <img class=\"info_img\" src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/Up_to_80_Miles.png?v=1747645976\" alt=\"\">\n          <div class=\"info_title\">Up to 80 Miles</div>\n        </div>\n        <div class=\"info\">\n          <img class=\"info_img\" src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/350_Lbss.png?v=1747646014\" alt=\"\">\n          <div class=\"info_title\">400 Lbs</div>\n        </div>",
+        "image_aspect_ratio": "2.2/1",
+        "image_aspect_ratio_mobile": "5/8",
+        "min_height": "420px",
+        "bg_color": "#0e0e0e",
+        "text_color": "#ffffff",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "alp_secondary_power_dqzggf": {
+      "type": "alp-secondary-power",
+      "blocks": {
+        "item_G7EMLi": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1_1.5x.png",
+            "video": "shopify://files/videos/石板岩 视频8-骑行片段.mp4",
+            "title": "<p>Power Meets Precision</p>",
+            "description": "<p>Drawing on our extensive experience working with carbon, we’ve developed an unrivaled formula dedicated</p>",
+            "rich_content": "<div class=\"icon\">\n  <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/3x_009a0a83-e085-4210-83bc-1082866db8fe.png?v=1747973152\" alt=\"\">\n  <p>HC340</p>\n  <p>高强度合金</p>\n</div>\n<div class=\"icon\">\n  <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/3x_009a0a83-e085-4210-83bc-1082866db8fe.png?v=1747973152\" alt=\"\">\n  <p>大排量燃油</p>\n  <p>标准的强度分析</p>\n</div>\n<div class=\"icon\">\n  <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/3x_009a0a83-e085-4210-83bc-1082866db8fe.png?v=1747973152\" alt=\"\">\n  <p>耐久100万次</p>\n  <p>单品超强度试验</p>\n</div>",
+            "image1": "shopify://shop_images/DSC01688_2x_940ea0d7-500a-47d0-8185-131377fc0d76.png",
+            "image2": "shopify://shop_images/DSC06499_2x_642c70e4-9253-4f30-aed0-099fc94be0bb.png"
+          }
+        },
+        "item_RbXMEp": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1_1.5x.png",
+            "title": "<p>Power Meets Precision</p>",
+            "description": "<p>Drawing on our extensive experience working with carbon, we’ve developed an unrivaled formula dedicated</p>",
+            "rich_content": "<div class=\"icon\">\n  <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/3x_009a0a83-e085-4210-83bc-1082866db8fe.png?v=1747973152\" alt=\"\">\n  <p>HC340</p>\n  <p>高强度合金</p>\n</div>\n<div class=\"icon\">\n  <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/3x_009a0a83-e085-4210-83bc-1082866db8fe.png?v=1747973152\" alt=\"\">\n  <p>大排量燃油</p>\n  <p>标准的强度分析</p>\n</div>\n<div class=\"icon\">\n  <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/3x_009a0a83-e085-4210-83bc-1082866db8fe.png?v=1747973152\" alt=\"\">\n  <p>耐久100万次</p>\n  <p>单品超强度试验</p>\n</div>",
+            "image1": "shopify://shop_images/DSC01688_2x_940ea0d7-500a-47d0-8185-131377fc0d76.png",
+            "image2": "shopify://shop_images/DSC06499_2x_642c70e4-9253-4f30-aed0-099fc94be0bb.png"
+          }
+        }
+      },
+      "block_order": [
+        "item_G7EMLi",
+        "item_RbXMEp"
+      ],
+      "settings": {
+        "bigtitle": "\"Power delivery is smooth and unobtrusive.\"",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-full-width",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false,
+        "text_left": false
+      }
+    },
+    "alp_secondary_precision_Wr7n3Q": {
+      "type": "alp-secondary-precision",
+      "settings": {
+        "title": "Power Meets Precision",
+        "desc": "Our 750W motor powers the Discover 2 to a top seed of 28MPH, adjustable for safe riding. The high-precision torque sensor ensures smooth, responsive rides, while the 705.6Wh battery delivers a 75-mile range-20% more than competitors.",
+        "image_pc": "shopify://shop_images/bg_PC_1.5x.png",
+        "image_mobile": "shopify://shop_images/bg_SJ_1.5x.png",
+        "image_aspect_ratio": "2.1/1",
+        "image_aspect_ratio_mobile": "5/8",
+        "min_height": "420px",
+        "bg_color": "#ffffff",
+        "text_color": "#ffffff",
+        "container": "alp-full-width",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "alp_secondary_power_MneQLY": {
+      "type": "alp-secondary-power",
+      "blocks": {
+        "item_CkHenM": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1_1.5x.png",
+            "title": "<p>Power Meets Precision</p>",
+            "description": "<p>Drawing on our extensive experience working with carbon, we’ve developed an unrivaled formula dedicated</p>",
+            "rich_content": "<div class=\"icon\">\n  <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/3x_009a0a83-e085-4210-83bc-1082866db8fe.png?v=1747973152\" alt=\"\">\n  <p>HC340</p>\n  <p>高强度合金</p>\n</div>\n<div class=\"icon\">\n  <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/3x_009a0a83-e085-4210-83bc-1082866db8fe.png?v=1747973152\" alt=\"\">\n  <p>大排量燃油</p>\n  <p>标准的强度分析</p>\n</div>\n<div class=\"icon\">\n  <img src=\"https://cdn.shopify.com/s/files/1/0550/4424/3702/files/3x_009a0a83-e085-4210-83bc-1082866db8fe.png?v=1747973152\" alt=\"\">\n  <p>耐久100万次</p>\n  <p>单品超强度试验</p>\n</div>",
+            "image1": "shopify://shop_images/DSC01688_2x_940ea0d7-500a-47d0-8185-131377fc0d76.png",
+            "image2": "shopify://shop_images/DSC06499_2x_642c70e4-9253-4f30-aed0-099fc94be0bb.png"
+          }
+        },
+        "item_dtPHr3": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/56_2x_e18b2a62-4ad5-4648-ac00-ba4f10e67339.jpg",
+            "title": "",
+            "description": "",
+            "rich_content": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_CkHenM",
+        "item_dtPHr3"
+      ],
+      "settings": {
+        "bigtitle": "",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-full-width",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false,
+        "text_left": true
+      }
+    },
+    "alp_secondary_tidy_jMKA43": {
+      "type": "alp-secondary-tidy",
+      "blocks": {
+        "block_item_h7KkEK": {
+          "type": "block-item",
+          "settings": {
+            "image": "shopify://shop_images/418_1.5x.png",
+            "title": "Tidy does it",
+            "desc": "Our innovative gravel rear suspension is light, simple, and effective. A thru-axle pivot in the seat tube allows the rear triangle and seatpost of the bike to flex vertically"
+          }
+        },
+        "block_item_LBt8RU": {
+          "type": "block-item",
+          "settings": {
+            "image": "shopify://shop_images/357_1.5x.png",
+            "title": "Tidy does it",
+            "desc": "Our innovative gravel rear suspension is light, simple, and effective. A thru-axle pivot in the seat tube allows the rear triangle and seatpost of the bike to flex vertically"
+          }
+        },
+        "block_item_jzKHty": {
+          "type": "block-item",
+          "settings": {
+            "image": "shopify://shop_images/353_1.5x.png",
+            "title": "Tidy does it",
+            "desc": "Our innovative gravel rear suspension is light, simple, and effective. A thru-axle pivot in the seat tube allows the rear triangle and seatpost of the bike to flex vertically"
+          }
+        },
+        "block_item_kdgAfT": {
+          "type": "block-item",
+          "settings": {
+            "image": "shopify://shop_images/367_1.5x.png",
+            "title": "Tidy does it",
+            "desc": "Our innovative gravel rear suspension is light, simple, and effective. A thru-axle pivot in the seat tube allows the rear triangle and seatpost of the bike to flex vertically"
+          }
+        },
+        "block_item_4Waj6X": {
+          "type": "block-item",
+          "settings": {
+            "image": "shopify://shop_images/349_1.5x.png",
+            "title": "Tidy does it",
+            "desc": "Our innovative gravel rear suspension is light, simple, and effective. A thru-axle pivot in the seat tube allows the rear triangle and seatpost of the bike to flex vertically"
+          }
+        },
+        "block_item_kWEdpP": {
+          "type": "block-item",
+          "settings": {
+            "image": "shopify://shop_images/418_1.5x.png",
+            "title": "Tidy does it",
+            "desc": "Our innovative gravel rear suspension is light, simple, and effective. A thru-axle pivot in the seat tube allows the rear triangle and seatpost of the bike to flex vertically"
+          }
+        }
+      },
+      "block_order": [
+        "block_item_h7KkEK",
+        "block_item_LBt8RU",
+        "block_item_jzKHty",
+        "block_item_kdgAfT",
+        "block_item_4Waj6X",
+        "block_item_kWEdpP"
+      ],
+      "settings": {
+        "image_aspect_ratio": "3/2",
+        "bg_color": "#f8f8f8",
+        "text_color": "#000000",
+        "container": "alp-full-width",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "alp_separator_bgYQne": {
+      "type": "alp-separator",
+      "settings": {
+        "title": "Specs & Fit",
+        "target": "specs_fit",
+        "bg_color": "#ffffff",
+        "text_color": "rgba(0,0,0,0)",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "alp_secondary_specification_ArHw9p": {
+      "type": "alp-secondary-specification",
+      "blocks": {
+        "spec_type_c_kJLwUH": {
+          "type": "spec_type_c",
+          "settings": {
+            "tab_title": "Size & Fit",
+            "text": "Large",
+            "product_image": "shopify://shop_images/baslt_st_2.0_large_0dbd8966-32f3-445c-a9e8-79e0215abfdf.png",
+            "man_image": "shopify://shop_images/Subtract_72c40bb5-fadc-4531-a3c0-e475c6763c6d.png",
+            "title": "Height",
+            "desc": "Slide the scale for your bike inseam measurement",
+            "match_max": "6.67",
+            "match_min": "5.50",
+            "title_match": "Basalt ST 2.0  (Large)",
+            "desc_match": "You will be able to pedal and stand over the frame comfortably.",
+            "title_not_match": "Basalt ST 2.0  (Large)",
+            "desc_not_match": "You may experience discomfort on extended riding periods.",
+            "title_recommend": "",
+            "products": [],
+            "show_active": false
+          }
+        },
+        "spec_type_c_Jzgm4j": {
+          "type": "spec_type_c",
+          "settings": {
+            "tab_title": "",
+            "text": "Standard",
+            "product_image": "shopify://shop_images/baslt_st_2.0_standar.png",
+            "man_image": "shopify://shop_images/Subtract_72c40bb5-fadc-4531-a3c0-e475c6763c6d.png",
+            "title": "Height",
+            "desc": "Slide the scale for your bike inseam measurement",
+            "match_max": "6.33",
+            "match_min": "5.1667",
+            "title_match": "Basalt ST 2.0 (Standard)",
+            "desc_match": "You will be able to pedal and stand over the frame comfortably.",
+            "title_not_match": "Basalt ST 2.0 (Standard)",
+            "desc_not_match": "You may experience discomfort on extended riding periods.",
+            "title_recommend": "",
+            "products": [],
+            "show_active": false
+          }
+        },
+        "spec_type_a_PgP8rx": {
+          "type": "spec_type_a",
+          "settings": {
+            "tab_title": "Geometry",
+            "rich_content": "<div class=\"Sp_alp\">\n    <div>\n        <div>\n            <b>Frame Size</b><span>Large</span><span>Standard</span>\n        </div>\n        <div>\n            <b>Rider Height</b><span>5'6\" - 6'8\"</span><span>5'2\" - 6'4\"</span>\n        </div>\n        <div>\n            <b>Reach</b><span>16.34\"</span><span>15.94\"</span>\n        </div>\n        <div>\n            <b>Top Tube Length</b><span>23.62\"</span><span>23.19\"</span>\n        </div>\n        <div>\n            <b>Standover Height</b><span>16.85\"</span><span>16.85\"</span>\n        </div>\n        <div>\n            <b>Wheelbase</b><span>45.67\"</span><span>45.67\"</span>\n        </div>\n        <div>\n            <b>Min Saddle Height</b><span>32.48\"</span><span>29.69\"</span>\n        </div>\n        <div>\n            <b>Max Saddle Height</b><span>41.5\"</span><span>38.7\"</span>\n        </div>\n        <div>\n            <b>Total Length</b><span>74.61\"</span><span>74.61\"</span>\n        </div>\n        <div>\n            <b>Head Tube Length</b><span>5.91\"</span><span>5.91\"</span>\n        </div>\n    </div>\n</div>",
+            "image": "shopify://shop_images/Basalt_ST_2.0_c69fb6f1-bda2-4bbe-9f87-10a686a42c60.png",
+            "show_active": true
+          }
+        },
+        "spec_type_b_3DTWWx": {
+          "type": "spec_type_b",
+          "settings": {
+            "tab_title": "Technical",
+            "rich_content": "<div class=\"Sp_tech\">\n  <div>\n    <div>\n<b>Battery</b><span>48V 19.6A Complies with UL standards</span>\n</div>\n    <div>\n<b>Charger</b><span>48V 3A</span>\n</div>\n <div>\n<b>Motor</b><span>Continuous Power: 750W<p>\nPeak Power: 1100W</p>\n<p>\nTorque: 90Nm+</p></span>\n</div>\n    <div>\n<b>Speed Class</b><span>Up to 28 mph on Level 5 PAS</span>\n</div>\n    <div>\n<b>Weight</b><span>80 lbs</span>\n</div>\n    <div>\n<b>Range</b><span>60~80miles</span>\n</div>\n    <div>\n<b>Payload Capacity</b><span>350 lbs</span>\n</div>\n<div></div>\n</div>\n</div>",
+            "show_active": false
+          }
+        },
+        "spec_type_b_HjjCFL": {
+          "type": "spec_type_b",
+          "settings": {
+            "tab_title": "Performance",
+            "rich_content": "<div class=\"Sp_tech\">\n  <div>\n<div>\n<b>Sensor</b><span>Dual-Side Torque Sensor\n</span>\n</div>\n    <div>\n<b>Tires</b><span>26x4.0\" Puncture Resistant Fat Tire</span>\n</div>\n    <div>\n<b>Display</b><span>Detachable High-Definition Display</span>\n</div>\n    <div>\n<b>Brakes</b><span>TEKTRO HD-E350 Hydraulic Disc Brakes</span>\n</div>\n<div>\n<b>Gearing</b><span>Shimano 7-Speed</span>\n</div>\n<div>\n<b>Derailleur</b><span>7 Speed Shimano Rear Derailleur</span>\n</div>\n    <div>\n<b>Chain</b><span>KMC Stainless Chain</span>\n</div>\n    <div>\n<b>Crank Set</b><span>52T ALUMINUM ALLOY CRANKSET</span>\n</div>\n    <div>\n<b>Front Fork</b><span>110mm Adjustable Suspension</span>\n</div>\n    <div>\n<b>Frame</b><span>6061 Aluminum Alloy with Internal Battery</span>\n</div>\n    <div>\n<b>Throttle</b><span>Thumb Throttle</span>\n</div>\n    <div>\n<b>Handlebar</b><span>Aluminum Alloy 31.8mm 680mm</span>\n</div>\n<div>\n<b>Kickstand</b><span>6061 Aluminum Kickstand\n</span>\n</div>\n<div>\n<b>Rims</b><span>Aluminum Alloy</span>\n</div>\n<div>\n<b>Saddle</b><span>Customized Comfort Leather Seat\n</span>\n</div>\n<div>\n<b>Spokes</b><span>Front 45#x12Gx248mm and Rear 45#×12G×219mm\n</span>\n</div>\n\n  </div>\n</div>",
+            "show_active": false
+          }
+        }
+      },
+      "block_order": [
+        "spec_type_c_kJLwUH",
+        "spec_type_c_Jzgm4j",
+        "spec_type_a_PgP8rx",
+        "spec_type_b_3DTWWx",
+        "spec_type_b_HjjCFL"
+      ],
+      "settings": {
+        "bigtitle": "Specification & Geometry",
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "alp_fit_tailor_popup_hahJAH": {
+      "type": "alp-fit-tailor-popup",
+      "blocks": {
+        "item_gtYGNz": {
+          "type": "item",
+          "settings": {
+            "text": "Large",
+            "product_image": "shopify://shop_images/baslt_st_2.0_large_0dbd8966-32f3-445c-a9e8-79e0215abfdf.png",
+            "man_image": "shopify://shop_images/Subtract_72c40bb5-fadc-4531-a3c0-e475c6763c6d.png",
+            "title": "Height",
+            "desc": "Slide the scale for your bike inseam measurement",
+            "match_max": "6.67",
+            "match_min": "5.50",
+            "title_match": "Basalt ST 2.0  (Large)",
+            "desc_match": "You will be able to pedal and stand over the frame comfortably.",
+            "title_not_match": "Basalt ST 2.0  (Large)",
+            "desc_not_match": "You may experience discomfort on extended riding periods.",
+            "title_recommend": "",
+            "products": []
+          }
+        },
+        "item_mKYhHz": {
+          "type": "item",
+          "settings": {
+            "text": "Standard",
+            "product_image": "shopify://shop_images/baslt_st_2.0_standar.png",
+            "man_image": "shopify://shop_images/Subtract_72c40bb5-fadc-4531-a3c0-e475c6763c6d.png",
+            "title": "Height",
+            "desc": "Slide the scale for your bike inseam measurement",
+            "match_max": "6.33",
+            "match_min": "5.1667",
+            "title_match": "Basalt ST 2.0 (Standard)",
+            "desc_match": "You will be able to pedal and stand over the frame comfortably.",
+            "title_not_match": "Basalt ST 2.0 (Standard)",
+            "desc_not_match": "You may experience discomfort on extended riding periods.",
+            "title_recommend": "",
+            "products": []
+          }
+        }
+      },
+      "block_order": [
+        "item_gtYGNz",
+        "item_mKYhHz"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "bg_color": "#ffffff",
+        "bg_color_inner": "#f8f8f8",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "alp_secondary_recomment_BMkJYQ": {
+      "type": "alp-secondary-recomment",
+      "blocks": {
+        "item_WwGxJi": {
+          "type": "item",
+          "settings": {
+            "content": "<p>Drawing on our extensive experience working with carbon, we’ve developed an unrivaled formula dedicated exclusively for the E-765 OPTIMUM. Thanks to the ultra-precise fiber orientations and specific combinations of various types of carbon - we found the sweet spot. By combining 25% HM, 31% IM, 31% HR and 13 % specific fiber, we were able to maximize pedaling performance, while preserving ride comfort.</p>"
+          }
+        },
+        "item_QqDAHF": {
+          "type": "item",
+          "settings": {
+            "content": "<p>Drawing on our extensive experience working with carbon, we’ve developed an unrivaled formula dedicated exclusively for the E-765 OPTIMUM. Thanks to the ultra-precise fiber orientations and specific combinations of various types of carbon - we found the sweet spot. By combining 25% HM, 31% IM, 31% HR and 13 % specific fiber, we were able to maximize pedaling performance, while preserving ride comfort.</p>"
+          }
+        },
+        "item_qb3Gih": {
+          "type": "item",
+          "settings": {
+            "content": "<p>Drawing on our extensive experience working with carbon, we’ve developed an unrivaled formula dedicated exclusively for the E-765 OPTIMUM. Thanks to the ultra-precise fiber orientations and specific combinations of various types of carbon - we found the sweet spot. By combining 25% HM, 31% IM, 31% HR and 13 % specific fiber, we were able to maximize pedaling performance, while preserving ride comfort.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_WwGxJi",
+        "item_QqDAHF",
+        "item_qb3Gih"
+      ],
+      "settings": {
+        "title": "Power Meets Precision",
+        "image": "shopify://shop_images/1751_1.5x.png",
+        "image_mobile": "shopify://shop_images/1751_1.5x.png",
+        "bg_color": "#f8f8f8",
+        "text_color": "#1a1a1a",
+        "container": "alp-container-fluid",
+        "padding_top": 25,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "text_right": true
+      }
+    },
+    "alp_secondary_recomment_DUqGCA": {
+      "type": "alp-secondary-recomment",
+      "blocks": {
+        "item_THPFHV": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1678_3x_166ea1ca-841b-46aa-a064-fa0ce1388c75.png",
+            "content": "<p>Drawing on our extensive experience working with carbon, we’ve developed an unrivaled formula dedicated exclusively for the E-765 OPTIMUM. Thanks to the ultra-precise fiber orientations and specific combinations of various types of carbon - we found the sweet spot. By combining 25% HM, 31% IM, 31% HR and 13 % specific fiber, we were able to maximize pedaling performance, while preserving ride comfort.</p>"
+          }
+        },
+        "item_PETUhA": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1678_3x_166ea1ca-841b-46aa-a064-fa0ce1388c75.png",
+            "content": "<p>Drawing on our extensive experience working with carbon, we’ve developed an unrivaled formula dedicated exclusively for the E-765 OPTIMUM. Thanks to the ultra-precise fiber orientations and specific combinations of various types of carbon - we found the sweet spot. By combining 25% HM, 31% IM, 31% HR and 13 % specific fiber, we were able to maximize pedaling performance, while preserving ride comfort.</p>"
+          }
+        },
+        "item_QDebdB": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1678_3x_166ea1ca-841b-46aa-a064-fa0ce1388c75.png",
+            "content": "<p>Drawing on our extensive experience working with carbon, we’ve developed an unrivaled formula dedicated exclusively for the E-765 OPTIMUM. Thanks to the ultra-precise fiber orientations and specific combinations of various types of carbon - we found the sweet spot. By combining 25% HM, 31% IM, 31% HR and 13 % specific fiber, we were able to maximize pedaling performance, while preserving ride comfort.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_THPFHV",
+        "item_PETUhA",
+        "item_QDebdB"
+      ],
+      "settings": {
+        "title": "Power Meets Precision",
+        "image": "shopify://shop_images/1751_1.5x.png",
+        "image_mobile": "shopify://shop_images/1751_1.5x.png",
+        "bg_color": "#f8f8f8",
+        "text_color": "#1a1a1a",
+        "container": "alp-container-fluid",
+        "padding_top": 25,
+        "padding_bottom": 25,
+        "reset_spacing": true,
+        "text_right": false
+      }
+    },
+    "alp_media_slider_new_yw8NF6": {
+      "type": "alp-media-slider-new",
+      "blocks": {
+        "item_VVAm96": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1_2x_25eecfa1-a539-4792-aa9d-6beb3e9cbfb0.jpg",
+            "video": "",
+            "video_url": "",
+            "title": "<p>Took the bike on a long-distance ride, and it was perfect. The motor kept me going.</p>"
+          }
+        },
+        "item_zN4fpj": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/3_2x_35a288e7-99d2-4a51-8cd7-3f9ef875a0d0.jpg",
+            "video": "",
+            "video_url": "",
+            "title": "<p>Dual suspension E-bikes redefine terrain, distance, and time.Took the bike on a long-distance ride, and it was perfect. The motor kept me going.</p>"
+          }
+        },
+        "item_dFC4HD": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/4_2x_af0646fc-9a0b-45e8-b234-2d13639e666d.jpg",
+            "video": "",
+            "video_url": "",
+            "title": "<p>Fast, Powerful, and Fun to Ride!</p>"
+          }
+        },
+        "item_LkBKAh": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/5_2x_7cce758b-e033-4777-9d4b-621528a7c9c4.jpg",
+            "video": "",
+            "video_url": "",
+            "title": "<p>Love the bike, great range and the motor really is just what I need, get a great workout but motor is great when I hit a steep hill or strong headwind very pleased with the bike. Highly recommend</p>"
+          }
+        },
+        "item_P8VyzL": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/6_2x_82b15b4e-9dd0-4213-a986-0bb72abde323.jpg",
+            "video": "",
+            "video_url": "",
+            "title": "<p>Didn't think it would be so easy to ride up a hill, but this bike made it effortless. Power at the pedals and smooth handling all the way up.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_VVAm96",
+        "item_zN4fpj",
+        "item_dFC4HD",
+        "item_LkBKAh",
+        "item_P8VyzL"
+      ],
+      "settings": {
+        "title": "Hear From the Community",
+        "image_aspect_ratio": "420/320",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "alp_rider_reviews_new_gtrGDH": {
+      "type": "alp-rider-reviews-new",
+      "blocks": {
+        "item_3JjYdX": {
+          "type": "item",
+          "settings": {
+            "view": "50K Views",
+            "image": "shopify://shop_images/1_7a9d8769-f33a-4ef3-8504-af268cd04e5e.jpg",
+            "hover_video": "shopify://files/videos/1-开箱组装参数介绍骑行+公路+山地.mp4",
+            "video": "https://www.youtube.com/watch?v=vO70MIlh710&t=9s",
+            "video_url": "https://www.youtube.com/watch?v=vO70MIlh710&t=9s",
+            "title": "<h1>Sleeper Surron? | MokWheel Obsidian</h1>",
+            "author_img": "shopify://shop_images/unnamed_f2a7c9e0-1d90-4d97-9e88-912e7aaa6e01.jpg",
+            "author_name": "Moto Matt"
+          }
+        },
+        "item_8iAxRm": {
+          "type": "item",
+          "settings": {
+            "view": "44K Views",
+            "image": "shopify://shop_images/2_038e2791-07bd-45a2-9421-6bc1ccd50cdc.jpg",
+            "hover_video": "shopify://files/videos/3-丛林山地越野公路骑行-爬坡避震速度测试.mp4",
+            "video": "https://www.youtube.com/watch?v=bHniVwDe1I0&t=5s",
+            "video_url": "https://www.youtube.com/watch?v=bHniVwDe1I0&t=5s",
+            "title": "<h1>Controlled Power! Mokwheel Obsidian Ebike Test</h1>",
+            "author_img": "shopify://shop_images/unnamed_1_3c416625-caad-4f40-b4f8-94c8f83ff85f.jpg",
+            "author_name": "Pat Smage"
+          }
+        },
+        "item_qGNFY4": {
+          "type": "item",
+          "settings": {
+            "view": "13K Views",
+            "image": "shopify://shop_images/6-Obsidian-_-20240813.jpg",
+            "hover_video": "shopify://files/videos/6-Obsidian-沙漠迷彩+宠物棚拖车-20240813-拖车展示骑行场景+桥上.mp4",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=5qermTQpQoc",
+            "title": "<h1>1st time bridge fishing *Florida Keys* &lcub;catch N cook&rcub;</h1>",
+            "author_img": "shopify://shop_images/channels4_profile_12261007-c82e-41a6-b244-04b89e74746d.jpg",
+            "author_name": "South Florida Fishing Channel"
+          }
+        },
+        "item_4BKXFt": {
+          "type": "item",
+          "settings": {
+            "view": "11K Views",
+            "image": "shopify://shop_images/8-Obsidian-_-20231117.jpg",
+            "hover_video": "shopify://files/videos/8-Obsidian-黄色-20231117-测评+荒地+逆变器.mp4",
+            "video": "https://www.youtube.com/watch?v=sXMM_QMZz5o&t=99satch?v=5iIo47U9D9o",
+            "video_url": "https://www.youtube.com/watch?v=sXMM_QMZz5o&t=99satch?v=5iIo47U9D9o",
+            "title": "<h1>Mokwheel Obsidian Solar Inverter Fat Tire Ebike review</h1>",
+            "author_img": "shopify://shop_images/channels4_profile_1_1da5181b-d06e-4b59-a23b-cae9db366573.jpg",
+            "author_name": "Electrek.co"
+          }
+        },
+        "item_YqrMqj": {
+          "type": "item",
+          "settings": {
+            "view": "8565 Views",
+            "image": "shopify://shop_images/7-Obsidian-_-20240128.jpg",
+            "hover_video": "shopify://files/videos/7-Obsidian-黑红-20240128-骑行+野外.mp4",
+            "video": "https://www.youtube.com/watch?v=6QCWdpESsXw",
+            "video_url": "https://www.youtube.com/watch?v=6QCWdpESsXw",
+            "title": "<h1>E-mountain bike trail riding | Mokwheel Obsidian full suspension E-mountain bike </h1>",
+            "author_img": "shopify://shop_images/unnamed_2_3f45a35f-2e8c-4de9-a5e1-c23d05150511.jpg",
+            "author_name": "At Home In Wild Spaces"
+          }
+        }
+      },
+      "block_order": [
+        "item_3JjYdX",
+        "item_8iAxRm",
+        "item_qGNFY4",
+        "item_4BKXFt",
+        "item_YqrMqj"
+      ],
+      "settings": {
+        "title": "",
+        "image_aspect_ratio": "427/240",
+        "bg_color": "#f8f8f8",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "alp_separator_qHCxdf": {
+      "type": "alp-separator",
+      "settings": {
+        "title": "Reviews",
+        "target": "reviews",
+        "bg_color": "#ffffff",
+        "text_color": "rgba(0,0,0,0)",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "360652e9-5ee7-481f-9229-6763bd740833": {
+      "type": "alp-apps",
+      "blocks": {
+        "b2533a2d-0888-4ea5-ae30-e7bfb336afb4": {
+          "type": "shopify://apps/stamped-reviews/blocks/main-widget/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "animation": true,
+            "tags_exclude": "",
+            "tags_include": "",
+            "search": "",
+            "linkify": true,
+            "use_metafields": false,
+            "sku_tagtype": "sku"
+          }
+        }
+      },
+      "block_order": [
+        "b2533a2d-0888-4ea5-ae30-e7bfb336afb4"
+      ],
+      "settings": {
+        "title": "Section Title",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "alp_sticky_product_banner_arecxA",
+    "alp_main_product_new_c9CtCd",
+    "227b69f5-8273-45be-b3d6-fe00b5168132",
+    "alp_separator_L87EzP",
+    "alp_secondary_code_F99AfE",
+    "alp_secondary_power_dqzggf",
+    "alp_secondary_precision_Wr7n3Q",
+    "alp_secondary_power_MneQLY",
+    "alp_secondary_tidy_jMKA43",
+    "alp_separator_bgYQne",
+    "alp_secondary_specification_ArHw9p",
+    "alp_fit_tailor_popup_hahJAH",
+    "alp_secondary_recomment_BMkJYQ",
+    "alp_secondary_recomment_DUqGCA",
+    "alp_media_slider_new_yw8NF6",
+    "alp_rider_reviews_new_gtrGDH",
+    "alp_separator_qHCxdf",
+    "360652e9-5ee7-481f-9229-6763bd740833"
+  ]
+}

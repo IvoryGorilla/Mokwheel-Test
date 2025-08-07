@@ -1,0 +1,205 @@
+{% schema %}
+{
+  "name": "Alp About Content A",
+  "class": "alp-about-content-a",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Story"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "block_max_width",
+      "label": "Content Max Width",
+      "default": "720px"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp About Content A"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};--content-max-width: {{ st.block_max_width }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-section.alp-about-content-a {
+    --gl-max-width: var(--content-max-width);
+  }
+
+  .alp-about-content-text,
+  .alp-about-content-sub-text {
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .alp-about-content-sub-text p:first-child {
+    margin-top: 0.5em;
+  }
+
+  .alp-about-content-sub-blocks {
+    display: flex;
+    gap: 0;
+    margin-top: clamp(40px, 4vw, 48px);
+    border-top: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-color);
+  }
+  .alp-about-content-sub-blocks > div {
+    padding: 24px;
+  }
+
+  @media screen and (min-width: 769px) {
+    .alp-about-content-sub-blocks > div {
+      flex: 1;
+    }
+    .alp-about-content-sub-blocks > div:first-child {
+      padding-left: 0;
+    }
+    .alp-about-content-sub-blocks > div:last-child {
+      padding-right: 0;
+    }
+    .alp-about-content-sub-blocks > div:not(:last-child) {
+      border-right: 1px solid var(--text-color);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .alp-about-content-sub-blocks {
+      flex-wrap: wrap;
+    }
+    .alp-about-content-sub-blocks > div {
+      padding-left: 0px;
+    }
+    .alp-about-content-sub-blocks > div:not(:last-child) {
+      border-bottom: 1px solid var(--text-color);
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section alp-about-content-a {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container alp-about-content-a-container page-width {{ container }}">
+    <div class="alp-about-content-main">
+      <h2 class="alp-about-content-title headline__h2">{{ st.title }}</h2>
+      <div class="alp-about-content-text">
+        {{ st.content }}
+      </div>
+    </div>
+    {%- if section.blocks.size > 0 -%}
+      <div class="alp-about-content-sub-blocks">
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          <div class="alp-about-content-sub-item">
+            <h3 class="alp-about-content-sub-title headline__h4">{{ bs.title }}</h3>
+            <div class="alp-about-content-sub-text">
+              {{ bs.content }}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

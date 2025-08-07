@@ -1,0 +1,18 @@
+{% comment %}
+  Usage:
+  {% render 'alp-countdown-snippet', text: countdown_text, id: block.id, countdown_date: bs.countdown_date, countdown_hours: bs.countdown_hours  %}
+{% endcomment %}
+
+<div class="alp-t-countdown">
+  <div class="alp-t-countdown-text">{{ text }}</div>
+  <div class="alp-t-countdown-time" data-blockId="{{- id -}}"></div>
+</div>
+<script type="module">
+  let blockId = '{{- id -}}';
+  let setting_date = '{{- countdown_date -}}';
+  let setting_hours = '{{- countdown_hours -}}';
+  //
+  document.addEventListener('DOMContentLoaded', () => {
+    AlpFn.CountDown2(blockId, setting_date, setting_hours);
+  });
+</script>

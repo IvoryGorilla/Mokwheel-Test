@@ -1,0 +1,1616 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "alp_blog_breadcrumbs_Q7LLKF": {
+      "type": "alp-blog-breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 10,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "alp_button_link_tabs_MPw8iz": {
+      "type": "alp-button-link-tabs",
+      "blocks": {
+        "item_zBhp6e": {
+          "type": "item",
+          "settings": {
+            "text": "Press Reviews",
+            "url": "/pages/electric-bike-press-reviews",
+            "is_active": false
+          }
+        },
+        "item_Qefpkb": {
+          "type": "item",
+          "settings": {
+            "text": "Reviews",
+            "url": "/pages/electric-bike-reviews",
+            "is_active": false
+          }
+        },
+        "item_mUbtBC": {
+          "type": "item",
+          "settings": {
+            "text": "Review Videos",
+            "url": "/pages/electric-bike-review-videos",
+            "is_active": true
+          }
+        }
+      },
+      "block_order": [
+        "item_zBhp6e",
+        "item_Qefpkb",
+        "item_mUbtBC"
+      ],
+      "settings": {
+        "title": "Section Title",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "alp_hero_banner_DPG89P": {
+      "type": "alp-hero-banner",
+      "blocks": {
+        "heading_8VH97F": {
+          "type": "heading",
+          "settings": {
+            "text": "Electric Bike Review Videos",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_8VH97F"
+      ],
+      "custom_css": [
+        "@media (max-width: 999px) {.alp-hero-banner .alp-hero-banner-wrapper {min-height: 80px; }}"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "center",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_opacity": 50,
+        "image_aspect_ratio": "3/1",
+        "block_max_width": "720px",
+        "min_height": "130px",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "videos_banner_qNiVpY": {
+      "type": "videos-banner",
+      "disabled": true,
+      "settings": {
+        "title": "Section Title",
+        "video": "",
+        "video_url": "https://www.youtube.com/watch?v=TyExPdcMB2E",
+        "content": "The Mokwheel Obsidian Does NOT Cut Corners. We'll see if it can climb hills, how fast the Mokwheel Obsidian goes, how much torque it has, how well the brakes work, and what the realistic range is with a 200 lb rider.",
+        "bg_color": "#f6f6f6",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false
+      }
+    },
+    "videos_list_izazeQ": {
+      "type": "videos-list",
+      "blocks": {
+        "item_YfPcjX": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=_HFyvrlmDgw",
+            "model": "Model: Basalt",
+            "title": "<p>The Best Electric Bikes 2023 | Our Expert's Top 13 List</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_9ybNyG": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/3c24ed25-d2c5-4f64-8f21-050d01b6682e.webp",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=kN51O_dwrww",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt Review the E-Bike with OOMPH!</p>",
+            "author_img": "shopify://shop_images/10001_8ec67537-c581-45b3-b970-2cb520e7f8aa.jpg",
+            "author_name": "SpiderWayne",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_X93EqC": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=kARjYKE1aYI",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt Review | Fast, Powerful E-Bike With Solar Panel & Inverter Accessories!</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_WaLD6n": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/b7ebaf93-a711-4640-9737-0a71c55eaade.png",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=vEYSVhe1ZmI",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt review: $1,799 Power Station Ready Electric Bike!</p>",
+            "author_img": "shopify://shop_images/10001_1b982961-4ea6-4d27-bf14-cfef817d1f46.png",
+            "author_name": "Electrified Reviews",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_GVMP7c": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=689a2-Js_88",
+            "model": "Model: Basalt",
+            "title": "<p>Converter - Solar Charging Station - this bike's got it all! | Mokwheel Basalt</p>",
+            "author_img": "shopify://shop_images/10001_d866cb9b-4b7a-427d-ae84-c7c855b05c79.jpg",
+            "author_name": "Electric Revolution",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_rjT7YT": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=cvDlQOHTvjw",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt Unboxing and Assembly</p>",
+            "author_img": "shopify://shop_images/10001_8ec67537-c581-45b3-b970-2cb520e7f8aa.jpg",
+            "author_name": "Floyd Buckridge",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_KHnpGC": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=hom14qwVBcU",
+            "model": "Model: Basalt",
+            "title": "<p>32mph MOKWHEEL Basalt Torque sensor 26\" fat tire E-bike, 750W 48v 19.6ah. optional Power inverter</p>",
+            "author_img": "shopify://shop_images/10001_8e5da26e-ab8b-45ba-a336-a71d8e2c0bc8.jpg",
+            "author_name": "MotoCheez",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_CyGyqX": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=fs_M0XhiSDY",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt eBike Review + Power Station: WOW!</p>",
+            "author_img": "shopify://shop_images/10001_f7d864bc-dcd8-4318-a915-02bf1826c890.jpg",
+            "author_name": "We Tried lt",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_VQqAmE": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=8k4PQm-T8HY",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt | Step-Through vs. Step-Over | Best couple Ebike of 2023?</p>",
+            "author_img": "shopify://shop_images/10001_1b982961-4ea6-4d27-bf14-cfef817d1f46.png",
+            "author_name": "Electrified Reviews",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_jUKF8a": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=fIBVWP4XVWk",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST eBike Review ($1899 Fat Tire w/ Exportable Power)</p>",
+            "author_img": "shopify://shop_images/10001_9e86bd93-01c0-4773-9dee-fbc3b9a9de51.jpg",
+            "author_name": "Miss GoElectric",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_6fdjUt": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=j_Kf4NszDTA",
+            "model": "Model: Basalt St",
+            "title": "<p>A NEW REALITY for van life | living in a van (again?)</p>",
+            "author_img": "shopify://shop_images/10001_354159c0-749a-4cc4-a8ff-0610de799984.jpg",
+            "author_name": "Antoinette Yvonne",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_KJU7Fp": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=5iIo47U9D9o",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST Review | Fit For Romping On-Road or Dirt</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_gemGUC": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=7_VET6qkc3A",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST Review Took An Unexpected Turn</p>",
+            "author_img": "shopify://shop_images/10001_bab34148-7363-46bc-85be-b8db7701d7e8.jpg",
+            "author_name": "Matt TailHappyTV",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_PHbaJH": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=8EYJ7XREc80",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST review: $1,799 Step Through Mobile Power Station Electric Bike!</p>",
+            "author_img": "shopify://shop_images/10001_1b982961-4ea6-4d27-bf14-cfef817d1f46.png",
+            "author_name": "Electrified Reviews",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_zeyRK9": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=TyExPdcMB2E",
+            "model": "Model: Obsidian",
+            "title": "<p>The Mokwheel Obsidian Does NOT Cut Corners</p>",
+            "author_img": "shopify://shop_images/10001_bab3ad29-c6db-4da9-abbd-f69e8375db69.jpg",
+            "author_name": "Matt TailHappyTV",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_b3UNAF": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=qbF13EX4jt0",
+            "model": "Model: Obsidian",
+            "title": "<p>One of the BEST AT Fat Bikes out there | Mokwheel Obsidian</p>",
+            "author_img": "shopify://shop_images/10001_66166692-7dc2-40a4-a8bd-14d5fc09c99d.jpg",
+            "author_name": "Electric Revolution",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_RpnRVm": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=pXKfr7flSBI",
+            "model": "Model: Obsidian",
+            "title": "<p>Mokwheel Obsidian Review | A Powerful Full Suspension Machine For Off-Roading, Commuting & More</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_rUDeVy": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=yjliKg40F8c",
+            "model": "Model: Obsidian",
+            "title": "<p>A Powerful Ebike with Easy Solar Setup: Mokwheel Obsidian Review</p>",
+            "author_img": "shopify://shop_images/10001_09b22d1f-83be-40f7-a805-a327b0a2d39c.jpg",
+            "author_name": "Freshly Charged",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_b3VV3V": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=fuLThg3Cwz4",
+            "model": "Model: Obsidian",
+            "title": "<p>Mi Nueva Bicicleta Electrica De MOKWHEEL + Nos Quedamos A Dormir En La Casa Vieja</p>",
+            "author_img": "shopify://shop_images/10001_f60de972-0868-46b8-8402-1e9547edffa5.jpg",
+            "author_name": "Carol Chang",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_VaGkcK": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=AEuk1m9MCL0",
+            "model": "Model: Obsidian",
+            "title": "<p>Mokwheel Obsidian Revealed: The Ultimate E-Bike</p>",
+            "author_img": "shopify://shop_images/10001_0c42705e-521a-4e2e-8104-5c82039ccc05.jpg",
+            "author_name": "Stay Connected with EV's",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_CnV8YJ": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=lXs5Eza2WeI&t=609s",
+            "model": "Model: Obsidian",
+            "title": "<p>Unleashing the Power: Mokwheel Obsidian Ebike Review & Exclusive Black Friday Savings! 🚀⚡️</p>",
+            "author_img": "shopify://shop_images/10001_927d5caf-3790-4855-9a12-e9ba57ecd916.jpg",
+            "author_name": "ALL Electric ⚡️",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_Tacikg": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=-wAg-WOCDNU",
+            "model": "Model: Obsidian",
+            "title": "<p>CRAZY SWEET eBike: Mokwheel Obsidian</p>",
+            "author_img": "shopify://shop_images/10001_52fb2725-2e82-409a-b60e-c36e2e5d9bf9.jpg",
+            "author_name": "E-bike Reviews",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_jwBzgD": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=3pfHd_fFans",
+            "model": "Model: Obsidian",
+            "title": "<p>NEW BIKE REVEAL! | CycleCruza</p>",
+            "author_img": "shopify://shop_images/10001_d92b2360-e552-4b11-8513-dc2654356b83.jpg",
+            "author_name": "CycleCruza",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_4hGgk3": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=xITT_ZYapQw",
+            "model": "Model: Obsidian",
+            "title": "<p>it’s An E-Bike That I Think Of As An Off-Roader First</p>",
+            "author_img": "shopify://shop_images/10001_1c4b6022-c55e-49f5-bdeb-84a6ed085a5c.jpg",
+            "author_name": "SpiderWayne",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_WAk3Vf": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=lJxSx4B9i_4&t=11s",
+            "model": "Model: Scoria",
+            "title": "<p>Mokwheel Scoria review: $1,799 BMX Style Compact Electric Bike with Power Station Capabilities!</p>",
+            "author_img": "shopify://shop_images/10001_1b982961-4ea6-4d27-bf14-cfef817d1f46.png",
+            "author_name": "Electrified Reviews",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_NXDUWz": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=rYVxMJU3_aE",
+            "model": "Model: Scoria",
+            "title": "<p>Step-Through Ebike Full of Power | Mokwheel Scoria | Full Review</p>",
+            "author_img": "shopify://shop_images/10001_927d5caf-3790-4855-9a12-e9ba57ecd916.jpg",
+            "author_name": "ALL Electric ⚡️",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_KMGq8d": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=zsWgYQ7zh4k",
+            "model": "Model: Scoria",
+            "title": "<p>Mokwheel Scoria Electric Bike Review</p>",
+            "author_img": "shopify://shop_images/10001_70b18c90-2214-471f-a38a-8cf36b7456b7.jpg",
+            "author_name": "Tim Harrell",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_jrNHX8": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=ZN6coTtYfz0",
+            "model": "Model: Scoria",
+            "title": "<p>One Very Cool FEATURE! - Mokwheel Scoria Ebike Review</p>",
+            "author_img": "shopify://shop_images/10001_4fa8ab52-fe66-466e-83a6-c0c13ddfb5e7.jpg",
+            "author_name": "MrCentralDriver",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_WBa6dh": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=pe5Kand1djc",
+            "model": "Model: Scoria",
+            "title": "<p>Mokwheel Scoria Review | A Fat Tire Ride For Urban Cruising</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_9bE6Uc": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=lTwe7o20j8M",
+            "model": "Model: Scoria",
+            "title": "<p>Special! Unboxing & Review of the Mokwheel Scoria Electric Bike</p>",
+            "author_img": "shopify://shop_images/10001_d3b6cab6-e198-4add-9a6d-a43fd842115f.jpg",
+            "author_name": "Rix Flix",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_QBwqj4": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=AClO_u9XKV0",
+            "model": "Model: Scoria",
+            "title": "<p>Mokwheel Scoria E-Bike real life long ride review</p>",
+            "author_img": "shopify://shop_images/10001_e2d3743a-9b24-4722-8c96-06486a4abc5a.jpg",
+            "author_name": "leadfarmer73",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_bmrFBi": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=6qAGEpEBSuw",
+            "model": "Model: Scoria",
+            "title": "<p>Mokwheel Scoria eBike The Low Seat Cruiser - spider50 for $50 off</p>",
+            "author_img": "shopify://shop_images/10001_8ec67537-c581-45b3-b970-2cb520e7f8aa.jpg",
+            "author_name": "SpiderWayne",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_jREwgp": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=M4SfjaVWZpw",
+            "model": "Model: Scoria",
+            "title": "<p>My Favrite E-Bike! LOOK HERE First before you Blow your Money</p>",
+            "author_img": "shopify://shop_images/10001_ea3bfade-2825-4234-89c4-67a87ad162ab.png",
+            "author_name": "Vegas Dtech",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_FmNKaT": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=Uwsf2UamD9k",
+            "model": "Model: Scoria",
+            "title": "<p>A Utility Bike with a Torque Sensor? Mokwheel Scoria</p>",
+            "author_img": "shopify://shop_images/10001_2ee7edb6-8519-417a-ae5c-b16c8ac4389e.jpg",
+            "author_name": "Scott Hardesty",
+            "date": "Feb 03, 2021"
+          }
+        }
+      },
+      "block_order": [
+        "item_YfPcjX",
+        "item_9ybNyG",
+        "item_X93EqC",
+        "item_WaLD6n",
+        "item_GVMP7c",
+        "item_rjT7YT",
+        "item_KHnpGC",
+        "item_CyGyqX",
+        "item_VQqAmE",
+        "item_jUKF8a",
+        "item_6fdjUt",
+        "item_KJU7Fp",
+        "item_gemGUC",
+        "item_PHbaJH",
+        "item_zeyRK9",
+        "item_b3UNAF",
+        "item_RpnRVm",
+        "item_rUDeVy",
+        "item_b3VV3V",
+        "item_VaGkcK",
+        "item_CnV8YJ",
+        "item_Tacikg",
+        "item_jwBzgD",
+        "item_4hGgk3",
+        "item_WAk3Vf",
+        "item_NXDUWz",
+        "item_KMGq8d",
+        "item_jrNHX8",
+        "item_WBa6dh",
+        "item_9bE6Uc",
+        "item_QBwqj4",
+        "item_bmrFBi",
+        "item_jREwgp",
+        "item_FmNKaT"
+      ],
+      "settings": {
+        "title": "Power Station Ebikes Reviews",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "videos_list_EM7Ncj": {
+      "type": "videos-list",
+      "blocks": {
+        "item_xMG6jj": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=_HFyvrlmDgw",
+            "model": "Model: Basalt",
+            "title": "<p>The Best Electric Bikes 2023 | Our Expert's Top 13 List</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_dPyaMA": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/3c24ed25-d2c5-4f64-8f21-050d01b6682e.webp",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=kN51O_dwrww",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt Review the E-Bike with OOMPH!</p>",
+            "author_img": "shopify://shop_images/10001_8ec67537-c581-45b3-b970-2cb520e7f8aa.jpg",
+            "author_name": "SpiderWayne",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_x4WRXE": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=kARjYKE1aYI",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt Review | Fast, Powerful E-Bike With Solar Panel & Inverter Accessories!</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_CjkjKC": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=vEYSVhe1ZmI",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt review: $1,799 Power Station Ready Electric Bike!</p>",
+            "author_img": "shopify://shop_images/10001_1b982961-4ea6-4d27-bf14-cfef817d1f46.png",
+            "author_name": "Electrified Reviews",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_yVQMXX": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=689a2-Js_88",
+            "model": "Model: Basalt",
+            "title": "<p>Converter - Solar Charging Station - this bike's got it all! | Mokwheel Basalt</p>",
+            "author_img": "shopify://shop_images/10001_d866cb9b-4b7a-427d-ae84-c7c855b05c79.jpg",
+            "author_name": "Electric Revolution",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_zCFhdT": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=cvDlQOHTvjw",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt Unboxing and Assembly</p>",
+            "author_img": "shopify://shop_images/10001_8ec67537-c581-45b3-b970-2cb520e7f8aa.jpg",
+            "author_name": "Floyd Buckridge",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_zgrCKy": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=hom14qwVBcU",
+            "model": "Model: Basalt",
+            "title": "<p>32mph MOKWHEEL Basalt Torque sensor 26\" fat tire E-bike, 750W 48v 19.6ah. optional Power inverter</p>",
+            "author_img": "shopify://shop_images/10001_8e5da26e-ab8b-45ba-a336-a71d8e2c0bc8.jpg",
+            "author_name": "MotoCheez",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_zBtXje": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=fs_M0XhiSDY",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt eBike Review + Power Station: WOW!</p>",
+            "author_img": "shopify://shop_images/10001_f7d864bc-dcd8-4318-a915-02bf1826c890.jpg",
+            "author_name": "We Tried lt",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_magTfj": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=8k4PQm-T8HY",
+            "model": "Model: Basalt",
+            "title": "<p>Mokwheel Basalt | Step-Through vs. Step-Over | Best couple Ebike of 2023?</p>",
+            "author_img": "shopify://shop_images/10001_1b982961-4ea6-4d27-bf14-cfef817d1f46.png",
+            "author_name": "Electrified Reviews",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_RVmGMf": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=fIBVWP4XVWk",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST eBike Review ($1899 Fat Tire w/ Exportable Power)</p>",
+            "author_img": "shopify://shop_images/10001_9e86bd93-01c0-4773-9dee-fbc3b9a9de51.jpg",
+            "author_name": "Miss GoElectric",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_gJLdYh": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=j_Kf4NszDTA",
+            "model": "Model: Basalt St",
+            "title": "<p>A NEW REALITY for van life | living in a van (again?)</p>",
+            "author_img": "shopify://shop_images/10001_354159c0-749a-4cc4-a8ff-0610de799984.jpg",
+            "author_name": "Antoinette Yvonne",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_JzWXJC": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=5iIo47U9D9o",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST Review | Fit For Romping On-Road or Dirt</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_4dznD6": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=7_VET6qkc3A",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST Review Took An Unexpected Turn</p>",
+            "author_img": "shopify://shop_images/10001_bab34148-7363-46bc-85be-b8db7701d7e8.jpg",
+            "author_name": "Matt TailHappyTV",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_MtBPAP": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=8EYJ7XREc80",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST review: $1,799 Step Through Mobile Power Station Electric Bike!</p>",
+            "author_img": "shopify://shop_images/10001_1b982961-4ea6-4d27-bf14-cfef817d1f46.png",
+            "author_name": "Electrified Reviews",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_cAUrjm": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=lJxSx4B9i_4&t=11s",
+            "model": "Model: Scoria",
+            "title": "<p>Mokwheel Scoria review: $1,799 BMX Style Compact Electric Bike with Power Station Capabilities!</p>",
+            "author_img": "shopify://shop_images/10001_1b982961-4ea6-4d27-bf14-cfef817d1f46.png",
+            "author_name": "Electrified Reviews",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_9FmNdR": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=rYVxMJU3_aE",
+            "model": "Model: Scoria",
+            "title": "<p>Step-Through Ebike Full of Power | Mokwheel Scoria | Full Review</p>",
+            "author_img": "shopify://shop_images/10001_927d5caf-3790-4855-9a12-e9ba57ecd916.jpg",
+            "author_name": "ALL Electric ⚡️",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_AwKxjr": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=zsWgYQ7zh4k",
+            "model": "Model: Scoria",
+            "title": "<p>Mokwheel Scoria Electric Bike Review</p>",
+            "author_img": "shopify://shop_images/10001_70b18c90-2214-471f-a38a-8cf36b7456b7.jpg",
+            "author_name": "Tim Harrell",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_KGLadj": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=ZN6coTtYfz0",
+            "model": "Model: Scoria",
+            "title": "<p>One Very Cool FEATURE! - Mokwheel Scoria Ebike Review</p>",
+            "author_img": "shopify://shop_images/10001_4fa8ab52-fe66-466e-83a6-c0c13ddfb5e7.jpg",
+            "author_name": "MrCentralDriver",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_FdqGUT": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=pe5Kand1djc",
+            "model": "Model: Scoria",
+            "title": "<p>Mokwheel Scoria Review | A Fat Tire Ride For Urban Cruising</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_XpjTiL": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=lTwe7o20j8M",
+            "model": "Model: Scoria",
+            "title": "<p>Special! Unboxing & Review of the Mokwheel Scoria Electric Bike</p>",
+            "author_img": "shopify://shop_images/10001_d3b6cab6-e198-4add-9a6d-a43fd842115f.jpg",
+            "author_name": "Rix Flix",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_yGtrPm": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=AClO_u9XKV0",
+            "model": "Model: Scoria",
+            "title": "<p>Mokwheel Scoria E-Bike real life long ride review</p>",
+            "author_img": "shopify://shop_images/10001_e2d3743a-9b24-4722-8c96-06486a4abc5a.jpg",
+            "author_name": "leadfarmer73",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_39CTRi": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=6qAGEpEBSuw",
+            "model": "Model: Scoria",
+            "title": "<p>Mokwheel Scoria eBike The Low Seat Cruiser - spider50 for $50 off</p>",
+            "author_img": "shopify://shop_images/10001_8ec67537-c581-45b3-b970-2cb520e7f8aa.jpg",
+            "author_name": "SpiderWayne",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_RngPJn": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=M4SfjaVWZpw",
+            "model": "Model: Scoria",
+            "title": "<p>My Favrite E-Bike! LOOK HERE First before you Blow your Money</p>",
+            "author_img": "shopify://shop_images/10001_ea3bfade-2825-4234-89c4-67a87ad162ab.png",
+            "author_name": "Vegas Dtech",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_Twac8H": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=Uwsf2UamD9k",
+            "model": "Model: Scoria",
+            "title": "<p>A Utility Bike with a Torque Sensor? Mokwheel Scoria</p>",
+            "author_img": "shopify://shop_images/10001_2ee7edb6-8519-417a-ae5c-b16c8ac4389e.jpg",
+            "author_name": "Scott Hardesty",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_WJJKWL": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=u-9ID5f2RrU",
+            "model": "Model: Tor Plus",
+            "title": "<p>MY 26TH BIRTHDAY VLOG 🧁</p>",
+            "author_img": "shopify://shop_images/10001_ba5b3b51-8436-48e5-9cc1-af9a5f0d3958.jpg",
+            "author_name": "G A B B I A G U A Y O",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_9RTFiP": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=OV8QPZMoRJQ",
+            "model": "Model: Tor Plus",
+            "title": "<p>NEW TOOL ARRIVES MOKWHEEL tiny house, homesteading, off-grid, cabin build, DIY, HOW TO, saw mill</p>",
+            "author_img": "shopify://shop_images/10001_1f8a0744-f60e-46f6-ad80-9cf511f20756.jpg",
+            "author_name": "C'mon keeping it real",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_cyrb4n": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=CkHqGyZa32I",
+            "model": "Model: Tor Plus",
+            "title": "<p>Mokwheel Tor Plus All Terrain eBike filmed in Kolob Canyon UT</p>",
+            "author_img": "shopify://shop_images/10001_66166692-7dc2-40a4-a8bd-14d5fc09c99d.jpg",
+            "author_name": "Electric Revolution",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_8PTxWx": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=dxyn1rAo4Bo",
+            "model": "Model: Tor Plus",
+            "title": "<p>Mokwheel Tor Plus Review: An All-Terrain Monster E-Bike</p>",
+            "author_img": "shopify://shop_images/10001_d94506cc-f6fd-4b63-89ae-4c44e1e8c9c8.jpg",
+            "author_name": "RK9 Rides",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_heixcm": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=bAefEP5NwKM",
+            "model": "Model: Tor Plus",
+            "title": "<p>🚴🏻‍♂️ MOKWHEEL TOR PLUS FAT TIRE E-BIKE REVIEW 🚴🏻‍♂️</p>",
+            "author_img": "shopify://shop_images/10001_96ffcba7-0a80-4c5d-83a6-d9dd5c62baa4.jpg",
+            "author_name": "Curiosity Cafe",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_4mafcY": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=3-B31b_yjOQ",
+            "model": "Model: Tor Plus",
+            "title": "<p>ALONE IN THE CURSED MOUNTAINS</p>",
+            "author_img": "shopify://shop_images/10001_8a9fe2c7-c066-4ba4-af7d-71204549030f.jpg",
+            "author_name": "BLACK MASS PARANORMAL",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_gCKKUX": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=rGOs30azi4Q",
+            "model": "Model: Tor Plus",
+            "title": "<p>Astig Na E-Bike Unboxing and Test Ride</p>",
+            "author_img": "shopify://shop_images/10001_ab676bfc-898b-498c-96e4-3f9fb5ccc1df.jpg",
+            "author_name": "MC Cycles",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_AEAW7M": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1_513b8ffa-37d7-469a-9001-02d93786e21d.png",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=s1dMt_EjTRk",
+            "model": "Model: Mesa Plus ST",
+            "title": "<p>BEST E-BIKE FOR SAFETY & SPEED? Electric Bike Review MOKWHEEL Mesa Plus - All Terrain Fat Tire 31MPH</p>",
+            "author_img": "shopify://shop_images/10001_ceb77cbe-4445-4fc9-bfb3-8415b6df1e3e.jpg",
+            "author_name": "HeroesNStuff",
+            "date": "Feb 03, 2021"
+          }
+        }
+      },
+      "block_order": [
+        "item_xMG6jj",
+        "item_dPyaMA",
+        "item_x4WRXE",
+        "item_CjkjKC",
+        "item_yVQMXX",
+        "item_zCFhdT",
+        "item_zgrCKy",
+        "item_zBtXje",
+        "item_magTfj",
+        "item_RVmGMf",
+        "item_gJLdYh",
+        "item_JzWXJC",
+        "item_4dznD6",
+        "item_MtBPAP",
+        "item_cAUrjm",
+        "item_9FmNdR",
+        "item_AwKxjr",
+        "item_KGLadj",
+        "item_FdqGUT",
+        "item_XpjTiL",
+        "item_yGtrPm",
+        "item_39CTRi",
+        "item_RngPJn",
+        "item_Twac8H",
+        "item_WJJKWL",
+        "item_9RTFiP",
+        "item_cyrb4n",
+        "item_8PTxWx",
+        "item_heixcm",
+        "item_4mafcY",
+        "item_gCKKUX",
+        "item_AEAW7M"
+      ],
+      "settings": {
+        "title": "Fat Tire Electric Bike Reviews",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "videos_list_GgjbA4": {
+      "type": "videos-list",
+      "blocks": {
+        "item_j9xTnH": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=-wRwuyKvBQ4",
+            "model": "Model: Asphalt",
+            "title": "<p>Revolutionize Your Commute with the Mokwheel Asphalt eBike: Speed, Style, and Sustainability!</p>",
+            "author_img": "shopify://shop_images/10001_927d5caf-3790-4855-9a12-e9ba57ecd916.jpg",
+            "author_name": "ALL Electric ⚡️",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_TatQni": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=uSAWUEZvu60",
+            "model": "Model: Asphalt",
+            "title": "<p>Is Mokwheel Asphalt REALLY The Best Commuter Ebike?</p>",
+            "author_img": "shopify://shop_images/10001_bab3ad29-c6db-4da9-abbd-f69e8375db69.jpg",
+            "author_name": "Matt TailHappyTV",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_yyWwaN": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=Pf1YIw6jedM&t=307s",
+            "model": "Model: Asphalt",
+            "title": "<p>Mokwheel Asphalt - The best under $1500 electric commuter bike</p>",
+            "author_img": "shopify://shop_images/20240704170326.jpg",
+            "author_name": "Low Budget Adventurer",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_FgbjcP": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=4fy6ah3Nkw4",
+            "model": "Model: Asphalt",
+            "title": "<p>E-Bike Review | Mokwheel Asphalt | Hit the asphalt with this affordable commuter</p>",
+            "author_img": "shopify://shop_images/10001_9cf24415-5eea-4ba3-8f8d-5bfe990416ef.jpg",
+            "author_name": "eBikes.org",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_AQwnyV": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=72KF1J7spuw",
+            "model": "Model: Asphalt",
+            "title": "<p>$1349* Mokwheel Asphalt Ebike Review - Unboxing, Assembly, Controls Part 1 of 2. $50 off code</p>",
+            "author_img": "shopify://shop_images/10001_eda7055a-7050-4d05-a799-69ab5c101c5b.jpg",
+            "author_name": "Colin Leung",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_AcDCjy": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=TIgKLZufp6M",
+            "model": "Model: Asphalt",
+            "title": "<p>MOKWHEEL Asphalt E-Bike...Review...Amazing</p>",
+            "author_img": "shopify://shop_images/10001_32c57d5a-735b-4d48-8eef-a570f311fcfe.jpg",
+            "author_name": "Kens Karpentry",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_8UwFUG": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=D9LQ9zdE7ls",
+            "model": "Model: Asphalt",
+            "title": "<p>Mokwheel Asphalt Urban Commuter eBike | Unboxing, Assembly & Ride</p>",
+            "author_img": "shopify://shop_images/10001_0017e56c-b822-42b2-abee-be730c366d13.jpg",
+            "author_name": "Zophie Reviews",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_8rBVec": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/f0daf47e-2d99-4880-820b-c6b67858b97b.jpg",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=ui_WyFEUPBU",
+            "model": "Model: Asphalt",
+            "title": "<p>MOKWHEEL ASPHALT - Best Ebike for Tools & Pets - #toolorganization #dogcarrier</p>",
+            "author_img": "shopify://shop_images/10001_716ce631-669c-4ac4-be7c-847301bb9f75.jpg",
+            "author_name": "Jake Weihe",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_aJtj6L": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=mEX3GkAKWn8",
+            "model": "Model: Asphalt ST",
+            "title": "<p>Mokwheel Asphalt ST - Torque Sensor E-Bike</p>",
+            "author_img": "shopify://shop_images/10001_1c4b6022-c55e-49f5-bdeb-84a6ed085a5c.jpg",
+            "author_name": "SpiderWayne",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_qeedqg": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=OLTDVvYnvjo",
+            "model": "Model: Asphalt ST",
+            "title": "<p>Mokwheel Asphalt ST Review | Sleek & Speedy Step-Thru Commuter E-Bike</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_d3hgC9": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=NxPVmPJOoeg",
+            "model": "Model: Asphalt ST",
+            "title": "<p>Mokwheel Asphalt - Watch Me Unbox and Assemble the Newest Ebike on the Block!</p>",
+            "author_img": "shopify://shop_images/10001_97b0dc03-b38b-4c2b-bdb0-905af6573216.jpg",
+            "author_name": "Mike Rochester",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_KrYEFF": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=BJ1sjeHbRrw",
+            "model": "Model: Asphalt ST",
+            "title": "<p>Mokwheel Asphalt ST Review- 2024 New E-Bike Contender?</p>",
+            "author_img": "shopify://shop_images/10001_2d2c78be-4c62-4e9e-af4a-2273e05e94f9.jpg",
+            "author_name": "E Biking Today",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_Uq8Ty3": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=lpwdkpOBqBM",
+            "model": "Model: Asphalt ST",
+            "title": "<p>My Future Adventure E-Bike: Impressions & Review: Mokwheel Asphalt ST</p>",
+            "author_img": "shopify://shop_images/10001_585ff982-ac77-49f3-ae2e-ef7eb87c8906.jpg",
+            "author_name": "The Art of Craftsmanship",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_6hmwWG": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/abaae341-1a2b-40d5-a133-8e7c1c3d7d7e.webp",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=kfe0JFiZ4U4&t=51s",
+            "model": "Model: Asphalt ST",
+            "title": "<p>MOKWHEEL | Asphalt ST</p>",
+            "author_img": "shopify://shop_images/10001_b738ab56-25ec-4469-9507-fa7a23f3e194.jpg",
+            "author_name": "Jack Cecil",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_37a9nP": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=PhPwcJCLhoo",
+            "model": "Model: Mesa Lite 2.0",
+            "title": "<p>The E-Bike of the FUTURE is HERE! Mokwheel Mesa Lite ST Review | Lifestyle with Melonie Graves</p>",
+            "author_img": "shopify://shop_images/10001_df6566c7-6d96-47e5-a777-4e97d78b9c58.jpg",
+            "author_name": "Lifestyle with Melonie Graves",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_k6Ahxj": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=8v4hQcX7QS0",
+            "model": "Model: Mesa Lite 2.0",
+            "title": "<p>The CADILLAC of E-Bikes - Mokwheel Mesa Lite ST 2.0 | SailAway REVIEWS</p>",
+            "author_img": "shopify://shop_images/10001_d7cfe563-1ecd-4df7-97c9-7a0df659249a.jpg",
+            "author_name": "SailAway World Sailing",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_RtrEJF": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/6f5174b7-3518-4ff0-be85-e003d13b91e4.jpg",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=hM2k0IRZEVg",
+            "model": "Model: Mesa Lite 2.0",
+            "title": "<p>Ebike Mokwheel, Himiway, Nakto</p>",
+            "author_img": "shopify://shop_images/10001_15edbbb7-eccf-4223-82e7-e60959e519dc.jpg",
+            "author_name": "Step One Survival",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_WY6HQF": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=g4KUaIrIEaY",
+            "model": "Model: Mesa Lite ST",
+            "title": "<p>Is the Mokwheel Mesa Lite ST Powerful Enough for City Living? | RunPlayBack</p>",
+            "author_img": "shopify://shop_images/10001_320fd961-a2ce-4fb5-9211-c07042fe21bf.jpg",
+            "author_name": "RunPlayBack",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_pipHaK": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=trDN0caVKUM",
+            "model": "Model: Mesa Lite ST",
+            "title": "<p>Who said step-throughs are made for old people! ft. Mokwheel Mesa Lite</p>",
+            "author_img": "shopify://shop_images/10001_679eb0bd-bbf2-48eb-83df-de6b90c12537.jpg",
+            "author_name": "DavidBrandNew",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_RHmTUf": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=zdz9eFeZYXk&t=513s",
+            "model": "Model: Mesa Lite ST",
+            "title": "<p>Mokwheel Mesa lite ST Unboxing and Assembly</p>",
+            "author_img": "shopify://shop_images/10001_97b0dc03-b38b-4c2b-bdb0-905af6573216.jpg",
+            "author_name": "Mike Rochester",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_iFFhmY": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=PhPwcJCLhoo",
+            "model": "Model: Mesa Lite sT 2.0",
+            "title": "<p>The E-Bike of the FUTURE is HERE! Mokwheel Mesa Lite ST Review | Lifestyle with Melonie Graves</p>",
+            "author_img": "shopify://shop_images/10001_df6566c7-6d96-47e5-a777-4e97d78b9c58.jpg",
+            "author_name": "Lifestyle with Melonie Graves",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_3tm9XF": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=8v4hQcX7QS0",
+            "model": "Model: Mesa Lite sT 2.0",
+            "title": "<p>The CADILLAC of E-Bikes - Mokwheel Mesa Lite ST 2.0 | SailAway REVIEWS</p>",
+            "author_img": "shopify://shop_images/10001_d7cfe563-1ecd-4df7-97c9-7a0df659249a.jpg",
+            "author_name": "SailAway World Sailing",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_qpQ7Je": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/6f5174b7-3518-4ff0-be85-e003d13b91e4.jpg",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=hM2k0IRZEVg",
+            "model": "Model: Mesa Lite sT 2.0",
+            "title": "<p>Ebike Mokwheel, Himiway, Nakto</p>",
+            "author_img": "shopify://shop_images/10001_15edbbb7-eccf-4223-82e7-e60959e519dc.jpg",
+            "author_name": "Step One Survival",
+            "date": "Feb 03, 2021"
+          }
+        }
+      },
+      "block_order": [
+        "item_j9xTnH",
+        "item_TatQni",
+        "item_yyWwaN",
+        "item_FgbjcP",
+        "item_AQwnyV",
+        "item_AcDCjy",
+        "item_8UwFUG",
+        "item_8rBVec",
+        "item_aJtj6L",
+        "item_qeedqg",
+        "item_d3hgC9",
+        "item_KrYEFF",
+        "item_Uq8Ty3",
+        "item_6hmwWG",
+        "item_37a9nP",
+        "item_k6Ahxj",
+        "item_RtrEJF",
+        "item_WY6HQF",
+        "item_pipHaK",
+        "item_RHmTUf",
+        "item_iFFhmY",
+        "item_3tm9XF",
+        "item_qpQ7Je"
+      ],
+      "settings": {
+        "title": "Commuter Electric Bikes Reviews",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "videos_list_4irYFg": {
+      "type": "videos-list",
+      "blocks": {
+        "item_f7z6xr": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=fIBVWP4XVWk",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST eBike Review ($1899 Fat Tire w/ Exportable Power)</p>",
+            "author_img": "shopify://shop_images/10001_9e86bd93-01c0-4773-9dee-fbc3b9a9de51.jpg",
+            "author_name": "Miss GoElectric",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_qw9XqE": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=j_Kf4NszDTA",
+            "model": "Model: Basalt St",
+            "title": "<p>A NEW REALITY for van life | living in a van (again?)</p>",
+            "author_img": "shopify://shop_images/10001_354159c0-749a-4cc4-a8ff-0610de799984.jpg",
+            "author_name": "Antoinette Yvonne",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_WAjei7": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=5iIo47U9D9o",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST Review | Fit For Romping On-Road or Dirt</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_nHmzpV": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=7_VET6qkc3A",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST Review Took An Unexpected Turn</p>",
+            "author_img": "shopify://shop_images/10001_bab34148-7363-46bc-85be-b8db7701d7e8.jpg",
+            "author_name": "Matt TailHappyTV",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_RGUbRJ": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=8EYJ7XREc80",
+            "model": "Model: Basalt St",
+            "title": "<p>Mokwheel Basalt ST review: $1,799 Step Through Mobile Power Station Electric Bike!</p>",
+            "author_img": "shopify://shop_images/10001_1b982961-4ea6-4d27-bf14-cfef817d1f46.png",
+            "author_name": "Electrified Reviews",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_cdEgCt": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=mEX3GkAKWn8",
+            "model": "Model: Asphalt St",
+            "title": "<p>Mokwheel Asphalt ST - Torque Sensor E-Bike</p>",
+            "author_img": "shopify://shop_images/10001_1c4b6022-c55e-49f5-bdeb-84a6ed085a5c.jpg",
+            "author_name": "SpiderWayne",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_9e8xb4": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=OLTDVvYnvjo",
+            "model": "Model: Asphalt ST",
+            "title": "<p>Mokwheel Asphalt ST Review | Sleek & Speedy Step-Thru Commuter E-Bike</p>",
+            "author_img": "shopify://shop_images/10001_1ee1c366-34f9-483d-9251-f777c1220a07.jpg",
+            "author_name": "Electric Bike Report",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_azWCHL": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=NxPVmPJOoeg",
+            "model": "Model: Asphalt ST",
+            "title": "<p>Mokwheel Asphalt - Watch Me Unbox and Assemble the Newest Ebike on the Block!</p>",
+            "author_img": "shopify://shop_images/10001_97b0dc03-b38b-4c2b-bdb0-905af6573216.jpg",
+            "author_name": "Mike Rochester",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_WkGCwr": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=BJ1sjeHbRrw",
+            "model": "Model: Asphalt ST",
+            "title": "<p>Mokwheel Asphalt ST Review- 2024 New E-Bike Contender?</p>",
+            "author_img": "shopify://shop_images/10001_2d2c78be-4c62-4e9e-af4a-2273e05e94f9.jpg",
+            "author_name": "E Biking Today",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_iyKyJj": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=lpwdkpOBqBM",
+            "model": "Model: Asphalt ST",
+            "title": "<p>My Future Adventure E-Bike: Impressions & Review: Mokwheel Asphalt ST</p>",
+            "author_img": "shopify://shop_images/10001_585ff982-ac77-49f3-ae2e-ef7eb87c8906.jpg",
+            "author_name": "The Art of Craftsmanship",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_JVxWWR": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/abaae341-1a2b-40d5-a133-8e7c1c3d7d7e.webp",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=kfe0JFiZ4U4&t=51s",
+            "model": "Model: Asphalt ST",
+            "title": "<p>MOKWHEEL | Asphalt ST</p>",
+            "author_img": "shopify://shop_images/10001_b738ab56-25ec-4469-9507-fa7a23f3e194.jpg",
+            "author_name": "Jack Cecil",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_PdA6db": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1_513b8ffa-37d7-469a-9001-02d93786e21d.png",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=s1dMt_EjTRk",
+            "model": "Model: Mesa Plus ST",
+            "title": "<p>BEST E-BIKE FOR SAFETY & SPEED? Electric Bike Review MOKWHEEL Mesa Plus - All Terrain Fat Tire 31MPH</p>",
+            "author_img": "shopify://shop_images/10001_ceb77cbe-4445-4fc9-bfb3-8415b6df1e3e.jpg",
+            "author_name": "HeroesNStuff",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_kawLyT": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=g4KUaIrIEaY",
+            "model": "Model: Mesa Lite ST",
+            "title": "<p>Is the Mokwheel Mesa Lite ST Powerful Enough for City Living? | RunPlayBack</p>",
+            "author_img": "shopify://shop_images/10001_320fd961-a2ce-4fb5-9211-c07042fe21bf.jpg",
+            "author_name": "RunPlayBack",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_CQweCe": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=trDN0caVKUM",
+            "model": "Model: Mesa Lite ST",
+            "title": "<p>Who said step-throughs are made for old people! ft. Mokwheel Mesa Lite</p>",
+            "author_img": "shopify://shop_images/10001_679eb0bd-bbf2-48eb-83df-de6b90c12537.jpg",
+            "author_name": "DavidBrandNew",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_grwcjT": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=zdz9eFeZYXk&t=513s",
+            "model": "Model: Mesa Lite ST",
+            "title": "<p>Mokwheel Mesa lite ST Unboxing and Assembly</p>",
+            "author_img": "shopify://shop_images/10001_97b0dc03-b38b-4c2b-bdb0-905af6573216.jpg",
+            "author_name": "Mike Rochester",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_Aig8Dh": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=PhPwcJCLhoo",
+            "model": "Model: Mesa Lite sT 2.0",
+            "title": "<p>The E-Bike of the FUTURE is HERE! Mokwheel Mesa Lite ST Review | Lifestyle with Melonie Graves</p>",
+            "author_img": "shopify://shop_images/10001_df6566c7-6d96-47e5-a777-4e97d78b9c58.jpg",
+            "author_name": "Lifestyle with Melonie Graves",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_M4pCqj": {
+          "type": "item",
+          "settings": {
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=8v4hQcX7QS0",
+            "model": "Model: Mesa Lite sT 2.0",
+            "title": "<p>The CADILLAC of E-Bikes - Mokwheel Mesa Lite ST 2.0 | SailAway REVIEWS</p>",
+            "author_img": "shopify://shop_images/10001_d7cfe563-1ecd-4df7-97c9-7a0df659249a.jpg",
+            "author_name": "SailAway World Sailing",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_YyNrfQ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/6f5174b7-3518-4ff0-be85-e003d13b91e4.jpg",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=hM2k0IRZEVg",
+            "model": "Model: Mesa Lite sT 2.0",
+            "title": "<p>Ebike Mokwheel, Himiway, Nakto</p>",
+            "author_img": "shopify://shop_images/10001_15edbbb7-eccf-4223-82e7-e60959e519dc.jpg",
+            "author_name": "Step One Survival",
+            "date": "Feb 03, 2021"
+          }
+        },
+        "item_iNYNkN": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1_513b8ffa-37d7-469a-9001-02d93786e21d.png",
+            "video": "",
+            "video_url": "https://www.youtube.com/watch?v=s1dMt_EjTRk",
+            "model": "Model: Mesa Plus ST",
+            "title": "<p>BEST E-BIKE FOR SAFETY & SPEED? Electric Bike Review MOKWHEEL Mesa Plus - All Terrain Fat Tire 31MPH</p>",
+            "author_img": "shopify://shop_images/10001_ceb77cbe-4445-4fc9-bfb3-8415b6df1e3e.jpg",
+            "author_name": "HeroesNStuff",
+            "date": "Feb 03, 2021"
+          }
+        }
+      },
+      "block_order": [
+        "item_f7z6xr",
+        "item_qw9XqE",
+        "item_WAjei7",
+        "item_nHmzpV",
+        "item_RGUbRJ",
+        "item_cdEgCt",
+        "item_9e8xb4",
+        "item_azWCHL",
+        "item_WkGCwr",
+        "item_iyKyJj",
+        "item_JVxWWR",
+        "item_PdA6db",
+        "item_kawLyT",
+        "item_CQweCe",
+        "item_grwcjT",
+        "item_Aig8Dh",
+        "item_M4pCqj",
+        "item_YyNrfQ",
+        "item_iNYNkN"
+      ],
+      "settings": {
+        "title": "Step-Through Electric Bikes Reviews",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "alp_blog_breadcrumbs_Q7LLKF",
+    "alp_button_link_tabs_MPw8iz",
+    "main",
+    "alp_hero_banner_DPG89P",
+    "videos_banner_qNiVpY",
+    "videos_list_izazeQ",
+    "videos_list_EM7Ncj",
+    "videos_list_GgjbA4",
+    "videos_list_4irYFg"
+  ]
+}

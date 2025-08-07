@@ -1,0 +1,19 @@
+{%- assign image_width = width | default: 1280 -%}
+{%- capture aspect_ratio_style -%}
+    {%- if aspect_ratio != blank -%}
+        --aspect-ratio:{{ aspect_ratio }}
+    {%- endif -%}
+{%- endcapture -%}
+
+{%- if image -%}
+  <picture style="{{ aspect_ratio_style }}">
+    {{
+      image
+      | image_url: width: image_width
+      | image_tag:
+        widths: '200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2200',
+        alt: image.alt
+      | default: alt, loading: 'lazy'
+    }}
+  </picture>
+{%- endif -%}

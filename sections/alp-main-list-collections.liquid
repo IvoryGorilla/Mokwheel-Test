@@ -1,0 +1,430 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
+{{ 'alp-blog-collections-sidebar.css' | asset_url | stylesheet_tag }}
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-main-collections-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .alp-main-collections-left {
+    width: 67%;
+  }
+  .alp-main-collections-left .collection-list {
+    gap: clamp(1em, 2vw, 2em);
+  }
+  .alp-main-collections-left .collection-list__item {
+    width: calc(50% - var(--alp-gutter-x) / 2);
+  }
+  .alp-main-collections-left .card__inner::after {
+    background: rgba(var(--section-block-overlay, 0, 0, 0), var(--section-block-overlay-opacity, 0.2));
+    z-index: 0;
+  }
+  .alp-main-collections-left .card--standard {
+    position: relative;
+  }
+  .alp-main-collections-left .card__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+  }
+  .alp-main-collections-left .card__content .card__heading {
+    font-size: clamp(18px, 3.7vw, 32px);
+    font-weight: 400;
+  }
+  .alp-main-collections-left .card__content .icon-wrap {
+    display: none;
+  }
+  .alp-main-collections-right {
+    width: 30%;
+  }
+  .alp-main-collections-container .alp-ebikes-category-con {
+    margin-bottom: 2em;
+  }
+  .alp-main-collections-container .alp-exclusive-deals {
+    margin-top: 5em;
+  }
+  @media screen and (max-width: 999px) {
+    .alp-main-collections-container {
+      flex-direction: column;
+    }
+    .alp-main-collections-left {
+      width: 100%;
+    }
+    .alp-main-collections-right {
+      width: 100%;
+      margin-top: calc(var(--alp-gutter-y) * 2);
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    {%- liquid
+      case section.settings.sort
+        when 'products_high', 'products_low'
+          assign collections = collections | sort: 'all_products_count'
+        when 'date', 'date_reversed'
+          assign collections = collections | sort: 'published_at'
+      endcase
+
+      if section.settings.sort == 'products_high' or section.settings.sort == 'date_reversed' or section.settings.sort == 'alphabetical_reversed'
+        assign collections = collections | reverse
+      endif
+
+      assign moduloResult = 28 | modulo: section.settings.columns_desktop
+      if moduloResult == 0
+      endif
+    -%}
+    <div class="alp-main-collections-container">
+      <div class="alp-main-collections-left">
+        <ul
+          class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+          role="list"
+        >
+
+        {%- for collection in st.all_product_collection -%}
+          <li
+            class="all_product_collection collection-list__item collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
+          >
+            {%- render 'alp-card-collection',
+              card_collection: collection,
+              media_aspect_ratio: section.settings.image_ratio
+            -%}
+          </li>
+        {%- endfor -%}
+          {%- for collection in st.product_collection -%}
+            <li
+              class="{{ st.image_type }} collection-list__item collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              {%- render 'alp-card-collection',
+                card_collection: collection,
+                media_aspect_ratio: section.settings.image_ratio
+              -%}
+            </li>
+          {%- endfor -%}
+          {%- for collection in st.product_collection2 -%}
+            <li
+              class="{{ st.image_type }} collection-list__item collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              {%- render 'alp-card-collection',
+                card_collection: collection,
+                media_aspect_ratio: section.settings.image_ratio
+              -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      <div class="alp-main-collections-right">
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          {%- case block.type -%}
+            {%- when 'collections_accessories' -%}
+              <div class="alp-ebikes-category">
+                <h2 class="alp-ebikes-category-bigtitle headline__h4">{{ bs.title }}</h2>
+                <div class="alp-ebikes-category-con">
+                  {%- if bs.menu.links.size > 0 -%}
+                    {% render 'alp-slide-menu-blog', menu_list: bs.menu.links %}
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- when 'exclusived_deals_await' -%}
+              <div class="alp-exclusive-deals">
+                {%- if bs.link != blank -%}
+                  <a class="full-aa" href="{{ bs.link }}" title="{{ bs.text }}"></a>
+                {%- endif -%}
+                {% render 'alp-single-image', image: bs.image, width: 1280, aspect_ratio: bs.image_aspect_ratio %}
+                <div class="alp-exclusive-deals-text">
+                  <h2 class="alp-exclusive-deals-title headline__h3">{{ bs.title }}</h2>
+                  <div class="alp-exclusive-deals-btn">
+                    {% render 'alp-btn',
+                      url: bs.link,
+                      type: 'primary',
+                      text: bs.text,
+                      textcolor: '#fff',
+                      bgcolor: '#E83F0C',
+                      size: 'small'
+                    %}
+                  </div>
+                </div>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Alp Main List Collections",
+  "class": "alp-main-list-collections",
+  "settings": [
+    {
+      "type": "collection_list",
+      "id": "all_product_collection",
+      "label": "All Collection"
+    },
+    {
+      "type": "collection_list",
+      "id": "product_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "collection_list",
+      "id": "product_collection2",
+      "label": "Collection2"
+    },
+    {
+      "type": "select",
+      "id": "image_type",
+      "label": "Image type",
+      "default": "image-default",
+      "options": [
+        {
+          "value": "image-default",
+          "label": "Default"
+        },
+        {
+          "value": "image-type-a",
+          "label": "Type A"
+        },
+        {
+          "value": "image-type-b",
+          "label": "Type B"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "sort",
+      "options": [
+        {
+          "value": "alphabetical",
+          "label": "t:sections.main-list-collections.settings.sort.options__1.label"
+        },
+        {
+          "value": "alphabetical_reversed",
+          "label": "t:sections.main-list-collections.settings.sort.options__2.label"
+        },
+        {
+          "value": "date_reversed",
+          "label": "t:sections.main-list-collections.settings.sort.options__3.label"
+        },
+        {
+          "value": "date",
+          "label": "t:sections.main-list-collections.settings.sort.options__4.label"
+        },
+        {
+          "value": "products_high",
+          "label": "t:sections.main-list-collections.settings.sort.options__5.label"
+        },
+        {
+          "value": "products_low",
+          "label": "t:sections.main-list-collections.settings.sort.options__6.label"
+        }
+      ],
+      "default": "alphabetical",
+      "label": "t:sections.main-list-collections.settings.sort.label"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__3.label"
+        },
+        {
+          "value": "rectangle",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__4.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.main-list-collections.settings.image_ratio.label",
+      "info": "t:sections.main-list-collections.settings.image_ratio.info"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.main-list-collections.settings.columns_desktop.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-list-collections.settings.header_mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.main-list-collections.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.main-list-collections.settings.columns_mobile.options__2.label"
+        }
+      ],
+      "default": "2",
+      "label": "t:sections.main-list-collections.settings.columns_mobile.label"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collections_accessories",
+      "name": "Collections Accessories",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Collections Accessories"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "exclusived_deals_await",
+      "name": "Exclusive Deals Await",
+      "settings": [
+        {
+          "type": "text",
+          "id": "image_aspect_ratio",
+          "label": "Image Aspect Ratio",
+          "default": "1/1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Exclusive Deals Await"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Learn More"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Main List Collections"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,322 @@
+{% schema %}
+{
+  "name": "Alp Compare Page",
+  "class": "alp-compare",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Compare Models"
+    },
+    {
+      "type": "text",
+      "id": "product_collection",
+      "label": "Product Collection",
+      "default": "electric-bikes"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product-item",
+      "name": "Product Item",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Compare Page"
+    }
+  ]
+}
+{% endschema %}
+
+{{ 'alp-compare.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+{% endstyle %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    <div class="alp-the-compare-wrapper">
+      <div class="alp-the-compare-container">
+        <div class="the-compare-title">
+          <div class="headline__h2">{{ section.settings.title }}</div>
+        </div>
+        <div class="alp-the-compare-list-wrapper">
+          <div class="alp-the-compare-list">
+            {%- for block in section.blocks -%}
+              {%- assign product = block.settings.product -%}
+              <div class="alp-the-compare-item-wrapper">
+                <div class="alp-the-compare-select">
+                  <div class="compare-select-i">
+                    <span>{{- product.title -}}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m7 10l5 5l5-5"/>
+                    </svg>
+                  </div>
+                  <div class="compare-select-choice">
+                    {% for the_product in collections['electric-bikes'].products %}
+                      <span>{{- the_product.title -}}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <div class="alp-the-compare-item">
+                  {% comment %} Color Switch {% endcomment %}
+                  <div class="pro_img_wrappper alp_pro_color_switch" data-swatch-wrapper>
+                    <a href="{{ product.url }}" class="new_index_pro_wrapa"></a>
+                    <div class="alp-product-item-image">
+                      {% for variant in product.variants %}
+                        {% render 'alp-single-variant-swatch-image', variant: variant, aspect_ratio: '4/3' %}
+                      {% endfor %}
+                    </div>
+                    <div class="pro_bot alp_pro_sltext">
+                      <div class="pro_color_list">
+                        <div class="alp-product-item-color-swatch">
+                          {% render 'alp-color-swatch-for-list', product: product %}
+                        </div>
+                      </div>
+                      <div class="pro_type">
+                        <div class="p_price">
+                          {% for variant in product.variants %}
+                            {% liquid
+                              assign options_string = ''
+                              for option in variant.options
+                                assign options_string = options_string | append: option | append: ','
+                              endfor
+                            %}
+                            <div
+                              class="product-item-price-i {% if forloop.index == 1 %} active{% endif %}"
+                              data-variant="{{ variant.id }}"
+                              data-options="{{ options_string }}"
+                            >
+                              <span class="price_iii">
+                                {{- variant.price | money -}}
+                              </span>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                      <div class="to_detail">
+                        <a href="{{ product.url }}">Learn More</a>
+                      </div>
+                    </div>
+                  </div>
+                  {% comment %} Color Switch {% endcomment %}
+
+                  <div class="compare_spec_wrapper">
+                    <div class="compare_spec_list">
+                      {% for item in product.metafields.custom.new_compare_model_page.value %}
+                        <div class="compare_spec_list_item">
+                          {%- if item.title != '' -%}
+                            <div class="csl-title">{{ item.title }}</div>
+                          {%- endif -%}
+                          {%- if item.dec != '' -%}
+                            <div class="csl-desc">{{ item.dec }}</div>
+                          {%- endif -%}
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script
+  type="module"
+>
+  var product_compare_data = [
+    {% for product in collections['electric-bikes'].products %}
+      {
+      data:  
+      `
+        <div class="pro_img_wrappper alp_pro_color_switch" data-swatch-wrapper>
+          <a href="{{ product.url }}" class="new_index_pro_wrapa"></a>
+          <div class="alp-product-item-image">
+            {% for variant in product.variants %}
+              {% liquid
+                assign options_string = ''
+                for option in variant.options
+                  assign options_string = options_string | append: option | append: ','
+                endfor
+              %}
+              <div
+                class="product-item-image-i {% if forloop.index == 1 %} active{% endif %}"
+                data-variant="{{ variant.id }}"
+                data-options="{{ options_string }}"
+              >
+                {%- assign alt_title = product.title | append: ' - ' | append: variant.title -%}
+                {% render 'alp-single-image',
+                  image: variant.image,
+                  width: 1280,
+                  aspect_ratio: '4/3',
+                  alt: alt_title
+                %}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="pro_bot alp_pro_sltext">
+            <div class="pro_color_list">
+             <div class="alp-product-item-color-swatch">
+               {% render 'alp-color-swatch-for-list', product: product %}
+             </div>
+            </div>
+            <div class="pro_type">
+              <div class="p_price">
+                {% for variant in product.variants %}
+                    {% liquid
+                        assign options_string = ''
+                        for option in variant.options
+                        assign options_string = options_string | append: option | append: ','
+                        endfor
+                    %}
+                    <div
+                        class="product-item-price-i {% if forloop.index == 1 %} active{% endif %}"
+                        data-variant="{{ variant.id }}"
+                        data-options="{{ options_string }}"
+                    >
+                        <span class="price_iii">
+                        {{- variant.price | money -}}
+                        </span>
+                    </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="to_detail">
+              <a href="{{ product.url }}">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="compare_spec_wrapper">
+          <div class="compare_spec_list">
+            {% for item in product.metafields.custom.new_compare_model_page.value %}
+              <div class="compare_spec_list_item">
+                {%- if item.title != '' -%}
+                  <div class="csl-title">{{ item.title }}</div>
+                {%- endif -%}
+                {%- if item.dec != '' -%}
+                  <div class="csl-desc">{{ item.dec }}</div>
+                {%- endif -%}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      `
+    },
+    {% endfor %}
+  ]
+  
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    /* $('.compare-select-i').click(function () {
+      $(this).parent().toggleClass('active');
+    }); */
+
+    document.addEventListener("click", (e) => {
+        //console.log(e.target.className);
+        if(e.target.className !== 'compare-select-i' && e.target.className !== 'compare-select-choice') {
+            $('.compare-select-i').parent().removeClass('active');
+        }else if(e.target.className == 'compare-select-i') {
+            $('.compare-select-i').parent().removeClass('active');
+            e.target.parentElement.classList.add('active');
+        }
+    });
+      
+
+    $('.compare-select-choice span').click(function () {
+      let $this = $(this);
+      let $text = $this.text();
+      let $index = $this.index();
+      let $product_data = product_compare_data[$index].data;
+      $this.parents('.alp-the-compare-item-wrapper').find('.alp-the-compare-item').html($product_data);
+      $('.compare-select-i').parent().removeClass('active');
+      $this.parents('.alp-the-compare-item-wrapper').find('.compare-select-i span').html($text);
+      AlpFn.ColorSwatchSwitch(".alp-the-compare-item-wrapper .alp-colors-swatch-i", "[data-swatch-wrapper]", "[data-options]");
+    });
+  });
+</script>

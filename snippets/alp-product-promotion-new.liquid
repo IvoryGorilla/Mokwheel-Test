@@ -1,0 +1,124 @@
+<div class="alp-product-promotion-new-wrapper">
+  <div class="alp-product-promotion-new-container">
+    {% comment %} 免费配件 {% endcomment %}
+    {%- if bs.title_1 != blank -%}
+      <div class="alp-product-promotion-new-item" data-type="free_acc">
+        <div class="headline__h6">{{ bs.title_1 }}</div>
+        {%- if bs.description_1 != blank -%}
+          <div class="title-description">{{ bs.description_1 }}</div>
+        {%- endif -%}
+        <div class="promotion-new-item-list-a">
+          {%- for product in bs.product_list_1 -%}
+            <div class="promotion-new-item-list-a-i selected">
+              <div class="promotion-new-item-list-a-i-flex">
+                <div class="icon-check-v">
+                  {% render 'icon-check-2' %}
+                </div>
+                <div class="alp-promotion-new-image relative">
+                  <a class="full-aa" href="{{ product.featured_image | image_url: width: 1920 }}" data-fslightbox></a>
+                  {{ product.featured_image | image_url: width: 320 | image_tag }}
+                </div>
+                <div class="promotion-new-item-list-a-i-flex-text">
+                  {% render 'promotion-new-titles', product: product, bs: bs %}
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+    {% comment %} 多选一 {% endcomment %}
+    {% capture listbclass %}
+      {% if bs.able_multi_select %}
+        multi-slect
+      {% else %}
+        single-slect {% if bs.able_cancel %} able-cancel {% endif %}
+      {% endif %}
+    {% endcapture %}
+    {%- if bs.title_2 != blank -%}
+      <div class="alp-product-promotion-new-item" data-type="free_choice">
+        <div class="headline__h6">{{ bs.title_2 }}</div>
+        {%- if bs.description_2 != blank -%}
+          <div class="title-description">{{ bs.description_2 }}</div>
+        {%- endif -%}
+        <div class="promotion-new-item-list-a {{ listbclass }}">
+          {%- for product in bs.product_list_2 -%}
+            <div
+              class="promotion-new-item-list-b-i {% unless bs.able_multi_select %}{% if forloop.first %}selected{% endif %}{% endunless %}"
+              data-promotion-pack
+              data-pack-variant="{{ product.first_available_variant.id }}"
+            >
+              <div class="promotion-new-item-list-b-i-flex">
+                <div class="alp-promotion-new-image relative">
+                  <a class="full-aa" href="{{ product.featured_image | image_url: width: 1920 }}" data-fslightbox></a>
+                  {{ product.featured_image | image_url: width: 480 | image_tag }}
+                </div>
+                <div class="promotion-new-item-list-a-i-flex-text">
+                  {% render 'promotion-new-titles', product: product, bs: bs %}
+                </div>
+                <div class="icon-check-v">
+                  {% render 'icon-check-2' %}
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+    {% comment %} 免费礼包 {% endcomment %}
+    {%- if bs.title_3 != blank -%}
+      <div class="alp-product-promotion-new-item" data-type="free_acc">
+        <div class="headline__h6">{{ bs.title_3 }}</div>
+        {%- if bs.description_3 != blank -%}
+          <div class="title-description">{{ bs.description_3 }}</div>
+        {%- endif -%}
+        <div class="promotion-new-item-list-a">
+          {%- for product in bs.product_list_3 -%}
+            <div class="promotion-new-item-list-a-i selected">
+              <div class="promotion-new-item-list-a-i-flex">
+                <div class="icon-check-v">
+                  {% render 'icon-check-2' %}
+                </div>
+                <div class="alp-promotion-new-image relative">
+                  <a class="full-aa" href="{{ product.featured_image | image_url: width: 1920 }}" data-fslightbox></a>
+                  {{ product.featured_image | image_url: width: 320 | image_tag }}
+                </div>
+                <div class="promotion-new-item-list-a-i-flex-text">
+                  {% render 'promotion-new-titles', product: product, bs: bs %}
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- assign real_product = bs.product_real -%}
+{% for product in real_product %}
+  <div
+    class="promotions-hidden hidden selected"
+    data-promotion-pack
+    data-pack-variant="{{ product.first_available_variant.id }}"
+  ></div>
+{% endfor %}
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    $('.promotion-new-item-list-b-i').on('click', function () {
+      let $this = $(this);
+      if ($this.parent().hasClass('single-slect')) {
+        if ($this.hasClass('selected')) {
+          if ($this.parent().hasClass('able-cancel')) {
+            $this.removeClass('selected');
+          }
+        } else {
+          $this.addClass('selected').siblings().removeClass('selected');
+        }
+      } else {
+        $this.toggleClass('selected');
+      }
+    });
+  });
+</script>

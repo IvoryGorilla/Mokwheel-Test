@@ -1,0 +1,236 @@
+{% schema %}
+{
+  "name": "Jd product facet",
+  "class": "jd-product-facet",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "accessories related to ebikes"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link Url"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "product_list",
+          "id": "product_list",
+          "label": "Products",
+          "limit": 12
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Jd product facet"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-hot-access {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .alp-hot-access .help-faq-link-more {
+    /* color: #1a1a1a;
+    
+    font-size: clamp(12px, 4vw, 16px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 135%;
+    text-transform: capitalize;
+    text-decoration: underline; */
+    line-height: 1.2;
+    padding: 0.65em 1.5em;
+    border-radius: var(--alp-border-radius);
+    transition: 0.3s;
+    cursor: pointer;
+    background: var(--main-color);
+    color: white;
+
+    text-transform: capitalize;
+    display: inline-flex;
+    align-items: center;
+  }
+  .swiper-pagination-hot-facet {
+    margin-top: calc(var(--alp-gutter-y) * 1.25);
+  }
+  .alp-hot-selling .alp-product-item-info {
+    padding-bottom: calc(var(--alp-gutter-y) * 0.5);
+  }
+  @media (max-width: 741px) {
+    .jd-product-facet .alp-section {
+      padding-bottom: 60px;
+    }
+    .alp-hot-access {
+      flex-wrap: wrap;
+    }
+    .swiper-pagination-hot-facet {
+      margin-top: calc(var(--alp-gutter-y) * 1);
+      display: none;
+    }
+    .alp-hot-access .help-faq-link-more {
+      display: none;
+    }
+  }
+{% endstyle %}
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    <div class="alp-hot-selling alp-hot-accessrios">
+      <div class="alp-hot-access">
+        <h2 class="alp-hot-selling-title headline__h2s">
+          {{ st.title }}
+        </h2>
+        {%- if st.link_text != blank -%}
+          <div class="help-faq-link-more headline__h6">
+            <a href="{{st.link_url}}">{{ st.link_text }}</a>
+          </div>
+        {% endif %}
+      </div>
+      <div class="alp-hot-selling-con swiper" id="{{ section.id | replace: '-', '' | prepend: 'id_' }}">
+        <div class="swiper-wrapper">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              {%- for product in bs.product_list -%}
+                <div class="swiper-slide alp-hot-selling-item">
+                  {% render 'alp-product-item-accessrios', product: product, aspect_ratio: bs.image_aspect_ratio %}
+                </div>
+              {%- endfor -%}
+            {%- endfor -%}
+          {% endif %}
+        </div>
+        <div class="swiper-navs swiper-pagination-hot-facet">
+          {% render 'swiper-pagination', class: 'pagination-products' %}
+          {% render 'swiper-navigation', class: '' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    var BlockId = '{{ section.id | replace: '-', '' | prepend: 'id_' }}';
+    var swiper = new Swiper(`.alp-hot-selling .swiper#${BlockId}`, {
+     pagination: {
+       el: '.pagination-products',
+       clickable :true,
+     },
+     speed:600,
+     navigation: {
+       nextEl: '.swiper-button-next',
+       prevEl: '.swiper-button-prev',
+     },
+     breakpoints: { 
+      1680: { 
+        slidesPerView: 5,
+        spaceBetween: alp_global.gap * 1.5,
+      },
+      1440: { 
+          slidesPerView: 4.5,
+          spaceBetween: alp_global.gap * 1.5,
+      },
+      768: { 
+        slidesPerView: 3,
+        spaceBetween: alp_global.gap * 1.5,
+      },
+      320: {  
+        slidesPerView: 1.25,
+        spaceBetween: alp_global.gap * 1,
+      }
+    }
+   })
+  });
+</script>

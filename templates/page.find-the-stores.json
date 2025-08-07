@@ -1,0 +1,365 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "cd08a778-a6b8-4148-81b4-07bb549d345b": {
+      "type": "alp-hero-banner",
+      "blocks": {
+        "ab9ff3da-5d09-4d22-b458-41f32d454419": {
+          "type": "heading",
+          "settings": {
+            "text": "{{ page.title }}",
+            "heading_type": "h1"
+          }
+        },
+        "description_N7DLCx": {
+          "type": "description",
+          "settings": {
+            "text": "<p>You can come here to test ride and maintain your bike for free. <br/>Since it is not possible to confirm that each store can offer the model you want to test drive, you need to contact the store to confirm before going to the store</p>"
+          }
+        }
+      },
+      "block_order": [
+        "ab9ff3da-5d09-4d22-b458-41f32d454419",
+        "description_N7DLCx"
+      ],
+      "custom_css": [],
+      "settings": {
+        "title": "Test Ride Inner",
+        "text_alignment": "center",
+        "bg_color": "#f8f8f8",
+        "text_color": "#1a1a1a",
+        "bg_opacity": 100,
+        "url": "",
+        "image_aspect_ratio": "216/75",
+        "block_max_width": "950px",
+        "min_height": "100px",
+        "min_height_mobile": "320px",
+        "container": "alp-container",
+        "padding_top": 15,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "alp_dealers_map_zDwg6a": {
+      "type": "alp-dealers-map",
+      "settings": {
+        "bigtitle": "",
+        "bg_color": "#f8f8f8",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 15,
+        "reset_spacing": true
+      }
+    },
+    "alp_hero_banner_4rNUYF": {
+      "type": "alp-hero-banner",
+      "blocks": {
+        "heading_pih8FW": {
+          "type": "heading",
+          "settings": {
+            "text": "Can’t find a suitable dealer location for a test ride?",
+            "heading_type": "h1"
+          }
+        },
+        "description_ifaDxj": {
+          "type": "description",
+          "settings": {
+            "text": "<p>Check out our personal test ride providers on our website. By scheduling a test ride with them, you’ll also receive an exclusive test ride discount.</p>"
+          }
+        },
+        "button_8JpDCg": {
+          "type": "button",
+          "settings": {
+            "text": "Find individual providers",
+            "url": "shopify://pages/ebike-test-ride-ambassadors"
+          }
+        }
+      },
+      "block_order": [
+        "heading_pih8FW",
+        "description_ifaDxj",
+        "button_8JpDCg"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Test Ride Inner 2",
+        "text_alignment": "center",
+        "bg_color": "#f8f8f8",
+        "text_color": "#1a1a1a",
+        "bg_opacity": 100,
+        "url": "",
+        "image_aspect_ratio": "216/75",
+        "block_max_width": "950px",
+        "min_height": "100px",
+        "min_height_mobile": "320px",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 20,
+        "reset_spacing": false
+      }
+    },
+    "alp_test_ride_step_UYf7Ab": {
+      "type": "alp-test-ride-step",
+      "blocks": {
+        "item_WWKVbt": {
+          "type": "item",
+          "settings": {
+            "title": "<p>Free, Fast Shipping</p>",
+            "description": "<p>Ship Within 2 business days</p>",
+            "image": "shopify://shop_images/1_34449967-670b-4176-8a59-2da6623a7a0c.png"
+          }
+        },
+        "item_DVgdxU": {
+          "type": "item",
+          "settings": {
+            "title": "<p>Customer Service</p>",
+            "description": "<p>Professional Customer Service Team</p>",
+            "image": "shopify://shop_images/2352352.png"
+          }
+        },
+        "item_AMEU9t": {
+          "type": "item",
+          "settings": {
+            "title": "<p>15-Day Returns</p>",
+            "description": "<p>Al Mokwheel bikes</p>",
+            "image": "shopify://shop_images/12312.png"
+          }
+        },
+        "item_mNUcfx": {
+          "type": "item",
+          "settings": {
+            "title": "<p>2-Year Warranty</p>",
+            "description": "<p>The Two (2) Year Limited</p>",
+            "image": "shopify://shop_images/2-Year_Warranty_11_fd735279-7d8d-4b09-9394-bf24879e44b8.png"
+          }
+        }
+      },
+      "block_order": [
+        "item_WWKVbt",
+        "item_DVgdxU",
+        "item_AMEU9t",
+        "item_mNUcfx"
+      ],
+      "settings": {
+        "section_id": "test-ride-inner",
+        "title": "",
+        "description": "",
+        "url_info": "",
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "alp_test_ride_faq_Kc6Y7A": {
+      "type": "alp-test-ride-faq",
+      "blocks": {
+        "item_tab_GAGh3D": {
+          "type": "item_tab",
+          "settings": {
+            "faqs_question": "What are the benefits of taking a test ride before purchasing an eBike?",
+            "faqs_answer": "<p>Taking a test ride allows you to experience the feel and performance of different eBike models firsthand. This helps you make an informed decision about which model best suits your riding style, comfort preferences, and intended use.</p>"
+          }
+        },
+        "item_tab_WVyiFQ": {
+          "type": "item_tab",
+          "settings": {
+            "faqs_question": "What do I need to bring to test ride a Mokwheel Ebike?",
+            "faqs_answer": "<p>Taking a test ride allows you to experience the feel and performance of different eBike models firsthand. This helps you make an informed decision about which model best suits your riding style, comfort preferences, and intended use.</p>"
+          }
+        },
+        "item_tab_pLV336": {
+          "type": "item_tab",
+          "settings": {
+            "faqs_question": "What can I expect from a test ride?",
+            "faqs_answer": "<p>Taking a test ride allows you to experience the feel and performance of different eBike models firsthand. This helps you make an informed decision about which model best suits your riding style, comfort preferences, and intended use.</p>"
+          }
+        },
+        "item_tab_8jbyDk": {
+          "type": "item_tab",
+          "settings": {
+            "faqs_question": "Why should I buy a Mokwheel Ebike from Best Buy?",
+            "faqs_answer": "<p>Taking a test ride allows you to experience the feel and performance of different eBike models firsthand. This helps you make an informed decision about which model best suits your riding style, comfort preferences, and intended use.</p>"
+          }
+        },
+        "item_tab_MGe8AY": {
+          "type": "item_tab",
+          "settings": {
+            "faqs_question": "Can I test ride a Mokwheel Ebike at a Best Buy location?",
+            "faqs_answer": "<p>Taking a test ride allows you to experience the feel and performance of different eBike models firsthand. This helps you make an informed decision about which model best suits your riding style, comfort preferences, and intended use.</p>"
+          }
+        },
+        "item_tab_CgCj6j": {
+          "type": "item_tab",
+          "settings": {
+            "faqs_question": "Do I need to make a reservation for a test ride or rental?",
+            "faqs_answer": "<p>Taking a test ride allows you to experience the feel and performance of different eBike models firsthand. This helps you make an informed decision about which model best suits your riding style, comfort preferences, and intended use.</p>"
+          }
+        },
+        "item_tab_gtyhpP": {
+          "type": "item_tab",
+          "settings": {
+            "faqs_question": "Can I rent a Mokwheel Ebike for a day, a weekend, or longer?",
+            "faqs_answer": "<p>Taking a test ride allows you to experience the feel and performance of different eBike models firsthand. This helps you make an informed decision about which model best suits your riding style, comfort preferences, and intended use.</p>"
+          }
+        },
+        "item_tab_Lhr6k3": {
+          "type": "item_tab",
+          "settings": {
+            "faqs_question": "Are there any restrictions on where I can ride the eBike during a test ride?",
+            "faqs_answer": "<p>Taking a test ride allows you to experience the feel and performance of different eBike models firsthand. This helps you make an informed decision about which model best suits your riding style, comfort preferences, and intended use.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_tab_GAGh3D",
+        "item_tab_WVyiFQ",
+        "item_tab_pLV336",
+        "item_tab_8jbyDk",
+        "item_tab_MGe8AY",
+        "item_tab_CgCj6j",
+        "item_tab_gtyhpP",
+        "item_tab_Lhr6k3"
+      ],
+      "disabled": true,
+      "settings": {
+        "faqtitle": "FAQs",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "alp_apps_8KDtJk": {
+      "type": "alp-apps",
+      "blocks": {
+        "powerful_form_builder_app_block_qRMgNE": {
+          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+          "settings": {
+            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"ODMzNDE=\"></div>"
+          }
+        }
+      },
+      "block_order": [
+        "powerful_form_builder_app_block_qRMgNE"
+      ],
+      "settings": {
+        "title": "form-test-ride",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "alp_contact_info_Fq6MML": {
+      "type": "alp-contact-info",
+      "blocks": {
+        "item_NcpxDX": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Group_39998.png",
+            "title": "Find a location",
+            "desc": "<p>Find a suitable test ride location on the map</p>"
+          }
+        },
+        "item_9mn6Uy": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Group_39995.png",
+            "title": "Contact",
+            "desc": "<p>Make a reservation on phone or Email</p>"
+          }
+        },
+        "item_F3LcRV": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Group_39996.png",
+            "title": "Take a test ride",
+            "desc": "<p>Come to the store and start your test ride</p>"
+          }
+        },
+        "item_NPakwD": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Group_40000.png",
+            "title": "Get a discount",
+            "desc": "<p>Interested in Mokwheel e-bikes? Use the provider's link and discount code.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_NcpxDX",
+        "item_9mn6Uy",
+        "item_F3LcRV",
+        "item_NPakwD"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "How it works",
+        "bg_color": "#f8f8f8",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "alp_featured_collection_n68Cj7": {
+      "type": "alp-featured-collection",
+      "disabled": true,
+      "settings": {
+        "title": "Featured Collection",
+        "product_list": [
+          "asphalt",
+          "asphalt-st",
+          "basalt",
+          "basalt-st",
+          "new-mesa-lite",
+          "mesa-lite-st",
+          "new-mesa-lite-st",
+          "mesa-plus-st"
+        ],
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "cd08a778-a6b8-4148-81b4-07bb549d345b",
+    "alp_dealers_map_zDwg6a",
+    "alp_hero_banner_4rNUYF",
+    "alp_test_ride_step_UYf7Ab",
+    "alp_test_ride_faq_Kc6Y7A",
+    "alp_apps_8KDtJk",
+    "alp_contact_info_Fq6MML",
+    "alp_featured_collection_n68Cj7"
+  ]
+}

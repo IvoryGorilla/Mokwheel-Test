@@ -1,0 +1,12 @@
+{% comment %}
+  Usage:
+  {% render 'mega-menu-icon-content', title: title, icon: icon, richtext: richtext, richtext2: richtext2 %}
+{% endcomment %}
+<div class="mega-menu-list-item mega-menu-icon">
+  <div>
+    <div class="mega-menu-icon">{{- icon -}}</div>
+    <div class="mega-menu-icon-title headline__h6">{{- title | default: '' -}}</div>
+    <div class="mega-menu-icon-richtext">{{- richtext -}}</div>
+  </div>
+  <div class="mega-menu-icon-link">{{- richtext2 -}}</div>
+</div>

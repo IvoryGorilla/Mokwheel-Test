@@ -1,0 +1,425 @@
+{% schema %}
+{
+  "name": "Alp Secondary Power",
+  "class": "alp-secondary-power",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bigtitle",
+      "label": "Big Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "text_left",
+      "label": "Text in Left",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "textarea",
+          "id": "rich_content",
+          "label": "Richtext"
+        },
+        {
+          "type": "image_picker",
+          "id": "image1",
+          "label": "Image1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image2",
+          "label": "Image2"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Secondary Power"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+
+  }
+</style>
+
+{% style %}
+  .alp-secondary-power img{
+    display: block;
+  }
+  .alp-secondary-power-bigtitle{
+    font-size: clamp(24px, 4vw, 64px);
+    font-weight: bold;
+    line-height: 1.2;
+    max-width: 800px;
+    margin: 0 auto 80px;
+    text-align: center;
+  }
+  .alp-secondary-power-item{
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+  }
+  .alp-secondary-power-left{
+    width: 50%;
+  }
+  .alp-secondary-power-right{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .alp-secondary-power-title h2{
+    font-size: clamp(24px, 3vw, 48px);
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .alp-secondary-power-title span{
+    font-size: clamp(14px, 1vw, 18px);
+    font-weight: 500;
+  }
+  .alp-secondary-power-title span p{
+    margin: 0;
+  }
+  .alp-secondary-power-content{
+    display: flex;
+    align-items: center;
+    gap: 75px;
+  }
+  .alp-secondary-power-content .icon{
+    display: flex;
+    flex-direction: column;
+  }
+  .alp-secondary-power-content .icon img{
+    display: block;
+    width: 24px;
+    margin-bottom: 8px;
+  }
+  .alp-secondary-power-content .icon p{
+    font-size: clamp(14px, 1vw, 16px);
+    margin: 0;
+  }
+  .alp-secondary-power-image{
+    display: flex;
+    align-items: center;
+  }
+
+  .alp-secondary-power .swiper-button-next,
+  .alp-secondary-power .swiper-button-prev {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .alp-secondary-power .alp-secondary-power-swiper-navigation{
+    display: none;
+  }
+  /* 当有多个 Slide 时显示按钮 */
+  .alp-secondary-power .swiper-multiple-slides .alp-secondary-power-swiper-navigation{
+    /* display: flex; */
+    display: none;
+  }
+
+  .alp-secondary-power .alp-secondary-power-swiper-navigation > div{
+    width: 32px;
+    height: 32px;
+  }
+  .alp-secondary-power .alp-secondary-power-swiper-navigation .swiper-button-disabled{
+    background: #fff;
+    border: 1px solid #000;
+    color: #000;
+  }
+  @media screen and (min-width: 1740px) {
+    .alp-secondary-power-title{
+      width: 65%;
+    } 
+  }
+  @media screen and (min-width: 1400px) and (max-width: 1739px){
+    .alp-secondary-power-title h2{
+      margin-bottom: 8px;
+    }
+    .alp-secondary-power-right{
+      gap: 25px;
+    }
+  }
+  @media screen and (min-width: 999px) and (max-width: 1399px){
+    .alp-secondary-power-right{
+      gap: 12px;
+    }
+  }
+  @media screen and (min-width: 999px){
+    .alp-secondary-power-right{
+      position: relative;
+    }
+    .alp-secondary-power-swiper-navigation{
+      justify-content: start;
+      position: relative;
+      /* top: -40px; */
+    }
+    .alp-secondary-power-item.text_left .alp-secondary-power-swiper-navigation{
+      right: 0;
+    }
+    .alp-secondary-power-item.text_left{
+      flex-direction: row-reverse;
+    }
+    .alp-secondary-power-item.text_left .alp-secondary-power-right{
+      align-items: end;
+    }
+    .alp-secondary-power-item.text_left .alp-secondary-power-content{
+      justify-content: end;
+    }
+    .alp-secondary-power-item.text_left .alp-secondary-power-content .icon{
+      align-items: baseline;
+    }
+    .alp-secondary-power-title{
+      width: 80%;
+    } 
+    .alp-secondary-power-item.text_left  .alp-secondary-power-title{
+      text-align: end;
+    }
+  }
+  @media screen and (max-width: 999px) {
+    .alp-secondary-power .alp-secondary-power-container{
+      padding: 0 16px;
+    }
+    .alp-secondary-power-bigtitle{
+      margin-bottom: 32px;
+    }
+    .alp-secondary-power-item{
+      flex-direction: column;
+    }
+    .alp-secondary-power-left{
+      width: 100%;
+    }
+    .alp-secondary-power-left img{
+      margin-bottom: 32px;
+    }
+    .alp-secondary-power-right{
+      width: 100%;
+      gap: 32px;
+    }
+    .alp-secondary-power-title h2{
+      margin-bottom: 16px;
+    }
+    .alp-secondary-power-content{
+      justify-content: space-around;
+      gap: 20px;
+      text-align: center;
+    }
+    .alp-secondary-power-content .icon img{
+      margin: 0 auto 8px;
+    }
+    .alp-secondary-power-swiper-navigation{
+      justify-content: start;
+      margin-bottom: 16px;
+      gap: 16px;
+    }
+    .alp-secondary-power .swiper-multiple-slides .alp-secondary-power-swiper-navigation{
+      display:flex;
+    }
+  }
+
+  .alp-secondary-power-video{
+    width:100%;
+    height:auto;
+  }
+  @media screen and (max-width: 999px) {
+    .alp-secondary-power-video {
+      margin-bottom: 32px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" data-stid="{{ section.id }}" style="{{ style }}">
+  <div class="alp-section-container alp-secondary-power-container page-width {{ container }}">
+      <div class="alp-secondary-power-bigtitle">{{ st.bigtitle }}</div>
+      <div class="alp-secondary-power-swiper swiper" id="{{ section.id | replace: '-', '' | prepend: 'id_' }}">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div class="swiper-slide">
+              <div class="alp-secondary-power-item {% if st.text_left %}text_left{% endif %}">
+                  <div class="alp-secondary-power-left">
+                    {% if bs.video %}
+                      <video
+                        class="lazy alp-secondary-power-video"
+                        muted
+                        preload
+                        autoplay
+                        loop
+                        x5-video-player-type="h5"
+                        x5-video-player-fullscreen="true"
+                        x5-playsinline
+                        playsinline
+                        webkit-playsinline
+                      >
+                        {%- for source in bs.video.sources -%}
+                          <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+                        {%- endfor -%}
+                      </video>
+                    {% elsif bs.image %}
+                      {% render 'alp-single-image', image: bs.image,  width: 1280  %}
+                    {% endif %}
+
+                    {% render 'swiper-navigation', class: 'alp-secondary-power-swiper-navigation hide_desktop' %}
+                  </div>
+                  <div class="alp-secondary-power-right">
+                    {% render 'swiper-navigation', class: 'alp-secondary-power-swiper-navigation hide_mobile' %}
+                    <div class="alp-secondary-power-title">
+                      <h2>{{ bs.title | strip_html | strip }}</h2>
+                      <span>{{ bs.description }}</span>
+                    </div>
+                    <div class="alp-secondary-power-content">{{ bs.rich_content }}</div>
+                    <div class="alp-secondary-power-image">
+                      {% render 'alp-single-image', image: bs.image1 , width: 1280 %}
+                      {% render 'alp-single-image', image: bs.image2 , width: 1280%}
+                    </div>
+                  </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+        {% comment %} {% render 'swiper-navigation', class: 'alp-secondary-power-swiper-navigation' %} {% endcomment %}
+      </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+    let is_Swiper_Mobile = window.innerWidth < 999;
+    var BlockId = '{{ section.id | replace: '-', '' | prepend: 'id_' }}';
+    var Swiper_{{ section.id | replace: '-', '' }} = new Swiper(`.alp-secondary-power-swiper.swiper#${BlockId}`, {
+      //cssMode: is_Swiper_Mobile,
+      navigation: {
+        nextEl: `.alp-secondary-power-swiper.swiper#${BlockId} .swiper-button-next`,
+        prevEl: `.alp-secondary-power-swiper.swiper#${BlockId} .swiper-button-prev`,
+      },
+      on: {
+        // 初始化时检测 Slide 数量
+        init: function () {
+          toggleNavigation(this);
+        },
+        // Slide 数量变化时更新（如动态添加/删除）
+        update: function () {
+          toggleNavigation(this);
+        }
+      }
+    });
+    function toggleNavigation(swiperInstance) {
+      const slidesCount = swiperInstance.slides.length;
+      const swiperEl = swiperInstance.el;
+
+      // 添加/移除控制类名
+      if (slidesCount > 1) {
+        swiperEl.classList.add('swiper-multiple-slides');
+      } else {
+        swiperEl.classList.remove('swiper-multiple-slides');
+      }
+    }
+  });
+</script>

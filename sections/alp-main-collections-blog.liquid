@@ -1,0 +1,256 @@
+{% schema %}
+{
+  "name": "Alp Main Collections Blog",
+  "class": "alp-main-collections-blog",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Featured Blog Posts"
+    },
+    {
+      "type": "text",
+      "id": "link_text_title",
+      "label": "Link Text",
+      "default": "View More >"
+    },
+    {
+      "type": "url",
+      "id": "link_url_title",
+      "label": "Link Url"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "article",
+          "id": "blog",
+          "label": "Blog"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Main Collections Blog"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-main-collections-blog-bigtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .alp-main-collections-blog-bigtitle .alp-hot-selling-title {
+    margin-bottom: 0.2em;
+  }
+  .alp-main-collections-blog-bigtitle .view-more {
+    color: #1a1a1a;
+    font-size: clamp(12px, 4vw, 16px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 135%;
+    text-transform: capitalize;
+  }
+  .alp-main-collections-blog-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+  }
+  .alp-main-collections-blog-item {
+    border: 1px solid #00000030;
+    position: relative;
+    width: 48%;
+  }
+  .alp-main-collections-blog-item picture img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+  }
+  .alp-main-collections-blog-box {
+    padding: 24px;
+  }
+  .alp-main-collections-blog-title,
+  .alp-main-collections-blog-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .alp-main-collections-blog-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    height: 60px;
+  }
+  .alp-main-collections-blog-desc {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .alp-main-collections-blog-desc p {
+    margin: 0;
+  }
+  .alp-main-collections-prevNext-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+  }
+  .alp-main-collections-prevNext-bottom span {
+    opacity: 0.5;
+  }
+  .alp-main-collections-prevNext-btn .alp-btn.small:not(.button-type-btn-link) {
+    font-weight: 400;
+    padding: 0;
+  }
+  .alp-main-collections-prevNext-btn svg path {
+    fill: #4e57ef;
+  }
+  @media screen and (max-width: 999px) {
+    .alp-main-collections-blog-con {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    .alp-main-collections-blog-container {
+      flex-direction: column;
+      gap: 24px;
+    }
+    .alp-main-collections-blog-item {
+      width: 100%;
+    }
+    .alp-main-collections-blog-title {
+      font-size: 18px;
+    }
+    .alp-main-collections-blog-desc,
+    .alp-main-collections-prevNext-bottom {
+      font-size: 16px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container alp-main-collections-blog-con page-width {{ container }}">
+    <div class="alp-main-collections-blog-bigtitle">
+      <h2 class="alp-hot-selling-title headline__h2s">{{ st.title }}</h2>
+      <div class="view-more headline__h4">
+        <a href="{{ st.link_url_title }}">{{ st.link_text_title }}</a>
+      </div>
+    </div>
+    <div class="alp-main-collections-blog-container">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        <div class="alp-main-collections-blog-item">
+          {%- if bs.blog.url != blank -%}
+            <a class="full-aa" href="{{ bs.blog.url }}" title="{{ bs.blog.title }}"></a>
+          {%- endif -%}
+          {% render 'alp-single-image', image: bs.blog.image, width: 1280 %}
+          <div class="alp-main-collections-blog-box">
+            <div class="text">
+              <h3 class="alp-main-collections-blog-title headline__h3">{{ bs.blog.title }}</h3>
+              <div class="alp-main-collections-blog-desc">{{ bs.blog.content }}</div>
+            </div>
+            <div class="alp-main-collections-prevNext-bottom">
+              <span class="circle-divider">{{ bs.blog.published_at | time_tag: format: 'date' }}</span>
+              <div class="alp-main-collections-prevNext-btn">
+                {% render 'alp-btn',
+                  url: blog.previous_article.url,
+                  type: 'primary',
+                  text: 'READ MORE',
+                  textcolor: '#000',
+                  bgcolor: '#fff',
+                  size: 'small'
+                %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

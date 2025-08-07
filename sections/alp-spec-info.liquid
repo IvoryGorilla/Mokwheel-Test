@@ -1,0 +1,349 @@
+{% schema %}
+{
+  "name": "Alp Spec Info",
+  "class": "alp-spec-info",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec_type_a",
+      "name": "Spec Type A",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": " Title",
+          "default": "Specifications"
+        },
+        {
+          "type": "textarea",
+          "id": "rich_content",
+          "label": "Richtext"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "spec_type_b",
+      "name": "Spec Type B",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": " Title",
+          "default": "Specifications"
+        },
+        {
+          "type": "textarea",
+          "id": "rich_content",
+          "label": "Richtext"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Spec Info"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  .alp-spec-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .alp-spec-info p {
+    margin: 0;
+  }
+  .alp-spec-info-item {
+    padding: calc(var(--alp-gutter-y) * 0.75) 1.5em;
+    background: var(--main-background);
+    border-radius: var(--alp-border-radius);
+  }
+  .alp-spec-info-item-title {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .alp-spec-info-item-title > div {
+    margin: 0;
+  }
+
+  .alp-spec-info-item .jd-animated-plus::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  .alp-spec-info-item.active .jd-animated-plus::before {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .alp-spec-info-item .animated-plus {
+    position: relative;
+    width: 10px;
+    height: 10px;
+  }
+
+  .alp-spec-info-item .animated-plus::before,
+  .alp-spec-info-item .animated-plus::after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    background-color: currentColor;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  }
+
+  .alp-spec-info-item .animated-plus::before {
+    width: 10px;
+    height: 2px;
+    opacity: 1;
+  }
+
+  .alp-spec-info-item .animated-plus::after {
+    width: 2px;
+    height: 10px;
+  }
+
+  .alp-spec-info-item.active .animated-plus::before {
+    opacity: 0;
+  }
+
+  .alp-spec-info-wrapper {
+    padding: 0 var(--container-gutter);
+    margin: var(--alp-gutter-y) 0;
+    margin-bottom: 0;
+  }
+  .alp-spec-info-item-content {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: calc(var(--alp-gutter-y) * 0.5);
+    display: none;
+  }
+  .alp-spec-info-item .alp-spec-info-item-content-wrap {
+    display: flex;
+  }
+
+  .alp-spec-info-item-content .Sp_tech {
+    margin-top: calc(var(--alp-gutter-y) * 0.75);
+  }
+
+  .alp-spec-info-item-content .Sp_alp > div > h4 {
+    font-size: clamp(16px, 2.2vw, 16px);
+  }
+  .alp-spec-info-item-content .Sp_alp > div > div {
+    display: flex;
+    align-items: center;
+    font-size: clamp(16px, 2.2vw, 16px);
+    padding: calc(var(--alp-gutter-y) * 0.35) 0;
+    border-bottom: 1px solid #e3e3e3;
+    border-top: 0;
+  }
+  .alp-spec-info-item-content .Sp_alp > div:not(:first-child) h4 {
+    text-align: center;
+    padding-right: 0;
+  }
+  .alp-spec-info-item-content .Sp_alp > div:not(:first-child) > div {
+    text-align: center;
+    display: block;
+  }
+  .alp-spec-info-item-content .Sp_alp div:first-child,
+  .alp-spec-info-item-content .Sp_alp div:first-child h4 {
+    font-weight: 600;
+  }
+
+  .alp-spec-info-item-content .Sp_tech > div > div:last-child {
+    border-bottom: 1px solid #e3e3e3;
+  }
+
+  .alp-spec-info-item-content .Sp_tech > div > div b {
+    flex-basis: 20%;
+  }
+  .alp-spec-info-item-content .Sp_tech > div > div span {
+    flex-basis: 80%;
+    text-align: left;
+  }
+
+  .alp-spec-info-item-content .leftc-text-c {
+    width: 50%;
+  }
+
+  .alp-spec-info-item-content .rightc-img {
+    width: 45%;
+    margin-top: calc(var(--alp-gutter-y) * 0.75);
+  }
+
+  .alp-spec-info-item-content .full-text-c {
+    flex: 1;
+  }
+
+  @media (min-width: 751px) {
+    .alp-spec-info-item-content .Sp_tech > div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 0em;
+      border-top: 1px solid #e3e3e3;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .alp-spec-info-item-content .Sp_tech > div > div:first-child {
+      border-top: 1px solid #e3e3e3;
+    }
+    .alp-spec-info-item-content .Sp_alp div:first-child > div,
+    .alp-spec-info-item-content .Sp_alp div:first-child h4 {
+      font-weight: 500;
+    }
+    .alp-spec-info-item-content .Sp_alp div:last-child > div,
+    .alp-spec-info-item-content .Sp_alp div:last-child > h4 {
+      font-weight: 400;
+    }
+    .alp-spec-info-item-content .Sp_tech > div > div b {
+      flex-basis: 40%;
+      font-weight: 500;
+    }
+    .alp-spec-info-item-content .Sp_tech > div > div span {
+      flex-basis: 60%;
+      text-align: left;
+    }
+    .alp-spec-info-item .alp-spec-info-item-content-wrap {
+      flex-direction: column;
+    }
+    .alp-spec-info-item-content .leftc-text-c {
+      width: 100%;
+    }
+    .alp-spec-info-item-content .rightc-img {
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="alp-spec-info-wrapper alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-spec-info-container alp-section-container page-width {{ container }}">
+    {%- for block in section.blocks -%}
+      {% liquid
+        assign bs = block.settings
+      %}
+      {%- case block.type -%}
+        {%- when 'spec_type_a' -%}
+          <div class="alp-spec-info-item">
+            <div class="alp-spec-info-item-title">
+              <div class="headline__h4">{{ bs.title }}</div>
+              <span class="animated-plus jd-animated-plus"></span>
+            </div>
+            <div class="alp-spec-info-item-content">
+              <div class="alp-spec-info-item-content-wrap">
+                <div class="leftc-text-c">{{ bs.rich_content }}</div>
+                {%- if bs.image -%}
+                  <div class="rightc-img">
+                    {{ bs.image | image_url: width: 1500 | image_tag: loading: 'lazy' }}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- when 'spec_type_b' -%}
+          <div class="alp-spec-info-item">
+            <div class="alp-spec-info-item-title">
+              <div class="headline__h4">{{ bs.title }}</div>
+              <span class="animated-plus jd-animated-plus"></span>
+            </div>
+            <div class="alp-spec-info-item-content">
+              <div class="full-text-c">{{ bs.rich_content }}</div>
+            </div>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    $('.alp-spec-info-item-title').click(function () {
+      let $this = $(this).parent();
+      $this.toggleClass('active');
+      $this.siblings().removeClass('active');
+      $this.find('.alp-spec-info-item-content').stop().slideToggle(400);
+      $this.siblings().find('.alp-spec-info-item-content').stop().slideUp(400);
+    });
+  });
+</script>

@@ -1,0 +1,378 @@
+{% schema %}
+{
+  "name": "Inverter Media1",
+  "class": "inverter-media1-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mb",
+      "label": "Image Mobile"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "item_image1",
+          "label": "Item Image1"
+        },
+        {
+          "type": "text",
+          "id": "item_title1",
+          "label": "Item Title1"
+        },
+        {
+          "type": "text",
+          "id": "item_desc1",
+          "label": "Item Desc1"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_image2",
+          "label": "Item Image2"
+        },
+        {
+          "type": "text",
+          "id": "item_title2",
+          "label": "Item Title2"
+        },
+        {
+          "type": "text",
+          "id": "item_desc2",
+          "label": "Item Desc2"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_image3",
+          "label": "Item Image3"
+        },
+        {
+          "type": "text",
+          "id": "item_title3",
+          "label": "Item Title3"
+        },
+        {
+          "type": "text",
+          "id": "item_desc3",
+          "label": "Item Desc3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inverter Media1"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+  .inverter-media1-container {
+    padding-bottom: 120px
+  }
+  .inverter-media1-header {
+    max-width: 900px;
+    margin: auto;
+  }
+  .inverter-media1-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .inverter-media1-subtitle {
+    margin: 20px 40px 0;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+  }
+  .inverter-media1-content {
+    margin-top: 72px;
+    max-width: 1440px;
+    max-height: 768px;
+    display: flex;
+  }
+  .inverter-media1-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 80px;
+  }
+  .inverter-media1-list {
+    display: flex;
+    gap: 25px;
+    padding: 0 25px 0 35px;
+  }
+  .inverter-media1-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+  }
+  .inverter-media1-item-image {
+    width: 48px;
+    height: 48px;
+  }
+  .inverter-media1-item-title {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: normal;
+    text-align: center;
+    max-width: 120px;
+  }
+  .inverter-media1-item-desc {
+    margin-top: 6px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: normal;
+    text-align: center;
+  }
+  .inverter-banner-image {
+    height: 100%;
+  }
+  .inverter-media1-content img {
+    display: block;
+    height: 100%;
+  }
+  @media screen and (max-width: 999px) {
+    .inverter-media1-container {
+      padding-bottom: 60px
+    }
+    .inverter-media1-title {
+      font-size: 30px;
+    }
+    .inverter-media1-subtitle {
+      margin: 6px 0 0;
+    }
+    .inverter-media1-content {
+      margin-top: 24px;
+      flex-direction: column-reverse;
+      max-height: none;
+    }
+    .inverter-media1-left {
+      gap: 30px;
+      padding: 22px 21.5px;
+    }
+    .inverter-media1-list {
+      padding: 0;
+      gap: 12px;
+    }
+    .inverter-media1-item-image {
+      width: 40px;
+      height: 40px;
+    }
+    .inverter-media1-item-title {
+      font-size: 12px;
+    }
+    .inverter-media1-item-desc {
+      font-size: 12px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" data-stid="{{ section.id }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }} inverter-media1-container">
+    <div class="inverter-media1-header">
+      <h2 class="inverter-media1-title">{{ st.title }}</h2>
+      <div class="inverter-media1-subtitle">{{ st.subtitle }}</div>
+    </div>
+    <div class="inverter-media1-content">
+      <div class="inverter-media1-left">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign bs = block.settings
+            -%}
+            <div class="inverter-media1-list">
+              <div class="inverter-media1-item">
+                {%- if bs.item_image1 != blank -%}
+                  <div class="inverter-media1-item-image">
+                    <img
+                      src="{{ bs.item_image1 | image_url }}"
+                      width="auto"
+                      height="auto"
+                    >
+                  </div>
+                {%- endif -%}
+                <div class="inverter-media1-item-title">
+                  {{ bs.item_title1 }}
+                </div>
+                <div class="inverter-media1-item-desc">
+                  {{ bs.item_desc1 }}
+                </div>
+              </div>
+              <div class="inverter-media1-item">
+                {%- if bs.item_image2 != blank -%}
+                  <div class="inverter-media1-item-image">
+                    <img
+                      src="{{ bs.item_image2 | image_url }}"
+                      width="auto"
+                      height="auto"
+                    >
+                  </div>
+                {%- endif -%}
+                <div class="inverter-media1-item-title">
+                  {{ bs.item_title2 }}
+                </div>
+                <div class="inverter-media1-item-desc">
+                  {{ bs.item_desc2 }}
+                </div>
+              </div>
+              <div class="inverter-media1-item">
+                {%- if bs.item_image3 != blank -%}
+                  <div class="inverter-media1-item-image">
+                    <img
+                      src="{{ bs.item_image3 | image_url }}"
+                      width="auto"
+                      height="auto"
+                    >
+                  </div>
+                {%- endif -%}
+                <div class="inverter-media1-item-title">
+                  {{ bs.item_title3 }}
+                </div>
+                <div class="inverter-media1-item-desc">
+                  {{ bs.item_desc3 }}
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {% endif %}
+      </div>
+      <div class="inverter-media1-right">
+        {%- if st.video != blank -%}
+          <div class="inverter-banner-video hide_mobile">
+            <video
+              class="lazy"
+              muted
+              preload
+              autoplay
+              loop
+              x5-video-player-type="h5"
+              x5-video-player-fullscreen="true"
+              x5-playsinline
+              playsinline
+              webkit-playsinline
+            >
+              {%- for source in st.video.sources -%}
+                <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+              {%- endfor -%}
+            </video>
+          </div>
+        {%- elsif st.image != blank -%}
+          <div class="inverter-banner-image hide_mobile">
+            <img
+              src="{{ st.image | image_url: width: 1920 }}"
+              width="auto"
+              height="auto"
+            >
+          </div>
+        {%- endif -%}
+
+        {%- if st.video_mb != blank -%}
+          <div class="inverter-banner-video hide_desktop">
+            <video
+              class="lazy"
+              muted
+              preload
+              autoplay
+              loop
+              x5-video-player-type="h5"
+              x5-video-player-fullscreen="true"
+              x5-playsinline
+              playsinline
+              webkit-playsinline
+            >
+              {%- for source in st.video_mb.sources -%}
+                <source data-src="{{ source.url }}" type="video/{{ source.format }}">
+              {%- endfor -%}
+            </video>
+          </div>
+        {%- elsif st.image_mb != blank -%}
+          <div class="inverter-banner-image hide_desktop">
+            <img
+              src="{{ st.image_mb | image_url: width: 800 }}"
+              width="auto"
+              height="auto"
+            >
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+

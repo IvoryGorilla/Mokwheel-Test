@@ -1,0 +1,46 @@
+<style>
+    .MK_all{
+        background: #7272721c;
+        color: #151515;
+        font-size: 16px;
+        text-align: center;
+        padding:5px 0 5px;
+        /* display: none !important; */
+    }
+    .MK_all a{
+      text-decoration: underline;
+        font-weight: 600;
+    }
+@media (max-width:750px) {
+  .MK_all{
+        background: #7272721c;
+        color: #151515;
+        font-size: 14px;
+        text-align: center;
+        padding:5px 0;
+    }
+}
+
+</style>
+<div class="MK_all">
+    {{section.settings.active_content}}
+</div>
+
+{% schema %}
+{
+  "name": "mk active",
+  "class": "shopify-section--Mk-active",
+  "settings": [
+  {
+    "type": "richtext",
+    "id": "active_content",
+    "label": "Active Content"
+  }
+  ],
+  "presets": [
+    {
+      "name": "mk active"
+    }
+  ]
+}
+{% endschema %}

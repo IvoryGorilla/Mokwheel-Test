@@ -1,0 +1,380 @@
+{% schema %}
+{
+  "name": "Alp Header",
+  "class": "alp-header-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "transparent-templates",
+      "label": "Transparent Templates",
+      "default": "index",
+      "info": "format: index,page,collection,..."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "logo_width_desktop",
+      "label": "Logo Width Desktop",
+      "default": 230,
+      "min": 0,
+      "max": 500,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "label": "Logo Width Mobile",
+      "default": 180,
+      "min": 0,
+      "max": 500,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "height_desktop",
+      "label": "Height Desktop",
+      "default": 100,
+      "min": 0,
+      "max": 250,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "label": "Height Mobile",
+      "default": 80,
+      "min": 0,
+      "max": 250,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "header_position",
+      "label": "Position",
+      "options": [
+        {
+          "value": "non_sticky",
+          "label": "Non sticky"
+        },
+        {
+          "value": "sticky_desktop",
+          "label": "Sticky on desktop only"
+        },
+        {
+          "value": "sticky_mobile",
+          "label": "Sticky on mobile only"
+        },
+        {
+          "value": "sticky",
+          "label": "Sticky everywhere"
+        }
+      ],
+      "default": "sticky"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo-block",
+      "name": "Logo Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_image_normal",
+          "label": "Logo Image Normal"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_image_white",
+          "label": "Logo Image White"
+        }
+      ]
+    },
+    {
+      "type": "menu-block",
+      "name": "Menu Block",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        },
+        {
+          "type": "text",
+          "id": "mega_menu_title",
+          "label": "Mega Menu Title"
+        }
+      ]
+    },
+    {
+      "type": "icon-list-block",
+      "name": "Icon List Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Icon List Block"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Header"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};--height-desktop: {{ st.height_desktop }};--height-mobile: {{ st.height_mobile }};
+{%- endcapture -%}
+
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+
+<link rel="stylesheet" href="{{ 'alp-header.css' | asset_url }}">
+
+{% style %}
+{% endstyle %}
+
+<style>
+    /* Transparent header */
+    .alp-menu-container ul.list-menu-ul > li.list-menu-li-parent {
+        transition: color 0.3s;
+      }
+
+      .alp-menu-container svg {
+        transition: color 0.3s;
+      }
+
+  {%- assign t_templates = st.transparent-templates | split: ',' -%}
+  {%- for item in t_templates -%}
+      {%- capture element -%}
+      .template-{{ item }}
+      {%- endcapture -%}
+
+      {{ element }} .alp-header-wrapper .alp-header-wrapper-inner {
+            --text-color: #fff;
+            --bg-color: rgb(0 0 0 / 1%);
+            transition: background 0.3s;
+            background: var(--bg-color);
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgb(255 255 255 / 8%);
+        }
+      {{ element }} .alp-header-wrapper a.alp-header-logo-link img.logo-image-normal {
+            opacity: 0;
+        }
+
+      {{ element }} .alp-header-wrapper a.alp-header-logo-link img.logo-image-white {
+            opacity: 1;
+        }
+  {%- endfor -%}
+
+  [class*="template-"] .headroom--not-top .alp-header-wrapper .alp-header-wrapper-inner {
+    --text-color: {{ st.text_color }};
+    --bg-color: {{ st.bg_color }};
+    border-bottom: 1px solid rgb(0 0 0 / 8%);
+  }
+  [class*="template-"] .headroom--not-top .alp-header-wrapper .alp-header-wrapper-inner a.alp-header-logo-link img.logo-image-white {
+    opacity: 0;
+  }
+  [class*="template-"] .headroom--not-top .alp-header-wrapper .alp-header-wrapper-inner a.alp-header-logo-link img.logo-image-normal {
+    opacity: 1;
+  }
+</style>
+
+<div class="alp-module-search">
+  <div class="alp-module-search-overlay"></div>
+  <div class="alp-module-search-inner">
+    {% render 'alp-header-search', input_id: 'Search-In-Modal-One' %}
+  </div>
+</div>
+
+<div class="alp-section alp-header-wrapper {{ st.header_position }} {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-header-wrapper-inner">
+    <div class="alp-header-container page-width {{ container }}">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          {%- case block.type -%}
+            {%- when 'logo-block' -%}
+              <div class="alp-header-logo-wrapper">
+                <div
+                  class="alp-header-logo"
+                  style="--logo-width: {{ st.logo_width_desktop }};--logo-width-mobile: {{ st.logo_width_mobile }}"
+                >
+                  <a href="{{ shop.url }}" class="alp-header-logo-link">
+                    <img
+                      class="logo-image-normal"
+                      src="{{ bs.logo_image_normal | image_url }}"
+                      alt="{{ shop.name }}"
+                      width="{{ st.logo_width_desktop }}"
+                      height="auto"
+                      loading="lazy"
+                    >
+                    <img
+                      class="logo-image-white"
+                      src="{{ bs.logo_image_white | image_url }}"
+                      alt="{{ shop.name }}"
+                      width="{{ st.logo_width_desktop }}"
+                      height="auto"
+                      loading="lazy"
+                    >
+                  </a>
+                </div>
+              </div>
+            {%- when 'menu-block' -%}
+              <div class="alp-header-menu-wrapper">
+                <div class="alp-menu-container">
+                  {% render 'alp-header-dropdown-menu', menu_list: bs.menu.links %}
+                </div>
+              </div>
+            {%- when 'icon-list-block' -%}
+              <div
+                class="alp-header-icon-wrapper"
+                style="--logo-width: {{ st.logo_width_desktop }};--logo-width-mobile: {{ st.logo_width_mobile }}"
+              >
+                <div class="alp-icons-container">
+                  <div class="alp-icons-list">
+                    <div class="alp-icon-search alp-icon search-open">
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m20 20l-4.05-4.05m0 0a7 7 0 1 0-9.9-9.9a7 7 0 0 0 9.9 9.9z"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="alp-icon-login alp-icon">
+                      <div>
+                        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19ZM12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4Z"/>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="alp-icon-cart alp-icon">
+                      <div class="alp-icon-cart-count">
+                        <span class="cart-count">{{ cart.item_count }}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                          <g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M11.27 13.5H2.73a2 2 0 0 1-2-2.22l.67-5.89a1 1 0 0 1 1-.89h9.2a1 1 0 0 1 1 .89l.65 5.89a2 2 0 0 1-1.98 2.22Z"/><path d="M3 4.5a4 4 0 0 1 8 0m-6.5 3h5"/></g>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    $('.search-open').click(function () {
+      $('.alp-module-search').addClass('open');
+    });
+
+    $('.alp-module-search-overlay, .search-modal-close').click(function () {
+      $('.alp-module-search').removeClass('open');
+    });
+
+    AlpFn.GetTheHeight('.alp-announcement-bar-section', 'bar');
+    AlpFn.GetTheHeight('.alp-header-section', 'header');
+    AlpFn.GetTheHeight('.alp-header-wrapper-inner', 'header-inner');
+
+    $(window).on('resize', function () {
+      AlpFn.GetTheHeight('.alp-announcement-bar-section', 'bar');
+      AlpFn.GetTheHeight('.alp-header-section', 'header');
+      AlpFn.GetTheHeight('.alp-header-wrapper-inner', 'header-inner');
+    });
+
+    AlpFn.SetSticky('.alp-header-wrapper');
+  });
+</script>

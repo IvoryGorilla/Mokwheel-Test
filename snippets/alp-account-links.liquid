@@ -1,0 +1,10 @@
+<p>
+  {%- if customer -%}
+    <span>{% render 'icon-account' %} Hello, {{ customer.name }}!</span>
+    <a href="{{ routes.account_url }}">Account</a>
+  {%- else -%}
+    <a href="{{ routes.account_login_url }}">Login</a>
+    <a href="{{ routes.account_register_url }}">Register</a>
+    <a href="/account/login#recover">Forgot Password?</a>
+  {%- endif -%}
+</p>

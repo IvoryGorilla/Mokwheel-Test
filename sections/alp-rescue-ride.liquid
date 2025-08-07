@@ -1,0 +1,174 @@
+{% schema %}
+{
+  "name": "Alp Rescue Ride",
+  "class": "alp-rescue-ride-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p></p>"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container-fluid",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p></p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Rescue Ride"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  h1.alp-rescue-ride-title.headline__t2 {
+    margin-bottom: 16px;
+  }
+
+  .alp-rescue-ride-content-title {
+    margin-bottom: clamp(24px, 3vw, 48px);
+  }
+
+  .alp-rescue-ride-item {
+    display: grid;
+    gap: clamp(24px, 3vw, 48px);
+    align-items: center;
+  }
+  @media screen and (min-width: 999px) {
+    .alp-rescue-ride-item {
+      grid-template-columns: 55% 1fr;
+    }
+    .alp-rescue-ride-content-title {
+      text-align: center;
+      max-width: 888px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section alp-rescue-ride-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container alp-rescue-ride-container page-width {{ container }}">
+    <div class="alp-rescue-ride-content-title">
+      <h1 class="alp-rescue-ride-title headline__t2">{{ st.title }}</h1>
+      <div class="alp-rescue-ride-description headline__p2">{{ st.description }}</div>
+    </div>
+    <div class="alp-rescue-ride-contents">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          <div class="alp-rescue-ride-item">
+            <div class="alp-rescue-ride-item-image">
+              {{ bs.image | image_url: width: 1280 | image_tag }}
+            </div>
+            <div class="alp-rescue-ride-item-text">
+              <div class="alp-rescue-ride-item-text-title headline__p4">{{ bs.text }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

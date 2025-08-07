@@ -1,0 +1,34 @@
+{% comment %}
+  use snippet alp-color-swatch-for-list.liquid
+  Accepts:
+    product
+  Usage:
+  {% render 'alp-color-swatch-for-list', product: product %}
+{% endcomment %}
+{% liquid
+  assign color_trigger = settings.color_swatch_trigger | split: ','
+%}
+<div class="alp-colors-swatch-for-list">
+  {%- for option in product.options_with_values -%}
+    {%- if color_trigger contains option.name -%}
+      {%- for value in option.values -%}
+        {%- if value -%}
+          {% unless value contains '-disable' %}
+            {%- assign color_value_downcase = value | downcase -%}
+            {%- assign color_value_downcase = color_value_downcase | split: '-' -%}
+            {%- assign color_value_downcase = color_value_downcase[0] | strip -%}
+            <div
+              class="alp-colors-swatch-i {% if forloop.index == 1 %} active{% endif %}"
+              data-value="{{ value }}"
+              data-available="{{ value.available }}"
+              data-color-variant="{{ value.variant.id }}"
+              style="--background-color:{{ color_value_downcase | handle }};"
+            >
+              <div class="alp-color-{{ color_value_downcase | handle }}"></div>
+            </div>
+          {% endunless %}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+</div>

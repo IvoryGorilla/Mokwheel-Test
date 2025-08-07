@@ -1,0 +1,166 @@
+{% schema %}
+{
+  "name": "Alp Rewards Image",
+  "class": "alp-rewards-image", 
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Rewards Image"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+.alp-rewards-image-bigTitle{
+  font-size: clamp(18px, 2.2vw, 18px);
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 0;
+}
+ .alp-rewards-image-item img{
+  display: block;
+  width: 100%;
+  height: 100%;
+ }
+ @media screen and (min-width: 1000px){
+  .alp-rewards-image-con{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-top: 24px;
+  }
+  .alp-rewards-image-item:nth-child(4){
+    grid-column: 1 / 2;
+  }
+  .alp-rewards-image-item:last-child{
+    grid-column: 4 / 6;
+    grid-row: 1 / 3;
+  }
+ }
+  @media screen and (max-width: 999px) {
+    .alp-rewards-image-con{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 16px;
+      gap: 8px;
+    }
+    .alp-rewards-image-item:last-child{
+      grid-column: 1 / 3;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section alp-rewards-image-wrapper {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container alp-rewards-image-container page-width {{ container }}">
+    <h2 class="alp-rewards-image-bigTitle headline__h2s">{{ st.title }}</h2>
+    <div class="alp-rewards-image-con">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          <div class="alp-rewards-image-item">
+            {% render 'alp-single-image', image: bs.image, width: 1280 %}
+          </div>
+        {%- endfor -%}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

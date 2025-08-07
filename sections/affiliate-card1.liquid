@@ -1,0 +1,198 @@
+{% schema %}
+{
+  "name": "affiliate-card1",
+  "class": "affiliate-card1",
+  "settings": [
+    {
+      "type": "text",
+      "id": "affiliate-card1-title",
+      "label": "Affiliate Card1 Title"
+    },
+    {
+      "type": "text",
+      "id": "affiliate-card1-subtitle",
+      "label": "Affiliate Card1 Subtitle"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card-item",
+      "name": "Card Item",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "affiliate-card1-item-image",
+          "label": "Affiliate Card1 Item Image"
+        },
+        {
+          "type": "text",
+          "id": "affiliate-card1-item-text",
+          "label": "Affiliate Card1 Item Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "affiliate-card1"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+  --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+  .affiliate-card1-container {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .affiliate-card1-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .affiliate-card1-subtitle {
+    margin-top: 16px;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+  }
+  .affiliate-card1-content {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+  }
+  .affiliate-card1-item {
+    background: #f8f8f8;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    border-radius: 4px;
+  }
+  .affiliate-card1-item-image {
+    width: 80px;
+    height: 80px;
+  }
+  .affiliate-card1-item-text {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .affiliate-card1-container {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    .affiliate-card1-title {
+      font-size: 28px;
+    }
+    .affiliate-card1-subtitle {
+      margin-top: 6px;
+      font-size: 16px;
+    }
+    .affiliate-card1-content {
+      margin-top: 24px;
+      padding: 0 3.5px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .affiliate-card1-item {
+      padding: 16px 10px;
+    }
+    .affiliate-card1-item-image {
+      width: 48px;
+      height: 48px;
+    }
+    .affiliate-card1-item-text {
+      font-size: 16px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }} ">
+  <div class="alp-section-container page-width {{ container }} affiliate-card1-container">
+    <div class="affiliate-card1-top">
+      <h2 class="affiliate-card1-title">{{ st.affiliate-card1-title }}</h2>
+      <div class="affiliate-card1-subtitle">{{ st.affiliate-card1-subtitle }}</div>
+    </div>
+    <div class="affiliate-card1-content">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+          <div class="affiliate-card1-item">
+            {% if bs.affiliate-card1-item-image != blank %}
+              <div class="affiliate-card1-item-image">
+                <img
+                  src="{{ bs.affiliate-card1-item-image | image_url: width: 1200 }}"
+                  width="auto"
+                  height="auto"
+                >
+              </div>
+            {% endif %}
+            <div class="affiliate-card1-item-text">
+              {{ bs.affiliate-card1-item-text }}
+            </div>
+          </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>

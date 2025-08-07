@@ -1,0 +1,287 @@
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  .affirm-program-step .big-title {
+    width: 400px;
+    margin-bottom: 60px;
+  }
+  .affirm-program-step-title{
+    font-size: clamp(24px, 3vw, 48px);
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .affirm-program-step-desc{
+    font-size: clamp(14px, 1vw, 18px);
+    max-width: 1200px;
+    text-align: center;
+    margin: 0 auto 64px;
+  }
+  .affirm-program-step-desc p{
+    margin: 0;
+  }
+  .affirm-program-step .item .icon {
+    width: 48px;
+    margin-bottom: 24px;
+  }
+  .affirm-program-step .item picture img {
+    display: block;
+  }
+  .affirm-program-step .item p {
+    margin: 0;
+  }
+  .affirm-program-step .item .img-box {
+    margin-top: 32px;
+  }
+  .swiper-pagination-affirm-program-step {
+    display: none;
+  }
+  @media screen and (max-width: 999px) {
+    .affirm-program-step .big-title {
+      width: 330px;
+      margin-bottom: 40px;
+    }
+    .affirm-program-step-desc{
+      margin: 0 auto 32px;
+    }
+    .affirm-program-step .item .icon {
+      width: 36px;
+      display: contents;
+    }
+    .swiper-pagination-affirm-program-step {
+      display: block;
+      margin-top: 32px;
+    }
+    .swiper-pagination-affirm-program-step .pagination-products {
+      justify-content: center;
+    }
+    .swiper-pagination-affirm-program-step .swiper-pagination-bullets span.swiper-pagination-bullet {
+      width: 24px;
+    }
+    .swiper-pagination-affirm-program-step .swiper-pagination-bullets span.swiper-pagination-bullet:after {
+      height: 3px;
+    }
+  }
+</style>
+
+<div class="affirm-program-step alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    {% if st.text != blank %}
+      <div class="big-title">
+        {{ st.text }}
+      </div>
+    {% endif %}
+    {% if st.title != blank %}
+      <div class="affirm-program-step-title">
+        {{ st.title }}
+      </div>
+    {% endif %}
+    {% if st.desc != blank %}
+      <div class="affirm-program-step-desc">
+        {{ st.desc }}
+      </div>
+    {% endif %}
+    <div class="item-list">
+      <div class="swiper step-swiper">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div class="swiper-slide swiper-no-swiping">
+              <div class="item hide_mobile">
+                <div class="icon">
+                  {% render 'alp-single-image', image: bs.icon, width: 1280 %}
+                </div>
+                <h4 class="headline__h4">{{ bs.title }}</h4>
+                <div class="text_content">{{ bs.description }}</div>
+                <div class="img-box">
+                  {% render 'alp-single-image', image: bs.image, width: 1280 %}
+                </div>
+              </div>
+              <div class="item hide_desktop">
+                <div style="display: flex;">
+                  <div class="icon">
+                    {% render 'alp-single-image', image: bs.icon, width: 1280 %}
+                  </div>
+                  <div style="margin-left: 13px">
+                    <h4 class="headline__h4">{{ bs.title }}</h4>
+                    <div class="text_content">{{ bs.description }}</div>
+                  </div>
+                </div>
+                <div class="img-box">
+                  {% render 'alp-single-image', image: bs.image, width: 1280 %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-navs swiper-pagination-affirm-program-step">
+          {% render 'swiper-pagination', class: 'pagination-affirm-program-step' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let mySwiper = new Swiper('.affirm-program-step .step-swiper', {
+      loop: false, // 循环模式选项
+      slidesPerView: 3,
+      observer: true,
+      observerParents: true,
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        1200: {
+          slidesPerView: 3,
+          spaceBetween: 100,
+        },
+      },
+      pagination: {
+        el: '.pagination-affirm-program-step',
+        clickable: true,
+      },
+    });
+
+    let affirmProgramSteps = document.querySelectorAll('.affirm-program-step .swiper-no-swiping');
+
+    if (document.body.clientWidth < 1000) {
+      affirmProgramSteps.forEach((e) => {
+        e.classList.remove('swiper-no-swiping');
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "affirm-program-step",
+  "class": "affirm-program-step",
+  "presets": [
+    {
+      "name": "affirm-program-step",
+      "settings": {}
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mega_menu",
+      "name": "Mega menu",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "icon"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "image"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "desc",
+      "label": "Desc"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ]
+}
+{% endschema %}
+
+<style></style>

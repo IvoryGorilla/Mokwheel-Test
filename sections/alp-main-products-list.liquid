@@ -1,0 +1,635 @@
+{% schema %}
+{
+  "name": "Alp Product List",
+  "class": "alp-product-list",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Product List"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 1,
+      "max": 32,
+      "step": 1,
+      "default": 12,
+      "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+    },
+    {
+      "type": "text",
+      "id": "columns_width",
+      "label": "Column Width",
+      "default": "360px"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.main-collection-product-grid.settings.columns_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "default": "2",
+      "label": "t:sections.main-collection-product-grid.settings.columns_mobile.label",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "default_list_view",
+      "label": "Default List View",
+      "default": true,
+      "info": "是否默认显示列表形式"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_view_switch",
+      "label": "Hide View Switch",
+      "default": false,
+      "info": "是否隐藏视图切换"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_image",
+      "label": "Review Image"
+    },
+    {
+      "type": "url",
+      "id": "review_image_url",
+      "label": "Review Image URL"
+    },
+    {
+      "type": "select",
+      "id": "item_type",
+      "label": "Item Type",
+      "default": "type_1",
+      "options": [
+        {
+          "value": "type_1",
+          "label": "Type 1"
+        },
+        {
+          "value": "type_2",
+          "label": "Type 2"
+        },
+        {
+          "value": "type_3",
+          "label": "Type 3"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "1/1"
+    },
+    {
+      "type": "checkbox",
+      "id": "filter_show_collection",
+      "label": "Filter Show Collection",
+      "default": false,
+      "info": "是否显示过集合页过滤"
+    },
+    {
+      "type": "text",
+      "id": "filter_collection_label",
+      "label": "Filter Collection Label",
+      "default": "Collections"
+    },
+    {
+      "type": "collection_list",
+      "id": "filter_collections",
+      "label": "Filter Collections",
+      "info": "要显示的集合页过滤"
+    },
+    {
+      "type": "select",
+      "id": "filter_type",
+      "options": [
+        {
+          "value": "horizontal",
+          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__1.label"
+        },
+        {
+          "value": "vertical",
+          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__2.label"
+        },
+        {
+          "value": "drawer",
+          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__3.label"
+        }
+      ],
+      "default": "horizontal",
+      "label": "t:sections.main-collection-product-grid.settings.filter_type.label",
+      "info": "t:sections.main-collection-product-grid.settings.filter_type.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+      "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_compare",
+      "default": true,
+      "label": "Show Compare"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ad_banner_grid",
+      "name": "AD Grid Banner",
+      "settings": [
+        {
+          "type": "text",
+          "id": "min_height",
+          "label": "Min Height",
+          "default": "220px"
+        },
+        {
+          "type": "number",
+          "id": "placement",
+          "label": "放的位置",
+          "default": 3
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Subtext"
+        },
+        {
+          "type": "text",
+          "id": "image_aspect_ratio",
+          "label": "Image Aspect Ratio",
+          "default": "auto"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image Mobile"
+        },
+        {
+          "type": "video",
+          "id": "bg_video",
+          "label": "Background Video"
+        },
+        {
+          "type": "range",
+          "id": "bg_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "label": "Background Opacity",
+          "default": 50
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Discover More"
+        }
+      ]
+    },
+    {
+      "type": "ad_banner_list",
+      "name": "AD List Banner",
+      "settings": [
+        {
+          "type": "text",
+          "id": "min_height",
+          "label": "Min Height",
+          "default": "220px"
+        },
+        {
+          "type": "number",
+          "id": "placement",
+          "label": "放的位置",
+          "default": 1
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Subtext"
+        },
+        {
+          "type": "text",
+          "id": "image_aspect_ratio",
+          "label": "Image Aspect Ratio",
+          "default": "auto"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image Mobile"
+        },
+        {
+          "type": "video",
+          "id": "bg_video",
+          "label": "Background Video"
+        },
+        {
+          "type": "range",
+          "id": "bg_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "label": "Background Opacity",
+          "default": 50
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Discover More"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Product List"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{{ 'component-facets.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'alp-facets.js' | asset_url }}" defer="defer"></script>
+
+{% style %}
+  .alp-product-list-review-image-wrapper img {
+    display: block;
+    max-width: 200px;
+  }
+
+  .facets-vertical-form.has-review-image {
+    align-items: center;
+  }
+  /* max width 999px */
+  @media (max-width: 999px) {
+    .facets__wrapper.has-review-image {
+      gap: 16px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section alp-product-list-wrapper {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container alp-product-list-container page-width {{ container }}">
+    {%- paginate collection.products by st.products_per_page -%}
+      <div class="product-list-inner{% if section.settings.filter_type == 'vertical' %} facets-vertical{% endif %}">
+        {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+          <aside
+            aria-labelledby="verticalTitle"
+            class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}"
+            id="main-collection-filters"
+            data-id="{{ section.id }}"
+          >
+            <div class="facets__wrapper {% if st.review_image != blank %} has-review-image{% endif %}">
+              {% if st.review_image != blank %}
+                <div class="alp-product-list-review-image-wrapper hide_desktop relative">
+                  {% if st.review_image_url != blank %}
+                    <a rel="sponsored" class="full-aa" href="{{ st.review_image_url }}" target="_blank"></a>
+                  {% endif %}
+                  <img
+                    data-src="{{ st.review_image | image_url: width: 800 }}"
+                    width="auto"
+                    height="auto"
+                    alt=""
+                    loading="lazy"
+                    class="lazy alp_product__reviews_tre_image"
+                  >
+                </div>
+              {% endif %}
+              {% render 'alp-facets',
+                results: collection,
+                enable_filtering: section.settings.enable_filtering,
+                enable_sorting: section.settings.enable_sorting,
+                filter_type: section.settings.filter_type,
+                paginate: paginate,
+                st: st
+              %}
+              <div class="alp-facets-bottom hide_mobile">
+                {%- if st.show_compare -%}
+                  <div class="alp-compare-btn">
+                    {% render 'alp-btn',
+                      url: '/pages/compare',
+                      type: 'primary',
+                      text: 'Compare E-Bikes',
+                      textcolor: '#ffffff',
+                      bgcolor: '#000000',
+                      size: 'small'
+                    %}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          </aside>
+        {%- endif -%}
+        <div
+          class="product-grid-container {% if st.hide_view_switch %} hide_view_switch{% endif %}"
+          data-switch-wrapper
+        >
+          <div class="product-grid-head">
+            <div
+              class="product-grid-and-list {% unless st.default_list_view %}is-default-grid{% endunless %}"
+              data-switch-trigger
+            >
+              <div class="choice-i {% if st.default_list_view %} active{% endif %}" data-trigger-index="1">
+                {% render 'icon-list' %}
+                <span>List View</span>
+              </div>
+              <div class="choice-i {% unless st.default_list_view %} active{% endunless %}" data-trigger-index="2">
+                {% render 'icon-grid' %}
+                <span>Grid View</span>
+              </div>
+            </div>
+            {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
+              <facet-filters-form class="facets facets-vertical-sort small-hide no-js-hidden">
+                <form
+                  class="facets-vertical-form {% if st.review_image != blank %} has-review-image{% endif %}"
+                  id="FacetSortForm"
+                >
+                  {% if st.review_image != blank %}
+                    <div class="alp-product-list-review-image-wrapper relative">
+                      {% if st.review_image_url != blank %}
+                        <a rel="sponsored" class="full-aa" href="{{ st.review_image_url }}" target="_blank"></a>
+                      {% endif %}
+                      <img
+                        data-src="{{ st.review_image | image_url: width: 800 }}"
+                        width="auto"
+                        height="auto"
+                        alt=""
+                        loading="lazy"
+                        class="lazy alp_product__reviews_tre_image"
+                      >
+                    </div>
+                  {% endif %}
+                  <div class="facet-filters sorting caption">
+                    <div class="facet-filters__field">
+                      <h2 class="facet-filters__label caption-large text-body">
+                        <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
+                      </h2>
+                      <div class="select">
+                        {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                        <select
+                          name="sort_by"
+                          class="facet-filters__sort select__select caption-large"
+                          id="SortBy"
+                          aria-describedby="a11y-refresh-page-message"
+                        >
+                          {%- for option in collection.sort_options -%}
+                            <option
+                              value="{{ option.value | escape }}"
+                              {% if option.value == sort_by %}
+                                selected="selected"
+                              {% endif %}
+                            >
+                              {{ option.name | escape }}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                        {% render 'icon-caret' %}
+                      </div>
+                    </div>
+                    <noscript>
+                      <button type="submit" class="facets__button-no-js button button--secondary">
+                        {{ 'products.facets.sort_button' | t }}
+                      </button>
+                    </noscript>
+                  </div>
+
+                  <div class="product-count-vertical light" role="status">
+                    <h2 class="product-count__text text-body">
+                      <span id="ProductCountDesktop">
+                        {%- if collection.results_count -%}
+                          {{
+                            'templates.search.results_with_count'
+                            | t: terms: collection.terms, count: collection.results_count
+                          }}
+                        {%- elsif collection.products_count == collection.all_products_count -%}
+                          {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
+                        {%- else -%}
+                          {{
+                            'products.facets.product_count'
+                            | t: product_count: collection.products_count, count: collection.all_products_count
+                          }}
+                        {%- endif -%}
+                      </span>
+                    </h2>
+                    {%- render 'loading-spinner' -%}
+                  </div>
+                </form>
+              </facet-filters-form>
+            {%- endif -%}
+          </div>
+          <div id="ProductGridContainer">
+            {%- if collection.products.size == 0 -%}
+            {%- else -%}
+              <div class="collection" id="product-list-container" data-id="{{ section.id }}" data-switch-target>
+                <div class="loading-overlay"></div>
+                <div
+                  class="alp-product-list {% if st.default_list_view %} active{% endif %}"
+                  data-id="{{ section.id }}"
+                  data-target-index="1"
+                  style="--column-desktop:{{ st.columns_desktop }};--column-mobile:{{ st.columns_mobile }};--column-width:{{ st.columns_width }};"
+                >
+                  {%- for product in collection.products -%}
+                    {% comment %} Ad Banner List {% endcomment %}
+                    {%- assign forindex = forloop.index -%}
+                    {%- for block in section.blocks -%}
+                      {% liquid
+                        assign bs = block.settings
+                      %}
+                      {%- case block.type -%}
+                        {%- when 'ad_banner_list' -%}
+                          {%- assign ad_banner_list_index = bs.placement -%}
+                          {%- if forindex == ad_banner_list_index -%}
+                            <div class="alp-product-list-i delay">
+                              {% render 'alp-ad-banner-list', block: block %}
+                            </div>
+                          {%- endif -%}
+                      {%- endcase -%}
+                    {%- endfor -%}
+                    {% comment %} Ad Banner List {% endcomment %}
+                    <div class="alp-product-list-i delay">
+                      {% render 'alp-product-item-list', product: product, aspect_ratio: st.image_aspect_ratio %}
+                    </div>
+                  {%- endfor -%}
+                </div>
+                <div
+                  class="alp-product-grid {% unless st.default_list_view %} active{% endunless %}"
+                  data-id="{{ section.id }}"
+                  data-target-index="2"
+                  data-mobile-columns="{{ st.columns_mobile }}"
+                  style="--column-desktop:{{ st.columns_desktop }};--column-mobile:{{ st.columns_mobile }};--column-width:{{ st.columns_width }};"
+                >
+                  {%- for product in collection.products -%}
+                    {% comment %} Ad Banner List {% endcomment %}
+                    {%- assign forindex = forloop.index -%}
+                    {%- for block in section.blocks -%}
+                      {% liquid
+                        assign bs = block.settings
+                      %}
+                      {%- case block.type -%}
+                        {%- when 'ad_banner_grid' -%}
+                          {%- assign ad_banner_grid_index = bs.placement -%}
+                          {%- if forindex == ad_banner_grid_index -%}
+                            <div class="alp-product-grid-i delay">
+                              {% render 'alp-ad-banner-grid', block: block %}
+                            </div>
+                          {%- endif -%}
+                      {%- endcase -%}
+                    {%- endfor -%}
+                    {% comment %} Ad Banner List {% endcomment %}
+                    <div class="alp-product-grid-i delay">
+                      {%- if st.item_type == 'type_1' -%}
+                        {% render 'alp-product-item-grid-n1', product: product, aspect_ratio: st.image_aspect_ratio %}
+                      {%- elsif st.item_type == 'type_2' -%}
+                        {% render 'alp-product-item-grid-2', product: product, aspect_ratio: st.image_aspect_ratio %}
+                      {%- elsif st.item_type == 'type_3' -%}
+                        {% render 'alp-product-item-grid-3', product: product, aspect_ratio: st.image_aspect_ratio %}
+                      {%- endif -%}
+                    </div>
+                  {%- endfor -%}
+                </div>
+
+                {%- if paginate.pages > 1 -%}
+                  {% render 'pagination', paginate: paginate, anchor: '' %}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endpaginate -%}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {});
+</script>

@@ -1,0 +1,287 @@
+{% comment %}
+  Usage:
+  {% render 'alp-dropdown-sub-mega-menu' block: block, container: container, style: bs.list_style, show_price: false, product_limit: bs.product_limit %}
+  style: style_one,style_two,style_three
+  show_price: false
+  product_limit: 12
+{% endcomment %}
+{% liquid
+  assign bs = block.settings
+  if show_price
+    assign price_display = 'show_price'
+  endif
+%}
+
+{% comment %} 
+{% style %}
+  /* Mega menu update css */
+.alp-icon-list-2.mega-menu-icons {
+  flex-direction: column;
+  font-size: 1em;
+  gap: 12px;
+}
+.alp-icon-list-2>div { 
+  gap: 12px;
+}
+
+.alp-icon-list-2.mega-menu-icons img {
+  max-width: 28px;
+}
+
+.alp-icon-list-2.mega-menu-icons .new-icon-width img{
+  width: 64px;
+  height: 28px;
+  max-width: none;
+}
+.alp-header-block-review.show_review {
+  border:0;
+  background:none;
+}
+.mega-menu-title.headline__h3 {
+  margin-bottom:12px;
+}
+.mega-menu-richcontent {
+  padding-top: 50px;
+}
+.mega-menu-description p {
+  margin:20px 0;
+}
+.mega-menu-description p:first-child{
+  margin-top:24px
+}
+.mega-menu-description a{
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: 0px;
+  color: #E83F0C;
+}
+.mega-menu-review-image {
+  display:flex;
+}
+.mega-menu-review-image img {
+  height:20px;
+}
+.alp-header-block-review.show_review {
+  margin:0;
+  padding:0;
+}
+{% endstyle %} {% endcomment %}
+
+<div
+  class="sub-mega-menu-wrapper"
+  data-list-style="{{ style | default: 'style_one' }}"
+  data-show-price="{{ price_display | default: '' }}"
+>
+  <div class="sub-mega-menu-container alp-section-container page-width {{ container | default: 'alp-container-fluid' }}">
+    <div class="sub-mega-menu-flex">
+      <div class="sub-mega-menu-inner-1">
+        <div class="sub-mega-menu-inner-1-flex">
+          <div>
+            <div class="mega-menu-title headline__h3">
+              {%- if bs.mega_title_url != blank -%}
+                <a class="full-aa" href="{{ bs.mega_title_url }}" title="{{ bs.mega_title }}"></a>
+              {%- endif -%}
+              {{ bs.mega_title }}
+            </div>
+            <div class="mega-menu-description">{{ bs.mega_description }}</div>
+            <div class="mega-menu-description">{{ bs.mega_jump_link }}</div>
+            <div class="mega-menu-description mega-menu-review-image">
+              {% render 'alp-single-image', image: bs.mega_review_image, width: 1280 %}
+            </div>
+            <div class="mega-menu-richcontent">{{ bs.mega_content }}</div>
+          </div>
+          <div>
+            <div class="mega-menu-new-mega-content">{{ bs.new_mega_content }}</div>
+          </div>
+          <div class="mega-menu-bottom">
+            <div class="mega-menu-buttons">{{ bs.mega_button_content }}</div>
+            <div class="alp-header-block-review hide_mobile {% if bs.show_review %} show_review{% endif %}">
+              <a
+                rel="sponsored"
+                href="{{ bs.review_link }}"
+                target="_blank"
+                class="full-aa"
+              ></a>
+              <div class="icon1">
+                {% render 'alp-single-image', image: bs.icon1, width: 1280 %}
+              </div>
+              <div class="icon2">
+                {% render 'alp-single-image', image: bs.icon2, width: 1280 %}
+              </div>
+              <span>{{ bs.review_text }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-mega-menu-inner-2">
+        <div class="mega-category-wrapper">
+          <div class="mega-category-nav">
+            <div class="swiper mega-category-nav-swiper" data-blockId="{{ block.id }}">
+              <div class="swiper-wrapper">
+                {%- if bs.menu_a_title != blank -%}
+                  <div class="swiper-slide auto-width">
+                    <div class="h-category-list-item button-type-3">
+                      <span>{{ bs.menu_a_title }}</span>
+                    </div>
+                  </div>
+                {%- endif -%}
+                {%- if bs.menu_b_title != blank -%}
+                  <div class="swiper-slide auto-width">
+                    <div class="h-category-list-item button-type-3">
+                      <span>{{ bs.menu_b_title }}</span>
+                    </div>
+                  </div>
+                {%- endif -%}
+                {%- if bs.menu_c_title != blank -%}
+                  <div class="swiper-slide auto-width">
+                    <div class="h-category-list-item button-type-3">
+                      <span>{{ bs.menu_c_title }}</span>
+                    </div>
+                  </div>
+                {%- endif -%}
+                {%- for collection in bs.collection_list_model -%}
+                  <div class="swiper-slide auto-width">
+                    <div class="h-category-list-item button-type-3">
+                      <span>{{ collection.title }}</span>
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+          <div class="mega-category-swiper">
+            <div class="swiper mega-category-items-swiper" data-blockId="{{ block.id }}">
+              <div class="swiper-wrapper">
+                {% comment %} collection_list_a {% endcomment %}
+                {%- if bs.collection_list_a -%}
+                  {%- assign size = 0 -%}
+                  {%- for collection in bs.collection_list_a -%}
+                    {%- assign size = size | plus: 1 -%}
+                  {%- endfor -%}
+                  {%- if size > 0 -%}
+                    <div class="swiper-slide">
+                      {%- if bs.recommend_image -%}
+                        <div class="nav-collection-list-sales-wrapper">
+                          {% render 'nav-collection-list-swiper', collections: bs.collection_list_a %}
+                          <div class="mega-recommend-sales-wrapper">
+                            <div class="alp-recommend-sales">
+                              {%- if bs.link != blank -%}
+                                <a
+                                  class="full-aa {% render 'track-tag-classname', name: 'style-poster' %}"
+                                  href="{{ bs.link }}"
+                                  title="{{ bs.recommend_title }}"
+                                ></a>
+                              {%- endif -%}
+                              {%- assign alt = bs.recommend_title | default: 'Mokwheel Ebikes' -%}
+                              {% comment %}
+                                {% render 'alp-single-image',
+                                  image: bs.recommend_image,
+                                  width: 1280,
+                                  aspect_ratio: bs.image_aspect_ratio,
+                                  alt: alt
+                                %}
+                              {% endcomment %}
+                              {% render 'alp-responsive-image',
+                                image: bs.recommend_image,
+                                image_mobile: bs.recommend_image,
+                                alt: alt,
+                                aspect_ratio: bs.image_aspect_ratio,
+                                desktop_width: 1200,
+                                mobile_width: 600
+                              %}
+                              {%- if bs.recommend_title != blank -%}
+                                <div class="alp-recommend-sales-text">
+                                  <h3 class="headline__h4">{{ bs.recommend_title | newline_to_br }}</h3>
+                                </div>
+                              {%- endif -%}
+                            </div>
+                          </div>
+                        </div>
+                      {%- else -%}
+                        {% render 'nav-collection-list-swiper', collections: bs.collection_list_a %}
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+                {% comment %} collection_list_b {% endcomment %}
+                {%- if bs.collection_list_b -%}
+                  {%- assign size = 0 -%}
+                  {%- for collection in bs.collection_list_b -%}
+                    {%- assign size = size | plus: 1 -%}
+                  {%- endfor -%}
+                  {%- if size > 0 -%}
+                    <div class="swiper-slide">
+                      {% render 'nav-collection-list-swiper-1-new', collections: bs.collection_list_b %}
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+                {% comment %} collection_list_c {% endcomment %}
+                {%- if bs.collection_list_c -%}
+                  {%- assign size = 0 -%}
+                  {%- for collection in bs.collection_list_c -%}
+                    {%- assign size = size | plus: 1 -%}
+                  {%- endfor -%}
+                  {%- if size > 0 -%}
+                    <div class="swiper-slide">
+                      {% render 'nav-collection-list-swiper', collections: bs.collection_list_c %}
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+                {% comment %} collection_list_model {% endcomment %}
+                {%- if bs.collection_list_model -%}
+                  {%- for collection in bs.collection_list_model -%}
+                    <div class="swiper-slide">
+                      {% render 'nav-product-list-swiper', collection: collection, limit: product_limit %}
+                    </div>
+                  {%- endfor -%}
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    let swiperId = '{{ block.id }}';
+    let swiperIdnum = swiperId.replace(/\D/g, '');
+    let swiperVar_nav = 'MegaMenu_nav' + swiperIdnum;
+    let swiperVar_items = 'MegaMenu_items' + swiperIdnum;
+    if (window.innerWidth > 999) {
+      swiperVar_nav = new Swiper(`.mega-category-nav-swiper[data-blockId="${swiperId}"]`, {
+        slidesPerView: 'auto',
+        spaceBetween: alp_global.gap,
+        centerInsufficientSlides: true,
+      });
+      swiperVar_items = new Swiper(`.mega-category-items-swiper[data-blockId="${swiperId}"]`, {
+        spaceBetween: alp_global.gap,
+        slidesPerView: 1,
+        speed: 600,
+        autoHeight: true,
+        thumbs: {
+          swiper: swiperVar_nav,
+        },
+        simulateTouch: false, // 禁用鼠标和触摸拖动
+        on: {
+          slideChangeTransitionEnd: function () {
+            window.setNavProductsMaxHeight();
+          },
+        },
+      });
+      function calcNavItemHeight() {
+        let $item_wrapper = $('.nav-collection-items-flex-swiper.swiper');
+        $item_wrapper.each(function () {
+          let $child_height = $(this).find('.nav-image-link-item').outerHeight();
+          $(this).height($child_height * 2);
+        });
+      }
+      calcNavItemHeight();
+      window.addEventListener('resize', calcNavItemHeight);
+    }
+  });
+</script>

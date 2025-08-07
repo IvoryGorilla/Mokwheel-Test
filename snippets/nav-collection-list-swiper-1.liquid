@@ -1,0 +1,77 @@
+{% comment %}
+  {% render 'nav-collection-list-swiper', collections: collection_list %}
+{% endcomment %}
+<div class="swiper-1 nav-collection-items-list desktop-swiper is-collections">
+  <div class="nav-collection-items-flex-swiper swiper">
+    <div class="swiper-wrapper">
+      {%- for item in collections -%}
+        <div class="swiper-slide">
+          <div class="nav-image-link-item is-collection">
+            <a href="{{ item.url }}" class="nav-image-link full-aa"></a>
+            <div class="nav-image-link-image">
+              {% comment %} {{ item.featured_image | image_url: width: 640 | image_tag: loading: 'lazy' }} {% endcomment %}
+              <img
+                data-src="{{ item.featured_image | image_url: width: 500 }}"
+                alt="{{ item.title | default: image.alt }}"
+                loading="lazy"
+                width="auto"
+                height="auto"
+                class="lazy"
+              >
+            </div>
+            <div class="nav-collection-i-info">
+              <div class="nav-image-link-divider">
+                {%- if item.metafields.custom.navigation_bar_label != blank -%}
+                  <div class="navigation-bar-label">
+                    {{ item.metafields.custom.navigation_bar_label }}
+                  </div>
+                {%- endif -%}
+                <div class="nav-image-link-title headline__h6">{{ item.title }}</div>
+              </div>
+              {%- if item.description != blank -%}
+                <div class="nav-image-link-description">{{- item.description | strip_html | strip -}}</div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    {% render 'swiper-navigation', class: 'media-swiper-arrow' %}
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth > 999) {
+      var SwiperCollectionNav = new Swiper('.swiper-1.is-collections > .swiper.nav-collection-items-flex-swiper', {
+        slidesPerView: 3,
+        grid: {
+          fill: 'row',
+          rows: 2,
+        },
+        breakpoints: {
+          320: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+          1280: {
+            slidesPerView: 5,
+          },
+          1400: {
+            slidesPerView: 5,
+          }
+        },
+        navigation: {
+          nextEl: '.nav-collection-items-flex-swiper .swiper-button-next',
+          prevEl: '.nav-collection-items-flex-swiper .swiper-button-prev',
+        },
+        mousewheel: true,
+      });
+    }
+  });
+</script>

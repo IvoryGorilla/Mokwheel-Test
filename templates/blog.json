@@ -1,0 +1,180 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "baf38289-5b30-46f0-a76d-81a85e1a823a": {
+      "type": "alp-blog-breadcrumbs",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "f3bc98ab-7028-497c-b285-fe8dbc2f0d34": {
+      "type": "alp-hero-banner",
+      "blocks": {
+        "dc926808-d15b-41d2-af9b-cdea05ecf05a": {
+          "type": "heading",
+          "settings": {
+            "text": "Mokwheel Bike Post",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "dc926808-d15b-41d2-af9b-cdea05ecf05a"
+      ],
+      "custom_css": [
+        "h1.alp-hero-banner-heading {font-size: clamp(24px, 3vw, 48px);}",
+        "@media (max-width: 999px) {.alp-hero-banner .alp-hero-banner-wrapper {padding-top: 24px; padding-bottom: 24px; }}"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "center",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "bg_opacity": 0,
+        "image_aspect_ratio": "3/1",
+        "block_max_width": "720px",
+        "min_height": "0px",
+        "container": "alp-container-fluid",
+        "padding_top": 15,
+        "padding_bottom": 15,
+        "reset_spacing": true
+      }
+    },
+    "main": {
+      "type": "main-blog",
+      "disabled": true,
+      "settings": {
+        "layout": "collage",
+        "show_image": true,
+        "image_height": "medium",
+        "show_date": false,
+        "show_author": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "115b00c9-b61b-4a3f-8656-eacf1af21cdb": {
+      "type": "alp-main-blog",
+      "blocks": {
+        "11b0ab11-5720-412d-935e-9d48aadb3ab8": {
+          "type": "featured_blog_posts",
+          "settings": {
+            "title": "Featured Blog Posts",
+            "blog1": "news/where-to-buy-electric-bikes-near-me",
+            "blog2": "news/how-much-does-an-electric-bike-cost",
+            "blog3": "news/how-to-choose-an-electric-bike",
+            "blog4": "news/how-to-buy-an-electric-bike",
+            "blog5": "",
+            "blog6": ""
+          }
+        },
+        "043ab2b9-ccbe-4710-a368-f06e107f209e": {
+          "type": "ebikes_category",
+          "disabled": true,
+          "settings": {
+            "title": "Ebikes Category",
+            "menu": "ebikes-category"
+          }
+        },
+        "ebikes_category_new_b7jyQh": {
+          "type": "ebikes_category_new",
+          "settings": {
+            "title": "Ebikes Category"
+          }
+        },
+        "c47f56c8-ccfc-4295-9912-60d95b20e983": {
+          "type": "exclusived_deals_await",
+          "settings": {
+            "image_aspect_ratio": "1/1",
+            "image": "shopify://shop_images/Group_39700.png",
+            "title": "Exclusive Deals Await",
+            "link": "shopify://pages/deals",
+            "link_text": "Learn More"
+          }
+        }
+      },
+      "block_order": [
+        "11b0ab11-5720-412d-935e-9d48aadb3ab8",
+        "043ab2b9-ccbe-4710-a368-f06e107f209e",
+        "ebikes_category_new_b7jyQh",
+        "c47f56c8-ccfc-4295-9912-60d95b20e983"
+      ],
+      "settings": {
+        "layout": "collage",
+        "show_image": true,
+        "image_height": "medium",
+        "show_date": false,
+        "show_author": false,
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 10,
+        "reset_spacing": false
+      }
+    },
+    "909146eb-226a-4c15-8e57-5ee8698c8d90": {
+      "type": "alp-main-article-list",
+      "blocks": {
+        "4d1add25-6c41-44ac-92bb-fa5cde2cae1f": {
+          "type": "item",
+          "settings": {
+            "image": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 630 576\"><path d=\"M-1032.74,245.92a22.48,22.48,0,0,1,22.5,22.5,22.48,22.48,0,0,1-22.5,22.5h-225a22.48,22.48,0,0,1-22.5-22.5,22.47,22.47,0,0,1,22.5-22.5Zm0,90a22.48,22.48,0,0,1,22.5,22.5,22.48,22.48,0,0,1-22.5,22.5h-135a22.48,22.48,0,0,1-22.5-22.5,22.47,22.47,0,0,1,22.5-22.5Zm-382.5-45h-62.94a22.57,22.57,0,0,0-16.66,7.38l-2.32,3-94.57,148.15a21.26,21.26,0,0,0-3.09,7.88l-.43,4.22V583.42a22.51,22.51,0,0,0,18.43,22.15l4.08.35h26.43a78.78,78.78,0,0,1,74.82-54,78.84,78.84,0,0,1,74.81,54h142.87a78.78,78.78,0,0,1,74.82-54,78.84,78.84,0,0,1,74.81,54h26.44a22.5,22.5,0,0,0,22.14-18.42l.36-4.08v-90h-292.5a67.57,67.57,0,0,1-67.22-61l-.28-6.47Zm-56.25,306a33.75,33.75,0,0,0-33.75,33.75,33.76,33.76,0,0,0,33.75,33.75,33.75,33.75,0,0,0,33.74-33.75,33.75,33.75,0,0,0-33.74-33.75Zm292.5,0a33.76,33.76,0,0,0-33.76,33.75A33.77,33.77,0,0,0-1179,664.42a33.76,33.76,0,0,0,33.75-33.75A33.76,33.76,0,0,0-1179,596.92Zm-292.5,112.5a78.72,78.72,0,0,1-76.08-58.5h-25.17a67.57,67.57,0,0,1-67.22-61l-.28-6.47V461.57a67.47,67.47,0,0,1,6.82-29.61l3.72-6.68,94.57-148.14a67.62,67.62,0,0,1,50.06-30.87l6.89-.35h62.94v-45a67.56,67.56,0,0,1,61-67.22l6.47-.28h315a22.48,22.48,0,0,1,22.5,22.5,22.48,22.48,0,0,1-22.5,22.5h-315a22.5,22.5,0,0,0-22.15,18.42l-.35,4.08v225a22.5,22.5,0,0,0,18.42,22.15l4.08.35h315a22.48,22.48,0,0,1,22.5,22.5v112.5a67.58,67.58,0,0,1-61,67.22l-6.46.28h-25.18A78.72,78.72,0,0,1-1179,709.35a78.78,78.78,0,0,1-76.08-58.5h-140.35a78.7,78.7,0,0,1-76.07,58.57Zm0,0\" transform=\"translate(1640.24 -133.42)\"></path></svg>",
+            "title": "15-Day Returns",
+            "text_link": "<p><a href=\"/pages/return-refund-policy\" title=\"Return & Refund Policy-new\">Learn more</a> </p>"
+          }
+        },
+        "9eb1b23d-2d7f-4982-9795-6e1065b41058": {
+          "type": "item",
+          "settings": {
+            "image": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 639.51 609.04\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><defs><style>.a{fill:none;}.b{clip-path:url(#a);}</style>\n<clippath id=\"a\" transform=\"translate(973.91 -116.87)\"><rect class=\"a\" x=\"-973.91\" y=\"117\" width=\"639.84\" height=\"609.78\"></rect></clippath></defs><g class=\"b\"><path d=\"M-391.14,359.07a262.81,262.81,0,0,0-76.35-164.88,263.16,263.16,0,0,0-186.67-77.32,263.15,263.15,0,0,0-186.66,77.31,262.87,262.87,0,0,0-76.36,164.89,85.56,85.56,0,0,0-56.73,80.55v52.05a85.5,85.5,0,0,0,85.51,85.51,85.51,85.51,0,0,0,85.52-85.51V439.62a85.53,85.53,0,0,0-61.72-82.14A210.75,210.75,0,0,1-804,231a210.54,210.54,0,0,1,149.86-62.07A210.54,210.54,0,0,1-504.3,231a210.26,210.26,0,0,1,60.75,126.44,85.53,85.53,0,0,0-61.88,82.19v52.05A85.5,85.5,0,0,0-454.34,570c-18.89,29.78-41.22,61.82-54.34,72.75-10.41,8.68-18,9.49-42.87,10.93l-7.58.46a52.06,52.06,0,0,0-48.15-32.29h-44.61a52,52,0,0,0-52.05,52.05,52.05,52.05,0,0,0,52.05,52.06h44.61A52,52,0,0,0-567,706.84c6.72-.55,12.92-.92,18.49-1.24,27.44-1.6,49.12-2.87,73.16-22.91,25.87-21.54,63.44-81.6,79.92-109.08a85.54,85.54,0,0,0,61-81.94V439.62a85.58,85.58,0,0,0-56.74-80.55Zm-463.8,132.6a33.5,33.5,0,0,1-33.46,33.46,33.5,33.5,0,0,1-33.46-33.46V439.62a33.49,33.49,0,0,1,33.46-33.46,33.49,33.49,0,0,1,33.46,33.46Zm468.48,0a33.5,33.5,0,0,1-33.46,33.46,33.5,33.5,0,0,1-33.46-33.46V439.62a33.49,33.49,0,0,1,33.46-33.46,33.49,33.49,0,0,1,33.46,33.46Zm0,0\" transform=\"translate(973.91 -116.87)\"></path></g></svg>",
+            "title": "Need help? We're here for you",
+            "text_link": "<p><a href=\"https://www.mokwheel.com/pages/new-contact-us\" title=\"https://www.mokwheel.com/pages/new-contact-us\">Contact us</a></p>"
+          }
+        },
+        "e9bf4ea0-71ed-4ecb-9694-68900ff666d7": {
+          "type": "item",
+          "settings": {
+            "image": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 768 576\"><path d=\"M2028.08,326.43a192.36,192.36,0,0,0-23.17,1.53L1943,134.43H1836.08a25.6,25.6,0,1,0,0,51.2h69.53l17,53.14L1660.13,397.52l-56.55-90.29h27.7a25.6,25.6,0,1,0,0-51.2h-128a25.6,25.6,0,1,0,0,51.2h39.88l60.47,96.54c-3.56-.26-7.12-.54-10.75-.54-77.65,0-140.8,63.18-140.8,140.8s63.15,140.8,140.8,140.8,140.8-63.18,140.8-140.8A140.38,140.38,0,0,0,1688,440.53L1938.66,288.9l16.64,52c-69.89,28.75-119.22,97.46-119.22,177.56,0,105.88,86.11,192,192,192s192-86.12,192-192-86.12-192-192-192Zm-435.2,307.2a89.6,89.6,0,1,1,89.6-89.6,89.7,89.7,0,0,1-89.6,89.6Zm435.2,25.6A140.72,140.72,0,0,1,1971,389.87l45.38,141.87a25.6,25.6,0,0,0,48.75-15.62L2020.91,378c2.38-.1,4.76-.36,7.17-.36,77.62,0,140.8,63.18,140.8,140.8s-63.18,140.8-140.8,140.8Zm0,0\" transform=\"translate(-1452.08 -134.43)\"></path></svg>",
+            "title": "\"Better than the best\" - Mokwheel",
+            "text_link": "<p><a href=\"/blogs/news/mokwheel-basalt-st-vs-radrunner-plus-vs-himiway-zebra\" title=\"Mokwheel Basalt ST vs Radrunner Plus vs Himiway Zebra\">Read article</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "4d1add25-6c41-44ac-92bb-fa5cde2cae1f",
+        "9eb1b23d-2d7f-4982-9795-6e1065b41058",
+        "e9bf4ea0-71ed-4ecb-9694-68900ff666d7"
+      ],
+      "disabled": true,
+      "settings": {
+        "bg_color": "#2d3033",
+        "text_color": "#ffffff",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "baf38289-5b30-46f0-a76d-81a85e1a823a",
+    "f3bc98ab-7028-497c-b285-fe8dbc2f0d34",
+    "main",
+    "115b00c9-b61b-4a3f-8656-eacf1af21cdb",
+    "909146eb-226a-4c15-8e57-5ee8698c8d90"
+  ]
+}

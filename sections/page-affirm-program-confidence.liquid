@@ -1,0 +1,217 @@
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+  
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+<style>
+  .affirm-program-confidence-wrapper{
+    position: relative;
+    margin-top: 60px;
+  }
+  .affirm-program-confidence-container{
+    position: relative;
+    z-index: 1;
+  }
+  .affirm-program-confidence-container p{
+    margin: 0;
+  }
+  .affirm-program-confidence-container .inner-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .affirm-program-confidence-container .left-box{
+    width: 36%;
+  }
+  .affirm-program-confidence-container .left-box h2{
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .affirm-program-confidence-container .left-box h2 strong{
+    color: #E83F0C;
+    font-weight: 600;
+  }
+  .affirm-program-confidence-container .right-list{
+    width: 36%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  @media screen and (max-width: 999px){
+    .affirm-program-confidence-wrapper{
+      margin-top: 0;
+    }
+    .affirm-program-confidence-container .inner-box{
+      flex-direction: column;
+    }
+    .affirm-program-confidence-container .left-box{
+      width: 100%;
+    }
+    .affirm-program-confidence-container .left-box h2{
+      margin-bottom: 10px;
+    }
+    .affirm-program-confidence-container .right-list{
+      width: 100%;
+      margin-top: 60px;
+      gap: 32px;
+    }
+  }
+</style>
+  <div class="affirm-program-confidence-wrapper alp-section {{ reset_spacing }}" style="{{ style }}">
+    {%- if st.bg_image or st.bg_image_mobile -%}
+      <div class="alp-image-slide-bg full-img-wrap" style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}">
+        {% render 'alp-responsive-image',
+          image: st.bg_image,
+          image_mobile: st.bg_image_mobile,
+          width: 2000,
+          aspect_ratio: st.image_aspect_ratio,
+          alt: st.title
+        %}
+      </div>
+    {%- endif -%}
+    <div class="affirm-program-confidence-container  alp-section-container page-width {{ container }}">
+        <div class="inner-box">
+          <div class="left-box">
+              <h2 class="headline__h2l">{{ st.title}}</h2>
+              <div class="text_content">{{ st.tips}}</div>
+          </div>
+          <div class="right-list">
+            {% for item in section.blocks %}
+              <div class="item">
+                <h4 class="headline__h4">{{ item.settings.title}}</h4>
+                <div class="text_content">{{ item.settings.description}}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+    </div>
+  </div>
+
+  {% schema %}
+  {
+  "name": "affirm-program-confidence",
+  "class": "affirm-program-confidence",
+  "presets": [{
+    "name": "affirm-program-confidence",
+    "settings": {
+  
+    }
+  }],
+  "blocks": [{
+    "type": "mega_menu", 
+    "name": "Mega menu", 
+    "settings":[{
+      "type": "richtext",
+      "id": "title",
+      "label": "title" 
+    },{
+      "type": "richtext",
+      "id": "description",
+      "label": "description" 
+    }]
+  }],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mobile",
+      "label": "Background Image Mobile"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Background Opacity",
+      "default": 50
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "3/1"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "title" 
+    },
+    {
+      "type": "text",
+      "id": "tips",
+      "label": "tips",
+      "default":"Select Affirm at checkout, then enter a few simple pieces of info for a real time decision." 
+    },
+  {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+  },
+  {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+  },
+  {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+      {
+          "value": "alp-container",
+          "label": "Default"
+      },
+      {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+      },
+      {
+          "value": "alp-full-width",
+          "label": "Full width"
+      }
+      ]
+  },
+  {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+  },
+  {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+  },
+  {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+  }
+]
+  }
+  {% endschema %}

@@ -1,0 +1,16 @@
+{% comment %}
+  Usage:
+  {% render 'swiper-navigation-bar', class: 'my-class' %}
+{% endcomment %}
+<div class="swiper-navigations alp-swiper-navigation {{ class | default: '' }}">
+  <div class="swiper-button-prev">
+    <svg fill="none" focusable="false" width="{{ width | default: 12 }}" height="{{ height | default: 10 }}" class="{{ icon_class }}" viewBox="0 0 12 10">
+      <path d="M12 5L2.25 5M2.25 5L6.15 9.16M2.25 5L6.15 0.840001" stroke="currentColor" stroke-width="{{ settings.icon_stroke_width }}"></path>
+    </svg>
+  </div>
+  <div class="swiper-button-next">
+    <svg fill="none" focusable="false" width="{{ width | default: 12 }}" height="{{ height | default: 10 }}" class="{{ icon_class }}" viewBox="0 0 12 10">
+      <path d="M-3.63679e-07 5L9.75 5M9.75 5L5.85 9.16M9.75 5L5.85 0.840001" stroke="currentColor" stroke-width="{{ settings.icon_stroke_width }}"></path>
+    </svg>
+  </div>
+</div>

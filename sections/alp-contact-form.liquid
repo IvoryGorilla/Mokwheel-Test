@@ -1,0 +1,351 @@
+{{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+{%- capture style -%}
+  --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{%- style -%}
+  .alp-contact-form-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: calc(var(--alp-gutter-y) * 1.75);
+  }
+  .alp-contact-form-left{
+    width: 65%;
+  }
+  .alp-contact-form-left form{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .alp-contact-form-left .field input,
+  .alp-contact-form-left .field textarea{
+    background: #FAFAFA;
+    border-radius: 16px;
+    border: 1px solid #0006;
+  }
+  .alp-contact-form-left .field__label{
+    opacity: 0.6;
+    font-size: 16px;
+  }
+  .alp-contact-form-left .field::after{
+    border: none;
+  }
+  .alp-contact-form-left .contact__button button{
+    background: #E83F0C;
+    border-radius: 16px;
+    padding: 16px 65px;
+    font-size: 16px;
+  }
+  .alp-contact-form-right{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+  .alp-contact-form-item-title{
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .alp-contact-form-item-title div{
+    margin-left: 12px;
+  }
+  .alp-contact-form-item img{
+    width: 32px;
+  }
+  .alp-contact-form-item .text_content p{
+    margin: 0;
+  }
+  @media screen and (max-width: 750px) {
+    .alp-contact-form-wrapper{
+      padding-top: 0;
+    }
+    .alp-contact-form-container{
+      flex-direction: column;
+      margin-top: calc(var(--alp-gutter-y) * 1.15);
+    }
+    .alp-contact-form-left,
+    .alp-contact-form-right{
+      width: 100%;
+    }
+    .alp-contact-form-left form{
+      gap: 16px;
+    }
+    .alp-contact-form-right{
+      margin-top: 6rem;
+      gap: 30px;
+      position: relative;
+    }
+    .alp-contact-form-right::before{
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: #eee;
+    }
+    .alp-contact-form-right::after{
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: #eee;
+    }
+  }
+{%- endstyle -%}
+
+<div class="alp-section alp-contact-form-wrapper {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+    <h2 class="headline__h2l">{{ st.heading | strip_html | strip }}</h2>
+    <div class="text_content">{{ st.desc| strip_html }}</div>
+    <div class="alp-contact-form-container">
+      <div class="alp-contact-form-left">
+        {%- liquid
+          assign contact_form_class = 'isolate'
+          if settings.animations_reveal_on_scroll
+            assign contact_form_class = 'isolate scroll-trigger animate--slide-in'
+          endif
+        -%}
+        {%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
+          {%- if form.posted_successfully? -%}
+            <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
+              {% render 'icon-success' %}
+              {{ 'templates.contact.form.post_success' | t }}
+            </h2>
+          {%- elsif form.errors -%}
+            <div class="form__message">
+              <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+                {% render 'icon-error' %}
+                {{ 'templates.contact.form.error_heading' | t }}
+              </h2>
+            </div>
+            <ul class="form-status-list caption-large" role="list">
+              <li>
+                <a href="#ContactForm-email" class="link">
+                  {{ form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email }}
+                </a>
+              </li>
+            </ul>
+          {%- endif -%}
+          <div class="field">
+            <input
+              class="field__input"
+              autocomplete="name"
+              type="text"
+              id="ContactForm-name"
+              name="contact[{{ 'templates.contact.form.name' | t }}]"
+              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+              placeholder="{{ 'templates.contact.form.name' | t }}"
+            >
+            <label class="field__label" for="ContactForm-name">Contact Name</label>
+          </div>
+          <div class="field field--with-error">
+            <input
+              autocomplete="email"
+              type="email"
+              id="ContactForm-email"
+              class="field__input"
+              name="contact[email]"
+              spellcheck="false"
+              autocapitalize="off"
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+              aria-required="true"
+              {% if form.errors contains 'email' %}
+                aria-invalid="true"
+                aria-describedby="ContactForm-email-error"
+              {% endif %}
+              placeholder="{{ 'templates.contact.form.email' | t }}"
+            >
+            <label class="field__label" for="ContactForm-email">
+              {{- 'templates.contact.form.email' | t }}
+              {% comment %} <span aria-hidden="true">*</span> {% endcomment %}
+            </label
+            >
+            {%- if form.errors contains 'email' -%}
+              <small class="contact__field-error" id="ContactForm-email-error">
+                <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+                <span class="form__message">
+                  {%- render 'icon-error' -%}
+                  {{- form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email -}}
+                </span>
+              </small>
+            {%- endif -%}
+          </div>
+          {% comment %} <div class="field">
+            <input
+              type="tel"
+              id="ContactForm-phone"
+              class="field__input"
+              autocomplete="tel"
+              name="contact[{{ 'templates.contact.form.phone' | t }}]"
+              pattern="[0-9\-]*"
+              value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+              placeholder="{{ 'templates.contact.form.phone' | t }}"
+            >
+            <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
+          </div> {% endcomment %}
+          <div class="field">
+            <input
+              class="field__input"
+              autocomplete="title"
+              type="text"
+              id="ContactForm-title"
+              name="contact[{{ 'templates.contact.form.title' | t }}]"
+              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+              placeholder="{{ 'templates.contact.form.title' | t }}"
+            >
+            <label class="field__label" for="ContactForm-title">Subject Title</label>
+          </div>
+          <div class="field">
+            <textarea
+              rows="10"
+              id="ContactForm-body"
+              class="text-area field__input"
+              name="contact[{{ 'templates.contact.form.comment' | t }}]"
+              placeholder="{{ 'templates.contact.form.comment' | t }}"
+            >
+              {{- form.body -}}
+            </textarea>
+            <label class="form__label field__label" for="ContactForm-body">
+              {% comment %} {{- 'templates.contact.form.comment' | t -}} {% endcomment %}
+              Your Message
+            </label>
+          </div>
+          <div class="contact__button">
+            <button type="submit" class="button">
+              {% comment %} {{ 'templates.contact.form.send' | t }} {% endcomment %}
+              Submit
+            </button>
+          </div>
+        {%- endform -%}
+      </div>
+      <div class="alp-contact-form-right">
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+          {%- case block.type -%}
+            {%- when 'item' -%} 
+              <div class="alp-contact-form-item">
+                <div class="alp-contact-form-item-title">
+                  {% render 'alp-single-image', image: bs.icon, aspect_ratio: aspect_ratio, alt: alt_title %}
+                   <div class="headline__h5l">{{ bs.subtitle | strip_html | strip }}</div>
+                </div>
+                <div class="text_content">{{ bs.content  }}</div>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Alp Contact Form",
+  "class": "alp-contact-form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Contact form"
+    },
+    {
+      "type": "richtext",
+      "id": "desc",
+      "label": "Desc"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "sub Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Contact Form"
+    }
+  ]
+}
+{% endschema %}

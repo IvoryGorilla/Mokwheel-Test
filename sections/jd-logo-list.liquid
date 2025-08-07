@@ -1,0 +1,279 @@
+{% schema %}
+{
+  "name": "Logo Lists",
+  "class": "Logo Lists",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image Mobile"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo-item",
+      "name": "Logo Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo Lists",
+      "blocks": [
+        {
+          "type": "logo-item"
+        },
+        {
+          "type": "logo-item"
+        },
+        {
+          "type": "logo-item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .logo-list {
+    position: relative;
+  }
+  .logo-list-content {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-around;
+  }
+
+  @media (min-width: 751px) {
+    .logo-list .image img {
+      height: 200px;
+    }
+    .logo-list-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .logo-list-all .logo-list_img {
+      margin-right: calc(var(--alp-gutter-x) * 0.5);
+    }
+    .logo-list-all .logo-list_img img {
+      max-width: 60px;
+      aspect-ratio: 1/1;
+      height: auto;
+      object-fit: contain;
+    }
+    .item-text-box {
+    }
+    .item-text-box .item-title {
+      color: #fff;
+      font-weight: 400;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .logo-list .image img {
+      width: 100%;
+      aspect-ratio: 1/1;
+    }
+    .logo-list-content {
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+    }
+    .logo-list-item {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
+    .logo-list-all .logo-list_img {
+      margin-right: calc(var(--alp-gutter-x) * 0.5);
+      margin-bottom: calc(var(--alp-gutter-y) * 0.5);
+      margin-top: calc(var(--alp-gutter-y) * 0.5);
+    }
+    .logo-list-all .logo-list_img img {
+      max-width: 43px;
+      aspect-ratio: 1/1;
+      height: auto;
+      object-fit: contain;
+    }
+    .item-text-box {
+    }
+    .item-text-box .item-title {
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .logo-list-all .logo-list_img {
+      width: 19px;
+      height: 19px;
+      margin: 0;
+      margin-right: 4px;
+    }
+
+    .logo-list .logo-list-item {
+      width: 100%;
+    }
+
+    .logo-list .logo-list-content {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 17px;
+    }
+
+    .logo-list h3.item-title.headline__h4 {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .logo-list.logo-backimg .image img {
+      aspect-ratio: 3/2;
+      height: 200px;
+    }
+
+    .logo-list .item-text-box {
+      width: calc(100% - 42px);
+    }
+  }
+  .alink-content-us {
+    cursor: pointer;
+  }
+{% endstyle %}
+
+<div class="logo-list logo-backimg alp-section {{ reset_spacing }}" style="{{ style }}">
+  {%- if st.image or st.image_mobile -%}
+    <div class="image">
+      {% render 'alp-responsive-image',
+        image: st.image,
+        image_mobile: st.image_mobile,
+        width: 2000,
+        aspect_ratio: st.image_aspect_ratio,
+        alt: st.title
+      %}
+    </div>
+  {%- endif -%}
+  <div class="alp-section-container page-width {{ container }}">
+    <div class="logo-list-all">
+      <div class="logo-list-content">
+        {%- for block in section.blocks -%}
+          <div class="logo-list-item">
+            <div class="logo-list_img">
+              {% render 'alp-single-image',
+                image: block.settings.image,
+                width: 1280,
+                aspect_ratio: aspect_ratio,
+                alt: alt_title
+              %}
+            </div>
+            <div class="item-text-box">
+              <h3 class="item-title headline__h4 ">{{ block.settings.title }}</h3>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

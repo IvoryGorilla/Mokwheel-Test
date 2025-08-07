@@ -1,0 +1,22 @@
+{% comment %}
+  {% render 'cart-compare-price' , cart: cart %}
+{% endcomment %}
+
+{%- assign total_compare_price = 0 -%}
+{%- for line_item in cart.items -%}
+  {%- assign compare_price = line_item.variant.compare_at_price -%}
+  {%- assign original_price = line_item.original_price -%}
+  {%- if compare_price != blank -%}
+    {%- if compare_price > original_price -%}
+      {%- assign compare_price = compare_price -%}
+      {%- assign compare_price = compare_price | times: line_item.quantity -%}
+    {%- else -%}
+      {%- assign compare_price = original_price | times: line_item.quantity -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign compare_price = original_price | times: line_item.quantity -%}
+  {%- endif -%}
+  {%- assign total_compare_price = compare_price | plus: total_compare_price -%}
+{%- endfor -%}
+
+{{ total_compare_price | money_with_currency }}

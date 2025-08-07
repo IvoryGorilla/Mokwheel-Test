@@ -1,0 +1,266 @@
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+    .alp-guide_display-box{
+        background-color: #1a1a1a;
+    }
+    .alp-guide_display-box p{
+        margin: 0;
+        line-height: 1.5;
+    }
+    .alp-guideDisplayText h4 p{
+        font-weight: 400;
+    }
+    .alp-guideDisplayText{
+        color: #E83F0C;
+    }
+    .swiper-pagination-guide-display.swiper-pagination-bullets{
+        justify-content: center;
+    }
+    .swiper-pagination-guide-display.swiper-pagination-bullets span.swiper-pagination-bullet{
+        width: 6px;
+    }
+    .swiper-pagination-guide-display.swiper-pagination-bullets span.swiper-pagination-bullet:after{
+        height: 6px;
+    }
+    @media (min-width:751px) {
+        .alp-guide_display-box{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        .alp-guide_display-left{
+            width: 43%;
+        }
+        .alp-guide_display_top h2{
+            margin-bottom: 16px;
+        }
+        .alp-guide_display-left img{
+            width: 100%;
+            cursor: pointer;
+        }
+        .alp-guideDisplayText{
+            margin-top: 24px;
+        }
+        .alp-guide_display-right{
+           cursor: pointer;
+            width: 30%;
+        }
+    }
+    
+    @media (max-width:750px) {
+        .alp-guide_display-all.alp-section{
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .alp-guide_display-box{   
+            padding-top: 48px;
+            padding-bottom: 48px;
+            padding-left: calc(var(--alp-padding-x)* 1.5);
+            padding-right: calc(var(--alp-padding-x)* 1.5);
+        }
+       .alp-guide_display_top h2{
+            margin-bottom: 10px;
+        }
+        .alp-guide_display-left img{
+            width: 100%;
+            cursor: pointer;
+        }
+        .alp-guide_display-right{
+            margin-top: 32px;
+        }
+        .alp-guideDisplayImg{
+            margin: 0 calc(var(--alp-padding-x) * 2);
+        }
+        .swiper-pagination-guide-display.swiper-pagination-bullets{
+            margin: 16px 0;
+        }
+        .alp-guideDisplayText{
+            text-align: center;
+        }
+        .swiper-pagination-guide-display.swiper-pagination-bullets span.swiper-pagination-bullet:after{
+            height: 3px;
+        }
+    }
+
+</style>
+
+
+<div class="alp-guide_display-all alp-section {{ reset_spacing }}" style="{{ style }}">
+    <div class="alp-guide_display-all-container alp-section-container page-width-2 {{ container }}">
+        <div class="alp-guide_display-box">
+            <div class="alp-guide_display-left">
+                <div class="alp-guide_display_top">
+                    <h2 class="headline__h2s">{{ st.title }}</h2>
+                    <div class="text_content">{{ st.text }}</div>
+                </div>
+                <div thumbsSlider="" class="swiper alp-guideDisplayText hide_mobile">
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                            <h4 class="swiper-slide headline__h4">
+                                {{ block.settings.text_right }}
+                            </h4>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="alp-guide_display-right">
+                <div class="swiper alp-guideDisplayImg">
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                            <div class="swiper-slide">
+                                <img loading="lazy"  class="preview-image" {% render 'image-attributes', image: block.settings.img, sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-navs swiper-pagination-guide-display">
+                        {% render 'swiper-pagination', class: 'pagination-products' %}
+                      </div>
+                </div>   
+                <div thumbsSlider="" class="swiper alp-guideDisplayText hide_desktop">
+                    <div class="swiper-wrapper">
+                        {% for block in section.blocks %}
+                            <h4 class="swiper-slide headline__h4">
+                                {{ block.settings.text_right }}
+                            </h4>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+     var swiperText = new Swiper(".alp-guideDisplayText", {
+        // direction: "vertical",
+        // watchSlidesProgress: true,
+        height: 'auto',
+        // touchRatio: 0,
+        slidesPerView: 1, 
+        slidesPerGroup: 10,
+    });
+    var swiperImg = new Swiper(".alp-guideDisplayImg", {
+        slidesPerView: 1, 
+        pagination: {
+          el: ".swiper-pagination-guide-display",
+        },
+        controller: {
+            control: swiperText,
+        }
+    });
+  });
+    
+</script>
+{% schema %}
+{
+    "name": "Alp Guide display",
+    "settings": [
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+    },
+    {
+        "type": "richtext",
+        "id": "text",
+        "label": "text"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+    ],
+    "blocks": [
+    {
+        "name": "Guide",
+        "type": "Guide",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "img",
+                "label": "img"
+            },
+            {
+                "type": "richtext",
+                "id": "text_right",
+                "label": "Right text"
+            }
+        ]
+    }
+   
+    ],
+    "presets": [{
+    "name": "Alp Guide display"
+    
+    }]
+}
+{% endschema %}

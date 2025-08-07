@@ -1,0 +1,733 @@
+{% schema %}
+{
+  "name": "Alp New Banner 2",
+  "class": "alp-new-banner-2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Banner"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_aspect_ratio",
+      "label": "Use Aspect Ratio",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "aspect_ratio_desktop",
+      "label": "Aspect Ratio Desktop",
+      "default": "auto"
+    },
+    {
+      "type": "text",
+      "id": "aspect_ratio_mobile",
+      "label": "Aspect Ratio Mobile",
+      "default": "auto"
+    },
+    // {
+    //   "type": "text",
+    //   "id": "max_height_desktop",
+    //   "label": "Max Height Desktop",
+    //   "default": "1000px"
+    // },
+    // {
+    //   "type": "text",
+    //   "id": "max_height_mobile",
+    //   "label": "Max Height Mobile",
+    //   "default": "600px"
+    // },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show Pagination",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_play",
+      "label": "Auto Play",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "auto_play_delay",
+      "label": "Auto Play Delay",
+      "default": 3,
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "s"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner_item",
+      "name": "Banner Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "track_name",
+          "label": "Track Name",
+          "default": "banner"
+        },
+        {
+          "type": "textarea",
+          "id": "title_one",
+          "label": "Text One",
+          "default": "Mokwheel Bike Sale"
+        },
+        {
+          "type": "textarea",
+          "id": "title_two",
+          "label": "Text One",
+          "default": "Get 9 Accessories Free On One E-Bike"
+        },
+        {
+          "type": "textarea",
+          "id": "title_three",
+          "label": "Text Three",
+          "default": "Simply add your desired bikes to the cart and proceed to the cart page."
+        },
+        {
+          "type": "textarea",
+          "id": "title_four",
+          "label": "Text Four",
+          "default": "$1999"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_text_pc",
+          "label": "Image Text PC"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_text_mobile",
+          "label": "Image Text Mobile"
+        },
+        {
+          "type": "range",
+          "id": "image_text_width_pc",
+          "label": "Image Text Width PC",
+          "default": 320,
+          "min": 0,
+          "max": 1920,
+          "step": 32,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "image_text_width_mobile",
+          "label": "Image Text Width Mobile",
+          "default": 320,
+          "min": 0,
+          "max": 960,
+          "step": 16,
+          "unit": "px"
+        },
+        {
+          "type": "textarea",
+          "id": "url_text",
+          "label": "Url Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url"
+        },
+        {
+          "type": "select",
+          "id": "content_alignment_mobile",
+          "label": "Content Alignment Mobile",
+          "options": [
+            {
+              "value": "align_top",
+              "label": "Top"
+            },
+            {
+              "value": "align_middle",
+              "label": "Middle"
+            },
+            {
+              "value": "align_bottom",
+              "label": "Bottom"
+            }
+          ],
+          "default": "align_middle"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_pc",
+          "label": "Image PC"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image Mobile"
+        },
+        {
+          "type": "text",
+          "id": "countdown_date",
+          "label": "Count Down",
+          "default": "2023-05-15T00:00:00",
+          "info": "格式: 2023-05-15T00:00:00"
+        },
+        {
+          "type": "number",
+          "id": "countdown_hours",
+          "label": "多少小时内显示倒计时",
+          "default": 48
+        },
+        {
+          "type": "text",
+          "id": "countdown_text",
+          "label": "Count Down 文字",
+          "default": "Only Remaining"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_countdown",
+          "label": "Show Count Down",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp New Banner 2"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+      --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};--max-height-desktop: {{ st.max_height_desktop }};--max-height-mobile: {{ st.max_height_mobile }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-the-banner-wrapper {
+    --color: #fff;
+    color: var(--text-color, #fff);
+    --height: calc(100vh - var(--bar-height, 0) * 1px - var(--header-height, 0) * 1px);
+  }
+
+  .alp-the-banner-wrapper .swiper-slide {
+    overflow: hidden;
+  }
+  .the-banner-item-i {
+    height: 100vh;
+    height: calc(var(--height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .use_aspect_ratio div.the-banner-aspect-ratio {
+    display: block;
+  }
+
+  .the-banner-item-i-content {
+    position: relative;
+    z-index: 10;
+  }
+
+  .the-banner-item-i-content > div {
+    padding-top: calc(100px + 3%);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: max(150px, 8%);
+  }
+
+  .the-banner-item-i-content > div > div:not(.the-bn-text-image-new) {
+    max-width: 500px;
+  }
+
+  .the-bn-text-one {
+    font-size: 28px;
+    line-height: 120%;
+  }
+
+  .the-bn-text-two {
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 115%; /* 55.2px */
+    letter-spacing: -1.68px;
+  }
+
+  .the-bn-text-three {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .the-bn-text-four {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 115%;
+  }
+
+  .bn-btn-wrapper {
+    margin-top: max(4.25vw, 2.5em);
+  }
+
+  .the-banner-item-i {
+    overflow: hidden;
+  }
+
+  .alp-the-banner-wrapper .swiper-pagination-bullets {
+    position: absolute;
+    bottom: 6.5%;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+  }
+
+  .the-banner-item-i-content > div strong {
+    color: var(--main-color, #fff);
+  }
+
+  .alp-the-banner-wrapper {
+    --timing: cubic-bezier(0.71, 0, 0.25, 1);
+  }
+
+  .the-banner-item-i .full-img-wrap picture {
+    display: block;
+    transition: 0.8s;
+    opacity: 0;
+  }
+
+  .alp_swiper_init .the-banner-item-i .full-img-wrap picture {
+    opacity: 1;
+  }
+
+  .the-banner-item-i-bg.full-img-wrap {
+    background: #121212;
+  }
+
+  .the-banner-item-i .full-img-wrap picture img {
+    display: block;
+    transition: 1.6s;
+    /* transform: perspective(1000px) translate3d(0px, 0px, 80px); */
+  }
+
+  .alp_swiper_init .swiper-slide-active .the-banner-item-i .full-img-wrap picture img {
+    display: block;
+    transition: 3.2s;
+    /* transform: perspective(1000px) translate3d(0px, 0px, 0px); */
+  }
+
+  .the-banner-item-i-content .bn-btn-wrapper {
+    position: relative;
+    z-index: 20;
+  }
+
+  .the-banner-item-i {
+    width: 100vw;
+  }
+
+  .the-banner-item-i.use_aspect_ratio {
+    height: auto;
+    aspect-ratio: var(--aspect-ratio-desktop);
+    max-height: 150vh;
+  }
+
+  .the-bn-text-one-new.headline__h5 {
+    margin-bottom: 0;
+  }
+
+  .the-bn-text-image-new {
+    max-width: var(--image-width-pc);
+  }
+
+  .the-bn-text-three-new.headline__h5 {
+    font-weight: 400;
+  }
+
+  .the-bn-text-two-new.headline__h2 {
+    font-weight: 600;
+  }
+
+  // Countdown
+  .the-bn-countdown .alp-t-countdown-time {
+    color: var(--text-color, #fff);
+  }
+
+  .the-bn-countdown .alp-t-countdown-time {
+    font-size: max(1.5em, 2vw);
+    font-weight: 400;
+  }
+
+  .the-bn-countdown .alp-t-countdown-time b {
+    font-weight: 500;
+  }
+
+  .the-bn-countdown .alp-t-countdown-time span {
+    display: inline-flex;
+    background: rgb(0 0 0 / 65%);
+    line-height: 1.25;
+    border-radius: 8px;
+    padding: 0.2em;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.65em;
+  }
+
+  .the-bn-countdown .alp-t-countdown-text {
+    font-size: 1.35em;
+  }
+
+  .the-bn-countdown .alp-t-countdown {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .alp-the-banner-wrapper .swiper-pagination-bullets {
+    justify-content: center;
+  }
+
+  .alp-new-banner-2 .bn-btn-wrapper a span {
+    font-size: clamp(14px, 1vw, 16px);
+  }
+  .alp-new-banner-2 .the-bn-text-two-new.headline__h2 {
+    margin-bottom: 0;
+    margin-top: 8px;
+    font-size: clamp(36px, 3vw, 48px);
+    line-height: 1.2;
+  }
+
+  @media (min-width: 750px) {
+    .alp-the-banner-wrapper .swiper-wrapper,
+    .alp-the-banner-wrapper .swiper-wrapper [data-swiper-parallax] {
+      transition-timing-function: var(--timing);
+    }
+    .the-banner-item-i {
+      /* max-height: var(--max-height-desktop, 1200px); */
+    }
+    .alp-new-banner-2 .the-banner-item-i-content > div {
+      padding-top: calc(100px + 25%);
+    }
+    .alp-new-banner-2 .bn-btn-wrapper {
+      margin-top: 54px;
+    }
+    .alp-new-banner-2 .the-bn-text-one-new.headline__h5 {
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 1330px) {
+    .the-banner-item-i-content > div > div:not(.the-bn-text-image-new) {
+      max-width: 400px;
+    }
+    .the-bn-text-one {
+      font-size: 20px;
+    }
+
+    .the-bn-text-two {
+      font-size: 38px;
+    }
+    .the-bn-text-three {
+      font-size: 14px;
+    }
+
+    .the-bn-text-four {
+      font-size: 38px;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .the-bn-text-image-new {
+      max-width: var(--image-width-mobile);
+    }
+    .the-banner-item-i.use_aspect_ratio {
+      height: auto;
+      aspect-ratio: var(--aspect-ratio-mobile);
+    }
+    .the-bn-text-one {
+      font-size: 20px;
+    }
+
+    .the-bn-text-two {
+      font-size: 32px;
+    }
+    .the-bn-text-three {
+      font-size: 16px;
+    }
+
+    .the-bn-text-four {
+      font-size: 32px;
+    }
+
+    .the-bn-countdown .alp-t-countdown {
+      align-items: center;
+    }
+    .alp-the-banner-wrapper .swiper-pagination-bullets {
+      justify-content: center;
+      bottom: 4%;
+    }
+
+    .alp-the-banner-wrapper .swiper-pagination-bullets span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+      width: 40px;
+    }
+
+    a.alp-link-btn svg {
+      display: none;
+    }
+
+    a.alp-link-btn {
+      padding: 0.85em 1.7em;
+    }
+    .the-banner-item-i-content > div {
+      text-align: center;
+      margin: auto;
+    }
+    .the-banner-item-i[data-align='align_top'] .the-banner-item-i-content {
+      margin-top: 0;
+    }
+    .the-banner-item-i[data-align='align_bottom'] .the-banner-item-i-content {
+      margin-bottom: 0;
+    }
+
+    .the-banner-item-i-content {
+      padding-top: 12vh;
+      padding-bottom: 12vh;
+    }
+    .bn-btn-wrapper {
+      margin-top: 0.75em;
+    }
+    .the-banner-item-i {
+      /* max-height: var(--max-height-mobile, 600px); */
+    }
+    .alp-new-banner-2 .the-bn-text-one-new.headline__h5 {
+      font-size: 18px;
+    }
+    .alp-new-banner-2 .the-banner-item-i-content > div {
+      padding-bottom: max(64px, 8%);
+      padding-top: calc(100px + 100%);
+      text-align: start;
+    }
+    .alp-new-banner-2 .bn-btn-wrapper {
+      margin-top: 24px;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-section alp-the-banner-wrapper {{ reset_spacing }}"
+  style="{{ style }}"
+>
+  <div class="the-banner-wrapper swiper" id="{{ section.id }}">
+    <div class="swiper-wrapper">
+      {%- for block in section.blocks -%}
+        {% liquid
+          assign bs = block.settings
+        %}
+        <div class="swiper-slide the-banner-item">
+          {%- if bs.url != blank -%}
+            <a href="{{- bs.url -}}" class="full-aa {% render 'track-tag-classname', name: bs.track_name %}"></a>
+          {%- endif -%}
+          <div
+            class="the-banner-item-i relative {% if st.use_aspect_ratio %} use_aspect_ratio{% endif %}"
+            data-align="{{- bs.content_alignment_mobile -}}"
+            style="--aspect-ratio-desktop: {{ st.aspect_ratio_desktop }}; --aspect-ratio-mobile: {{ st.aspect_ratio_mobile }}"
+          >
+            <div
+              class="the-banner-aspect-ratio"
+              style="--aspect-ratio-desktop: {{ st.aspect_ratio_desktop }}; --aspect-ratio-mobile: {{ st.aspect_ratio_mobile }}"
+            ></div>
+            <div class="the-banner-item-i-bg full-img-wrap" data-swiper-parallax="20%">
+              {% render 'alp-responsive-image',
+                image: bs.image_pc,
+                image_mobile: bs.image_mobile,
+                desktop_width: 1920,
+                mobile_width: 900
+              %}
+            </div>
+            <div class="the-banner-item-i-content page-width {{ container }}">
+              <div>
+                {%- if bs.show_countdown -%}
+                  <div class="the-bn-countdown">
+                    {% render 'alp-countdown-snippet',
+                      text: bs.countdown_text,
+                      id: block.id,
+                      countdown_date: bs.countdown_date,
+                      countdown_hours: bs.countdown_hours
+                    %}
+                  </div>
+                {%- endif -%}
+                {%- if bs.image_text_pc -%}
+                  <div
+                    class="the-bn-text-image-new headline__h5"
+                    style="--image-width-pc: {{ bs.image_text_width_pc }}px; --image-width-mobile: {{ bs.image_text_width_mobile }}px"
+                  >
+                    {% render 'alp-responsive-image',
+                      image: bs.image_text_pc,
+                      image_mobile: bs.image_text_mobile,
+                      desktop_width: 1920,
+                      mobile_width: 900
+                    %}
+                  </div>
+                {%- endif -%}
+                {%- if bs.title_one != blank -%}
+                  <div class="the-bn-text-one-new headline__h5">
+                    {{ bs.title_one }}
+                  </div>
+                {%- endif -%}
+                {%- if bs.title_two != blank -%}
+                  <div class="the-bn-text-two-new headline__h2">
+                    {{ bs.title_two }}
+                  </div>
+                {%- endif -%}
+                {%- if bs.title_three != blank -%}
+                  <div class="the-bn-text-three-new headline__h5">
+                    {{ bs.title_three }}
+                  </div>
+                {%- endif -%}
+                {%- if bs.title_four != blank -%}
+                  <div class="the-bn-text-four-new">
+                    {{ bs.title_four }}
+                  </div>
+                {%- endif -%}
+                {%- if bs.url_text != blank -%}
+                  <div class="bn-btn-wrapper">
+                    {% comment %} {% render 'alp-button', url: bs.url, text: bs.url_text, type: 'white' %} {% endcomment %}
+                    {% render 'alp-btn',
+                      url: bs.url,
+                      type: 'primary',
+                      text: bs.url_text,
+                      textcolor: '#1A1A1A',
+                      bgcolor: '#fff',
+                      size: 'normal',
+                      icon: 'normal'
+                    %}
+                  </div>
+                {%- endif -%}
+                {%- if bs.url != blank -%}
+                  <a href="{{- bs.url -}}" class="full-aa {% render 'track-tag-classname', name: bs.track_name %}"></a>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- if st.show_pagination -%}
+      <div class="swiper-pagination-bn page-width {{ container }}"></div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script
+  type="module"
+>
+  document.addEventListener('DOMContentLoaded', () => {
+    let swiperId = '{{ section.id }}';
+    let swiperIdnum = swiperId.replace(/\D/g, '');
+    let swiperVar = 'TheSwiper' + swiperIdnum;
+    swiperVar = new Swiper('.the-banner-wrapper#{{ section.id }}', {
+      speed: 920,
+      autoHeight: true,
+      pagination: {
+        el: '.swiper-pagination-bn',
+        clickable: true,
+      },
+      parallax: true,
+      {%- if st.auto_play -%}
+      autoplay: {
+        delay: {{ st.auto_play_delay }} * 1000,
+      },
+      {%- endif -%}
+      // autoplay: {
+      //   delay: 9000,
+      //   disableOnInteraction: true,
+      // },
+      on: {
+        init: function (swiper) {
+          let $index = this.activeIndex;
+          $('body').addClass('alp_swiper_init');
+          animation_banner($index);
+        },
+        slideChange: function () {
+          let $index = this.activeIndex;
+          animation_banner($index);
+        },
+      },
+    });
+    // Banner Animation
+    function animation_banner(index) {
+
+    }
+  });
+</script>

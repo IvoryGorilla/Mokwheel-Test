@@ -1,0 +1,42 @@
+{% comment %}
+  {% render 'nav-collection-list-swiper', collections: collection_list %}
+{% endcomment %}
+<div class="swiper-1 nav-collection-items-list desktop-swiper is-collections nav-collection-items-list-new">
+  <div class="nav-collection-items-flex-swiper">
+      {%- for item in collections -%}
+          <div class="nav-image-link-item is-collection">
+            <a href="{{ item.url }}" class="nav-image-link full-aa"></a>
+            <div class="nav-image-link-image">
+              {% comment %} {{ item.featured_image | image_url: width: 640 | image_tag: loading: 'lazy' }} {% endcomment %}
+              <img
+                data-src="{{ item.featured_image | image_url: width: 500 }}"
+                alt="{{ item.title | default: image.alt }}"
+                loading="lazy"
+                width="auto"
+                height="auto"
+                class="lazy"
+              >
+            </div>
+            <div class="nav-collection-i-info">
+              <div class="nav-image-link-divider">
+                {%- if item.metafields.custom.navigation_bar_label != blank -%}
+                  <div class="navigation-bar-label">
+                    {{ item.metafields.custom.navigation_bar_label }}
+                  </div>
+                {%- endif -%}
+                <div class="nav-image-link-title headline__h6">{{ item.title }}</div>
+              </div>
+              {%- if item.description != blank -%}
+                <div class="nav-image-link-description">{{- item.description | strip_html | strip -}}</div>
+              {%- endif -%}
+            </div>
+          </div>
+      {%- endfor -%}
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+   
+  });
+</script>

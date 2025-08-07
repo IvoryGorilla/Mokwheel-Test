@@ -1,0 +1,53 @@
+<style>
+  /* .compatible-item-info .alp-addional-product-price {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0;
+    line-height: 1;
+  } */
+</style>
+{% if bs.title != blank %}
+  <div class="the-product-form-title compatible-products-title">
+    <h3 class="headline__h6">
+      <span>
+        {{ bs.title }}
+      </span>
+    </h3>
+  </div>
+{% endif %}
+<div
+  class="compatible-products-wrapper"
+  data-min-number="{{ bs.discount_min }}"
+  data-disount="{{ bs.discount_value }}"
+>
+  <div class="compatible-products-list">
+    <div class="compatible-products-list-inner">
+      {%- for product in bs.product_list -%}
+        {% render 'alp-compatible-product-item', product: product, bs: bs %}
+      {%- endfor -%}
+    </div>
+  </div>
+  <div class="compatible-products-bottom">
+    <div class="compatible-bottom-flex">
+      <div class="compatible-discount-info">
+        <div class="c-discount-info-1">
+          {{ bs.discount_text_1 }}
+        </div>
+        <div class="c-discount-info-number">
+          {{ bs.discount_min }}
+        </div>
+        <div class="c-discount-info-2">
+          {{ bs.discount_text_2 }}
+        </div>
+        <div class="c-discount-info-ff">
+          {{ bs.discount_text_3 }}
+          <span></span>
+        </div>
+      </div>
+      <div class="compatible-show-more">
+        <span>{{ bs.more_text }}</span>
+        <span>{{ bs.less_text }}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+{% comment %}
+  {% render 'nav-product-list', collection: collection ,limit: 10 %}
+{% endcomment %}
+{%- assign the_limit = limit | default: 12 -%}
+<div class="nav-collection-items-list desktop-swiper is-products">
+  <div class="nav-collection-items-flex-swiper swiper">
+    <div class="swiper-wrapper">
+      {%- for item in collection.products limit: the_limit -%}
+        <div class="swiper-slide">
+          <div class="nav-image-link-item is-products">
+            <a href="{{ item.url }}" class="nav-image-link full-aa"></a>
+            <div class="nav-image-link-image">
+              {%- if item.first_available_variant.featured_image -%}
+                {% comment %} {{ item.first_available_variant.featured_image | image_url: width: 640 | image_tag: loading: 'lazy' }} {% endcomment %}
+                <img
+                  data-src="{{ item.first_available_variant.featured_image | image_url: width: 500 }}"
+                  alt="{{ item.title | default: image.alt }}"
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                  class="lazy"
+                >
+              {%- else -%}
+                {% comment %} {{ item.featured_image | image_url: width: 640 | image_tag: loading: 'lazy' }} {% endcomment %}
+                <img
+                  data-src="{{ item.featured_image | image_url: width: 500 }}"
+                  alt="{{ item.title | default: image.alt }}"
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                  class="lazy"
+                >
+              {%- endif -%}
+            </div>
+            <div class="nav-product-i-info">
+              <div>
+                <div class="nav-image-link-title headline__h6">{{ item.title }}</div>
+                {%- if item.metafields.custom.new_description != blank -%}
+                  <div class="nav-image-link-description">
+                    {%- if item.metafields.custom.new_description_nav != blank -%}
+                      {{- item.metafields.custom.new_description_nav | metafield_tag | strip_html | strip -}}
+                    {%- else -%}
+                      {{- item.metafields.custom.new_description | metafield_tag | strip_html | strip -}}
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+              <div class="nav-image-link-price">{% render 'price', product: item %}</div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    {% render 'swiper-navigation', class: 'media-swiper-arrow' %}
+  </div>
+</div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth > 999) {
+      var SwiperCollectionNav = new Swiper('.is-products > .swiper.nav-collection-items-flex-swiper', {
+        slidesPerView: 3,
+        grid: {
+          fill: 'row',
+          rows: 2,
+        },
+        breakpoints: {
+          320: {
+            slidesPerView: 2,
+          },
+          999: {
+            slidesPerView: 3.2,
+          },
+          1200: {
+            slidesPerView: 3.3,
+          },
+          1280: {
+            slidesPerView: 4.2,
+          },
+          1400: {
+            slidesPerView: 4.4,
+          },
+        },
+        navigation: {
+          nextEl: '.nav-collection-items-flex-swiper .swiper-button-next',
+          prevEl: '.nav-collection-items-flex-swiper .swiper-button-prev',
+        },
+        mousewheel: true,
+      });
+    }
+  });
+</script>

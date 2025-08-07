@@ -1,0 +1,127 @@
+{%- assign amount_price = product.selected_or_first_available_variant.price | default: cart.total_price -%}
+<div class="installment-container-custom">
+  <div class="installment-text">
+    {{ settings.installment_text }}
+  </div>
+  <div class="installment-container-img">
+    {%- if settings.installment_image_1 -%}
+      <div class="relative">
+        <img
+          src="{{ settings.installment_image_1 | image_url: width: 200 }}"
+          width="auto"
+          height="auto"
+          alt="Klarna"
+          loading="lazy"
+        >
+        <klarna-placement
+          data-key="credit-promotion-auto-size"
+          data-locale="en-US"
+          data-message-preference="klarna"
+          data-custom-payment-method-ids="pay_later"
+          data-purchase-amount="{{ amount_price }}"
+        ></klarna-placement>
+      </div>
+    {%- endif -%}
+    {%- if settings.installment_image_2 -%}
+      <div class="relative">
+        <img
+          src="{{ settings.installment_image_2 | image_url: width: 200 }}"
+          width="auto"
+          height="auto"
+          alt="Affirm"
+          loading="lazy"
+        >
+        <div
+          class="affirm-as-low-as alp-product-item product-item-new"
+          data-page-type="product"
+          data-amount="{{ amount_price }}"
+        ></div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .installment-container-custom {
+    pointer-events: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    font-size: clamp(13px, 1.25vw, 14px);
+    flex-wrap: wrap;
+    line-height: 1.25;
+    margin-top: 4px;
+  }
+
+  .alp_product__affirm_block .installment-container-custom {
+    font-size: clamp(14px, 1.25vw, 16px);
+  }
+
+  .installment-container-img img {
+    height: auto;
+    object-fit: contain;
+    aspect-ratio: auto;
+    display: block;
+  }
+
+  .installment-container-img {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+  }
+
+  .installment-container-img img {
+    max-width: 54px;
+  }
+  .alp_product__affirm_block .installment-container-img img {
+    max-width: 56px;
+  }
+
+  /* .installment-container-img img[alt='Affirm'] {
+    max-width: 36px;
+  }
+
+  .installment-container-img img[alt='Klarna'] {
+    max-width: 50px;
+  } */
+
+  .installment-container-img klarna-placement[data-key='credit-promotion-auto-size']::part(osm-cta) {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .installment-container-img klarna-placement {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .installment-container-img .affirm-as-low-as.alp-product-item.product-item-new > a {
+    color: transparent;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+  }
+
+  .installment-container-img .affirm-as-low-as.alp-product-item.product-item-new {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0;
+  }
+{% endstylesheet %}

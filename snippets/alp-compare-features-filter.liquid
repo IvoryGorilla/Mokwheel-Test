@@ -1,0 +1,29 @@
+<div class="alp-the-compare-features-filter">
+  <div class="alp-features-filter-inner">
+    <div class="alp-features-filter-titles">
+      <div class="alp-features-filter-title">Features</div>
+      <div class="alp-features-filter-trigger-slect">
+        <div data-select-all>Select All</div>
+        <div data-deselect-all>Deselect All</div>
+      </div>
+    </div>
+    <div class="alp-features-filter-list">
+      {%- for block in section.blocks -%}
+        {%- if forloop.first -%}
+          {%- assign product = block.settings.product -%}
+          {% for item in product.metafields.custom.product_comparison.value %}
+            <div class="feature-i-title">
+              {%- if item.title != '' -%}
+                <div class="feature-i-checkbox checked">
+                  {% render 'icon-checkbox' %}
+                  <span>{{ item.title }}</span>
+                </div>
+              {%- endif -%}
+            </div>
+          {% endfor %}
+        {%- endif -%}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="alp-the-compare-features-bg"></div>

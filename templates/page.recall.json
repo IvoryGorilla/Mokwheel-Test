@@ -1,0 +1,121 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "alp_hero_banner_new_4A3egG": {
+      "type": "alp-hero-banner-new",
+      "blocks": {
+        "heading_NEYPXK": {
+          "type": "heading",
+          "settings": {
+            "text": "{{ page.title }}",
+            "heading_type": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_NEYPXK"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "center",
+        "bg_color": "#ffffff",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/PC_291d92f2-9f23-431f-9f12-2a5bb6d7b691.jpg",
+        "bg_image_mobile": "shopify://shop_images/M_0fa29fbb-1433-48a5-8a89-82cffbca9c08.jpg",
+        "bg_opacity": 100,
+        "image_aspect_ratio": "3/1",
+        "block_max_width": "720px",
+        "min_height": "320px",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true,
+        "show_breadcrumb": true
+      }
+    },
+    "cd08a778-a6b8-4148-81b4-07bb549d345b": {
+      "type": "alp-hero-banner",
+      "blocks": {
+        "ab9ff3da-5d09-4d22-b458-41f32d454419": {
+          "type": "heading",
+          "settings": {
+            "text": "{{ page.title }}",
+            "heading_type": "h1"
+          }
+        },
+        "3e356408-b887-4ab4-bb90-06ea9036ecd2": {
+          "type": "breadcrumb",
+          "settings": {
+            "position_set": false,
+            "position_top": "90px"
+          }
+        }
+      },
+      "block_order": [
+        "ab9ff3da-5d09-4d22-b458-41f32d454419",
+        "3e356408-b887-4ab4-bb90-06ea9036ecd2"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "default",
+        "bg_color": "#f5f5f5",
+        "text_color": "#000000",
+        "bg_opacity": 50,
+        "image_aspect_ratio": "3/1",
+        "block_max_width": "720px",
+        "min_height": "220px",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": false
+      }
+    },
+    "8c2cb30f-5c5f-49da-8fd9-e86ccddcf7e5": {
+      "type": "alp-page-section",
+      "blocks": {
+        "item_link_zTCcwD": {
+          "type": "item_link",
+          "settings": {
+            "text": "",
+            "link_list": "help-sidebar"
+          }
+        }
+      },
+      "block_order": [
+        "item_link_zTCcwD"
+      ],
+      "settings": {
+        "title": "Page",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 0,
+        "padding_bottom": 10,
+        "reset_spacing": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "alp_hero_banner_new_4A3egG",
+    "cd08a778-a6b8-4148-81b4-07bb549d345b",
+    "8c2cb30f-5c5f-49da-8fd9-e86ccddcf7e5",
+    "main"
+  ]
+}

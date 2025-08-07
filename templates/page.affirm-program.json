@@ -1,0 +1,340 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "16619251058726844a": {
+      "type": "page-affirm-program-banner",
+      "disabled": true,
+      "settings": {
+        "bgimg": "shopify://shop_images/4_54f4e6ee-0ff2-47df-baa7-5ddb3b8bae30.png",
+        "mbgimg": "shopify://shop_images/17_4b317ea2-d6f0-48c5-a38a-7832dbd1d418.png",
+        "tips": "Pay at your own pace",
+        "title": "Flexiblepayments  for the modern shopper",
+        "description": "When you buy with Affirm, you always know exactly what you'll owe and when you'll be done paying. There are no hidden fees-not even late fees.",
+        "buttonText": "Shop E-bikes",
+        "buttonLink": "shopify://collections/electric-bikes"
+      }
+    },
+    "alp_affirm_program_banner_er3Rdd": {
+      "type": "alp-affirm-program-banner",
+      "blocks": {
+        "heading_rbwgzR": {
+          "type": "heading",
+          "settings": {
+            "text": "<strong>Enjoy 0% APR installment plans with Klarna/Affirm</strong>",
+            "heading_type": "h1"
+          }
+        },
+        "description_iC6cg8": {
+          "type": "description",
+          "settings": {
+            "text": "<p>Pay in installments with Klarna or Affirm. Transparent terms, no hidden fees, and complete control over your payment process.</p>"
+          }
+        },
+        "button_bWTkLg": {
+          "type": "button",
+          "settings": {
+            "text": "Shop E-Bikes",
+            "url": "shopify://collections/electric-bikes"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rbwgzR",
+        "description_iC6cg8",
+        "button_bWTkLg"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 999px) {.alp-hero-banner-container.relative {margin: inherit; width: 50%; }}",
+        "@media screen and (max-width: 1800px) and (min-width: 1441px) {.alp-hero-banner-wrapper {min-height: 620px; }}",
+        "@media screen and (max-width: 1920px) and (min-width: 1801px) {.alp-hero-banner-wrapper {min-height: 700px; }}",
+        "@media screen and (min-width: 1921px) {.alp-hero-banner-wrapper {min-height: 830px; }}"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "default",
+        "bg_color": "#ffffff",
+        "text_color": "#ffffff",
+        "bg_image": "shopify://shop_images/Rectangle_1161_23cdb073-5241-4447-a80d-56fce1b164be.png",
+        "bg_image_mobile": "shopify://shop_images/Rectangle_1161_1_12222061-23a7-4368-950f-722c8ebda59a.png",
+        "bg_opacity": 100,
+        "image_aspect_ratio": "3/1",
+        "block_max_width": "470px",
+        "min_height": "509px",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true,
+        "show_breadcrumb": true
+      }
+    },
+    "16619385212793cf90": {
+      "type": "page-affirm-program-step",
+      "blocks": {
+        "5237e4d9-ad2d-4dea-a841-e68467364d31": {
+          "type": "mega_menu",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39989.png",
+            "title": "<p>Fill Your Cart</p>",
+            "description": "<p>Select Affirm at checkout, then enter a few simple pieces of info for a real time decision.</p>",
+            "image": "shopify://shop_images/1_2x_530e6a45-a933-49aa-a9ea-d723d956fa03.png"
+          }
+        },
+        "5c4b0218-ffae-4f9b-8af5-b11a5bc6c7de": {
+          "type": "mega_menu",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39988.png",
+            "title": "<p>Choose How You Pay</p>",
+            "description": "<p>Pick the monthly payment plan you like best. You’ll never pay more than you agree upfront.</p>",
+            "image": "shopify://shop_images/2_2x_ad3a579b-facf-416f-a3db-0111e164b41b.png"
+          }
+        },
+        "c8a0ca18-c479-44b8-b17c-81ac676fb81c": {
+          "type": "mega_menu",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39987.png",
+            "title": "<p>Pay Over Time</p>",
+            "description": "<p>Make payments at affirm.com or in the Affirm app. You’ll get email & text reminders.</p>",
+            "image": "shopify://shop_images/3_fb44de9e-2d4b-46e7-9036-1f04186d5f18.png"
+          }
+        }
+      },
+      "block_order": [
+        "5237e4d9-ad2d-4dea-a841-e68467364d31",
+        "5c4b0218-ffae-4f9b-8af5-b11a5bc6c7de",
+        "c8a0ca18-c479-44b8-b17c-81ac676fb81c"
+      ],
+      "settings": {
+        "text": "",
+        "title": "How to use affirm",
+        "desc": "",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "1661929126eeabc6f1": {
+      "type": "page-affirm-program-payments",
+      "blocks": {
+        "02afba68-a672-4232-b39e-0b25c7791a5f": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>$400  -  $899</p>",
+            "description": "<div class=\"left\">\n        <p>3 months</p>\n        <p>6 months</p>\n          </div>\n    <div class=\"right\">\n        <p>0% APR</p>\n        <p>0% APR</p>\n    </div>"
+          }
+        },
+        "0757cd7f-ec31-4490-9a49-fe82ee7eb832": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>$900  -  $1,699</p>",
+            "description": "<div class=\"left\">\n        <p>3 months</p>\n        <p>6 months</p>\n    </div>\n    <div class=\"right\">\n        <p>0% APR</p>\n        <p>0% APR</p>\n    </div>"
+          }
+        },
+        "8b6f85e5-529d-4819-b32f-8dabf24a37ae": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>$1,700 and greater</p>",
+            "description": "<div class=\"left\">\n        <p>6 months</p>\n        <p>12 months</p>\n       </div>\n    <div class=\"right\">\n        <p>0% APR</p>\n        <p>0% APR</p>\n    </div>"
+          }
+        }
+      },
+      "block_order": [
+        "02afba68-a672-4232-b39e-0b25c7791a5f",
+        "0757cd7f-ec31-4490-9a49-fe82ee7eb832",
+        "8b6f85e5-529d-4819-b32f-8dabf24a37ae"
+      ],
+      "settings": {
+        "title": "Choose  payments",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "page_affirm_program_step_CMFGTM": {
+      "type": "page-affirm-program-step",
+      "blocks": {
+        "mega_menu_9wxxPH": {
+          "type": "mega_menu",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39989.png",
+            "title": "<p>Fill Your Cart</p>",
+            "description": "<p>Choose Klarna at checkout—Pay in 4 won’t affect your credit, and monthly plans may require a credit check.</p>",
+            "image": "shopify://shop_images/1_2x_530e6a45-a933-49aa-a9ea-d723d956fa03.png"
+          }
+        },
+        "mega_menu_eyWhyd": {
+          "type": "mega_menu",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39988.png",
+            "title": "<p>Choose How You Pay</p>",
+            "description": "<p>Split your total into 4 interest-free payments every 2 weeks, or select a monthly financing plan that fits your budget.</p>",
+            "image": "shopify://shop_images/2_2x_ad3a579b-facf-416f-a3db-0111e164b41b.png"
+          }
+        },
+        "mega_menu_cFgrkz": {
+          "type": "mega_menu",
+          "settings": {
+            "icon": "shopify://shop_images/Group_39987.png",
+            "title": "<p>Pay Over Time</p>",
+            "description": "<p>Make payments in the Klarna app or online. You’ll receive automatic reminders, so you never miss a due date.</p>",
+            "image": "shopify://shop_images/3_2x_dd4ffd4d-121f-4a09-8d6f-06fa7704e183.png"
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_9wxxPH",
+        "mega_menu_eyWhyd",
+        "mega_menu_cFgrkz"
+      ],
+      "settings": {
+        "text": "",
+        "title": "How to use klarna",
+        "desc": "",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "page_affirm_program_payments_ctaRk6": {
+      "type": "page-affirm-program-payments",
+      "blocks": {
+        "mega_menu_3iJ767": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>Pay in 4</p>",
+            "description": "<div class=\"left\">\n        <p>Pay every 2 weeks, 4 times</p>\n</div>"
+          }
+        },
+        "mega_menu_KYAEVc": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>Pay Now</p>",
+            "description": "<div class=\"left\">\n\n\n       <p>Pay in full at the time of purchase\n</p>\n</div>"
+          }
+        },
+        "mega_menu_d7V3RX": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>Pay in 30 Days</p>",
+            "description": "<div class=\"left\">\n        <p>Payment within 30 days after ordering</p>\n</div>"
+          }
+        },
+        "mega_menu_eUerdq": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>Pay Monthly</p>",
+            "description": "<div class=\"left\">\n        <p>Repay in 3-24 installments</p>\n</div>"
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_3iJ767",
+        "mega_menu_KYAEVc",
+        "mega_menu_d7V3RX",
+        "mega_menu_eUerdq"
+      ],
+      "settings": {
+        "title": "Choose  payments",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "container": "alp-container",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "166193852964e2ef41": {
+      "type": "page-affirm-program-confidence",
+      "blocks": {
+        "f5bc1b60-fefe-4b37-8ef2-45276c5dd420": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>Transparent</p>",
+            "description": "<p>Pick the payment plan that works for you—split into 4 with Klarna, or pay monthly with Affirm.</p>"
+          }
+        },
+        "8c3bd6d8-6d3f-4506-a84e-5275c4d8c29d": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>Flexible</p>",
+            "description": "<p>At checkout, see exactly what you'll owe and when. No surprises, ever.</p>"
+          }
+        },
+        "16feb0b5-c6cc-461f-ac8e-31186f1649ac": {
+          "type": "mega_menu",
+          "settings": {
+            "title": "<p>Fair</p>",
+            "description": "<p>Enjoy flexible, transparent payments with Klarna and Affirm—clear terms, no hidden fees.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "f5bc1b60-fefe-4b37-8ef2-45276c5dd420",
+        "8c3bd6d8-6d3f-4506-a84e-5275c4d8c29d",
+        "16feb0b5-c6cc-461f-ac8e-31186f1649ac"
+      ],
+      "settings": {
+        "bg_image": "shopify://shop_images/Rectangle_1320_1.png",
+        "bg_image_mobile": "shopify://shop_images/Rectangle_1320.png",
+        "bg_opacity": 100,
+        "image_aspect_ratio": "3/1",
+        "title": "<p>Buy With <strong>Confidence.</strong></p>",
+        "tips": "With Affirm or Klarna , you always know exactly what you’ll owe and when you’ll be done paying.",
+        "bg_color": "#ffffff",
+        "text_color": "#ffffff",
+        "container": "alp-container",
+        "padding_top": 15,
+        "padding_bottom": 15,
+        "reset_spacing": true
+      }
+    },
+    "rich_text_rexBGW": {
+      "type": "rich-text",
+      "blocks": {
+        "text_NLB4gc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>*Payment options are offered by Affirm and Klarna. Your rate and terms will vary based on eligibility and may depend on your purchase amount, credit profile, and state of residence. A down payment may be required. Klarna may charge late fees. See affirm.com/lenders and klarna.com/us for full terms and disclosures.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_NLB4gc"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "16619251058726844a",
+    "alp_affirm_program_banner_er3Rdd",
+    "16619385212793cf90",
+    "1661929126eeabc6f1",
+    "page_affirm_program_step_CMFGTM",
+    "page_affirm_program_payments_ctaRk6",
+    "166193852964e2ef41",
+    "rich_text_rexBGW"
+  ]
+}

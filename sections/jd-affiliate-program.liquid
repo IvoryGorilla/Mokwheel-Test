@@ -1,0 +1,219 @@
+<style>
+ @media (max-width:750px) {
+        .pc {
+            display: none;
+        }
+
+        .mobile {
+            display: block;
+        }
+        .affiliate-program {
+            padding-top: 42px;
+            padding-bottom: 50px;
+        }
+        .affiliate_program {
+          padding: 0 15px;
+        }
+        .affiliateProgram_left {
+            display: flex;
+            flex-direction: column;
+        }
+        .affiliateProgram_right {
+            width: 100%;
+            margin-top: 30px;
+        }
+        .affiliateProgram_right img {
+            width: 100%;
+        }
+        .affiliateProgram_title {
+            font-size: 42px;
+            font-weight: bold;
+            color: #1D1D1D;
+            line-height: 1.2;
+        }
+        .affiliateProgram_text{
+            margin-top: 20px;
+            font-size: 14px;
+            font-weight: 400;
+            color: #1D1D1D;
+            line-height: 1.5;
+        }
+        .affiliateProgram_title1 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1B1B1B;
+            line-height: 1.5;
+            margin-top: 40px;
+        }
+        .affiliateProgram_botton {
+            width: 340px;
+            height: 40px;
+            background: #1B1B1B;
+            border-radius: 33px;
+            text-align: center;
+            margin-top: 38px;
+        }
+        .affiliateProgram_botton a {
+            font-size: 16px;
+            font-weight: 500;
+            color: #FFFFFF;
+            line-height: 40px;
+            display: inline-block;
+            width: 100%;
+        }
+    }
+
+    @media (min-width:750px) {
+        .pc {
+            display: block;
+        }
+
+        .mobile {
+            display: none;
+        }
+        .affiliate-program {
+            padding: 120px 0;
+        }
+        .affiliate_program {
+            max-width: 1440px;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .affiliateProgram_left {
+            width: 47%;
+            display: flex;
+            flex-direction: column;
+        }
+        .affiliateProgram_right {
+            width: 47%;
+        }
+        .affiliateProgram_right img {
+            width: 100%;
+        }
+        .affiliateProgram_title {
+            font-size: 64px;
+            font-weight: bold;
+            color: #1D1D1D;
+            line-height: 1.2;
+        }
+        .affiliateProgram_text {
+            margin-top: 40px;
+        }
+        .affiliateProgram_text p {
+            font-size: 20px;
+            font-weight: 400;
+            color: #1D1D1D;
+            line-height: 1.5;
+        }
+        .affiliateProgram_title1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1B1B1B;
+            line-height: 1.5;
+            margin-top: 60px;
+        }
+        .affiliateProgram_botton {
+            width: 280px;
+            height: 60px;
+            background: #1B1B1B;
+            border-radius: 33px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .affiliateProgram_botton a {
+            font-size: 22px;
+            font-weight: 500;
+            color: #FFFFFF;
+            line-height: 60px;
+            display: inline-block;
+            width: 100%;
+        }
+    }
+</style>
+<div class="affiliate-program">
+    <div class="affiliate_program">
+        <div class="affiliateProgram_left">
+            {% if section.settings.affiliateProgram_title != blank %}
+            <div class="affiliateProgram_title">{{section.settings.affiliateProgram_title}}</div>
+            {% endif %}
+           {% if section.settings.affiliateProgram_text != blank %}
+           <div class="affiliateProgram_text pc">{{section.settings.affiliateProgram_text}}</div>
+           <div class="affiliateProgram_text mobile">{{section.settings.affiliateProgram_text | strip_html}}</div>
+           {% endif %}
+           <div class="affiliateProgram_right mobile">
+            <img loading="lazy" class="preview-image mobile" {% render 'image-attributes' , image:
+                section.settings.affiliateProgram_img1,
+                sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+            </div>
+            {% if section.settings.affiliateProgram_title1 != blank %}
+            <div class="affiliateProgram_title1">{{section.settings.affiliateProgram_title1}}</div>
+            {% endif %}
+            {% if section.settings.affiliateProgram_text1 != blank %}
+            <div class="affiliateProgram_text">{{section.settings.affiliateProgram_text1}}</div>
+            {% endif %}
+            <div class="affiliateProgram_botton">
+                <a href="{{section.settings.affiliateProgram_link}}">{{section.settings.affiliateProgram_botton}}</a>
+            </div>
+        </div>
+        <div class="affiliateProgram_right pc">
+            <img loading="lazy" class="preview-image pc" {% render 'image-attributes' , image: section.settings.affiliateProgram_img,
+                sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+   "name": "affiliate program",
+  "settings": [
+  {
+    "type": "image_picker",
+    "id": "affiliateProgram_img",
+    "label": "image"
+    },
+    {
+    "type": "image_picker",
+    "id": "affiliateProgram_img1",
+    "label": "image m"
+    },
+    {
+        "type": "text",
+        "id": "affiliateProgram_title",
+        "label": "title"
+    },
+    {
+        "type": "richtext",
+        "id": "affiliateProgram_text",
+        "label": "text"
+    },
+    {
+        "type": "text",
+        "id": "affiliateProgram_title1",
+        "label": "secondary title"
+    },
+    {
+        "type": "richtext",
+        "id": "affiliateProgram_text1",
+        "label": "text"
+    },
+    {
+        "type": "text",
+        "id": "affiliateProgram_botton",
+        "label": "botton text"
+    },
+    {
+        "type": "url",
+        "id": "affiliateProgram_link",
+        "label": "link"
+    }
+    
+  ],
+ "presets": [
+    {
+        "name":"affiliate program"
+    }
+ ]
+}
+{% endschema %}

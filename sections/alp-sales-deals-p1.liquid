@@ -1,0 +1,264 @@
+{% schema %}
+{
+  "name": "Alp Sales Deals P-1",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Sales Deals"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Sub Title"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Deals Item",
+      "type": "item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "target_id",
+          "label": "Target ID",
+          "info": "Target ID should be unique in your site."
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title",
+          "default": "Receive over $300 worth of accessories with each bike purchase"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "url_text",
+          "label": "URL Text",
+          "default": "SHOP NOW"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Sales Deals P-1"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .sales-deals-title-wrapper {
+    text-align: center;
+    padding: max(2.5vw, 1.5em) 0;
+  }
+
+  p.sales-deals-sub-title {
+    margin-top: 0;
+    line-height: 1.5;
+  }
+
+  h1.sales-deals-title {
+    margin-bottom: 0.25em;
+    line-height: 1.25;
+    font-size: max(min(64px, 4vw), 36px);
+  }
+  .sales-deals-list-item-image picture {
+    width: 100%;
+    display: block;
+  }
+
+  .sales-deals-list-item-image picture img {
+    width: 100%;
+  }
+
+  h3.sales-deals-list-item-title {
+    font-size: max(min(32px, 3vw), 20px);
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  a.sales-deals-list-item-url {
+    display: inline-flex;
+    background: var(--new-color);
+    color: #fff;
+    font-weight: 500;
+    padding: 0.6em 2em;
+    border-radius: 1000px;
+    background: #e83f0c;
+    font-size: 16px;
+  }
+
+  .sales-deals-list-button {
+    margin-top: max(4vw, 1em);
+  }
+  .sales-deals-list-item-description {
+    line-height: 1.5;
+  }
+  .sales-deals-list-item-description p {
+    margin: 0.33em 0;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #1a1a1a;
+  }
+
+  [data-title='sms-sub-banner'] .sales-deals-list-item-description {
+    margin-top: 1em;
+  }
+
+  [data-title='sms-sub-banner'] .sales-deals-list-item-description h3 {
+    color: #e83f0c;
+    font-size: clamp(32px, 3.5vw, 48px);
+    line-height: 1.2;
+    font-weight: 800;
+  }
+
+  [data-title='sms-sub-banner'] .sales-deals-list-item-description p {
+    display: inline-block;
+    border-bottom: 1px solid #c2c2c2;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+  }
+
+  @media screen and (min-width: 750px) {
+    .sales-deals-list-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .sales-deals-list-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+    }
+
+    .sales-deals-list-item:not(:first-child) {
+      padding-top: max(6.5vw, 3em);
+    }
+
+    .sales-deals-list-item:last-child {
+      /* margin-bottom: max(6.5vw, 3em); */
+      margin-bottom: var(--spacing);
+    }
+
+    .sales-deals-list-item-image {
+      flex-basis: 50%;
+    }
+
+    .sales-deals-list-item-content {
+      flex-basis: 50%;
+      padding: 0 6%;
+    }
+  }
+  @media screen and (max-width: 749px) {
+    .sales-deals-list-item-image {
+      margin-bottom: 1em;
+    }
+
+    .sales-deals-list-item {
+      margin-bottom: 0em;
+    }
+
+    .sales-deals-list-item:not(:first-child) {
+      padding-top: 60px;
+    }
+
+    .sales-deals-list-item:last-child {
+      margin-bottom: max(6.5vw, 3em);
+    }
+
+    a.sales-deals-list-item-url {
+      font-size: 14px;
+    }
+    p.sales-deals-list-item-description {
+      margin-top: 0;
+      font-size: 0.925em;
+    }
+
+    h3.sales-deals-list-item-title {
+      margin-bottom: 0.5em;
+    }
+  }
+</style>
+
+<div
+  class="sales-deals-wrapper page-width ct-container"
+  data-title="{{ section.settings.title }}"
+  data-sub-title="{{ section.settings.sub_title }}"
+>
+  <div class="sales-deals-container">
+    {% if section.settings.title != '' %}
+      <div class="sales-deals-title-wrapper hidden">
+        <div>
+          <h1 class="sales-deals-title">{{ section.settings.title }}</h1>
+          <p class="sales-deals-sub-title">{{ section.settings.sub_title }}</p>
+        </div>
+      </div>
+    {% endif %}
+    <div class="sales-deals-list-wrapper">
+      <div class="sales-deals-list-container">
+        {% for block in section.blocks %}
+          <div class="sales-deals-list-item" id="{{ block.settings.target_id }}">
+            {%- if block.settings.image -%}
+              <div class="sales-deals-list-item-image">
+                {%- assign img_mobile = block.settings.mobile_image | default: block.settings.image -%}
+                {% comment %}
+                  <picture>
+                    <source srcset="{{ img_mobile | image_url: width: 1000 }}" media="(max-width: 750px)">
+                    <img
+                      src="{{ block.settings.image | image_url: width: 2000 }}"
+                      alt="{{ block.settings.title }}"
+                      loading="lazy"
+                    >
+                  </picture>
+                {% endcomment %}
+                {% render 'alp-responsive-image',
+                  image: block.settings.image,
+                  image_mobile: img_mobile,
+                  desktop_width: 1600,
+                  mobile_width: 800,
+                  aspect_ratio: 'auto',
+                  alt: block.settings.title
+                %}
+              </div>
+            {%- endif -%}
+            <div class="sales-deals-list-item-content">
+              <div>
+                <h3 class="sales-deals-list-item-title">{{ block.settings.title }}</h3>
+                {% if block.settings.description != '' %}
+                  <div class="sales-deals-list-item-description">{{ block.settings.description }}</div>
+                {% endif %}
+                {% if block.settings.url != blank %}
+                  <div class="sales-deals-list-button">
+                    <a href="{{ block.settings.url }}" class="sales-deals-list-item-url">
+                      {{- block.settings.url_text -}}
+                    </a>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

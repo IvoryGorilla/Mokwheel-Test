@@ -1,0 +1,450 @@
+{% schema %}
+{
+  "name": "Alp Hero Banner 2",
+  "class": "alp-hero-banner-2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Hero Banner"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "video",
+      "id": "bg_video",
+      "label": "Background Video"
+    },
+    {
+      "type": "range",
+      "id": "bg_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Background Opacity",
+      "default": 50
+    },
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "3/1"
+    },
+    {
+      "type": "text",
+      "id": "block_max_width",
+      "label": "Content Max Width",
+      "default": "720px"
+    },
+    {
+      "type": "text",
+      "id": "min_height",
+      "label": "Min Height",
+      "default": "320px"
+    },
+    {
+      "type": "text",
+      "id": "image_margin_bottom",
+      "label": "Image Margin Bottom",
+      "default": "-10%"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Title"
+        },
+        {
+          "type": "select",
+          "id": "heading_type",
+          "label": "Heading type",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            }
+          ],
+          "default": "h1"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "breadcrumb",
+      "name": "Breadcrumb",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "position_set",
+          "label": "Set position",
+          "default": false,
+          "info": "固定左上角位置"
+        },
+        {
+          "type": "text",
+          "id": "position_top",
+          "label": "Position top",
+          "default": "90px",
+          "info": "Top position in px"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#000000"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "aspect_ratio",
+          "label": "Aspect ratio",
+          "default": "auto"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Hero Banner 2"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};--content-max-width: {{ st.block_max_width }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+    --st-min-height: {{ st.min_height }};
+  }
+  .alp-hero-banner-content-2 {
+    --margin-bottom: {{ st.image_margin_bottom | default: 0 }};
+    margin-bottom: var(--margin-bottom);
+  }
+  @media (max-width: 999px) {
+    .alp-hero-banner-content-2 {
+        margin-bottom: calc(var(--margin-bottom)*2.85);
+    }
+  }
+</style>
+
+{% style %}
+  .alp-hero-banner-content-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 3em;
+  }
+  .alp-hero-banner-content-1 > div {
+    max-width: 640px;
+  }
+
+  .alp-hero-banner-content-1 h1.alp-hero-banner-heading {
+    font-size: clamp(36px, 3.7vw, 64px);
+  }
+
+  .alp-hero-banner-content-1 .alp-hero-banner-buttons {
+    margin-top: max(3vw, 3em);
+  }
+  .alp-hero-banner-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+
+  .alp-hero-banner-buttons a {
+    font-size: 16px;
+  }
+  .alp-hero-banner-image img {
+    width: 100%;
+    display: block;
+  }
+
+  @media (min-width: 999px) {
+    .alp-hero-banner-inner.inner-flex {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: max(4vw, 2em);
+    }
+
+    .alp-hero-banner-content-1 {
+      flex: 1;
+    }
+
+    .alp-hero-banner-content-2 {
+      flex: 1;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-section alp-hero-banner-wrapper hero-banner-2 relative {{ st.text_alignment | prepend: "text-al-" }} {{ reset_spacing }}"
+  style="{{ style }}"
+  data-stid="{{ section.id }}"
+>
+  {%- if st.bg_image -%}
+    <div class="alp-image-slide-bg full-img-wrap" style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}">
+      {% render 'alp-single-image',
+        image: st.bg_image,
+        width: 2000,
+        aspect_ratio: st.image_aspect_ratio,
+        alt: st.title
+      %}
+    </div>
+  {%- endif -%}
+  {%- if st.bg_video -%}
+    <div class="alp-image-slide-bg-video full-img-wrap" style="opacity:{{ st.bg_opacity | divided_by: 100.0 }}">
+      {{ st.bg_video | video_tag: loop: 'loop', muted: true, playsinline: true, autoplay: true, controls: false }}
+    </div>
+  {%- endif -%}
+
+  {% comment %} Breadcrumb {% endcomment %}
+  {%- for block in section.blocks -%}
+    {% liquid
+      assign bs = block.settings
+    %}
+    {%- case block.type -%}
+      {%- when 'breadcrumb' -%}
+        {% if bs.position_set %}
+          <div
+            class="alp-hero-banner-breadcrumbs position_set_topleft page-width {{ container }}"
+            style="--top:{{ bs.position_top }}"
+          >
+            {% render 'breadcrumbs' %}
+          </div>
+        {% endif %}
+    {%- endcase -%}
+  {%- endfor -%}
+  {% comment %} Breadcrumb {% endcomment %}
+
+  <div class="alp-section-container alp-hero-banner-container relative page-width {{ container }}">
+    <div class="alp-hero-banner-inner inner-flex">
+      {%- if section.blocks.size > 0 -%}
+        <div class="alp-hero-banner-content-1">
+          <div>
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              {%- case block.type -%}
+                {%- when 'heading' -%}
+                  {%- if bs.text != blank -%}
+                    <div class="alp-hero-banner-heading headline__h2">
+                      <{{ bs.heading_type }} class="alp-hero-banner-heading">
+                        {{- bs.text | newline_to_br -}}
+                      </{{ bs.heading_type }}>
+                    </div>
+                  {%- endif -%}
+                {%- when 'description' -%}
+                  {%- if bs.text != blank -%}
+                    <div class="alp-hero-banner-description">{{ bs.text }}</div>
+                  {%- endif -%}
+                {%- when 'breadcrumb' -%}
+                  {% unless bs.position_set %}
+                    <div class="alp-hero-banner-breadcrumbs margin-top">
+                      {% render 'breadcrumbs' %}
+                    </div>
+                  {% endunless %}
+              {%- endcase -%}
+            {%- endfor -%}
+            <div class="alp-hero-banner-buttons">
+              {%- for block in section.blocks -%}
+                {% liquid
+                  assign bs = block.settings
+                %}
+                {%- case block.type -%}
+                  {%- when 'button' -%}
+                    <div class="alp-hero-banner-button">
+                      {% render 'alp-btn',
+                        url: bs.url,
+                        type: 'primary',
+                        text: bs.text,
+                        textcolor: bs.text_color,
+                        bgcolor: bs.background_color,
+                        size: 'large'
+                      %}
+                    </div>
+                {%- endcase -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+        <div class="alp-hero-banner-content-2">
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            {%- case block.type -%}
+              {%- when 'image' -%}
+                {%- if bs.image -%}
+                  <div class="alp-hero-banner-image">
+                    {% render 'alp-single-image',
+                      image: bs.image,
+                      width: 1600,
+                      aspect_ratio: bs.aspect_ratio,
+                      alt: st.title
+                    %}
+                  </div>
+                {%- endif -%}
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>

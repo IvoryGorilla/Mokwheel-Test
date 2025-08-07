@@ -1,0 +1,239 @@
+{% schema %}
+{
+  "name": "referal-win-section3",
+  "class": "referal-win-section3",
+  "settings": [
+    {
+      "type": "text",
+      "id": "referal-win-section3-title",
+      "label": "Referal Win Section3 Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "referal-win-section3-image",
+      "label": "Referal Win Section3 Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "referal-win-section3-image-mb",
+      "label": "Referal Win Section3 Image Mobile"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq-item",
+      "name": "Faq Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "referal-win-section3-faq-question",
+          "label": "Referal Win Section3 Faq Question",
+        },
+        {
+          "type": "richtext",
+          "id": "referal-win-section3-faq-answer",
+          "label": "Referal Win Section3 Faq Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "referal-win-section3"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+  --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{% style %}
+  .referal-win-section3-container {
+    display: flex;
+    gap: 72px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+  }
+  .referal-win-section3-left {
+    flex: 1;
+    width: 100%;
+  }
+  .referal-win-section3-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 120%;
+    text-transform: uppercase;
+  }
+  .referal-win-section3-content {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .referal-win-section3-faq {
+    padding: 24px;
+    background: #f8f8f8;
+    border-radius: 4px;
+  }
+  .referal-win-section3-faq-question {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 120%;
+    cursor: pointer;
+  }
+  .referal-win-section3-faq-answer {
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 150%;
+    color: #767676;
+    display: none;
+  }
+  .referal-win-section3-image {
+    max-width: 600px;
+  }
+  .referal-win-section3-image img {
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .referal-win-section3-container {
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    .referal-win-section3-title {
+      font-size: 28px;
+    }
+    .referal-win-section3-content {
+      margin-top: 12px;
+      gap: 12px;
+    }
+    .referal-win-section3-faq {
+      padding: 16px;
+    }
+    .referal-win-section3-faq-question {
+      font-size: 16px;
+    }
+    .referal-win-section3-faq-answer {
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    .referal-win-section3-image {
+      height: 200px;
+      width: 100%;
+    }
+    .referal-win-section3-image img {
+      height: 100%;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}" >
+  <div class="alp-section-container page-width {{ container }} referal-win-section3-container">
+    <div class="referal-win-section3-image hide_desktop">
+      <img
+        src="{{ st.referal-win-section3-image-mb | image_url: width: 1200 }}"
+        width="auto"
+        height="auto"
+      >
+    </div>
+    <div class="referal-win-section3-left">
+      <div class="referal-win-section3-title">
+        {{ st.referal-win-section3-title }}
+      </div>
+      <div class="referal-win-section3-content">
+        {%- for block in section.blocks -%}
+          {% liquid
+            assign bs = block.settings
+          %}
+            <div class="referal-win-section3-faq">
+              <div class="referal-win-section3-faq-question">
+                {{ bs.referal-win-section3-faq-question }}
+              </div>
+              <div class="referal-win-section3-faq-answer">
+                {{ bs.referal-win-section3-faq-answer }}
+              </div>
+            </div>
+          {%- endfor -%}
+      </div>
+    </div>
+    <div class="referal-win-section3-right hide_mobile">
+      {% if st.referal-win-section3-image %}
+        <div class="referal-win-section3-image">
+          <img
+            src="{{ st.referal-win-section3-image | image_url: width: 1200 }}"
+            width="auto"
+            height="auto"
+          >
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    $('.referal-win-section3-faq:nth-child(1) .referal-win-section3-faq-answer').css('display', 'block');
+    $('.referal-win-section3-faq:nth-child(1)').addClass('active');
+
+    $('.referal-win-section3-faq-question').on('click', function (e) {
+      if ($(this).parent().find('.referal-win-section3-faq-answer').css('display') == 'none') {
+        $(this).parent().addClass('active');
+        $(this).parent().find('.referal-win-section3-faq-answer').stop().slideDown(200);
+      } else {
+        $(this).parent().removeClass('active');
+        $(this).parent().find('.referal-win-section3-faq-answer').stop().slideUp(200);
+      }
+    });
+  });
+</script>

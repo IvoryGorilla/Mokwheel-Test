@@ -1,0 +1,208 @@
+{% schema %}
+{
+  "name": "Alp Collections Swiper",
+  "class": "alp-collections-swiper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "image_aspect_ratio",
+      "label": "Image Aspect Ratio",
+      "default": "3/2"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Reviews"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Collections Swiper"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+<style>
+  [data-stid="{{ section.id }}"] {
+   --block-max-width: {{ st.block_max_width }};
+  }
+</style>
+
+{% style %}
+  .alp-collections-swiper-container{
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5em;
+  }
+  .alp-collections-swiper-item{
+    position: relative;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .alp-collections-swiper-item picture img{
+    display: block;
+    transition: 0.5s;
+    transform: scale(1);
+  }
+  .alp-collections-swiper-item:hover picture img{
+    transform: scale(1.05);
+  }
+  .alp-collections-swiper-title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+  .alp-collections-swiper-title svg{
+    width: 50px;
+  }
+  .alp-collections-swiper-title h2{
+    color: #fff;
+    font-weight: 400;
+    padding-left: 15px;
+    margin-bottom: 0;
+    font-size: clamp(18px,4vw,24px);
+  }
+  @media screen and (max-width: 999px){
+    .alp-collections-swiper-container{
+      flex-direction: column;
+      gap: 16px;
+    }
+    .alp-collections-swiper-item picture img{
+      aspect-ratio: 3/1;
+      height: 150px;
+      width: auto;
+    }
+    .alp-collections-swiper-title svg{
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container page-width {{ container }}">
+      <div class="alp-collections-swiper-container">
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            <div class="alp-collections-swiper-item">
+                {%- if bs.link != blank -%}
+                  <a class="full-aa" href="{{ bs.link }}" title="{{ bs.title }}"></a>
+                {%- endif -%}
+                {% render 'alp-single-image', image: bs.image, width: 1280 %}
+                <div class="alp-collections-swiper-title">{{ bs.icon }} <h2 class="headline__h2s">{{ bs.title }}</h2></div>
+            </div>
+          {%- endfor -%}
+      </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+     // swiper
+  });
+</script>

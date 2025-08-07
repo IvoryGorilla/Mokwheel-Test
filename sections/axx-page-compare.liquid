@@ -1,0 +1,96 @@
+{% schema %}
+{
+  "name": "AXX Page Compare",
+  "class": "axx-page-compare",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Page Compare"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "price_title",
+      "label": "Price Title",
+      "default": "Price"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "View Product"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AXX Page Compare"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+%}
+
+{% stylesheet %}
+  .products-new-compare-parent {
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    padding: clamp(1rem, 5vw, 56px);
+  }
+  .products-new-compare-wrapper {
+    display: flex;
+    white-space: nowrap;
+  }
+
+  .products-new-compare-wrapper > div {
+    min-width: 320px;
+    padding: 0 20px;
+  }
+{% endstylesheet %}
+
+<div class="axx-section products-json">
+  <div class="products-new-compare-parent">
+    <div class="products-new-compare-wrapper is-title">
+      {% for product in st.collection.products %}
+        <div class="product-new-compare-item is-title" data-product-id="{{ product.id }}">
+          <div class="axx_compare_product_title">
+            <a href="{{ product.url }}" class="axx_compare_product_title_a">{{ product.title }}</a>
+          </div>
+          <div class="product-compare-remove">
+            {% render 'icon-close' %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="products-new-compare-wrapper">
+      {% for product in st.collection.products %}
+        <div class="product-new-compare-item" data-product-id="{{ product.id }}">
+          {% render 'axx-compare-render-part', product: product, st: st, section: section %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="products-new-compare-wrapper is-button">
+      {% for product in st.collection.products %}
+        <div class="product-new-compare-item is-button" data-product-id="{{ product.id }}">
+          <div class="axx_compare_product_button">
+            <a href="{{ product.url }}" class="axx_compare_product_url_button_a">{{ st.button_text }}</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', () => {});
+{% endjavascript %}

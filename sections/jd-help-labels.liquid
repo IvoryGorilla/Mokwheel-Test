@@ -1,0 +1,201 @@
+<style>
+@media (min-width:751px) {
+  .pc{
+    display: block;
+  }
+  .mobile{
+    display: none;
+  }
+  .help-labels-all {
+    margin-top: 143px;
+    padding: 80px;
+    background-color: #edf2f5;
+  }
+  .help-labels-title h2 {
+    font-size: 48px;
+    font-weight: 500;
+    color: #151515;
+    line-height: 72px;
+  }
+  .help-labels-box {
+    max-width: 1380px;
+    padding: 0 10px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;   
+  }
+  .help-labels-item {
+    background-color: #fff;   
+    border-radius: 16px;
+    padding: 40px 25px;
+  }
+  .help-labels-item img {
+    width: 36px;
+    height: 39px;
+  }
+  .help-labels-item-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #151515;
+    line-height: 2;
+    margin-top: 10px;
+  }
+  .help-labels-item-text{
+    font-size: 18px;
+    font-weight: 400;
+    color: #6d747d;
+    margin-top: 20px;
+  }
+  .help-labels-item-textlink {
+    margin-top: 20px;
+  }
+  .help-labels-item-textlink p{
+    font-size: 18px;
+    font-weight: 400;
+    color: #151515;
+    margin: 0;
+    cursor: pointer;
+  }
+  .help-labels-item-textlink p{
+    text-decoration-color: #151515 !important;
+    text-decoration-line: underline;
+  }
+  .help-labels-item-textlink p:hover{
+    /* text-decoration: unset;
+    text-underline-offset: unset; */
+  }
+
+.help-labels-all .help-cards-svg .b{
+  clip-path: unset;
+}
+.help-labels-all .help-cards-svg {
+  width: 30px;
+}
+
+}
+
+@media (max-width:750px) {
+
+.help-labels-all .help-cards-svg .b{
+  clip-path: unset;
+}
+.help-labels-all .help-cards-svg {
+  width: 30px;
+}
+  .pc{
+    display: none;
+  }
+  .mobile{
+    display: block;
+  }
+  .help-labels-all{
+    background-color: #EDF2F5;
+    padding: 56px 0 69px;
+  }
+  .help-labels-all .help-labels-item{
+    background: #FFFFFF;
+    padding: 28px 43px;
+    border-radius: 10px;
+  }
+  .help-labels-all .help-labels-item:not(:last-child){
+    margin-bottom: 16px;
+  }
+  .help-labels-all .help-labels-item-title{
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 26px 0 16px;
+  }
+  .help-labels-all .help-labels-item-text{
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .help-labels-all .help-labels-item-textlink{
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 500;
+    padding-top: 35px;
+  }
+  .help-labels-item img {
+    width: 23px;
+    height: 23px;
+  }
+  .help-labels-item-textlink p{
+    text-decoration-color: #151515 !important;
+    text-decoration-line: underline;
+  }
+}
+</style>
+
+
+<div class="help-labels-all">
+  <div class="help-labels-box container">
+    
+    {%- for block in section.blocks -%}
+    <div class="help-labels-item">
+  
+      <div class="help-cards-svg">{{block.settings.svg}}</div>
+      <!-- <img loading="lazy" src="{{ block.settings.image_url }} "> -->
+      <div class="help-labels-item-title">{{ block.settings.title }}</div>
+      <div class="help-labels-item-text">{{ block.settings.text }}</div>
+      <div class="help-labels-item-textlink">{{ block.settings.text_link }}</div>
+    </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Help Labels",
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "type": "item_label",
+      "name": "Item Card",
+      "settings": [
+      {
+        "type": "textarea",
+        "id": "svg",
+        "label": "svg"
+      },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "richtext",
+          "id": "text_link",
+          "label": "Text link"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Help Labels",
+    "blocks": [
+        {
+        "type": "item_label"
+        },
+        {
+        "type": "item_label"
+        },
+        {
+        "type": "item_label"
+        },
+        {
+          "type": "item_label"
+        }
+    ]
+  }]
+}
+{% endschema %}

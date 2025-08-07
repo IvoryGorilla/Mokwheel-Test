@@ -1,0 +1,230 @@
+<style>
+ @media (max-width:750px) {
+    .pc {
+            display: none;
+        }
+
+        .mobile {
+            display: block;
+        }
+        .customerService_conter {
+    background: url({{section.settings.customerService_img}});
+    background-attachment: fixed;
+    background-size: 60px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #f1faff;
+ }
+ .customerService_box {
+   padding: 0 15px;
+ }
+ .customerService_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+ }
+ .customerService_right {
+     margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .customerService_right img {
+    width: 100%;
+ }
+ .customerService_title {
+    font-size: 42px;
+    font-weight: bold;
+    color: #1D1D1D;
+    line-height: 1.2;
+ }
+ .customerService_bottom {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+    margin-top: 30px;
+ }
+ .customerService_list {
+    border: 1px solid #a3a3a3;
+    border-radius: 6px;
+    padding: 25px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+ .customerService_text {
+    margin-top: 30px;
+ }
+ .customerService_listTitle {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1D1D1D;
+    line-height: 1.5;
+    width: 30%;
+ }
+ .customerService_listText {
+    width: 70%;
+ }
+ .customerService_listText p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #1D1D1D;
+    line-height: 1.5;
+ }
+
+ }
+ @media (min-width:750px) {
+    .pc {
+            display: block;
+        }
+
+        .mobile {
+            display: none;
+        }
+ .customerService_conter {
+    background: url({{section.settings.customerService_img}});
+    background-attachment: fixed;
+    background-size: 60px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: #f1faff;
+ }
+ .customerService_box {
+    display: flex;
+    max-width: 1440px;
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: space-between;
+ }
+ .customerService_left {
+    width: 47%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+ }
+ .customerService_right {
+    width: 47%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .customerService_right img {
+    width: 100%;
+ }
+ .customerService_title {
+    font-size: 64px;
+    font-weight: bold;
+    color: #1D1D1D;
+    line-height: 1.2;
+ }
+ .customerService_bottom {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 35px;
+    margin-top: 40px;
+ }
+ .customerService_list {
+    border: 1px solid #a3a3a3;
+    border-radius: 6px;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+ }
+ .customerService_listTitle {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1D1D1D;
+    line-height: 1.5;
+ }
+ .customerService_listText p {
+    font-size: 20px;
+    font-weight: 400;
+    color: #1D1D1D;
+    line-height: 1.5;
+ }
+.customerService_listText {
+    margin-top: 20px;
+}
+ }
+</style>
+<div id="customerServiceConter" class="customerService_conter">
+        <div class="customerService_box">
+            <div class="customerService_left">
+                <div class="customerService_title">{{section.settings.customerService_title}}</div>
+                <div class="customerService_text pc">{{section.settings.customerService_text}}</div>
+                <div class="customerService_text mobile">{{section.settings.customerService_text | strip_html}}</div>
+                <div class="customerService_bottom">
+                    {%- for block in section.blocks -%}
+                  <div class="customerService_list">
+                    <div class="customerService_listTitle">{{block.settings.customerService_listTitle}}</div>
+                    <div class="customerService_listText">{{block.settings.customerService_listText}}</div>
+                   </div>
+                  {% endfor %}
+                 
+                </div>
+            </div>
+            <div class="customerService_right">
+                <img loading="lazy" class="preview-image pc" {% render 'image-attributes' , image: section.settings.customerService_rightImg,
+                sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+            <img loading="lazy" class="preview-image mobile" {% render 'image-attributes' , image:
+                section.settings.customerService_rightImg1,
+                sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+            </div>
+        </div>
+</div>
+{% schema %}
+{
+"name": "Customer service",
+"settings": [
+{
+"type": "url",
+"id": "customerService_img",
+"label": "background image link"
+},
+{
+"type": "image_picker",
+"id": "customerService_rightImg",
+"label": "image"
+},
+{
+"type": "image_picker",
+"id": "customerService_rightImg1",
+"label": "image m"
+},
+{
+"type": "text",
+"id": "customerService_title",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "customerService_text",
+"label": "text"
+}
+],
+"blocks" : [
+{
+"type": "customerServiceList",
+"name": "customerService_list",
+"settings":[
+{
+"type": "text",
+"id": "customerService_listTitle",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "customerService_listText",
+"label": "Text"
+}
+
+]
+}
+],
+"presets": [{
+"name": "Customer service"
+}]
+}
+{% endschema %}

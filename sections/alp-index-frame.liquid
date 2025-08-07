@@ -1,0 +1,252 @@
+{% schema %}
+{
+  "name": "Alp Index Frame",
+  "class": "alp-index-frame",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Text"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Free shipping on all online orders.",
+          "default": "<p></p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Index Frame"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-index-frame-con {
+    border-radius: var(--alp-border-radius);
+  }
+  .alp-index-frame-con {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #000;
+    padding: 48px 60px;
+    gap: 60px;
+  }
+  .alp-index-frame-item {
+    display: flex;
+    justify-content: center;
+  }
+  .alp-index-frame-item img,
+  .alp-index-frame-item picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+  }
+  .alp-index-frame-item img {
+    width: 40px;
+    max-width: none;
+  }
+  .alp-index-frame-item-text {
+    margin-left: 12px;
+  }
+  .alp-index-frame-item-desc p {
+    margin: 0;
+  }
+  @media (max-width: 750px) {
+    .alp-index-frame-wrapper{
+      margin-bottom: 36px;
+    }
+    .alp-index-frame-container{
+      padding: 0;
+    }
+    .alp-index-frame-con {
+      padding: 20px 4px;
+      border-radius: 0;
+    }
+    .alp-index-frame-item:first-child {
+      width: 100%;
+    }
+    .alp-index-frame-item {
+      align-items: center;
+      text-align: center;
+    }
+    .alp-index-frame-item img {
+      width: 16px;
+    }
+    .alp-index-frame-item-text {
+      margin-left: 4px;
+    }
+    .alp-index-frame-item-title{
+      font-size: 12px;
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+    .alp-index-frame-item-desc {
+      margin-top: 4px;
+      display: none;
+    }
+    .swiper-pagination-alp-index-frame {
+      /* margin-top: 20px; */
+    }
+    .swiper-pagination-alp-index-frame .pagination-products {
+      justify-content: center;
+    }
+    .swiper-pagination-alp-index-frame .swiper-pagination-bullets span.swiper-pagination-bullet {
+      width: 6px;
+    }
+    .swiper-pagination-alp-index-frame .swiper-pagination-bullets span.swiper-pagination-bullet:after {
+      height: 3px;
+    }
+  }
+{% endstyle %}
+
+<div class="alp-section alp-index-frame-wrapper  {{ reset_spacing }}" style="{{ style }}">
+  <div class="alp-section-container alp-index-frame-container page-width {{ container }}">
+    <div class="alp-index-frame-con">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          {%- if section.blocks.size > 0 -%}
+            {%- for block in section.blocks -%}
+              {% liquid
+                assign bs = block.settings
+              %}
+              <div class="swiper-slide">
+                <div class=" alp-index-frame-item">
+                  {% render 'alp-single-image', image: bs.image, width: 1280 %}
+                  <div class="alp-index-frame-item-text">
+                    <h2 class="alp-index-frame-item-title headline__h6">{{ bs.title }}</h2>
+                    <div class="alp-index-frame-item-desc">{{ bs.desc }}</div>
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          {% endif %}
+        </div>
+        <div class="swiper-navs swiper-pagination-alp-index-frame hide_desktop">
+          {% render 'swiper-pagination', class: 'pagination-products' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let swiperVar = new Swiper('.alp-index-frame-con .swiper', {
+      loop: false,
+      height: 'auto',
+      observer: true,
+      observerParents: true,
+      breakpoints: {
+        320: {
+          //当屏幕宽度大于等于320
+          slidesPerView: 3,
+          spaceBetween: 14,
+        },
+        768: {
+          //当屏幕宽度大于等于768
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+      },
+      pagination: {
+        el: '.pagination-products',
+        clickable: true,
+      },
+    });
+  });
+</script>

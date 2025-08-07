@@ -1,0 +1,102 @@
+.affirm-program-step .container {
+  max-width: 1400px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1400px) {
+  .affirm-program-step .container {
+    max-width: 1200px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .affirm-program-step .container {
+    max-width: 100%;
+    padding: 0 18px;
+  }
+}
+
+.affirm-program-step {
+  background: url(https://cdn.shopify.com/s/files/1/0550/4424/3702/files/square-150.png?v=1654764453);
+  background-attachment: fixed;
+  background-size: 60px;
+  background-color: #f1faff;
+}
+
+@media screen and (min-width: 1000px) {
+  .affirm-program-step {
+    padding: 60px 0 83px;
+  }
+  .affirm-program-step .title-m {
+    display: none;
+  }
+  .affirm-program-step .item-list {
+    margin: 0 -20px;
+  }
+  .affirm-program-step .item-list .swiper-slide {
+    padding: 0 20px;
+  }
+  .affirm-program-step .item-list .swiper-slide .item {
+    display: inline-block;
+    border: 1px solid #a3a3a3;
+    padding: 35px 40px;
+    border-radius: 5px;
+  }
+  .affirm-program-step .item-list .swiper-slide .item .number {
+    font-size: 48px;
+    color: #ee751c;
+    line-height: 1;
+  }
+  .affirm-program-step .item-list .swiper-slide .item .title {
+    margin-top: 40px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #1b1b1b;
+    line-height: 1;
+  }
+  .affirm-program-step .item-list .swiper-slide .item .description {
+    max-width: 340px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #1b1b1b;
+    line-height: 30px;
+    margin: 21px 0 44px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .affirm-program-step {
+    padding: 50px 0;
+  }
+  .affirm-program-step .title-pc {
+    display: none;
+  }
+  .affirm-program-step .item-list .item {
+    text-align: center;
+    padding: 30px 45px;
+    border: 1px solid #79838d;
+    border-radius: 5px;
+  }
+  .affirm-program-step .item-list .item .number {
+    font-size: 36px;
+    font-weight: normal;
+    color: #ee751c;
+    line-height: 1;
+  }
+  .affirm-program-step .item-list .item .title {
+    padding: 20px 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1b1b1b;
+    line-height: 1;
+  }
+  .affirm-program-step .item-list .item .description {
+    font-size: 14px;
+    font-weight: normal;
+    color: #1b1b1b;
+    line-height: 1.2;
+    padding-bottom: 30px;
+  }
+}
+/*# sourceMappingURL=affirm-program-step.css.map */

@@ -1,0 +1,452 @@
+{% schema %}
+{
+  "name": "Alp Announcement Bar",
+  "class": "alp-announcement-bar-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Announcement Bar"
+    },
+    {
+      "type": "select",
+      "id": "announcement_bar_position",
+      "label": "Position",
+      "options": [
+        {
+          "value": "non_sticky",
+          "label": "Non sticky"
+        },
+        {
+          "value": "sticky_desktop",
+          "label": "Sticky on desktop only"
+        },
+        {
+          "value": "sticky_mobile",
+          "label": "Sticky on mobile only"
+        },
+        {
+          "value": "sticky",
+          "label": "Sticky everywhere"
+        }
+      ],
+      "default": "non_sticky"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 2,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 2,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "normal_text",
+      "name": "Normal Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Announcement Text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "link"
+        }
+      ]
+    },
+    {
+      "type": "count_down_text",
+      "name": "Count Down Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Announcement Text"
+        },
+        {
+          "type": "color",
+          "id": "text_1_color",
+          "label": "Text 1 Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "richtext",
+          "id": "text_2",
+          "label": "Text 2"
+        },
+        {
+          "type": "color",
+          "id": "text_2_color",
+          "label": "Text 2 Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "text_3",
+          "label": "Text 3"
+        },
+        {
+          "type": "color",
+          "id": "text_3_color",
+          "label": "Text 3 Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_3_bg",
+          "label": "Text 3 Background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "link"
+        },
+        {
+          "type": "text",
+          "id": "countdown_date",
+          "label": "Count Down",
+          "default": "2023-05-15T00:00:00",
+          "info": "格式: 2023-05-15T00:00:00"
+        },
+        {
+          "type": "number",
+          "id": "countdown_hours",
+          "label": "多少小时内显示倒计时",
+          "default": 48
+        },
+        {
+          "type": "text",
+          "id": "countdown_text",
+          "label": "Count Down 文字",
+          "default": "Only Remaining"
+        },
+
+        {
+          "type": "checkbox",
+          "id": "show_countdown",
+          "label": "Show Count Down",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Announcement Bar"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{% style %}
+  .alp-announcement-bar {
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .alp-announcement-bar-i p {
+    margin: 0;
+  }
+
+  .alp-announcement-bar-i {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    column-gap: 0.5em;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .alp-announcement-bar-i {
+    position: relative;
+  }
+
+  .alp-announcement-bar-i > a {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 6;
+    display: block;
+  }
+
+  .alp-announcement-bar-text {
+    position: relative;
+  }
+
+  .alp-announcement-bar-text::after {
+    content: '';
+    position: absolute;
+    bottom: 0em;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--text-color);
+    transition: 0.5s;
+    transform: scale(0, 1);
+    transform-origin: left;
+  }
+
+  .alp-announcement-bar-i:hover .alp-announcement-bar-text::after {
+    transform: scale(0, 1);
+  }
+
+  .alp-t-countdown {
+    display: flex;
+    align-items: center;
+    gap: 0.33em;
+    line-height: 1.35;
+  }
+
+  .alp-announcement-bar-text {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25em;
+    align-items: center;
+    padding: 0 0.5em;
+    justify-content: center;
+    line-height: 1.35;
+  }
+
+  .alp-ann-text-3 {
+    aspect-ratio: 1/1;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: 100px;
+    padding: 2px;
+    min-width: 1.3em;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .alp-ann-text-1 {
+    padding-right: 0.125em;
+  }
+
+  .alp-announcement-bar-container {
+    position: relative;
+  }
+
+  .alp-announcement-bar-navigation {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    /* z-index: 6; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: auto;
+    padding: 0 calc(var(--alp-padding-x) * 1.5);
+  }
+  .alp-announcement-bar-navigation .swiper-button-next,
+  .alp-announcement-bar-navigation .swiper-button-prev {
+    color: #fff;
+    background: transparent;
+    width: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .alp-announcement-bar-text {
+      text-align: center;
+    }
+    .alp-ann-text-1 {
+      padding-right: 0;
+    }
+    .alp-announcement-bar-navigation .swiper-button-prev {
+      left: -3vw;
+    }
+
+    .alp-announcement-bar-navigation .swiper-button-next,
+    .alp-announcement-bar-navigation .swiper-button-prev {
+      width: 16px;
+    }
+
+    .alp-announcement-bar-navigation .swiper-button-next {
+      right: -3vw;
+    }
+  }
+{% endstyle %}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="alp-section {{ reset_spacing }} alp-announcement-bar js-announcement-bar" style="{{ style }}">
+    <div class="alp-section-container alp-announcement-bar-container page-width {{ container }}">
+      <div class="swiper" data-sectionId="{{ section.id }}">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            {% liquid
+              assign bs = block.settings
+            %}
+            {%- case block.type -%}
+              {%- when 'normal_text' -%}
+                <div class="swiper-slide">
+                  <div class="alp-announcement-bar-i">
+                    {%- if bs.link -%}
+                      <a href="{{ bs.link }}"></a>
+                    {%- endif -%}
+                    <div class="alp-announcement-bar-text">
+                      {{ bs.text }}
+                    </div>
+                  </div>
+                </div>
+              {%- when 'count_down_text' -%}
+                <div class="swiper-slide">
+                  <div class="alp-announcement-bar-i">
+                    {%- if bs.link -%}
+                      <a href="{{ bs.link }}"></a>
+                    {%- endif -%}
+                    <div class="alp-announcement-bar-text">
+                      <div class="alp-ann-text-1" style="color: {{ bs.text_1_color }};">{{ bs.text }}</div>
+                      {%- if bs.text_2 != blank -%}
+                        <div class="alp-ann-text-2" style="color: {{ bs.text_2_color }};">{{ bs.text_2 }}</div>
+                      {%- endif -%}
+                      {%- if bs.text_3 != blank -%}
+                        <div class="alp-ann-text-3" style="color: {{ bs.text_3_color }};background: {{ bs.text_3_bg }}">
+                          {{ bs.text_3 }}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                    {%- if bs.show_countdown -%}
+                      {% render 'alp-countdown-snippet',
+                        text: bs.countdown_text,
+                        id: block.id,
+                        countdown_date: bs.countdown_date,
+                        countdown_hours: bs.countdown_hours
+                      %}
+                    {%- endif -%}
+                  </div>
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+      {%- if section.blocks.size > 1 -%}
+        {% render 'swiper-navigation-bar', class: 'alp-announcement-bar-navigation' %}
+      {%- endif -%}
+    </div>
+  </div>
+{% endif %}
+
+<script
+  type="module"
+>
+  document.addEventListener('DOMContentLoaded', () => {
+    let $sectionId = '{{- section.id -}}';
+    let $sectionIdNum = $sectionId.replace(/\D/g, '');
+    let $SwiperVar = 'TheSwiper_' + $sectionIdNum;
+    $SwiperVar = new Swiper(`.swiper[data-sectionId="{{- section.id -}}"]`, {
+      autoHeight: true,
+      speed: 1000,
+      autoplay: {
+        delay: 5000,
+      },
+      loop: true,
+      effect: 'creative',
+      navigation: {
+        nextEl: '.alp-announcement-bar-navigation .swiper-button-next',
+        prevEl: '.alp-announcement-bar-navigation .swiper-button-prev',
+      },
+      creativeEffect: {
+        prev: {
+          shadow: true,
+          origin: 'top center',
+          translate: [0, 0, 0],
+          rotate: [100, 0, 0],
+        },
+        next: {
+          origin: 'bottom center',
+          translate: [0, 0, 0],
+          rotate: [-100, 0, 0],
+        },
+      },
+      on: {
+        slideChangeTransitionEnd: function () {
+          AlpFn.GetTheHeight('.alp-announcement-bar-section', 'bar');
+        },
+        resize: function () {
+          AlpFn.GetTheHeight('.alp-announcement-bar-section', 'bar');
+        },
+      },
+    });
+    AlpFn.GetTheHeight('.alp-announcement-bar-section', 'bar');
+    $(window).on('resize', AlpFn.GetTheHeight('.alp-announcement-bar-section', 'bar'));
+  });
+</script>

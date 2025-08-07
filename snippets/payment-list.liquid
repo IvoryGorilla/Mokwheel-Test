@@ -1,0 +1,25 @@
+<ul class="list list-payment" role="list">
+  {% assign enabled_payment_types = 'klarna' | remove: ' ' | split: ',' %}
+  {% for type in enabled_payment_types %}
+    <li class="list-payment__item" data-type="{{ type }}">
+      {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+    </li>
+  {% endfor %}
+  {%- for type in shop.enabled_payment_types -%}
+    <li class="list-payment__item" data-type="{{ type }}">
+      {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+    </li>
+  {%- endfor -%}
+  {% comment %} https://github.com/activemerchant/payment_icons/tree/master/app/assets/images/payment_icons {% endcomment %}
+  {% assign enabled_payment_types = 'metapay,affirm' | remove: ' ' | split: ',' %}
+  {% for type in enabled_payment_types %}
+    <li class="list-payment__item" data-type="{{ type }}">
+      {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+    </li>
+  {% endfor %}
+  {% comment %}
+    <li class="list-payment__item">
+      {% render 'icon-affirm' %}
+    </li>
+  {% endcomment %}
+</ul>

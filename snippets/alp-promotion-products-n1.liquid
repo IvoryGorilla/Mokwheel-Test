@@ -1,0 +1,60 @@
+{% comment %}
+  {% render 'alp-promotion-products-n1',
+    product: bs.product,
+    title: bs.product.title,
+    description: bs.product.metafields.custom.description,
+    price: bs.product.metafields.custom.pack_final_price,
+    original_price: bs.product.metafields.custom.pack_original_price,
+    image: bs.product.featured_image
+  %}
+{% endcomment %}
+{%- if product -%}
+  <div
+    class="alp-promotion-pack-item pack-item-n1"
+    data-promotion-pack
+    data-pack-variant="{{ product.first_available_variant.id }}"
+  >
+    <div class="promotion-pack-item-flex">
+      <div class="promotion-pack-item-image relative">
+        <a class="full-aa" href="{{ product.featured_image | image_url: width: 1920 }}" data-fslightbox></a>
+        {%- if image -%}
+          {{ image | image_url: width: 300 | image_tag: class: '' }}
+        {%- else -%}
+          {{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+        {%- endif -%}
+        {% render 'icon-check-2' %}
+      </div>
+      <div class="promotion-pack-item-info">
+        <div class="promotion-pack-item-column">
+          <div class="promotion-pack-item-title">
+            {%- if title != blank -%}
+              {{ title }}
+            {%- else -%}
+              {{ product.title }}
+            {%- endif -%}
+          </div>
+          <div class="promotion-pack-item-des-one">
+            {{ description }}
+          </div>
+        </div>
+
+        <div class="promotion-pack-item-in">
+          <div class="promotion-pack-item-buttons">
+            <div class="button__select button__small">
+              <span>Select</span>
+              <span>Selected</span>
+            </div>
+          </div>
+          <div class="promotion-pack-item-price">
+            <span class="final-price">{{ price }}</span>
+            {%- assign original_price = original_price -%}
+            {%- if original_price == blank -%}
+              {%- assign original_price = product.price | money -%}
+            {%- endif -%}
+            <span class="original-price">{{ original_price }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

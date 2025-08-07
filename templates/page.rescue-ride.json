@@ -1,0 +1,80 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "cd08a778-a6b8-4148-81b4-07bb549d345b": {
+      "type": "alp-hero-banner",
+      "blocks": {
+        "3e356408-b887-4ab4-bb90-06ea9036ecd2": {
+          "type": "breadcrumb",
+          "settings": {
+            "position_set": false,
+            "position_top": "90px"
+          }
+        }
+      },
+      "block_order": [
+        "3e356408-b887-4ab4-bb90-06ea9036ecd2"
+      ],
+      "settings": {
+        "title": "Hero Banner",
+        "text_alignment": "default",
+        "bg_color": "rgba(0,0,0,0)",
+        "text_color": "#000000",
+        "bg_opacity": 50,
+        "image_aspect_ratio": "auto",
+        "block_max_width": "720px",
+        "min_height": "0px",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "alp_rescue_ride_Wfdz7g": {
+      "type": "alp-rescue-ride",
+      "blocks": {
+        "item_jHitQY": {
+          "type": "item",
+          "settings": {
+            "text": "<p>For every Ebike purchased, MOKWHEEL will donate $100 to the California Fire Foundation, supporting disaster relief and recovery efforts. With every purchase, you’re not only getting a high-quality product, but also offering warm support to those facing hardship. Your contribution helps rebuild lives and communities affected by wildfires.</p><p>MOKWHEEL is committed to providing all possible support to those impacted by the fires and extends heartfelt gratitude to the brave firefighters and volunteers who tirelessly protect lives and communities. We thank you for everything you do.</p><p>At MOKWHEEL, every act of love is intertwined with our commitment to the greater good. Join us in making a meaningful difference!</p>",
+            "image": "shopify://shop_images/1657_2x_2.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "item_jHitQY"
+      ],
+      "settings": {
+        "title": "Rescue Ride: Rebuilding California Together",
+        "description": "<p>As a local California business, MOKWHEEL is united with the community, taking real action to help those in need.</p>",
+        "bg_color": "#FFFFFF",
+        "text_color": "#1A1A1A",
+        "container": "alp-container-fluid",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "cd08a778-a6b8-4148-81b4-07bb549d345b",
+    "main",
+    "alp_rescue_ride_Wfdz7g"
+  ]
+}

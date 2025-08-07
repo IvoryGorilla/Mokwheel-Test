@@ -1,0 +1,90 @@
+{% liquid
+  assign bs = block.settings
+  if show_price
+    assign price_display = 'show_price'
+  endif
+%}
+
+<div
+  class="slide-sub-menu-wrapper"
+  data-list-style="{{ style | default: 'style_one' }}"
+  data-show-price="{{ price_display | default: '' }}"
+>
+  <div class="slide-sub-menu-header">
+    <div class="slide-menu-back-in">{% render 'icon-arrow-left' %}</div>
+    <div>{{- bs.menu_title | strip -}}</div>
+    <div class="slide-menu-close-in">
+      {%- render 'icon-close' -%}
+    </div>
+  </div>
+  <div class="slide-sub-menu-ul">
+    {%- if bs.menu_a_title != blank -%}
+      <div class="sub-menu-level-2">
+        <div class="slide-sub-menu-title">
+          <span>{{ bs.menu_a_title }}</span>{% render 'icon-arrow-down' %}
+        </div>
+        {% comment %} collection_list_a {% endcomment %}
+        {%- if bs.collection_list_a -%}
+          {%- assign size = 0 -%}
+          {%- for collection in bs.collection_list_a -%}
+            {%- assign size = size | plus: 1 -%}
+          {%- endfor -%}
+          {%- if size > 0 -%}
+            <div class="sub-slide-wrapper">
+              {% render 'nav-collection-list', collections: bs.collection_list_a %}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if bs.menu_b_title != blank -%}
+      <div class="sub-menu-level-2">
+        <div class="slide-sub-menu-title">
+          <span>{{ bs.menu_b_title }}</span>{% render 'icon-arrow-down' %}
+        </div>
+        {% comment %} collection_list_b {% endcomment %}
+        {%- if bs.collection_list_b -%}
+          {%- assign size = 0 -%}
+          {%- for collection in bs.collection_list_b -%}
+            {%- assign size = size | plus: 1 -%}
+          {%- endfor -%}
+          {%- if size > 0 -%}
+            <div class="sub-slide-wrapper">
+              {% render 'nav-collection-list', collections: bs.collection_list_b %}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if bs.menu_c_title != blank -%}
+      <div class="sub-menu-level-2">
+        <div class="slide-sub-menu-title">
+          <span>{{ bs.menu_c_title }}</span>{% render 'icon-arrow-down' %}
+        </div>
+        {% comment %} collection_list_c {% endcomment %}
+        {%- if bs.collection_list_c -%}
+          {%- assign size = 0 -%}
+          {%- for collection in bs.collection_list_c -%}
+            {%- assign size = size | plus: 1 -%}
+          {%- endfor -%}
+          {%- if size > 0 -%}
+            <div class="sub-slide-wrapper">
+              {% render 'nav-collection-list', collections: bs.collection_list_c %}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- for collection in bs.collection_list_model -%}
+      <div class="sub-menu-level-2">
+        <div class="slide-sub-menu-title">
+          <span>{{ collection.title }}</span>{% render 'icon-arrow-down' %}
+        </div>
+        <div class="sub-slide-wrapper">
+          {% render 'nav-product-list', collection: collection, limit: product_limit %}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+  <div class="mega-menu-buttons">{{ bs.mega_button_content }}</div>
+</div>

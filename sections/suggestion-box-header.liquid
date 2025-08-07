@@ -1,0 +1,72 @@
+{{ 'sales-deals-header.css' | asset_url | stylesheet_tag }}
+<style>
+  @media screen and (max-width:1000px) {
+    .sales-deals-header-box .container {
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+</style>
+<div class="sales-deals-header-box" >
+    <div class="img-box">
+      <img class="close-on-phone hide_mobile" src="{{section.settings.baseImage | img_url: '1920x'}}" alt="">
+      <img class="close-on-pc hide_desktop" src="{{section.settings.mbaseImage | img_url: '1920x'}}" alt="">
+    </div>
+    <div class="container">
+      <div style="text-align: center;" class="title">{{section.settings.title}}</div>
+      <div class="description">{{section.settings.description}}</div>
+    </div>
+</div>
+<script>
+  (
+    ()=>{
+
+    }
+  )()
+</script>
+{% schema %}
+{
+"name": "suggestion-box-header",
+"class": "suggestion-box-header",
+"blocks": [
+{
+    "type": "suggestion-box-header",
+    "name": "suggestion-box-header",
+    "settings": [
+        {
+            "type": "text",
+            "id": "tag",
+            "label": "tag Name"
+        },{
+            "type": "text",
+            "id": "tagId",
+            "label": "tag Id"
+        }
+    ]
+}],
+"settings": [
+    {
+        "type": "image_picker",
+        "label": "background Image",
+        "id": "baseImage"
+    },{
+        "type": "image_picker",
+        "label": "mpbile background Image",
+        "id": "mbaseImage"
+    },{
+      "type": "text",
+      "label": "title",
+      "id": "title"
+  },{
+    "type": "text",
+    "label": "description",
+    "id": "description"
+}
+],
+"presets": [
+  {
+  "name": "suggestion-box-header"
+  }
+]
+}
+{% endschema %}

@@ -1,0 +1,47 @@
+{% liquid
+  assign bs = block.settings
+%}
+{%- if bs.video_url -%}
+  <div class="alp-custom-video-item" style="--aspect-ratio:{{ aspect_ratio | default: '16/9' }}">
+    {% liquid
+      assign video_id = ''
+      if bs.video_url.type == 'youtube'
+        assign video_id = bs.video_url | replace: 'https://www.youtube.com/watch?v=', ''
+      elsif bs.video_url.type == 'vimeo'
+        assign video_id = bs.video_url | replace: 'https://vimeo.com/', ''
+      endif
+    %}
+    {%- capture online_video_url -%}
+        {%- if bs.video_url.type == 'youtube' -%}
+        https://www.youtube.com/embed/{{ video_id }}?controls=1&autoplay=0&mute=0&playsinline=1&loop=0&playlist={{ video_id }}
+        {%- elsif bs.video_url.type == 'vimeo' -%}
+        https://player.vimeo.com/video/{{ video_id }}?controls=1&background=1&autoplay=0&muted=0&loop=0
+        {%- endif -%}
+        {%- endcapture -%}
+
+    <div class="alp-custom-video-item-wrapper">
+      {%- if bs.video_url.type == 'youtube' -%}
+        <video-youtube data-id="{{ block.id }}">
+          <iframe
+            src="{{ online_video_url }}"
+          ></iframe>
+        </video-youtube>
+      {%- elsif bs.video_url.type == 'vimeo' -%}
+        <iframe
+          src="{{ online_video_url }}"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .alp-custom-video-item-wrapper iframe {
+    display: block;
+    border: 0;
+    width: 100%;
+    aspect-ratio: var(--aspect-ratio);
+  }
+{% endstylesheet %}

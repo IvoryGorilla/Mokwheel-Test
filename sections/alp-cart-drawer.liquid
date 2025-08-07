@@ -1,0 +1,997 @@
+{% schema %}
+{
+  "name": "Alp Cart Drawer",
+  "class": "alp-cart-drawer",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shopping Cart"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Empty Shop URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "count_down_text",
+      "name": "Count Down Text",
+      "settings": [
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Announcement Text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "link"
+        },
+        {
+          "type": "text",
+          "id": "countdown_date",
+          "label": "Count Down",
+          "default": "2024-05-05T00:00:00",
+          "info": "格式: 2023-05-05T00:00:00"
+        },
+        {
+          "type": "number",
+          "id": "countdown_hours",
+          "label": "多少小时内显示倒计时",
+          "default": 48
+        },
+        {
+          "type": "text",
+          "id": "countdown_text",
+          "label": "Count Down 文字",
+          "default": "Only Remaining"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_countdown",
+          "label": "Show Count Down",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "cart_items",
+      "name": "Cart Items",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Cart Items"
+        }
+      ]
+    },
+    {
+      "type": "recommendations",
+      "name": "Recommendations",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "You May Also Like"
+        },
+        {
+          "type": "product_list",
+          "id": "product_list",
+          "label": "Products"
+        }
+      ]
+    },
+    {
+      "type": "recommendations_2",
+      "name": "Recommendations 2",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "You May Also Like"
+        },
+        {
+          "type": "product_list",
+          "id": "product_list",
+          "label": "Products"
+        },
+        {
+          "type": "checkbox",
+          "id": "slide_display",
+          "label": "Slide Display",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "gift_choice",
+      "name": "Gift Choice",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Choose 1 Of 3 Free Gifts"
+        },
+        {
+          "type": "text",
+          "id": "trigger_tag",
+          "label": "触发标签",
+          "default": "For_Promotion_Choice"
+        },
+        {
+          "type": "number",
+          "id": "trigger_quantity",
+          "label": "触发数量",
+          "default": 2
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "多选一赠品列表"
+        }
+      ]
+    },
+    {
+      "type": "subtotal",
+      "name": "Sub Total",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "saving_text",
+          "label": "Saving Text",
+          "default": "You Saved"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_discounts",
+          "label": "Show discounts",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "checkout_button",
+      "name": "Checkout Buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_additional_button",
+          "label": "Show Additional Button",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_total_price",
+          "label": "Show Total Price",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_discount_price",
+          "label": "Show Discount Price",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "saving_text",
+          "label": "Saving Text",
+          "default": "You're Saving"
+        }
+      ]
+    },
+    {
+      "type": "taxes_shipping",
+      "name": "Taxes & Shipping",
+      "limit": 1
+    },
+    {
+      "type": "payment_list",
+      "name": "Payment List",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "extended_html",
+          "label": "Extended HTML"
+        }
+      ]
+    },
+    {
+      "type": "order_note",
+      "name": "Order Note",
+      "limit": 1
+    },
+    {
+      "type": "docapp_disount",
+      "name": "Docapp Discount",
+      "limit": 1
+    },
+    {
+      "type": "docapp_summary",
+      "name": "Docapp Summary",
+      "limit": 1
+    },
+    {
+      "type": "idme",
+      "name": "ID.ME",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Select communities receive an exclusive discount with ID.me"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Reviews Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Cart Drawer"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};
+{%- endcapture -%}
+
+{%- capture class -%}
+{%- for block in section.blocks -%}
+  {%- assign bs = block.settings -%}
+  {%- case block.type -%}
+    {%- when 'recommendations_2' -%}
+      has_slide_bar
+    {%- endcase -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{% style %}
+{% endstyle %}
+
+{{ 'alp-cart-drawer.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="alp-main-cart alp-cart-drawer {{ class }} {% if cart == empty %}is-empty{% endif %}"
+  data-ajax-cart
+  style="{{ style }}"
+>
+  <div class="alp-cart-overlay full-img-wrap"></div>
+  {%- for block in section.blocks -%}
+    {%- assign bs = block.settings -%}
+    {%- case block.type -%}
+      {%- when 'recommendations_2' -%}
+        {%- if bs.slide_display -%}
+          <div class="alp-cart-recommend rd-slide ">
+            <div class="alp-cart-recommend-title rd-slide headline__h6">
+              {{ bs.text }}
+            </div>
+            <div class="alp-cart-recommend-list-slide">
+              <div class="swiper the-recommend-sll">
+                <div class="rcmpdd-wrapper">
+                  {%- for product in bs.product_list -%}
+                    <div class="">
+                      {% render 'alp-recommend-cart-product-2', product: product %}
+                    </div>
+                  {%- endfor -%}
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+    {%- endcase -%}
+  {%- endfor -%}
+  <div class="alp-cart-container">
+    <div class="alp-cart-title">
+      <h3>{{ st.title }}</h3>
+      <div class="alp-cart-close">
+        {%- render 'icon-close' -%}
+      </div>
+    </div>
+    <div class="alp-cart-container-inner">
+      {%- if section.blocks.size > 0 -%}
+        <div class="alp-cart-inner-1">
+          {%- for block in section.blocks -%}
+            {%- assign bs = block.settings -%}
+            {%- case block.type -%}
+              {%- when 'count_down_text' -%}
+                <div
+                  class="alp-cart-announcement-bar"
+                  style="--bg-color:{{ bs.bg_color }};--text-color:{{ bs.text_color }}"
+                >
+                  <div class="cart-announcement-bar-i">
+                    {%- if bs.link -%}
+                      <a href="{{ bs.link }}"></a>
+                    {%- endif -%}
+                    <div class="cart-announcement-bar-text">
+                      {{ bs.text }}
+                    </div>
+                    {%- if bs.show_countdown -%}
+                      {% render 'alp-countdown-snippet',
+                        text: bs.countdown_text,
+                        id: block.id,
+                        countdown_date: bs.countdown_date,
+                        countdown_hours: bs.countdown_hours
+                      %}
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- when 'cart_items' -%}
+                <div class="alp-cart-items-wrapper">
+                  {%- if cart != empty -%}
+                    <div class="alp-cart-items-container">
+                      {% for item in cart.items %}
+                        {% comment %} 隐藏购物车项目 {% endcomment %}
+                        {%- assign hide_item = '' -%}
+                        {%- if item.product.tags contains 'Hide_In_Cart' -%}
+                          {%- assign hide_item = 'hidden' -%}
+                        {%- endif -%}
+                        {% comment %} 隐藏购物车项目 End {% endcomment %}
+                        {%- assign compare_at_price = item.variant.compare_at_price -%}
+                        {%- if compare_at_price < item.original_price -%}
+                          {%- assign compare_at_price = item.original_price -%}
+                        {%- elsif compare_at_price == blank -%}
+                          {%- assign compare_at_price = item.original_price -%}
+                        {%- endif -%}
+                        {%- assign additional_price = 0 -%}
+                        {%- assign line_id = item.url_to_remove | split: '?id=' | last -%}
+                        {%- assign line_id = line_id | split: '&' | first -%}
+                        {%- assign line_product_bindings = item.product.metafields.custom.binding_cart.value
+                          | map: 'first_available_variant'
+                          | map: 'id'
+                          | join: ','
+                        -%}
+                        <div
+                          class="alp-cart-line-item line-item {{ hide_item }}"
+                          data-line-item-id="{{ line_id }}"
+                          data-line-variant-id="{{ item.variant_id }}"
+                          data-line-product-id="{{ item.product_id }}"
+                          data-line-collections="{{ item.product.collections | map: 'id' | join: ',' }}"
+                          data-line-quantity="{{ item.quantity }}"
+                          data-compare-price="{{- compare_at_price -}}"
+                          data-original-price="{{- item.original_price -}}"
+                          data-final-price="{{- item.final_price -}}"
+                          data-line-product-binding="{{ line_product_bindings }}"
+                          {%- if item.product.tags contains 'Special_In_Cart' -%}
+                            data-line-product-special
+                          {%- endif -%}
+                        >
+                          <div class="alp-cart-line-item-inner">
+                            <div class="alp-line-item-image">
+                              <a href="{{ item.url }}" class="full-aa" aria-hidden="true" tabindex="-1"> </a>
+                              <div class="alp-line-item-image-i">
+                                <img
+                                  data-src="{{ item.image | image_url: width: 200 }}"
+                                  class="lazy"
+                                  alt="{{ item.image.alt | escape }}"
+                                  loading="lazy"
+                                  width="250"
+                                  height="{{ 250 | divided_by: item.image.aspect_ratio | ceil }}"
+                                >
+                              </div>
+                            </div>
+                            <div class="alp-line-item-content">
+                              <div class="alp-line-item-info">
+                                <div class="alp-line-item-title">
+                                  {%- if item.product.tags contains 'Special_In_Cart' -%}
+                                    <div class="the-product-sp-desc flex">
+                                      {{ item.product.description | strip_html | escape }}
+                                    </div>
+                                  {%- endif -%}
+                                  <div class="the-product-title flex">
+                                    <a href="{{ item.url }}" class="line-item-name">
+                                      {{- item.product.title | escape -}}
+                                    </a>
+                                  </div>
+                                  <div class="product-options">
+                                    {%- if item.product.has_only_default_variant == false -%}
+                                      {%- for option in item.options_with_values -%}
+                                        <div class="product-option">
+                                          <div>{{ option.name }}:</div>
+                                          <div>{{ option.value }}</div>
+                                        </div>
+                                        {%- unless forloop.last -%}
+                                          <div>/</div>
+                                        {%- endunless -%}
+                                      {%- endfor -%}
+                                    {%- endif -%}
+                                  </div>
+                                  <div
+                                    class="alp-line-item-remove"
+                                    id="Remove-{{ item.index | plus: 1 }}"
+                                    data-index="{{ item.index | plus: 1 }}"
+                                  >
+                                    <a
+                                      href="{{ item.url_to_remove }}"
+                                      class="line-item-remove-link"
+                                      aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}"
+                                    >
+                                      {% render 'icon-remove' %}
+                                    </a>
+                                  </div>
+                                </div>
+                                <div class="alp-line-item-options">
+                                  {%- if item.product.has_only_default_variant == false
+                                    or item.properties.size != 0
+                                    or item.selling_plan_allocation != null
+                                  -%}
+                                    <div class="product-properties">
+                                      {%- for property in item.properties -%}
+                                        {%- assign property_first_char = property.first | slice: 0 -%}
+                                        {%- if property.last != blank
+                                          and property_first_char != '_'
+                                          and property_first_char != '*'
+                                        -%}
+                                          <div class="product-property" data-property-name="{{ property.first }}">
+                                            <div class="propertie-first">{{ property.first }}:</div>
+                                            <div class="propertie-last">
+                                              {%- if property.last contains '/uploads/' -%}
+                                                <a href="{{ property.last }}" class="link" target="_blank">
+                                                  {{ property.last | split: '/' | last }}
+                                                </a>
+                                              {%- else -%}
+                                                {{ property.last }}
+                                              {%- endif -%}
+                                            </div>
+                                          </div>
+                                        {%- endif -%}
+                                      {%- endfor -%}
+                                    </div>
+                                    <div class="product-selling-plan">
+                                      {{- item.selling_plan_allocation.selling_plan.name -}}
+                                    </div>
+                                  {% endif %}
+                                </div>
+                                {% comment %} product-additional-options {% endcomment %}
+                                {% liquid
+                                  assign name_trigger = '*Option:'
+                                  assign name_trigger_id = '_OptionId:'
+                                  assign name_trigger_gift = '*Gift'
+                                  assign options_size = 0
+                                  for property in item.properties
+                                    assign property_first_char = property.first | slice: 0
+                                    if property_first_char == '*' and property.last != blank
+                                      assign options_size = options_size | plus: 1
+                                    endif
+                                  endfor
+                                %}
+                                {%- if options_size > 0 -%}
+                                  <div class="product-additional-options-wrapper" data-slide-toggle-wrapper>
+                                    <div class="product-additional-options">
+                                      <div class="cart-additional-options-trigger" data-slide-toggle-trigger>
+                                        <span>Product Details</span>
+                                        {% render 'icon-arrow-down' %}
+                                      </div>
+                                      <div class="cart-additional-options-container" data-slide-toggle-target>
+                                        <div>
+                                          {% comment %} name_trigger : additional products {% endcomment %}
+                                          {%- for property in item.properties -%}
+                                            {%- assign property_first_char = property.first | slice: 0 -%}
+                                            {%- if property.last != blank -%}
+                                              {% if property.first contains name_trigger %}
+                                                {%- assign title = property.first | split: ':' | last -%}
+                                                {%- assign variant_name = property.last | split: '|' | first -%}
+                                                {%- assign variant_price = property.last | split: '|' | last -%}
+                                                <div class="cart-additional-options-item">
+                                                  <div class="additional-options-name">
+                                                    <div>{{ title }}</div>
+                                                    <div>{{ variant_name }}</div>
+                                                  </div>
+                                                  <div class="additional-options-price">{{ variant_price }}</div>
+                                                </div>
+                                              {% endif %}
+                                            {% endif %}
+                                          {%- endfor -%}
+                                          {% comment %} name_trigger_id : additional products data {% endcomment %}
+                                          {%- for property in item.properties -%}
+                                            {%- assign property_first_char = property.first | slice: 0 -%}
+                                            {%- if property.last != blank -%}
+                                              {% if property.first contains name_trigger_id %}
+                                                {%- assign variant_data = property.last | split: '|' -%}
+                                                {%- assign additional_price_i = variant_data[1]
+                                                  | times: item.quantity
+                                                -%}
+                                                {%- assign additional_price = additional_price
+                                                  | plus: additional_price_i
+                                                -%}
+                                                <div
+                                                  data-additionalvariant-id="{{ variant_data[0] }}"
+                                                  data-additionalvariant-price="{{ variant_data[1] }}"
+                                                  data-additionalvariant-quantity="{{ item.quantity }}"
+                                                ></div>
+                                              {% endif %}
+                                            {% endif %}
+                                          {%- endfor -%}
+                                          {% comment %} name_trigger_gift : gift products {% endcomment %}
+                                          {%- for property in item.properties -%}
+                                            {%- assign property_first_char = property.first | slice: 0 -%}
+                                            {%- if property.last != blank -%}
+                                              {% if property.first contains name_trigger_gift %}
+                                                {%- assign title = property.first | split: '*' | last -%}
+                                                {%- assign variant_name = property.last | split: '+' -%}
+                                                {%- assign variant_price = 'Free' -%}
+                                                <div class="cart-additional-options-item">
+                                                  <div class="additional-options-name">
+                                                    <div>{{ title }}</div>
+                                                    {%- for item in variant_name -%}
+                                                      <div>{{ item | strip }}</div>
+                                                    {%- endfor -%}
+                                                  </div>
+                                                  <div class="additional-options-price">{{ variant_price }}</div>
+                                                </div>
+                                              {% endif %}
+                                            {% endif %}
+                                          {%- endfor -%}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                                {% comment %} product-additional-options end {% endcomment %}
+                                <div class="alp-line-item-discounts">
+                                  <ul
+                                    class="alp_discounts_list list-unstyled"
+                                    role="list"
+                                    aria-label="{{ 'customer.order.discount' | t }}"
+                                  >
+                                    {%- for discount in item.line_level_discount_allocations -%}
+                                      <li class="discounts__discount_item">
+                                        {%- render 'icon-discount' -%}
+                                        {{ discount.discount_application.title }}
+                                        (-{{ discount.amount | money }})
+                                      </li>
+                                    {%- endfor -%}
+                                  </ul>
+                                </div>
+                                <div class="product-extend-plan"></div>
+                              </div>
+                              {% comment %} product-price-and-quantity-and-actions {% endcomment %}
+                              <div class="alp-line-item-2-wrapper">
+                                <div class="alp-line-item-quantity">
+                                  <quantity-input class="alp-cart-quantity">
+                                    <div class="alp_quantity__button quantity__button no-js-hidden" name="minus">
+                                      <span class="visually-hidden">
+                                        {{-
+                                          'products.product.quantity.decrease'
+                                          | t: product: item.product.title
+                                          | escape
+                                        -}}
+                                      </span>
+                                      {% render 'icon-minus' %}
+                                    </div>
+                                    <input
+                                      class="alp_quantity__input quantity__input"
+                                      data-quantity-variant-id="{{ item.variant.id }}"
+                                      type="number"
+                                      name="updates[]"
+                                      value="{{ item.quantity }}"
+                                      {% # theme-check-disable %}
+                                      data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+                                      min="{{ item.variant.quantity_rule.min }}"
+                                      {% if item.variant.quantity_rule.max != null %}
+                                        max="{{ item.variant.quantity_rule.max }}"
+                                      {% endif %}
+                                      step="{{ item.variant.quantity_rule.increment }}"
+                                      {% # theme-check-enable %}
+                                      aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                                      id="Quantity-{{ item.index | plus: 1 }}"
+                                      data-index="{{ item.index | plus: 1 }}"
+                                    >
+                                    <div class="alp_quantity__button quantity__button no-js-hidden" name="plus">
+                                      <span class="visually-hidden">
+                                        {{-
+                                          'products.product.quantity.increase'
+                                          | t: product: item.product.title
+                                          | escape
+                                        -}}
+                                      </span>
+                                      {% render 'icon-plus' %}
+                                    </div>
+                                  </quantity-input>
+                                </div>
+                                <div class="alp-line-item-price">
+                                  <div class="alp-cart-item__price-wrapper">
+                                    {%- if compare_at_price > item.final_price -%}
+                                      <div class="cart-item__discounted-prices">
+                                        <span class="visually-hidden">
+                                          {{ 'products.product.price.sale_price' | t }}
+                                        </span>
+                                        <strong class="cart-item__final-price  price--final">
+                                          {{ item.final_line_price | plus: additional_price | money }}
+                                        </strong>
+                                        <span class="visually-hidden">
+                                          {{ 'products.product.price.regular_price' | t }}
+                                        </span>
+                                        <s class="cart-item__old-price ">
+                                          {{-
+                                            compare_at_price
+                                            | times: item.quantity
+                                            | plus: additional_price
+                                            | money
+                                          -}}
+                                        </s>
+                                      </div>
+                                    {%- elsif item.original_price > item.final_price -%}
+                                      <div class="cart-item__discounted-prices">
+                                        <span class="visually-hidden">
+                                          {{ 'products.product.price.sale_price' | t }}
+                                        </span>
+                                        <strong class="cart-item__final-price  price--final">
+                                          {{ item.final_line_price | plus: additional_price | money }}
+                                        </strong>
+                                        <span class="visually-hidden">
+                                          {{ 'products.product.price.regular_price' | t }}
+                                        </span>
+                                        <s class="cart-item__old-price ">
+                                          {{- item.original_line_price | plus: additional_price | money -}}
+                                        </s>
+                                      </div>
+                                    {%- else -%}
+                                      <div class="product-price-original">
+                                        <strong class="cart-item__final-price  price--final">
+                                          {{ item.original_line_price | plus: additional_price | money }}
+                                        </strong>
+                                      </div>
+                                    {%- endif -%}
+
+                                    {%- if item.variant.available and item.unit_price_measurement -%}
+                                      <div class="unit-price caption">
+                                        <span class="visually-hidden">
+                                          {{- 'products.product.price.unit_price' | t -}}
+                                        </span>
+                                        {{ item.unit_price | money }}
+                                        <span aria-hidden="true">/</span>
+                                        <span class="visually-hidden"
+                                          >&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span
+                                        >
+                                        {%- if item.unit_price_measurement.reference_value != 1 -%}
+                                          {{- item.unit_price_measurement.reference_value -}}
+                                        {%- endif -%}
+                                        {{ item.unit_price_measurement.reference_unit }}
+                                      </div>
+                                    {%- endif -%}
+                                  </div>
+                                </div>
+                              </div>
+                              {% comment %} product-price-and-quantity-and-actions end {% endcomment %}
+                            </div>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                    <div class="alp-cart-items-container">
+                      <div class="alp-cart-empty">
+                        <div>
+                          <h2 class="cart__empty-text headline__h3">{{ 'sections.cart.empty' | t }}</h2>
+                          <a href="{{ st.url | default: routes.all_products_collection_url }}" class="button">
+                            {{ 'general.continue_shopping' | t }}
+                          </a>
+
+                          {%- if shop.customer_accounts_enabled and customer == null -%}
+                            <p class="cart__login-title h3">{{ 'sections.cart.login.title' | t }}</p>
+                            <p class="cart__login-paragraph">
+                              {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
+                            </p>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              {%- when 'recommendations' -%}
+                <div class="alp-cart-recommend">
+                  <div class="alp-cart-recommend-title headline__h6">
+                    {{ bs.text }}
+                  </div>
+                  <div class="alp-cart-recommend-list">
+                    {%- for product in bs.product_list -%}
+                      {% render 'alp-recommend-cart-product', product: product %}
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- when 'recommendations_2' -%}
+                <div class="alp-cart-recommend rd-2 {% if bs.slide_display %} hide_desktop{% endif %}">
+                  <div class="alp-cart-recommend-title rd-2 headline__h6">
+                    {{ bs.text }}
+                    {% render 'swiper-navigation', class: 'small accr_image_nav' %}
+                  </div>
+                  <div class="alp-cart-recommend-list-2">
+                    <div class="swiper the-recommend-swiper" id="{{ block.id | replace: '-', '' | prepend: 'id_' }}">
+                      <div class="swiper-wrapper">
+                        {%- for product in bs.product_list -%}
+                          <div class="swiper-slide">
+                            {% render 'alp-recommend-cart-product-2', product: product %}
+                          </div>
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <script
+                  type="module"
+                >
+              document.addEventListener('DOMContentLoaded', () => {
+                var BlockId = '{{ block.id | replace: '-', '' | prepend: 'id_' }}';
+                var Swiper_{{ block.id | replace: '-', '' }} = new Swiper(`.swiper.the-recommend-swiper#${BlockId}`, {
+                  slidesPerView: 2.25,
+                  slidesPerGroup : 1,
+                  speed: 600,
+                  spaceBetween: alp_global.gap / 1.5,
+                  watchSlidesVisibility: true,
+                  pagination: {
+                    el: '.pagination-products',
+                    clickable :true,
+                  },
+                  navigation: {
+                    nextEl: '.accr_image_nav .swiper-button-next',
+                    prevEl: '.accr_image_nav .swiper-button-prev',
+                  },
+                });
+              });
+                </script>
+              {%- when 'gift_choice' -%}
+                {%- assign trigger_products = 0 -%}
+                {%- for line_item in cart.items -%}
+                  {% if line_item.product.tags contains bs.trigger_tag %}
+                    {%- assign trigger_products = trigger_products | plus: line_item.quantity -%}
+                  {% endif %}
+                {%- endfor -%}
+                {%- comment %} 如果购物车中没有满足触发条件的产品，则隐藏该区块 {%- endcomment %}
+                <div
+                  class="alp-cart-promotion alp-gift-choice {% if trigger_products < bs.trigger_quantity %}hidden{% endif %}"
+                  data-trigger-quantity="{{ trigger_products }}"
+                  data-min-quantity="{{ bs.trigger_quantity }}"
+                >
+                  <div class="trigger-quantity-dynamic-wrapper">
+                    <div
+                      class="trigger-quantity-dynamic"
+                      data-trigger-quantity-dynamic="{{ trigger_products }}"
+                      data-min-quantity-dynamic="{{ bs.trigger_quantity }}"
+                    ></div>
+                  </div>
+                  <div class="alp-cart-promotion-title headline__h6">
+                    {{ bs.title }}
+                  </div>
+                  <div class="alp-cart-promotion-list" data-select-radio-wrapper>
+                    {%- for product in bs.products -%}
+                      {%- assign class = '' -%}
+                      {% if forloop.first %}
+                        {%- assign class = 'selected' -%}
+                      {% endif %}
+                      {% render 'gift-choice-product', product: product, bs: bs, class: class %}
+                    {%- endfor -%}
+                  </div>
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="alp-cart-inner-2">
+          {%- for block in section.blocks -%}
+            {%- assign bs = block.settings -%}
+            {%- case block.type -%}
+              {%- when '@app' -%}
+                {% render block %}
+
+              {%- when 'taxes_shipping' -%}
+                <div class="alp-tax-note-wrapper">
+                  <small class="tax-note caption-large rte">
+                    {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                      {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                    {%- elsif cart.taxes_included -%}
+                      {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+                    {%- elsif shop.shipping_policy.body != blank -%}
+                      {{
+                        'sections.cart.taxes_and_shipping_policy_at_checkout_html'
+                        | t: link: shop.shipping_policy.url
+                      }}
+                    {%- else -%}
+                      {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+                    {%- endif -%}
+                  </small>
+                </div>
+              {%- when 'order_note' -%}
+                <div class="alp-cart-note-wrapper">
+                  <form action="{{ routes.cart_url }}" method="post">
+                    <cart-note class="cart__note field">
+                      <label for="Cart-note">{{ 'sections.cart.note' | t }}</label>
+                      <textarea
+                        class="text-area field__input"
+                        name="note"
+                        form="cart"
+                        id="Cart-note"
+                        placeholder="{{ 'sections.cart.note' | t }}"
+                      >{{ cart.note }}</textarea>
+                    </cart-note>
+                  </form>
+                </div>
+              {%- when 'docapp_disount' -%}
+                <div class="alp-docapp-discount-code">
+                  <div class="docapp-coupon-input"></div>
+                </div>
+              {%- when 'docapp_summary' -%}
+                <div class="alp-docapp-summary">
+                  <div class="docapp-cart-with-coupon-summary"></div>
+                  {% render 'installment-block-cart', cart: cart %}
+                </div>
+              {%- when 'idme' -%}
+                {% # theme-check-disable %}
+                <div class="id-me-content {% if bs.image %}with-image{% endif %}">
+                  <p>{{ bs.text }}</p>
+                  <div class="id-me-content-inner">
+                    <a href="https://discountify.id.me/oauth/checkpoint/mokwheelbike/" target="_blank">
+                      <img
+                        src="https://s3.amazonaws.com/idme/developer/idme-buttons/assets/img/verify.svg"
+                        alt="Verify with ID.me"
+                        loading="lazy"
+                      >
+                    </a>
+                    {% if bs.image %}
+                      <div class="tre-reviews-image-wrapper">
+                        <img
+                          class="tre-reviews-image lazy"
+                          data-src="{{ bs.image | image_url: width: 800 }}"
+                          alt=""
+                          loading="lazy"
+                        >
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+                {% # theme-check-enable %}
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="alp-sticky-wrapper">
+          {%- for block in section.blocks -%}
+            {%- assign bs = block.settings -%}
+            {%- case block.type -%}
+              {%- when 'subtotal' -%}
+                <div class="alp-cart-subtotal" {{ block.shopify_attributes }}>
+                  {%- if cart.cart_level_discount_applications.size > 0 -%}
+                    <div class="alp-cart-discounts">
+                      <ul
+                        class="alp_discounts_list list-unstyled"
+                        role="list"
+                        aria-label="{{ 'customer.order.discount' | t }}"
+                      >
+                        {%- for discount in cart.cart_level_discount_applications -%}
+                          <li class="alp_discounts__discount_item">
+                            {%- render 'icon-discount' -%}
+                            {{ discount.title }}
+                            (-{{ discount.total_allocated_amount | money }})
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  {%- endif -%}
+                  <div class="alp-cart-total">
+                    <div class="totals_cart_price_wrapper">
+                      <div class="totals_total_compare">
+                        <h4 class="alp_totals_total_text">{{ 'sections.cart.estimated_total' | t }}</h4>
+                        <span class="totals_final">{{ cart.total_price | money_with_currency }}</span>
+                        {%- if cart.original_total_price > cart.total_price -%}
+                          {% comment %} <span class="totals_original">{{ cart.original_total_price | money_with_currency }}</span> {% endcomment %}
+                          <span class="totals_original">{% render 'cart-compare-price', cart: cart %}</span>
+                        {%- endif -%}
+                      </div>
+                      {% comment %}
+                        {%- if cart.total_discount > 0 -%}
+                          <div class="totals_discount">
+                            <span>
+                              {{ bs.saving_text }}
+                              {{ cart.total_discount | money }}
+                            </span>
+                          </div>
+                        {%- endif -%}
+                      {% endcomment %}
+                      {% render 'cart-discount-price', cart: cart, bs: bs %}
+                    </div>
+                  </div>
+                </div>
+              {%- when 'checkout_button' -%}
+                <div class="alp-checkout-buttons">
+                  <form action="{{ routes.cart_url }}" method="post">
+                    <div class="alp-checkout-button" {{ block.shopify_attributes }}></div>
+                    <noscript>
+                      <button type="submit" class="cart__update-button button button--secondary" form="cart">
+                        {{ 'sections.cart.update' | t }}
+                      </button>
+                    </noscript>
+
+                    <button
+                      type="submit"
+                      id="checkout"
+                      class="alp-checkout-button alp-button"
+                      name="checkout"
+                      value="Checkout"
+                    >
+                      <span>
+                        {{ 'sections.cart.checkout' | t }}
+                      </span>
+                      {%- if bs.show_total_price -%}
+                        <span class="checkout_total_compare">
+                          <span class="totals_final">{{ cart.total_price | money_with_currency }}</span>
+                          {%- if cart.original_total_price > cart.total_price -%}
+                            <span class="totals_original">{% render 'cart-compare-price', cart: cart %}</span>
+                          {%- endif -%}
+                        </span>
+                      {%- endif -%}
+                    </button>
+
+                    {%- if bs.show_discount_price -%}
+                      {% render 'cart-discount-price', cart: cart, bs: bs %}
+                    {%- endif -%}
+                  </form>
+
+                  {%- if additional_checkout_buttons and bs.show_additional_button -%}
+                    <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
+                      {{ content_for_additional_checkout_buttons }}
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- when 'payment_list' -%}
+                <div class="alp-cart-payment-list">
+                  {% render 'payment-list' %}
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% comment %} JS 已在 alp.js 中执行 {% endcomment %}

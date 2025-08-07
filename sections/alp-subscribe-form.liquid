@@ -1,0 +1,374 @@
+{% schema %}
+{
+  "name": "Alp Subscribe Form",
+  "class": "alp-subscribe-form",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Sign up now & get 10% off"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Be the first to get the latest news about trends, promotions, and much more!</p>"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder text",
+      "default": "Your email address..."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "select",
+      "id": "form_layout",
+      "label": "Form layout",
+      "default": "vertical",
+      "options": [
+        {
+          "value": "vertical",
+          "label": "Vertical"
+        },
+        {
+          "value": "horizontal",
+          "label": "Horizontal"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "default": "text-center",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Layout",
+      "default": "alp-container",
+      "options": [
+        {
+          "value": "alp-container",
+          "label": "Default"
+        },
+        {
+          "value": "alp-container-fluid",
+          "label": "Fluid container"
+        },
+        {
+          "value": "alp-full-width",
+          "label": "Full width"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "em"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remove default space between sections",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alp Subscribe Form"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign st = section.settings
+  assign container = st.container
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+%}
+
+{%- capture style -%}
+    --bg-color: {{ st.bg_color }};--text-color: {{ st.text_color }};--padding-top: {{ st.padding_top }};--padding-bottom: {{ st.padding_bottom }};
+{%- endcapture -%}
+
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
+{{ 'section-email-signup-banner.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .alp-subscribe-form-description {
+    font-size: clamp(16px, 2vw, 24px);
+  }
+
+  .alp-subscribe-form-description p {
+    margin-top: 0;
+    font-weight: 500;
+    opacity: 0.6;
+    line-height: 1.45;
+  }
+  .alp-newsletter-form .newsletter-form__button:not(:focus-visible):not(.focused) {
+    width: auto;
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    padding: 0 2em;
+    background-color: var(--main-color);
+    border-radius: var(--inputs-radius);
+    color: #fff;
+    height: calc(100% - 6px);
+    margin-top: 3px;
+    margin-right: 2px;
+  }
+  .alp-subscribe-form-container .newsletter-form,
+  .alp-subscribe-form-container .newsletter-form__field-wrapper {
+    max-width: 480px;
+  }
+  .alp-subscribe-form-container .newsletter-form {
+    margin-left: 0;
+  }
+  .justify-content-center .alp-subscribe-form-container .newsletter-form {
+    margin-left: auto;
+  }
+  .justify-content-center .alp-subscribe-form-titles {
+    text-align: center;
+  }
+
+  .justify-content-center .newsletter-form__message {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+
+  .justify-content-end .alp-subscribe-form-container .newsletter-form {
+    margin-right: auto;
+  }
+
+  .justify-content-end .alp-subscribe-form-titles {
+    text-align: right;
+  }
+
+  .justify-content-end .newsletter-form__message {
+    margin-left: auto;
+    margin-right: 0;
+    justify-content: flex-end;
+  }
+  .alp-subscribe-form-inner-2 .field:after {
+    border: none;
+  }
+  .alp-subscribe-form-inner-2 .field {
+    width: calc(100% - 110px);
+    height: 60px;
+    border-radius: 0;
+    background: #fff;
+  }
+  .alp-subscribe-form-inner-2 .field .field__label {
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    display: none;
+  }
+  .alp-subscribe-form-inner-2 .newsletter-form__field-wrapper .field__input {
+    padding-right: 0;
+    width: 400px;
+    height: 100%;
+    padding-left: 1.5rem;
+  }
+  .alp-newsletter-form .newsletter-form__button:not(:focus-visible):not(.focused) {
+    border-radius: 0;
+    height: 60px;
+    margin: 0;
+  }
+  .alp-subscribe-form-inner-2 .newsletter-form__field-wrapper .field__input::placeholder {
+    opacity: 0.5;
+  }
+
+  .alp-subscribe-form-inner-2 .newsletter-form__field-wrapper .field__input:focus {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 1.5rem;
+  }
+  @media (min-width: 1000px) {
+    .alp-subscribe-form-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .alp-subscribe-form-inner-1 .alp-subscribe-form-titles {
+      text-align: left;
+    }
+  }
+  @media (max-width: 999px) {
+    .alp-section.alp-subscribe-form-wrapper {
+      padding: 80px 0;
+    }
+    .alp-subscribe-form-inner-2 {
+      margin-top: 28px;
+    }
+    .alp-subscribe-form-inner-2 .field {
+      height: 52px;
+    }
+    .alp-newsletter-form .newsletter-form__button:not(:focus-visible):not(.focused) {
+      height: 52px;
+    }
+    .alp-subscribe-form-description {
+      margin-top: 24px;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="alp-section alp-subscribe-form-wrapper {{ reset_spacing }} {% if st.text_alignment == 'text-center' %}justify-content-center{%- endif -%} {% if st.text_alignment == 'text-right' %}justify-content-end{%- endif -%}"
+  style="{{ style }}"
+>
+  <div class="alp-section-container alp-subscribe-form-container page-width {{ container }}">
+    <div class="alp-subscribe-form-inner-1">
+      <div class="alp-subscribe-form-titles">
+        <h2 class="headline__h2">
+          {{ st.heading }}
+        </h2>
+        <div class="alp-subscribe-form-description">
+          {{ st.description }}
+        </div>
+      </div>
+    </div>
+    <div class="alp-subscribe-form-inner-2 margin-top">
+      {% form 'customer', class: 'newsletter-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter-form__field-wrapper alp-newsletter-form">
+          <div class="field">
+            <input
+              id="NewsletterForm--{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              class="field__input"
+              value="{{ form.email }}"
+              aria-required="true"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                autofocus
+                aria-invalid="true"
+                aria-describedby="Newsletter-error--{{ section.id }}"
+              {% elsif form.posted_successfully? %}
+                aria-describedby="Newsletter-success--{{ section.id }}"
+              {% endif %}
+              placeholder="{{ st.email_placeholder }}"
+              required
+            >
+            <label class="field__label" for="NewsletterForm--{{ section.id }}">
+              {% comment %} {{ 'newsletter.label' | t }} {% endcomment %}
+              Your E-mail
+            </label>
+          </div>
+          <button
+            type="submit"
+            class="newsletter-form__button field__button"
+            name="commit"
+            id="Subscribe"
+            aria-label="{{ 'newsletter.button_label' | t }}"
+          >
+            {{ st.btn_text }}
+          </button>
+          {%- if form.errors -%}
+            <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
+              {%- render 'icon-error' -%}
+              {{- form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email -}}
+            </small>
+          {%- endif -%}
+        </div>
+        {%- if form.posted_successfully? -%}
+          <h3
+            class="newsletter-form__message newsletter-form__message--success form__message"
+            id="Newsletter-success--{{ section.id }}"
+            tabindex="-1"
+            autofocus
+          >
+            {% render 'icon-success' -%}
+            {{- 'newsletter.success' | t }}
+          </h3>
+        {%- endif -%}
+      {% endform %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    //
+  });
+</script>
